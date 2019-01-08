@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "htpps://api.geomat.uni-frankfurt.de/api",
+    "target": "https://api.geomat.uni-frankfurt.de/api",
     "secure": true
   }
 }
