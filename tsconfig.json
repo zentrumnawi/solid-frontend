@@ -8,9 +8,10 @@
     "module": "es2015",
     "moduleResolution": "node",
     "strict": true,
+    "strictPropertyInitialization": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
+    "target": "es5",
     "typeRoots": [
       "node_modules/@types"
     ],

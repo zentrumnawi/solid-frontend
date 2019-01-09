@@ -10,8 +10,8 @@ import {BaseComponent} from './shared/abstract/base.component';
 })
 export class AppComponent extends BaseComponent {
   public FixedLayout = true;
-  @ViewChild('mainmenu') MainMenu: MatDrawer;
-  @ViewChild('glossary') Glossary: MatDrawer;
+  @ViewChild('mainmenu') MainMenu?: MatDrawer;
+  @ViewChild('glossary') Glossary?: MatDrawer;
 
   constructor(
     breakpointObserver: BreakpointObserver,
@@ -21,11 +21,11 @@ export class AppComponent extends BaseComponent {
       const newFixedLayout = isFixed.matches;
       if (this.FixedLayout !== newFixedLayout) {
         if (newFixedLayout) {
-          this.MainMenu.open();
-          this.Glossary.open();
+          this.MainMenu!.open();
+          this.Glossary!.open();
         } else {
-          this.MainMenu.close();
-          this.Glossary.close();
+          this.MainMenu!.close();
+          this.Glossary!.close();
         }
       }
       this.FixedLayout = newFixedLayout;
