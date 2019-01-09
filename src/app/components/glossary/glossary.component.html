@@ -1,3 +1,9 @@
-<p>
-  glossary works!
-</p>
+<mat-list>
+  <ng-container *ngFor="let letter of Entries">
+    <h3 mat-subeader>{{ letter[0] }}</h3>
+    <mat-list-item *ngFor="let entry of letter[1]">
+      <span mat-line class="mat-body-strong entry-header">{{ entry.header }}</span>
+      <p mat-line [innerHTML]="entry.description"></p>
+    </mat-list-item>
+  </ng-container>
+</mat-list>

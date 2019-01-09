@@ -1,4 +1,4 @@
-<div class="app-main-container">
+<div class="app-main-container mat-typography">
   <mat-toolbar color="primary">
     <ng-container *ngIf="FixedLayout">
       <div class="right-border">
@@ -51,7 +51,7 @@
       [fixedInViewport]="!FixedLayout"
       position="end"
     >
-      <mat-toolbar color="primary" *ngIf="!FixedLayout">
+      <mat-toolbar color="primary" class="glossary-toolbar" *ngIf="!FixedLayout">
         Glossar
       </mat-toolbar>
       <app-glossary></app-glossary>

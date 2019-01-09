@@ -1,7 +1,7 @@
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {Component, ViewChild} from '@angular/core';
-import {MatDrawer, MatSidenavContainer} from '@angular/material/sidenav';
-import {BaseComponent} from './shared/base.component';
+import {MatDrawer} from '@angular/material/sidenav';
+import {BaseComponent} from './shared/abstract/base.component';
 
 @Component({
   selector: 'app-root',

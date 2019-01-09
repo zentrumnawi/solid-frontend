@@ -17,15 +17,18 @@
     span {
       padding-left: 16px;
     }
+
     .app-title-fixed {
       margin-left: 300px;
     }
+
     .right-border {
       border-right: 1px solid white;
       width: 300px - 16px;
       height: 64px;
       padding-top: 32px;
     }
+
     .left-border {
       border-left: 1px solid white;
       width: 300px - 16px;
@@ -35,10 +38,15 @@
     }
   }
 
-
   .glossary-sidenav,
   .mainmenu-sidenav {
     width: 300px;
     height: 100%;
+  }
+
+  ::ng-deep {
+    .mat-drawer-inner-container {
+      overflow: hidden;
+    }
   }
 }

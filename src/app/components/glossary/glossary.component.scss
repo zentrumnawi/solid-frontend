@@ -1,0 +1,38 @@
+@import '../../../theme';
+
+$background: map-get($app-theme, background);
+
+mat-list {
+  padding: 0;
+  display: inline-block;
+  height: calc(100vh - 64px);
+  width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  h3 {
+    background-color: mat-color($background, status-bar);
+    margin: 0;
+    padding: 4px 16px;
+  }
+
+  mat-list-item {
+    border-bottom: 1px solid mat-color($background, app-bar);
+    padding: 4px;
+
+    .entry-header {
+      font-weight: 500;
+    }
+    sup {
+      top: -.4em;
+    }
+  }
+}
+::ng-deep .mat-list .mat-list-item .mat-line{
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+::ng-deep  .mat-list .mat-list-item{
+  height:initial!important;
+}
