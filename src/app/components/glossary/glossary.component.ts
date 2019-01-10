@@ -1,4 +1,7 @@
-import { Component} from '@angular/core';
+import {Component} from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import {AppModel} from '../../models/app.model';
+import {selectGlossaryEntries} from '../../models/selectors';
 import {GlossaryService} from '../../services/glossary.service';
 import {BaseComponent} from '../../shared/abstract/base.component';
 
@@ -11,10 +14,12 @@ export class GlossaryComponent extends BaseComponent {
   public Entries: any;
   constructor(
     service: GlossaryService,
+    store: Store<AppModel>,
   ) {
     super();
-    this.addOnInit(async () => {
-      this.Entries = Object.entries(await service.getGlossaryEntries());
-    });
+    service.loadGlossaryEntries();
+    this.addSub(store.pipe(select(selectGlossaryEntries)).subscribe(entries => {
+      this.Entries = Object.entries(entries);
+    }));
   }
 }

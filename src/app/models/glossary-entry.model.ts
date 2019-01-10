@@ -5,3 +5,5 @@ export interface GlossaryEntryModel {
 }
 
 export type GlossaryEntriesOrdered = { [key: string]:GlossaryEntryModel[] };
+
+export const glossaryInitialState = {};

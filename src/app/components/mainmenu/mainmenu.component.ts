@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppModel, selectRouterUrl} from '../../models/app.model';
+import {AppModel} from '../../models/app.model';
+import {selectRouterUrl} from '../../models/selectors';
 import {BaseComponent} from '../../shared/abstract/base.component';
 
 @Component({

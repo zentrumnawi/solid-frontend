@@ -10,6 +10,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {GlossaryComponent} from './components/glossary/glossary.component';
 import {MainmenuComponent} from './components/mainmenu/mainmenu.component';
+import {glossaryReducer} from './reducers/glossary.reducer';
 import {GlossaryService} from './services/glossary.service';
 import {SharedModule} from './shared/shared.module';
 
@@ -25,6 +26,7 @@ import {SharedModule} from './shared/shared.module';
     SharedModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({
+      glossary: glossaryReducer,
       router: routerReducer,
     }),
     StoreDevtoolsModule.instrument({
