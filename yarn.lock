@@ -307,6 +307,16 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@ngrx/router-store@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-7.0.0.tgz#a273fc3288a2b256b07e9014e7b87d6ebfa3641d"
+  integrity sha512-7GrNxZJpdOd34uM+9mkOZW4wPWgyGu1MEvuHFijGqpmkjEPHLYpYDMY37Igx1P6mnqtJaJeQos3dG0CESPveIw==
+
+"@ngrx/store-devtools@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-7.0.0.tgz#8be35ad8b455019c9ac583c92ad8f0ec0d538c37"
+  integrity sha512-VLYDIiK5uy6SfIh3PUWT8oXNSHtVefRm44h9MMDBBUQphu5fBmGB9wtkFHfVTmw5V9TdZ9KnUTvm5Dlln8VP0A==
+
 "@ngrx/store@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-7.0.0.tgz#5472000197c2a388b09afceb2d062cb37b03d334"
@@ -6875,6 +6885,11 @@ ts-node@~7.0.0:
     mkdirp "^0.5.1"
     source-map-support "^0.5.6"
     yn "^2.0.0"
+
+ts-optchain@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ts-optchain/-/ts-optchain-0.1.2.tgz#41178e1b3268e5231078a24cb38cb07df0fc6e02"
+  integrity sha512-Xs1/xpXgTQhvgjP1qLIm5LWsgwAdpRnlfrHvMTyMPCNb4MP0WgYGCnK4xJBx0l4ZM+//IDubrmHkvp6BWfZfCg==
 
 tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.9.3"

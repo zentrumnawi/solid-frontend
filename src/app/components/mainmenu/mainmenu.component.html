@@ -1,3 +1,14 @@
-<p>
-  mainmenu works!
-</p>
+<mat-nav-list>
+  <mat-list-item [class.active]="ActiveUrl === '/'" routerLink="/">
+    <mat-icon matListIcon>home</mat-icon>
+    <h3 matLine>Startseite</h3>
+  </mat-list-item>
+  <mat-list-item [class.active]="ActiveUrl === '/info'" routerLink="/info">
+    <mat-icon matListIcon>info</mat-icon>
+    <h3 matLine>Info</h3>
+  </mat-list-item>
+  <mat-list-item [class.active]="ActiveUrl === '/privacy'" routerLink="/privacy">
+    <mat-icon matListIcon>info</mat-icon>
+    <h3 matLine>Datenschutzerklärung</h3>
+  </mat-list-item>
+</mat-nav-list>

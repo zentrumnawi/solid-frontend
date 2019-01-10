@@ -34,7 +34,7 @@
       position="start"
       [fixedInViewport]="!FixedLayout"
     >
-      <mat-toolbar color="primary" *ngIf="!FixedLayout">
+      <mat-toolbar (click)="MainMenu.toggle()" *ngIf="!FixedLayout" color="primary">
         Menü
       </mat-toolbar>
       <app-mainmenu></app-mainmenu>
@@ -51,7 +51,7 @@
       [fixedInViewport]="!FixedLayout"
       position="end"
     >
-      <mat-toolbar color="primary" class="glossary-toolbar" *ngIf="!FixedLayout">
+      <mat-toolbar (click)="Glossary.toggle()" *ngIf="!FixedLayout" class="glossary-toolbar" color="primary">
         Glossar
       </mat-toolbar>
       <app-glossary></app-glossary>

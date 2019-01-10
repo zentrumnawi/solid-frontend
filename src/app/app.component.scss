@@ -1,3 +1,7 @@
+@import '../theme';
+
+$background: map-get($app-theme, background);
+
 .app-main-container {
   position: absolute;
   top: 0;
@@ -23,14 +27,14 @@
     }
 
     .right-border {
-      border-right: 1px solid white;
+      border-right: 1px solid mat-color($background, status-bar);
       width: 300px - 16px;
       height: 64px;
       padding-top: 32px;
     }
 
     .left-border {
-      border-left: 1px solid white;
+      border-left: 1px solid mat-color($background, status-bar);
       width: 300px - 16px;
       height: 64px;
       padding-top: 32px;
