@@ -1,6 +1,7 @@
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {Component, ViewChild} from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
+import {TitleService} from './services/title.service';
 import {BaseComponent} from './shared/abstract/base.component';
 
 @Component({
@@ -15,6 +16,7 @@ export class AppComponent extends BaseComponent {
 
   constructor(
     breakpointObserver: BreakpointObserver,
+    title: TitleService, // Injected for initial initialisation
   ) {
     super();
     this.addSub(breakpointObserver.observe(['(min-width: 1000px)']).subscribe(isFixed => {

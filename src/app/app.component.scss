@@ -9,6 +9,10 @@ $background: map-get($app-theme, background);
   left: 0;
   right: 0;
 
+  mat-sidenav-content {
+    padding: 16px;
+  }
+
   mat-sidenav-container {
     position: absolute;
     top: 64px;
