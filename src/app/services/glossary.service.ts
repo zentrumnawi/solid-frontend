@@ -16,8 +16,8 @@ export class GlossaryService extends ApiHttpClient {
 
   }
 
-  public async loadGlossaryEntries(): Promise<void> {
-    const unordered = await this.list<GlossaryEntryModel>();
+  public loadGlossaryEntries(): void {
+    this.list<GlossaryEntryModel>().subscribe(unordered => {
     const ordered: GlossaryEntriesOrdered = {};
     unordered.forEach(entry => {
       const firstChar = entry.header[0].toUpperCase();
@@ -27,5 +27,6 @@ export class GlossaryService extends ApiHttpClient {
       ordered[firstChar].push(entry);
     });
     this._store.dispatch(new GlossarySetAction(ordered));
+    })
   }
 }

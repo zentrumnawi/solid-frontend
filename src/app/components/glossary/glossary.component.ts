@@ -17,7 +17,6 @@ export class GlossaryComponent {
     service: GlossaryService,
     store: Store<AppModel>,
   ) {
-    super();
     service.loadGlossaryEntries();
     this.Entries = store.pipe(
       select(selectGlossaryEntries),
