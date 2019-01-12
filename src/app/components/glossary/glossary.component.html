@@ -1,5 +1,5 @@
 <mat-list>
-  <ng-container *ngFor="let letter of Entries">
+  <ng-container *ngFor="let letter of (Entries | async)">
     <h3 mat-subeader>{{ letter[0] }}</h3>
     <mat-list-item *ngFor="let entry of letter[1]">
       <span mat-line class="mat-body-strong entry-header">{{ entry.header }}</span>
