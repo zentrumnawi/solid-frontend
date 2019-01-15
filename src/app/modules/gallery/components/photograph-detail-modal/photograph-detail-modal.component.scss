@@ -1,0 +1,13 @@
+.spinner {
+  mat-spinner {
+    margin: auto;
+  }
+}
+
+img {
+  max-width: 100%;
+
+  &.hidden {
+    display: none;
+  }
+}

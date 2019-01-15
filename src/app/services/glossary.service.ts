@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {GlossarySetAction} from '../actions/glossary.actions';
-import {AppModel} from '../models/app.model';
+import {AppState} from '../models/app.model';
 import {GlossaryEntriesOrdered, GlossaryEntryModel} from '../models/glossary-entry.model';
 import {ApiHttpClient} from '../shared/abstract/api-http-client';
 
@@ -10,7 +10,7 @@ import {ApiHttpClient} from '../shared/abstract/api-http-client';
 export class GlossaryService extends ApiHttpClient {
   constructor(
     http: HttpClient,
-    private _store: Store<AppModel>,
+    private _store: Store<AppState>,
   ) {
     super(http, 'glossary');
 

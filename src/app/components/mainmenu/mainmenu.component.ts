@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppModel} from '../../models/app.model';
+import {AppState} from '../../models/app.model';
 import {selectRouterUrl} from '../../models/selectors';
 import {BaseComponent} from '../../shared/abstract/base.component';
 
@@ -13,7 +13,7 @@ export class MainmenuComponent extends BaseComponent {
   public ActiveUrl = '';
 
   constructor(
-    store: Store<AppModel>,
+    store: Store<AppState>,
   ) {
     super();
     this.addSub(store.pipe(select(selectRouterUrl)).subscribe(url => {
