@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {map} from 'rxjs/operators';
-import {AppState} from '../../models/app.model';
-import {selectGlossaryEntries} from '../../models/selectors';
 import {GlossaryService} from '../../services/glossary.service';
+import {AppState} from '../../state/app.model';
+import {selectGlossaryEntries} from '../../state/selectors';
 
 @Component({
   selector: 'app-glossary',

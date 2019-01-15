@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {GlossaryEntriesOrdered} from '../models/glossary-entry.model';
+import {GlossaryEntriesOrdered} from './glossary-entry.model';
 
 export enum GlossaryActionTypes {
   Set = '[Glossary] SetEntries',

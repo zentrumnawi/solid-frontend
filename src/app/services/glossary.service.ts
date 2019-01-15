@@ -1,10 +1,10 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {GlossarySetAction} from '../actions/glossary.actions';
-import {AppState} from '../models/app.model';
-import {GlossaryEntriesOrdered, GlossaryEntryModel} from '../models/glossary-entry.model';
 import {ApiHttpClient} from '../shared/abstract/api-http-client';
+import {AppState} from '../state/app.model';
+import {GlossaryEntriesOrdered, GlossaryEntryModel} from '../state/glossary-entry.model';
+import {GlossarySetAction} from '../state/glossary.actions';
 
 @Injectable()
 export class GlossaryService extends ApiHttpClient {

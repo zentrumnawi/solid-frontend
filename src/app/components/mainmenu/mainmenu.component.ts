@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppState} from '../../models/app.model';
-import {selectRouterUrl} from '../../models/selectors';
 import {BaseComponent} from '../../shared/abstract/base.component';
+import {AppState} from '../../state/app.model';
+import {selectRouterUrl} from '../../state/selectors';
 
 @Component({
   selector: 'app-mainmenu',

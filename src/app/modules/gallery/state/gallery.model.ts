@@ -1,4 +1,4 @@
-import {AppState} from '../../../models/app.model';
+import {AppState} from '../../../state/app.model';
 
 export interface GalleryAppState extends AppState {
   gallery: GalleryState;
