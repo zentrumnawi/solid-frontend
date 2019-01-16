@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ Heading }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="!ImageLoaded" class="spinner">
+      <mat-spinner color="primary"></mat-spinner>
+    </div>
+    <img (load)="onImageLoaded()" [class.hidden]="!ImageLoaded" [src]="ImagePath"/>
+  </mat-card-content>
+</mat-card>

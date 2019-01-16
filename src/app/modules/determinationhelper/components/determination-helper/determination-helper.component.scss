@@ -1,0 +1,43 @@
+p {
+  text-align: justify;
+}
+
+.cols-2 {
+  display: grid;
+  grid-template-areas: "text1 text2" "img1 img2";
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+
+  @media screen and (max-width: 500px) {
+    grid-template-areas: "text1" "img1" "text2" "img2";
+  }
+
+  :nth-child(1) {
+    grid-area: text1;
+  }
+
+  :nth-child(2) {
+    grid-area: text2;
+  }
+
+  :nth-child(3) {
+    grid-area: img1;
+  }
+
+  :nth-child(4) {
+    grid-area: img2;
+  }
+}
+
+.float-right {
+  float: right;
+}
+
+app-image-card {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.step-actions {
+  margin-top: 1em;
+}

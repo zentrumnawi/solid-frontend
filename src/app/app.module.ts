@@ -28,7 +28,7 @@ import {glossaryReducer} from './state/glossary.reducer';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
+    SharedModule.forRoot(),
     BrowserAnimationsModule,
     StoreModule.forRoot({
       glossary: glossaryReducer,

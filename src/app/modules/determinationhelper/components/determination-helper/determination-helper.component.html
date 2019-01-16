@@ -1,0 +1,165 @@
+<mat-horizontal-stepper #stepper labelPosition="bottom" linear="true">
+  <ng-template matStepperIcon="edit">
+    <mat-icon>info</mat-icon>
+  </ng-template>
+  <mat-step [state]="MaxStep >= 1 ? 'done' : ''" label="Abstrakt">
+    <p>Dieser Bestimmungshelfer unterstützt die eindeutige Mineralerkennung und -bestimmung &ndash; und zeigt
+      systematisch die Schritte des Bestimmungsvorgangs. Im Folgenden werden dazu verschiedene Erkennungsmerkmale kurz
+      erklärt und an Beispielen gezeigt.</p>
+    <p>Bei der Mineralbestimmung geht es neben der optischen Beschreibung auch darum, Minerale mit Hilfe des
+      Kristallsystems in die entsprechende Systematik einzuordnen und so zu klassifizieren, dass dann auch eine
+      Einordnung des Gesteins, in dem die Minerale vorkommen, schneller möglich ist.</p>
+    <p>Zur Mineralbestimmung sollte man sich stets an der hier vorgestellten Reihenfolge der Eigenschaften orientieren,
+      <b>wobei nicht jedes Erkennungsmerkmal für jedes Mineral charakteristisch ist!</b></p>
+    <div class="step-actions">
+      <button (click)="onNextStepClick(1)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 2 ? 'done' : ''" label="Allgemeines Aussehen">
+    <div class="cols-2">
+      <div>
+        <p>Die erste wichtige Beobachtung zur Erkennung von Mineralen ist, ob das unbekannte Mineralhandstück ein <a
+          (click)="onGlossaryLinkKlick($event, 'idiomorph')" class="internLink">idiomorpher</a> oder ein <a
+          (click)="showGlossaryEntry($event, 'xenomorph')" class="internLink">xenomorpher</a> Kristall ist. Einen <i>idiomorphen</i>
+          Kristall erkennt man an den perfekten Kristallflächen, die er nur ausbilden kann, wenn er frei gewachsen ist.
+          Wenn sein Wachstum aber eingeschränkt war (z.B. von anderen Mineralen), konnten sich die Kristallflächen nicht
+          eindeutig ausbilden und der Kristall wird als <i>xenomorph</i> bezeichnet. Der Übergang zwischen diesen beiden
+          Formen wird <a (click)="showGlossaryEntry($event, 'hypidiomorph')" class="internLink">hypidiomorph</a> genannt
+          und liegt vor, wenn ein Kristall teilweise idiomorph und teilweise xenomorph gewachsen ist.</p>
+      </div>
+      <div>
+        <p>Wenn es sich um einen <b>idiomorphen</b> Kristall handelt, kann man über die äußere Form meist die <a
+          (click)="showGlossaryEntry($event, 'tracht')" class="internLink">Tracht</a>, den <a
+          (click)="showGlossaryEntry($event, 'habitus')"
+          class="internLink">Habitus</a>
+          und das <a (click)="showGlossaryEntry($event, 'kristallsystem')" class="internLink">Kristallsystem</a>
+          bestimmen.<br>Wenn es sich um einen <b>hypidiomorphen</b> Kristall handelt, kann man gegebenenfalls über die
+          äußere Form die Tracht, den Habitus und das Kristallsystem bestimmen.<br>Wenn es sich um einen
+          <b>xenomorphen</b> Kristall handelt ist dies leider nicht möglich. Das nächste Erkennungsmerkmal ist in diesem
+          Fall der spezifische <a (click)="showGlossaryEntry($event, 'bruch')" class="internLink">Bruch</a> des
+          Minerals.</p>
+      </div>
+      <app-image-card heading="Idiomorphes Äußeres (Spinelloktaeder)"
+                      src="assets/determination/idiomorphes_aeusseres.jpg"></app-image-card>
+      <app-image-card heading="Xenomorphes Äußeres (Labradorit im Gestein)"
+                      src="assets/determination/xenomorphes_aeusseres.jpg"></app-image-card>
+    </div>
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(2)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 3 ? 'done' : ''" label="Kristallsystem">
+    <p>
+      Bei einem <b>idiomorphem</b> Kristall ist an der Ausbildung der Flächen zueinander schnell das <a
+      (click)="showGlossaryEntry($event, 'kristallsystem')" class="internLink">Kristallsystem</a> erkennbar. Durch
+      Suchen und Finden verschiedener <a (click)="showGlossaryEntry($event, 'symmetrieoperation')" class="internLink">Symmetrieoperationen</a>
+      in den definierten kristallographischen Richtungen und durch die Betrachtung des Habitus können die 7
+      verschiedenen Kristallsysteme unterschieden werden.<br>Das <b>kubische</b> Kristallsystem hat drei gleich lange
+      Achsen a = b = c und drei gleich große Winkel (&alpha; = &beta; = &gamma; = 90&deg;). Die Blickrichtungen sind:
+      &lt;100&gt; &lt;110&gt; &lt;111&gt;<br>
+      Entlang der 3. Blickrichtung ist im Kubischen immer eine dreizählige Rotationsachse zu finden.
+    </p>
+    <div class="cols-2">
+      <app-image-card heading="Kubisches Kristallsystem (Pyrit)"
+                      src="assets/determination/kubisches_kristallsystem.jpg"></app-image-card>
+      <app-image-card heading="Trigonales Kristallsystem (Korund)"
+                      src="assets/determination/trigonales_kristallsystem.jpg"></app-image-card>
+    </div>
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(3)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 4 ? 'done' : ''" label="Habitus">
+    <p>Der <a (click)="showGlossaryEntry($event, 'habitus')" class="internLink">Habitus</a> beschreibt das
+      Größenverhältnis der verschiedenen Kristallflächen eines Kristalls zueinander. Der Habitus kann innerhalb einer
+      Mineralart stark variieren.<br>Das kubische Kristallsystem beispielsweise weist stets einen <i>isometrischen</i>
+      Habitus auf, da die Achsen alle gleich lang sind. Das tetragonale Kristallsystem zeigt hingegen einen <i>stängeligen</i>,
+      <i>tafeligen</i> oder <i>prismatischen</i> Habitus, da eine Achse länger ist (a = b &ne; c).
+    </p>
+    <div class="cols-2">
+      <app-image-card heading="Isometrischer Habitus (Grossular, Granat)"
+                      src="assets/determination/isometrischer_habitus.jpg"></app-image-card>
+      <app-image-card heading="Prismatischer Habitus (Bergkristall)"
+                      src="assets/determination/prismatischer_habitus.jpg"></app-image-card>
+    </div>
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(4)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 5 ? 'done' : ''" label="Tracht">
+    <p>Die <a (click)="showGlossaryEntry($event, 'tracht')" class="internLink">Tracht</a> beschreibt die Gesamtheit der
+      ausgebildeten Flächen eines Kristalls, also die Kombination der einzelnen Kristallflächen zueinander. Sie stellt
+      einen gewissen Gegensatz zum Habitus dar, welcher die Größenverhältnisse beschreibt. Tracht und Habitus zusammen
+      bilden die Kristallgestalt.</p>
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(5)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 6 ? 'done' : ''" label="Bruch">
+    <p>Der <a (click)="showGlossaryEntry($event, 'bruch')" class="internLink">Bruch</a> ist ein wichtiges Merkmal von
+      Mineralen und ist klar von der <a (click)="showGlossaryEntry($event, 'spaltbarkeit')" class="internLink">Spaltbarkeit</a>
+      zu trennen! Während die Spaltbarkeit einer kristallographischen Richtung folgt, folgt der Bruch <b>keiner</b>
+      kristallographischen Richtung. Es können folgende Brucharten unterschieden werden:
+      <mat-list>
+        <mat-list-item>muschelig</mat-list-item>
+        <mat-list-item>uneben</mat-list-item>
+        <mat-list-item>glatt</mat-list-item>
+        <mat-list-item>hakig (bzw. hakig-biegsam)</mat-list-item>
+        <mat-list-item>glimmerartig</mat-list-item>
+        <mat-list-item>splittrig (selten auch faserig und erdig)</mat-list-item>
+      </mat-list>
+    </p>
+    <p>
+      An idiomorphen Kristallen ist meist kein Bruch zu erkennen, da die idiomorphen Kristallflächen den Bruch nur
+      zeigen, wenn sie beschädigt sind.
+    </p>
+    <app-image-card heading="Muscheliger Bruch (Olivin)"
+                    src="assets/determination/muscheliger_bruch.jpg"></app-image-card>
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(6)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 7 ? 'done' : ''" label="Spaltbarkeit">
+    <p>Um die <a (click)="showGlossaryEntry($event, 'spaltbarkeit')" class="internLink">Spaltbarkeit</a> zu untersuchen
+      ist es wichtig, deutliche Spaltwinkel oder -formen am Mineralhandstück zu entdecken. Da diese nicht in allen
+      Handstücken deutlich zu sehen sind, ist es auch wichtig, die vorhandenen idiomorph ausgebildeten Flächen im
+      Verhältnis zu anderen idiomorph ausgebildeten Flächen zu untersuchen und die Winkel zwischen den Flächen
+      festzustellen. Durch die unterschiedlichen Spaltwinkel lassen sich Minerale meist gut unterscheiden, wie zum
+      Beispiel Amphibole (120°-Winkel) und Pyroxene (90°-Winkel).<br>Allein durch die Betrachtung der äußeren Form und
+      des Verwitterungsverhaltens des Minerals kann man gute bis sehr vollkommene Spaltbarkeit erkennen, da diese
+      Minerale stets in typischen Formen verwittern, die das Kristallsystem zeigen, wie beispielsweise Calcit, der
+      typische Spaltrhomboeder aufweist.
+    <div class="cols-2">
+      <app-image-card heading="Sehr vollkommene Spaltbarkeit (Phlogopit)"
+                      src="assets/determination/spaltbarkeit.jpg"></app-image-card>
+      <app-image-card heading="Vollkommene Spaltbarkeit (Calcit)"
+                      src="assets/determination/spaltbarkeit2.jpg"></app-image-card>
+    </div>
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(7)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 8 ? 'done' : ''" label="Glanz">
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(8)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 9 ? 'done' : ''" label="Transparenz">
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(9)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 10 ? 'done' : ''" label="Besonderheiten">
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

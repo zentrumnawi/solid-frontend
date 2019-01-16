@@ -1,0 +1,23 @@
+mat-card {
+  padding-bottom: 0;
+
+  mat-card-content {
+    margin: 0 -16px -16px -16px;
+
+    .spinner {
+      mat-spinner {
+        margin: auto;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      margin-bottom: -6px;
+      border-radius: 4px;
+
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+}
