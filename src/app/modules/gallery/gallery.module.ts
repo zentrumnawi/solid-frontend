@@ -6,7 +6,7 @@ import {GalleryOverviewComponent} from './components/gallery-overview/gallery-ov
 import {PhotographDetailModalComponent} from './components/photograph-detail-modal/photograph-detail-modal.component';
 
 import {GalleryRoutingModule} from './gallery-routing.module';
-import {PhotographService} from './services/photograph.service';
+import {GalleryService} from './services/gallery.service';
 import {galleryReducer} from './state/gallery.reducer';
 
 export const GALLERY_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Gallery reducer');
@@ -23,7 +23,7 @@ export function getReducers() {
     StoreModule.forFeature('gallery', GALLERY_REDUCER_TOKEN),
   ],
   providers: [
-    PhotographService,
+    GalleryService,
     {
       provide: GALLERY_REDUCER_TOKEN,
       useFactory: getReducers,

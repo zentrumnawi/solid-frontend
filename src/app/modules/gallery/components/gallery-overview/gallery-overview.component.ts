@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
-import {PhotographService} from '../../services/photograph.service';
+import {GalleryService} from '../../services/gallery.service';
 import {GalleryAppState, PhotographModel} from '../../state/gallery.model';
 import {selectPhotographs} from '../../state/selectors';
 import {PhotographDetailModalComponent} from '../photograph-detail-modal/photograph-detail-modal.component';
@@ -17,7 +17,7 @@ export class GalleryOverviewComponent extends BaseComponent {
   public EntriesLoaded: boolean[] = [];
 
   constructor(
-    service: PhotographService,
+    service: GalleryService,
     store: Store<GalleryAppState>,
     private _dialog: MatDialog,
   ) {

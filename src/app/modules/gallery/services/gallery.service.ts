@@ -6,12 +6,12 @@ import {GallerySetAction} from '../state/gallery.actions';
 import {GalleryAppState, PhotographModel} from '../state/gallery.model';
 
 @Injectable()
-export class PhotographService extends ApiHttpClient {
+export class GalleryService extends ApiHttpClient {
   constructor(
     private _store: Store<GalleryAppState>,
     httpClient: HttpClient,
   ) {
-    super(httpClient, 'photograph');
+    super(httpClient, 'gallery');
   }
 
   public loadGallery(): void {
