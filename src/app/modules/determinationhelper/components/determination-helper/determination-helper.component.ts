@@ -13,4 +13,8 @@ export class DeterminationHelperComponent {
       this.MaxStep = stepId;
     }
   }
+
+  public showGlossaryEntry($event: MouseEvent, glossaryId: string) {
+    // TODO: this method should navigate to the glossary entry
+  }
 }
