@@ -1,8 +1,6 @@
-<mat-horizontal-stepper #stepper labelPosition="bottom" linear="true">
-  <ng-template matStepperIcon="edit">
-    <mat-icon>info</mat-icon>
-  </ng-template>
+<mat-horizontal-stepper #stepper labelPosition="bottom" linear="false">
   <mat-step [state]="MaxStep >= 1 ? 'done' : ''" label="Abstrakt">
+    <h1>Abstrakt</h1>
     <p>Dieser Bestimmungshelfer unterstützt die eindeutige Mineralerkennung und -bestimmung &ndash; und zeigt
       systematisch die Schritte des Bestimmungsvorgangs. Im Folgenden werden dazu verschiedene Erkennungsmerkmale kurz
       erklärt und an Beispielen gezeigt.</p>
@@ -16,6 +14,7 @@
     </div>
   </mat-step>
   <mat-step [state]="MaxStep >= 2 ? 'done' : ''" label="Allgemeines Aussehen">
+    <h1>Allgemeines Aussehen</h1>
     <div class="cols-2">
       <div>
         <p>Die erste wichtige Beobachtung zur Erkennung von Mineralen ist, ob das unbekannte Mineralhandstück ein <a
@@ -50,6 +49,7 @@
     </div>
   </mat-step>
   <mat-step [state]="MaxStep >= 3 ? 'done' : ''" label="Kristallsystem">
+    <h1>Kristallsystem</h1>
     <p>
       Bei einem <b>idiomorphem</b> Kristall ist an der Ausbildung der Flächen zueinander schnell das <a
       (click)="showGlossaryEntry($event, 'kristallsystem')" class="internLink">Kristallsystem</a> erkennbar. Durch
@@ -72,6 +72,7 @@
     </div>
   </mat-step>
   <mat-step [state]="MaxStep >= 4 ? 'done' : ''" label="Habitus">
+    <h1>Habitus</h1>
     <p>Der <a (click)="showGlossaryEntry($event, 'habitus')" class="internLink">Habitus</a> beschreibt das
       Größenverhältnis der verschiedenen Kristallflächen eines Kristalls zueinander. Der Habitus kann innerhalb einer
       Mineralart stark variieren.<br>Das kubische Kristallsystem beispielsweise weist stets einen <i>isometrischen</i>
@@ -90,6 +91,7 @@
     </div>
   </mat-step>
   <mat-step [state]="MaxStep >= 5 ? 'done' : ''" label="Tracht">
+    <h1>Tracht</h1>
     <p>Die <a (click)="showGlossaryEntry($event, 'tracht')" class="internLink">Tracht</a> beschreibt die Gesamtheit der
       ausgebildeten Flächen eines Kristalls, also die Kombination der einzelnen Kristallflächen zueinander. Sie stellt
       einen gewissen Gegensatz zum Habitus dar, welcher die Größenverhältnisse beschreibt. Tracht und Habitus zusammen
@@ -100,6 +102,7 @@
     </div>
   </mat-step>
   <mat-step [state]="MaxStep >= 6 ? 'done' : ''" label="Bruch">
+    <h1>Bruch</h1>
     <p>Der <a (click)="showGlossaryEntry($event, 'bruch')" class="internLink">Bruch</a> ist ein wichtiges Merkmal von
       Mineralen und ist klar von der <a (click)="showGlossaryEntry($event, 'spaltbarkeit')" class="internLink">Spaltbarkeit</a>
       zu trennen! Während die Spaltbarkeit einer kristallographischen Richtung folgt, folgt der Bruch <b>keiner</b>
@@ -125,6 +128,7 @@
     </div>
   </mat-step>
   <mat-step [state]="MaxStep >= 7 ? 'done' : ''" label="Spaltbarkeit">
+    <h1>Spaltbarkeit</h1>
     <p>Um die <a (click)="showGlossaryEntry($event, 'spaltbarkeit')" class="internLink">Spaltbarkeit</a> zu untersuchen
       ist es wichtig, deutliche Spaltwinkel oder -formen am Mineralhandstück zu entdecken. Da diese nicht in allen
       Handstücken deutlich zu sehen sind, ist es auch wichtig, die vorhandenen idiomorph ausgebildeten Flächen im
@@ -146,18 +150,145 @@
     </div>
   </mat-step>
   <mat-step [state]="MaxStep >= 8 ? 'done' : ''" label="Glanz">
+    <h1>Glanz</h1>
+    <p>Um den <a (click)="showGlossaryEntry($event, 'glanz')" class="internLink">Glanz</a> zu erkennen, sollte man die
+      Kristallflächen des Mineralhandstückes in möglichst hellem Licht (am besten eignet sich direktes Sonnenlicht)
+      betrachten. Je nach Intensität des Glanzes, also der Intensität der Reflexion des Lichtes, wird der Glanz in
+      folgende Arten unterschieden:
+    </p>
+    <mat-list>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Glasglanz</h3>
+        <p matLine>- entspricht dem Glanz von einfachem Fensterglas.</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Fettglanz</h3>
+        <p text-wrap>- erinnert an schimmernde Fettflecken auf Pergamentpapier.</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Diamantglanz</h3>
+        <p matLine>- ist der strahlende Glanz, den man von geschliffenem Diamant und Bleikristallglas kennt.</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Metallglanz</h3>
+        <p matLine>- entspricht dem Glanz von poliertem Metall.</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Pechglanz</h3>
+        <p matLine>- haben z.B. die frisch zerschlagenen Teerbrocken.</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Harzglanz</h3>
+        <p matLine>- erinnert an Harz beziehungsweise den Glanz von Kerzenwachs.</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Perlmuttglanz</h3>
+        <p matLine>- erinnert an die Innenseite von Muschelschalen (Perlmutt), die einen weißlichen Schimmer mit
+          farbigem Lichtschein zeigen.</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Seidenglanz</h3>
+        <p matLine>- weisen Minerale auf, die einen wogenden Lichtschein zeigen, wie er bei Seide zu beobachten
+          ist.</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Mattglanz</h3>
+        <p matLine>- hat ein Mineral, das fast oder gar keinen Glanz aufweist.</p>
+      </mat-list-item>
+    </mat-list>
+    <div class="cols-2">
+      <app-image-card heading="Metallglanz (Markasit)"
+                      src="assets/determination/metall_glanz.jpg"></app-image-card>
+      <app-image-card heading="Glasglanz (Bergkristall)"
+                      src="assets/determination/glas_glanz.jpg"></app-image-card>
+      <app-image-card heading="Perlmuttglanz (Biotit)"
+                      src="assets/determination/perlmut_glanz.jpg"></app-image-card>
+      <app-image-card heading="Stumpf-erdiger Glanz (Kaolinit)"
+                      src="assets/determination/stumpf-erdiger_glanz.jpg"></app-image-card>
+    </div>
     <div class="step-actions">
       <button mat-button matStepperPrevious>Vorheriger Schritt</button>
       <button (click)="onNextStepClick(8)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
     </div>
   </mat-step>
-  <mat-step [state]="MaxStep >= 9 ? 'done' : ''" label="Transparenz">
+  <mat-step [state]="MaxStep >= 9 ? 'done' : ''" label="Farbe">
+    <h1>Farbe</h1>
+    <p>Die Farbe ist bei den meisten Mineralen <b>kein diagnostisches Merkmal</b> zur Bestimmung. Sie dient aber oft
+      dazu, verschiedene Varietäten wie z.B. beim Beryll (Aquamarin = blau, Smaragd = grün) voneinander zu
+      unterscheiden. Seltene starke Farben können einen gewissen Wiedererkennungscharakter haben.</p>
+    <div class="cols-2">
+      <app-image-card heading="Intensives Blau (Sodalith)"
+                      src="assets/determination/farbe1.jpg"></app-image-card>
+      <app-image-card heading="Intensives Grün (Olivin)"
+                      src="assets/determination/farbe2.jpg"></app-image-card>
+    </div>
     <div class="step-actions">
       <button mat-button matStepperPrevious>Vorheriger Schritt</button>
       <button (click)="onNextStepClick(9)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
     </div>
   </mat-step>
-  <mat-step [state]="MaxStep >= 10 ? 'done' : ''" label="Besonderheiten">
+  <mat-step [state]="MaxStep >= 10 ? 'done' : ''" label="Transparenz">
+    <h1>Transparenz</h1>
+    <p>Die <a (click)="showGlossaryEntry($event, 'transparenz')" class="internLink">Transparenz</a>
+      unterscheidet sich in <b>durchsichtig</b>, <b>durchlässig</b>, <b>undurchlässig</b> und <b>opak</b>. Mit ihr kann
+      man viele verschiedene Tendenzen und Variationen in Mineralen unterscheiden, dennoch ist auch die Transparenz
+      meist kein eindeutiges Merkmal, da sie von vielen Parametern wie z.B. der Dicke des Mineralhandstücks anhängig
+      ist.</p>
+    <div class="cols-2">
+      <app-image-card heading="Durchsichtig (Topas)"
+                      src="assets/determination/transparent.jpg"></app-image-card>
+      <app-image-card heading="Opak (Augit)"
+                      src="assets/determination/opak.jpg"></app-image-card>
+    </div>
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button (click)="onNextStepClick(9)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+    </div>
+  </mat-step>
+  <mat-step [state]="MaxStep >= 11 ? 'done' : ''" label="Besonderheiten">
+    <h1>Besonderheiten</h1>
+    <p>Als letztes können noch mineralspezifische Besonderheiten untersucht werden:</p>
+    <mat-list>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Pleochroismus:</h3>
+        <p matLine>Weist das Mineral Pleochroismus auf?</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Spezifisches Gewicht:</h3>
+        <p matLine>Ist das Mineral ungewöhnlich schwer/leicht?</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Magnetismus:</h3>
+        <p matLine>Ist das Mineral magnetisch?</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Phantomausbildung:</h3>
+        <p matLine>Treten besondere Verzwillingungserscheinungen auf?</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Verwachsungen:</h3>
+        <p matLine>Weist das Mineral Phantome auf?</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Einschlüsse:</h3>
+        <p matLine>Ist das Mineral mit einem Anderen verwachsen?</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Zonarbau:</h3>
+        <p matLine>Zeigt das Mineral viele oder besondere Einschlüsse?</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h3 class="gloss" matLine>Weiteres:</h3>
+        <p matLine>Treten andere Besonderheiten auf?</p>
+      </mat-list-item>
+
+    </mat-list>
+    <div class="cols-2">
+      <app-image-card heading="Durchkreuzungszwilling (Staurolith)"
+                      src="assets/determination/durchkreuzungszwillinge.jpg"></app-image-card>
+      <app-image-card heading="Paragenese (Chlorit auf Quarz)"
+                      src="assets/determination/paragenese.jpg"></app-image-card>
+    </div>
     <div class="step-actions">
       <button mat-button matStepperPrevious>Vorheriger Schritt</button>
     </div>

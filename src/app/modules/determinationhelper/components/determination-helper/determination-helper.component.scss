@@ -4,11 +4,13 @@ p {
 
 .cols-2 {
   display: grid;
+  grid-template-columns: 50% 50%;
   grid-template-areas: "text1 text2" "img1 img2";
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
   @media screen and (max-width: 500px) {
+    grid-template-columns: 100%;
     grid-template-areas: "text1" "img1" "text2" "img2";
   }
 
@@ -40,4 +42,13 @@ app-image-card {
 
 .step-actions {
   margin-top: 1em;
+}
+
+
+h3.mat-line.gloss {
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
 }
