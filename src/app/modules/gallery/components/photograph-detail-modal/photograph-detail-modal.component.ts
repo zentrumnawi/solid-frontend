@@ -12,7 +12,7 @@ import {selectPhotographs} from '../../state/selectors';
   styleUrls: ['./photograph-detail-modal.component.scss'],
 })
 export class PhotographDetailModalComponent extends BaseComponent {
-  public Entry?: PhotographModel;
+  public Entry!: PhotographModel;
   public _entryIndex!: number;
   public ImageLoaded = false;
   private _entries!: PhotographModel[];
