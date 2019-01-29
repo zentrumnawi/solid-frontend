@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://geomat-staging.physikelearning.de/api',
+  api: 'https://geomat-staging.physikelearning.de',
 };
 
 /*

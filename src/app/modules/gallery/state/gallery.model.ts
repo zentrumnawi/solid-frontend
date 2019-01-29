@@ -1,3 +1,4 @@
+import {ImageFiles} from '../../../shared/models';
 import {AppState} from '../../../state/app.model';
 
 export interface GalleryAppState extends AppState {
@@ -17,14 +18,6 @@ export interface PhotographModel {
   online_status: boolean;
   created_at: Date;
   last_modified: Date;
-}
-
-export interface ImageFiles {
-  large: string;
-  medium: string;
-  small: string;
-  thumbnail: string;
-  original: string;
 }
 
 export enum PhotographOrientation {

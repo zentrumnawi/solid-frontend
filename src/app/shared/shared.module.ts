@@ -12,6 +12,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTreeModule} from '@angular/material/tree';
 import {ImageCardComponent} from './components/image-card/image-card.component';
 
 @NgModule({
@@ -28,6 +29,7 @@ import {ImageCardComponent} from './components/image-card/image-card.component';
     MatSidenavModule,
     MatStepperModule,
     MatToolbarModule,
+    MatTreeModule,
     LayoutModule,
   ],
   exports: [
@@ -42,6 +44,7 @@ import {ImageCardComponent} from './components/image-card/image-card.component';
     MatSidenavModule,
     MatStepperModule,
     MatToolbarModule,
+    MatTreeModule,
     LayoutModule,
     ImageCardComponent,
   ]

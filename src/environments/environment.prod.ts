@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.geomat.uni-frankfurt.de/api',
+  api: 'https://api.geomat.uni-frankfurt.de',
 };
