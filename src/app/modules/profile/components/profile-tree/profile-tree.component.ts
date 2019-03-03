@@ -1,6 +1,8 @@
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {Component} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+import {ActivatedRoute, Router} from '@angular/router';
+import {activateRoutes} from '@angular/router/src/operators/activate_routes';
 import {select, Store} from '@ngrx/store';
 import {of as observableOf} from 'rxjs';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
@@ -14,8 +16,10 @@ export type FlatTreeNode = MineralNode | CategoryNode;
 export interface MineralNode {
   type: 'mineral'
   level: number;
-  image_file?: ImageFiles;
+  imageFiles: ImageFiles;
+  imageLoaded: boolean;
   expandable: false,
+  id: number;
 }
 
 export interface CategoryNode {
@@ -31,6 +35,7 @@ export interface CategoryNode {
   styleUrls: ['./profile-tree.component.scss'],
 })
 export class ProfileTreeComponent extends BaseComponent {
+  public Selected: string = '';
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<Profile, FlatTreeNode>;
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
@@ -43,6 +48,8 @@ export class ProfileTreeComponent extends BaseComponent {
   constructor(
     private _service: ProfileService,
     store: Store<ProfileAppState>,
+    private _router: Router,
+    route: ActivatedRoute,
   ) {
     super();
     this._service.loadProfiles();
@@ -58,6 +65,7 @@ export class ProfileTreeComponent extends BaseComponent {
     this.addSub(store.pipe(select(selectProfiles)).subscribe(profiles => {
       this.DataSource.data = profiles;
     }));
+    // route.children[0].params.subscribe(params => console.log(params));
   }
 
   /** Transform the data to something the tree can read. */
@@ -71,11 +79,13 @@ export class ProfileTreeComponent extends BaseComponent {
       };
     } else {
       return {
-        title: node.title,
+        title: node.name,
+        id: node.id,
         type: 'mineral',
         level: level,
         expandable: false,
-        image_file: node.image_file,
+        imageFiles: node.imageFiles,
+        imageLoaded: false,
       };
     }
   }
@@ -100,7 +110,18 @@ export class ProfileTreeComponent extends BaseComponent {
   }
 
   /** Get whether the node has children or not. */
-  hasChild(index: number, node: FlatTreeNode) {
+  public hasChild(index: number, node: FlatTreeNode) {
     return node.expandable;
+  }
+
+  public selectProfile(profileId: string) {
+    this.Selected = profileId;
+    this._router.navigate(['profile', profileId]);
+  }
+
+  public onImageLoaded(node: FlatTreeNode) {
+    if (node.type === 'mineral') {
+      node.imageLoaded = true;
+    }
   }
 }

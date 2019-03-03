@@ -6,6 +6,7 @@ import {ProfileTreeComponent} from './components/profile-tree/profile-tree.compo
 import {ProfileRoutingModule} from './profile-routing.module';
 import {ProfileService} from './services/profile.service';
 import {profileReducer} from './state/profile.reducer';
+import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 
 export const PROFILE_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Profile reducer');
 
@@ -17,6 +18,7 @@ export function getReducers() {
 @NgModule({
   declarations: [
     ProfileTreeComponent,
+    ProfileDetailComponent,
   ],
   imports: [
     SharedModule,

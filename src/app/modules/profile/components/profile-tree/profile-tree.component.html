@@ -1,20 +1,25 @@
 <h1>Steckbriefe</h1>
-<mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
-  <mat-tree-node *matTreeNodeDef="let node; when: !hasChild" matTreeNodeToggle matTreeNodePadding class="profile-link">
-    <img class="thumbnail" [alt]="node.title" [src]="node.image_file.thumbnail">
-    {{node.title}}
-  </mat-tree-node>
+<div class="content-container">
+  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl" class="profile-tree">
+    <mat-tree-node *matTreeNodeDef="let node; when: !hasChild" matTreeNodeToggle matTreeNodePadding
+                   class="profile-link" (click)="selectProfile(node.id)">
+      <img class="thumbnail" [alt]="node.title" [src]="node.imageFiles.thumbnail" [class.hidden]="!node.imageLoaded" (load)="onImageLoaded(node)">
+      <span [class.selected]="Selected === node.title" [class.hidden]="!node.imageLoaded">{{node.title}}</span>
+    </mat-tree-node>
 
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-    <button mat-icon-button matTreeNodeToggle
-            [attr.aria-label]="'toggle ' + node.title">
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+      <button mat-icon-button matTreeNodeToggle
+              [attr.aria-label]="'toggle ' + node.title">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
+        {{ node.type === 'mineral' ? 'description' : 'folder' }}
       </mat-icon>
-    </button>
-    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-      {{ node.type === 'mineral' ? 'description' : 'folder' }}
-    </mat-icon>
-    {{node.title}}
-  </mat-tree-node>
-</mat-tree>
+      {{node.title}}
+    </mat-tree-node>
+  </mat-tree>
+  <router-outlet></router-outlet>
+  <!--<app-profile-detail *ngIf="Selected !== ''" [profileId]="Selected"></app-profile-detail>-->
+</div>

@@ -19,13 +19,45 @@ export interface ProfileCategory {
 
 export interface MineralProfile {
   type: 'mineral';
-  title: string;
-  image_file: ImageFiles;
+  id: number;
+  variety: string;
+  name: string;
+  imageFiles: ImageFiles;
+  chemicalFormula: string;
+  mohsScale: string;
+  density: string;
+  streak: string;
+  color: string;
+  crystalSystems: CrystalSystem[];
+  fractures: string[];
+  lustres: string[];
 }
 
 export interface MineralProfileApi {
+  id: number;
   trivial_name: string;
-  image_file: ImageFiles;
+  image_file: ImageFiles | null;
+  chemical_formula: string;
+  variety: string;
+  mohs_scale: string;
+  density: string;
+  streak: string;
+  crystal_system: CrystalSystemApi[];
+  normal_color: string;
+  fracture: string[];
+  lustre: string[];
 }
 
-export type ProfileLinks = { [key: string]: { link: string } };
+export interface CrystalSystem {
+  name: string;
+}
+
+export interface CrystalSystemApi {
+  id: number;
+  crystal_system: string;
+  mineral_type: number;
+  temperature: number | null;
+  pressure: number | null;
+}
+
+export type ProfileLinks = { [key: string]: ProfileLinks | MineralProfileApi[]  };

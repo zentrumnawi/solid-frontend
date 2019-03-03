@@ -14,35 +14,51 @@ export class ProfileService extends ApiHttpClient {
     super(httpClient, ['api', 'profiles']);
   }
 
-  public async loadProfiles() {
-    // TODO: Load full tree with new api endpoint
-    const profiles = await this.get<ProfileLinks>([0, 0]).toPromise();
-    const categories: Profile[] = [];
-    for (let cat of Object.entries(profiles)) {
-      categories.push({
-        type: 'category',
-        title: cat[0],
-        children: await this.loadChildren(cat[1].link),
-      });
-    }
-    this._store.dispatch(new ProfileSetAction(categories));
-  }
-
-  public async loadChildren(link: string): Promise<Profile[]> {
-    const profiles = await this.get<ProfileLinks | MineralProfileApi[]>(link.substr(1), {urlFromRoot: true}).toPromise();
-    if (Array.isArray(profiles)) { // MineralProfileApi[]
-      return profiles.map(api => ({
-        type: 'mineral' as 'mineral',
-        title: api.trivial_name,
-        image_file: api.image_file,
-      }));
-    } else { // ProfileLinks
+  public loadProfiles() {
+    this.get<ProfileLinks>().subscribe(data => {
       const categories: Profile[] = [];
-      for (let cat of Object.entries(profiles)) {
+      for (let cat of Object.entries(data)) {
         categories.push({
           type: 'category',
           title: cat[0],
-          children: await this.loadChildren(cat[1].link),
+          children: this.mapChild(cat[1]),
+        });
+      }
+      this._store.dispatch(new ProfileSetAction(categories));
+    });
+  }
+
+  private mapChild(child: ProfileLinks | MineralProfileApi[]): Profile[] {
+    if (Array.isArray(child)) { // MineralProfileApi[]
+      return child.map(api => ({
+        type: 'mineral' as 'mineral',
+        id: api.id,
+        name: api.trivial_name,
+        imageFiles: api.image_file ? api.image_file : {
+          large: '/assets/profile/no_image.svg',
+          medium: '/assets/profile/no_image.svg',
+          small: '/assets/profile/no_image.svg',
+          thumbnail: '/assets/profile/no_thumbnail.svg',
+        },
+        chemicalFormula: api.chemical_formula,
+        variety: api.variety,
+        mohsScale: api.mohs_scale,
+        density: api.density,
+        crystalSystems: api.crystal_system.map(system => ({
+          name: system.crystal_system,
+        })),
+        streak: api.streak,
+        color: api.normal_color,
+        fractures: api.fracture,
+        lustres: api.lustre,
+      }));
+    } else { // ProfileLinks
+      const categories: Profile[] = [];
+      for (let cat of Object.entries(child)) {
+        categories.push({
+          type: 'category',
+          title: cat[0],
+          children: this.mapChild(cat[1]),
         });
       }
       return categories;

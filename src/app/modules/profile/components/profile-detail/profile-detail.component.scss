@@ -1,0 +1,16 @@
+@import '../../../../../theme';
+
+$background: map-get($app-theme, background);
+
+:host {
+  background-color: mat-color($background, card);
+}
+
+p {
+  padding: 0 0.5em 0.5em 0.5em;
+  &.heading {
+    padding: 0.5em;
+    background-color: mat-color($background, app-bar);
+  }
+}
+
