@@ -5,9 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:staging": "ts-node git.version.ts && ng build -c staging",
-    "prebuild:prod": "ts-node git.version.ts",
-    "build:prod": "ts-node git.version.ts && ng build --prod",
+    "build:staging": "ts-node git.versions.ts && ng build -c staging",
+    "build:prod": "ts-node git.versions.ts && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
