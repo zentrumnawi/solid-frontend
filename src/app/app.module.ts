@@ -1,4 +1,4 @@
-import {InjectionToken, NgModule} from '@angular/core';
+import {ErrorHandler, Injectable, InjectionToken, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
@@ -16,6 +16,7 @@ import {GlossaryService} from './services/glossary.service';
 import {TitleService} from './services/title.service';
 import {SharedModule} from './shared/shared.module';
 import {AppState, reducers} from './state/app.model';
+import {SentryErrorHandler} from "./services/sentry.service";
 
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Registered reducers');
 
@@ -49,6 +50,10 @@ export function getReducers() {
     {
       provide: REDUCER_TOKEN,
       useFactory: getReducers,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: SentryErrorHandler
     },
   ],
   bootstrap: [AppComponent],
