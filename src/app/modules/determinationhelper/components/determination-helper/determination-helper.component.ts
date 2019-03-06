@@ -13,7 +13,7 @@ export enum KEY {
 })
 export class DeterminationHelperComponent {
   public MaxStep = 0;
-  @ViewChild('stepper') public Stepper: MatStepper;
+  @ViewChild('stepper') public Stepper!: MatStepper;
 
   @HostListener('window:keyup', ['$event'])
   public keyEvent(event: KeyboardEvent) {
@@ -32,5 +32,13 @@ export class DeterminationHelperComponent {
 
   public showGlossaryEntry($event: MouseEvent, glossaryId: string) {
     // TODO: this method should navigate to the glossary entry
+  }
+
+  public onPanEnd($event: any) {
+    if ($event.deltaX > 100) {
+      this.Stepper.previous();
+    } else if ($event.deltaX < -100) {
+      this.Stepper.next();
+    }
   }
 }

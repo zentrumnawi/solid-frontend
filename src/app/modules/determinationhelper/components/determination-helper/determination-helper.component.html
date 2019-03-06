@@ -1,4 +1,4 @@
-<mat-horizontal-stepper #stepper labelPosition="bottom" linear="false">
+<mat-horizontal-stepper #stepper labelPosition="bottom" linear="false" (panend)="onPanEnd($event)">
   <mat-step [state]="MaxStep >= 1 ? 'done' : ''" label="Abstrakt">
     <div class="step-actions">
       <button (click)="onNextStepClick(1)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
