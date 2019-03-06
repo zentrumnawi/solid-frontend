@@ -5,7 +5,7 @@ const version = require('../../environments/version.json');
 
 if (environment.production) {
   Sentry.init({
-    dsn: 'https://5485ad7838ed4a118308f88c5f4650e1@po-sentry.physikelearning.de/7',
+    dsn: environment.sentryUrl,
     release: version.hash,
     beforeSend(event) {
       // Check if it is an exception, if so, show the report dialog
