@@ -1,5 +1,6 @@
 <ng-container *ngIf="Profile">
-  <h3>{{ Profile.title }}</h3>
+  <app-image-card [heading]="Profile.name"
+    [src]="Profile.imageFiles.large"></app-image-card>
   <p class="heading">chemische Formel</p>
   <p [innerHTML]="Profile.chemicalFormula"></p>
   <p class="heading">Trivialname</p>
@@ -11,7 +12,7 @@
   <p class="heading">Dichte</p>
   <p>{{ Profile.density}}</p>
   <p class="heading">Spaltbarkeit</p>
-  <!--<p>{{ Profile.mohsScale}}</p>-->
+  <p *ngFor="let cleavage of Profile.cleavage">{{ cleavage.cleavage }} {{ cleavage.coordinates}}</p>
   <p class="heading">Bruch</p>
   <p *ngFor="let fracture of Profile.fractures">{{ fracture }}</p>
   <p class="heading">Farbe</p>
@@ -21,4 +22,3 @@
   <p class="heading">Strichfarbe</p>
   <p>{{ Profile.streak}}</p>
 </ng-container>
-<p>Profile detail</p>

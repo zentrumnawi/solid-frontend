@@ -12,17 +12,17 @@ import {selectProfile} from '../../state/selectors';
   styleUrls: ['./profile-detail.component.scss']
 })
 export class ProfileDetailComponent extends BaseComponent {
-  private _profileId: string = '';
+  private _profileId?: number;
   @Input('profileId')
   public set profileId(id: string) {
-    if (id !== this._profileId) {
+    const intId = parseInt(id, 10);
+    if (intId !== this._profileId) {
       if (this._storeSub) this._storeSub.unsubscribe();
-      this._storeSub = this._store.pipe(select(selectProfile, id)).subscribe(profile => {
-        console.log(profile);
+      this._storeSub = this._store.pipe(select(selectProfile, intId)).subscribe(profile => {
         this.Profile = profile;
       });
     }
-    this._profileId = id;
+    this._profileId = intId;
   }
   public Profile?: MineralProfile;
   private _storeSub?: Subscription;

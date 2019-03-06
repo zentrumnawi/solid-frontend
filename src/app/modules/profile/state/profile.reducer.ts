@@ -6,7 +6,7 @@ import {MineralState, profileInitialState} from './profile.model';
 export class ProfileStore {
   @Action(ProfileSetAction)
   public set(state: MineralState, action: ProfileSetAction) {
-    state.push(...action.entries);
+    return action.entries;
   }
 }
 

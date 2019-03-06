@@ -35,7 +35,7 @@ export interface CategoryNode {
   styleUrls: ['./profile-tree.component.scss'],
 })
 export class ProfileTreeComponent extends BaseComponent {
-  public Selected: string = '';
+  public Selected?: number;
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<Profile, FlatTreeNode>;
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
@@ -65,7 +65,11 @@ export class ProfileTreeComponent extends BaseComponent {
     this.addSub(store.pipe(select(selectProfiles)).subscribe(profiles => {
       this.DataSource.data = profiles;
     }));
-    // route.children[0].params.subscribe(params => console.log(params));
+    if (route.children[0] !== undefined) {
+      route.children[0].params.subscribe(params => {
+        this.Selected = parseInt(params.id, 10);
+      });
+    }
   }
 
   /** Transform the data to something the tree can read. */
@@ -114,7 +118,7 @@ export class ProfileTreeComponent extends BaseComponent {
     return node.expandable;
   }
 
-  public selectProfile(profileId: string) {
+  public selectProfile(profileId: number) {
     this.Selected = profileId;
     this._router.navigate(['profile', profileId]);
   }

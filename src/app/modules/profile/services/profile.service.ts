@@ -43,6 +43,7 @@ export class ProfileService extends ApiHttpClient {
         chemicalFormula: api.chemical_formula,
         variety: api.variety,
         mohsScale: api.mohs_scale,
+        cleavage: api.cleavage,
         density: api.density,
         crystalSystems: api.crystal_system.map(system => ({
           name: system.crystal_system,
