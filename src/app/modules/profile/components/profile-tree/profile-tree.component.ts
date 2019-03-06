@@ -1,5 +1,5 @@
 import {FlatTreeControl} from '@angular/cdk/tree';
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {ActivatedRoute, Router} from '@angular/router';
 import {activateRoutes} from '@angular/router/src/operators/activate_routes';
@@ -10,6 +10,7 @@ import {ImageFiles} from '../../../../shared/models';
 import {ProfileService} from '../../services/profile.service';
 import {Profile, ProfileAppState} from '../../state/profile.model';
 import {selectProfiles} from '../../state/selectors';
+import {BreakpointObserver} from "@angular/cdk/layout";
 
 export type FlatTreeNode = MineralNode | CategoryNode;
 
@@ -34,7 +35,9 @@ export interface CategoryNode {
   templateUrl: './profile-tree.component.html',
   styleUrls: ['./profile-tree.component.scss'],
 })
-export class ProfileTreeComponent extends BaseComponent {
+export class ProfileTreeComponent extends BaseComponent implements AfterViewInit {
+  @ViewChild('contentContainer') public ContentContainer!: ElementRef;
+  public SplitLayout: boolean = false;
   public Selected?: number;
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<Profile, FlatTreeNode>;
@@ -113,14 +116,23 @@ export class ProfileTreeComponent extends BaseComponent {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  public onResize(event: any) {
+    this.calculateLayout();
+  }
+
   /** Get whether the node has children or not. */
   public hasChild(index: number, node: FlatTreeNode) {
     return node.expandable;
   }
 
-  public selectProfile(profileId: number) {
-    this.Selected = profileId;
-    this._router.navigate(['profile', profileId]);
+  public selectProfile(profileId?: number) {
+    if (profileId) {
+      this.Selected = profileId;
+      this._router.navigate(['profile', profileId]);
+    } else {
+      this.Selected = undefined;
+    }
   }
 
   public onImageLoaded(node: FlatTreeNode) {
@@ -128,4 +140,18 @@ export class ProfileTreeComponent extends BaseComponent {
       node.imageLoaded = true;
     }
   }
+
+  public ngAfterViewInit(): void {
+    this.calculateLayout();
+  }
+
+  private calculateLayout() {
+    const split = this.ContentContainer.nativeElement.clientWidth <= 800;
+    if (split !== this.SplitLayout) {
+      setTimeout(() => {
+        this.SplitLayout = split;
+      }, 0);
+    }
+  }
+
 }

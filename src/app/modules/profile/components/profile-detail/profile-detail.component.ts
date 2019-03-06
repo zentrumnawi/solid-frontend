@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
@@ -29,6 +29,7 @@ export class ProfileDetailComponent extends BaseComponent {
 
   constructor(
     private _store: Store<ProfileAppState>,
+    private _router: Router,
     route: ActivatedRoute,
   ) {
     super();
@@ -37,5 +38,9 @@ export class ProfileDetailComponent extends BaseComponent {
         this.profileId = data['id'];
       }
     })
+  }
+
+  public onCloseClick() {
+    this._router.navigateByUrl('profile');
   }
 }

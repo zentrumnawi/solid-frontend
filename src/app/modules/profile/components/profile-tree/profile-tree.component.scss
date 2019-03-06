@@ -23,6 +23,12 @@
   grid-template-columns: 50% 50%;
 }
 
+.content-container.fullWidth {
+  display: grid;
+  grid-template-areas: 'tree' 'profile';
+  grid-template-columns: 100%;
+}
+
 ::ng-deep {
   app-profile-detail {
     grid-area: profile;
@@ -36,6 +42,7 @@
 img.hidden {
   display: none;
 }
+
 span.hidden {
-    margin-left: 2.5em;
+  margin-left: 2.5em;
 }

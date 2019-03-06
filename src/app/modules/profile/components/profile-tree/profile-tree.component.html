@@ -1,6 +1,6 @@
 <h1>Steckbriefe</h1>
-<div class="content-container">
-  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl" class="profile-tree">
+<div #contentContainer class="content-container" [class.fullWidth]="Selected === undefined || SplitLayout">
+  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl" class="profile-tree" *ngIf="Selected === undefined">
     <mat-tree-node *matTreeNodeDef="let node; when: !hasChild" matTreeNodeToggle matTreeNodePadding
                    class="profile-link" (click)="selectProfile(node.id)">
       <img class="thumbnail" [alt]="node.title" [src]="node.imageFiles.thumbnail" [class.hidden]="!node.imageLoaded" (load)="onImageLoaded(node)">
@@ -20,6 +20,5 @@
       {{node.title}}
     </mat-tree-node>
   </mat-tree>
-  <router-outlet></router-outlet>
-  <!--<app-profile-detail *ngIf="Selected !== ''" [profileId]="Selected"></app-profile-detail>-->
+  <router-outlet (deactivate)="selectProfile()"></router-outlet>
 </div>
