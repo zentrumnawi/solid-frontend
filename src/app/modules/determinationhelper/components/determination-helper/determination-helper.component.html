@@ -1,7 +1,9 @@
 <mat-horizontal-stepper #stepper labelPosition="bottom" linear="false" (panend)="onPanEnd($event)">
   <mat-step [state]="MaxStep >= 1 ? 'done' : ''" label="Abstrakt">
     <div class="step-actions">
-      <button (click)="onNextStepClick(1)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button (click)="onNextStepClick(1)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Abstrakt</h1>
     <p>Dieser Bestimmungshelfer unterstützt die eindeutige Mineralerkennung und -bestimmung &ndash; und zeigt
@@ -15,8 +17,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 2 ? 'done' : ''" label="Allgemeines Aussehen">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(2)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(2)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Allgemeines Aussehen</h1>
     <div class="cols-2">
@@ -50,8 +56,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 3 ? 'done' : ''" label="Kristallsystem">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(3)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(3)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Kristallsystem</h1>
     <p>
@@ -73,8 +83,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 4 ? 'done' : ''" label="Habitus">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(4)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(4)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Habitus</h1>
     <p>Der <a (click)="showGlossaryEntry($event, 'habitus')" class="internLink">Habitus</a> beschreibt das
@@ -92,8 +106,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 5 ? 'done' : ''" label="Tracht">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(5)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(5)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Tracht</h1>
     <p>Die <a (click)="showGlossaryEntry($event, 'tracht')" class="internLink">Tracht</a> beschreibt die Gesamtheit der
@@ -103,8 +121,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 6 ? 'done' : ''" label="Bruch">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(6)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(6)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Bruch</h1>
     <p>Der <a (click)="showGlossaryEntry($event, 'bruch')" class="internLink">Bruch</a> ist ein wichtiges Merkmal von
@@ -129,8 +151,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 7 ? 'done' : ''" label="Spaltbarkeit">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(7)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(7)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Spaltbarkeit</h1>
     <p>Um die <a (click)="showGlossaryEntry($event, 'spaltbarkeit')" class="internLink">Spaltbarkeit</a> zu untersuchen
@@ -151,8 +177,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 8 ? 'done' : ''" label="Glanz">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(8)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(8)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Glanz</h1>
     <p>Um den <a (click)="showGlossaryEntry($event, 'glanz')" class="internLink">Glanz</a> zu erkennen, sollte man die
@@ -213,8 +243,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 9 ? 'done' : ''" label="Farbe">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(9)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(9)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Farbe</h1>
     <p>Die Farbe ist bei den meisten Mineralen <b>kein diagnostisches Merkmal</b> zur Bestimmung. Sie dient aber oft
@@ -229,8 +263,12 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 10 ? 'done' : ''" label="Transparenz">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
-      <button (click)="onNextStepClick(9)" class="float-right" mat-button matStepperNext>Nächster Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button (click)="onNextStepClick(9)" class="float-right" mat-icon-button color="primary" matStepperNext>
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
     <h1>Transparenz</h1>
     <p>Die <a (click)="showGlossaryEntry($event, 'transparenz')" class="internLink">Transparenz</a>
@@ -247,7 +285,9 @@
   </mat-step>
   <mat-step [state]="MaxStep >= 11 ? 'done' : ''" label="Besonderheiten">
     <div class="step-actions">
-      <button mat-button matStepperPrevious>Vorheriger Schritt</button>
+      <button mat-icon-button color="primary" matStepperPrevious>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
     </div>
     <h1>Besonderheiten</h1>
     <p>Als letztes können noch mineralspezifische Besonderheiten untersucht werden:</p>
