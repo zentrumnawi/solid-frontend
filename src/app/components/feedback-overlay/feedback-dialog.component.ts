@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
@@ -8,7 +8,8 @@ import {Observable} from "rxjs";
   templateUrl: './feedback-dialog.component.html',
   styleUrls: ['./feedback-dialog.component.scss']
 })
-export class FeedbackDialogComponent {
+export class FeedbackDialogComponent implements OnInit, OnDestroy {
+  private static STORAGE_KEY = 'FEEDBACK';
   public Form: FormGroup;
 
   constructor(
@@ -18,10 +19,10 @@ export class FeedbackDialogComponent {
     fb: FormBuilder,
   ) {
     this.Form = fb.group({
-      username: ['', Validators.required],
+      username: [''],
       userEmail: ['', [Validators.required, Validators.email]],
-      emailTitle: ['', Validators.required],
-      emailContent: ['', Validators.required],
+      emailTitle: ['Feedback', Validators.required],
+      emailContent: [''],
     });
   }
 
@@ -33,5 +34,16 @@ export class FeedbackDialogComponent {
     this._submitFeedback(this.Form.value).subscribe(res => {
       this._ref.close();
     });
+  }
+
+  public ngOnDestroy(): void {
+    sessionStorage.setItem(FeedbackDialogComponent.STORAGE_KEY, JSON.stringify(this.Form.value));
+  }
+
+  public ngOnInit(): void {
+    const str = sessionStorage.getItem(FeedbackDialogComponent.STORAGE_KEY);
+    if (!str) { return; }
+    const obj = JSON.parse(str);
+    this.Form.setValue(obj);
   }
 }

@@ -2,21 +2,23 @@
 <div mat-dialog-content>
   <form [formGroup]="Form">
     <mat-form-field>
-      <mat-select placeholder="Art Deiner Nachricht" formControlName="emailTitle">
-        <mat-option value="Supportanfrage">Supportanfrage</mat-option>
-        <mat-option value="Fehlermeldung">Fehlermeldung</mat-option>
-        <mat-option value="Neues Feature">Neues Feature</mat-option>
-        <mat-option value="Etwas anderes">Etwas anderes</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <textarea cdkTextareaAutosize matInput formControlName="emailContent" placeholder="Anmerkungen"></textarea>
-    </mat-form-field>
-    <mat-form-field>
       <input matInput type="text" formControlName="username" placeholder="Name">
     </mat-form-field>
     <mat-form-field>
       <input matInput type="email" formControlName="userEmail" placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Art Deiner Nachricht" formControlName="emailTitle">
+        <mat-option value="Feedback">Feedback</mat-option>
+        <mat-option value="Supportanfrage">Supportanfrage</mat-option>
+        <mat-option value="Fehlermeldung">Fehlermeldung</mat-option>
+        <mat-option value="neues Feature">neues Feature</mat-option>
+        <mat-option value="etwas anderes">etwas anderes</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea cdkTextareaAutosize matInput formControlName="emailContent" placeholder="Anmerkungen"
+                cdkAutosizeMinRows="8"></textarea>
     </mat-form-field>
   </form>
 </div>
