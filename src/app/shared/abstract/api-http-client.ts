@@ -17,9 +17,9 @@ export abstract class ApiHttpClient {
     baseUrl: string | number | (number | string)[],
   ) {
     if (Array.isArray(baseUrl)) {
-      this._baseUrl = baseUrl.reduce<string>((url, part) => `${url}/${part.toString()}`, environment.api);
+      this._baseUrl = baseUrl.reduce<string>((url, part) => `${url}/${part.toString()}`, environment.apiUrl);
     } else {
-      this._baseUrl = `${environment.api}/${baseUrl.toString}`;
+      this._baseUrl = `${environment.apiUrl}/${baseUrl.toString}`;
     }
   }
 
@@ -46,7 +46,7 @@ export abstract class ApiHttpClient {
   private generateUrl(relativeUrl: RelativeUrl, options?: Options) {
     let baseUrl = this._baseUrl;
     if (options && options.urlFromRoot) {
-      baseUrl = environment.api;
+      baseUrl = environment.apiUrl;
     }
     if (!relativeUrl) {
       return baseUrl;
