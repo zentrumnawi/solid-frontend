@@ -3,6 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../shared/abstract/base.component';
 import {AppState} from '../../state/app.model';
 import {selectRouterUrl} from '../../state/selectors';
+import {FeedbackService} from "../../services/feedback.service";
 
 @Component({
   selector: 'app-mainmenu',
@@ -14,10 +15,15 @@ export class MainmenuComponent extends BaseComponent {
 
   constructor(
     store: Store<AppState>,
+    private _feedback: FeedbackService,
   ) {
     super();
     this.addSub(store.pipe(select(selectRouterUrl)).subscribe(url => {
       this.ActiveUrl = url;
     }));
+  }
+
+  onFeedbackClick() {
+    this._feedback.showFeedbackDialog();
   }
 }

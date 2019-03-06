@@ -30,4 +30,11 @@ export abstract class ApiHttpClient {
   protected list<T>(relativeUrl?: string): Observable<T[]> {
     return this.get<T[]>(relativeUrl);
   }
+
+  protected post<T>(body: any, relativeUrl?: string): Observable<T> {
+    const url = relativeUrl ? `${this._baseUrl}/${relativeUrl}` : this._baseUrl;
+    return this._http.post<T>(url, body).pipe(
+      catchError(ApiHttpClient.handleError)
+    );
+  }
 }
