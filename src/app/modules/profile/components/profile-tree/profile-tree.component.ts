@@ -146,7 +146,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
   }
 
   private calculateLayout() {
-    const split = this.ContentContainer.nativeElement.clientWidth <= 800;
+    const split = this.ContentContainer.nativeElement.clientWidth >= 800;
     if (split !== this.SplitLayout) {
       setTimeout(() => {
         this.SplitLayout = split;

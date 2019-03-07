@@ -1,6 +1,6 @@
 <h1>Steckbriefe</h1>
-<div #contentContainer class="content-container" [class.fullWidth]="Selected === undefined || SplitLayout">
-  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl" class="profile-tree" *ngIf="Selected === undefined">
+<div #contentContainer class="content-container" [class.fullWidth]="Selected === undefined || !SplitLayout">
+  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl" class="profile-tree" *ngIf="Selected === undefined || SplitLayout">
     <mat-tree-node *matTreeNodeDef="let node; when: !hasChild" matTreeNodeToggle matTreeNodePadding
                    class="profile-link" (click)="selectProfile(node.id)">
       <img class="thumbnail" [alt]="node.title" [src]="node.imageFiles.thumbnail" [class.hidden]="!node.imageLoaded" (load)="onImageLoaded(node)">
@@ -14,10 +14,7 @@
           {{TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
       </button>
-      <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-        {{ node.type === 'mineral' ? 'description' : 'folder' }}
-      </mat-icon>
-      {{node.title}}
+      <span class="category">{{node.title}}</span>
     </mat-tree-node>
   </mat-tree>
   <router-outlet (deactivate)="selectProfile()"></router-outlet>
