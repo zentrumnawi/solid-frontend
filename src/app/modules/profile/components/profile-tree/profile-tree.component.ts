@@ -4,12 +4,12 @@ import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {ActivatedRoute, Router} from '@angular/router';
 import {activateRoutes} from '@angular/router/src/operators/activate_routes';
 import {select, Store} from '@ngrx/store';
-import {of as observableOf} from 'rxjs';
+import {of as observableOf, Subscription} from 'rxjs';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {ImageFiles} from '../../../../shared/models';
 import {ProfileService} from '../../services/profile.service';
-import {Profile, ProfileAppState} from '../../state/profile.model';
-import {selectProfiles} from '../../state/selectors';
+import {MineralProfile, Profile, ProfileAppState, ProfileCategory} from '../../state/profile.model';
+import {selectProfile, selectProfiles} from '../../state/selectors';
 import {BreakpointObserver} from "@angular/cdk/layout";
 
 export type FlatTreeNode = MineralNode | CategoryNode;
@@ -38,7 +38,12 @@ export interface CategoryNode {
 export class ProfileTreeComponent extends BaseComponent implements AfterViewInit {
   @ViewChild('contentContainer') public ContentContainer!: ElementRef;
   public SplitLayout: boolean = false;
-  public Selected?: number;
+  public Selected?: number = undefined;
+  public SelectedProfile?: MineralProfile;
+  private SelectedCategory?: ProfileCategory;
+  public CanSwipeLeft = false;
+  public CanSwipeRight = false;
+
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<Profile, FlatTreeNode>;
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
@@ -47,10 +52,12 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
   /** The TreeFlattener is used to generate the flat list of items from hierarchical data. */
   private readonly _treeFlattener: MatTreeFlattener<Profile, FlatTreeNode>;
 
+  private _storeSub?: Subscription;
+
 
   constructor(
     private _service: ProfileService,
-    store: Store<ProfileAppState>,
+    private _store: Store<ProfileAppState>,
     private _router: Router,
     route: ActivatedRoute,
   ) {
@@ -65,13 +72,15 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
 
     this.TreeControl = new FlatTreeControl(ProfileTreeComponent.getLevel, ProfileTreeComponent.isExpandable);
     this.DataSource = new MatTreeFlatDataSource(this.TreeControl, this._treeFlattener);
-    this.addSub(store.pipe(select(selectProfiles)).subscribe(profiles => {
+    this.addSub(this._store.pipe(select(selectProfiles)).subscribe(profiles => {
       this.DataSource.data = profiles;
     }));
     if (route.children[0] !== undefined) {
       route.children[0].params.subscribe(params => {
-        this.Selected = parseInt(params.id, 10);
+        this.selectProfile(parseInt(params.id, 10));
       });
+    } else {
+      this.selectProfile();
     }
   }
 
@@ -130,8 +139,33 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
     if (profileId) {
       this.Selected = profileId;
       this._router.navigate(['profile', profileId]);
+      if (this._storeSub) this._storeSub.unsubscribe();
+      this._storeSub = this._store.pipe(select(selectProfile, profileId)).subscribe(profile => {
+        if (profile) {
+          this.SelectedProfile = profile.profile;
+          this.SelectedCategory = profile.category;
+          const index = profile.category.children.indexOf(profile.profile);
+          this.CanSwipeLeft = index > 0;
+          this.CanSwipeRight = index < profile.category.children.length - 1;
+        }
+      });
     } else {
       this.Selected = undefined;
+      this.SelectedProfile = undefined;
+    }
+  }
+
+  public swipeLeft() {
+    if (this.SelectedCategory && this.SelectedProfile) {
+      const index = this.SelectedCategory.children.indexOf(this.SelectedProfile);
+      this.selectProfile((this.SelectedCategory.children[index - 1] as MineralProfile).id);
+    }
+  }
+
+  public swipeRight() {
+    if (this.SelectedCategory && this.SelectedProfile) {
+      const index = this.SelectedCategory.children.indexOf(this.SelectedProfile);
+      this.selectProfile((this.SelectedCategory.children[index + 1] as MineralProfile).id);
     }
   }
 
@@ -151,6 +185,14 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
       setTimeout(() => {
         this.SplitLayout = split;
       }, 0);
+    }
+  }
+
+  public onPanEnd($event: any) {
+    if ($event.deltaX > 100 && this.CanSwipeLeft) {
+      this.swipeLeft();
+    } else if ($event.deltaX < -100 && this.CanSwipeRight) {
+      this.swipeRight();
     }
   }
 

@@ -1,9 +1,28 @@
-<h1>Steckbriefe</h1>
+<mat-toolbar color="accent" *ngIf="!SelectedProfile; else selectedToolbar">
+  Steckbriefe
+</mat-toolbar>
+<ng-template #selectedToolbar>
+  <mat-toolbar color="accent">
+    Steckbrief {{ SelectedProfile.name }}
+    <div class="spacer"></div>
+    <button mat-icon-button (click)="swipeLeft()" [disabled]="!CanSwipeLeft">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button mat-icon-button (click)="selectProfile()">
+      <mat-icon>expand_less</mat-icon>
+    </button>
+    <button mat-icon-button (click)="swipeRight()" [disabled]="!CanSwipeRight">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </mat-toolbar>
+</ng-template>
 <div #contentContainer class="content-container" [class.fullWidth]="Selected === undefined || !SplitLayout">
-  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl" class="profile-tree" *ngIf="Selected === undefined || SplitLayout">
+  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl" class="profile-tree"
+            *ngIf="Selected === undefined || SplitLayout">
     <mat-tree-node *matTreeNodeDef="let node; when: !hasChild" matTreeNodeToggle matTreeNodePadding
                    class="profile-link" (click)="selectProfile(node.id)">
-      <img class="thumbnail" [alt]="node.title" [src]="node.imageFiles.thumbnail" [class.hidden]="!node.imageLoaded" (load)="onImageLoaded(node)">
+      <img class="thumbnail" [alt]="node.title" [src]="node.imageFiles.thumbnail" [class.hidden]="!node.imageLoaded"
+           (load)="onImageLoaded(node)">
       <span [class.selected]="Selected === node.id" [class.hidden]="!node.imageLoaded">{{node.title}}</span>
     </mat-tree-node>
 
@@ -17,5 +36,5 @@
       <span class="category">{{node.title}}</span>
     </mat-tree-node>
   </mat-tree>
-  <router-outlet (deactivate)="selectProfile()"></router-outlet>
+  <app-profile-detail *ngIf="SelectedProfile" [profile]="SelectedProfile" (panend)="onPanEnd($event)"></app-profile-detail>
 </div>

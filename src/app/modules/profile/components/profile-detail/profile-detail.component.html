@@ -1,10 +1,5 @@
 <ng-container *ngIf="Profile">
-  <p>
-    <button mat-icon-button color="primary" (click)="onCloseClick()">
-      <mat-icon>expand_less</mat-icon>
-    </button>
-  </p>
-  <app-image-card [heading]="Profile.name"
+  <app-image-card
     [src]="Profile.imageFiles.large"></app-image-card>
   <p class="heading">chemische Formel</p>
   <p [innerHTML]="Profile.chemicalFormula"></p>
