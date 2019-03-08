@@ -42,7 +42,7 @@
     "@angular/language-service": "~7.2.8",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^11.10.4",
+    "@types/node": "^11.10.5",
     "codelyzer": "~4.5.0",
     "git-describe": "^4.0.4",
     "jasmine-core": "~3.3.0",
