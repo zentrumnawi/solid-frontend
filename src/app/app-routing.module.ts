@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'determination',
     loadChildren: './modules/determinationhelper/determinationhelper.module#DeterminationHelperModule',
   },
+  {
+    path: 'crystalsystem',
+    loadChildren: './modules/crystalsystem/crystalsystem.module#CrystalsystemModule',
+  },
 ];
 
 @NgModule({
