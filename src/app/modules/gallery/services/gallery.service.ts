@@ -11,20 +11,12 @@ export class GalleryService extends ApiHttpClient {
     private _store: Store<GalleryAppState>,
     httpClient: HttpClient,
   ) {
-    super(httpClient, 'gallery');
+    super(httpClient, ['api', 'gallery']);
   }
 
   public loadGallery(): void {
     this.list<PhotographModel>().subscribe(photographs => {
       this._store.dispatch(new GallerySetAction(photographs));
-    });
-  }
-
-  public loadSmallImage(photographModel: PhotographModel) {
-    // this._store.dispatch(new GalleryImageLoadState(photographModel.id, 'small', 'loading'));
-    const sub = this._http.get(photographModel.image_file.small, {responseType: 'blob'}).subscribe(() => {
-      // this._store.dispatch(new GalleryImageLoadState(photographModel.id, 'small', true));
-      sub.unsubscribe();
     });
   }
 }

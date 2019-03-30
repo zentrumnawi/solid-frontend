@@ -12,7 +12,7 @@ export class GlossaryService extends ApiHttpClient {
     http: HttpClient,
     private _store: Store<AppState>,
   ) {
-    super(http, 'glossary');
+    super(http, ['api', 'glossary']);
 
   }
 
