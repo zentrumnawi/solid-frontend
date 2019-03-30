@@ -26,9 +26,6 @@ export class GalleryOverviewComponent extends BaseComponent {
     this.addSub(store.pipe(select(selectPhotographs)).subscribe(photographs => {
       this.Entries = photographs;
       this.EntriesLoaded = photographs.map(() => false);
-      // if (photographs.length > 0 && !photographs[0].image_file_loaded.small) {
-      //   service.loadSmallImage(photographs[0]);
-      // }
     }));
   }
 
@@ -37,11 +34,6 @@ export class GalleryOverviewComponent extends BaseComponent {
   }
 
   public onCardClick(entry: PhotographModel) {
-    this._dialog.open(PhotographDetailModalComponent, {
-      minHeight: '100px',
-      minWidth: '250px',
-      data: entry,
-    });
-
+    PhotographDetailModalComponent.CreateModal(this._dialog, entry.id);
   }
 }

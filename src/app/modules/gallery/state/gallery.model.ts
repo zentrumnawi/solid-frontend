@@ -20,10 +20,10 @@ export interface PhotographModel {
 }
 
 export interface ImageFiles {
-  large: string;
-  medium: string;
-  small: string;
-  thumbnail: string;
+  large: string; // { width: 1200, height: 800}
+  medium: string; // { width: 900, height: 600}
+  small: string; // { width: 600, height: 400}
+  thumbnail: string; // { width: 100, height: 100}
   original: string;
 }
 
@@ -50,3 +50,4 @@ export interface HandpieceModel {
   created_at: Date;
   last_modified: Date;
 }
+

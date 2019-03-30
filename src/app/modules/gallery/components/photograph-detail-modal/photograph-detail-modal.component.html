@@ -1,9 +1,22 @@
 <h2 mat-dialog-title>{{ Entry.handpiece.name }}</h2>
-<mat-dialog-content>
+<mat-dialog-content class="modal-content">
+  <button mat-icon-button color="primary" (click)="onPrevClick()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
   <div class="spinner" *ngIf="!ImageLoaded">
     <mat-spinner color="primary"></mat-spinner>
   </div>
-  <img [src]="Entry.image_file.large" (load)="imageLoaded()" [class.hidden]="!ImageLoaded"/>
+  <img
+    [src]="Entry.image_file.small"
+    (load)="imageLoaded()"
+    [class.hidden]="!ImageLoaded"
+    srcset="{{ Entry.image_file.small }} 600w,
+            {{ Entry.image_file.medium }} 900w,
+            {{ Entry.image_file.large }} 1200w"
+    sizes="(max-width: 600px) 600px, (max-width: 1000px) 900w, 1200w">
+  <button mat-icon-button color="primary" (click)="onNextClick()">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
 </mat-dialog-content>
 <mat-dialog-actions>
   <div class="spacer"></div>
