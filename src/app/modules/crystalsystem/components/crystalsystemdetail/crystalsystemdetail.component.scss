@@ -1,12 +1,8 @@
-.renderContainer {
-  width: 100%;
-  height: calc(100% - 70px);
-}
-
 iframe {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 70px);
   border: none;
+  overflow: hidden;
 }
 
 mat-select {

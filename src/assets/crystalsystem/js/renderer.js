@@ -23,7 +23,7 @@ const groups = {
 let camera, scene, renderer;
 let model = 'cubic';
 const loader = new THREE.TextureLoader();
-const texture = loader.load('/assets/crystallsystem/textures/disc.png');
+const texture = loader.load('/assets/crystalsystem/textures/disc.png');
 
 init();
 initModel(model);
@@ -115,7 +115,7 @@ function initModel(geoStr) {
   });
 
   const pointsGeometry = new THREE.BufferGeometry().setFromPoints(vertices);
-  groups.points.remove(groups.points.children);
+  groups.points.remove(...groups.points.children);
   groups.points.add(new THREE.Points(pointsGeometry, pointsMaterial));
 
   // create faces
@@ -125,7 +125,7 @@ function initModel(geoStr) {
     opacity: 0.5
   });
   const facesGeometry = new THREE.ConvexBufferGeometry(vertices);
-  groups.faces.remove(groups.faces.child);
+  groups.faces.remove(...groups.faces.children);
   groups.faces.add(...createTwoSidedFaces(facesGeometry, meshMaterial));
 
 
@@ -133,7 +133,7 @@ function initModel(geoStr) {
   const lineMaterial = new THREE.LineBasicMaterial({
     color: 0x000000,
   });
-  groups.borders.remove(groups.borders.children);
+  groups.borders.remove(...groups.borders.children);
   borders.forEach(border => {
     const geometry = new THREE.Geometry();
     geometry.vertices.push(border[0]);
@@ -149,15 +149,15 @@ function initModel(geoStr) {
     opacity: 1
   });
   const geometry_100 = new THREE.ConvexBufferGeometry(vertices_100);
-  groups.v_100.remove(groups.v_100.children);
+  groups.v_100.remove(...groups.v_100.children);
   groups.v_100.add(...createTwoSidedFaces(geometry_100, highlightMaterial));
 
   const geometry_110 = new THREE.ConvexBufferGeometry(vertices_110);
-  groups.v_110.remove(groups.v_110.children);
+  groups.v_110.remove(...groups.v_110.children);
   groups.v_110.add(...createTwoSidedFaces(geometry_110, highlightMaterial));
 
   const geometry_111 = new THREE.ConvexBufferGeometry(vertices_111);
-  groups.v_111.remove(groups.v_111.children);
+  groups.v_111.remove(...groups.v_111.children);
   groups.v_111.add(...createTwoSidedFaces(geometry_111, highlightMaterial));
 }
 
@@ -243,5 +243,4 @@ function toggleHighlight(value) {
 function switchModel(value) {
   model = value;
   initModel(model);
-  console.log('replaced ', value)
 }
