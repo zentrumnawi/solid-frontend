@@ -21,8 +21,12 @@ const groups = {
 };
 
 let camera, scene, renderer;
+let model = 'cubic';
+const loader = new THREE.TextureLoader();
+const texture = loader.load('/assets/crystallsystem/textures/disc.png');
 
 init();
+initModel(model);
 animate();
 
 function init() {
@@ -52,70 +56,6 @@ function init() {
   // axis helper
   groups.axis.add(new THREE.AxesHelper(200));
 
-  // select geometry
-  let geo;
-  switch ("cubic") {
-    case "cubic":
-      geo = cubic;
-      break;
-  }
-  const vertices = geo.vertices;
-  const vertices_100 = geo.vertices_100;
-  const vertices_110 = geo.vertices_110;
-  const vertices_111 = geo.vertices_111;
-  const borders = geo.borders;
-
-  // create points
-  const loader = new THREE.TextureLoader();
-  const texture = loader.load('/assets/crystallsystem/textures/disc.png');
-
-  const pointsMaterial = new THREE.PointsMaterial({
-    color: 0x0080ff,
-    map: texture,
-    size: 1,
-    alphaTest: 0.5
-  });
-
-  const pointsGeometry = new THREE.BufferGeometry().setFromPoints(vertices);
-  groups.points.add(new THREE.Points(pointsGeometry, pointsMaterial));
-
-  // create faces
-  const meshMaterial = new THREE.MeshLambertMaterial({
-    color: 0xAAAAAA,
-    transparent: true,
-    opacity: 0.5
-  });
-  const facesGeometry = new THREE.ConvexBufferGeometry(vertices);
-  groups.faces.add(...createTwoSidedFaces(facesGeometry, meshMaterial));
-
-
-  // create borders
-  const lineMaterial = new THREE.LineBasicMaterial({
-    color: 0x000000,
-  });
-  borders.forEach(border => {
-    const geometry = new THREE.Geometry();
-    geometry.vertices.push(border[0]);
-    geometry.vertices.push(border[1]);
-    groups.borders.add(new THREE.Line(geometry, lineMaterial));
-  });
-
-
-  // create special faces
-  const highlightMaterial = new THREE.MeshBasicMaterial({
-    color: 0x32c832,
-    transparent: true,
-    opacity: 1
-  });
-  const geometry_100 = new THREE.ConvexBufferGeometry(vertices_100);
-  groups.v_100.add(...createTwoSidedFaces(geometry_100, highlightMaterial));
-
-  const geometry_110 = new THREE.ConvexBufferGeometry(vertices_110);
-  groups.v_110.add(...createTwoSidedFaces(geometry_110, highlightMaterial));
-
-  const geometry_111 = new THREE.ConvexBufferGeometry(vertices_111);
-  groups.v_111.add(...createTwoSidedFaces(geometry_111, highlightMaterial));
-
   window.addEventListener('resize', onWindowResize, false);
 
   // add groups
@@ -132,6 +72,93 @@ function init() {
   if (settings.display.points) {
     scene.add(groups.points);
   }
+}
+
+function initModel(geoStr) {
+  // select geometry
+  let geo;
+  switch (geoStr) {
+    case "cubic":
+      geo = cubic;
+      break;
+    case "hexagonal":
+      geo = hexagonal;
+      break;
+    case "monoclinic":
+      geo = monoclinic;
+      break;
+    case "orthorhombic":
+      geo = orthorhombic;
+      break;
+    case "rhombohedral":
+      geo = rhombohedral;
+      break;
+    case "tetragonal":
+      geo = tetragonal;
+      break;
+    case "triclinic":
+      geo = triclinic;
+      break;
+  }
+  const vertices = geo.vertices;
+  const vertices_100 = geo.vertices_100;
+  const vertices_110 = geo.vertices_110;
+  const vertices_111 = geo.vertices_111;
+  const borders = geo.borders;
+
+  // create points
+  const pointsMaterial = new THREE.PointsMaterial({
+    color: 0x0080ff,
+    map: texture,
+    size: 1,
+    alphaTest: 0.5
+  });
+
+  const pointsGeometry = new THREE.BufferGeometry().setFromPoints(vertices);
+  groups.points.remove(groups.points.children);
+  groups.points.add(new THREE.Points(pointsGeometry, pointsMaterial));
+
+  // create faces
+  const meshMaterial = new THREE.MeshLambertMaterial({
+    color: 0xAAAAAA,
+    transparent: true,
+    opacity: 0.5
+  });
+  const facesGeometry = new THREE.ConvexBufferGeometry(vertices);
+  groups.faces.remove(groups.faces.child);
+  groups.faces.add(...createTwoSidedFaces(facesGeometry, meshMaterial));
+
+
+  // create borders
+  const lineMaterial = new THREE.LineBasicMaterial({
+    color: 0x000000,
+  });
+  groups.borders.remove(groups.borders.children);
+  borders.forEach(border => {
+    const geometry = new THREE.Geometry();
+    geometry.vertices.push(border[0]);
+    geometry.vertices.push(border[1]);
+    groups.borders.add(new THREE.Line(geometry, lineMaterial));
+  });
+
+
+  // create special faces
+  const highlightMaterial = new THREE.MeshBasicMaterial({
+    color: 0x32c832,
+    transparent: true,
+    opacity: 1
+  });
+  const geometry_100 = new THREE.ConvexBufferGeometry(vertices_100);
+  groups.v_100.remove(groups.v_100.children);
+  groups.v_100.add(...createTwoSidedFaces(geometry_100, highlightMaterial));
+
+  const geometry_110 = new THREE.ConvexBufferGeometry(vertices_110);
+  groups.v_110.remove(groups.v_110.children);
+  groups.v_110.add(...createTwoSidedFaces(geometry_110, highlightMaterial));
+
+  const geometry_111 = new THREE.ConvexBufferGeometry(vertices_111);
+  groups.v_111.remove(groups.v_111.children);
+  groups.v_111.add(...createTwoSidedFaces(geometry_111, highlightMaterial));
 }
 
 function createTwoSidedFaces(geometry, material) {
@@ -211,4 +238,10 @@ function toggleHighlight(value) {
       scene.add(groups.v_111);
       break;
   }
+}
+
+function switchModel(value) {
+  model = value;
+  initModel(model);
+  console.log('replaced ', value)
 }

@@ -1,5 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 
+type Models = 'cubic' | 'hexagonal' | 'monoclinic' | 'orthorhombic' | 'rhombohedral' | 'tetragonal' | 'triclinic';
+
 @Component({
   selector: 'app-crystalsystemdetail',
   templateUrl: './crystalsystemdetail.component.html',
@@ -8,6 +10,7 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angul
 export class CrystalsystemdetailComponent implements AfterViewInit, OnDestroy {
   @ViewChild('iframe') public IFrame!: ElementRef;
   public Layer = 0;
+  public Model: Models = 'cubic';
 
   public ngAfterViewInit(): void {
 
@@ -31,5 +34,10 @@ export class CrystalsystemdetailComponent implements AfterViewInit, OnDestroy {
   public onLayerSelectChange(newLayer: number) {
     this.Layer = newLayer;
     this.IFrame.nativeElement.contentWindow.toggleHighlight(newLayer);
+  }
+
+  public onModelSelectChange(newModel: Models) {
+    this.Model = newModel;
+    this.IFrame.nativeElement.contentWindow.switchModel(newModel);
   }
 }
