@@ -26,7 +26,7 @@
       <span [class.selected]="Selected === node.id" [class.hidden]="!node.imageLoaded">{{node.title}}</span>
     </mat-tree-node>
 
-    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding matTreeNodeToggle>
       <button mat-icon-button matTreeNodeToggle
               [attr.aria-label]="'toggle ' + node.title">
         <mat-icon class="mat-icon-rtl-mirror">
