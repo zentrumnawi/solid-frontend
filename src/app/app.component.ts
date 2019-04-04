@@ -19,7 +19,7 @@ export class AppComponent extends BaseComponent {
     title: TitleService, // Injected for initial initialisation
   ) {
     super();
-    this.addSub(breakpointObserver.observe(['(min-width: 1000px)']).subscribe(isFixed => {
+    this.addSub(breakpointObserver.observe(['(min-width: 1140px)']).subscribe(isFixed => {
       const newFixedLayout = isFixed.matches;
       if (this.FixedLayout !== newFixedLayout) {
         if (newFixedLayout) {

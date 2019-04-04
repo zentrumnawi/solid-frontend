@@ -14,6 +14,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTreeModule} from '@angular/material/tree';
 import {ImageCardComponent} from './components/image-card/image-card.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
@@ -35,6 +36,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatSidenavModule,
     MatStepperModule,
     MatToolbarModule,
+    MatTreeModule,
     LayoutModule,
   ],
   exports: [
@@ -53,6 +55,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatSidenavModule,
     MatStepperModule,
     MatToolbarModule,
+    MatTreeModule,
     LayoutModule,
     ImageCardComponent,
   ]

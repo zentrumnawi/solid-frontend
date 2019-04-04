@@ -10,11 +10,15 @@ const routes: Routes = [
   {
     path: 'determination',
     loadChildren: './modules/determinationhelper/determinationhelper.module#DeterminationHelperModule',
+  }, {
+    path: 'profile',
+    loadChildren: './modules/profile/profile.module#ProfileModule',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

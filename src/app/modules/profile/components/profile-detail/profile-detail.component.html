@@ -1,0 +1,24 @@
+<ng-container *ngIf="Profile">
+  <app-image-card
+    [src]="Profile.imageFiles.large"></app-image-card>
+  <p class="heading">chemische Formel</p>
+  <p [innerHTML]="Profile.chemicalFormula"></p>
+  <p class="heading">Trivialname</p>
+  <p>{{ Profile.name }}</p>
+  <p class="heading">Kristallsystem</p>
+  <p>{{ Profile.crystalSystems[0].name}}</p>
+  <p class="heading">Mohshärte</p>
+  <p>{{ Profile.mohsScale}}</p>
+  <p class="heading">Dichte</p>
+  <p>{{ Profile.density}}</p>
+  <p class="heading">Spaltbarkeit</p>
+  <p *ngFor="let cleavage of Profile.cleavage">{{ cleavage.cleavage }} {{ cleavage.coordinates}}</p>
+  <p class="heading">Bruch</p>
+  <p *ngFor="let fracture of Profile.fractures">{{ fracture }}</p>
+  <p class="heading">Farbe</p>
+  <p>{{ Profile.color}}</p>
+  <p class="heading">Glanz</p>
+  <p *ngFor="let lustre of Profile.lustres">{{ lustre }}</p>
+  <p class="heading">Strichfarbe</p>
+  <p>{{ Profile.streak}}</p>
+</ng-container>
