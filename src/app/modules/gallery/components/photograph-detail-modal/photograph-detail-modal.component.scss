@@ -11,3 +11,11 @@ img {
     display: none;
   }
 }
+
+mat-dialog-content.modal-content {
+  display: grid;
+  overflow: hidden;
+  padding: 0;
+  grid-template-columns: min-content auto min-content;
+  align-items: center;
+}
