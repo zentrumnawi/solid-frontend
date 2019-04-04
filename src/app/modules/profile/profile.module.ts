@@ -7,11 +7,20 @@ import {ProfileRoutingModule} from './profile-routing.module';
 import {ProfileService} from './services/profile.service';
 import {profileReducer} from './state/profile.reducer';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
+import {galleryReducer} from "./state/gallery.reducer";
+import {GalleryOverviewComponent} from "./components/gallery-overview/gallery-overview.component";
+import {PhotographDetailModalComponent} from "./components/photograph-detail-modal/photograph-detail-modal.component";
+import {GalleryService} from "./services/gallery.service";
 
 export const PROFILE_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Profile reducer');
+export const GALLERY_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Gallery reducer');
 
 export function getReducers() {
   return profileReducer;
+}
+
+export function getReducersGallery() {
+  return galleryReducer;
 }
 
 
@@ -19,17 +28,26 @@ export function getReducers() {
   declarations: [
     ProfileTreeComponent,
     ProfileDetailComponent,
+    GalleryOverviewComponent,
+    PhotographDetailModalComponent,
   ],
+  entryComponents: [PhotographDetailModalComponent],
   imports: [
     SharedModule,
     ProfileRoutingModule,
     StoreModule.forFeature('profile', PROFILE_REDUCER_TOKEN),
+    StoreModule.forFeature('gallery', GALLERY_REDUCER_TOKEN),
   ],
   providers: [
     ProfileService,
     {
       provide: PROFILE_REDUCER_TOKEN,
       useFactory: getReducers,
+    },
+    GalleryService,
+    {
+      provide: GALLERY_REDUCER_TOKEN,
+      useFactory: getReducersGallery,
     },
   ],
 })

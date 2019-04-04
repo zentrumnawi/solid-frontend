@@ -1,6 +1,7 @@
 import {createSelector} from '@ngrx/store';
 import {oc} from 'ts-optchain';
 import {MineralProfile, Profile, ProfileAppState, ProfileCategory} from './profile.model';
+import {GalleryAppState} from './gallery.model';
 
 export const selectProfiles = createSelector(
   (state: ProfileAppState) => oc(state).profile([]),
@@ -28,3 +29,7 @@ export const selectProfile = createSelector((state: ProfileAppState, profileId: 
     }
   }
 });
+
+export const selectPhotographs = createSelector(
+  (state: GalleryAppState) => oc(state).gallery([]),
+);
