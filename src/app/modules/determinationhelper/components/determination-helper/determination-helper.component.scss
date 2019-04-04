@@ -52,3 +52,9 @@ h3.mat-line.gloss {
 h1 {
   text-align: center;
 }
+
+::ng-deep {
+  div.mat-horizontal-stepper-header-container {
+    display: none;
+  }
+}

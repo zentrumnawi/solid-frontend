@@ -56,4 +56,11 @@ export abstract class ApiHttpClient {
       return `${baseUrl}/${relativeUrl.toString()}`;
     }
   }
+
+  protected post<T>(body: any, relativeUrl?: string): Observable<T> {
+    const url = relativeUrl ? `${this._baseUrl}/${relativeUrl}` : this._baseUrl;
+    return this._http.post<T>(url, body).pipe(
+      catchError(ApiHttpClient.handleError)
+    );
+  }
 }

@@ -16,6 +16,8 @@ import {GlossaryService} from './services/glossary.service';
 import {TitleService} from './services/title.service';
 import {SharedModule} from './shared/shared.module';
 import {AppState, reducers} from './state/app.model';
+import { FeedbackDialogComponent } from './components/feedback-overlay/feedback-dialog.component';
+import {FeedbackService} from "./services/feedback.service";
 import {SentryErrorHandler} from "./services/sentry.service";
 
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Registered reducers');
@@ -31,6 +33,10 @@ export function getReducers() {
     MainmenuComponent,
     InfoComponent,
     PrivacyComponent,
+    FeedbackDialogComponent,
+  ],
+  entryComponents: [
+    FeedbackDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,7 @@ export function getReducers() {
   providers: [
     GlossaryService,
     TitleService,
+    FeedbackService,
     {
       provide: REDUCER_TOKEN,
       useFactory: getReducers,
