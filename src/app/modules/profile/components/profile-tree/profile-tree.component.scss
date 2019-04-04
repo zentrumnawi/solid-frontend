@@ -29,10 +29,8 @@
   grid-template-columns: 100%;
 }
 
-::ng-deep {
-  app-profile-detail {
-    grid-area: profile;
-  }
+.profile-detail {
+  grid-area: profile;
 }
 
 .selected {
