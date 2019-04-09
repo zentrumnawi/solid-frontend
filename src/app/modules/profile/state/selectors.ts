@@ -28,3 +28,23 @@ export const selectProfile = (state: ProfileAppState, profileId: number) => {
 };
 
 export const selectPhotographs = (state: GalleryAppState) => oc(state).gallery([]);
+
+export const selectPhotograph = (state: GalleryAppState, id: number) => {
+  const profile = state.gallery.find(img => img.id === id);
+  if (!profile) {
+    return null;
+  }
+  return profile;
+};
+
+export const selectSurroundingPhotographs = (state: GalleryAppState, middleId: number) => {
+  const middleIndex = state.gallery.findIndex(item => item.id === middleId);
+  const ret: { before: number | null, after: number | null } = { before: null, after: null };
+  if (middleIndex >= 1) {
+    ret.before = state.gallery[middleIndex - 1].id;
+  }
+  if (middleIndex <= state.gallery.length - 1 && middleIndex !== -1) {
+    ret.after = state.gallery[middleIndex + 1].id;
+  }
+  return ret;
+};

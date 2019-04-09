@@ -9,7 +9,7 @@ import {profileReducer} from './state/profile.reducer';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 import {galleryReducer} from "./state/gallery.reducer";
 import {GalleryOverviewComponent} from "./components/gallery-overview/gallery-overview.component";
-import {PhotographDetailModalComponent} from "./components/photograph-detail-modal/photograph-detail-modal.component";
+import {PhotographDetailComponent} from "./components/photograph-detail/photograph-detail.component";
 import {GalleryService} from "./services/gallery.service";
 
 export const PROFILE_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Profile reducer');
@@ -29,9 +29,8 @@ export function getReducersGallery() {
     ProfileTreeComponent,
     ProfileDetailComponent,
     GalleryOverviewComponent,
-    PhotographDetailModalComponent,
+    PhotographDetailComponent,
   ],
-  entryComponents: [PhotographDetailModalComponent],
   imports: [
     SharedModule,
     ProfileRoutingModule,

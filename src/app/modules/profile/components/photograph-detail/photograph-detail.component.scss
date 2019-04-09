@@ -12,10 +12,8 @@ img {
   }
 }
 
-mat-dialog-content.modal-content {
-  display: grid;
+.content {
   overflow: hidden;
   padding: 0;
-  grid-template-columns: min-content auto min-content;
   align-items: center;
 }
