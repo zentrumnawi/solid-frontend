@@ -14,6 +14,7 @@ export type Profile = ProfileCategory | MineralProfile;
 export interface ProfileCategory {
   type: 'category';
   title: string;
+  description: string | null;
   children: Profile[];
 }
 
@@ -32,6 +33,14 @@ export interface MineralProfile {
   crystalSystems: CrystalSystem[];
   fractures: string[];
   lustres: string[];
+}
+
+export interface NodeApi {
+  node_name: string;
+  leaf_nodes: NodeApi[];
+  info_text: string;
+  image: ImageFiles | null;
+  mineraltypes: MineralProfileApi[];
 }
 
 export interface MineralProfileApi {
@@ -61,5 +70,3 @@ export interface CrystalSystemApi {
   temperature: number | null;
   pressure: number | null;
 }
-
-export type ProfileLinks = { [key: string]: ProfileLinks | MineralProfileApi[] };
