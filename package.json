@@ -27,12 +27,12 @@
     "@ngrx/router-store": "^7.0.0",
     "@ngrx/store": "^7.0.0",
     "@ngrx/store-devtools": "^7.0.0",
-    "@sentry/browser": "5.0.5",
+    "@sentry/browser": "5.0.6",
     "core-js": "^2.6.5",
     "hammerjs": "^2.0.8",
     "ngrx-actions": "^4.0.0",
     "rxjs": "~6.4.0",
-    "ts-optchain": "^0.1.3",
+    "ts-optchain": "^0.1.5",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "@angular/language-service": "~7.2.12",
     "@types/jasmine": "~3.3.12",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^11.13.0",
+    "@types/node": "^11.13.2",
     "codelyzer": "~5.0.0",
     "git-describe": "^4.0.4",
     "jasmine-core": "~3.4.0",
