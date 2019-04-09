@@ -6902,10 +6902,10 @@ ts-node@^8.0.3:
     source-map-support "^0.5.6"
     yn "^3.0.0"
 
-ts-optchain@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/ts-optchain/-/ts-optchain-0.1.4.tgz#c0604e4d56c3a8c4c6c2484b4cfe318762ca1a1a"
-  integrity sha512-ihYqw7W/fXRkmh1ypY3jsulSIGoc0MfaEZrDZdQf1bs1CfCd4/AwAAvkwti7qSLFUR5AEqRs6PmamRaDtQ/EVg==
+ts-optchain@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/ts-optchain/-/ts-optchain-0.1.5.tgz#fc9fe8d6f72957a04a5791cf19a141a6f6eb52b5"
+  integrity sha512-3Qq8eFG9t15E0YvsVWh99kOWZ2hpea8KqxALEoEjoqCHzYYv9S81MM9Hb3yHfNlVTmM67ZhAv0bJ3cB7OhVIAA==
 
 tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.9.3"
