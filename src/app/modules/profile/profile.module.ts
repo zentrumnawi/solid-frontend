@@ -11,6 +11,7 @@ import {galleryReducer} from "./state/gallery.reducer";
 import {GalleryOverviewComponent} from "./components/gallery-overview/gallery-overview.component";
 import {PhotographDetailComponent} from "./components/photograph-detail/photograph-detail.component";
 import {GalleryService} from "./services/gallery.service";
+import {MatTabsModule} from "@angular/material/tabs";
 
 export const PROFILE_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Profile reducer');
 export const GALLERY_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Gallery reducer');
@@ -33,6 +34,7 @@ export function getReducersGallery() {
   ],
   imports: [
     SharedModule,
+    MatTabsModule,
     ProfileRoutingModule,
     StoreModule.forFeature('profile', PROFILE_REDUCER_TOKEN),
     StoreModule.forFeature('gallery', GALLERY_REDUCER_TOKEN),

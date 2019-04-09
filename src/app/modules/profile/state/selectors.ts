@@ -2,7 +2,7 @@ import {oc} from 'ts-optchain';
 import {MineralProfile, Profile, ProfileAppState, ProfileCategory} from './profile.model';
 import {GalleryAppState} from './gallery.model';
 
-export const selectProfiles = (state: ProfileAppState) => oc(state).profile([]);
+export const selectProfiles = (state: ProfileAppState): Profile[] => oc(state).profile.profile([]);
 
 const findProfileDeep = (profiles: Profile[], profileId: number): { profile: MineralProfile, category: ProfileCategory | null } | null => {
   for (let profile of profiles) {
@@ -17,7 +17,7 @@ const findProfileDeep = (profiles: Profile[], profileId: number): { profile: Min
 };
 
 export const selectProfile = (state: ProfileAppState, profileId: number) => {
-  for (let profile of state.profile) {
+  for (let profile of state.profile.profile) {
     if (profile.type === 'category') {
       const childSearch = findProfileDeep(profile.children, profileId);
       if (childSearch) {
@@ -26,6 +26,9 @@ export const selectProfile = (state: ProfileAppState, profileId: number) => {
     }
   }
 };
+
+export const selectNonTreeProfile = (state: ProfileAppState, profileId: number): MineralProfile | null =>
+  state.profile.nonTreeProfiles.reduce((prev, curr) => curr.id === profileId ? curr : prev, null as MineralProfile | null);
 
 export const selectPhotographs = (state: GalleryAppState) => oc(state).gallery([]);
 

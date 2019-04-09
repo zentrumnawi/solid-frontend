@@ -1,5 +1,5 @@
 <ng-container *ngIf="Profile">
-  <app-image-card
+  <app-image-card *ngIf="!ProfileId"
     [src]="Profile.imageFiles.large"></app-image-card>
   <p class="heading">chemische Formel</p>
   <p [innerHTML]="Profile.chemicalFormula"></p>

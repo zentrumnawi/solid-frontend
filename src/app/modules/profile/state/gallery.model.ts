@@ -37,6 +37,7 @@ export enum ShotType {
 export interface HandpieceModel {
   id: number;
   name: string;
+  mineral_type: { id: number}[];
   finding_place: string;
   current_location: string;
   old_inventory_number: string;

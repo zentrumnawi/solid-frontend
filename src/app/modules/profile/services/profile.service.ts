@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ApiHttpClient} from '../../../shared/abstract/api-http-client';
-import {ProfileSetAction} from '../state/profile.actions';
+import {ProfileSetAction, ProfileSetEntryAction} from '../state/profile.actions';
 import {
   MineralProfile,
   MineralProfileApi,
@@ -18,11 +18,11 @@ export class ProfileService extends ApiHttpClient {
     private _store: Store<ProfileAppState>,
     httpClient: HttpClient,
   ) {
-    super(httpClient, ['api', 'profiles']);
+    super(httpClient, ['api']);
   }
 
   public loadProfiles() {
-    this.get<NodeApi[]>().subscribe(data => {
+    this.get<NodeApi[]>('profiles').subscribe(data => {
       const categories: ProfileCategory[] = this.mapTree(data);
       this._store.dispatch(new ProfileSetAction(categories));
     });
@@ -61,5 +61,11 @@ export class ProfileService extends ApiHttpClient {
       fractures: child.fracture,
       lustres: child.lustre,
     }));
+  }
+
+  loadProfile(profileId: number) {
+    this.get<MineralProfileApi>(['mineraltype', profileId]).subscribe(data => {
+      this._store.dispatch(new ProfileSetEntryAction(this.mapMinerals([data])[0]));
+    });
   }
 }

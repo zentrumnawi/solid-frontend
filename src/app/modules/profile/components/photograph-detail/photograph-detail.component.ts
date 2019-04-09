@@ -67,4 +67,12 @@ export class PhotographDetailComponent extends BaseComponent {
   public onNextClick() {
     this._router.navigateByUrl(`/profile/img/${this.Surrounding.after}`);
   }
+
+  public onPanEnd($event: any) {
+    if ($event.deltaX > 100 && this.Surrounding.before) {
+      this.onPrevClick();
+    } else if ($event.deltaX < -100 && this.Surrounding.after) {
+      this.onNextClick();
+    }
+  }
 }
