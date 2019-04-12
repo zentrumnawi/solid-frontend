@@ -15,12 +15,22 @@
 
 .profile-tree {
   grid-area: tree;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+
+  mat-tree {
+    flex-grow: 1;
+    overflow: auto;
+  }
 }
 
 .content-container {
   display: grid;
   grid-template-areas: 'tree profile';
   grid-template-columns: 50% 50%;
+  grid-template-rows: calc(100% - 64px);
 }
 
 .content-container.fullWidth {
@@ -31,6 +41,14 @@
 
 .profile-detail {
   grid-area: profile;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+
+  app-profile-detail {
+    flex-grow: 1;
+    overflow: auto;
+  }
 }
 
 .selected {

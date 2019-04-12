@@ -1,5 +1,6 @@
 <div #contentContainer class="content-container" [class.fullWidth]="Selected === undefined || !SplitLayout">
-  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl" class="profile-tree"
+  <div class="profile-tree">
+  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl"
             *ngIf="Selected === undefined || SplitLayout">
     <mat-tree-node *matTreeNodeDef="let node; when: !hasChild" matTreeNodeToggle matTreeNodePadding
                    class="profile-link" (click)="selectProfile(node.id)">
@@ -18,6 +19,7 @@
       <span class="category">{{node.title}}</span>
     </mat-tree-node>
   </mat-tree>
+  </div>
   <div class="profile-detail" *ngIf="SelectedProfile" >
     <mat-toolbar color="accent">
       {{ SelectedProfile.name }}
