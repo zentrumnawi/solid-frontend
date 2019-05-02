@@ -16,7 +16,10 @@
           {{TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
       </button>
-      <span class="category">{{node.title}}</span>
+      <div>
+        <span class="category">{{node.title}}</span><br/>
+        <span class="info_text" *ngIf="TreeControl.isExpanded(node) && node.info">{{ node.info }}</span>
+      </div>
     </mat-tree-node>
   </mat-tree>
   </div>

@@ -25,7 +25,8 @@ export interface MineralNode {
 
 export interface CategoryNode {
   type: 'category';
-  title: string
+  title: string;
+  info: string | null;
   level: number;
   expandable: boolean;
 }
@@ -90,6 +91,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
       return {
         title: node.title,
         type: 'category',
+        info: node.description,
         level: level,
         expandable: true,
       };
