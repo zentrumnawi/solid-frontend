@@ -32,7 +32,7 @@ export class ProfileService extends ApiHttpClient {
     return children.map(child => ({
       type: 'category' as 'category',
       title: child.node_name,
-      description: child.info_text.length != 0 ? null : child.info_text,
+      description: child.info_text.length === 0 ? null : child.info_text,
       children: [...this.mapTree(child.leaf_nodes), ...this.mapMinerals(child.mineraltypes)],
     }));
   }
