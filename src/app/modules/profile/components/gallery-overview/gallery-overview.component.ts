@@ -24,7 +24,12 @@ export class GalleryOverviewComponent extends BaseComponent {
     service.loadGallery();
     this.addSub(store.pipe(select(selectPhotographs)).subscribe(photographs => {
       this.Entries = photographs;
-      this.EntriesLoaded = photographs.map(() => false);
+      this.EntriesLoaded = photographs.map((val, index) => {
+        if (this.EntriesLoaded.length > index) {
+          return this.EntriesLoaded[index]
+        }
+        return false;
+      });
     }));
   }
 
