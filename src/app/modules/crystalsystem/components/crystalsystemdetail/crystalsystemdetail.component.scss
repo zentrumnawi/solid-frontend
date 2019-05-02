@@ -1,0 +1,10 @@
+iframe {
+  width: 100%;
+  height: calc(100% - 70px);
+  border: none;
+  overflow: hidden;
+}
+
+mat-select {
+  max-width: 5em;
+}

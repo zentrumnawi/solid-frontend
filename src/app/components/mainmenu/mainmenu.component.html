@@ -15,6 +15,10 @@
     <mat-icon matListIcon>collections</mat-icon>
     <h3 matLine>Steckbriefe</h3>
   </mat-list-item>
+  <mat-list-item [class.active]="ActiveUrl === '/crystalsystem'" routerLink="/crystalsystem">
+    <mat-icon matListIcon>collections</mat-icon>
+    <h3 matLine>Kristallsysteme</h3>
+  </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl === '/info'" routerLink="/info">
     <mat-icon matListIcon>info</mat-icon>
     <h3 matLine>Info</h3>

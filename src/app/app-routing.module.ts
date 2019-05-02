@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: './modules/profile/profile.module#ProfileModule',
   },
+  {
+    path: 'crystalsystem',
+    loadChildren: './modules/crystalsystem/crystalsystem.module#CrystalsystemModule',
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,29 @@
+<mat-toolbar color="accent">
+  <span>Kristallsysteme</span>
+  <div class="spacer"></div>
+  <button mat-icon-button (click)="onToggleSolidClick()" matTooltip="Toggle solid">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-icon-button (click)="onToggleAxisClick()" matTooltip="Toggle axis">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-icon-button (click)="onTogglePointsClick()" matTooltip="Toggle points">
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-select placeholder="Ebene" [ngModel]="Layer" (ngModelChange)="onLayerSelectChange($event)" matTooltip="Ebene">
+    <mat-option [value]="0">keine</mat-option>
+    <mat-option [value]="100">100</mat-option>
+    <mat-option [value]="110">110</mat-option>
+    <mat-option [value]="111">111</mat-option>
+  </mat-select>
+  <mat-select placeholder="Modell" [ngModel]="Model" (ngModelChange)="onModelSelectChange($event)" matTooltip="Modell">
+    <mat-option value="cubic">kubisch</mat-option>
+    <mat-option value="hexagonal">hexagonal</mat-option>
+    <mat-option value="monoclinic">monoklin</mat-option>
+    <mat-option value="orthorhombic">orthorhombisch</mat-option>
+    <mat-option value="rhombohedral">rhomboedrisch</mat-option>
+    <mat-option value="tetragonal">tetragonal</mat-option>
+    <mat-option value="triclinic">triklin</mat-option>
+  </mat-select>
+</mat-toolbar>
+<iframe #iframe src="/assets/crystalsystem/iframe.html"></iframe>
