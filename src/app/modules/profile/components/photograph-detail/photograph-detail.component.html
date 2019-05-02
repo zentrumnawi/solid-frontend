@@ -1,0 +1,36 @@
+<mat-toolbar color="accent">
+  {{ Entry ? Entry.handpiece.name : 'Lade Daten...' }}
+  <div class="spacer"></div>
+  <button mat-icon-button (click)="onPrevClick()" [disabled]="Surrounding.before === null">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+  <button mat-icon-button (click)="onCloseClick()">
+    <mat-icon>expand_less</mat-icon>
+  </button>
+  <button mat-icon-button (click)="onNextClick()" [disabled]="Surrounding.after === null">
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-tab-group>
+  <mat-tab label="Bild">
+    <div class="content">
+      <div class="spinner" *ngIf="!ImageLoaded || !Entry">
+        <mat-spinner color="primary"></mat-spinner>
+      </div>
+      <img *ngIf="Entry"
+           [src]="Entry.image_file.small"
+           (load)="imageLoaded()"
+           [class.hidden]="!ImageLoaded"
+           srcset="{{ Entry.image_file.small }} 600w,
+            {{ Entry.image_file.medium }} 900w,
+            {{ Entry.image_file.large }} 1200w"
+           sizes="(max-width: 600px) 600px, (max-width: 1000px) 900w, 1200w">
+    </div>
+  </mat-tab>
+  <mat-tab label="Steckbrief">
+    <div class="content profile">
+      <app-profile-detail *ngIf="Entry" [profileId]="Entry.handpiece.mineral_type[0].id"
+                          (panend)="onPanEnd($event)"></app-profile-detail>
+    </div>
+  </mat-tab>
+</mat-tab-group>

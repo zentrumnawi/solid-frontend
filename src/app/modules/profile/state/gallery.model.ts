@@ -1,3 +1,4 @@
+import {ImageFiles} from '../../../shared/models';
 import {AppState} from '../../../state/app.model';
 
 export interface GalleryAppState extends AppState {
@@ -19,14 +20,6 @@ export interface PhotographModel {
   last_modified: Date;
 }
 
-export interface ImageFiles {
-  large: string;
-  medium: string;
-  small: string;
-  thumbnail: string;
-  original: string;
-}
-
 export enum PhotographOrientation {
   T = 'T',
   B = 'B',
@@ -44,6 +37,7 @@ export enum ShotType {
 export interface HandpieceModel {
   id: number;
   name: string;
+  mineral_type: { id: number}[];
   finding_place: string;
   current_location: string;
   old_inventory_number: string;

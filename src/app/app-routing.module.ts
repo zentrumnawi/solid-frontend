@@ -6,15 +6,18 @@ import {PrivacyComponent} from './components/privacy/privacy.component';
 const routes: Routes = [
   {path: 'info', component: InfoComponent, data: {title: 'Informationen'}},
   {path: 'privacy', component: PrivacyComponent, data: {title: 'Datenschutzerklärung'}},
-  {path: 'gallery', loadChildren: './modules/gallery/gallery.module#GalleryModule'},
   {
     path: 'determination',
     loadChildren: './modules/determinationhelper/determinationhelper.module#DeterminationHelperModule',
+  }, {
+    path: 'profile',
+    loadChildren: './modules/profile/profile.module#ProfileModule',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

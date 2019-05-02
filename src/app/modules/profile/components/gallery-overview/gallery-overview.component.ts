@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
-import {MatDialog} from '@angular/material';
 import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {GalleryService} from '../../services/gallery.service';
 import {GalleryAppState, PhotographModel} from '../../state/gallery.model';
 import {selectPhotographs} from '../../state/selectors';
-import {PhotographDetailModalComponent} from '../photograph-detail-modal/photograph-detail-modal.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'gallery-gallery-overview',
@@ -19,16 +18,13 @@ export class GalleryOverviewComponent extends BaseComponent {
   constructor(
     service: GalleryService,
     store: Store<GalleryAppState>,
-    private _dialog: MatDialog,
+    private _router: Router,
   ) {
     super();
     service.loadGallery();
     this.addSub(store.pipe(select(selectPhotographs)).subscribe(photographs => {
       this.Entries = photographs;
       this.EntriesLoaded = photographs.map(() => false);
-      // if (photographs.length > 0 && !photographs[0].image_file_loaded.small) {
-      //   service.loadSmallImage(photographs[0]);
-      // }
     }));
   }
 
@@ -37,11 +33,6 @@ export class GalleryOverviewComponent extends BaseComponent {
   }
 
   public onCardClick(entry: PhotographModel) {
-    this._dialog.open(PhotographDetailModalComponent, {
-      minHeight: '100px',
-      minWidth: '250px',
-      data: entry,
-    });
-
+    this._router.navigateByUrl(`/profile/img/${entry.id}`);
   }
 }
