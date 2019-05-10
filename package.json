@@ -31,7 +31,7 @@
     "core-js": "^2.6.5",
     "hammerjs": "^2.0.8",
     "ngrx-actions": "^4.0.0",
-    "rxjs": "~6.5.1",
+    "rxjs": "~6.5.2",
     "ts-optchain": "^0.1.6",
     "zone.js": "~0.8.29"
   },
