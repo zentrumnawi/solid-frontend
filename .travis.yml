@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '8.9'
+branches:
+  only:
+    - dev
+    - master
+script:
+  - npm run build:staging
+notifications:
+  email:
+    on_failure: change
+on_success: change
