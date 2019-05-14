@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "http-server ./dist/app-geomat -p 80",
+    "start": "http-server ./dist/app-geomat",
     "build": "ng build",
     "build:staging": "ts-node git.versions.ts && ng build -c staging",
     "build:prod": "ts-node git.versions.ts && ng build --prod",
