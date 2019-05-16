@@ -34,7 +34,7 @@
     "http-server": "^0.11.1",
     "ngrx-actions": "^4.0.0",
     "rxjs": "~6.5.2",
-    "ts-optchain": "^0.1.6",
+    "ts-optchain": "^0.1.7",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
