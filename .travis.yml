@@ -1,13 +1,16 @@
 language: node_js
 node_js:
-  - '8.9'
+- '8.9'
 branches:
   only:
-    - dev
-    - master
+  - dev
+  - master
 script:
-  - npm run build:staging
+- npm run build:staging
 notifications:
   email:
     on_failure: change
 on_success: change
+before_install:
+- openssl aes-256-cbc -K $encrypted_172b5ce8d004_key -iv $encrypted_172b5ce8d004_iv
+  -in deploy.key.enc -out deploy.key -d
