@@ -1,10 +1,8 @@
 language: node_js
 node_js:
 - '8.9'
-branches:
-  only:
-  - dev
-  - master
+env:
+  secure: UZo/GYemyRIxKV9IOF4XacVfwyUwZ3zqIlEfIljCwEtjgw3tcwp8xme2dIpco1YVDOI88CIBqv+fgznw+mF6B55azaGya4XLexkgVuyhOKvTF4BzlDvKy/7LWH8jv488g1rj6WGl939mRxd4Z/kgHXUbpHIuZwNey5ZzYJcM+aCag72+wV4lA37LXVOFkfhivLVaIWsXufb0Jb6Zh0qO24Ci1ancwUKa54xvOECvnKkUvEojtGMpmHyBB/GRSObXWGZpxvvMTVUlRcfx8+AdFQGOBUFwu9FD4Xm6cZmX0juQ6ox+2IJObH+UyB+eXW+k4Ehoe18aYacfNMlBVF9/wtp4pXOBltG+0p1JUGa83+47Y6OS8DzcRh8yiEACr2fJ676NwAd4QkINSvLlfHFHlMIsHTfxcEPRJgSleT4Wv/1N4wNDxtiMFLh0HhsQhIYaDPwvdY0wJiswykiEHjy3hT+0qoDXQb/MwYAeiLYa5aeig/ywdZl8TWO7OmxBa7CGJwKNwEEN9qL5GjlAmv1GVNj3jPJuYufXdaRdvnaydPycT7j5B7J+WwKjSByQzn2l9Sc9lIVA4+gAXsdzbuauhptRqNkKGctrP4frRmYbfruIYOGMjkJb/qvLxr/XwJAEpw9H3yJ+eFbsSrpujUdDv2teoXNVj5xbUkmEpyVK9Mk=
 script:
 - npm run build:staging
 notifications:
@@ -13,4 +11,24 @@ notifications:
 on_success: change
 before_install:
 - openssl aes-256-cbc -K $encrypted_172b5ce8d004_key -iv $encrypted_172b5ce8d004_iv
-  -in deploy.key.enc -out deploy.key -d
+  -in .travis/deploy.key.enc -out .travis/deploy.key -d
+- chmod +x .travis/deploy.sh
+- eval "$(ssh-agent -s)"
+- chmod 600 .travis/deploy.key
+- ssh-add .travis/deploy.key
+- ssh-keyscan $DOKKU_SERVER >> ~/.ssh/known_hosts
+- |
+  if [[ ${TRAVIS_PULL_REQUEST} == "false" ]] && [[ ${TRAVIS_BRANCH} == "dev" ]]; then
+    git remote add deploy dokku@$DOKKU_SERVER:$DOKKU_DEV_APP
+  fi
+- |
+  if [[ ${TRAVIS_PULL_REQUEST} == "false" ]] && [[ ${TRAVIS_BRANCH} == "master" ]]; then
+    git remote add deploy dokku@$DOKKU_SERVER:$DOKKU_PRODUCTION_APP
+  fi
+- |
+  if [[ ${TRAVIS_PULL_REQUEST} == "false" ]] && [[ ${TRAVIS_BRANCH} == "preview" ]]; then
+    git remote add deploy dokku@$DOKKU_SERVER:$DOKKU_PREVIEW_APP
+  fi
+- git config --global push.default simple
+after_success:
+- bash ./.travis/deploy.sh ${TRAVIS_PULL_REQUEST} ${TRAVIS_BRANCH}
