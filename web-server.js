@@ -69,6 +69,6 @@ http.createServer(function (req, res) {
   });
 
 
-}).listen(parseInt(port));
+}).listen(parseInt(port), '0.0.0.0');
 
 console.log(`Server listening on port ${port}`);
