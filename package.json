@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "http-server ./dist/app-geomat",
+    "start": "node web-server.js",
     "build": "ng build",
     "build:staging": "ts-node git.versions.ts && ng build -c staging",
     "build:prod": "ts-node git.versions.ts && ng build --prod",
@@ -31,7 +31,6 @@
     "@sentry/browser": "5.2.1",
     "core-js": "^2.6.5",
     "hammerjs": "^2.0.8",
-    "http-server": "^0.11.1",
     "ngrx-actions": "^4.0.0",
     "rxjs": "~6.5.2",
     "ts-optchain": "^0.1.6",
