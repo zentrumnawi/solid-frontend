@@ -3,7 +3,7 @@ const url = require('url');
 const fs = require('fs');
 const path = require('path');
 // you can pass the parameter in the command line. e.g. node static_server.js 3000
-const port = process.argv[2] || 8080;
+const port = process.argv[2] || 5000;
 
 // maps file extention to MIME types
 const mimeType = {
