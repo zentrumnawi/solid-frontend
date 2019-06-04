@@ -9,8 +9,8 @@
       <span [class.selected]="Selected === node.id" [class.hidden]="!node.imageLoaded">{{node.title}}</span>
     </mat-tree-node>
 
-    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding matTreeNodeToggle>
-      <button mat-icon-button matTreeNodeToggle
+    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding (click)="onNodeClick(node)">
+      <button mat-icon-button (click)="onNodeClick(node)"
               [attr.aria-label]="'toggle ' + node.title">
         <mat-icon class="mat-icon-rtl-mirror">
           {{TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}

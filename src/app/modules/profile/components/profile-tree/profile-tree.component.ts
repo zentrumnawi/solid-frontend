@@ -2,7 +2,6 @@ import {FlatTreeControl} from '@angular/cdk/tree';
 import {AfterViewInit, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {ActivatedRoute, Router} from '@angular/router';
-import {activateRoutes} from '@angular/router/src/operators/activate_routes';
 import {select, Store} from '@ngrx/store';
 import {of as observableOf, Subscription} from 'rxjs';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
@@ -10,7 +9,6 @@ import {ImageFiles} from '../../../../shared/models';
 import {ProfileService} from '../../services/profile.service';
 import {MineralProfile, Profile, ProfileAppState, ProfileCategory} from '../../state/profile.model';
 import {selectProfile, selectProfiles} from '../../state/selectors';
-import {BreakpointObserver} from "@angular/cdk/layout";
 
 export type FlatTreeNode = MineralNode | CategoryNode;
 
@@ -45,6 +43,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
   public CanSwipeLeft = false;
   public CanSwipeRight = false;
 
+
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<Profile, FlatTreeNode>;
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
@@ -54,6 +53,8 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
   private readonly _treeFlattener: MatTreeFlattener<Profile, FlatTreeNode>;
 
   private _storeSub?: Subscription;
+
+  private _selectedNode: CategoryNode | MineralNode | null = null;
 
 
   constructor(
@@ -198,4 +199,25 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
     }
   }
 
+  onNodeClick(node: MineralNode | CategoryNode) {
+    if (this.TreeControl.isExpanded(node)) {
+      this.TreeControl.collapse(node);
+      this._selectedNode = null;
+    } else {
+      if (this._selectedNode) {
+          const children = this.TreeControl.getDescendants(this._selectedNode);
+          if (!children || (Array.isArray(children) && !children.includes(node))) {
+            this.TreeControl.collapse(this._selectedNode);
+          this.TreeControl.dataNodes.forEach(n => {
+            const c = this.TreeControl.getDescendants(n)
+            if (c && Array.isArray(c) && c.includes(this._selectedNode!) && !c.includes(node)) {
+              this.TreeControl.collapse(n);
+            }
+          })
+          }
+        }
+      this.TreeControl.expand(node);
+      this._selectedNode = node;
+    }
+  }
 }
