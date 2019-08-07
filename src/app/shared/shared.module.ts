@@ -17,9 +17,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTreeModule} from '@angular/material/tree';
 import {ImageCardComponent} from './components/image-card/image-card.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MarkdownService } from './services/markdown.service';
+import { MarkdownComponent } from './components/markdown/markdown.component';
 
 @NgModule({
-  declarations: [ImageCardComponent],
+  declarations: [
+    ImageCardComponent,
+    MarkdownComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -58,6 +63,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatTreeModule,
     LayoutModule,
     ImageCardComponent,
+    MarkdownComponent,
+  ],
+  providers: [
+    MarkdownService,
   ]
 })
 export class SharedModule {
@@ -67,7 +76,7 @@ export class SharedModule {
       providers: [
         {
           provide: STEPPER_GLOBAL_OPTIONS,
-          useValue: {displayDefaultIndicatorType: false},
+          useValue: { displayDefaultIndicatorType: false },
         },
       ],
     };

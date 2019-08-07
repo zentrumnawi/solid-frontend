@@ -41,3 +41,4 @@ Thumbs.db
 # Ignore unencrypted deployment keys
 .travis/*.key
 .travis/*.key.pub
+src/environments/version.json
