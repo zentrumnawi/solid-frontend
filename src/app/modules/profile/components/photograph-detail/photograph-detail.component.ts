@@ -1,5 +1,5 @@
 import {BreakpointObserver} from '@angular/cdk/layout';
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {GalleryAppState, PhotographModel} from '../../state/gallery.model';
@@ -14,11 +14,15 @@ import {GalleryService} from "../../services/gallery.service";
   styleUrls: ['./photograph-detail.component.scss'],
 })
 export class PhotographDetailComponent extends BaseComponent {
+  @ViewChild('audioplayer') player!: { nativeElement: HTMLAudioElement };
+  public Playing = false;
+  public PlayPosition = '';
+  private playerProgressEventListenerSet = false;
   public Entry: PhotographModel | null = null;
   public ImageLoaded = false;
   private _storeSub: Subscription | null = null;
   private _storeSub2: Subscription | null = null;
-  public Surrounding: { before: number | null; after: number | null } = { before: null, after: null};
+  public Surrounding: { before: number | null; after: number | null } = {before: null, after: null};
 
   constructor(
     service: GalleryService,
@@ -74,5 +78,33 @@ export class PhotographDetailComponent extends BaseComponent {
     } else if ($event.deltaX < -100 && this.Surrounding.after) {
       this.onNextClick();
     }
+  }
+
+  onPlayPauseClick() {
+    if (this.Playing) {
+      this.player.nativeElement.pause();
+    } else {
+      if (!this.playerProgressEventListenerSet) {
+        this.player.nativeElement.addEventListener('timeupdate', () => this.playerProgressEventListener());
+        this.playerProgressEventListenerSet = true;
+      }
+      this.player.nativeElement.play();
+    }
+    this.Playing = !this.Playing;
+  }
+
+  onReplayClick() {
+    this.player.nativeElement.pause();
+    this.player.nativeElement.currentTime = 0;
+    this.player.nativeElement.play();
+    this.Playing = true;
+  }
+
+  private playerProgressEventListener() {
+    const duration = this.player.nativeElement.duration;
+    const currentTime = this.player.nativeElement.currentTime;
+    const durationSeconds = Math.floor(duration % 60);
+    const currentTimeSeconds = Math.floor(currentTime % 60);
+    this.PlayPosition = `${Math.floor(currentTime / 60)}:${currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds}/${Math.floor(duration / 60)}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`
   }
 }
