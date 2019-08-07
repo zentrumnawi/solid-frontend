@@ -4,10 +4,10 @@
   <ng-container *ngIf="Entry && Entry.audio_file" >
     <span>{{ PlayPosition }}</span>
     <button mat-icon-button (click)="onPlayPauseClick()">
-      <mat-icon>{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
+      <mat-icon [matTooltip]="Playing ? 'Audiowiedergabe pausieren' : 'Audiobeschreibung abspielen'">{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
     </button>
-    <button mat-icon-button (click)="onReplayClick()">
-      <mat-icon>replay</mat-icon>
+    <button *ngIf="PlayingStarted" mat-icon-button (click)="onReplayClick()">
+      <mat-icon matTooltip="Audiowiedergabe neu starten">replay</mat-icon>
     </button>
   </ng-container>
   <button mat-icon-button (click)="onPrevClick()" [disabled]="Surrounding.before === null">
@@ -45,7 +45,7 @@
   <mat-tab label="Beschreibung">
     <div class="content description" Md [data]="Entry.description"></div>
     <audio *ngIf="Entry.audio_file" #audioplayer>
-      <source src="https://media.fireside.fm/file/fireside-audio/podcasts/audio/0/02d84890-e58d-43eb-ab4c-26bcc8524289/episodes/a/a7e290f9-85e4-482f-886d-a0a8a4b5e400/a7e290f9-85e4-482f-886d-a0a8a4b5e400.mp3" type="audio/mpeg">
+      <source [src]="Entry.audio_file" type="audio/mpeg">
     </audio>
   </mat-tab>
 </mat-tab-group>

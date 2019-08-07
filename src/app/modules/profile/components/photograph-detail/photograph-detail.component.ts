@@ -16,6 +16,7 @@ import {GalleryService} from "../../services/gallery.service";
 export class PhotographDetailComponent extends BaseComponent {
   @ViewChild('audioplayer') player!: { nativeElement: HTMLAudioElement };
   public Playing = false;
+  public PlayingStarted = false;
   public PlayPosition = '';
   private playerProgressEventListenerSet = false;
   public Entry: PhotographModel | null = null;
@@ -80,10 +81,11 @@ export class PhotographDetailComponent extends BaseComponent {
     }
   }
 
-  onPlayPauseClick() {
+  public onPlayPauseClick() {
     if (this.Playing) {
       this.player.nativeElement.pause();
     } else {
+      this.PlayingStarted = true;
       if (!this.playerProgressEventListenerSet) {
         this.player.nativeElement.addEventListener('timeupdate', () => this.playerProgressEventListener());
         this.playerProgressEventListenerSet = true;
@@ -93,7 +95,7 @@ export class PhotographDetailComponent extends BaseComponent {
     this.Playing = !this.Playing;
   }
 
-  onReplayClick() {
+  public onReplayClick() {
     this.player.nativeElement.pause();
     this.player.nativeElement.currentTime = 0;
     this.player.nativeElement.play();
