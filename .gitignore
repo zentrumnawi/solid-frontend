@@ -37,3 +37,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Ignore unencrypted deployment keys
+.travis/*.key
+.travis/*.key.pub
