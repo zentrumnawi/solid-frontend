@@ -11,7 +11,7 @@
     <mat-icon>navigate_next</mat-icon>
   </button>
 </mat-toolbar>
-<mat-tab-group>
+<mat-tab-group *ngIf="Entry">
   <mat-tab label="Bild">
     <div class="content">
       <div class="spinner" *ngIf="!ImageLoaded || !Entry">
@@ -29,8 +29,11 @@
   </mat-tab>
   <mat-tab label="Steckbrief">
     <div class="content profile">
-      <app-profile-detail *ngIf="Entry" [profileId]="Entry.handpiece.mineral_type[0].id"
+      <app-profile-detail [profileId]="Entry.handpiece.mineral_type[0].id"
                           (panend)="onPanEnd($event)"></app-profile-detail>
     </div>
+  </mat-tab>
+  <mat-tab label="Beschreibung">
+    <div class="content description" Md [data]="Entry.description"></div>
   </mat-tab>
 </mat-tab-group>

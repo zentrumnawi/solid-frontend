@@ -16,7 +16,7 @@ export interface PhotographModel {
   orig_height: number;
   orig_width: number;
   audio_file: string | null;
-  description: string | null;
+  description: string;
   online_status: boolean;
   created_at: Date;
   last_modified: Date;
