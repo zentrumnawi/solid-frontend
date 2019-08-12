@@ -1,5 +1,5 @@
 import {Component, HostListener, ViewChild} from '@angular/core';
-import {MatStepper} from "@angular/material";
+import {MatStepper} from "@angular/material/stepper";
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
@@ -13,7 +13,7 @@ export enum KEY {
 })
 export class DeterminationHelperComponent {
   public MaxStep = 0;
-  @ViewChild('stepper') public Stepper!: MatStepper;
+  @ViewChild('stepper', {static: true}) public Stepper!: MatStepper;
 
   @HostListener('window:keyup', ['$event'])
   public keyEvent(event: KeyboardEvent) {

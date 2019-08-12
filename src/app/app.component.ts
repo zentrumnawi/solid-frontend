@@ -11,8 +11,8 @@ import {BaseComponent} from './shared/abstract/base.component';
 })
 export class AppComponent extends BaseComponent {
   public FixedLayout = true;
-  @ViewChild('mainmenu') MainMenu?: MatDrawer;
-  @ViewChild('glossary') Glossary?: MatDrawer;
+  @ViewChild('mainmenu', {static: true}) MainMenu?: MatDrawer;
+  @ViewChild('glossary', {static: true}) Glossary?: MatDrawer;
 
   constructor(
     breakpointObserver: BreakpointObserver,

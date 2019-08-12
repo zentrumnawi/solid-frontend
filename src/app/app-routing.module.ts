@@ -6,10 +6,10 @@ import {PrivacyComponent} from './components/privacy/privacy.component';
 const routes: Routes = [
   {path: 'info', component: InfoComponent, data: {title: 'Informationen'}},
   {path: 'privacy', component: PrivacyComponent, data: {title: 'Datenschutzerklärung'}},
-  {path: 'gallery', loadChildren: './modules/gallery/gallery.module#GalleryModule'},
+  {path: 'gallery', loadChildren: () => import('./modules/gallery/gallery.module').then(m => m.GalleryModule)},
   {
     path: 'determination',
-    loadChildren: './modules/determinationhelper/determinationhelper.module#DeterminationHelperModule',
+    loadChildren: () => import('./modules/determinationhelper/determinationhelper.module').then(m => m.DeterminationHelperModule),
   },
 ];
 

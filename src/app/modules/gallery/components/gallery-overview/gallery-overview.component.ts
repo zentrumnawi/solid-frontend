@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {GalleryService} from '../../services/gallery.service';

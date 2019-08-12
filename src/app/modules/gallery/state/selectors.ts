@@ -4,4 +4,5 @@ import {GalleryAppState} from './gallery.model';
 
 export const selectPhotographs = createSelector(
   (state: GalleryAppState) => oc(state).gallery([]),
+  p => p
 );
