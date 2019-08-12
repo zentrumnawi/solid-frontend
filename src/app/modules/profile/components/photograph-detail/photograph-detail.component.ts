@@ -104,7 +104,11 @@ export class PhotographDetailComponent extends BaseComponent {
     const currentTime = this.player.nativeElement.currentTime;
     const durationSeconds = Math.floor(duration % 60);
     const currentTimeSeconds = Math.floor(currentTime % 60);
-    this.PlayPosition = `${Math.floor(currentTime / 60)}:${currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds}/${Math.floor(duration / 60)}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`
+    if (currentTime > 0) {
+      this.PlayPosition = `${Math.floor(currentTime / 60)}:${currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds}/${Math.floor(duration / 60)}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`
+    } else {
+      this.PlayPosition = '';
+    }
   }
 
   private onPlayerWaiting() {
@@ -121,6 +125,6 @@ export class PhotographDetailComponent extends BaseComponent {
   private onPlayerEnded() {
     this.PlayingStarted = false;
     this.Playing = false;
-    this.PlayPosition = '';
+    this.player.nativeElement.currentTime = 0;
   }
 }
