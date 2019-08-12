@@ -49,6 +49,11 @@ export class PhotographDetailComponent extends BaseComponent {
         this.Surrounding = surrounding;
       })
     });
+    this.addOnDestroy(() => {
+      if (this.PlayingStarted) {
+        this.player.nativeElement.pause();
+      }
+    })
   }
 
   public imageLoaded() {
