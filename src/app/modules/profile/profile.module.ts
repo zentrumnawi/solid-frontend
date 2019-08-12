@@ -12,6 +12,7 @@ import {GalleryOverviewComponent} from "./components/gallery-overview/gallery-ov
 import {PhotographDetailComponent} from "./components/photograph-detail/photograph-detail.component";
 import {GalleryService} from "./services/gallery.service";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MediaErrorDialogComponent} from "./components/media-error-dialog/media-error-dialog.component";
 
 export const PROFILE_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Profile reducer');
 export const GALLERY_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Gallery reducer');
@@ -31,6 +32,10 @@ export function getReducersGallery() {
     ProfileDetailComponent,
     GalleryOverviewComponent,
     PhotographDetailComponent,
+    MediaErrorDialogComponent,
+  ],
+  entryComponents: [
+    MediaErrorDialogComponent,
   ],
   imports: [
     SharedModule,

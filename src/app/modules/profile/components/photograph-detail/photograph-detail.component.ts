@@ -1,5 +1,5 @@
 import {BreakpointObserver} from '@angular/cdk/layout';
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {GalleryAppState, PhotographModel} from '../../state/gallery.model';
@@ -7,6 +7,8 @@ import {selectPhotograph, selectSurroundingPhotographs} from '../../state/select
 import {ActivatedRoute, ResolveEnd, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {GalleryService} from "../../services/gallery.service";
+import {MatDialog} from "@angular/material";
+import {MediaErrorDialogComponent} from "../media-error-dialog/media-error-dialog.component";
 
 @Component({
   selector: 'gallery-photograph-detail-modal',
@@ -31,6 +33,7 @@ export class PhotographDetailComponent extends BaseComponent {
     breakpointObserver: BreakpointObserver,
     route: ActivatedRoute,
     private _router: Router,
+    private _dialog: MatDialog,
   ) {
     super();
     service.loadGallery();
@@ -50,7 +53,7 @@ export class PhotographDetailComponent extends BaseComponent {
       })
     });
     this.addOnDestroy(() => {
-      if (this.PlayingStarted) {
+      if (this.PlayingStarted && this.Entry && this.Entry.audio_file) {
         this.player.nativeElement.pause();
       }
     })
@@ -88,6 +91,16 @@ export class PhotographDetailComponent extends BaseComponent {
       if (!this.playerProgressEventListenerSet) {
         this.player.nativeElement.addEventListener('timeupdate', this.playerProgressEventListener);
         this.playerProgressEventListenerSet = true;
+        this.player.nativeElement.addEventListener('waiting', (event) => {
+          this._dialog.open(MediaErrorDialogComponent, {
+            data: {
+              title: 'Fehler',
+              content: 'Audiodatei konnte nicht geladen werden.'
+            }
+          });
+          this.onPlayPauseClick();
+          this.Entry!.audio_file = null;
+        });
       }
       this.player.nativeElement.play();
     }
