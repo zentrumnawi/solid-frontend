@@ -6,10 +6,12 @@ import {PhotographDetailComponent} from "./components/photograph-detail/photogra
 
 const routes: Routes = [
   {path: 'img', pathMatch: 'full', component: GalleryOverviewComponent, data: {title: 'Galerie'}},
-  {path: 'img/:id', component: PhotographDetailComponent, data: {title: 'Galerie'}},
-  {path: '', component: ProfileTreeComponent, data: {title: 'Steckbriefe'}, children: [
-      { path: ':id', data: {title: 'Steckbriefe'} }
-    ]},
+  {path: 'img/:id', component: PhotographDetailComponent, data: {title: 'Galerie', noReuse: true}},
+  {
+    path: '', component: ProfileTreeComponent, data: {title: 'Steckbriefe'}, children: [
+      {path: ':id', data: {title: 'Steckbriefe'}}
+    ]
+  },
 ];
 
 @NgModule({

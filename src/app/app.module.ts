@@ -19,6 +19,8 @@ import {AppState, reducers} from './state/app.model';
 import { FeedbackDialogComponent } from './components/feedback-overlay/feedback-dialog.component';
 import {FeedbackService} from "./services/feedback.service";
 import {SentryErrorHandler} from "./services/sentry.service";
+import {RouteReuseStrategy} from "@angular/router";
+import {CustomRouteReuseStrategy} from "./CustomRouteReuseStrategy";
 
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Registered reducers');
 
@@ -62,6 +64,9 @@ export function getReducers() {
       provide: ErrorHandler,
       useClass: SentryErrorHandler
     },
+    { provide: RouteReuseStrategy,
+      useClass: CustomRouteReuseStrategy,
+    }
   ],
   bootstrap: [AppComponent],
 })

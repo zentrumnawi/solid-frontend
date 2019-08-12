@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {InfoComponent} from './components/info/info.component';
 import {PrivacyComponent} from './components/privacy/privacy.component';
+import {environment} from "../environments/environment";
 
 const routes: Routes = [
   {path: 'info', component: InfoComponent, data: {title: 'Informationen'}},
@@ -16,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

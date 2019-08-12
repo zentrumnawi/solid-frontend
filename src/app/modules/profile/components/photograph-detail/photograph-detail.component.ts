@@ -4,7 +4,7 @@ import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {GalleryAppState, PhotographModel} from '../../state/gallery.model';
 import {selectPhotograph, selectSurroundingPhotographs} from '../../state/selectors';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, ResolveEnd, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {GalleryService} from "../../services/gallery.service";
 
@@ -34,27 +34,21 @@ export class PhotographDetailComponent extends BaseComponent {
   ) {
     super();
     service.loadGallery();
-    this.addSub(route.params.subscribe(params => {
-        const entryId = parseInt(params.id, 10);
-        if (this._storeSub) {
-          this._storeSub.unsubscribe();
-        }
-        this._storeSub = store.pipe(select(selectPhotograph, entryId)).subscribe(photograph => {
-          this.Entry = photograph;
-        });
-        if (this._storeSub2) {
-          this._storeSub2.unsubscribe();
-        }
-        this._storeSub2 = store.pipe(select(selectSurroundingPhotographs, entryId)).subscribe(surrounding => {
-          this.Surrounding = surrounding;
-        })
-      }),
-      breakpointObserver.observe(['(min-width: 600px)']).subscribe(matcher => {
-        // TODO: update
-        // this._dialogRef.updateSize(matcher.matches ? '80%' : '100%');
-        // this._dialogRef.updatePosition();
-      }),
-    );
+    route.params.subscribe(params => {
+      const entryId = parseInt(params.id, 10);
+      if (this._storeSub) {
+        this._storeSub.unsubscribe();
+      }
+      this._storeSub = store.pipe(select(selectPhotograph, entryId)).subscribe(photograph => {
+        this.Entry = photograph;
+      });
+      if (this._storeSub2) {
+        this._storeSub2.unsubscribe();
+      }
+      this._storeSub2 = store.pipe(select(selectSurroundingPhotographs, entryId)).subscribe(surrounding => {
+        this.Surrounding = surrounding;
+      })
+    });
   }
 
   public imageLoaded() {
@@ -87,7 +81,7 @@ export class PhotographDetailComponent extends BaseComponent {
     } else {
       this.PlayingStarted = true;
       if (!this.playerProgressEventListenerSet) {
-        this.player.nativeElement.addEventListener('timeupdate', () => this.playerProgressEventListener());
+        this.player.nativeElement.addEventListener('timeupdate', this.playerProgressEventListener);
         this.playerProgressEventListenerSet = true;
       }
       this.player.nativeElement.play();
@@ -102,7 +96,7 @@ export class PhotographDetailComponent extends BaseComponent {
     this.Playing = true;
   }
 
-  private playerProgressEventListener() {
+  private playerProgressEventListener = () => {
     const duration = this.player.nativeElement.duration;
     const currentTime = this.player.nativeElement.currentTime;
     const durationSeconds = Math.floor(duration % 60);
