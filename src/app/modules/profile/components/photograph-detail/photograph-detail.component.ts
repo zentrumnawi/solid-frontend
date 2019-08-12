@@ -20,7 +20,6 @@ export class PhotographDetailComponent extends BaseComponent {
   public Playing = false;
   public PlayingStarted = false;
   public PlayPosition = '';
-  private playerProgressEventListenerSet = false;
   public Entry: PhotographModel | null = null;
   public ImageLoaded = false;
   private _storeSub: Subscription | null = null;
@@ -88,20 +87,6 @@ export class PhotographDetailComponent extends BaseComponent {
       this.player.nativeElement.pause();
     } else {
       this.PlayingStarted = true;
-      if (!this.playerProgressEventListenerSet) {
-        this.player.nativeElement.addEventListener('timeupdate', this.playerProgressEventListener);
-        this.playerProgressEventListenerSet = true;
-        this.player.nativeElement.addEventListener('waiting', (event) => {
-          this._dialog.open(MediaErrorDialogComponent, {
-            data: {
-              title: 'Fehler',
-              content: 'Audiodatei konnte nicht geladen werden.'
-            }
-          });
-          this.onPlayPauseClick();
-          this.Entry!.audio_file = null;
-        });
-      }
       this.player.nativeElement.play();
     }
     this.Playing = !this.Playing;
@@ -114,11 +99,28 @@ export class PhotographDetailComponent extends BaseComponent {
     this.Playing = true;
   }
 
-  private playerProgressEventListener = () => {
+  private onPlayerTimeUpdate() {
     const duration = this.player.nativeElement.duration;
     const currentTime = this.player.nativeElement.currentTime;
     const durationSeconds = Math.floor(duration % 60);
     const currentTimeSeconds = Math.floor(currentTime % 60);
     this.PlayPosition = `${Math.floor(currentTime / 60)}:${currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds}/${Math.floor(duration / 60)}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`
+  }
+
+  private onPlayerWaiting() {
+    this._dialog.open(MediaErrorDialogComponent, {
+      data: {
+        title: 'Fehler',
+        content: 'Audiodatei konnte nicht geladen werden.'
+      }
+    });
+    this.onPlayPauseClick();
+    this.Entry!.audio_file = null;
+  }
+
+  private onPlayerEnded() {
+    this.PlayingStarted = false;
+    this.Playing = false;
+    this.PlayPosition = '';
   }
 }

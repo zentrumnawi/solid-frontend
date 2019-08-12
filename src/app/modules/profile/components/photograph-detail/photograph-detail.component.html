@@ -20,6 +20,9 @@
     <mat-icon>navigate_next</mat-icon>
   </button>
 </mat-toolbar>
+<audio *ngIf="Entry && Entry.audio_file" #audioplayer (timeupdate)="onPlayerTimeUpdate()" (waiting)="onPlayerWaiting()" (ended)="onPlayerEnded()">
+  <source [src]="Entry.audio_file" type="audio/mpeg">
+</audio>
 <mat-tab-group *ngIf="Entry">
   <mat-tab label="Bild">
     <div class="content">
@@ -44,8 +47,5 @@
   </mat-tab>
   <mat-tab label="Beschreibung">
     <div class="content description" Md [data]="Entry.description"></div>
-    <audio *ngIf="Entry.audio_file" #audioplayer>
-      <source [src]="Entry.audio_file" type="audio/mpeg">
-    </audio>
   </mat-tab>
 </mat-tab-group>
