@@ -20,6 +20,7 @@ export class PhotographDetailComponent extends BaseComponent {
   public Playing = false;
   public PlayingStarted = false;
   public PlayPosition = '';
+  private loadError = false;
   public Entry: PhotographModel | null = null;
   public ImageLoaded = false;
   private _storeSub: Subscription | null = null;
@@ -83,6 +84,16 @@ export class PhotographDetailComponent extends BaseComponent {
   }
 
   public onPlayPauseClick() {
+    if (this.loadError) {
+      this._dialog.open(MediaErrorDialogComponent, {
+        data: {
+          title: 'Fehler',
+          content: 'Audiodatei konnte nicht geladen werden.'
+        }
+      });
+      this.Entry!.audio_file = null;
+      return;
+    }
     if (this.Playing) {
       this.player.nativeElement.pause();
     } else {
@@ -111,15 +122,8 @@ export class PhotographDetailComponent extends BaseComponent {
     }
   }
 
-  private onPlayerWaiting() {
-    this._dialog.open(MediaErrorDialogComponent, {
-      data: {
-        title: 'Fehler',
-        content: 'Audiodatei konnte nicht geladen werden.'
-      }
-    });
-    this.onPlayPauseClick();
-    this.Entry!.audio_file = null;
+  private onPlayerMediaError(event: any) {
+    this.loadError = true;
   }
 
   private onPlayerEnded() {

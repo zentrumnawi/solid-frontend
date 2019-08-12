@@ -2,6 +2,8 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
+  height: calc(100% - 64px);
+  overflow-y: auto;
 
   mat-card {
     cursor: pointer;
