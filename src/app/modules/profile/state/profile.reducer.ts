@@ -1,6 +1,6 @@
-import {Action, createReducer, Store} from 'ngrx-actions/dist';
 import {ProfileSetAction, ProfileSetEntryAction} from './profile.actions';
 import {profileInitialState, ProfileState} from './profile.model';
+import {Action, createReducer, Store} from 'ngrx-typed-actions';
 
 @Store(profileInitialState)
 export class ProfileStore {

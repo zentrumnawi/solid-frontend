@@ -35,7 +35,7 @@ export interface CategoryNode {
   styleUrls: ['./profile-tree.component.scss'],
 })
 export class ProfileTreeComponent extends BaseComponent implements AfterViewInit {
-  @ViewChild('contentContainer') public ContentContainer!: ElementRef;
+  @ViewChild('contentContainer', { static: false }) public ContentContainer!: ElementRef;
   public SplitLayout: boolean = false;
   public Selected?: number = undefined;
   public SelectedProfile?: MineralProfile;

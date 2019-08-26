@@ -16,7 +16,7 @@ import {MediaErrorDialogComponent} from "../media-error-dialog/media-error-dialo
   styleUrls: ['./photograph-detail.component.scss'],
 })
 export class PhotographDetailComponent extends BaseComponent {
-  @ViewChild('audioplayer') player!: { nativeElement: HTMLAudioElement };
+  @ViewChild('audioplayer', { static: false }) player?: { nativeElement: HTMLAudioElement };
   public Playing = false;
   public PlayingStarted = false;
   public PlayPosition = '';
@@ -53,7 +53,7 @@ export class PhotographDetailComponent extends BaseComponent {
       })
     });
     this.addOnDestroy(() => {
-      if (this.PlayingStarted && this.Entry && this.Entry.audio_file) {
+      if (this.PlayingStarted && this.Entry && this.Entry.audio_file && this.player) {
         this.player.nativeElement.pause();
       }
     })
@@ -94,32 +94,38 @@ export class PhotographDetailComponent extends BaseComponent {
       this.Entry!.audio_file = null;
       return;
     }
-    if (this.Playing) {
-      this.player.nativeElement.pause();
-    } else {
-      this.PlayingStarted = true;
-      this.player.nativeElement.play();
+    if (this.player) {
+      if (this.Playing) {
+        this.player.nativeElement.pause();
+      } else {
+        this.PlayingStarted = true;
+        this.player.nativeElement.play();
+      }
     }
     this.Playing = !this.Playing;
   }
 
   public onReplayClick() {
-    this.player.nativeElement.pause();
-    this.player.nativeElement.currentTime = 0;
-    this.player.nativeElement.play();
-    this.Playing = true;
+    if (this.player) {
+      this.player.nativeElement.pause();
+      this.player.nativeElement.currentTime = 0;
+      this.player.nativeElement.play();
+      this.Playing = true;
+    }
   }
 
   private onPlayerTimeUpdate() {
-    const duration = this.player.nativeElement.duration;
-    const currentTime = this.player.nativeElement.currentTime;
-    const durationSeconds = Math.floor(duration % 60);
-    const currentTimeSeconds = Math.floor(currentTime % 60);
-    if (currentTime > 0) {
-      this.PlayPosition = `${Math.floor(currentTime / 60)}:${currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds}/${Math.floor(duration / 60)}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`
-    } else {
-      this.PlayPosition = '';
+    if (this.player) {
+      const duration = this.player.nativeElement.duration;
+      const currentTime = this.player.nativeElement.currentTime;
+      const durationSeconds = Math.floor(duration % 60);
+      const currentTimeSeconds = Math.floor(currentTime % 60);
+      if (currentTime > 0) {
+        this.PlayPosition = `${Math.floor(currentTime / 60)}:${currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds}/${Math.floor(duration / 60)}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`
+        return;
+      }
     }
+    this.PlayPosition = '';
   }
 
   private onPlayerMediaError(event: any) {
@@ -127,8 +133,10 @@ export class PhotographDetailComponent extends BaseComponent {
   }
 
   private onPlayerEnded() {
-    this.PlayingStarted = false;
-    this.Playing = false;
-    this.player.nativeElement.currentTime = 0;
+    if (this.player) {
+      this.PlayingStarted = false;
+      this.Playing = false;
+      this.player.nativeElement.currentTime = 0;
+    }
   }
 }

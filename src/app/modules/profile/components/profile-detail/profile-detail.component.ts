@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {MineralProfile, ProfileAppState} from '../../state/profile.model';
 import {Store} from "@ngrx/store";
@@ -11,7 +11,7 @@ import {ProfileService} from "../../services/profile.service";
   templateUrl: './profile-detail.component.html',
   styleUrls: ['./profile-detail.component.scss']
 })
-export class ProfileDetailComponent extends BaseComponent {
+export class ProfileDetailComponent extends BaseComponent implements OnInit {
   public get Profile(): MineralProfile | null {
     return this._profile ? this._profile : null;
   }
@@ -23,19 +23,20 @@ export class ProfileDetailComponent extends BaseComponent {
   private ProfileId?: number;
 
   constructor(
-    store: Store<ProfileAppState>,
-    service: ProfileService,
+    private _store: Store<ProfileAppState>,
+    private _service: ProfileService,
   ) {
     super();
-    this.addOnInit(() => {
+  }
+
+  public ngOnInit() {
       if (this.ProfileId) {
-        service.loadProfile(this.ProfileId);
-        this.addSub(store.pipe(select(selectNonTreeProfile, this.ProfileId)).subscribe(profile => {
+        this._service.loadProfile(this.ProfileId);
+        this.addSub(this._store.pipe(select(selectNonTreeProfile, this.ProfileId)).subscribe(profile => {
           if (profile) {
             this._profile = profile;
           }
         }));
       }
-    });
-  }
+    }
 }

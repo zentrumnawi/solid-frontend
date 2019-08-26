@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
+## CI-Status
+
+| Version | Status |
+| ------- | ------ |
+| `master` | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=master)](https://travis-ci.org/GeoMatDigital/web-geomat) |
+| `dev` | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=dev)](https://travis-ci.org/GeoMatDigital/web-geomat) | 
+| `preview` | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=preview)](https://travis-ci.org/GeoMatDigital/web-geomat) |
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

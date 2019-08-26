@@ -1,5 +1,5 @@
 <mat-nav-list>
-  <mat-list-item [class.active]="ActiveUrl === '/'" routerLink="/">
+  <mat-list-item [class.active]="ActiveUrl === '/'" (click)="navigateTo('/')">
     <mat-icon matListIcon>home</mat-icon>
     <h3 matLine>Startseite</h3>
   </mat-list-item>
@@ -7,19 +7,19 @@
     <mat-icon matListIcon>collections</mat-icon>
     <h3 matLine>Galerie</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/determination'" routerLink="/determination">
+  <mat-list-item [class.active]="ActiveUrl === '/determination'" (click)="navigateTo('/determination')">
     <mat-icon matListIcon>collections</mat-icon>
     <h3 matLine>Bestimmungshelfer</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl.startsWith('/profile') && !ActiveUrl.includes('/img')" routerLink="/profile">
+  <mat-list-item [class.active]="ActiveUrl.startsWith('/profile') && !ActiveUrl.includes('/img')" (click)="navigateTo('/profile')">
     <mat-icon matListIcon>collections</mat-icon>
     <h3 matLine>Steckbriefe</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/info'" routerLink="/info">
+  <mat-list-item [class.active]="ActiveUrl === '/info'" (click)="navigateTo('/info')">
     <mat-icon matListIcon>info</mat-icon>
     <h3 matLine>Info</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/privacy'" routerLink="/privacy">
+  <mat-list-item [class.active]="ActiveUrl === '/privacy'" (click)="navigateTo('/privacy')">
     <mat-icon matListIcon>info</mat-icon>
     <h3 matLine>Datenschutzerklärung</h3>
   </mat-list-item>

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter, map, mergeMap} from 'rxjs/operators';
-import {MatDialogRef} from "@angular/material";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
-import {Action, createReducer, Store} from 'ngrx-actions/dist';
 import {GallerySetAction} from './gallery.actions';
 import {galleryInitialState, PhotographModel} from './gallery.model';
+import {Action, createReducer, Store} from 'ngrx-typed-actions';
 
 @Store(galleryInitialState)
 export class PhotographStore {

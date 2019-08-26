@@ -1,6 +1,7 @@
 import {oc} from 'ts-optchain';
 import {MineralProfile, Profile, ProfileAppState, ProfileCategory} from './profile.model';
 import {GalleryAppState} from './gallery.model';
+import {createSelector} from '@ngrx/store';
 
 export const selectProfiles = (state: ProfileAppState): Profile[] => oc(state).profile.profile([]);
 
@@ -30,7 +31,11 @@ export const selectProfile = (state: ProfileAppState, profileId: number) => {
 export const selectNonTreeProfile = (state: ProfileAppState, profileId: number): MineralProfile | null =>
   state.profile.nonTreeProfiles.reduce((prev, curr) => curr.id === profileId ? curr : prev, null as MineralProfile | null);
 
-export const selectPhotographs = (state: GalleryAppState) => oc(state).gallery([]);
+export const selectPhotographs = createSelector(
+  (state: GalleryAppState) => oc(state).gallery([]),
+  p => p
+);
+
 
 export const selectPhotograph = (state: GalleryAppState, id: number) => {
   const profile = state.gallery.find(img => img.id === id);
