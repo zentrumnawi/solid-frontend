@@ -1,6 +1,6 @@
-import {Action, createReducer, Store} from 'ngrx-actions/dist';
 import {GlossaryEntriesOrdered, glossaryInitialState} from './glossary-entry.model';
 import {GlossarySetAction} from './glossary.actions';
+import {Action, createReducer, Store} from 'ngrx-typed-actions';
 
 @Store(glossaryInitialState)
 export class GlossaryStore {
