@@ -48,5 +48,8 @@ export class AppComponent extends BaseComponent implements OnInit {
     if (!this.FixedLayout && this.MainMenu) {
       await this.MainMenu.close();
     }
+    if (!this.FixedLayout && this.Glossary) {
+      await this.Glossary.close();
+    }
   }
 }

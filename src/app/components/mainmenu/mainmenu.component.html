@@ -3,7 +3,7 @@
     <mat-icon matListIcon>home</mat-icon>
     <h3 matLine>Startseite</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl.startsWith('/profile/img')" routerLink="/profile/img">
+  <mat-list-item [class.active]="ActiveUrl.startsWith('/profile/img')" (click)="navigateTo('/profile/img')">
     <mat-icon matListIcon>collections</mat-icon>
     <h3 matLine>Galerie</h3>
   </mat-list-item>

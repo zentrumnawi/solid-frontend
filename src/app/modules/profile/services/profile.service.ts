@@ -1,6 +1,5 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Store} from '@ngrx/store';
 import {ApiHttpClient} from '../../../shared/abstract/api-http-client';
 import {ProfileSetAction, ProfileSetEntryAction} from '../state/profile.actions';
 import {
@@ -8,14 +7,14 @@ import {
   MineralProfileApi,
   NodeApi,
   Profile,
-  ProfileAppState,
   ProfileCategory
 } from '../state/profile.model';
+import {Store} from "@ngxs/store";
 
 @Injectable()
 export class ProfileService extends ApiHttpClient {
   constructor(
-    private _store: Store<ProfileAppState>,
+    private _store: Store,
     httpClient: HttpClient,
   ) {
     super(httpClient, ['api']);

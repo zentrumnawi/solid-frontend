@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
-import {MineralProfile, ProfileAppState} from '../../state/profile.model';
-import {Store} from "@ngrx/store";
-import {selectNonTreeProfile} from "../../state/selectors";
-import {select} from "@ngrx/store";
+import {MineralProfile} from '../../state/profile.model';
 import {ProfileService} from "../../services/profile.service";
+import {Store} from "@ngxs/store";
+import {ProfileState} from "../../state/profile.state";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-profile-detail',
@@ -23,7 +23,7 @@ export class ProfileDetailComponent extends BaseComponent implements OnInit {
   private ProfileId?: number;
 
   constructor(
-    private _store: Store<ProfileAppState>,
+    private _store: Store,
     private _service: ProfileService,
   ) {
     super();
@@ -32,7 +32,7 @@ export class ProfileDetailComponent extends BaseComponent implements OnInit {
   public ngOnInit() {
       if (this.ProfileId) {
         this._service.loadProfile(this.ProfileId);
-        this.addSub(this._store.pipe(select(selectNonTreeProfile, this.ProfileId)).subscribe(profile => {
+        this.addSub(this._store.select(ProfileState.selectNonTreeProfiles).pipe(map(f => f(this.ProfileId!))).subscribe(profile => {
           if (profile) {
             this._profile = profile;
           }

@@ -1,10 +1,9 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../shared/abstract/base.component';
-import {AppState} from '../../state/app.model';
-import {selectRouterUrl} from '../../state/selectors';
 import {FeedbackService} from "../../services/feedback.service";
-import {Router} from '@angular/router';
+import {Store} from "@ngxs/store";
+import {Navigate} from "@ngxs/router-plugin";
+import {oc} from "ts-optchain";
 
 @Component({
   selector: 'app-mainmenu',
@@ -16,14 +15,13 @@ export class MainmenuComponent extends BaseComponent {
   @Output() public MenuSelect = new EventEmitter();
 
   constructor(
-    store: Store<AppState>,
+    private _store: Store,
     private _feedback: FeedbackService,
-    private _router: Router,
   ) {
     super();
-    this.addSub(store.pipe(select(selectRouterUrl)).subscribe(url => {
+    this._store.select(s => oc(s.router).state.url('/')).subscribe(url => {
       this.ActiveUrl = url;
-    }));
+    });
   }
 
   public onFeedbackClick() {
@@ -33,6 +31,6 @@ export class MainmenuComponent extends BaseComponent {
 
   public async navigateTo(url: string) {
     this.MenuSelect.emit();
-    await this._router.navigateByUrl(url);
+    await this._store.dispatch(new Navigate([url]));
   }
 }

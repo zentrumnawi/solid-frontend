@@ -1,14 +1,15 @@
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {AfterViewInit, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
-import {ActivatedRoute, Router} from '@angular/router';
-import {select, Store} from '@ngrx/store';
 import {of as observableOf, Subscription} from 'rxjs';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {ImageFiles} from '../../../../shared/models';
 import {ProfileService} from '../../services/profile.service';
-import {MineralProfile, Profile, ProfileAppState, ProfileCategory} from '../../state/profile.model';
-import {selectProfile, selectProfiles} from '../../state/selectors';
+import {MineralProfile, Profile, ProfileCategory} from '../../state/profile.model';
+import {Store} from "@ngxs/store";
+import {Navigate} from "@ngxs/router-plugin";
+import {ProfileState} from "../../state/profile.state";
+import {map} from "rxjs/operators";
 
 export type FlatTreeNode = MineralNode | CategoryNode;
 
@@ -59,9 +60,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
 
   constructor(
     private _service: ProfileService,
-    private _store: Store<ProfileAppState>,
-    private _router: Router,
-    route: ActivatedRoute,
+    private _store: Store,
   ) {
     super();
     this._service.loadProfiles();
@@ -74,16 +73,16 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
 
     this.TreeControl = new FlatTreeControl(ProfileTreeComponent.getLevel, ProfileTreeComponent.isExpandable);
     this.DataSource = new MatTreeFlatDataSource(this.TreeControl, this._treeFlattener);
-    this.addSub(this._store.pipe(select(selectProfiles)).subscribe(profiles => {
+    this.addSub(this._store.select(s => s.profile.profile).subscribe(profiles => {
       this.DataSource.data = profiles;
     }));
-    if (route.children[0] !== undefined) {
-      route.children[0].params.subscribe(params => {
-        this.selectProfile(parseInt(params.id, 10));
-      });
-    } else {
-      this.selectProfile();
-    }
+    this._store.select(s => s.router.state.params).subscribe(params => {
+      if (params.id) {
+        this.selectProfileInt(parseInt(params.id, 10));
+      } else {
+        this.selectProfileInt();
+      }
+    });
   }
 
   /** Transform the data to something the tree can read. */
@@ -140,10 +139,16 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
 
   public selectProfile(profileId?: number) {
     if (profileId) {
+      this._store.dispatch( new Navigate(['/profile', profileId]));
+    }
+    this.selectProfileInt(profileId);
+  }
+
+  private selectProfileInt(profileId?: number) {
+    if (profileId) {
       this.Selected = profileId;
-      this._router.navigate(['profile', profileId]);
-      if (this._storeSub) this._storeSub.unsubscribe();
-      this._storeSub = this._store.pipe(select(selectProfile, profileId)).subscribe(profile => {
+      this._store.selectSnapshot(s => s.profile);
+      this._storeSub = this._store.select(ProfileState.selectProfile).pipe(map(f => f(profileId))).subscribe(profile => {
         if (profile) {
           this.SelectedProfile = profile.profile;
           this.SelectedCategory = profile.category;

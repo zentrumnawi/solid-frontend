@@ -1,13 +1,4 @@
 import {ImageFiles} from '../../../shared/models';
-import {AppState} from '../../../state/app.model';
-
-export interface GalleryAppState extends AppState {
-  gallery: GalleryState;
-}
-
-export type GalleryState = PhotographModel[];
-
-export const galleryInitialState = [];
 
 export interface PhotographModel {
   id: number;

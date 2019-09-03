@@ -1,17 +1,4 @@
 import {ImageFiles} from '../../../shared/models';
-import {AppState} from '../../../state/app.model';
-
-export type ProfileAppState = AppState & { profile: ProfileState };
-
-export interface ProfileState {
-  profile: Profile[];
-  nonTreeProfiles: MineralProfile[];
-}
-
-export const profileInitialState = {
-  profile: [] as Profile[],
-  nonTreeProfiles: [] as MineralProfile[],
-};
 
 export type Profile = ProfileCategory | MineralProfile;
 

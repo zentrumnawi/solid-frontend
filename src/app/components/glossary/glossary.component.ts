@@ -1,10 +1,7 @@
 import {Component} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {map} from 'rxjs/operators';
 import {GlossaryService} from '../../services/glossary.service';
-import {AppState} from '../../state/app.model';
-import {selectGlossaryEntries} from '../../state/selectors';
-
+import {Store} from "@ngxs/store";
+import {GlossaryState} from "../../state/glossary.state";
 @Component({
   selector: 'app-glossary',
   templateUrl: './glossary.component.html',
@@ -14,12 +11,9 @@ export class GlossaryComponent {
   public Entries: any;
   constructor(
     service: GlossaryService,
-    store: Store<AppState>,
+    store: Store,
   ) {
     service.loadGlossaryEntries();
-    this.Entries = store.pipe(
-      select(selectGlossaryEntries),
-      map(entries => Object.entries(entries)),
-    )
+    this.Entries = store.select(GlossaryState.entries);
   }
 }

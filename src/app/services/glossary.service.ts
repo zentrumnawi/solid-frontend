@@ -1,16 +1,15 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Store} from '@ngrx/store';
 import {ApiHttpClient} from '../shared/abstract/api-http-client';
-import {AppState} from '../state/app.model';
-import {GlossaryEntriesOrdered, GlossaryEntryModel} from '../state/glossary-entry.model';
 import {GlossarySetAction} from '../state/glossary.actions';
+import {Store} from "@ngxs/store";
+import {GlossaryEntriesOrdered, GlossaryEntryModel} from "../state/glossary.state";
 
 @Injectable()
 export class GlossaryService extends ApiHttpClient {
   constructor(
     http: HttpClient,
-    private _store: Store<AppState>,
+    private _store: Store,
   ) {
     super(http, ['api', 'glossary']);
 

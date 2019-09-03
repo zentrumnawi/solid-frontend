@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {select, Store} from '@ngrx/store';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {GalleryService} from '../../services/gallery.service';
-import {GalleryAppState, PhotographModel} from '../../state/gallery.model';
-import {selectPhotographs} from '../../state/selectors';
+import {PhotographModel} from '../../state/gallery.model';
 import {Router} from "@angular/router";
+import {Store} from "@ngxs/store";
+import {GalleryState} from "../../state/gallery.state";
 
 @Component({
   selector: 'gallery-gallery-overview',
@@ -17,19 +17,19 @@ export class GalleryOverviewComponent extends BaseComponent {
 
   constructor(
     service: GalleryService,
-    store: Store<GalleryAppState>,
     private _router: Router,
+    store: Store,
   ) {
     super();
     service.loadGallery();
-    this.addSub(store.pipe(select(selectPhotographs)).subscribe(photographs => {
-      this.Entries = photographs;
-      this.EntriesLoaded = photographs.map((val, index) => {
+    this.addSub(store.select(GalleryState.getGalleryEntries).subscribe(v => {
+      this.Entries = v;
+      this.EntriesLoaded = v.map((val, index) => {
         if (this.EntriesLoaded.length > index) {
-          return this.EntriesLoaded[index]
+          return this.EntriesLoaded[index];
         }
         return false;
-      });
+      })
     }));
   }
 

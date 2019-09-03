@@ -1,9 +1,6 @@
-import {ErrorHandler, Injectable, InjectionToken, NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {StoreRouterConnectingModule} from '@ngrx/router-store';
-import {ActionReducerMap, StoreModule} from '@ngrx/store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -15,18 +12,18 @@ import {PrivacyComponent} from './components/privacy/privacy.component';
 import {GlossaryService} from './services/glossary.service';
 import {TitleService} from './services/title.service';
 import {SharedModule} from './shared/shared.module';
-import {AppState, reducers} from './state/app.model';
 import { FeedbackDialogComponent } from './components/feedback-overlay/feedback-dialog.component';
 import {FeedbackService} from "./services/feedback.service";
 import {SentryErrorHandler} from "./services/sentry.service";
 import {RouteReuseStrategy} from "@angular/router";
-import {CustomRouteReuseStrategy} from "./CustomRouteReuseStrategy";
+import {CustomRouteReuseStrategy} from "./custom-route-reuse-strategy";
+import {NgxsModule} from "@ngxs/store";
+import {GlossaryState} from "./state/glossary.state";
+import {NgxsRouterPluginModule, RouterStateSerializer} from "@ngxs/router-plugin";
+import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
+import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+import {CustomRouterStateSerializer} from "./custom-router-state-serializer";
 
-export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('Registered reducers');
-
-export function getReducers() {
-  return reducers;
-}
 
 @NgModule({
   declarations: [
@@ -45,27 +42,34 @@ export function getReducers() {
     AppRoutingModule,
     SharedModule.forRoot(),
     BrowserAnimationsModule,
-    StoreModule.forRoot(REDUCER_TOKEN),
-    StoreDevtoolsModule.instrument({
-      maxAge: 50,
-      logOnly: environment.production,
+    NgxsModule.forRoot([
+        GlossaryState,
+      ],
+    {
+      developmentMode: !environment.production,
     }),
-    StoreRouterConnectingModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.production,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      disabled: environment.production
+    }),
+    NgxsRouterPluginModule.forRoot(),
   ],
   providers: [
     GlossaryService,
     TitleService,
     FeedbackService,
     {
-      provide: REDUCER_TOKEN,
-      useFactory: getReducers,
-    },
-    {
       provide: ErrorHandler,
       useClass: SentryErrorHandler
     },
     { provide: RouteReuseStrategy,
       useClass: CustomRouteReuseStrategy,
+    },
+    {
+      provide: RouterStateSerializer,
+      useClass: CustomRouterStateSerializer
     }
   ],
   bootstrap: [AppComponent],

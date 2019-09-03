@@ -1,14 +1,16 @@
 import {BreakpointObserver} from '@angular/cdk/layout';
-import {Component, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
-import {select, Store} from '@ngrx/store';
+import {Component, ViewChild} from '@angular/core';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
-import {GalleryAppState, PhotographModel} from '../../state/gallery.model';
-import {selectPhotograph, selectSurroundingPhotographs} from '../../state/selectors';
-import {ActivatedRoute, ResolveEnd, Router} from "@angular/router";
+import { PhotographModel} from '../../state/gallery.model';
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {GalleryService} from "../../services/gallery.service";
 import {MatDialog} from "@angular/material";
 import {MediaErrorDialogComponent} from "../media-error-dialog/media-error-dialog.component";
+import {Store} from "@ngxs/store";
+import {GalleryState} from "../../state/gallery.state";
+import {map} from "rxjs/operators";
+import {Navigate} from "@ngxs/router-plugin";
 
 @Component({
   selector: 'gallery-photograph-detail-modal',
@@ -29,26 +31,29 @@ export class PhotographDetailComponent extends BaseComponent {
 
   constructor(
     service: GalleryService,
-    store: Store<GalleryAppState>,
+    private _store: Store,
     breakpointObserver: BreakpointObserver,
     route: ActivatedRoute,
-    private _router: Router,
     private _dialog: MatDialog,
   ) {
     super();
     service.loadGallery();
-    route.params.subscribe(params => {
+    this._store.select(v => v.router.state.params).subscribe(params => {
       const entryId = parseInt(params.id, 10);
       if (this._storeSub) {
         this._storeSub.unsubscribe();
       }
-      this._storeSub = store.pipe(select(selectPhotograph, entryId)).subscribe(photograph => {
-        this.Entry = photograph;
+      this._storeSub = this._store.select(GalleryState.getGalleryEntry)
+        .pipe(map(filter => filter(entryId)))
+        .subscribe(photograph => {
+          this.Entry = photograph;
       });
       if (this._storeSub2) {
         this._storeSub2.unsubscribe();
       }
-      this._storeSub2 = store.pipe(select(selectSurroundingPhotographs, entryId)).subscribe(surrounding => {
+      this._storeSub2 = this._store.select(GalleryState.getSurroundingGalleryEntries)
+        .pipe(map(filter => filter(entryId)))
+          .subscribe(surrounding => {
         this.Surrounding = surrounding;
       })
     });
@@ -64,15 +69,15 @@ export class PhotographDetailComponent extends BaseComponent {
   }
 
   public onCloseClick() {
-    this._router.navigateByUrl('/profile/img');
+    this._store.dispatch(new Navigate(['/profile/img']));
   }
 
   public onPrevClick() {
-    this._router.navigateByUrl(`/profile/img/${this.Surrounding.before}`);
+    this._store.dispatch(new Navigate(['/profile/img/', this.Surrounding.before]));
   }
 
   public onNextClick() {
-    this._router.navigateByUrl(`/profile/img/${this.Surrounding.after}`);
+    this._store.dispatch(new Navigate(['/profile/img/', this.Surrounding.after]));
   }
 
   public onPanEnd($event: any) {

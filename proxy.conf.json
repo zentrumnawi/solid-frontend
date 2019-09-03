@@ -1,6 +1,8 @@
 {
   "/api": {
-    "target": "https://api.geomat.uni-frankfurt.de/api",
-    "secure": true
+    "target": "https://geomat-staging.physikelearning.de",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
   }
 }
