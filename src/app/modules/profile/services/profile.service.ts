@@ -2,13 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {ApiHttpClient} from '../../../shared/abstract/api-http-client';
 import {ProfileSetAction, ProfileSetEntryAction} from '../state/profile.actions';
-import {
-  MineralProfile,
-  MineralProfileApi,
-  NodeApi,
-  Profile,
-  ProfileCategory
-} from '../state/profile.model';
+import {MineralProfile, MineralProfileApi, NodeApi, ProfileCategory} from '../state/profile.model';
 import {Store} from "@ngxs/store";
 
 @Injectable()
@@ -36,11 +30,12 @@ export class ProfileService extends ApiHttpClient {
     }));
   }
 
+
   private mapMinerals(children: MineralProfileApi[]): MineralProfile[] {
     return children.map(child => ({
       type: 'mineral' as 'mineral',
       id: child.id,
-      name: child.trivial_name,
+      mineralName: child.minerals,
       imageFiles: child.image_file ? child.image_file : {
         large: '/assets/profile/no_image.svg',
         medium: '/assets/profile/no_image.svg',
@@ -48,7 +43,8 @@ export class ProfileService extends ApiHttpClient {
         thumbnail: '/assets/profile/no_thumbnail.svg',
       },
       chemicalFormula: child.chemical_formula,
-      variety: child.variety,
+      variety: child.variety === '' ? undefined : child.variety,
+      trivialName: child.trivial_name === '' ? undefined : child.trivial_name,
       mohsScale: child.mohs_scale,
       cleavage: child.cleavage,
       density: child.density,

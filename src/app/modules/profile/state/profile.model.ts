@@ -12,8 +12,9 @@ export interface ProfileCategory {
 export interface MineralProfile {
   type: 'mineral';
   id: number;
-  variety: string;
-  name: string;
+  variety?: string;
+  mineralName: string;
+  trivialName?: string;
   imageFiles: ImageFiles;
   chemicalFormula: string;
   mohsScale: string;
@@ -39,6 +40,7 @@ export interface MineralProfileApi {
   trivial_name: string;
   image_file: ImageFiles | null;
   chemical_formula: string;
+  minerals: string;
   variety: string;
   mohs_scale: string;
   cleavage: { cleavage: string, coordinates: string }[]

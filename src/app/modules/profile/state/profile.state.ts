@@ -21,7 +21,9 @@ export class ProfileState {
         return { profile, category: null };
       } else if (profile.type === 'category') {
         const childSearch = ProfileState.findProfileDeep(profile.children, profileId);
-        if (childSearch) return childSearch;
+        if (childSearch) {
+          return {profile: childSearch.profile, category: childSearch.category ? childSearch.category : profile}
+        }
       }
     }
     return null;

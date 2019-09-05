@@ -97,7 +97,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
       };
     } else {
       return {
-        title: node.name,
+        title: node.variety ? node.variety : node.mineralName,
         id: node.id,
         type: 'mineral',
         level: level,
@@ -128,7 +128,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
   }
 
   @HostListener('window:resize', ['$event'])
-  public onResize(event: any) {
+  public onResize() {
     this.calculateLayout();
   }
 
@@ -138,8 +138,11 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
   }
 
   public selectProfile(profileId?: number) {
+    console.log(' SELECT', profileId);
     if (profileId) {
       this._store.dispatch( new Navigate(['/profile', profileId]));
+    } else {
+      this._store.dispatch(new Navigate(['/profile']));
     }
     this.selectProfileInt(profileId);
   }
@@ -171,6 +174,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
   }
 
   public swipeRight() {
+    console.log(this.SelectedProfile, this.SelectedCategory);
     if (this.SelectedCategory && this.SelectedProfile) {
       const index = this.SelectedCategory.children.indexOf(this.SelectedProfile);
       this.selectProfile((this.SelectedCategory.children[index + 1] as MineralProfile).id);
@@ -196,10 +200,12 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
     }
   }
 
-  public onPanEnd($event: any) {
+  public onPanEnd($event: HammerInput) {
     if ($event.deltaX > 100 && this.CanSwipeLeft) {
+      $event.preventDefault();
       this.swipeLeft();
     } else if ($event.deltaX < -100 && this.CanSwipeRight) {
+      $event.preventDefault();
       this.swipeRight();
     }
   }
@@ -214,7 +220,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
           if (!children || (Array.isArray(children) && !children.includes(node))) {
             this.TreeControl.collapse(this._selectedNode);
           this.TreeControl.dataNodes.forEach(n => {
-            const c = this.TreeControl.getDescendants(n)
+            const c = this.TreeControl.getDescendants(n);
             if (c && Array.isArray(c) && c.includes(this._selectedNode!) && !c.includes(node)) {
               this.TreeControl.collapse(n);
             }

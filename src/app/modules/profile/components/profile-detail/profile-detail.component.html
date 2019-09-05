@@ -1,10 +1,16 @@
 <ng-container *ngIf="Profile">
   <app-image-card *ngIf="!ProfileId"
     [src]="Profile.imageFiles.large"></app-image-card>
+  <ng-container *ngIf="Profile.variety">
+    <p class="heading">Mineralname</p>
+    <p>{{ Profile.mineralName }}</p>
+  </ng-container>
+  <ng-container *ngIf="Profile.trivialName && Profile.trivialName !== Profile.mineralName">
+    <p class="heading">Trivialname</p>
+    <p>{{ Profile.trivialName }}</p>
+  </ng-container>
   <p class="heading">chemische Formel</p>
   <p [innerHTML]="Profile.chemicalFormula"></p>
-  <p class="heading">Trivialname</p>
-  <p>{{ Profile.name }}</p>
   <p class="heading">Kristallsystem</p>
   <p>{{ Profile.crystalSystems[0].name}}</p>
   <p class="heading">Mohshärte</p>

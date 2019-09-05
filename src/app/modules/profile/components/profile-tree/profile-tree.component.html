@@ -1,8 +1,8 @@
 <div #contentContainer class="content-container" [class.fullWidth]="Selected === undefined || !SplitLayout">
-  <div class="profile-tree">
-  <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl"
-            *ngIf="Selected === undefined || SplitLayout">
-    <mat-tree-node *matTreeNodeDef="let node; when: !hasChild" matTreeNodeToggle matTreeNodePadding
+  <div *ngIf="Selected === undefined || SplitLayout" class="profile-tree">
+    <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
+      <mat-tree-node *matTreeNodeDef="let node; when: !hasChild //noinspection InvalidExpressionResultType"
+                     matTreeNodePadding matTreeNodeToggle
                    class="profile-link" (click)="selectProfile(node.id)">
       <img class="thumbnail" [alt]="node.title" [src]="node.imageFiles.thumbnail" [class.hidden]="!node.imageLoaded"
            (load)="onImageLoaded(node)">
@@ -10,8 +10,7 @@
     </mat-tree-node>
 
     <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding (click)="onNodeClick(node)">
-      <button mat-icon-button (click)="onNodeClick(node)"
-              [attr.aria-label]="'toggle ' + node.title">
+      <button [attr.aria-label]="'toggle ' + node.title" mat-icon-button>
         <mat-icon class="mat-icon-rtl-mirror">
           {{TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
@@ -25,7 +24,7 @@
   </div>
   <div class="profile-detail" *ngIf="SelectedProfile" >
     <mat-toolbar color="accent">
-      {{ SelectedProfile.name }}
+      {{ SelectedProfile.variety ? SelectedProfile.variety : SelectedProfile.mineralName }}
       <div class="spacer"></div>
       <button mat-icon-button (click)="swipeLeft()" [disabled]="!CanSwipeLeft">
         <mat-icon>navigate_before</mat-icon>
