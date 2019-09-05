@@ -10,6 +10,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 | `dev` | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=dev)](https://travis-ci.org/GeoMatDigital/web-geomat) | 
 | `preview` | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=preview)](https://travis-ci.org/GeoMatDigital/web-geomat) |
 
+## Dependabot-Status
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=GeoMatDigital/web-geomat)](https://dependabot.com)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

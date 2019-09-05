@@ -1,7 +1,8 @@
+<!--suppress AngularInvalidExpressionResultType -->
 <div #contentContainer class="content-container" [class.fullWidth]="Selected === undefined || !SplitLayout">
   <div *ngIf="Selected === undefined || SplitLayout" class="profile-tree">
     <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
-      <mat-tree-node *matTreeNodeDef="let node; when: !hasChild //noinspection InvalidExpressionResultType"
+      <mat-tree-node *matTreeNodeDef="let node; when: !hasChild"
                      matTreeNodePadding matTreeNodeToggle
                    class="profile-link" (click)="selectProfile(node.id)">
       <img class="thumbnail" [alt]="node.title" [src]="node.imageFiles.thumbnail" [class.hidden]="!node.imageLoaded"
