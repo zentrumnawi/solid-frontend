@@ -21,7 +21,7 @@
   </button>
 </mat-toolbar>
 <audio *ngIf="Entry && Entry.audio_file" #audioplayer (timeupdate)="onPlayerTimeUpdate()" (ended)="onPlayerEnded()">
-  <source [src]="Entry.audio_file" type="audio/mpeg" (error)="onPlayerMediaError($event)">
+  <source (error)="onPlayerMediaError()" [src]="Entry.audio_file" type="audio/mpeg">
 </audio>
 <mat-tab-group *ngIf="Entry">
   <mat-tab label="Bild">
@@ -43,8 +43,7 @@
   <mat-tab label="Steckbrief">
     <div class="content profile">
       <app-profile-detail [profileId]="Entry.handpiece.mineral_type[0].id"
-                          [alwaysShowMineralName]="true"
-                          (panend)="onPanEnd($event)"></app-profile-detail>
+                          [alwaysShowMineralName]="true"></app-profile-detail>
     </div>
   </mat-tab>
   <mat-tab label="Beschreibung">

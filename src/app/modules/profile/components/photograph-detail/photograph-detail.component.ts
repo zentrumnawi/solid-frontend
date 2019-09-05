@@ -1,8 +1,8 @@
 import {BreakpointObserver} from '@angular/cdk/layout';
-import {Component, ViewChild} from '@angular/core';
+import {Component, HostListener, ViewChild} from '@angular/core';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
-import { PhotographModel} from '../../state/gallery.model';
-import {ActivatedRoute, Router} from "@angular/router";
+import {PhotographModel} from '../../state/gallery.model';
+import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 import {GalleryService} from "../../services/gallery.service";
 import {MatDialog} from "@angular/material";
@@ -80,6 +80,7 @@ export class PhotographDetailComponent extends BaseComponent {
     this._store.dispatch(new Navigate(['/profile/img/', this.Surrounding.after]));
   }
 
+  @HostListener('panend', ['$event'])
   public onPanEnd($event: any) {
     if ($event.deltaX > 100 && this.Surrounding.before) {
       this.onPrevClick();
@@ -126,14 +127,14 @@ export class PhotographDetailComponent extends BaseComponent {
       const durationSeconds = Math.floor(duration % 60);
       const currentTimeSeconds = Math.floor(currentTime % 60);
       if (currentTime > 0) {
-        this.PlayPosition = `${Math.floor(currentTime / 60)}:${currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds}/${Math.floor(duration / 60)}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`
+        this.PlayPosition = `${Math.floor(currentTime / 60)}:${currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds}/${Math.floor(duration / 60)}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`;
         return;
       }
     }
     this.PlayPosition = '';
   }
 
-  private onPlayerMediaError(event: any) {
+  private onPlayerMediaError() {
     this.loadError = true;
   }
 
