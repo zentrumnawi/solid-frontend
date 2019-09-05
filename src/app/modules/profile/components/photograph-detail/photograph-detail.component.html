@@ -30,6 +30,7 @@
         <mat-spinner color="primary"></mat-spinner>
       </div>
       <img *ngIf="Entry"
+           alt="Großes Bild des Minerals"
            [src]="Entry.image_file.small"
            (load)="imageLoaded()"
            [class.hidden]="!ImageLoaded"
@@ -42,6 +43,7 @@
   <mat-tab label="Steckbrief">
     <div class="content profile">
       <app-profile-detail [profileId]="Entry.handpiece.mineral_type[0].id"
+                          [alwaysShowMineralName]="true"
                           (panend)="onPanEnd($event)"></app-profile-detail>
     </div>
   </mat-tab>
