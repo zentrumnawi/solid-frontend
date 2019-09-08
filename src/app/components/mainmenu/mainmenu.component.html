@@ -4,15 +4,15 @@
     <h3 matLine>Startseite</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl.startsWith('/profile/img')" (click)="navigateTo('/profile/img')">
-    <mat-icon matListIcon>collections</mat-icon>
+    <mat-icon matListIcon svgIcon="gallery"></mat-icon>
     <h3 matLine>Galerie</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl === '/determination'" (click)="navigateTo('/determination')">
-    <mat-icon matListIcon>collections</mat-icon>
+    <mat-icon matListIcon svgIcon="assistant"></mat-icon>
     <h3 matLine>Bestimmungshelfer</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl.startsWith('/profile') && !ActiveUrl.includes('/img')" (click)="navigateTo('/profile')">
-    <mat-icon matListIcon>collections</mat-icon>
+    <mat-icon matListIcon svgIcon="profile"></mat-icon>
     <h3 matLine>Steckbriefe</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl === '/info'" (click)="navigateTo('/info')">
@@ -24,7 +24,7 @@
     <h3 matLine>Datenschutzerklärung</h3>
   </mat-list-item>
   <mat-list-item (click)="onFeedbackClick()">
-    <mat-icon matListIcon>mail</mat-icon>
+    <mat-icon matListIcon>feedback</mat-icon>
     <h3 matLine>Feedback</h3>
   </mat-list-item>
 </mat-nav-list>

@@ -1,5 +1,5 @@
 import {ErrorHandler, NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
 
@@ -12,7 +12,7 @@ import {PrivacyComponent} from './components/privacy/privacy.component';
 import {GlossaryService} from './services/glossary.service';
 import {TitleService} from './services/title.service';
 import {SharedModule} from './shared/shared.module';
-import { FeedbackDialogComponent } from './components/feedback-overlay/feedback-dialog.component';
+import {FeedbackDialogComponent} from './components/feedback-overlay/feedback-dialog.component';
 import {FeedbackService} from "./services/feedback.service";
 import {SentryErrorHandler} from "./services/sentry.service";
 import {RouteReuseStrategy} from "@angular/router";
@@ -23,6 +23,7 @@ import {NgxsRouterPluginModule, RouterStateSerializer} from "@ngxs/router-plugin
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {CustomRouterStateSerializer} from "./custom-router-state-serializer";
+import {MatIconRegistry} from "@angular/material/icon";
 
 
 @NgModule({
@@ -75,4 +76,19 @@ import {CustomRouterStateSerializer} from "./custom-router-state-serializer";
   bootstrap: [AppComponent],
 })
 export class AppModule {
+  constructor(registry: MatIconRegistry, url: DomSanitizer) {
+    const addIcon = (name: string) => registry.addSvgIcon(name, url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`));
+    addIcon('assistant');
+    addIcon('camera');
+    addIcon('gallery');
+    addIcon('glossary');
+    addIcon('icon');
+    addIcon('info');
+    addIcon('quiz');
+    addIcon('search');
+    addIcon('search_icon');
+    addIcon('profile');
+
+
+  }
 }

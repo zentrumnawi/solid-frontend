@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+  <path fill="inherit"
+        d="M59.92,3a9,9,0,0,1,9,9V60a9,9,0,0,1-9,9h-48a9,9,0,0,1-9-9V12a9,9,0,0,1,9-9h48m0-3h-48a12,12,0,0,0-12,12V60a12,12,0,0,0,12,12h48a12,12,0,0,0,12-12V12a12,12,0,0,0-12-12Z"/>
+  <rect fill="inherit" x="40.78" y="43.02" width="22.84" height="3"/>
+  <rect fill="inherit" x="40.78" y="49.98" width="20.02" height="3"/>
+  <rect fill="inherit" x="40.78" y="56.84" width="22.84" height="3"/>
+  <circle fill="inherit" cx="37.1" cy="44.52" r="1.88"/>
+  <circle fill="inherit" cx="37.1" cy="51.48" r="1.88"/>
+  <circle fill="inherit" cx="37.1" cy="58.34" r="1.88"/>
+  <path fill="inherit" d="M26.76,40.52,9.57,11.69H43.84ZM14.85,14.69l11.9,20,11.83-20Z"/>
+  <polygon fill="inherit"
+           points="26.58 24.32 11.39 14.45 13.02 11.94 26.59 20.75 40.4 11.93 42.02 14.46 26.58 24.32"/>
+  <rect fill="inherit" x="25.17" y="22.53" width="3" height="15.05" transform="translate(-0.34 0.3) rotate(-0.64)"/>
+</svg>
