@@ -1,9 +1,12 @@
-import { MarkdownService } from './../../services/markdown.service';
-import { Component, AfterViewInit, Input, ElementRef } from '@angular/core';
+import {MarkdownService} from '../../services/markdown.service';
+import {AfterViewInit, Component, ElementRef, Input} from '@angular/core';
 
 @Component({
     selector: 'md,[Md]',
     template: '<ng-content></ng-content>',
+  host: {
+    class: 'md-rendered'
+  },
     styles: [
 
     ]
