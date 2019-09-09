@@ -43,7 +43,7 @@
     "@angular-devkit/build-angular": "~0.803.3",
     "@angular/cli": "~8.3.2",
     "@angular/compiler-cli": "~8.2.1",
-    "@angular/language-service": "~8.2.4",
+    "@angular/language-service": "~8.2.5",
     "@ngxs/devtools-plugin": "^3.5.1",
     "@ngxs/logger-plugin": "^3.5.1-dev.master-822f021",
     "@types/jasmine": "~3.4.0",
