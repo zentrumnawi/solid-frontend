@@ -14,9 +14,16 @@ mat-radio-group {
     }
 
     ::ng-deep {
+      label.mat-radio-label {
+        vertical-align: top;
+
+        div.mat-radio-container {
+          margin-bottom: auto;
+        }
+      }
       div.mat-radio-label-content {
         display: inline-flex;
-        flex-direction: row;
+        flex-direction: column;
       }
     }
 
@@ -48,6 +55,23 @@ mat-card-content.multiple-choice {
   flex-direction: column;
 
   mat-checkbox {
+    width: 100%;
+
+    ::ng-deep {
+      span.mat-checkbox-label {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label.mat-checkbox-layout {
+        vertical-align: top;
+      }
+
+      div.mat-checkbox-inner-container {
+        margin-top: 0;
+        margin-bottom: auto;
+      }
+    }
     &.correct {
       ::ng-deep {
         .mat-checkbox-background {
@@ -73,5 +97,4 @@ mat-card-content.multiple-choice {
 
 span.feedback {
   color: mat-color($foreground, text);
-  padding-left: 0.5rem;
 }
