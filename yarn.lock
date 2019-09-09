@@ -927,10 +927,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ngxs/logger-plugin@^3.5.1-dev.master-822f021":
-  version "3.5.1-dev.master-822f021"
-  resolved "https://registry.yarnpkg.com/@ngxs/logger-plugin/-/logger-plugin-3.5.1-dev.master-822f021.tgz#dd02fb34351d0fae831c878e2bf97cea27aa82d8"
-  integrity sha512-cIZzWo8vpjxjAzfSi1rzfxTQtsK9DwFu/Ujp62NFmikBMFKCkqguGuQ2YUtnySfbiGE/YB8jSWgj8MM6QoRmcw==
+"@ngxs/logger-plugin@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@ngxs/logger-plugin/-/logger-plugin-3.5.1.tgz#34cdf8eab618d8ce36cafc6174d5fa78e4b65e84"
+  integrity sha512-bQJavIjutn/TI2dNg5qZ1nvXVTQHzl3b7bJqM8Fn8Nx8PCenVhBIm5rNpvCSBGsUUAixdzDmY7jTaAnRLB9A6Q==
   dependencies:
     tslib "^1.9.0"
 
