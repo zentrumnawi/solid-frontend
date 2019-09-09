@@ -1,0 +1,77 @@
+@import '../../../../../theme.scss';
+
+$accent: map-get($app-theme, accent);
+$foreground: map-get($app-theme, foreground);
+$warn: map-get($app-theme, warn);
+
+mat-radio-group {
+  display: flex;
+  flex-direction: column;
+
+  mat-radio-button {
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    ::ng-deep {
+      div.mat-radio-label-content {
+        display: inline-flex;
+        flex-direction: row;
+      }
+    }
+
+    &.correct {
+      ::ng-deep {
+        .mat-radio-inner-circle {
+          background-color: mat-color($accent);
+        }
+      }
+    }
+
+    &.incorrect {
+      ::ng-deep {
+        .mat-radio-inner-circle {
+          background-color: mat-color($warn);
+        }
+      }
+    }
+  ;
+
+    span.atext {
+      height: 20px;
+    }
+  }
+}
+
+mat-card-content.multiple-choice {
+  display: flex;
+  flex-direction: column;
+
+  mat-checkbox {
+    &.correct {
+      ::ng-deep {
+        .mat-checkbox-background {
+          background-color: mat-color($accent);
+        }
+      }
+    }
+
+    &.incorrect {
+      ::ng-deep {
+        .mat-checkbox-background {
+          background-color: mat-color($warn);
+        }
+      }
+    }
+  }
+
+  span.atext {
+    display: inline-block;
+    height: 24px;
+  }
+}
+
+span.feedback {
+  color: mat-color($foreground, text);
+  padding-left: 0.5rem;
+}

@@ -15,6 +15,10 @@
     <mat-icon matListIcon svgIcon="profile"></mat-icon>
     <h3 matLine>Steckbriefe</h3>
   </mat-list-item>
+  <mat-list-item (click)="navigateTo('/quiz')" [class.active]="ActiveUrl.startsWith('/quiz')">
+    <mat-icon matListIcon svgIcon="quiz"></mat-icon>
+    <h3 matLine>Selbsttest</h3>
+  </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl === '/info'" (click)="navigateTo('/info')">
     <mat-icon matListIcon>info</mat-icon>
     <h3 matLine>Info</h3>
