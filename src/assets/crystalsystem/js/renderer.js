@@ -21,7 +21,8 @@ const groups = {
 };
 
 let scene, renderer;
-let camera, perspectivecam, isocam;
+let perspectivecam, isocam;
+let isocamActive = false;
 let model = 'cubic';
 const loader = new THREE.TextureLoader();
 const texture = loader.load('/assets/crystalsystem/textures/disc.png');
@@ -32,37 +33,36 @@ animate();
 
 function init() {
   scene = new THREE.Scene();
+  
+  // CAMERA
+  // Perspective camera
+  perspectivecam = new THREE.PerspectiveCamera(50, window.innerWidth  / window.innerHeight, 1, 1000);
+  scene.add(perspectivecam);
+  perspectivecam.position.set(15, 20, 30);
+  
+  //Orthographic camera (isometric view)
+  isocam = new THREE.OrthographicCamera(window.innerWidth / -50, window.innerWidth / 50, window.innerHeight / 50 , window.innerHeight / -50, 1, 1000);
+  scene.add(isocam);
+  isocam.position.set(15, 20, 30);
+  
+  camera = perspectivecam;
   renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
-
-  // Perspective camera
-  perspectivecam = new THREE.PerspectiveCamera(50, window.innerWidth  / window.innerHeight, 1, 1000);
-  perspectivecam.position.set(15, 20, 30);
-  scene.add(perspectivecam);
-
-  //Orthographic camera (isometric view)
-  isocam = new THREE.OrthographicCamera(window.innerWidth / -50, window.innerWidth / 50, window.innerHeight / 50 , window.innerHeight / -50, 1, 1000);
-  isocam.position.set(15, 20, 30);
-  scene.add(isocam);
- 
-  camera = perspectivecam;
 
   // controls
   var controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.minDistance = 20;
   controls.maxDistance = 50;
   controls.maxPolarAngle = Math.PI / 2;
-
-
-  
+ 
   
   scene.add(new THREE.AmbientLight(0xFFFFFF));
 
   // light
   var light = new THREE.PointLight(0xAAAAAA, 0.7);
-  camera.add( light );
+  scene.add( light );
 
   // axis helper
   groups.axis.add(new THREE.AxesHelper(10));
@@ -200,7 +200,12 @@ function animate() {
 }
 
 function render() {
-  renderer.render(scene, camera);
+  
+  /*if (isocamActive)
+	{  renderer.render( scene, isocam );  }
+	else
+  {  renderer.render( scene, perspectivecam );  }*/
+  renderer.render( scene, camera )
   console.log(camera);
 }
 
@@ -228,6 +233,7 @@ function togglePerspective() {
   } else {
     camera = isocam;
   }
+  console.log(camera);
 }
 
 
