@@ -26,6 +26,7 @@ import {CustomRouterStateSerializer} from "./custom-router-state-serializer";
 import {MatIconRegistry} from "@angular/material/icon";
 import {LandingPageComponent} from './components/landing-page/landing-page.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {ServiceWorkerModule} from '@angular/service-worker';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     }),
     NgxsRouterPluginModule.forRoot(),
     MatGridListModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
   providers: [
     GlossaryService,
