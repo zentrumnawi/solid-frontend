@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {InfoComponent} from './components/info/info.component';
 import {PrivacyComponent} from './components/privacy/privacy.component';
+import {LandingPageComponent} from "./components/landing-page/landing-page.component";
 
 const routes: Routes = [
   {path: 'info', component: InfoComponent, data: {title: 'Informationen'}},
@@ -17,10 +18,11 @@ const routes: Routes = [
     path: 'quiz',
     loadChildren: () => import('./modules/quiz/quiz.module').then(m => m.QuizModule),
   },
+  {path: '', pathMatch: 'full', component: LandingPageComponent, data: {title: 'Startseite'}}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

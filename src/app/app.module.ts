@@ -24,6 +24,8 @@ import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {CustomRouterStateSerializer} from "./custom-router-state-serializer";
 import {MatIconRegistry} from "@angular/material/icon";
+import {LandingPageComponent} from './components/landing-page/landing-page.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import {MatIconRegistry} from "@angular/material/icon";
     InfoComponent,
     PrivacyComponent,
     FeedbackDialogComponent,
+    LandingPageComponent,
   ],
   entryComponents: [
     FeedbackDialogComponent,
@@ -46,9 +49,9 @@ import {MatIconRegistry} from "@angular/material/icon";
     NgxsModule.forRoot([
         GlossaryState,
       ],
-    {
-      developmentMode: !environment.production,
-    }),
+      {
+        developmentMode: !environment.production,
+      }),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
     }),
@@ -56,6 +59,7 @@ import {MatIconRegistry} from "@angular/material/icon";
       disabled: environment.production
     }),
     NgxsRouterPluginModule.forRoot(),
+    MatGridListModule,
   ],
   providers: [
     GlossaryService,

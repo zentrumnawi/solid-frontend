@@ -66,3 +66,7 @@ span.hidden {
 .category {
   font-weight: 500;
 }
+
+:host {
+  display: block;
+}
