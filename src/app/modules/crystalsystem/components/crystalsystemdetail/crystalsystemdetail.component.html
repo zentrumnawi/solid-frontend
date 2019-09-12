@@ -10,7 +10,10 @@
   <button mat-icon-button (click)="onTogglePointsClick()" matTooltip="Toggle points">
     <mat-icon>add</mat-icon>
   </button>
-  <mat-select placeholder="Ebene" [ngModel]="Layer" (ngModelChange)="onLayerSelectChange($event)" matTooltip="Ebene">
+  <button mat-icon-button (click)="onTogglePerspectiveClick()" matTooltip="Toggle perspective">
+    <mat-icon>add</mat-icon>
+  </button>
+    <mat-select placeholder="Ebene" [ngModel]="Layer" (ngModelChange)="onLayerSelectChange($event)" matTooltip="Ebene">
     <mat-option [value]="0">keine</mat-option>
     <mat-option [value]="100">100</mat-option>
     <mat-option [value]="110">110</mat-option>

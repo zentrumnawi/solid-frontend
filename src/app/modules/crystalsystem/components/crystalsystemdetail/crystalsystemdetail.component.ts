@@ -27,6 +27,10 @@ export class CrystalsystemdetailComponent implements AfterViewInit, OnDestroy {
     this.IFrame.nativeElement.contentWindow.togglePoints();
   }
 
+  public onTogglePerspectiveClick() {
+    this.IFrame.nativeElement.contentWindow.togglePerspective();
+  }
+
   public onToggleAxisClick() {
     this.IFrame.nativeElement.contentWindow.toggleAxis();
   }

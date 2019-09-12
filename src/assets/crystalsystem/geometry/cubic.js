@@ -1,11 +1,13 @@
 const cubic = generate();
 
 function generate() {
+  //lower square
   const a1 = new THREE.Vector3(-5, 5, -5);
   const a2 = new THREE.Vector3(5, 5, -5);
   const a3 = new THREE.Vector3(5, -5, -5);
   const a4 = new THREE.Vector3(-5, -5, -5);
 
+  //upper square
   const b1 = new THREE.Vector3(-5, 5, 5);
   const b2 = new THREE.Vector3(5, 5, 5);
   const b3 = new THREE.Vector3(5, -5, 5);

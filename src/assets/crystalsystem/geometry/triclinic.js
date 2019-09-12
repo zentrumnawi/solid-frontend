@@ -1,15 +1,17 @@
 const triclinic = generate();
 
 function generate() {
-  const a1 = new THREE.Vector3(-5, 5, -5);
-  const a2 = new THREE.Vector3(5, 5, -5);
-  const a3 = new THREE.Vector3(5, -5, -5);
-  const a4 = new THREE.Vector3(-5, -5, -5);
-
+  const a1 = new THREE.Vector3(-2.5, 5, -1.25);
+  const a2 = new THREE.Vector3(7.5, 5, -1.25);
+  const a3 = new THREE.Vector3(10, -10, -1.25);
+  const a4 = new THREE.Vector3(0, -10, -1.25);
+  
   const b1 = new THREE.Vector3(-5, 5, 5);
   const b2 = new THREE.Vector3(5, 5, 5);
-  const b3 = new THREE.Vector3(5, -5, 5);
-  const b4 = new THREE.Vector3(-5, -5, 5);
+  const b3 = new THREE.Vector3(7.5, -10, 5);
+  const b4 = new THREE.Vector3(-2.5, -10, 5);
+  
+  
 
   return {
     vertices: [

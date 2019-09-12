@@ -20,7 +20,8 @@ const groups = {
   v_111: new THREE.Group(),
 };
 
-let camera, scene, renderer;
+let scene, renderer;
+let camera, perspectivecam, isocam;
 let model = 'cubic';
 const loader = new THREE.TextureLoader();
 const texture = loader.load('/assets/crystalsystem/textures/disc.png');
@@ -36,10 +37,17 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // camera
-  camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 1000);
-  camera.position.set(15, 20, 30);
-  scene.add(camera);
+  // Perspective camera
+  perspectivecam = new THREE.PerspectiveCamera(50, window.innerWidth  / window.innerHeight, 1, 1000);
+  perspectivecam.position.set(15, 20, 30);
+  scene.add(perspectivecam);
+
+  //Orthographic camera (isometric view)
+  isocam = new THREE.OrthographicCamera(window.innerWidth / -50, window.innerWidth / 50, window.innerHeight / 50 , window.innerHeight / -50, 1, 1000);
+  isocam.position.set(15, 20, 30);
+  scene.add(isocam);
+ 
+  camera = perspectivecam;
 
   // controls
   var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -47,14 +55,17 @@ function init() {
   controls.maxDistance = 50;
   controls.maxPolarAngle = Math.PI / 2;
 
+
+  
+  
   scene.add(new THREE.AmbientLight(0xFFFFFF));
 
   // light
-  var light = new THREE.PointLight(0xffffff, 1);
-  // camera.add( light );
+  var light = new THREE.PointLight(0xAAAAAA, 0.7);
+  camera.add( light );
 
   // axis helper
-  groups.axis.add(new THREE.AxesHelper(200));
+  groups.axis.add(new THREE.AxesHelper(10));
 
   window.addEventListener('resize', onWindowResize, false);
 
@@ -111,7 +122,7 @@ function initModel(geoStr) {
     color: 0x0080ff,
     map: texture,
     size: 1,
-    alphaTest: 0.5
+    alphaTest: 0.5  
   });
 
   const pointsGeometry = new THREE.BufferGeometry().setFromPoints(vertices);
@@ -146,7 +157,7 @@ function initModel(geoStr) {
   const highlightMaterial = new THREE.MeshBasicMaterial({
     color: 0x32c832,
     transparent: true,
-    opacity: 1
+    opacity: 0.7
   });
   const geometry_100 = new THREE.ConvexBufferGeometry(vertices_100);
   groups.v_100.remove(...groups.v_100.children);
@@ -174,8 +185,12 @@ function createTwoSidedFaces(geometry, material) {
 }
 
 function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
+  perspectivecam.aspect = window.innerWidth / window.innerHeight;
+  perspectivecam.updateProjectionMatrix();
+  
+  isocam.aspect = window.innerWidth / window.innerHeight;
+  isocam.updateProjectionMatrix();
+  
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
@@ -186,6 +201,7 @@ function animate() {
 
 function render() {
   renderer.render(scene, camera);
+  console.log(camera);
 }
 
 function toggleAxis() {
@@ -205,6 +221,16 @@ function togglePoints() {
   }
   settings.display.points = !settings.display.points;
 }
+
+function togglePerspective() {
+  if (camera.isOrthographicCamera) {
+    camera = perspectivecam;
+  } else {
+    camera = isocam;
+  }
+}
+
+
 
 function toggleFaces() {
   if (settings.display.faces) {
