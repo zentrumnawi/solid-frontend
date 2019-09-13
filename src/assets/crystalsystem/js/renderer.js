@@ -69,11 +69,11 @@ function init() {
   scene.add(new THREE.AmbientLight(0xFFFFFF));
 
   // light
-  let light = new THREE.PointLight(0xAAAAAA, 0.7);
-  scene.add( light );
+  var light = new THREE.PointLight(0xaaaaff, 0.7);
+  camera.add( light );
 
   // axis helper
-  groups.axis.add(new THREE.AxesHelper(10));
+  groups.axis.add(new THREE.AxesHelper(15));
 
   window.addEventListener('resize', onWindowResize, false);
 
@@ -140,8 +140,8 @@ function initModel(geoStr) {
   // create faces
   const meshMaterial = new THREE.MeshLambertMaterial({
     color: 0xAAAAAA,
-    transparent: true,
-    opacity: 0.5
+    opacity: 0.5,
+    transparent: true
   });
   const facesGeometry = new THREE.ConvexBufferGeometry(vertices);
   groups.faces.remove(...groups.faces.children);
@@ -167,6 +167,7 @@ function initModel(geoStr) {
     transparent: true,
     opacity: 0.7
   });
+
   const geometry_100 = new THREE.ConvexBufferGeometry(vertices_100);
   groups.v_100.remove(...groups.v_100.children);
   groups.v_100.add(...createTwoSidedFaces(geometry_100, highlightMaterial));
