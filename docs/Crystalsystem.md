@@ -1,11 +1,12 @@
 # Crystalsystem Module
 Im Kristallsystemmodul können die 7 Modelle der Kristallsysteme angezeigt werden.
 Die Modelle werden mit threejs in einem iFrame gerendert, da threejs nicht so gut mit Angular/Typescript zusammenarbeitet. 
-Im Angular Modul `CrystalsystemModule` gibt es nur eine Komponente, die den iFrame erzeugt und globale Javascriptfunktionen in diesem aufruft um folgende Anzeigeeinstellungen zu ermöglichen:
+Im Angular Modul `CrystalsystemModule` gibt es nur eine Komponente, die den iFrame erzeugt und globale Javascriptfunktionen in diesem aufruft, um folgende Anzeigeeinstellungen zu ermöglichen:
 * Koordinatenachsen (an/aus)
 * Eckpunkte (an/aus)
 * Flächen (an/aus)
 * Spezialebenen (kein/100/110/111)
+* Umschalten zwischen perspektivischer und isometrischer (orthographischer) Ansicht
 
 Der eigentliche Code dazu findet sich in `assets/crystalsystem`. In der `iframe.html` ist eine einfache HTMl-Struktur, die notwendiges Javascript einbindet.
 In dem Ordner `assets/crystalsystem/geometry` findet sich pro Model eine Datei, in der die Modelle definiert werden.

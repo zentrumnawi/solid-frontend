@@ -2,23 +2,26 @@
   <span>Kristallsysteme</span>
   <div class="spacer"></div>
   <button mat-icon-button (click)="onToggleSolidClick()" matTooltip="Toggle solid">
-    <mat-icon>add</mat-icon>
+    <mat-icon>check_box_outline_blank</mat-icon>
   </button>
   <button mat-icon-button (click)="onToggleAxisClick()" matTooltip="Toggle axis">
-    <mat-icon>add</mat-icon>
+    <mat-icon>merge_type</mat-icon>
   </button>
   <button mat-icon-button (click)="onTogglePointsClick()" matTooltip="Toggle points">
-    <mat-icon>add</mat-icon>
+    <mat-icon>apps</mat-icon>
   </button>
+  &nbsp;
   <button mat-icon-button (click)="onTogglePerspectiveClick()" matTooltip="Toggle perspective">
-    <mat-icon>add</mat-icon>
+    <mat-icon>control_camera</mat-icon>
   </button>
-    <mat-select placeholder="Ebene" [ngModel]="Layer" (ngModelChange)="onLayerSelectChange($event)" matTooltip="Ebene">
-    <mat-option [value]="0">keine</mat-option>
+  &nbsp;
+  <mat-select placeholder="Ebene" [ngModel]="Layer" (ngModelChange)="onLayerSelectChange($event)" matTooltip="Ebene">
+    <mat-option [value]="0">&#123; . . . &#125;</mat-option>
     <mat-option [value]="100">100</mat-option>
     <mat-option [value]="110">110</mat-option>
     <mat-option [value]="111">111</mat-option>
   </mat-select>
+  &nbsp;
   <mat-select placeholder="Modell" [ngModel]="Model" (ngModelChange)="onModelSelectChange($event)" matTooltip="Modell">
     <mat-option value="cubic">kubisch</mat-option>
     <mat-option value="hexagonal">hexagonal</mat-option>
