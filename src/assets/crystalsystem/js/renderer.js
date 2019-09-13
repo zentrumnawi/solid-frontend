@@ -22,8 +22,9 @@ const groups = {
 
 let scene, renderer;
 let perspectivecam, isocam;
-let isocamActive = false;
 let model = 'cubic';
+let perspectivecontrols, isocontrols;
+
 const loader = new THREE.TextureLoader();
 const texture = loader.load('/assets/crystalsystem/textures/disc.png');
 
@@ -45,23 +46,30 @@ function init() {
   scene.add(isocam);
   isocam.position.set(15, 20, 30);
   
+  //set default camera
   camera = perspectivecam;
+
   renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // controls
-  var controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.minDistance = 20;
-  controls.maxDistance = 50;
-  controls.maxPolarAngle = Math.PI / 2;
+  // controls (obviously) need to be separate for each camera
+  isocontrols = new THREE.OrbitControls(isocam, renderer.domElement);
+  isocontrols.minDistance = 20;
+  isocontrols.maxDistance = 50;
+  isocontrols.maxPolarAngle = Math.PI / 2;
  
-  
+  perspectivecontrols = new THREE.OrbitControls(perspectivecam, renderer.domElement);
+  perspectivecontrols.minDistance = 20;
+  perspectivecontrols.maxDistance = 50;
+  perspectivecontrols.maxPolarAngle = Math.PI / 2;
+ 
+  //add light
   scene.add(new THREE.AmbientLight(0xFFFFFF));
 
   // light
-  var light = new THREE.PointLight(0xAAAAAA, 0.7);
+  let light = new THREE.PointLight(0xAAAAAA, 0.7);
   scene.add( light );
 
   // axis helper
@@ -185,28 +193,22 @@ function createTwoSidedFaces(geometry, material) {
 }
 
 function onWindowResize() {
-  perspectivecam.aspect = window.innerWidth / window.innerHeight;
-  perspectivecam.updateProjectionMatrix();
-  
-  isocam.aspect = window.innerWidth / window.innerHeight;
-  isocam.updateProjectionMatrix();
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
   
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function animate() {
   requestAnimationFrame(animate);
+  isocontrols.update();
+  perspectivecontrols.update();
   render();
 }
 
 function render() {
-  
-  /*if (isocamActive)
-	{  renderer.render( scene, isocam );  }
-	else
-  {  renderer.render( scene, perspectivecam );  }*/
   renderer.render( scene, camera )
-  console.log(camera);
+  
 }
 
 function toggleAxis() {
@@ -233,7 +235,6 @@ function togglePerspective() {
   } else {
     camera = isocam;
   }
-  console.log(camera);
 }
 
 
