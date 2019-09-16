@@ -15,8 +15,10 @@ export class GalleryService extends ApiHttpClient {
   }
 
   public loadGallery(): void {
-    this.list<PhotographModel>().subscribe(photographs => {
-      this._store.dispatch(new GallerySetAction(photographs));
-    });
+    if (this._store.selectSnapshot(state => state.gallery).length === 0) {
+      this.list<PhotographModel>().subscribe(photographs => {
+        this._store.dispatch(new GallerySetAction(photographs));
+      });
+    }
   }
 }

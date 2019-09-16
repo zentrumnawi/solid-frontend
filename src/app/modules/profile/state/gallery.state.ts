@@ -38,8 +38,6 @@ export class GalleryState {
 
   @Action(GallerySetAction)
   public set(ctx: StateContext<PhotographModel[]>, action: GallerySetAction) {
-    let entries = ctx.getState();
-    entries = [...entries, ...action.entries];
-    ctx.setState(entries);
+    ctx.setState(action.entries);
   }
 }
