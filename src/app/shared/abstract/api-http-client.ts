@@ -34,7 +34,11 @@ export abstract class ApiHttpClient {
 
   protected get<T>(relativeUrl?: RelativeUrl, options?: Options): Observable<T> {
     const url = this.generateUrl(relativeUrl, options);
-    return this._http.get<T>(url).pipe(
+    return this._http.get<T>(url, {
+      headers: {
+        'Accept-Language': 'de-DE',
+      }
+    }).pipe(
       catchError(ApiHttpClient.handleError),
     );
   }
@@ -59,7 +63,12 @@ export abstract class ApiHttpClient {
 
   protected post<T>(body: any, relativeUrl?: string): Observable<T> {
     const url = relativeUrl ? `${this._baseUrl}/${relativeUrl}` : this._baseUrl;
-    return this._http.post<T>(url, body).pipe(
+    return this._http.post<T>(url, body, {
+      headers: {
+        'Accept-Language': 'de-DE'
+      }
+
+    }).pipe(
       catchError(ApiHttpClient.handleError)
     );
   }
