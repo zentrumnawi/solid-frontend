@@ -33,10 +33,10 @@ export class ProfileDetailComponent extends BaseComponent implements OnInit {
 
   public ngOnInit() {
       if (this.ProfileId) {
-        this._service.loadProfile(this.ProfileId);
-        this.addSub(this._store.select(ProfileState.selectNonTreeProfiles).pipe(map(f => f(this.ProfileId!))).subscribe(profile => {
+        this._service.loadProfiles();
+        this.addSub(this._store.select(ProfileState.selectProfile).pipe(map(f => f(this.ProfileId!))).subscribe(profile => {
           if (profile) {
-            this._profile = profile;
+            this._profile = profile.profile;
           }
         }));
       }

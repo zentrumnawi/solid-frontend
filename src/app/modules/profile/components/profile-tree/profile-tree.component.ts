@@ -73,7 +73,7 @@ export class ProfileTreeComponent extends BaseComponent implements AfterViewInit
 
     this.TreeControl = new FlatTreeControl(ProfileTreeComponent.getLevel, ProfileTreeComponent.isExpandable);
     this.DataSource = new MatTreeFlatDataSource(this.TreeControl, this._treeFlattener);
-    this.addSub(this._store.select(s => s.profile.profile).subscribe(profiles => {
+    this.addSub(this._store.select(s => s.profile).subscribe(profiles => {
       this.DataSource.data = profiles;
     }));
     this._store.select(s => s.router.state.params).subscribe(params => {
