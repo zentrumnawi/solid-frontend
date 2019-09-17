@@ -7,7 +7,7 @@ import {Component, Input} from '@angular/core';
 })
 export class ImageCardComponent {
   @Input('src') ImagePath!: string;
-  @Input('heading') Heading!: string;
+  @Input('heading') Heading?: string;
   public ImageLoaded = false;
 
   public onImageLoaded() {

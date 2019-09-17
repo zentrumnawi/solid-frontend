@@ -1,13 +1,6 @@
-import {Action} from '@ngrx/store';
-import {GlossaryEntriesOrdered} from './glossary-entry.model';
+import {GlossaryEntriesOrdered} from "./glossary.state";
 
-export enum GlossaryActionTypes {
-  Set = '[Glossary] SetEntries',
-}
-
-export class GlossarySetAction implements Action {
-  readonly type = GlossaryActionTypes.Set;
-
-  constructor(public entries: GlossaryEntriesOrdered) {
-  }
+export class GlossarySetAction {
+  static readonly type = '[Glossary] SetEntries';
+  constructor(public entries: GlossaryEntriesOrdered) {}
 }

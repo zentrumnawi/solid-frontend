@@ -21,7 +21,7 @@
       <span [class.app-title-fixed]="FixedLayout">GeoMat</span>
       <span class="spacer"></span>
       <button mat-icon-button (click)="Glossary.toggle()">
-        <mat-icon aria-label="Menü öffnen">book</mat-icon>
+        <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
       </button>
     </ng-container>
   </mat-toolbar>
@@ -37,7 +37,7 @@
       <mat-toolbar (click)="MainMenu.toggle()" *ngIf="!FixedLayout" color="primary">
         Menü
       </mat-toolbar>
-      <app-mainmenu></app-mainmenu>
+      <app-mainmenu (MenuSelect)="onMenuSelectionChanged()"></app-mainmenu>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

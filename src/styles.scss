@@ -7,10 +7,16 @@
 
 html, body {
   height: 100%;
-  box-sizing: border-box;
+  box-sizing: border-box;;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .spacer {
   flex: 1 0 auto;
+}
+
+.md-rendered {
+  p {
+    margin-bottom: 0.5em;
+  }
 }

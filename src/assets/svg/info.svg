@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+  <defs>
+    <style>.cls-1{fill:#fff;}.cls-2{fill:#1d1d1b;}</style>
+  </defs>
+  <circle class="cls-1" cx="36" cy="36" r="31.5"/>
+  <path class="cls-2" d="M36,6A30,30,0,1,1,6,36,30,30,0,0,1,36,6m0-3A33,33,0,1,0,69,36,33,33,0,0,0,36,3Z"/>
+  <polygon class="cls-1" points="36 19.78 34.5 20.52 36 23.04 37.5 20.58 36 19.78"/>
+  <polygon class="cls-2" points="35.98 26.41 32.04 19.8 36.03 17.82 39.95 19.91 35.98 26.41"/>
+  <path class="cls-2" d="M36,56.11a2.5,2.5,0,0,1-2.5-2.5V31.69a2.5,2.5,0,1,1,5,0V53.61A2.5,2.5,0,0,1,36,56.11Z"/>
+</svg>

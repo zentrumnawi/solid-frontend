@@ -14,12 +14,18 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatTreeModule} from '@angular/material/tree';
 import {ImageCardComponent} from './components/image-card/image-card.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MarkdownService} from './services/markdown.service';
+import {MarkdownComponent} from './components/markdown/markdown.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
-  declarations: [ImageCardComponent],
+  declarations: [
+    ImageCardComponent,
+    MarkdownComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -37,6 +43,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatStepperModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatTreeModule,
     LayoutModule,
   ],
   exports: [
@@ -56,8 +63,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatStepperModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatTreeModule,
     LayoutModule,
     ImageCardComponent,
+    MarkdownComponent,
+  ],
+  providers: [
+    MarkdownService,
   ]
 })
 export class SharedModule {

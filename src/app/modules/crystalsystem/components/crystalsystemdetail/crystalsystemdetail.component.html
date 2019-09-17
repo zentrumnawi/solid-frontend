@@ -21,6 +21,10 @@
     <mat-option [value]="110">110</mat-option>
     <mat-option [value]="111">111</mat-option>
   </mat-select>
+
+  <button mat-icon-button (click)="onInfoClick()" matTooltip="Modellbeschreibung">
+    <mat-icon>info</mat-icon>
+  </button>
   &nbsp;
   <mat-select placeholder="Modell" [ngModel]="Model" (ngModelChange)="onModelSelectChange($event)" matTooltip="Modell">
     <mat-option value="cubic">kubisch</mat-option>

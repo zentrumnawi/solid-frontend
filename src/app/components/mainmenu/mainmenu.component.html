@@ -1,30 +1,38 @@
 <mat-nav-list>
-  <mat-list-item [class.active]="ActiveUrl === '/'" routerLink="/">
+  <mat-list-item [class.active]="ActiveUrl === '/'" (click)="navigateTo('/')">
     <mat-icon matListIcon>home</mat-icon>
     <h3 matLine>Startseite</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/gallery'" routerLink="/gallery">
-    <mat-icon matListIcon>collections</mat-icon>
+  <mat-list-item [class.active]="ActiveUrl.startsWith('/profile/img')" (click)="navigateTo('/profile/img')">
+    <mat-icon matListIcon svgIcon="gallery"></mat-icon>
     <h3 matLine>Galerie</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/determination'" routerLink="/determination">
-    <mat-icon matListIcon>collections</mat-icon>
+  <mat-list-item [class.active]="ActiveUrl === '/determination'" (click)="navigateTo('/determination')">
+    <mat-icon matListIcon svgIcon="assistant"></mat-icon>
     <h3 matLine>Bestimmungshelfer</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/crystalsystem'" routerLink="/crystalsystem">
+  <mat-list-item [class.active]="ActiveUrl === '/system'" (click)="navigateTo('/system')">
     <mat-icon matListIcon>collections</mat-icon>
     <h3 matLine>Kristallsysteme</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/info'" routerLink="/info">
+  <mat-list-item [class.active]="ActiveUrl.startsWith('/profile') && !ActiveUrl.includes('/img')" (click)="navigateTo('/profile')">
+    <mat-icon matListIcon svgIcon="profile"></mat-icon>
+    <h3 matLine>Steckbriefe</h3>
+  </mat-list-item>
+  <mat-list-item (click)="navigateTo('/quiz')" [class.active]="ActiveUrl.startsWith('/quiz')">
+    <mat-icon matListIcon svgIcon="quiz"></mat-icon>
+    <h3 matLine>Selbsttest</h3>
+  </mat-list-item>
+  <mat-list-item [class.active]="ActiveUrl === '/info'" (click)="navigateTo('/info')">
     <mat-icon matListIcon>info</mat-icon>
     <h3 matLine>Info</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/privacy'" routerLink="/privacy">
+  <mat-list-item [class.active]="ActiveUrl === '/privacy'" (click)="navigateTo('/privacy')">
     <mat-icon matListIcon>info</mat-icon>
     <h3 matLine>Datenschutzerklärung</h3>
   </mat-list-item>
   <mat-list-item (click)="onFeedbackClick()">
-    <mat-icon matListIcon>mail</mat-icon>
+    <mat-icon matListIcon>feedback</mat-icon>
     <h3 matLine>Feedback</h3>
   </mat-list-item>
 </mat-nav-list>

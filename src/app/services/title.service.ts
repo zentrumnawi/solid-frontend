@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {filter, map, mergeMap} from 'rxjs/operators';
-import {MatDialogRef} from "@angular/material";
+import {map} from 'rxjs/operators';
+import {MatDialogRef} from "@angular/material/dialog";
+import {Actions, ofActionSuccessful} from "@ngxs/store";
+import {RouterNavigation} from "@ngxs/router-plugin";
+import {RouterStateParams} from "../custom-router-state-serializer";
 
 @Injectable({
   providedIn: 'root',
@@ -10,22 +12,14 @@ import {MatDialogRef} from "@angular/material";
 export class TitleService {
   constructor(
     private _title: Title,
-    activatedRoute: ActivatedRoute,
-    router: Router,
+    actions: Actions,
   ) {
-    // Piece of code to filter the router NavigationEnd events and map the required data properties from the route
-    router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map(() => activatedRoute),
-      map((route) => {
-        while (route.firstChild) route = route.firstChild;
-        return route;
-      }),
-      filter((route) => route.outlet === 'primary'),
-      mergeMap((route) => route.data))
-      .subscribe((event) => {
-        this._title.setTitle(event.title ? `${event.title} | GeoMat` : 'GeoMat');
-      });
+    actions.pipe(
+      ofActionSuccessful(RouterNavigation),
+      map((value: RouterNavigation<RouterStateParams>) => value.routerState.routeData.title)
+    ).subscribe(title => {
+      this._title.setTitle(title ? `${title} | GeoMat` : 'GeoMat');
+    });
   }
 
   /**
@@ -33,7 +27,7 @@ export class TitleService {
    */
   setDialogTitle(dialogRef: MatDialogRef<any>, title: string) {
     const oldTitle = this._title.getTitle();
-    this._title.setTitle(title);
+    this._title.setTitle(`${title} | GeoMat`);
     const sub = dialogRef.afterClosed().subscribe(() => {
       this._title.setTitle(oldTitle);
       sub.unsubscribe();

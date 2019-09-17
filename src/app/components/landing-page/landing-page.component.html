@@ -1,0 +1,41 @@
+<!--<iframe *ngIf="ShowLanding" src="https://geomat.uni-frankfurt.de/"></iframe>-->
+<mat-card *ngIf="ShowLanding">
+  <mat-card-header>
+    <mat-card-title>GeoMat <i>DIGITAL</i></mat-card-title>
+    <mat-card-subtitle>Mineralbestimmung im digitalen Revier</mat-card-subtitle>
+    <div class="spacer"></div>
+    <button (click)="onCloseClick()" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <p>fancy landing page content</p>
+  </mat-card-content>
+</mat-card>
+<mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
+  <mat-grid-tile [routerLink]="['/profile']" class="mat-elevation-z2">
+    <mat-icon svgIcon="profile"></mat-icon>
+    <span>Steckbriefe</span>
+  </mat-grid-tile>
+  <mat-grid-tile [routerLink]="['/profile/img']" class="mat-elevation-z2">
+    <mat-icon svgIcon="gallery"></mat-icon>
+    <span>Galerie</span>
+  </mat-grid-tile>
+  <mat-grid-tile [routerLink]="['/system']" class="mat-elevation-z2">
+    <mat-icon svgIcon="gallery"></mat-icon>
+    <span>Kristallsysteme</span>
+  </mat-grid-tile>
+  <mat-grid-tile [routerLink]="['/determination']" class="mat-elevation-z2">
+    <mat-icon svgIcon="assistant"></mat-icon>
+    <span>Bestimmungshelfer</span>
+  </mat-grid-tile>
+  <mat-grid-tile [routerLink]="['/quiz']" class="mat-elevation-z2">
+    <mat-icon svgIcon="quiz"></mat-icon>
+    <span>Selbsttest</span>
+  </mat-grid-tile>
+  <mat-grid-tile [routerLink]="['/info']" class="mat-elevation-z2">
+    <mat-icon>info</mat-icon>
+    <span>Information</span>
+  </mat-grid-tile>
+</mat-grid-list>
+

@@ -1,14 +1,7 @@
-import {routerReducer, RouterReducerState} from '@ngrx/router-store';
-import {ActionReducerMap} from '@ngrx/store';
-import {GlossaryEntriesOrdered} from './glossary-entry.model';
-import {glossaryReducer} from './glossary.reducer';
+import {RouterStateParams} from "../custom-router-state-serializer";
+import {GlossaryStateModel} from "./glossary.state";
 
 export interface AppState {
-  glossary: GlossaryEntriesOrdered
-  router: RouterReducerState,
+  glossary: GlossaryStateModel
+  router: RouterStateParams,
 }
-
-export const reducers: ActionReducerMap<AppState> = {
-  glossary: glossaryReducer,
-  router: routerReducer,
-};

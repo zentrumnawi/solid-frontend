@@ -1,0 +1,33 @@
+.gallery-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  height: calc(100% - 64px);
+  overflow-y: auto;
+
+  mat-card {
+    cursor: pointer;
+    margin: 0.5em;
+    max-width: 200px;
+
+    .spinner {
+      width: 200px;
+
+      mat-spinner {
+        margin: auto;
+      }
+    }
+
+    img {
+      max-width: 100%;
+
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+}
+
+:host {
+  overflow: hidden;
+}

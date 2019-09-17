@@ -1,7 +1,17 @@
 const { gitDescribeSync } = require('git-describe');
-const { writeFileSync } = require('fs');
+const { writeFileSync, existsSync } = require('fs');
 
-const gitInfo = gitDescribeSync();
-const versionInfoJson = JSON.stringify(gitInfo, null, 2);
+let versionInfo: any;
 
-writeFileSync('src/environments/version.json', versionInfoJson);
+if (existsSync('.git')) {
+  const gitInfo = gitDescribeSync();
+  versionInfo = JSON.stringify(gitInfo, null, 2);
+} else {
+  const version = {
+    hash: process.env.GIT_REV,
+  };
+  versionInfo = JSON.stringify(version, null, 2);
+}
+
+
+writeFileSync('src/environments/version.json', versionInfo);
