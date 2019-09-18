@@ -16,7 +16,12 @@ export interface PhotographModel {
 export interface HandpieceModel {
   id: number;
   name: string;
-  mineral_type: { id: number}[];
+  mineral_type: {
+    id: number,
+    minerals: string,
+    trivial_name: string,
+    variety: string,
+  }[];
   finding_place: string;
   current_location: string;
   old_inventory_number: string;

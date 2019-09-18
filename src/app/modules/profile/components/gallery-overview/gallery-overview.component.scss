@@ -9,6 +9,24 @@
     cursor: pointer;
     margin: 0.5em;
     max-width: 200px;
+    max-height: 179px;
+
+    mat-card-header {
+      ::ng-deep {
+        div.mat-card-header-text {
+          margin: 0;
+        }
+      }
+
+      span {
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 16px;
+        font-weight: 500;
+        min-height: 40px;
+        text-align: center;
+      }
+    }
 
     .spinner {
       width: 200px;
@@ -30,4 +48,10 @@
 
 :host {
   overflow: hidden;
+}
+
+mat-toolbar {
+  mat-form-field {
+    width: 0;
+  }
 }
