@@ -3,7 +3,7 @@
     "hexagonal": "Für die Seiten gilt: a = b &ne; c | Für die Winkel gilt &alpha; = &beta; = 90&deg; und &gamma; = 120&deg;",
     "monoclinic": "Für die Seiten gilt: a &ne; b &ne; c | Für die Winkel gilt &alpha; = &beta; = 90&deg; und &gamma; &ne; 90&deg;",
     "orthorombic":"Für die Seiten gilt: a &ne; b &ne; c | Für die Winkel gilt &alpha; = &beta; = &gamma; = 90&deg;",
-    "rhombohedral":"Für die Seiten gilt: a = b &ne; c | Für die Winkel gilt &alpha; = &beta; = &gamma; = 90&deg;",
+    "trigonal":"Für die Seiten gilt: a = b &ne; c | Für die Winkel gilt &alpha; = &beta; = &gamma; = 90&deg;",
     "tetragonal":"Für die Seiten gilt: a = b &ne; c | Für die Winkel gilt &alpha; = &beta; = &gamma; = 90&deg;",
     "triclinic":"Für die Seiten gilt: a &ne; b &ne; c | Für die Winkel gilt &alpha; &ne; &beta; &ne; &gamma;"
 }

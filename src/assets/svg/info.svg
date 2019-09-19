@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-  <defs>
-    <style>.cls-1{fill:#fff;}.cls-2{fill:#1d1d1b;}</style>
-  </defs>
-  <circle class="cls-1" cx="36" cy="36" r="31.5"/>
-  <path class="cls-2" d="M36,6A30,30,0,1,1,6,36,30,30,0,0,1,36,6m0-3A33,33,0,1,0,69,36,33,33,0,0,0,36,3Z"/>
-  <polygon class="cls-1" points="36 19.78 34.5 20.52 36 23.04 37.5 20.58 36 19.78"/>
-  <polygon class="cls-2" points="35.98 26.41 32.04 19.8 36.03 17.82 39.95 19.91 35.98 26.41"/>
-  <path class="cls-2" d="M36,56.11a2.5,2.5,0,0,1-2.5-2.5V31.69a2.5,2.5,0,1,1,5,0V53.61A2.5,2.5,0,0,1,36,56.11Z"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="0 244 24 24" enable-background="new 0 244 24 24" xml:space="preserve">
+<path id="Black_Background" d="M12,246c5.522,0,10,4.477,10,10c0,5.522-4.478,10-10,10c-5.523,0-10-4.478-10-10
+	C2,250.477,6.477,246,12,246 M12,245c-6.075,0-11,4.925-11,11s4.925,11,11,11s11-4.925,11-11S18.075,245,12,245z M11.993,252.803
+	L10.68,250.6l1.33-0.66l1.307,0.697L11.993,252.803z M12,262.703c-0.46,0-0.833-0.373-0.833-0.833v-7.307
+	c0-0.46,0.374-0.833,0.833-0.833c0.46,0,0.833,0.373,0.833,0.833v7.307C12.833,262.33,12.46,262.703,12,262.703z"/>
 </svg>

@@ -86,13 +86,14 @@ export class AppModule {
     const addIcon = (name: string) => registry.addSvgIcon(name, url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`));
     addIcon('assistant');
     addIcon('camera');
+    addIcon('crystalsystem');
     addIcon('gallery');
     addIcon('glossary');
     addIcon('icon');
     addIcon('info');
+    addIcon('info2');
     addIcon('quiz');
     addIcon('search');
-    addIcon('search_icon');
     addIcon('profile');
 
 

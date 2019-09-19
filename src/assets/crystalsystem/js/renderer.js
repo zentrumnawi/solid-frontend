@@ -70,7 +70,7 @@ function init() {
 
   // light
   var light = new THREE.PointLight(0xaaaaff, 0.7);
-  camera.add( light );
+  camera.add( light ); //shading not working if ligt added to scene
 
   // axis helper
   groups.axis.add(new THREE.AxesHelper(15));
@@ -109,8 +109,8 @@ function initModel(geoStr) {
     case "orthorhombic":
       geo = orthorhombic;
       break;
-    case "rhombohedral":
-      geo = rhombohedral;
+    case "trigonal":
+      geo = trigonal;
       break;
     case "tetragonal":
       geo = tetragonal;
@@ -196,6 +196,7 @@ function createTwoSidedFaces(geometry, material) {
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
+
   
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
@@ -237,8 +238,6 @@ function togglePerspective() {
     camera = isocam;
   }
 }
-
-
 
 function toggleFaces() {
   if (settings.display.faces) {

@@ -1,4 +1,4 @@
-const rhombohedral = generate();
+const trigonal = generate();
 
 function generate() {
   const a1 = new THREE.Vector3(-5, 5, -5);

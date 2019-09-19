@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
 import {InfoOverlayComponent} from "../info-overlay/info-overlay.component";
 
-type Models = 'cubic' | 'hexagonal' | 'monoclinic' | 'orthorhombic' | 'rhombohedral' | 'tetragonal' | 'triclinic';
+type Models = 'cubic' | 'hexagonal' | 'monoclinic' | 'orthorhombic' | 'trigonal' | 'tetragonal' | 'triclinic';
 
 @Component({
   selector: 'app-crystalsystemdetail',
@@ -20,7 +20,7 @@ export class CrystalsystemdetailComponent {
       hexagonal: 'hexagonal',
       monoclinic: 'monoklin',
       orthorhombic: 'orthorhombisch',
-      rhombohedral: 'rhomboedrisch',
+      trigonal: 'trigonal',
       tetragonal: 'tetragonal',
       triclinic: 'triklin'
     };

@@ -1,14 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-  <defs>
-    <style>.cls-1{fill:#1d1d1b;}.cls-2{fill:#fff;}</style>
-  </defs>
-  <polygon fill="inherit" points="3.34 1.44 15.4 15.27 57.42 15.65 69.11 1.44 3.34 1.44"/>
-  <path fill="inherit" d="M58.15,17.23l-43.47-.39L-.12-.13H72.44Zm-42-3.52,40.56.36L65.78,3h-59Z"/>
-  <polygon fill="inherit" points="3.15 9.72 15.21 23.55 57.24 23.93 68.93 9.72 3.15 9.72"/>
-  <path fill="inherit" d="M58,25.51l-43.48-.39L-.3,8.15H72.26ZM15.93,22l40.57.36,9.1-11.06h-59Z"/>
-  <polygon fill="white" points="1.95 18.58 9.67 70.83 62.5 71 70.05 18.56 1.95 18.58"/>
-  <path fill="inherit" d="M63.86,72.58,8.32,72.4.13,17l71.73,0ZM11,69.26l50.11.16,7.1-49.29-64.47,0Z"/>
-  <polygon fill="white" points="9.03 24.26 13.81 57.16 58.5 57.16 63.35 24 9.03 24.26"/>
-  <path fill="inherit" d="M59.54,58.36H12.77L7.64,23.06l57.1-.27ZM14.85,56H57.46L62,25.21l-51.53.25Z"/>
-  <polygon fill="inherit" points="21.35 27.93 36.36 53.86 51.07 27.93 21.35 27.93"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="854 244 24 24" enable-background="new 854 244 24 24" xml:space="preserve">
+<path d="M875.786,246.717L878,244h-24l2.354,2.717H854l2.602,3.002H854L856.056,268h19.887L878,249.719h-2.447l2.447-3.002H875.786z
+	 M856.282,245.05h19.515l-1.36,1.667h-16.712L856.282,245.05z M875.069,266.919H856.93l-1.876-16.171h21.891L875.069,266.919z
+	 M857.971,249.719l-1.689-1.952h0.981h1.369h14.946h1.351h0.867l-1.594,1.952H857.971z M866.041,261.953l-4.994-8.643h9.906
+	L866.041,261.953z M858.099,263.883H873.9l1.635-12.286h-19.07L858.099,263.883z M873.206,263.024h-14.412l-1.49-10.609h17.393
+	L873.206,263.024z"/>
 </svg>
