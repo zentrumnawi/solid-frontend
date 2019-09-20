@@ -1,6 +1,6 @@
 <mat-nav-list>
   <mat-list-item [class.active]="ActiveUrl === '/'" (click)="navigateTo('/')">
-    <mat-icon matListIcon>home</mat-icon>
+    <mat-icon matListIcon svgIcon="icon"></mat-icon>
     <h3 matLine>Startseite</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl.startsWith('/profile/img')" (click)="navigateTo('/profile/img')">
@@ -12,7 +12,7 @@
     <h3 matLine>Bestimmungshelfer</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl === '/system'" (click)="navigateTo('/system')">
-    <mat-icon matListIcon>collections</mat-icon>
+    <mat-icon matListIcon svgIcon="crystalsystem"></mat-icon>
     <h3 matLine>Kristallsysteme</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl.startsWith('/profile') && !ActiveUrl.includes('/img')" (click)="navigateTo('/profile')">
@@ -24,15 +24,15 @@
     <h3 matLine>Selbsttest</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl === '/info'" (click)="navigateTo('/info')">
-    <mat-icon matListIcon>info</mat-icon>
+    <mat-icon matListIcon svgIcon="info"></mat-icon>
     <h3 matLine>Info</h3>
   </mat-list-item>
   <mat-list-item [class.active]="ActiveUrl === '/privacy'" (click)="navigateTo('/privacy')">
-    <mat-icon matListIcon>info</mat-icon>
+    <mat-icon matListIcon svgIcon="privacy"></mat-icon>
     <h3 matLine>Datenschutzerklärung</h3>
   </mat-list-item>
   <mat-list-item (click)="onFeedbackClick()">
-    <mat-icon matListIcon>feedback</mat-icon>
+    <mat-icon matListIcon svgIcon="feedback"></mat-icon>
     <h3 matLine>Feedback</h3>
   </mat-list-item>
 </mat-nav-list>

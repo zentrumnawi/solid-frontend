@@ -87,14 +87,16 @@ export class AppModule {
     addIcon('assistant');
     addIcon('camera');
     addIcon('crystalsystem');
+    addIcon('feedback');
     addIcon('gallery');
     addIcon('glossary');
     addIcon('icon');
     addIcon('info');
     addIcon('info2');
+    addIcon('privacy');
+    addIcon('profile');
     addIcon('quiz');
     addIcon('search');
-    addIcon('profile');
 
 
   }
