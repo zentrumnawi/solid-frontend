@@ -1,0 +1,19 @@
+<div #contentContainer [class.splitLayout]="SplitLayout" class="content-container">
+  <div *ngIf="SplitLayout || !Selected" class="tree">
+    <mat-form-field color="accent">
+      <mat-label>Suchen</mat-label>
+      <input [formControl]="Filter" matInput type="text"/>
+      <!--      <button (click)="SearchValue='';onSearchChange('')" *ngIf="SearchValue" aria-label="Clear" mat-button-->
+      <!--              mat-icon-button matSuffix>-->
+      <!--        <mat-icon>close</mat-icon>-->
+      <!--      </button>-->
+    </mat-form-field>
+    <app-profile-list *ngIf="Filter.value !== ''; else tree" [Profiles]="FilteredProfiles"></app-profile-list>
+    <ng-template #tree>
+
+    </ng-template>
+  </div>
+  <div *ngIf="SplitLayout || Selected" class="profile">
+    <p>detail</p>
+  </div>
+</div>

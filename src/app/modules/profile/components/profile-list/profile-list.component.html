@@ -1,0 +1,7 @@
+<mat-list role="list">
+  <mat-list-item *ngFor="let profile of Profiles;trackBy: trackByFn">
+    <img [src]="profile.imageFiles.thumbnail" matListAvatar>
+    <h3 matLine> {{profile.variety ? profile.variety : profile.mineralName}} </h3>
+  </mat-list-item>
+  <mat-list-item *ngIf="Profiles.length === 0">Keine Suchergebnisse</mat-list-item>
+</mat-list>
