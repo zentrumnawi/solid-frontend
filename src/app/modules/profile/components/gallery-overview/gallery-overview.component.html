@@ -17,7 +17,10 @@
 </mat-toolbar>
 <div class="gallery-container">
   <mat-card (click)="onCardClick(entry)" *ngFor="let entry of Entries; let i = index">
-    <mat-card-header><span>{{ entry.handpiece.name }}</span></mat-card-header>
+    <mat-card-header>
+      <mat-card-title>{{ entry.handpiece.name }}</mat-card-title>
+      <mat-card-subtitle>{{ entry.handpiece.name === entry.handpiece.mineral_type[0].minerals ? '' : entry.handpiece.mineral_type[0].minerals }}</mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content>
       <div *ngIf="!EntriesLoaded[entry.id]" class="spinner">
         <mat-spinner color="primary"></mat-spinner>

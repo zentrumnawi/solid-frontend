@@ -9,7 +9,7 @@
     cursor: pointer;
     margin: 0.5em;
     max-width: 200px;
-    max-height: 179px;
+    max-height: 190px;
 
     mat-card-header {
       ::ng-deep {
@@ -18,13 +18,13 @@
         }
       }
 
-      span {
-        margin-right: auto;
-        margin-left: auto;
+      mat-card-title {
         font-size: 16px;
-        font-weight: 500;
-        min-height: 40px;
-        text-align: center;
+      }
+
+      mat-card-subtitle {
+        height: 12px;
+        font-size: 12px;
       }
     }
 
