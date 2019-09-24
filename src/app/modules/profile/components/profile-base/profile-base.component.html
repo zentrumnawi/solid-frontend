@@ -1,19 +1,30 @@
 <div #contentContainer [class.splitLayout]="SplitLayout" class="content-container">
-  <div *ngIf="SplitLayout || !Selected" class="tree">
+  <div *ngIf="SplitLayout || !SelectedProfile" class="tree">
     <mat-form-field color="accent">
       <mat-label>Suchen</mat-label>
       <input [formControl]="Filter" matInput type="text"/>
-      <!--      <button (click)="SearchValue='';onSearchChange('')" *ngIf="SearchValue" aria-label="Clear" mat-button-->
-      <!--              mat-icon-button matSuffix>-->
-      <!--        <mat-icon>close</mat-icon>-->
-      <!--      </button>-->
     </mat-form-field>
-    <app-profile-list *ngIf="Filter.value !== ''; else tree" [Profiles]="FilteredProfiles"></app-profile-list>
+    <app-profile-list (onProfileSelect)="selectProfile($event)" *ngIf="Filter.value !== ''; else tree"
+                      [profiles]="FilteredProfiles"></app-profile-list>
     <ng-template #tree>
-
+      <app-profile-tree (onProfileSelect)="selectProfile($event)"
+                        [selectedProfileId]="SelectedProfileId"></app-profile-tree>
     </ng-template>
   </div>
-  <div *ngIf="SplitLayout || Selected" class="profile">
-    <p>detail</p>
+  <div *ngIf="SelectedProfile" class="profile">
+    <mat-toolbar color="accent">
+      {{ SelectedProfile.variety ? SelectedProfile.variety : SelectedProfile.mineralName }}
+      <div class="spacer"></div>
+      <button (click)="swipeLeft()" [disabled]="!CanSwipeLeft" mat-icon-button>
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button (click)="selectProfile()" mat-icon-button>
+        <mat-icon>expand_less</mat-icon>
+      </button>
+      <button (click)="swipeRight()" [disabled]="!CanSwipeRight" mat-icon-button>
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </mat-toolbar>
+    <app-profile-detail (panend)="onPanEnd($event)" [profile]="SelectedProfile"></app-profile-detail>
   </div>
 </div>

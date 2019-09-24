@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MineralProfile} from "../../state/profile.model";
 
 @Component({
@@ -7,7 +7,8 @@ import {MineralProfile} from "../../state/profile.model";
   styleUrls: ['./profile-list.component.scss']
 })
 export class ProfileListComponent {
-  @Input() public Profiles!: MineralProfile[];
+  @Input() profiles!: MineralProfile[];
+  @Output() onProfileSelect = new EventEmitter<number>();
 
   public trackByFn(index: number, profile: MineralProfile) {
     return profile.id;
