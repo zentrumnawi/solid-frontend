@@ -2,13 +2,13 @@
   <span>Galerie</span>
   <div class="spacer"></div>
   <mat-form-field [@searchInOut]="SearchVisible">
-    <input (ngModelChange)="onSearchChange($event)" [(ngModel)]="SearchValue" matInput type="text"/>
+    <input #searchInput (ngModelChange)="onSearchChange($event)" [(ngModel)]="SearchValue" matInput type="text"/>
     <button (click)="SearchValue='';onSearchChange('')" *ngIf="SearchValue" aria-label="Clear" mat-button
             mat-icon-button matSuffix>
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <button (click)="SearchVisible=!SearchVisible" mat-icon-button>
+  <button (click)="onSearchToggleClick()" mat-icon-button>
     <mat-icon>search</mat-icon>
   </button>
   <button (click)="toggleSort()" mat-icon-button>

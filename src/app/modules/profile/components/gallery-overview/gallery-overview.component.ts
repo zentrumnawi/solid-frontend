@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {GalleryService} from '../../services/gallery.service';
 import {PhotographModel} from '../../state/gallery.model';
@@ -20,6 +20,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   ]
 })
 export class GalleryOverviewComponent extends BaseComponent {
+  @ViewChild('searchInput', {static: false}) searchInputRef?: ElementRef;
   public Entries: PhotographModel[] = [];
   public EntriesLoaded: { [key: number]: boolean } = {};
   public SortAscending = false;
@@ -81,5 +82,12 @@ export class GalleryOverviewComponent extends BaseComponent {
         return false;
       }) !== undefined;
     });
+  }
+
+  public onSearchToggleClick() {
+    this.SearchVisible = !this.SearchVisible;
+    if (this.SearchVisible && this.searchInputRef && this.searchInputRef.nativeElement) {
+      this.searchInputRef.nativeElement.focus();
+    }
   }
 }
