@@ -16,7 +16,7 @@
   <p class="heading">chemische Formel</p>
   <p Md [data]="Profile.chemicalFormula"></p>
   <p class="heading">Kristallsystem</p>
-  <p>{{ Profile.crystalSystems[0].name}}</p>
+  <p *ngFor="let crystalSystem of Profile.crystalSystems">{{ crystalSystem.name}}</p>
   <p class="heading">Mohshärte</p>
   <p>{{ Profile.mohsScale}}</p>
   <p class="heading">Dichte</p>
