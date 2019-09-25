@@ -29,4 +29,7 @@
            [src]="entry.image_file.small" alt="Bild des Minerals"/>
     </mat-card-content>
   </mat-card>
+  <mat-card *ngIf="Entries.length === 0 && LoadingCompleted">
+    <mat-card-content>Keine Suchergebnisse vorhanden</mat-card-content>
+  </mat-card>
 </div>

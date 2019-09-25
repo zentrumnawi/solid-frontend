@@ -23,6 +23,7 @@ export class GalleryOverviewComponent extends BaseComponent {
   @ViewChild('searchInput', {static: false}) searchInputRef?: ElementRef;
   public Entries: PhotographModel[] = [];
   public EntriesLoaded: { [key: number]: boolean } = {};
+  public LoadingCompleted = false;
   public SortAscending = false;
   public SearchValue = '';
   public SearchVisible = false;
@@ -36,6 +37,9 @@ export class GalleryOverviewComponent extends BaseComponent {
     super();
     service.loadGallery();
     this.addSub(this._store.select(GalleryState.getGalleryEntries).subscribe(v => {
+      if (v.length > 0) {
+        this.LoadingCompleted = true;
+      }
       this.Entries = v;
       this._entriesUnsorted = v;
       this._entriesSorted = [...v];
