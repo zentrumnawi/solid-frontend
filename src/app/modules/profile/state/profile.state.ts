@@ -37,6 +37,11 @@ export class ProfileState {
     };
   }
 
+  @Selector()
+  static select(state: ProfileStateModel) {
+    return [...state];
+  }
+
   @Action(ProfileSetAction)
   public set(ctx: StateContext<ProfileStateModel>, action: ProfileSetAction) {
     ctx.setState(action.entries);

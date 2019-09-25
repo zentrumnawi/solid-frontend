@@ -1,0 +1,41 @@
+:host {
+  display: block;
+  height: calc(100% - 1rem);
+  background-color: white;
+}
+
+mat-form-field {
+  padding: 0.5em;
+}
+
+div.content-container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  grid-template-areas: 'allContent';
+
+  &.splitLayout {
+    grid-template-areas: 'tree profile';
+    grid-template-columns: 0.5fr 0.5fr;
+    max-height: 100%;
+    overflow: hidden;
+
+    div.profile {
+      grid-area: profile;
+      overflow-y: auto;
+    }
+
+    div.tree {
+      grid-area: tree;
+      overflow-y: auto;
+    }
+  }
+
+  div.profile,
+  div.tree {
+    grid-area: allContent;
+  }
+
+  height: 100%;
+}
+

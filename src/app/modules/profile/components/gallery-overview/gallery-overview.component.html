@@ -1,6 +1,16 @@
 <mat-toolbar color="accent">
   <span>Galerie</span>
   <div class="spacer"></div>
+  <mat-form-field [@searchInOut]="SearchVisible">
+    <input #searchInput (ngModelChange)="onSearchChange($event)" [(ngModel)]="SearchValue" matInput type="text"/>
+    <button (click)="SearchValue='';onSearchChange('')" *ngIf="SearchValue" aria-label="Clear" mat-button
+            mat-icon-button matSuffix>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button (click)="onSearchToggleClick()" mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
   <button (click)="toggleSort()" mat-icon-button>
     <mat-icon>{{ SortAscending ? 'clear' : 'sort' }}</mat-icon>
   </button>
@@ -9,6 +19,7 @@
   <mat-card (click)="onCardClick(entry)" *ngFor="let entry of Entries; let i = index">
     <mat-card-header>
       <mat-card-title>{{ entry.handpiece.name }}</mat-card-title>
+      <mat-card-subtitle>{{ entry.handpiece.name === entry.handpiece.mineral_type[0].minerals ? '' : entry.handpiece.mineral_type[0].minerals }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <div *ngIf="!EntriesLoaded[entry.id]" class="spinner">
@@ -17,5 +28,8 @@
       <img (load)="imageLoaded($event, entry)" [class.hidden]="!EntriesLoaded[entry.id]"
            [src]="entry.image_file.small" alt="Bild des Minerals"/>
     </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="Entries.length === 0 && LoadingCompleted">
+    <mat-card-content>Keine Suchergebnisse vorhanden</mat-card-content>
   </mat-card>
 </div>

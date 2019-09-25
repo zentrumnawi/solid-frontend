@@ -33,6 +33,7 @@ p {
 
 .float-right {
   float: right;
+  grid-area: next;
 }
 
 app-image-card {
@@ -42,6 +43,10 @@ app-image-card {
 
 .step-actions {
   margin-top: 1em;
+  display: grid;
+  grid-template-areas: "previous header next";
+  grid-template-columns: 40px auto 40px;
+  width: 100%;
 }
 
 
@@ -51,6 +56,7 @@ h3.mat-line.gloss {
 
 h1 {
   text-align: center;
+  grid-area: header;
 }
 
 ::ng-deep {

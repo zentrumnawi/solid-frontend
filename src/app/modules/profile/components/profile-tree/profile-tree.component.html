@@ -1,42 +1,23 @@
 <!--suppress AngularInvalidExpressionResultType -->
-<div #contentContainer class="content-container" [class.fullWidth]="Selected === undefined || !SplitLayout">
-  <div *ngIf="Selected === undefined || SplitLayout" class="profile-tree">
-    <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
-      <mat-tree-node *matTreeNodeDef="let node; when: !hasChild"
-                     matTreeNodePadding matTreeNodeToggle
-                   class="profile-link" (click)="selectProfile(node.id)">
-      <img class="thumbnail" [alt]="node.title" [src]="node.imageFiles.thumbnail" [class.hidden]="!node.imageLoaded"
-           (load)="onImageLoaded(node)">
-      <span [class.selected]="Selected === node.id" [class.hidden]="!node.imageLoaded">{{node.title}}</span>
-    </mat-tree-node>
+<mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
+  <mat-tree-node (click)="onProfileSelect.emit(node.id)"
+                 *matTreeNodeDef="let node; when: !hasChild" class="profile-link"
+                 matTreeNodePadding matTreeNodeToggle>
+    <img (load)="onImageLoaded(node)" [alt]="node.title" [class.hidden]="!node.imageLoaded"
+         [src]="node.imageFiles.thumbnail"
+         class="thumbnail">
+    <span [class.hidden]="!node.imageLoaded" [class.selected]="selectedProfileId === node.id">{{node.title}}</span>
+  </mat-tree-node>
 
-    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding (click)="onNodeClick(node)">
-      <button [attr.aria-label]="'toggle ' + node.title" mat-icon-button>
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-      <div>
-        <span class="category">{{node.title}}</span><br/>
-        <span class="info_text" *ngIf="TreeControl.isExpanded(node) && node.info">{{ node.info }}</span>
-      </div>
-    </mat-tree-node>
-  </mat-tree>
-  </div>
-  <div class="profile-detail" *ngIf="SelectedProfile" >
-    <mat-toolbar color="accent">
-      {{ SelectedProfile.variety ? SelectedProfile.variety : SelectedProfile.mineralName }}
-      <div class="spacer"></div>
-      <button mat-icon-button (click)="swipeLeft()" [disabled]="!CanSwipeLeft">
-        <mat-icon>navigate_before</mat-icon>
-      </button>
-      <button mat-icon-button (click)="selectProfile()">
-        <mat-icon>expand_less</mat-icon>
-      </button>
-      <button mat-icon-button (click)="swipeRight()" [disabled]="!CanSwipeRight">
-        <mat-icon>navigate_next</mat-icon>
-      </button>
-    </mat-toolbar>
-    <app-profile-detail [profile]="SelectedProfile" (panend)="onPanEnd($event)"></app-profile-detail>
-  </div>
-</div>
+  <mat-tree-node (click)="onNodeClick(node)" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <button [attr.aria-label]="'toggle ' + node.title" mat-icon-button>
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    <div>
+      <span class="category">{{node.title}}</span><br/>
+      <span *ngIf="TreeControl.isExpanded(node) && node.info" class="info_text">{{ node.info }}</span>
+    </div>
+  </mat-tree-node>
+</mat-tree>

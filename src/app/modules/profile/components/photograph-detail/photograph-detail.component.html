@@ -25,7 +25,7 @@
 </audio>
 <mat-tab-group *ngIf="Entry">
   <mat-tab label="Bild">
-    <div class="content">
+    <div class="content image">
       <div class="spinner" *ngIf="!ImageLoaded || !Entry">
         <mat-spinner color="primary"></mat-spinner>
       </div>
@@ -43,7 +43,7 @@
   <mat-tab label="Steckbrief">
     <div class="content profile">
       <app-profile-detail [profileId]="Entry.handpiece.mineral_type[0].id"
-                          [alwaysShowMineralName]="true"></app-profile-detail>
+                          [isInGalleryView]="true"></app-profile-detail>
     </div>
   </mat-tab>
   <mat-tab label="Beschreibung">

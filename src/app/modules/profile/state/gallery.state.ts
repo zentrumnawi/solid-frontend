@@ -29,7 +29,7 @@ export class GalleryState {
       if (middleIndex >= 1) {
         ret.before = state[middleIndex - 1].id;
       }
-      if (middleIndex <= state.length - 1 && middleIndex !== -1) {
+      if (middleIndex < state.length - 1 && middleIndex !== -1) {
         ret.after = state[middleIndex + 1].id;
       }
       return ret;
