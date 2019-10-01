@@ -20,10 +20,6 @@
     <mat-icon matListIcon svgIcon="crystalsystem"></mat-icon>
     <h3 matLine>Kristallsysteme</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl.startsWith('/profile') && !ActiveUrl.includes('/img')" (click)="navigateTo('/profile')">
-    <mat-icon matListIcon svgIcon="profile"></mat-icon>
-    <h3 matLine>Steckbriefe</h3>
-  </mat-list-item>
   <mat-list-item (click)="navigateTo('/quiz')" [class.active]="ActiveUrl.startsWith('/quiz')">
     <mat-icon matListIcon svgIcon="quiz"></mat-icon>
     <h3 matLine>Selbsttest</h3>
