@@ -1,11 +1,11 @@
 <ng-container *ngIf="Profile">
   <app-image-card *ngIf="!ProfileId"
     [src]="Profile.imageFiles.large"></app-image-card>
-  <ng-container *ngIf="isInGalleryView && Category">
+  <ng-container *ngIf="Category">
     <p class="heading">Systematik</p>
     <p>{{ Category.title }}</p>
   </ng-container>
-  <ng-container *ngIf="Profile.variety || isInGalleryView">
+  <ng-container *ngIf="Profile.variety">
     <p class="heading">Mineralname</p>
     <p>{{ Profile.mineralName }}</p>
   </ng-container>

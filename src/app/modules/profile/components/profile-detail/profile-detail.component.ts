@@ -23,8 +23,6 @@ export class ProfileDetailComponent extends BaseComponent implements OnInit {
   @Input('profileId')
   private ProfileId?: number;
 
-  @Input() isInGalleryView = false;
-
   constructor(
     private _store: Store,
     private _service: ProfileService,
