@@ -31,4 +31,8 @@
   <p *ngFor="let lustre of Profile.lustres">{{ lustre }}</p>
   <p class="heading">Strichfarbe</p>
   <p>{{ Profile.streak}}</p>
+  <ng-container *ngIf="Profile.other">
+    <p class="heading">Zusatzinformationen</p>
+    <p Md [data]="Profile.other"></p>
+  </ng-container>
 </ng-container>

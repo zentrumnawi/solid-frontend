@@ -25,6 +25,7 @@ export interface MineralProfile {
   crystalSystems: CrystalSystem[];
   fractures: string[];
   lustres: string[];
+  other: string | null;
 }
 
 export interface NodeApi {
@@ -50,6 +51,7 @@ export interface MineralProfileApi {
   normal_color: string;
   fracture: string[];
   lustre: string[];
+  other: string;
 }
 
 export interface CrystalSystem {

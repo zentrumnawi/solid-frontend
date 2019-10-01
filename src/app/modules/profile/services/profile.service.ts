@@ -57,6 +57,7 @@ export class ProfileService extends ApiHttpClient {
       color: child.normal_color,
       fractures: child.fracture,
       lustres: child.lustre,
+      other: child.other === '' ? null : child.other,
     }));
   }
 }
