@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {QuizAnswer, QuizQuestion, QuizQuestionType} from "../../state/quiz.model";
 import {MatRadioChange} from "@angular/material/radio";
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {Store} from "@ngxs/store";
+import {QuizQuestionAnswered} from "../../state/quiz.actions";
 
 @Component({
   selector: 'app-quiz-question',
@@ -13,7 +15,8 @@ export class QuizQuestionComponent implements OnChanges {
   public QuestionTypes = QuizQuestionType;
   public SelectedAnswers: number[] = [];
   public ShowAnswers = false;
-  @Output('onNext') private onNext = new EventEmitter<void>();
+
+  constructor(private _store: Store) {}
 
   public onRadioChange(e: MatRadioChange) {
     this.SelectedAnswers = [e.value];
@@ -28,7 +31,22 @@ export class QuizQuestionComponent implements OnChanges {
   }
 
   onNextQuestionClick() {
-    this.onNext.emit();
+    if (this.Question) {
+      let correct = true;
+      let correctAnswers = 0;
+      this.Question.answers.forEach(answer => {
+        if (answer.correct) {
+          correctAnswers++;
+          if (!this.SelectedAnswers.includes(answer.id)) {
+            correct = false;
+          }
+        }
+      });
+      if (this.SelectedAnswers.length !== correctAnswers) {
+        correct = false;
+      }
+        this._store.dispatch(new QuizQuestionAnswered(correct));
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

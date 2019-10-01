@@ -19,3 +19,11 @@ export enum QuizQuestionType {
   SingleChoice = 'Single Choice',
   MultipleChoice = 'Multiple Choice',
 }
+
+export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1};
+
+export interface QuizSession {
+  progress: number;
+  currentQuestion: number;
+  questions: QuizQuestionInSession[];
+}

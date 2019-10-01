@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {Store} from "@ngxs/store";
-import {Navigate} from "@ngxs/router-plugin";
+import {QuizSessionStart} from "../../state/quiz.actions";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-quiz-start',
@@ -8,12 +10,15 @@ import {Navigate} from "@ngxs/router-plugin";
   styleUrls: ['./quiz-start.component.scss']
 })
 export class QuizStartComponent {
+  public QuizLoaded: Observable<boolean>;
+  questionCount = 10;
   constructor(
     private _store: Store
   ) {
+    this.QuizLoaded = this._store.select(s => s.quiz.questions).pipe(map(v => v.length > 0));
   }
 
   public onStartClick() {
-    this._store.dispatch(new Navigate(['/quiz/', 20],));
+    this._store.dispatch(new QuizSessionStart(this.questionCount));
   }
 }
