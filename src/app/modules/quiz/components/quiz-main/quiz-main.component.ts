@@ -10,7 +10,7 @@ import {QuizSession} from "../../state/quiz.model";
   styleUrls: ['./quiz-main.component.scss']
 })
 export class QuizMainComponent {
-  private QuizSession: Observable<QuizSession | null>;
+  QuizSession: Observable<QuizSession | null>;
 
   constructor(
     service: QuizService,

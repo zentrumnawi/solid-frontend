@@ -55,12 +55,11 @@ export class QuizState {
   public questionAnswered({ patchState, getState }: StateContext<QuizStateModel>, { correct }: QuizQuestionAnswered) {
     const session = { ...getState().session as QuizSession };
     const answeredQuestion = { ...session.questions[session.currentQuestion], answered: (correct ? 1 : -1) as 1 | -1};
-    const questions = session.questions.map(q => q.id === answeredQuestion.id ? answeredQuestion : q);
     patchState({
       session: {
         currentQuestion: session.currentQuestion + 1,
         progress: 100.0 / session.questions.length * (session.currentQuestion + 1),
-        questions: questions,
+        questions: session.questions.map(q => q.id === answeredQuestion.id ? answeredQuestion : q),
       },
     })
   }
