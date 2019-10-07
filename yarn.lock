@@ -104,12 +104,31 @@
     rxjs "6.4.0"
     source-map "0.7.3"
 
+"@angular-devkit/core@8.3.8":
+  version "8.3.8"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-8.3.8.tgz#3177abf49a4486d1287256b65638548440c5cea2"
+  integrity sha512-HwlMRr6qANwhOJS+5rGgQ2lmP4nj2C4cbUc0LlA09Cdbq0RnDquUFVqHF6h81FUKFW1D5qDehWYHNOVq8+gTkQ==
+  dependencies:
+    ajv "6.10.2"
+    fast-json-stable-stringify "2.0.0"
+    magic-string "0.25.3"
+    rxjs "6.4.0"
+    source-map "0.7.3"
+
 "@angular-devkit/schematics@8.3.6":
   version "8.3.6"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-8.3.6.tgz#9a21a090208398a70e87d24a66e8d147f14713e0"
   integrity sha512-5I4WDIMHw8zuajhXdy2xjtJLglMWE2Bo1Ri4wFR8cmj8nXUQ1fdPMWg3CqiepcNls2c8xXXMBMHZb/FhC32sBw==
   dependencies:
     "@angular-devkit/core" "8.3.6"
+    rxjs "6.4.0"
+
+"@angular-devkit/schematics@8.3.8":
+  version "8.3.8"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-8.3.8.tgz#7e4840509c2ca922b90ca2b33111c1941450aad5"
+  integrity sha512-1KnluRj86QO6fDE++iNbUHq1nNHpz0ZQDs/siy+tDtenO5TxAO/vegHYNKvsIcMMUF9z2kHA0qwUbq5oN8K85g==
+  dependencies:
+    "@angular-devkit/core" "8.3.8"
     rxjs "6.4.0"
 
 "@angular/animations@~8.2.1":
@@ -223,14 +242,14 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/pwa@^0.803.6":
-  version "0.803.6"
-  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.803.6.tgz#16fc0c23e1e0f516578aae886438eab6cdcff028"
-  integrity sha512-jYR7ZAjXh08iG2oWQNxYSyGBYgFsUpBIN0gr0O7B1G7ARRLtRfNwgucxTEld0muPjEh0mOTro+eeFAGveyuu4A==
+"@angular/pwa@^0.803.8":
+  version "0.803.8"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.803.8.tgz#af08d78a61129e6b400e88f3807cd94d1c73d1e9"
+  integrity sha512-ZLhE5z4krHErkPF0BhpL/jdNYKfJZWcNgiWArvltB0FsHN+f/D+CsvQ4b48NoX5nwQVZ4/jhSCGEp7AHWxSmAQ==
   dependencies:
-    "@angular-devkit/core" "8.3.6"
-    "@angular-devkit/schematics" "8.3.6"
-    "@schematics/angular" "8.3.6"
+    "@angular-devkit/core" "8.3.8"
+    "@angular-devkit/schematics" "8.3.8"
+    "@schematics/angular" "8.3.8"
     parse5-html-rewriting-stream "5.1.0"
 
 "@angular/router@~8.2.1":
@@ -954,6 +973,14 @@
   dependencies:
     "@angular-devkit/core" "8.3.6"
     "@angular-devkit/schematics" "8.3.6"
+
+"@schematics/angular@8.3.8":
+  version "8.3.8"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-8.3.8.tgz#9b815c505517d5b23da0ebec3e7c0a8b4ed11b95"
+  integrity sha512-TOueA7gfQ5P7iDS593EBtLtqqgl6Pvg6snWqbMaW74VUxd5euAuPMPKkoJPddKF+cWjGYZgF09tp7G0kbuLGqw==
+  dependencies:
+    "@angular-devkit/core" "8.3.8"
+    "@angular-devkit/schematics" "8.3.8"
 
 "@schematics/update@0.803.6":
   version "0.803.6"
