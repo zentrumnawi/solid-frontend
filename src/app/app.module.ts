@@ -97,7 +97,5 @@ export class AppModule {
     addIcon('profile');
     addIcon('quiz');
     addIcon('search');
-
-
   }
 }

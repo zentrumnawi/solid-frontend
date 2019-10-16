@@ -1,4 +1,4 @@
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {BreakpointObserver} from '@angular/cdk/layout';
 import {MatDrawer} from '@angular/material/sidenav';
 import {TitleService} from './services/title.service';
 import {BaseComponent} from './shared/abstract/base.component';
@@ -24,7 +24,7 @@ export class AppComponent extends BaseComponent implements OnInit {
 
   public ngOnInit() {
     this._breakpointObserver.observe([
-      Breakpoints.Large
+      '(min-width: 1000px)',
     ]).subscribe(isFixed => {
         const newFixedLayout = isFixed.matches;
       if (newFixedLayout) {

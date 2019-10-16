@@ -9,7 +9,7 @@
     </button>
   </mat-form-field>
   <button (click)="onSearchToggleClick()" mat-icon-button>
-    <mat-icon>search</mat-icon>
+    <mat-icon svgIcon="search"></mat-icon>
   </button>
   <button (click)="toggleSort()" mat-icon-button>
     <mat-icon>{{ SortAscending ? 'clear' : 'sort' }}</mat-icon>
@@ -29,7 +29,9 @@
            [src]="entry.image_file.small" alt="Bild des Minerals"/>
     </mat-card-content>
   </mat-card>
-  <mat-card *ngIf="Entries.length === 0 && LoadingCompleted">
-    <mat-card-content>Keine Suchergebnisse vorhanden</mat-card-content>
+  <mat-card *ngIf="Entries.length === 0 && LoadingCompleted" class="no-results-card">
+    <mat-card-content>
+      <span>Zu <i>{{ SearchValue }}</i> konnten leider keine Ergebnisse gefunden werden.</span>
+    </mat-card-content>
   </mat-card>
 </div>

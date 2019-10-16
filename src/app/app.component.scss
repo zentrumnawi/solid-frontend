@@ -14,10 +14,16 @@ $background: map-get($app-theme, background);
     max-height: 100%;
   }
 
+  @media ($mat-xsmall) {
+    mat-sidenav-container {
+      top: 64px;
+    }
+  }
+
   mat-sidenav-container {
     position: absolute;
-    top: 64px;
     left: 0;
+    top: 56px;
     right: 0;
     bottom: 0;
   }

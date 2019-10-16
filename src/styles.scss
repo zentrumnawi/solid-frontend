@@ -5,11 +5,20 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
 html, body {
   height: 100%;
   box-sizing: border-box;;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .spacer {
   flex: 1 0 auto;
