@@ -4,6 +4,7 @@ import {ApiHttpClient} from '../../../shared/abstract/api-http-client';
 import {Store} from "@ngxs/store";
 import {QuizQuestion, QuizQuestionType} from "../state/quiz.model";
 import {QuizQuestionsAdd} from "../state/quiz.actions";
+import {environment} from "../../../../environments/environment";
 
 @Injectable()
 export class QuizService extends ApiHttpClient {
@@ -11,7 +12,7 @@ export class QuizService extends ApiHttpClient {
     private _store: Store,
     httpClient: HttpClient,
   ) {
-    super(httpClient, ['api']);
+    super(httpClient, [environment.apiUrlQuiz, 'api']);
   }
 
   public loadQuestions() {
