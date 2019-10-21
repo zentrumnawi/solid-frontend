@@ -15,6 +15,7 @@ export class QuizQuestionComponent implements OnChanges {
   public QuestionTypes = QuizQuestionType;
   public SelectedAnswers: number[] = [];
   public ShowAnswers = false;
+  public Correct?: boolean;
 
   constructor(private _store: Store) {}
 
@@ -24,6 +25,22 @@ export class QuizQuestionComponent implements OnChanges {
 
   public onShowAnswersClick() {
     this.ShowAnswers = true;
+    if (this.Question) {
+      this.Correct = true;
+      let correctAnswers = 0;
+      this.Question.answers.forEach(answer => {
+        if (answer.correct) {
+          correctAnswers++;
+          if (!this.SelectedAnswers.includes(answer.id)) {
+            this.Correct = false;
+          }
+        }
+      });
+      if (this.SelectedAnswers.length !== correctAnswers) {
+        this.Correct = false;
+      }
+      console.log(this.ShowAnswers, this.Correct)
+    }
   }
 
   public trackByFn(index: number, item: QuizAnswer) {
@@ -31,21 +48,8 @@ export class QuizQuestionComponent implements OnChanges {
   }
 
   onNextQuestionClick() {
-    if (this.Question) {
-      let correct = true;
-      let correctAnswers = 0;
-      this.Question.answers.forEach(answer => {
-        if (answer.correct) {
-          correctAnswers++;
-          if (!this.SelectedAnswers.includes(answer.id)) {
-            correct = false;
-          }
-        }
-      });
-      if (this.SelectedAnswers.length !== correctAnswers) {
-        correct = false;
-      }
-        this._store.dispatch(new QuizQuestionAnswered(correct));
+    if (this.Question && this.Correct !== undefined) {
+      this._store.dispatch(new QuizQuestionAnswered(this.Correct));
     }
   }
 
@@ -53,6 +57,7 @@ export class QuizQuestionComponent implements OnChanges {
     if (changes.Question.previousValue !== changes.Question.currentValue) {
       this.ShowAnswers = false;
       this.SelectedAnswers = [];
+      this.Correct = undefined;
     }
   }
 
@@ -68,13 +73,13 @@ export class QuizQuestionComponent implements OnChanges {
     if (!this.ShowAnswers) {
       return false;
     }
-    return answer.correct && this.SelectedAnswers.includes(answer.id);
+    return answer.correct;// && this.SelectedAnswers.includes(answer.id);
   }
 
   isAnswerIncorrect(answer: QuizAnswer) {
     if (!this.ShowAnswers) {
       return false;
     }
-    return !answer.correct && this.SelectedAnswers.includes(answer.id);
+    return !answer.correct;// && this.SelectedAnswers.includes(answer.id);
   }
 }

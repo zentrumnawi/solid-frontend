@@ -24,29 +24,34 @@ mat-radio-group {
       div.mat-radio-label-content {
         display: inline-flex;
         flex-direction: column;
+        width: calc(100% - 28px);
+        white-space: normal;
       }
     }
 
     &.correct {
       ::ng-deep {
-        .mat-radio-inner-circle {
-          background-color: mat-color($accent);
+        //.mat-radio-inner-circle {
+        //  background-color: mat-color($accent);
+        //}
+        .mat-radio-outer-circle {
+          border-color: mat-color($accent);
         }
       }
     }
 
     &.incorrect {
       ::ng-deep {
-        .mat-radio-inner-circle {
-          background-color: mat-color($warn);
+        //.mat-radio-inner-circle {
+        //  background-color: mat-color($warn);
+        //}
+        .mat-radio-outer-circle {
+          border-color: mat-color($warn);
         }
       }
     }
   ;
 
-    span.atext {
-      height: 20px;
-    }
   }
 }
 
@@ -61,10 +66,13 @@ mat-card-content.multiple-choice {
       span.mat-checkbox-label {
         display: flex;
         flex-direction: column;
+        width: calc(100% - 24px);
+        white-space: normal;
       }
 
       label.mat-checkbox-layout {
         vertical-align: top;
+        width: 100%;
       }
 
       div.mat-checkbox-inner-container {
@@ -89,10 +97,10 @@ mat-card-content.multiple-choice {
     }
   }
 
-  span.atext {
-    display: inline-block;
-    height: 24px;
-  }
+  //span.atext {
+  //  display: inline-block;
+  //  height: 24px;
+  //}
 }
 
 span.feedback {

@@ -15,7 +15,8 @@
           >
             <span Md [data]="answer.atext" class="atext"></span>
             <span *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
-                  class="feedback">{{ answer.correct ? answer.feedback_correct : answer.feedback_incorrect }}</span>
+                  Md [data]="answer.correct ? answer.feedback_correct : answer.feedback_incorrect"
+                  class="feedback"></span>
           </mat-radio-button>
         </mat-radio-group>
       </mat-card-content>
@@ -30,14 +31,16 @@
         >
           <span Md [data]="answer.atext" class="atext"></span>
           <span *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
-                class="feedback">{{ answer.correct ? answer.feedback_correct : answer.feedback_incorrect }}</span>
+                Md [data]="answer.correct ? answer.feedback_correct : answer.feedback_incorrect"
+                class="feedback"></span>
         </mat-checkbox>
       </mat-card-content>
     </ng-container>
     <mat-card-actions>
       <button (click)="onShowAnswersClick()" *ngIf="!ShowAnswers" color="primary" mat-raised-button>Lösungen anzeigen
       </button>
-      <button (click)="onNextQuestionClick()" *ngIf="ShowAnswers" color="primary" mat-raised-button>nächste Frage
+      <button (click)="onNextQuestionClick()" *ngIf="ShowAnswers" color="primary"
+              mat-raised-button>{{ Correct ? 'Richtig,' : ' Falsch,'}} nächste Frage
       </button>
     </mat-card-actions>
   </mat-card>
