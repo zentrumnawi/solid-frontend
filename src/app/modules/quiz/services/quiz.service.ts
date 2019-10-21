@@ -17,7 +17,7 @@ export class QuizService extends ApiHttpClient {
 
   public loadQuestions() {
     this.get<QuizQuestion[]>('quizquestion').subscribe(data => {
-      data.forEach(d => d.qtype = QuizQuestionType.MultipleChoice);
+      //data.forEach(d => d.qtype = QuizQuestionType.MultipleChoice);
       this._store.dispatch(new QuizQuestionsAdd(data));
     });
   }
