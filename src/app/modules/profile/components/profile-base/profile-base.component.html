@@ -12,14 +12,14 @@
                         [selectedProfileId]="SelectedProfileId"></app-profile-tree>
     </ng-template>
   </div>
-  <div *ngIf="SelectedProfile" class="profile">
+  <ng-container *ngIf="SelectedProfile">
     <mat-toolbar color="accent">
       {{ SelectedProfile.variety ? SelectedProfile.variety : SelectedProfile.mineralName }}
       <div class="spacer"></div>
       <button (click)="swipeLeft()" [disabled]="!CanSwipeLeft" mat-icon-button>
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button (click)="selectProfile()" mat-icon-button>
+      <button (click)="selectProfile()" *ngIf="!SplitLayout" mat-icon-button>
         <mat-icon>expand_less</mat-icon>
       </button>
       <button (click)="swipeRight()" [disabled]="!CanSwipeRight" mat-icon-button>
@@ -27,5 +27,5 @@
       </button>
     </mat-toolbar>
     <app-profile-detail (panend)="onPanEnd($event)" [profile]="SelectedProfile"></app-profile-detail>
-  </div>
+  </ng-container>
 </div>

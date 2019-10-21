@@ -1,6 +1,6 @@
 :host {
   display: block;
-  height: calc(100% - 1rem);
+  height: 100%; //calc(100% - 1rem);
   background-color: white;
 }
 
@@ -11,16 +11,20 @@ mat-form-field {
 div.content-container {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 100%;
-  grid-template-areas: 'allContent';
+  grid-template-rows: 64px 1fr;
+  overflow: hidden;
 
   &.splitLayout {
-    grid-template-areas: 'tree profile';
+    grid-template-areas: 'tree toolbar' 'tree profile';
     grid-template-columns: 0.5fr 0.5fr;
+    grid-template-rows: 64px 1fr;
     max-height: 100%;
-    overflow: hidden;
 
-    div.profile {
+    mat-toolbar {
+      grid-area: toolbar;
+    }
+
+    app-profile-detail {
       grid-area: profile;
       overflow-y: auto;
     }
@@ -31,9 +35,17 @@ div.content-container {
     }
   }
 
-  div.profile,
   div.tree {
-    grid-area: allContent;
+    grid-row: 1 / 2;
+  }
+
+  mat-toolbar {
+    grid-row: 1;
+  }
+
+  app-profile-detail {
+    grid-row: 2;
+    overflow-y: auto;
   }
 
   height: 100%;
