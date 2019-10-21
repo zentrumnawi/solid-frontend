@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {Message, messages} from "./message";
 
 @Component({
   selector: 'app-landing-page',
@@ -8,6 +9,7 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 })
 export class LandingPageComponent {
   public ShowLanding = false;
+  public Messages: Message[];
 
   constructor(breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe([
@@ -18,7 +20,10 @@ export class LandingPageComponent {
       if (result.matches && sessionStorage.getItem('hide_landing') !== 'true') {
         this.ShowLanding = true;
       }
-    })
+    });
+    const now = new Date(Date.now());
+    this.Messages = messages.filter(m => (!m.validFrom || m.validFrom <= now) && (!m.validTo || m.validTo > now))
+    console.log(this.Messages);
   }
 
   public onCloseClick() {

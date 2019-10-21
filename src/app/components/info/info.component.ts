@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+const version = require('../../../environments/version.json');
 
 @Component({
   selector: 'app-info',
@@ -6,5 +7,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./info.component.scss'],
 })
 export class InfoComponent {
-
+  public Version = version;
 }

@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  preview: true,
+  preview: false,
   production: false,
   apiUrl: 'http://localhost:4200',
   apiUrlQuiz: 'http://localhost:4200',

@@ -11,7 +11,8 @@
     "heroku-postbuild": "if [ $IS_STAGING = true ]; then yarn build:staging; else yarn build:prod; fi;",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ts-node git.versions.ts"
   },
   "private": true,
   "dependencies": {
