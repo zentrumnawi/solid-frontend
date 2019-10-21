@@ -1,10 +1,24 @@
+@import "../../../../../theme";
+
+$background: map-get($app-theme, background);
+
+:host {
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  height: 100%;
+}
+
 iframe {
   width: 100%;
-  height: calc(100% - 70px);
   border: none;
   overflow: hidden;
 }
 
 mat-select {
   max-width: 5em;
+}
+
+div.model-info {
+  padding: 0.5em;
+  border-top: 1px solid mat-color($background, status-bar);
 }

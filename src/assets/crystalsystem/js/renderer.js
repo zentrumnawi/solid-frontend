@@ -6,7 +6,7 @@ const settings = {
   display: {
     axis: false,
     points: false,
-    faces: false,
+    faces: true,
   },
 };
 
@@ -34,18 +34,18 @@ animate();
 
 function init() {
   scene = new THREE.Scene();
-  
+
   // CAMERA
   // Perspective camera
   perspectivecam = new THREE.PerspectiveCamera(50, window.innerWidth  / window.innerHeight, 1, 1000);
   scene.add(perspectivecam);
   perspectivecam.position.set(15, 20, 30);
-  
+
   //Orthographic camera (isometric view)
   isocam = new THREE.OrthographicCamera(window.innerWidth / -50, window.innerWidth / 50, window.innerHeight / 50 , window.innerHeight / -50, 1, 1000);
   scene.add(isocam);
   isocam.position.set(15, 20, 30);
-  
+
   //set default camera
   camera = perspectivecam;
 
@@ -59,12 +59,12 @@ function init() {
   isocontrols.minDistance = 20;
   isocontrols.maxDistance = 50;
   isocontrols.maxPolarAngle = Math.PI / 2;
- 
+
   perspectivecontrols = new THREE.OrbitControls(perspectivecam, renderer.domElement);
   perspectivecontrols.minDistance = 20;
   perspectivecontrols.maxDistance = 50;
   perspectivecontrols.maxPolarAngle = Math.PI / 2;
- 
+
   //add light
   scene.add(new THREE.AmbientLight(0xFFFFFF));
 
@@ -130,7 +130,7 @@ function initModel(geoStr) {
     color: 0x0080ff,
     map: texture,
     size: 1,
-    alphaTest: 0.5  
+    alphaTest: 0.5
   });
 
   const pointsGeometry = new THREE.BufferGeometry().setFromPoints(vertices);
@@ -197,7 +197,7 @@ function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
-  
+
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
@@ -210,7 +210,7 @@ function animate() {
 
 function render() {
   renderer.render( scene, camera )
-  
+
 }
 
 function toggleAxis() {

@@ -1,39 +1,31 @@
 <mat-toolbar color="accent">
   <span>Kristallsysteme</span>
   <div class="spacer"></div>
-  <button mat-icon-button (click)="onToggleSolidClick()" matTooltip="Toggle solid">
+  <button (click)="onToggleSolidClick()" *ngIf="ShowInPreview" mat-icon-button matTooltip="Toggle solid">
     <mat-icon>check_box_outline_blank</mat-icon>
   </button>
   <button mat-icon-button (click)="onToggleAxisClick()" matTooltip="Toggle axis">
     <mat-icon>merge_type</mat-icon>
   </button>
-  <button mat-icon-button (click)="onTogglePointsClick()" matTooltip="Toggle points">
+  <button (click)="onTogglePointsClick()" *ngIf="ShowInPreview" mat-icon-button matTooltip="Toggle points">
     <mat-icon>apps</mat-icon>
   </button>
-  &nbsp;
-  <button mat-icon-button (click)="onTogglePerspectiveClick()" matTooltip="Toggle perspective">
+  <button (click)="onTogglePerspectiveClick()" *ngIf="ShowInPreview" mat-icon-button matTooltip="Toggle perspective">
     <mat-icon>control_camera</mat-icon>
   </button>
-  &nbsp;
   <mat-select placeholder="Ebene" [ngModel]="Layer" (ngModelChange)="onLayerSelectChange($event)" matTooltip="Ebene">
-    <mat-option [value]="0">&#123; . . . &#125;</mat-option>
-    <mat-option [value]="100">100</mat-option>
-    <mat-option [value]="110">110</mat-option>
-    <mat-option [value]="111">111</mat-option>
+    <mat-option *ngFor="let layer of SelectedConfig.layers" [value]="layer.name"><span Md [data]="layer.title"></span>
+    </mat-option>
   </mat-select>
-
-  <button mat-icon-button (click)="onInfoClick()" matTooltip="Modellbeschreibung">
-    <mat-icon>info</mat-icon>
+  <button (click)="onInfoClick()" *ngIf="ShowInPreview" mat-icon-button matTooltip="Legende">
+    <mat-icon>help</mat-icon>
   </button>
-  &nbsp;
   <mat-select placeholder="Modell" [ngModel]="Model" (ngModelChange)="onModelSelectChange($event)" matTooltip="Modell">
-    <mat-option value="cubic">kubisch</mat-option>
-    <mat-option value="hexagonal">hexagonal</mat-option>
-    <mat-option value="monoclinic">monoklin</mat-option>
-    <mat-option value="orthorhombic">orthorhombisch</mat-option>
-    <mat-option value="trigonal">trigonal</mat-option>
-    <mat-option value="tetragonal">tetragonal</mat-option>
-    <mat-option value="triclinic">triklin</mat-option>
+    <mat-option *ngFor="let config of Configs" [value]="config.name">{{ config.displayName }}</mat-option>
   </mat-select>
 </mat-toolbar>
 <iframe #iframe src="/assets/crystalsystem/iframe.html"></iframe>
+<div class="model-info">
+  <h3>{{ SelectedConfig.displayName }}</h3>
+  <p Md [data]="SelectedConfig.description"></p>
+</div>

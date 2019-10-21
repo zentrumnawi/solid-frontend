@@ -1,7 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
-import {InfoOverlayComponent} from "../info-overlay/info-overlay.component";
+import {environment} from "../../../../../environments/environment";
+import {configurations} from "./crystalsystemdetail-configuration";
 
 type Models = 'cubic' | 'hexagonal' | 'monoclinic' | 'orthorhombic' | 'trigonal' | 'tetragonal' | 'triclinic';
 
@@ -11,26 +11,15 @@ type Models = 'cubic' | 'hexagonal' | 'monoclinic' | 'orthorhombic' | 'trigonal'
   styleUrls: ['./crystalsystemdetail.component.scss']
 })
 export class CrystalsystemdetailComponent {
-  @ViewChild('iframe', { static: false}) public IFrame!: ElementRef;
-  public Layer = 0;
-  public Model: Models = 'cubic';
-  public Descriptions: { [key: string]: string} = {};
-  public ModelNames = {
-      cubic: 'kubisch',
-      hexagonal: 'hexagonal',
-      monoclinic: 'monoklin',
-      orthorhombic: 'orthorhombisch',
-      trigonal: 'trigonal',
-      tetragonal: 'tetragonal',
-      triclinic: 'triklin'
-    };
+  @ViewChild('iframe', {static: false}) public IFrame!: ElementRef;
+  public Configs = configurations;
+  public SelectedConfig = configurations[0];
+  public Layer = configurations[0].layers[0].name;
+  public ShowInPreview = environment.preview;
+  public Model = this.SelectedConfig.name;
 
-  constructor(http: HttpClient, private _dialog: MatDialog) {
-    http.get<{[key: string]: string}>('/assets/crystalsystem/geometry/infotext.json').toPromise().then(v => {
-      this.Descriptions = v;
-    });
+  constructor(private _dialog: MatDialog) {
   }
-
 
   public onToggleSolidClick() {
     this.IFrame.nativeElement.contentWindow.toggleFaces();
@@ -54,16 +43,19 @@ export class CrystalsystemdetailComponent {
   }
 
   public onModelSelectChange(newModel: Models) {
-    this.Model = newModel;
+    this.SelectedConfig = this.Configs.find(c => c.name === newModel)!;
+    this.Model = this.SelectedConfig.name;
+    this.Layer = this.SelectedConfig.layers[0].name;
     this.IFrame.nativeElement.contentWindow.switchModel(newModel);
+    this.IFrame.nativeElement.contentWindow.toggleHighlight(this.Layer);
   }
 
   onInfoClick() {
-    this._dialog.open(InfoOverlayComponent, {
-      data: {
-        title: this.ModelNames[this.Model],
-        text: this.Descriptions[this.Model]
-      }
-    });
+    // this._dialog.open(InfoOverlayComponent, {
+    //   data: {
+    //     title: this.ModelNames[this.Model],
+    //     text: this.Descriptions[this.Model]
+    //   }
+    // });
   }
 }
