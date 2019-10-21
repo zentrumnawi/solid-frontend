@@ -250,14 +250,14 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/pwa@^0.803.9":
-  version "0.803.9"
-  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.803.9.tgz#332f15b89f81ce6f379235e32734d14e38715022"
-  integrity sha512-x3PMgEVGLolFQ+e5Pj9ppcm3KwSGhut6Ibe6Zy3H9p064H76FSgGrh/PlatUHHAtWHVe2GYb3p7RKXqRrwsK+g==
+"@angular/pwa@^0.803.12":
+  version "0.803.12"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.803.12.tgz#e24cd483f89d5aa6d11b826176c02cef3768f2c5"
+  integrity sha512-XEB2mKFBYwnIfw2PQWwUOkD10mYsVTi4MnawTfO3lhCrx4wSr0pueUDRbrN+6Jj+B0lRiXW9VKbYziT+rElLHg==
   dependencies:
-    "@angular-devkit/core" "8.3.9"
-    "@angular-devkit/schematics" "8.3.9"
-    "@schematics/angular" "8.3.9"
+    "@angular-devkit/core" "8.3.12"
+    "@angular-devkit/schematics" "8.3.12"
+    "@schematics/angular" "8.3.12"
     parse5-html-rewriting-stream "5.1.0"
 
 "@angular/router@~8.2.1":
