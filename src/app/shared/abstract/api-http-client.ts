@@ -17,7 +17,7 @@ export abstract class ApiHttpClient {
     baseUrl: string | number | (number | string)[],
   ) {
     if (Array.isArray(baseUrl)) {
-      this._baseUrl = baseUrl.reduce<string>((url, part) => `${url}/${part.toString()}`, baseUrl[0].toString().startsWith('http') ? '' : environment.apiUrl);
+      this._baseUrl = baseUrl.reduce<string>((url, part) => url === '' ? part.toString() : `${url}/${part.toString()}`, baseUrl[0].toString().startsWith('http') ? '' : environment.apiUrl);
     } else {
       this._baseUrl = `${environment.apiUrl}/${baseUrl.toString}`;
     }
