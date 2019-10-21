@@ -7,5 +7,5 @@ export interface Message {
 }
 
 export const messages: Message[] = [
-  { id: 1, title: 'Version 1.0.0', content: 'Dies ist die erste Version der App.'},
+  { id: 1, title: 'Version 1.0.0', content: 'Dies ist die erste Version im neuen Release der App. In den kommenden Tagen werden weitere Updates folgen. Stay tuned!'},
 ];
