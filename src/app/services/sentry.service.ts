@@ -6,7 +6,7 @@ if (environment.production) {
   const version = require('../../environments/version.json');
   Sentry.init({
     dsn: environment.sentryUrl,
-    release: version.hash,
+    release: !environment.preview && version.semver && version.semver.version ? version.semver.version : version.hash,
     beforeSend(event) {
       // Check if it is an exception, if so, show the report dialog
       if (event.exception) {
