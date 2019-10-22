@@ -1,4 +1,3 @@
-# Habitus
 Der *Habitus* ist besonders wichtig zur äußeren Beschreibung eines Minerals. Er bezeichnet die die Größenverhältnisse der verschiedenen Kristallflächen eines Kristalls zueinander.
 
 Der Habitus kann innerhalb einer Mineralart stark variieren und bei idiomorphem Wachstum wichtige Hinweise auf das Kristallsystem geben und eine Klassifikation erleichtern.

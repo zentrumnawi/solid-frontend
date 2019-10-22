@@ -10,7 +10,7 @@ $background: map-get($app-theme, background);
 
 iframe {
   width: 100%;
-  height: calc(100% - 70px);
+  height: 100%;
   border: none;
   overflow: hidden;
 }

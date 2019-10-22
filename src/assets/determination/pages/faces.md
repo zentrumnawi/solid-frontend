@@ -1,4 +1,3 @@
-# Tracht 
 Die *Tracht* beschreibt die Gesamtheit der ausgebildeten Flächen eines Kristalls, also die Kombination der einzelnen Kristallflächen zueinander. Das heißt auch, dass Flächen an einem bestimmten Handstück in einem zweiten Handstück als Kanten oder Ecken ausgebildet auftreten können.
 
 Die Tracht stellt einen gewissen Gegensatz zum Habitus dar, welcher lediglich die Größenverhältnisse einzelner Flächen zueinander beschreibt. Tracht und Habitus bilden zusammen die *Kristallgestalt*. 

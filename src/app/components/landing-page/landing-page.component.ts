@@ -23,7 +23,6 @@ export class LandingPageComponent {
     });
     const now = new Date(Date.now());
     this.Messages = messages.filter(m => (!m.validFrom || m.validFrom <= now) && (!m.validTo || m.validTo > now))
-    console.log(this.Messages);
   }
 
   public onCloseClick() {

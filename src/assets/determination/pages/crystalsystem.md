@@ -1,4 +1,3 @@
-# Kristallsystem
 Es gibt 7 verschiedene Kristallsysteme. Die Zahl ergibt sich aus den physikalisch möglichen Kombinationen von Winkeln und Flächen zueinander.
 
 Bei einem idiomorphen Kristall ist das Kristallsystem an der Ausbildung der Flächen zueinander leicht erkennbar. Die Unterscheidung der Kristallsysteme wird durch Suchen und Finden verschiedener Symmetrieoperationen (Spiegelebenen & Rotationsachsen) in den definierten kristallographischen Richtungen und durch die Betrachtung des Habitus möglich.

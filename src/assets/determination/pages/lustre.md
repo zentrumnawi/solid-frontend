@@ -1,4 +1,3 @@
-# Glanz 
 Um den *Glanz* zu erkennen, sollte man die Kristallflächen des Mineralhandstückes in möglichst hellem Licht (am besten eignet sich direktes Sonnenlicht) betrachten. Je nach Intensität des Glanzes, also der Intensität der Reflexion des Lichtes, wird der Glanz üblicherweise in folgende Arten unterschieden:
 
 - Glasglanz - entspricht dem Glanz von einfachem Fensterglas.

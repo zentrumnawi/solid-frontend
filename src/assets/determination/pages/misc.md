@@ -1,4 +1,3 @@
-# Besonderheiten 
 - Pleochroismus: Weist das Mineral Pleochroismus auf?
 - Spezifisches Gewicht (Dichte): Ist das Mineral ungewöhnlich schwer/leicht?
 - Magnetismus: Ist das Mineral magnetisch?

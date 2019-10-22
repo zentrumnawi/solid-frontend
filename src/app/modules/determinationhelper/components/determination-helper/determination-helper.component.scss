@@ -1,44 +1,6 @@
-p {
-  text-align: justify;
-}
-
-.cols-2 {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "text1 text2" "img1 img2";
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
-
-  @media screen and (max-width: 500px) {
-    grid-template-columns: 100%;
-    grid-template-areas: "text1" "img1" "text2" "img2";
-  }
-
-  :nth-child(1) {
-    grid-area: text1;
-  }
-
-  :nth-child(2) {
-    grid-area: text2;
-  }
-
-  :nth-child(3) {
-    grid-area: img1;
-  }
-
-  :nth-child(4) {
-    grid-area: img2;
-  }
-}
-
 .float-right {
   float: right;
   grid-area: next;
-}
-
-app-image-card {
-  margin-top: auto;
-  margin-bottom: 0;
 }
 
 .step-actions {
@@ -47,11 +9,6 @@ app-image-card {
   grid-template-areas: "previous header next";
   grid-template-columns: 40px auto 40px;
   width: 100%;
-}
-
-
-h3.mat-line.gloss {
-  font-weight: bold;
 }
 
 h1 {
