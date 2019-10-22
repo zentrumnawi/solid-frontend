@@ -1,9 +1,18 @@
 const { gitDescribeSync } = require('git-describe');
-const { writeFileSync, existsSync } = require('fs');
+const { writeFileSync, existsSync, readFileSync } = require('fs');
 
 let versionInfo: any;
 
-if (existsSync('.git')) {
+const p = JSON.parse(readFileSync('package.json', 'utf8'));
+
+if (p.version) {
+  const version = {
+    semver: {
+      version: p.version,
+    }
+  };
+  versionInfo = JSON.stringify(version, null, 2);
+} else if (existsSync('.git')) {
   const gitInfo = gitDescribeSync();
   versionInfo = JSON.stringify(gitInfo, null, 2);
 } else {
