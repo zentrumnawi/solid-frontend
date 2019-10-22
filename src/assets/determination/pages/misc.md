@@ -1,0 +1,11 @@
+# Besonderheiten 
+- Pleochroismus: Weist das Mineral Pleochroismus auf?
+- Spezifisches Gewicht (Dichte): Ist das Mineral ungewöhnlich schwer/leicht?
+- Magnetismus: Ist das Mineral magnetisch?
+- Phantomausbildung: Weist das Mineral Phantome auf? 
+- Verwachsungen: Ist das Mineral mit anderen Einkristallen oder Mineralen verwachsen? 
+- Paragenesen: Tritt das Mineral typischerweise mit anderen Mineralen zusammen auf?
+- Verzwilligungen: Treten besondere Verzwilligungserscheinungen auf? 
+- Einschlüsse: Zeigt das Mineral viele oder besondere Einschlüsse? 
+- Zonarbau: Ist makroskopisch eine Zonierung innerhalb des Minerals zu erkennen? 
+- Weiteres: Treten andere Besonderheiten auf?
