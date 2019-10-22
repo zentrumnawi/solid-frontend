@@ -1,11 +1,12 @@
-Der *Bruch* ist ein wichtiges Merkmal von Mineralen und beschreibt das ungerichtete Brechen des Minerals. Ungerichtet bedeutet, dass der Verlauf des Bruches keiner kristallographischen Richtung folgt. Es werden folgende übliche Brucharten unterschieden: 
-- muschelig
-- uneben
-- glatt
-- hakig (bzw. hakig-biegsam)
-- glimmerartig (bzw. blättrig)
-- splittrig
-- selten auch faserig und erdig 
+Die *Spaltbarkeit* folgt im Gegensatz zum Bruch einer bestimmten kristallographischen Richtung. Um sie zu untersuchen, ist es wichtig, deutliche Spaltwinkel oder -formen am Mineralhandstück zu entdecken. Da diese nicht in allen Handstücken deutlich zu sehen sind, ist es notwendig, die vorhandenen idiomorph ausgebildeten Flächen im Verhältnis zu anderen idiomorph ausgebildeten Flächen genau zu untersuchen und die Winkel zwischen den Flächen festzustellen. Durch die unterschiedlichen Spaltwinkel lassen sich Minerale meist gut unterscheiden. 
+Es werden folgende übliche Spaltbarkeiten unterschieden:
+- keine 
+- undeutlich
+- deutlich
+- gut
+- vollkommen
+- sehr vollkommen 
 
-An idiomorphen Kristallen ist meist kein Bruch zu erkennen, da die idiomorphen Kristallflächen den Bruch nur zeigen, wenn sie beschädigt sind. Der Bruch muss klar von der Spaltbarkeit getrennt werden, welche im nächsten Schritt untersucht wird.
- 
+Die Angabe der Spaltbarkeit wird oft durch eine entsprechende Richtungsangabe ergänzt.
+
+Allein durch die Betrachtung der äußeren Form und des Verwitterungszustands des Minerals kann man gute bis sehr vollkommene Spaltbarkeit sehr oft bestimmen, da diese Minerale stets in typischen Formen verwittern, die das Kristallsystem zeigen wie beispielsweise Calcit, der typische Spaltrhomboeder aufweist. 
