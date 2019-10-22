@@ -1,6 +1,6 @@
 {
   "name": "app-geomat",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "node web-server.js",
