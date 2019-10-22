@@ -19,7 +19,7 @@ export abstract class ApiHttpClient {
     if (Array.isArray(baseUrl)) {
       this._baseUrl = baseUrl.reduce<string>((url, part) => url === '' ? part.toString() : `${url}/${part.toString()}`, baseUrl[0].toString().startsWith('http') ? '' : environment.apiUrl);
     } else {
-      this._baseUrl = `${environment.apiUrl}/${baseUrl.toString}`;
+      this._baseUrl = `${environment.apiUrl}/${baseUrl.toString()}`;
     }
   }
 
@@ -63,6 +63,7 @@ export abstract class ApiHttpClient {
 
   protected post<T>(body: any, relativeUrl?: string): Observable<T> {
     const url = relativeUrl ? `${this._baseUrl}/${relativeUrl}` : this._baseUrl;
+    console.log(url);
     return this._http.post<T>(url, body, {
       headers: {
         'Accept-Language': 'de-DE'

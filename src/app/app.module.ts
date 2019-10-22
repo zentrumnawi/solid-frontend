@@ -1,5 +1,5 @@
 import {ErrorHandler, NgModule} from '@angular/core';
-import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
+import {BrowserModule, DomSanitizer, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
 
@@ -28,6 +28,15 @@ import {LandingPageComponent} from './components/landing-page/landing-page.compo
 import {MatGridListModule} from "@angular/material/grid-list";
 import {ServiceWorkerModule} from '@angular/service-worker';
 
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = {
+    pan: {
+      direction: 6
+    },
+    'pinch': {enable: false},
+    'rotate': {enable: false}
+  }
+}
 
 @NgModule({
   declarations: [
@@ -71,12 +80,17 @@ import {ServiceWorkerModule} from '@angular/service-worker';
       provide: ErrorHandler,
       useClass: SentryErrorHandler
     },
-    { provide: RouteReuseStrategy,
+    {
+      provide: RouteReuseStrategy,
       useClass: CustomRouteReuseStrategy,
     },
     {
       provide: RouterStateSerializer,
       useClass: CustomRouterStateSerializer
+    },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
     }
   ],
   bootstrap: [AppComponent],

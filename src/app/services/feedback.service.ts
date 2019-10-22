@@ -13,7 +13,7 @@ export class FeedbackService extends ApiHttpClient {
     private _title: TitleService,
     http: HttpClient,
   ) {
-    super(http, 'feedback');
+    super(http, ['api', 'feedback']);
   }
 
   public showFeedbackDialog() {

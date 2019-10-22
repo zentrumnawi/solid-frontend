@@ -1,5 +1,5 @@
 <div #contentContainer [class.splitLayout]="SplitLayout" class="content-container">
-  <div *ngIf="SplitLayout || !SelectedProfile" class="tree">
+  <ng-container *ngIf="SplitLayout || !SelectedProfile">
     <mat-form-field color="accent">
       <mat-label>Suchen</mat-label>
       <input [formControl]="Filter" matInput type="text"/>
@@ -11,7 +11,7 @@
       <app-profile-tree (onProfileSelect)="selectProfile($event)"
                         [selectedProfileId]="SelectedProfileId"></app-profile-tree>
     </ng-template>
-  </div>
+  </ng-container>
   <ng-container *ngIf="SelectedProfile">
     <mat-toolbar color="accent">
       {{ SelectedProfile.variety ? SelectedProfile.variety : SelectedProfile.mineralName }}

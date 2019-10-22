@@ -4,7 +4,6 @@ import {FeedbackService} from "../../services/feedback.service";
 import {oc} from "ts-optchain";
 import {Store} from "@ngxs/store";
 
-
 const version = require('../../../environments/version.json');
 
 @Component({
@@ -14,7 +13,7 @@ const version = require('../../../environments/version.json');
 })
 export class InfoComponent extends BaseComponent {
   public ActiveUrl = '';
-  public Version = version;
+  public Version = version && version.semver && version.semver.version ? version.semver.version : 'Version unbekannt';
 
   constructor(
     private _store: Store,
