@@ -1,17 +1,27 @@
 export const QuizFeedback = {
   "lt25": [
-    "Du hast {{Correct}} von {{Count}} Fragen richtig beantwortet! Als richtig wurde eine Frage nur dann gezählt, wenn alle richtigen Antworten und keine falschen ausgewählt wurden.",
+    "{{correctPercentage}}% richtig - da ist noch etwas Luft nach oben...",
+    "Einfach noch eine Runde starten - da geht noch was!",
+    "Beim nächsten Mal schaffst Du bestimmt mehr als ein Viertel!",
   ],
   "lt50": [
-    "Du hast {{Correct}} von {{Count}} Fragen richtig beantwortet! Als richtig wurde eine Frage nur dann gezählt, wenn alle richtigen Antworten und keine falschen ausgewählt wurden.",
+    "{{correctPercentage}}% - noch nicht die Hälfte, aber da war schon Schönes dabei.",
+    "Ein bisschen musst Du noch üben.",
+    "In der nächsten Runde werden es bestimmt noch mehr richtige Antworten!",
   ],
   "lt75": [
-    "Du hast {{Correct}} von {{Count}} Fragen richtig beantwortet! Als richtig wurde eine Frage nur dann gezählt, wenn alle richtigen Antworten und keine falschen ausgewählt wurden.",
+    "{{correctPercentage}}% ist ein ganz gutes Ergebnis! Geht da noch mehr?",
+    "Das klappt ja ganz gut, aber ein bisschen mehr schaffst Du beim nächsten Mal bestimmt!",
+    "Die Hälfte war mindestens richtig! Eine Runde geht bestimmt noch.",
   ],
   "ge75": [
-    "Du hast {{Correct}} von {{Count}} Fragen richtig beantwortet! Als richtig wurde eine Frage nur dann gezählt, wenn alle richtigen Antworten und keine falschen ausgewählt wurden.",
+    "{{correctPercentage}}%! Das ist ein prima Ergebnis.",
+    "Beim nächsten Mal knackst Du bestimmt die 100%!",
+    "Nicht schlecht - ein paar % fehlen noch zum Gipfel!"
   ],
   "e100": [
-    "Du hast {{Correct}} von {{Count}} Fragen richtig beantwortet! Als richtig wurde eine Frage nur dann gezählt, wenn alle richtigen Antworten und keine falschen ausgewählt wurden.",
+    "Alle Fragen richtig!? Beeindruckend...",
+    "Dir kann man wohl nicht mehr viel beibringen.",
+    "Na? Schaffst Du die 100% auch bei der nächsten Runde?",
   ]
 };
