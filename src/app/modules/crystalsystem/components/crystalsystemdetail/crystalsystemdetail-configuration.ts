@@ -6,20 +6,6 @@ export interface CrystalsystemdetailConfiguration {
     name: number,
     title: string,
   }[]
-
-
-}
-
-export interface CrystalsystemdetailConfiguration {
-  name: string;
-  displayName: string;
-  description: string;
-  layers: {
-    name: number,
-    title: string,
-  }[]
-
-
 }
 
 export const configurations: CrystalsystemdetailConfiguration[] = [

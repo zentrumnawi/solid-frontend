@@ -1,11 +1,12 @@
-:host {
+@import "../../../theme";
+$accent: map-get($app-theme, accent);
+
+  :host {
   display: block;
   padding: 1rem;
 }
 
-.info-link {
-  color: darkblue; 
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
+.info-link:link,
+.info-link:visited {
+  color: mat-color($accent);
 }
