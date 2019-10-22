@@ -3,7 +3,7 @@ node_js:
 - '10'
 cache: yarn
 env:
-  secure: UZo/GYemyRIxKV9IOF4XacVfwyUwZ3zqIlEfIljCwEtjgw3tcwp8xme2dIpco1YVDOI88CIBqv+fgznw+mF6B55azaGya4XLexkgVuyhOKvTF4BzlDvKy/7LWH8jv488g1rj6WGl939mRxd4Z/kgHXUbpHIuZwNey5ZzYJcM+aCag72+wV4lA37LXVOFkfhivLVaIWsXufb0Jb6Zh0qO24Ci1ancwUKa54xvOECvnKkUvEojtGMpmHyBB/GRSObXWGZpxvvMTVUlRcfx8+AdFQGOBUFwu9FD4Xm6cZmX0juQ6ox+2IJObH+UyB+eXW+k4Ehoe18aYacfNMlBVF9/wtp4pXOBltG+0p1JUGa83+47Y6OS8DzcRh8yiEACr2fJ676NwAd4QkINSvLlfHFHlMIsHTfxcEPRJgSleT4Wv/1N4wNDxtiMFLh0HhsQhIYaDPwvdY0wJiswykiEHjy3hT+0qoDXQb/MwYAeiLYa5aeig/ywdZl8TWO7OmxBa7CGJwKNwEEN9qL5GjlAmv1GVNj3jPJuYufXdaRdvnaydPycT7j5B7J+WwKjSByQzn2l9Sc9lIVA4+gAXsdzbuauhptRqNkKGctrP4frRmYbfruIYOGMjkJb/qvLxr/XwJAEpw9H3yJ+eFbsSrpujUdDv2teoXNVj5xbUkmEpyVK9Mk=
+  secure: TnWkxmqffUq5rAUPrOyxhBKhPZSRKDQMRE4x8yaKbtbbguX3uMgdwvngWc2TMuO0/wbfvbOls736SHQESQKt5qJXnLJDpIYSL/swkQJBQwPVNkmusaWEU4P3J6S+ZXI7dR04T6D9rkdrvAb2lZ6hCZ5mDN5nNBx3VlQ4654RlEFV1EoeGDPW4DZBGCinLV7tMfMki+vibkwOmLnObpcTRKWvT8q+7HvmjTtnSd3vE2NJQvN60DscI8ADqmLyQ/H5HOk13f1JqjItVfBRzt4JEGCbsJzS3GzscR7Crhht3YNGr8DE+ZutNR8GiSnE2e5sG7IQWz99ZixavfNh8RDg6gX12kpJ3n2G6pZERYlf54SENhX/39hAW+hIIM6GWaV4xIyKIdwhPmzWzaQQYgYFXYNpX6GPMA3FBi7mNCSEbnrW2dNjlLACANu8qtdpRv2l8UxnC+K0eHg9TQDnnzS87ToL2sRz2DOrB9bC2/FcW4GbM1ObS2yPres0TP0WP0S/v4IseyR6RUg4kBUhS0WlBshUO9DT2V4fUJYT1Eu6Uc+ef9kMtFlfmNoF6SSV/16N+D+5azlrFeIAupAsy6sdXBDyt8TEe5qIAyjiGtsCpFXtBwtkgaWBzSm8B0E4osgE7pKM9MlbY6/d8Vlp33VYB+Afzav1pdv41vEfFNEhX3I=
 script:
 - npm run build:staging
 notifications:
@@ -25,10 +25,6 @@ before_install:
 - |
   if [[ ${TRAVIS_PULL_REQUEST} == "false" ]] && [[ ${TRAVIS_BRANCH} == "master" ]]; then
     git remote add deploy dokku@$DOKKU_SERVER:$DOKKU_PRODUCTION_APP
-  fi
-- |
-  if [[ ${TRAVIS_PULL_REQUEST} == "false" ]] && [[ ${TRAVIS_BRANCH} == "preview" ]]; then
-    git remote add deploy dokku@$DOKKU_SERVER:$DOKKU_PREVIEW_APP
   fi
 - git config --global push.default simple
 after_success:
