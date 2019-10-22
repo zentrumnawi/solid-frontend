@@ -9,6 +9,9 @@ if (existsSync('.git')) {
 } else {
   const version = {
     hash: process.env.GIT_REV,
+    semver: {
+      version: process.env.TRAVIS_TAG,
+    }
   };
   versionInfo = JSON.stringify(version, null, 2);
 }
