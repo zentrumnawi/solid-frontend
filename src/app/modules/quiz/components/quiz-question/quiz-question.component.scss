@@ -35,7 +35,7 @@ mat-radio-group {
         //  background-color: mat-color($accent);
         //}
         .mat-radio-outer-circle {
-          border-color: mat-color($accent);
+          border-color: mat-color($quiz-correct);
         }
       }
     }
@@ -46,7 +46,7 @@ mat-radio-group {
         //  background-color: mat-color($warn);
         //}
         .mat-radio-outer-circle {
-          border-color: mat-color($warn);
+          border-color: mat-color($quiz-wrong);
         }
       }
     }
@@ -83,7 +83,7 @@ mat-card-content.multiple-choice {
     &.correct {
       ::ng-deep {
         .mat-checkbox-background {
-          background-color: mat-color($accent);
+          background-color: mat-color($quiz-correct);
         }
       }
     }
@@ -91,7 +91,7 @@ mat-card-content.multiple-choice {
     &.incorrect {
       ::ng-deep {
         .mat-checkbox-background {
-          background-color: mat-color($warn);
+          background-color: mat-color($quiz-wrong);
         }
       }
     }
