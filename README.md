@@ -4,11 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## CI-Status
 
-| Version | Status |
-| ------- | ------ |
-| `master` | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=master)](https://travis-ci.org/GeoMatDigital/web-geomat) |
-| `dev` | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=dev)](https://travis-ci.org/GeoMatDigital/web-geomat) | 
-| `preview` | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=preview)](https://travis-ci.org/GeoMatDigital/web-geomat) |
+| Branch | Version | Status |
+| ------ | ------- | ------ |
+| `master` | production | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=master)](https://travis-ci.org/GeoMatDigital/web-geomat) |
+| `dev` | staging | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=dev)](https://travis-ci.org/GeoMatDigital/web-geomat) | 
 
 ## Dependabot-Status
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=GeoMatDigital/web-geomat)](https://dependabot.com)

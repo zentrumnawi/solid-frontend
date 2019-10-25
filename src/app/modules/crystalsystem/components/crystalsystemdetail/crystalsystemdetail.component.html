@@ -13,7 +13,7 @@
   <button (click)="onTogglePerspectiveClick()" *ngIf="ShowInPreview" mat-icon-button matTooltip="Toggle perspective">
     <mat-icon>control_camera</mat-icon>
   </button>
-  <mat-select placeholder="Ebene" [ngModel]="Layer" (ngModelChange)="onLayerSelectChange($event)" matTooltip="Ebene">
+  <mat-select *ngIf="SelectedConfig.layers.length > 0" placeholder="Ebene" [ngModel]="Layer" (ngModelChange)="onLayerSelectChange($event)" matTooltip="Ebene">
     <mat-option *ngFor="let layer of SelectedConfig.layers" [value]="layer.name"><span Md [data]="layer.title"></span>
     </mat-option>
   </mat-select>
