@@ -22,8 +22,15 @@ h1 {
   }
 
   .md-rendered {
-    li {
-        margin-bottom: 0.5em;
+    ul, li {
+      margin-bottom: 0.5em;
+      margin-left: 0.5em;
+      padding-left: 0.25em;
      }   
+
+     ol, li {
+      margin-top: 0.5em;
+      padding-left: 0.5em;
+     }
   }
 }
