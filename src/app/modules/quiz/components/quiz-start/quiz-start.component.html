@@ -4,9 +4,8 @@
   </mat-card-header>
   <mat-card-content *ngIf="(QuizLoaded | async); else quizLoading">
     <p>Mit diesen Quizfragen kannst Du Deinen Wissensstand in verschiedenen Teilbereichen überprüfen.</p>
-      <p>Bei vielen Fragen findest Du im direkten Feedback weitere Informationen, die Dir genauere Hinweise darüber geben,
-      warum Deine Antworten falsch (oder richtig) waren. So erfährst Du auch zusätzliche Hintergründe und kannst Dein Wissen
-      erweitern.</p>
+      <p>Das Feedback gibt  Dir genauere Hinweise darüber, warum Deine Antworten falsch (oder richtig) waren.
+        So erfährst Du auch zusätzliche Hintergründe und kannst Dein Wissen erweitern.</p>
       <p>Du kannst eine Fragenanzahl vorgeben - die Fragen werden zufällig aus dem GeoMat-Fragenpool ausgewählt.</p>
   </mat-card-content>
   <mat-card-actions *ngIf="QuizLoaded | async">
