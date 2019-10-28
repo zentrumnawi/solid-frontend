@@ -20,4 +20,10 @@ h1 {
   div.mat-horizontal-stepper-header-container {
     display: none;
   }
+
+  .md-rendered {
+    li {
+        margin-bottom: 0.5em;
+     }   
+  }
 }
