@@ -46,7 +46,7 @@ export class PhotographDetailComponent extends BaseComponent {
       this._storeSub = this._store.select(GalleryState.getGalleryEntry)
         .pipe(map(filter => filter(entryId)))
         .subscribe(photograph => {
-          this.Entry = photograph;
+          this.Entry = Object.assign({}, photograph);
       });
       if (this._storeSub2) {
         this._storeSub2.unsubscribe();

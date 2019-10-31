@@ -14,7 +14,7 @@ export class CrystalsystemdetailComponent {
   @ViewChild('iframe', {static: false}) public IFrame!: ElementRef;
   public Configs = configurations;
   public SelectedConfig = configurations[0];
-  public Layer = configurations[0].layers[0].name;
+  public Layer = configurations[0].layers.length > 0 ? configurations[0].layers[0].name : '';
   public ShowInPreview = environment.preview;
   public Model = this.SelectedConfig.name;
 
@@ -45,7 +45,7 @@ export class CrystalsystemdetailComponent {
   public onModelSelectChange(newModel: Models) {
     this.SelectedConfig = this.Configs.find(c => c.name === newModel)!;
     this.Model = this.SelectedConfig.name;
-    this.Layer = this.SelectedConfig.layers[0].name;
+    this.Layer = this.SelectedConfig.layers.length > 0 ? this.SelectedConfig.layers[0].name : '';
     this.IFrame.nativeElement.contentWindow.switchModel(newModel);
     this.IFrame.nativeElement.contentWindow.toggleHighlight(this.Layer);
   }

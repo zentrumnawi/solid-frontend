@@ -23,9 +23,10 @@
       <mat-card-content *ngSwitchCase="QuestionTypes.MultipleChoice" class="multiple-choice">
         <mat-checkbox (change)="onSelectChange($event, answer)"
                       *ngFor="let answer of Question.answers; trackBy: trackByFn"
-                      [checked]="this.SelectedAnswers.includes(answer.id)"
+                      [checked]="isAnswerCorrect(answer)"
                       [class.correct]="isAnswerCorrect(answer)"
                       [class.incorrect]="isAnswerIncorrect(answer)"
+                      [indeterminate]="isAnswerIncorrect(answer)"
                       [disabled]="ShowAnswers"
                       color="primary"
         >

@@ -6,7 +6,7 @@ export const QuizFeedback = {
   ],
   "lt50": [
     "{{correctPercentage}}% - noch nicht die Hälfte, aber da war schon Schönes dabei.",
-    "Ein bisschen musst Du noch üben.",
+    "Vielleicht musst Du noch ein bisschen üben?",
     "In der nächsten Runde werden es bestimmt noch mehr richtige Antworten!",
   ],
   "lt75": [
