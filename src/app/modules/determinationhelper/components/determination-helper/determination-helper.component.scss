@@ -20,4 +20,17 @@ h1 {
   div.mat-horizontal-stepper-header-container {
     display: none;
   }
+
+  .md-rendered {
+    ul, li {
+      margin-bottom: 0.5em;
+      margin-left: 0.5em;
+      padding-left: 0.25em;
+     }   
+
+     ol, li {
+      margin-top: 0.5em;
+      padding-left: 0.5em;
+     }
+  }
 }
