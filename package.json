@@ -52,7 +52,7 @@
     "@types/jasmine": "~3.4.4",
     "@types/jasminewd2": "~2.0.8",
     "@types/markdown-it": "^0.0.9",
-    "@types/node": "^12.11.7",
+    "@types/node": "^12.12.7",
     "codelyzer": "~5.2.0",
     "git-describe": "^4.0.4",
     "jasmine-core": "~3.5.0",
