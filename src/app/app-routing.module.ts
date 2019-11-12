@@ -8,8 +8,8 @@ const routes: Routes = [
   {path: 'info', component: InfoComponent, data: {title: 'Informationen'}},
   {path: 'privacy', component: PrivacyComponent, data: {title: 'Datenschutzerklärung'}},
   {
-    path: 'determination',
-    loadChildren: () => import('./modules/determinationhelper/determinationhelper.module').then(m => m.DeterminationHelperModule),
+    path: 'slideshow',
+    loadChildren: () => import('./modules/slideshow/slideshow.module').then(m => m.SlideshowModule),
   }, {
     path: 'profile',
     loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),

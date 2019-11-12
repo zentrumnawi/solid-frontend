@@ -27,6 +27,7 @@ import {MatIconRegistry} from "@angular/material/icon";
 import {LandingPageComponent} from './components/landing-page/landing-page.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {ServiceWorkerModule} from '@angular/service-worker';
+import {NgxsDispatchPluginModule} from "@ngxs-labs/dispatch-decorator";
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
@@ -64,11 +65,13 @@ export class MyHammerConfig extends HammerGestureConfig {
       }),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
+      collapsed: true,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot({
       disabled: environment.production
     }),
     NgxsRouterPluginModule.forRoot(),
+    NgxsDispatchPluginModule.forRoot(),
     MatGridListModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],

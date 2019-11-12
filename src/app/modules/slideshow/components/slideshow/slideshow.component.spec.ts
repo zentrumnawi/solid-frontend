@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {DeterminationHelperComponent} from './determination-helper.component';
+import {SlideshowComponent} from './slideshow.component';
 
 describe('DeterminationHelperComponent', () => {
-  let component: DeterminationHelperComponent;
-  let fixture: ComponentFixture<DeterminationHelperComponent>;
+  let component: SlideshowComponent;
+  let fixture: ComponentFixture<SlideshowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DeterminationHelperComponent],
+      declarations: [SlideshowComponent],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeterminationHelperComponent);
+    fixture = TestBed.createComponent(SlideshowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
