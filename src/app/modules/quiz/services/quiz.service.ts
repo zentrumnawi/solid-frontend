@@ -12,7 +12,7 @@ export class QuizService extends ApiHttpClient {
     private _store: Store,
     httpClient: HttpClient,
   ) {
-    super(httpClient, [environment.apiUrlQuiz, 'api']);
+    super(httpClient, [environment.apiUrl, 'api']);
   }
 
   public loadQuestions() {

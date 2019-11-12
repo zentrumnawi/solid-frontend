@@ -6,7 +6,6 @@ export const environment = {
   preview: false,
   production: false,
   apiUrl: 'http://localhost:4200',
-  apiUrlQuiz: 'http://localhost:4200',
   sentryUrl: ''
 };
 
