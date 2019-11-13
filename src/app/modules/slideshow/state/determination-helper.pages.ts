@@ -31,20 +31,20 @@ export const determinationhelper: Slideshow = {
         [
           {
           url: '/assets/determination/images/helper_appearance_idiomorph_Spinell.jpg',
-          description: 'Idiomorphes Äußeres (Spinelloktaeder)',
-          title: 'Idiomorphes Äußeres',
+          description: 'idiomorphes Äußeres (Spinelloktaeder)',
+          title: 'idiomorphes Äußeres',
           subtitle: 'Spinelloktaeder',
           },
           {
             url: '/assets/determination/images/helper_appearance_xenomorph_Labradorit.jpg',
-            description: 'Xenomorphes Äußeres (Labradorit im Gestein)',
-            title: 'Xenomorphes Äußeres',
+            description: 'xenomorphes Äußeres (Labradorit im Gestein)',
+            title: 'xenomorphes Äußeres',
             subtitle: 'Labradorit im Gestein',
           },
           {
               url: '/assets/determination/images/helper_appearance_hypidiomorph_Amethyst.jpg',
-              description: 'Hypidiomorphes Äußeres (Amethyst im Gestein)',
-              title: 'Hypidiomorphes Äußeres',
+              description: 'hypidiomorphes Äußeres (Amethyst im Gestein)',
+              title: 'hypidiomorphes Äußeres',
               subtitle: 'Amethyst im Gestein',
           },
         ],
@@ -61,19 +61,19 @@ export const determinationhelper: Slideshow = {
           {
             url: '/assets/determination/images/helper_crystalsystem_cubic_Pyrit.jpg',
             description: 'Kubisches Kristallsystem (Pyrit)',
-            title: 'Kubisches Kristallsystem',
+            title: 'kubisches Kristallsystem',
             subtitle: 'Pyrit',
           },
           {
             url: '/assets/determination/images/helper_crystalsystem_hexagonal_Aquamarin.jpg',
             description: 'Hexagonales Kristallsystem (Aquamarin)',
-            title: 'Hexagonales Kristallsystem',
+            title: 'hexagonales Kristallsystem',
             subtitle: 'Aquamarin',
           },
           {
             url: '/assets/determination/images/helper_crystalsystem_trigonal_Korund.jpg',
             description: 'Trigonales Kristallsystem (Korund)',
-            title: 'Trigonales Kristallsystem',
+            title: 'trigonales Kristallsystem',
             subtitle: 'Korund',
           },          
         ],
@@ -90,8 +90,20 @@ export const determinationhelper: Slideshow = {
           {
             url: '/assets/determination/images/helper_habit_schematic.svg',
             description: 'Habitus - schematische Darstellung',
-            title: '',
+            title: 'Habitus - Beispiele',
             subtitle: 'Diese schematische Abbildung zeigt unterschiedlichen Habitus an 3 hexagonalen Körpern.',
+          },
+          {
+            url: '/assets/determination/images/helper_habit_Fluoritoktaeder.jpg',
+            description: 'Habitus - Fluoritoktaeder (isometrischer Habitus)',
+            title: 'isometrischer Habitus',
+            subtitle: 'Fluorit-Oktaeder',
+          },
+          {
+            url: '/assets/determination/images/helper_habit_Rutil.jpg',
+            description: 'Habitus - Rutil (prismatischer Habitus)',
+            title: 'prismatischer Habitus',
+            subtitle: 'Rutil',
           },
         ],
     }
@@ -107,7 +119,7 @@ export const determinationhelper: Slideshow = {
           {
             url: '/assets/determination/images/helper_faces_schematic.svg',
             description: 'Tracht - schematische Darstellung',
-            title: '',
+            title: 'Tracht - Beispiele',
             subtitle: 'Die schematische Abbildung zeigt mehrere Trachten an 5 kubischen Körpern.',
           },
           {
@@ -135,20 +147,20 @@ export const determinationhelper: Slideshow = {
         [
           {
             url: '/assets/determination/images/helper_fracture_Olivin.svg',
-            description: 'Bruch - Olivin',
-            title: 'Muscheliger Bruch',
+            description: 'muscheliger Bruch - Olivin',
+            title: 'muscheliger Bruch',
             subtitle: 'Olivin',
           },
           {
             url: '/assets/determination/images/helper_fracture_Flint.jpg',
-            description: 'Bruch - Flint',
-            title: 'Muscheliger Bruch',
+            description: 'unebener Bruch - Flint',
+            title: 'muscheliger Bruch',
             subtitle: 'Flint',
           },
           {
             url: '/assets/determination/images/helper_fracture_Vesuvian.jpg',
             description: 'Bruch - Vesuvian',
-            title: 'Unebener Bruch',
+            title: 'unebener Bruch',
             subtitle: 'Vesuvian',
           },
         ],
@@ -164,20 +176,20 @@ export const determinationhelper: Slideshow = {
         [
           {
             url: '/assets/determination/images/helper_cleavage_Calcit.jpg',
-            description: 'keine Spaltbarkeit - Calcit',
+            description: 'vollkommene Spaltbarkeit - Calcit',
             title: 'vollkommene Spaltbarkeit',
             subtitle: 'Calcit',
           },
           {
             url: '/assets/determination/images/helper_cleavage_Phlogopit.jpg',
-            description: 'Höchst vollkommene Spaltbarkeit - Phlogopit',
+            description: 'höchst vollkommene Spaltbarkeit - Phlogopit',
             title: 'höchst vollkommene Spaltbarkeit',
             subtitle: 'Phlogopit',
           },
           {
             url: '/assets/determination/images/helper_cleavage_Bergkristall.jpg',
-            description: 'Keine Spaltbarkeit - Bergkristall',
-            title: 'höchst vollkommene Spaltbarkeit',
+            description: 'keine Spaltbarkeit - Bergkristall',
+            title: 'keine Spaltbarkeit',
             subtitle: 'Bergkristall',
           },
         ],

@@ -5,7 +5,7 @@ Es werden folgende übliche Spaltbarkeiten unterschieden:
 - **undeutlich**
 - **deutlich**
 - **gut**
-- **vollkommen****
+- **vollkommen**
 - **sehr vollkommen**
 
 Die Angabe der Spaltbarkeit wird oft durch eine entsprechende Richtungsangabe ergänzt.
