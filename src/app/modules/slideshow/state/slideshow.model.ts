@@ -14,7 +14,7 @@ export interface SlideshowPage {
 
 export interface SlideshowImage {
   title: string;
-  subtitle: string;
   description: string;
   url: string;
+  text: string;
 }
