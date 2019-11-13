@@ -90,7 +90,7 @@ export const determinationhelper: Slideshow = {
           {
             url: '/assets/determination/images/helper_habit_schematic.svg',
             description: 'Habitus - schematische Darstellung',
-            title: 'Habitus - Beispiele',
+            title: 'Habitus (schematisches Beispiel)',
             subtitle: 'Diese schematische Abbildung zeigt unterschiedlichen Habitus an 3 hexagonalen Körpern.',
           },
           {
@@ -119,8 +119,8 @@ export const determinationhelper: Slideshow = {
           {
             url: '/assets/determination/images/helper_faces_schematic.svg',
             description: 'Tracht - schematische Darstellung',
-            title: 'Tracht - Beispiele',
-            subtitle: 'Die schematische Abbildung zeigt mehrere Trachten an 5 kubischen Körpern.',
+            title: 'Tracht (schematisches Beispiel)',
+            subtitle: 'Die schematische Abbildung zeigt verschiedene Trachten an 5 kubischen Körpern.',
           },
           {
             url: '/assets/determination/images/helper_faces_GrossularSpinell.jpg',
@@ -206,7 +206,7 @@ export const determinationhelper: Slideshow = {
           {
             url: '/assets/determination/images/helper_lustre_Markasit.jpg',
             description: 'Metallglanz - Markasit',
-            title: 'Metalglanz',
+            title: 'Metallglanz',
             subtitle: 'Markasit',
           },
           {
@@ -282,14 +282,14 @@ export const determinationhelper: Slideshow = {
           {
             url: '/assets/determination/images/helper_opacity_Topas.jpg',
             description: 'Tansparenz - Topas (durchsichtig)',
-            title: 'Topas',
-            subtitle: 'durchsichtig',
+            title: 'durchsichtig',
+            subtitle: 'Topas',
           },
           {
             url: '/assets/determination/images/helper_opacity_Augit.jpg',
             description: 'Transparenz - Augit',
-            title: 'Augit',
-            subtitle: 'opak',
+            title: 'opak',
+            subtitle: 'Augit',
           },
 
         ],
