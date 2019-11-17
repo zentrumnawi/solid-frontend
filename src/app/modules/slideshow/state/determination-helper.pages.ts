@@ -31,9 +31,9 @@ export const determinationhelper: Slideshow = {
         [
           {
           url: '/assets/determination/images/helper_appearance_idiomorph_Spinell.jpg',
-          description: 'idiomorphes Äußeres (Spinelloktaeder)',
+          description: 'idiomorphes Äußeres (Spinell)',
           title: 'idiomorphes Äußeres',
-          text: 'Spinelloktaeder',
+          text: 'Spinell',
           },
           {
             url: '/assets/determination/images/helper_appearance_xenomorph_Labradorit.jpg',
@@ -43,9 +43,9 @@ export const determinationhelper: Slideshow = {
           },
           {
               url: '/assets/determination/images/helper_appearance_hypidiomorph_Amethyst.jpg',
-              description: 'hypidiomorphes Äußeres (Amethyst im Gestein)',
+              description: 'hypidiomorphes Äußeres (Amethyst auf Gestein)',
               title: 'hypidiomorphes Äußeres',
-              text: 'Amethyst im Gestein',
+              text: 'Amethyst auf Gestein',
           },
         ],
     }
@@ -94,10 +94,10 @@ export const determinationhelper: Slideshow = {
             text: 'Diese schematische Abbildung zeigt unterschiedlichen Habitus an 3 hexagonalen Körpern.',
           },
           {
-            url: '/assets/determination/images/helper_habit_Fluoritoktaeder.jpg',
-            description: 'Habitus - Fluoritoktaeder (isometrischer Habitus)',
+            url: '/assets/determination/images/helper_habit_Fluorit.jpg',
+            description: 'Habitus - Fluorit (isometrischer Habitus)',
             title: 'isometrischer Habitus',
-            text: 'Fluorit-Oktaeder',
+            text: 'Fluorit',
           },
           {
             url: '/assets/determination/images/helper_habit_Rutil.jpg',
@@ -120,19 +120,19 @@ export const determinationhelper: Slideshow = {
             url: '/assets/determination/images/helper_faces_schematic.svg',
             description: 'Tracht - schematische Darstellung',
             title: 'Tracht (schematisches Beispiel)',
-            text: 'Die schematische Abbildung zeigt verschiedene Trachten an 5 kubischen Körpern.',
+            text: 'Die schematische Abbildung zeigt verschiedene Trachten an 5 kubischen Körpern mit gleichem Habitus.',
           },
           {
             url: '/assets/determination/images/helper_faces_GrossularSpinell.jpg',
             description: 'Tracht - Grossular vs. Spinell',
-            title: 'Grossular vs. Spinell',
+            title: 'Flächenreichtum',
             text: 'Der flächenreiche Granat im Vergleich mit dem flächenärmeren Spinelloktaeder. Beide kristallisieren im kubischen Kristallsystem.',
           },
           {
             url: '/assets/determination/images/helper_faces_Apatit.jpg',
             description: 'Tracht - Apatit',
-            title: 'Apatit',
-            text: 'Die beiden Apatit-Handstücke zeigen unterschiedliche Tracht (und unterschiedlichen Habitus) im hexagonalen Kristallsystem.',
+            title: 'Kopfflächen',
+            text: 'Die beiden Apatit-Handstücke zeigen unterschiedlich ausgebildete Kopfflächen (und unterschiedlichen Habitus) im hexagonalen Kristallsystem.',
           },
         ],
     }
@@ -146,20 +146,20 @@ export const determinationhelper: Slideshow = {
       images:
         [
           {
-            url: '/assets/determination/images/helper_fracture_Olivin.svg',
+            url: '/assets/determination/images/helper_fracture_Olivin.jpg',
             description: 'muscheliger Bruch - Olivin',
             title: 'muscheliger Bruch',
             text: 'Olivin',
           },
           {
             url: '/assets/determination/images/helper_fracture_Flint.jpg',
-            description: 'unebener Bruch - Flint',
+            description: 'muscheliger Bruch - Flint',
             title: 'muscheliger Bruch',
             text: 'Flint',
           },
           {
             url: '/assets/determination/images/helper_fracture_Vesuvian.jpg',
-            description: 'Bruch - Vesuvian',
+            description: 'unebener Bruch - Vesuvian',
             title: 'unebener Bruch',
             text: 'Vesuvian',
           },
@@ -188,9 +188,9 @@ export const determinationhelper: Slideshow = {
           },
           {
             url: '/assets/determination/images/helper_cleavage_Bergkristall.jpg',
-            description: 'keine Spaltbarkeit - Bergkristall',
+            description: 'keine Spaltbarkeit - Rauchquarz',
             title: 'keine Spaltbarkeit',
-            text: 'Bergkristall',
+            text: 'Rauchquarz',
           },
         ],
     }
@@ -239,28 +239,16 @@ export const determinationhelper: Slideshow = {
       images:
         [
           {
-            url: '/assets/determination/images/helper_color_Aquamarin.jpg',
-            description: 'Farbe - Aquamarin (blau)',
-            title: 'Aquamarin',
-            text: 'blau',
+            url: '/assets/determination/images/helper_color_AquamarinGoshenit.jpg',
+            description: 'Farbe - Aquamarin vs. Goshenit',
+            title: 'Beryll',
+            text: 'Die Varietät Aquamarin zeigt die typische türkise Farbe, Goshenit ist farblos.',
           },
           {
-            url: '/assets/determination/images/helper_color_Goshenit.jpg',
-            description: 'Farbe - Goshenit (farblos)',
-            title: 'Goshenit',
-            text: 'farblos',
-          },
-          {
-            url: '/assets/determination/images/helper_color_Elbait.jpg',
-            description: 'Farbe - Elbait (grün)',
-            title: 'Elbait',
-            text: 'grün',
-          },
-          {
-            url: '/assets/determination/images/helper_color_Schoerl.jpg',
-            description: 'Farbe - Schoerl (schwarz)',
-            title: 'Schoerl',
-            text: 'schwarz',
+            url: '/assets/determination/images/helper_color_ElbaitSchoerl.jpg',
+            description: 'Farbe - Elbait vs. Schoerl',
+            title: 'Turmalin',
+            text: 'Dieses Elbait-Handstück ist grün, Schörl hingegen ist schwarz',
           },
           {
             url: '/assets/determination/images/helper_color_Azurit.jpg',
@@ -276,20 +264,20 @@ export const determinationhelper: Slideshow = {
       title:
         'Transparenz',
       contentPath:
-        '/assets/determination/pages/opacity.md',
+        '/assets/determination/pages/transparency.md',
       images:
         [
           {
-            url: '/assets/determination/images/helper_opacity_Topas.jpg',
+            url: '/assets/determination/images/helper_transparency_Topas.jpg',
             description: 'Tansparenz - Topas (durchsichtig)',
             title: 'durchsichtig',
             text: 'Topas',
           },
           {
-            url: '/assets/determination/images/helper_opacity_Augit.jpg',
-            description: 'Transparenz - Augit',
+            url: '/assets/determination/images/helper_transparency_Galenit.jpg',
+            description: 'Transparenz - Galenit (opak)',
             title: 'opak',
-            text: 'Augit',
+            text: 'Galenit-Einkristall',
           },
 
         ],
