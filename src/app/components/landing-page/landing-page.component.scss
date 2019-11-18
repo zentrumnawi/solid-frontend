@@ -11,13 +11,28 @@ $background: map-get($app-theme, background);
 }
 
 mat-card {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 mat-list {
   border: 1px solid mat-color($background, status-bar);
   border-radius: 0.5em;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+}
+
+mat-list-item {
+  margin-top: .5em;
+  ::ng-deep {
+    p {
+      margin-block-end: 0;
+    }
+  }
+}
+
+mat-list-item:not(:first-child) {
+  h3 {
+    padding-top: 0.5em;
+  }  
 }
 
 mat-list-item:not(:last-child) {
