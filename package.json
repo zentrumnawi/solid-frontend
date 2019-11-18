@@ -25,7 +25,7 @@
     "@angular/material": "^8.2.3",
     "@angular/platform-browser": "~8.2.1",
     "@angular/platform-browser-dynamic": "~8.2.1",
-    "@angular/pwa": "^0.803.18",
+    "@angular/pwa": "^0.803.19",
     "@angular/router": "~8.2.1",
     "@angular/service-worker": "~8.2.13",
     "@ngxs-labs/dispatch-decorator": "^2.1.0",
