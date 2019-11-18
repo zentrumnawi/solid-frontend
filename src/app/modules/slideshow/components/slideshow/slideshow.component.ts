@@ -19,7 +19,7 @@ export enum KEY {
 })
 export class SlideshowComponent {
   public MaxStep = 0;
-  @ViewChild('stepper', {static: true}) public Stepper!: MatStepper;
+  @ViewChild('stepper', {static: false}) public Stepper!: MatStepper;
   public Slideshow: Observable<Slideshow | undefined> = of(undefined);
   @Select((s: any) => s.router.state.params['slideshowId']) slideshowId!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<(id: string) => Slideshow | undefined>;
@@ -39,6 +39,7 @@ export class SlideshowComponent {
   @HostListener('window:keyup', ['$event'])
   public keyEvent(event: KeyboardEvent) {
     if (event.key === KEY.LEFT_ARROW) {
+      debugger;
       this.Stepper.previous();
     } else if (event.key === KEY.RIGHT_ARROW) {
       this.Stepper.next();
