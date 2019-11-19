@@ -1,49 +1,49 @@
-.gallery-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
+virtual-scroller {
   height: calc(100% - 64px);
-  overflow-y: auto;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
 
-  mat-card {
-    cursor: pointer;
-    margin: 0.5em;
-    max-width: 200px;
-    max-height: 190px;
+mat-card {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0.5em;
+  width: 200px;
+  height: 190px;
 
-    mat-card-header {
-      ::ng-deep {
-        div.mat-card-header-text {
-          margin: 0;
-        }
-      }
-
-      mat-card-title {
-        font-size: 16px;
-      }
-
-      mat-card-subtitle {
-        height: 12px;
-        font-size: 12px;
+  mat-card-header {
+    ::ng-deep {
+      div.mat-card-header-text {
+        margin: 0;
       }
     }
 
-    .spinner {
-      width: 200px;
-
-      mat-spinner {
-        margin: auto;
-      }
+    mat-card-title {
+      font-size: 16px;
     }
 
-    img {
-      max-width: 100%;
-
-      &.hidden {
-        display: none;
-      }
+    mat-card-subtitle {
+      height: 12px;
+      font-size: 12px;
     }
   }
+
+  .spinner {
+    width: 200px;
+
+    mat-spinner {
+      margin: auto;
+    }
+  }
+
+  img {
+    max-width: 100%;
+
+    &.hidden {
+      display: none;
+    }
+  }height: 190px;
 }
 
 :host {

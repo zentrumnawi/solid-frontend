@@ -22,7 +22,6 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 export class GalleryOverviewComponent extends BaseComponent {
   @ViewChild('searchInput', {static: false}) searchInputRef?: ElementRef;
   public Entries: PhotographModel[] = [];
-  public EntriesLoaded: { [key: number]: boolean } = {};
   public LoadingCompleted = false;
   public SortAscending = false;
   public SearchValue = '';
@@ -44,16 +43,7 @@ export class GalleryOverviewComponent extends BaseComponent {
       this._entriesUnsorted = v;
       this._entriesSorted = [...v];
       this._entriesSorted.sort((a, b) => a.handpiece.name.localeCompare(b.handpiece.name));
-      v.forEach(entry => {
-        if (this.EntriesLoaded[entry.id] === undefined) {
-          this.EntriesLoaded[entry.id] = false;
-        }
-      });
     }));
-  }
-
-  imageLoaded(e: Event, entry: PhotographModel) {
-    this.EntriesLoaded[entry.id] = true;
   }
 
   public onCardClick(entry: PhotographModel) {
@@ -93,5 +83,9 @@ export class GalleryOverviewComponent extends BaseComponent {
     if (this.SearchVisible && this.searchInputRef && this.searchInputRef.nativeElement) {
       this.searchInputRef.nativeElement.focus();
     }
+  }
+
+  public entryTrackBy(entry: PhotographModel) {
+    return entry.id;
   }
 }

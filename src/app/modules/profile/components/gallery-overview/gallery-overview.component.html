@@ -15,18 +15,15 @@
     <mat-icon>{{ SortAscending ? 'clear' : 'sort' }}</mat-icon>
   </button>
 </mat-toolbar>
-<div class="gallery-container">
-  <mat-card (click)="onCardClick(entry)" *ngFor="let entry of Entries; let i = index">
+<virtual-scroller #scroll [items]="Entries">
+  <mat-card (click)="onCardClick(entry)"
+            *ngFor="let entry of scroll.viewPortItems; let i = index; trackBy: entryTrackBy">
     <mat-card-header>
       <mat-card-title>{{ entry.handpiece.name }}</mat-card-title>
       <mat-card-subtitle>{{ entry.handpiece.name === entry.handpiece.mineral_type[0].minerals ? '' : entry.handpiece.mineral_type[0].minerals }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div *ngIf="!EntriesLoaded[entry.id]" class="spinner">
-        <mat-spinner color="primary"></mat-spinner>
-      </div>
-      <img (load)="imageLoaded($event, entry)" [class.hidden]="!EntriesLoaded[entry.id]"
-           [src]="entry.image_file.small" alt="Bild des Minerals"/>
+      <img [src]="entry.image_file.small" alt="Bild des Minerals"/>
     </mat-card-content>
   </mat-card>
   <mat-card *ngIf="Entries.length === 0 && LoadingCompleted" class="no-results-card">
@@ -34,4 +31,9 @@
       <span>Zu <i>{{ SearchValue }}</i> konnten leider keine Ergebnisse gefunden werden.</span>
     </mat-card-content>
   </mat-card>
-</div>
+  <mat-card *ngIf="Entries.length === 0 && LoadingCompleted" class="no-results-card">-->
+    <mat-card-content>
+      <span>Zu <i>{{ SearchValue }}</i> konnten leider keine Ergebnisse gefunden werden.</span>
+    </mat-card-content>
+  </mat-card>
+</virtual-scroller>

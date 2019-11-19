@@ -14,6 +14,7 @@ import {GalleryState} from "./state/gallery.state";
 import {GalleryService} from "./services/gallery.service";
 import {ProfileListComponent} from "./components/profile-list/profile-list.component";
 import {ProfileBaseComponent} from './components/profile-base/profile-base.component';
+import { VirtualScrollerModule} from "ngx-virtual-scroller";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {ProfileBaseComponent} from './components/profile-base/profile-base.compo
     NgxsModule.forFeature([
       ProfileState,
       GalleryState,
-    ])
+    ]),
+    VirtualScrollerModule,
   ],
   providers: [
     ProfileService,
