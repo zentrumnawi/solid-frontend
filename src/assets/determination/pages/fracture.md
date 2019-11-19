@@ -5,6 +5,6 @@ Der *Bruch* ist ein wichtiges Merkmal von Mineralen und beschreibt das ungericht
 - **hakig (bzw. hakig-biegsam)**
 - **glimmerartig (bzw. blättrig)**
 - **splittrig**
-- **selten auch faserig und erdig**
+- selten auch **faserig und erdig**
 
-An idiomorphen Kristallen ist meist kein Bruch zu erkennen, da die idiomorphen Kristallflächen den Bruch nur zeigen, wenn sie beschädigt sind. Der Bruch muss klar von der Spaltbarkeit getrennt werden, welche im nächsten Schritt untersucht wird.
+An idiomorphen Kristallen ist meist kein Bruch zu erkennen, da die idiomorphen Kristallflächen den Bruch nur zeigen, wenn sie beschädigt sind. Der Bruch muss klar von der _Spaltbarkeit_ getrennt werden, welche im nächsten Schritt untersucht wird.

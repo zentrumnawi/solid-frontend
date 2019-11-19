@@ -16,4 +16,5 @@ export interface SlideshowImage {
   title: string;
   description: string;
   url: string;
+  text: string;
 }

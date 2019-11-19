@@ -50,7 +50,17 @@ div.page-images {
 
   mat-card {
     min-width: 200px;
+    mat-card-header {
+      ::ng-deep {
+      div.mat-card-header-text {
+          margin: 0;
+        }
+      }
 
+      mat-card-title {
+        font-size: 16px;
+      }
+    }
     img {
       width: 100%;
       height: 100%;
