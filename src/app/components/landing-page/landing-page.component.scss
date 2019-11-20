@@ -26,13 +26,17 @@ mat-list-item {
     p {
       margin-block-end: 0;
     }
+
+    h3.mat-line {
+      padding-bottom: .5em;
+    }
   }
 }
 
 mat-list-item:not(:first-child) {
   h3 {
     padding-top: 0.5em;
-  }  
+  }
 }
 
 mat-list-item:not(:last-child) {
