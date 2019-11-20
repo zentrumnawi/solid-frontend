@@ -4,13 +4,13 @@ import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {PhotographModel} from '../../state/gallery.model';
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
-import {GalleryService} from "../../services/gallery.service";
 import {MatDialog} from "@angular/material";
 import {MediaErrorDialogComponent} from "../media-error-dialog/media-error-dialog.component";
 import {Store} from "@ngxs/store";
 import {GalleryState} from "../../state/gallery.state";
 import {map} from "rxjs/operators";
 import {Navigate} from "@ngxs/router-plugin";
+import {GalleryLoadAction} from "../../state/gallery.actions";
 
 @Component({
   selector: 'gallery-photograph-detail-modal',
@@ -30,14 +30,13 @@ export class PhotographDetailComponent extends BaseComponent {
   public Surrounding: { before: number | null; after: number | null } = {before: null, after: null};
 
   constructor(
-    service: GalleryService,
     private _store: Store,
     breakpointObserver: BreakpointObserver,
     route: ActivatedRoute,
     private _dialog: MatDialog,
   ) {
     super();
-    service.loadGallery();
+    this._store.dispatch(new GalleryLoadAction());
     this._store.select(v => v.router.state.params).subscribe(params => {
       const entryId = parseInt(params.id, 10);
       if (this._storeSub) {
@@ -46,8 +45,11 @@ export class PhotographDetailComponent extends BaseComponent {
       this._storeSub = this._store.select(GalleryState.getGalleryEntry)
         .pipe(map(filter => filter(entryId)))
         .subscribe(photograph => {
+          if (!photograph) {
+            return;
+          }
           this.Entry = Object.assign({}, photograph);
-      });
+        });
       if (this._storeSub2) {
         this._storeSub2.unsubscribe();
       }

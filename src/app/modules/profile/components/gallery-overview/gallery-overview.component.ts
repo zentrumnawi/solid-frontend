@@ -1,11 +1,11 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
-import {GalleryService} from '../../services/gallery.service';
 import {PhotographModel} from '../../state/gallery.model';
 import {Store} from "@ngxs/store";
 import {GalleryState} from "../../state/gallery.state";
 import {Navigate} from "@ngxs/router-plugin";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {GalleryLoadAction} from "../../state/gallery.actions";
 
 @Component({
   selector: 'gallery-gallery-overview',
@@ -31,11 +31,10 @@ export class GalleryOverviewComponent extends BaseComponent {
   private _entriesSorted: PhotographModel[] = [];
 
   constructor(
-    service: GalleryService,
     private _store: Store,
   ) {
     super();
-    service.loadGallery();
+    this._store.dispatch(new GalleryLoadAction());
     this.addSub(this._store.select(GalleryState.getGalleryEntries).subscribe(v => {
       if (v.length > 0) {
         this.LoadingCompleted = true;

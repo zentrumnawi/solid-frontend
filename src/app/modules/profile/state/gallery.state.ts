@@ -1,43 +1,63 @@
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {PhotographModel} from "./gallery.model";
-import {GallerySetAction} from "./gallery.actions";
+import {GalleryLoadAction} from "./gallery.actions";
+import {GalleryService} from "../services/gallery.service";
+import {tap} from "rxjs/operators";
 
+export interface GalleryStateModel {
+  photographs: PhotographModel[];
+  _loaded: boolean;
+}
 
-@State<PhotographModel[]>({
+@State<GalleryStateModel>({
   name: 'gallery',
-  defaults: []
+  defaults: {
+    photographs: [],
+    _loaded: false,
+  }
 })
 export class GalleryState {
-  @Selector()
-  static getGalleryEntries(state: PhotographModel[]) {
-    return state;
+  constructor(private _service: GalleryService) {
   }
 
   @Selector()
-  static getGalleryEntry(state: PhotographModel[]) {
+  static getGalleryEntries(state: GalleryStateModel) {
+    return state.photographs;
+  }
+
+  @Selector()
+  static getGalleryEntry(state: GalleryStateModel) {
     return (entryId: number) => {
-      const profile = state.find(i => i.id === entryId);
+      const profile = state.photographs.find(i => i.id === entryId);
       return profile ? profile : null;
     };
   }
 
   @Selector()
-  static getSurroundingGalleryEntries(state: PhotographModel[]) {
+  static getSurroundingGalleryEntries(state: GalleryStateModel) {
     return (entryId: number) => {
-      const middleIndex = state.findIndex(item => item.id === entryId);
+      const middleIndex = state.photographs.findIndex(item => item.id === entryId);
       const ret: { before: number | null, after: number | null } = {before: null, after: null};
       if (middleIndex >= 1) {
-        ret.before = state[middleIndex - 1].id;
+        ret.before = state.photographs[middleIndex - 1].id;
       }
-      if (middleIndex < state.length - 1 && middleIndex !== -1) {
-        ret.after = state[middleIndex + 1].id;
+      if (middleIndex < state.photographs.length - 1 && middleIndex !== -1) {
+        ret.after = state.photographs[middleIndex + 1].id;
       }
       return ret;
     };
   }
 
-  @Action(GallerySetAction)
-  public set(ctx: StateContext<PhotographModel[]>, action: GallerySetAction) {
-    ctx.setState(action.entries);
+  @Action(GalleryLoadAction)
+  public set(ctx: StateContext<GalleryStateModel>, {}: GalleryLoadAction) {
+    if (ctx.getState()._loaded) {
+      return;
+    }
+    return this._service.loadGallery().pipe(tap(entries => {
+      ctx.patchState({
+        _loaded: true,
+        photographs: entries
+      })
+    }))
   }
 }
