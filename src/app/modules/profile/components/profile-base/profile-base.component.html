@@ -26,6 +26,6 @@
         <mat-icon>navigate_next</mat-icon>
       </button>
     </mat-toolbar>
-    <app-profile-detail (panend)="onPanEnd($event)" [profile]="SelectedProfile"></app-profile-detail>
+    <app-profile-detail (panend)="onPanEnd($event)" [profileId]="SelectedProfile.id"></app-profile-detail>
   </ng-container>
 </div>

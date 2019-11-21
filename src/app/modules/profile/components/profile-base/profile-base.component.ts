@@ -121,9 +121,7 @@ export class ProfileBaseComponent implements AfterViewInit {
           this.SelectedProfile = profile.profile;
           this._selectedCategory = profile.category;
           const index = profile.category.children.indexOf(profile.profile);
-          console.log(this.Filter.value);
           if (!this.Filter.value) {
-            console.log('first');
             this.CanSwipeLeft = index > 0;
             this.CanSwipeRight = index < profile.category.children.length - 1;
           } else {

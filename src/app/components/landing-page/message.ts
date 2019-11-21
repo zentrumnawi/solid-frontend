@@ -21,6 +21,6 @@ export const messages: Message[] = [
   { id: 3,
     title: 'Version 1.1.0',
     content: 'Neu in diesem Release: <ul><li>Überarbeiteter Bestimmungshelfer (jetzt mit Beispielbildern!)</li><li>15 neue Audiotexte in der Galerie (vor allem Silikate)</li><li>korrekte Formeldarstellung in den Steckbriefen</li><li>allgemeine Verbesserungen und Fehlerbehebungen</li></ul>',
-    validFrom: new Date(2019, 10, 18, 12, 0),
+    validFrom: new Date(2019, 10, 21, 10, 0),
   },
 ];

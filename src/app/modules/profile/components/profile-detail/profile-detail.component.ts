@@ -13,12 +13,7 @@ import {map} from "rxjs/operators";
 })
 export class ProfileDetailComponent extends BaseComponent implements OnInit {
   public Category: ProfileCategory | null = null;
-  public get Profile(): MineralProfile | null {
-    return this._profile ? this._profile : null;
-  }
-
-  @Input('profile')
-  private _profile?: MineralProfile;
+  public Profile: MineralProfile | null = null;
 
   @Input('profileId')
   private ProfileId?: number;
@@ -34,9 +29,10 @@ export class ProfileDetailComponent extends BaseComponent implements OnInit {
       if (this.ProfileId) {
         this._service.loadProfiles();
         this.addSub(this._store.select(ProfileState.selectProfile).pipe(map(f => f(this.ProfileId!))).subscribe(profile => {
+          console.log(profile);
           if (profile) {
             this.Category = profile.category;
-            this._profile = profile.profile;
+            this.Profile = profile.profile;
           }
         }));
       }

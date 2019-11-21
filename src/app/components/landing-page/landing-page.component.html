@@ -17,7 +17,8 @@
 <h2>Neuigkeiten</h2>
 <mat-list>
   <mat-list-item *ngFor="let msg of Messages">
-    <h3 matLine>{{msg.title}} <i *ngIf="msg.validFrom">({{ msg.validFrom | date: 'dd.MM.yyyy'}})</i></h3>
+    <h3 matLine>{{msg.title}} <span *ngIf="msg.validFrom">&nbsp;|&nbsp;{{ msg.validFrom | date: 'dd.MM.yyyy'}}</span>
+    </h3>
     <span matLine Md [data]="msg.content"></span>
   </mat-list-item>
 </mat-list>
