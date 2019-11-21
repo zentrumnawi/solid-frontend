@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {MineralProfile, ProfileCategory} from '../../state/profile.model';
 import {ProfileService} from "../../services/profile.service";
-import {Store} from "@ngxs/store";
+import {Select, Store} from "@ngxs/store";
 import {ProfileState} from "../../state/profile.state";
+import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
 @Component({
@@ -11,30 +11,35 @@ import {map} from "rxjs/operators";
   templateUrl: './profile-detail.component.html',
   styleUrls: ['./profile-detail.component.scss']
 })
-export class ProfileDetailComponent extends BaseComponent implements OnInit {
+export class ProfileDetailComponent implements OnInit {
   public Category: ProfileCategory | null = null;
   public Profile: MineralProfile | null = null;
-
-  @Input('profileId')
-  private ProfileId?: number;
+  @Select(ProfileState.selectProfile) private _profileSelector!: Observable<(profileId: number) => { profile: MineralProfile; category: ProfileCategory } | undefined>;
+  private _profileIdSubject = new BehaviorSubject<number | undefined>(undefined);
 
   constructor(
     private _store: Store,
     private _service: ProfileService,
   ) {
-    super();
+    this._service.loadProfiles();
+  }
+
+  @Input('profileId')
+  public set profileId(profileId: number | undefined) {
+    this._profileIdSubject.next(profileId);
   }
 
   public ngOnInit() {
-      if (this.ProfileId) {
-        this._service.loadProfiles();
-        this.addSub(this._store.select(ProfileState.selectProfile).pipe(map(f => f(this.ProfileId!))).subscribe(profile => {
-          console.log(profile);
-          if (profile) {
-            this.Category = profile.category;
-            this.Profile = profile.profile;
-          }
-        }));
+    combineLatest([this._profileSelector, this._profileIdSubject]).pipe(map(([selector, id]) => {
+      if (id) {
+        return selector(id);
       }
-    }
+      return undefined;
+    })).subscribe(value => {
+      if (value) {
+        this.Category = value.category;
+        this.Profile = value.profile;
+      }
+    })
+  }
 }

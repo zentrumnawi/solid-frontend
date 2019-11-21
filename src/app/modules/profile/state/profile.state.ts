@@ -24,7 +24,7 @@ export class ProfileState {
   };
 
   @Selector()
-  static selectProfile(state: ProfileStateModel) {
+  static selectProfile(state: ProfileStateModel): (profileId: number) => { profile: MineralProfile; category: ProfileCategory } | undefined {
     return (profileId: number) => {
       for (let profile of state) {
         if (profile.type === 'category') {
