@@ -26,11 +26,16 @@ before_install:
   fi
 - git config --global push.default simple
 
+stages:
+  - build
+  - name: deploy
+    if: branch = master OR branch = dev
+
 jobs:
   include:
-    - stage: "Build"
+    - stage: "build"
       name: "Build"
       script: ./.travis/build.sh ${TRAVIS_BRANCH}
-    - stage: "Deploy"
+    - stage: "deploy"
       name: "Deploy"
       script: ./.travis/deploy.sh ${TRAVIS_PULL_REQUEST} ${TRAVIS_BRANCH}
