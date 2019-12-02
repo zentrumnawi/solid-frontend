@@ -130,6 +130,14 @@
     "@angular-devkit/core" "8.3.19"
     rxjs "6.4.0"
 
+"@angular-devkit/schematics@8.3.20":
+  version "8.3.20"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-8.3.20.tgz#80e7c31ebfd8f7f8500bfa1cae5c39980b962d6a"
+  integrity sha512-sDHZakh4e3A5WenR9zr1x6Va9GNRqQlRhqT3xcbkG88v2M0YqEt7dHB7YwnOhm7zSxiWQM8PdWEQHiQ4iu9NyQ==
+  dependencies:
+    "@angular-devkit/core" "8.3.20"
+    rxjs "6.4.0"
+
 "@angular/animations@~8.2.1":
   version "8.2.13"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-8.2.13.tgz#0fdcf9bdcc0b310bff09a024557f0f935ae9b5dc"
@@ -242,14 +250,14 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/pwa@^0.803.19":
-  version "0.803.19"
-  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.803.19.tgz#4cf925710c17ec28ff0d5d11abdf4196d753b03e"
-  integrity sha512-Jw1/VFpkx8S4MzODCYk8kemSTR/V5PFccpp1Y7KpElH8WlLUd7ON6vcR1WqQ2Dd6h4GcKmMzRe3oA6XGAgxYag==
+"@angular/pwa@^0.803.20":
+  version "0.803.20"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.803.20.tgz#47231cdcd0cc107e6b692406d5bcfcb7a2ed9a05"
+  integrity sha512-AcgRzOI/So7LyaxDF6R0bwTAh3604+6on3rwN92SYQtFcLMkUfZ1Stwbei5rrrU5SxCyx1njx4312fnOhVDR6A==
   dependencies:
-    "@angular-devkit/core" "8.3.19"
-    "@angular-devkit/schematics" "8.3.19"
-    "@schematics/angular" "8.3.19"
+    "@angular-devkit/core" "8.3.20"
+    "@angular-devkit/schematics" "8.3.20"
+    "@schematics/angular" "8.3.20"
     parse5-html-rewriting-stream "5.1.0"
 
 "@angular/router@~8.2.1":
@@ -959,6 +967,14 @@
   dependencies:
     "@angular-devkit/core" "8.3.19"
     "@angular-devkit/schematics" "8.3.19"
+
+"@schematics/angular@8.3.20":
+  version "8.3.20"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-8.3.20.tgz#737d0a73e891446899a2267c4cc348b6c5a78ca8"
+  integrity sha512-Y20pSJhQ0KQd8Tk2kPQlmpRDNDaoIKMeOOGLT2FgCFrumxZXuIbBgN9fGDgW40iI2sq80bccOeo24RKkn3QpcA==
+  dependencies:
+    "@angular-devkit/core" "8.3.20"
+    "@angular-devkit/schematics" "8.3.20"
 
 "@schematics/update@0.803.19":
   version "0.803.19"
