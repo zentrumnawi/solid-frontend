@@ -20,6 +20,7 @@
     <h3 matLine>{{msg.title}} <span *ngIf="msg.validFrom">&nbsp;|&nbsp;{{ msg.validFrom | date: 'dd.MM.yyyy'}}</span>
     </h3>
     <span matLine Md [data]="msg.content"></span>
+    <img *ngIf="msg.imgurl" [src]="msg.imgurl" height="40px">
   </mat-list-item>
 </mat-list>
 <h2>Funktionsübersicht</h2>
