@@ -4,6 +4,7 @@ export interface Message {
   validTo?: Date;
   title: string;
   content: string;
+  imgurl?: string;
 }
 
 export const messages: Message[] = [
