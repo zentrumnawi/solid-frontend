@@ -10,7 +10,8 @@
   </mat-card-header>
   <mat-card-content>
     <p>Herzlich Willkommen bei GeoMat<i>digital</i> !</p>
-    <p>Unsere Tools unterstützen dich beim Bestimmen von Mineralen und dem Lernen von Mineraleigenschaften. Klick dich durch und melde dich gerne mit Feedback bei uns.</p>
+    <p>Unsere Tools unterstützen dich beim Bestimmen von Mineralen und dem Lernen von Mineraleigenschaften. Klick dich
+      durch und melde dich gerne mit Feedback bei uns.</p>
     <p>Wir wünschen dir viel Spaß beim Kennenlernen der Minerale!</p>
   </mat-card-content>
 </mat-card>
@@ -20,7 +21,6 @@
     <h3 matLine>{{msg.title}} <span *ngIf="msg.validFrom">&nbsp;|&nbsp;{{ msg.validFrom | date: 'dd.MM.yyyy'}}</span>
     </h3>
     <span matLine Md [data]="msg.content"></span>
-    <img *ngIf="msg.imgurl" [src]="msg.imgurl" height="40px">
   </mat-list-item>
 </mat-list>
 <h2>Funktionsübersicht</h2>
