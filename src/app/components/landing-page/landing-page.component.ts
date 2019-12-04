@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
-import {Message, messages} from "./message";
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Message, messages} from './message';
 
 @Component({
   selector: 'app-landing-page',
@@ -22,7 +22,7 @@ export class LandingPageComponent {
       }
     });
     const now = new Date(Date.now());
-    this.Messages = messages.filter(m => (!m.validFrom || m.validFrom <= now) && (!m.validTo || m.validTo > now))
+    this.Messages = messages.filter(m => (!m.validFrom || m.validFrom <= now) && (!m.validTo || m.validTo > now));
   }
 
   public onCloseClick() {

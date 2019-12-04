@@ -4,7 +4,6 @@ export interface Message {
   validTo?: Date;
   title: string;
   content: string;
-  imgurl?: string;
 }
 
 export const messages: Message[] = [
@@ -108,5 +107,5 @@ export const messages: Message[] = [
     validFrom: new Date(2019,11,20,0,0),
     validTo: new Date(2019,11,23,0,0),
   },
-  
+
 ];
