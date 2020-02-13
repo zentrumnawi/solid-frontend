@@ -11,6 +11,10 @@ mat-form-field {
   max-width: 20em;
 }
 
+mat-icon.clear-filter {
+  cursor: pointer;
+}
+
 div.content-container {
   display: grid;
   grid-template-columns: 100%;

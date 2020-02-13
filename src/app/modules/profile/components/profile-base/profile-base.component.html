@@ -3,7 +3,8 @@
     <mat-form-field color="accent">
       <mat-label>Suchen</mat-label>
       <input [formControl]="Filter" matInput type="text"/>
-      <mat-icon matSuffix svgIcon="search"></mat-icon>
+      <mat-icon *ngIf="Filter.value == ''" matSuffix svgIcon="search"></mat-icon>
+      <mat-icon *ngIf="Filter.value != ''" matSuffix class="clear-filter" (click)="Filter.setValue('')">clear</mat-icon>
     </mat-form-field>
     <app-profile-list (onProfileSelect)="selectProfile($event)" *ngIf="Filter.value !== ''; else tree"
                       [profiles]="FilteredProfiles"></app-profile-list>
