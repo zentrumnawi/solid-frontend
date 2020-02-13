@@ -22,7 +22,8 @@ const routes: Routes = [
     path: 'quiz',
     loadChildren: () => import('./modules/quiz/quiz.module').then(m => m.QuizModule),
   },
-  {path: '', pathMatch: 'full', component: LandingPageComponent, data: {title: 'Startseite'}}
+  {path: '', pathMatch: 'full', component: LandingPageComponent, data: {title: 'Startseite'}},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
