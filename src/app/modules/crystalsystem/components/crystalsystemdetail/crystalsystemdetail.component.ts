@@ -20,7 +20,7 @@ interface CrystalsystemIFrameWindowProxy {
   styleUrls: ['./crystalsystemdetail.component.scss']
 })
 export class CrystalsystemdetailComponent {
-  @ViewChild('iframe') public iFrame: ElementRef<HTMLIFrameElement> | null = null;
+  @ViewChild('iframe', {static: false}) public iFrame: ElementRef<HTMLIFrameElement> | null = null;
   public Configs = configurations;
   public SelectedConfig = configurations[0];
   public Layer = configurations[0].layers.length > 0 ? configurations[0].layers[0].name : 0;

@@ -18,7 +18,7 @@ import {GalleryLoadAction} from "../../state/gallery.actions";
   styleUrls: ['./photograph-detail.component.scss'],
 })
 export class PhotographDetailComponent extends BaseComponent {
-  @ViewChild('audioplayer') player?: { nativeElement: HTMLAudioElement };
+  @ViewChild('audioplayer', {static: false}) player?: { nativeElement: HTMLAudioElement };
   public Playing = false;
   public PlayingStarted = false;
   public PlayPosition = '';

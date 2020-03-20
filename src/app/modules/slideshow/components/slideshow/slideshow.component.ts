@@ -19,13 +19,13 @@ export enum KEY {
 })
 export class SlideshowComponent {
   public MaxStep = 0;
-  @ViewChild('stepper') public Stepper!: MatStepper;
+  @ViewChild('stepper', {static: false}) public Stepper!: MatStepper;
   public Slideshow: Observable<Slideshow | undefined> = of(undefined);
   @Select((s: any) => s.router.state.params['slideshowId']) slideshowId!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<(id: string) => Slideshow | undefined>;
 
   constructor(store: Store) {
-    this.Slideshow = combineLatest(this.slideshowId, this.slideshowSelector).pipe(
+    this.Slideshow = combineLatest([this.slideshowId, this.slideshowSelector]).pipe(
       map(val => {
         return val[1](val[0]);
       }),
