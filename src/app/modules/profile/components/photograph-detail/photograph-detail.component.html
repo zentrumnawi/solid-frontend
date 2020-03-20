@@ -31,12 +31,12 @@
       </div>
       <img *ngIf="Entry"
            alt="Großes Bild des Minerals"
-           [src]="Entry.image_file.small"
+           [src]="Entry.image.small"
            (load)="imageLoaded()"
            [class.hidden]="!ImageLoaded"
-           srcset="{{ Entry.image_file.small }} 600w,
-            {{ Entry.image_file.medium }} 900w,
-            {{ Entry.image_file.large }} 1200w"
+           srcset="{{ Entry.image.small }} 600w,
+            {{ Entry.image.medium }} 900w,
+            {{ Entry.image.large }} 1200w"
            sizes="(max-width: 600px) 600px, (max-width: 1000px) 900w, 1200w">
     </div>
   </mat-tab>

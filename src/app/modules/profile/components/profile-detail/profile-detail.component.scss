@@ -1,6 +1,7 @@
 @import '../../../../../theme';
 
 $background: map-get($app-theme, background);
+$accent: map-get($app-theme, accent);
 
 :host {
   background-color: mat-color($background, card);
@@ -8,8 +9,55 @@ $background: map-get($app-theme, background);
 
 p {
   padding: 0 0.5em 0.5em 0.5em;
+
   &.heading {
     padding: 0.5em;
     background-color: mat-color($background, app-bar);
+  }
+}
+
+div.img {
+  //margin-bottom: -5px;
+  //margin: 0 -16px -16px -16px;
+
+  .spinner {
+    mat-spinner {
+      margin: auto;
+    }
+  }
+
+  img {
+    max-width: 100%;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+div.img-toolbar {
+  margin-top: -5px;
+  overflow-y: scroll;
+  //height: 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 4rem;
+    border: 2px solid mat-color($accent);
+    transition-property: filter;
+    transition-duration: 500ms;
+
+    &.not-selected {
+      cursor: pointer;
+      filter: saturate(0%);
+    }
+  }
+
+  button.img-detail-btn {
+    position: absolute;
+    right: 0;
   }
 }

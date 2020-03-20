@@ -38,12 +38,7 @@ export class ProfileService extends ApiHttpClient {
       type: 'mineral' as 'mineral',
       id: child.id,
       mineralName: child.minerals,
-      imageFiles: child.image_file ? child.image_file : {
-        large: '/assets/profile/no_image.svg',
-        medium: '/assets/profile/no_image.svg',
-        small: '/assets/profile/no_image.svg',
-        thumbnail: '/assets/profile/no_thumbnail.svg',
-      },
+      images: child.image_file ? [child.image_file] : [],
       chemicalFormula: child.chemical_formula,
       variety: child.variety === '' ? undefined : child.variety,
       trivialName: child.trivial_name === '' ? undefined : child.trivial_name,

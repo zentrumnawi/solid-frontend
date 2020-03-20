@@ -3,10 +3,10 @@
   <mat-tree-node (click)="onProfileSelect.emit(node.id)"
                  *matTreeNodeDef="let node; when: !hasChild" class="profile-link"
                  matTreeNodePadding matTreeNodeToggle>
-    <img (load)="onImageLoaded(node)" [alt]="node.title" [class.hidden]="!node.imageLoaded"
-         [src]="node.imageFiles.thumbnail"
+    <img [alt]="node.title"
+         [src]="node.images.length > 0 ? node.images[0].thumbnail : '/assets/profile/no_image.svg'"
          class="thumbnail">
-    <span [class.hidden]="!node.imageLoaded" [class.selected]="selectedProfileId === node.id">{{node.title}}</span>
+    <span [class.selected]="selectedProfileId === node.id">{{node.title}}</span>
   </mat-tree-node>
 
   <mat-tree-node (click)="onNodeClick(node)" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>

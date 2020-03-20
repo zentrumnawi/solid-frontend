@@ -2,7 +2,7 @@ import {FlatTreeControl} from '@angular/cdk/tree';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {of as observableOf} from 'rxjs';
-import {ImageFiles} from '../../../../shared/models';
+import {Image} from '../../../../shared/models';
 import {ProfileService} from '../../services/profile.service';
 import {Profile} from '../../state/profile.model';
 import {Store} from "@ngxs/store";
@@ -13,8 +13,7 @@ export interface MineralNode {
   title: string;
   type: 'mineral';
   level: number;
-  imageFiles: ImageFiles;
-  imageLoaded: boolean;
+  images: Image[];
   expandable: false,
   id: number;
 }
@@ -82,8 +81,7 @@ export class ProfileTreeComponent {
         type: 'mineral',
         level: level,
         expandable: false,
-        imageFiles: node.imageFiles,
-        imageLoaded: false,
+        images: node.images,
       };
     }
   }
@@ -110,12 +108,6 @@ export class ProfileTreeComponent {
   /** Get whether the node has children or not. */
   public hasChild(index: number, node: FlatTreeNode) {
     return node.expandable;
-  }
-
-  public onImageLoaded(node: FlatTreeNode) {
-    if (node.type === 'mineral') {
-      node.imageLoaded = true;
-    }
   }
 
   onNodeClick(node: MineralNode | CategoryNode) {

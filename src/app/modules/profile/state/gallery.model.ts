@@ -1,8 +1,8 @@
-import {ImageFiles} from '../../../shared/models';
+import {Image} from '../../../shared/models';
 
 export interface PhotographModel {
   id: number;
-  image_file: ImageFiles;
+  image: Image;
   handpiece: HandpieceModel;
   orig_height: number;
   orig_width: number;

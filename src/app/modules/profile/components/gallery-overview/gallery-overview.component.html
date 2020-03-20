@@ -26,7 +26,7 @@
         <mat-spinner color="primary"></mat-spinner>
       </div>
       <img (load)="imageLoaded($event, entry)" [class.hidden]="!EntriesLoaded[entry.id]"
-           [src]="entry.image_file.small" alt="Bild des Minerals"/>
+           [src]="entry.image.small" alt="Bild des Minerals"/>
     </mat-card-content>
   </mat-card>
   <mat-card *ngIf="Entries.length === 0 && LoadingCompleted" class="no-results-card">

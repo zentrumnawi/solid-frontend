@@ -1,4 +1,4 @@
-import {ImageFiles} from '../../../shared/models';
+import {Image} from '../../../shared/models';
 
 export type Profile = ProfileCategory | MineralProfile;
 
@@ -15,7 +15,7 @@ export interface MineralProfile {
   variety?: string;
   mineralName: string;
   trivialName?: string;
-  imageFiles: ImageFiles;
+  images: Image[];
   chemicalFormula: string;
   mohsScale: string;
   cleavage: { cleavage: string, coordinates: string }[]
@@ -32,14 +32,14 @@ export interface NodeApi {
   node_name: string;
   leaf_nodes: NodeApi[];
   info_text: string;
-  image: ImageFiles | null;
+  image: Image | null;
   mineraltypes: MineralProfileApi[];
 }
 
 export interface MineralProfileApi {
   id: number;
   trivial_name: string;
-  image_file: ImageFiles | null;
+  image_file: Image | null;
   chemical_formula: string;
   minerals: string;
   variety: string;

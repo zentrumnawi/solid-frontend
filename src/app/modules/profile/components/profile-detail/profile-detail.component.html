@@ -1,6 +1,33 @@
 <ng-container *ngIf="Profile">
-  <app-image-card *ngIf="!ProfileId"
-    [src]="Profile.imageFiles.large"></app-image-card>
+  <div *ngIf="Profile.images.length > 0; else noImg" class="img">
+    <div *ngIf="!ImageLoaded[0]" class="spinner">
+      <mat-spinner color="primary"></mat-spinner>
+    </div>
+    <img (load)="onImageLoaded(0)" [class.hidden]="!ImageLoaded" [src]="Profile.images[0].medium"/>
+    <div class="img-toolbar">
+      <button (click)="onImageSelect(ImageSelected - 1)" [disabled]="ImageSelected === 0" mat-icon-button>
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <ng-container *ngFor="let img of Profile.images; let i = index;">
+        <img (click)="onImageSelect(i)" *ngIf="ImageStartIndex <= i && ImageEndIndex >= i"
+             [class.not-selected]="ImageSelected !== i" [src]="img.thumbnail"/>
+      </ng-container>
+      <button (click)="onImageSelect(ImageSelected + 1)" [disabled]="ImageSelected === Profile.images.length - 1"
+              mat-icon-button>
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+      <button class="img-detail-btn" mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template #noImg>
+    <div class="img">
+      <img (load)="onImageLoaded(0)" [class.hidden]="!ImageLoaded" src="/assets/profile/no_image.svg"/>
+    </div>
+  </ng-template>
+  <!--  <app-image-card-->
+  <!--    [src]="Profile.imageFiles.large"></app-image-card>-->
   <ng-container *ngIf="Category">
     <p class="heading">Systematik</p>
     <p>{{ Category.title }}</p>

@@ -14,6 +14,10 @@ import {map} from "rxjs/operators";
 export class ProfileDetailComponent implements OnInit {
   public Category: ProfileCategory | null = null;
   public Profile: MineralProfile | null = null;
+  public ImageLoaded = [false];
+  public ImageSelected = 0;
+  public ImageStartIndex = 0;
+  public ImageEndIndex = 0;
   @Select(ProfileState.selectProfile) public _profileSelector!: Observable<(profileId: number) => { profile: MineralProfile; category: ProfileCategory } | undefined>;
   private _profileIdSubject = new BehaviorSubject<number | undefined>(undefined);
 
@@ -39,7 +43,29 @@ export class ProfileDetailComponent implements OnInit {
       if (value) {
         this.Category = value.category;
         this.Profile = value.profile;
+        this.ImageLoaded = value.profile.images.map(_ => false);
+        this.onImageSelect(0);
       }
     })
+  }
+
+  public onImageLoaded(index: number) {
+    this.ImageLoaded[index] = true;
+  }
+
+  public onImageSelect(index: number) {
+    if (this.Profile) {
+      this.ImageSelected = index;
+      if (index < 3) {
+        this.ImageStartIndex = 0;
+        this.ImageEndIndex = index + 3 + (3 - index);
+      } else if (index > this.Profile.images.length - 4) {
+        this.ImageEndIndex = this.Profile.images.length - 1;
+        this.ImageStartIndex = index - 3 - (3 - (this.Profile.images.length - index - 1));
+      } else {
+        this.ImageStartIndex = index - 3;
+        this.ImageEndIndex = index + 3;
+      }
+    }
   }
 }
