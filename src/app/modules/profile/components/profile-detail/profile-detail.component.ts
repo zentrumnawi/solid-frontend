@@ -14,7 +14,7 @@ import {map} from "rxjs/operators";
 export class ProfileDetailComponent implements OnInit {
   public Category: ProfileCategory | null = null;
   public Profile: MineralProfile | null = null;
-  @Select(ProfileState.selectProfile) private _profileSelector!: Observable<(profileId: number) => { profile: MineralProfile; category: ProfileCategory } | undefined>;
+  @Select(ProfileState.selectProfile) public _profileSelector!: Observable<(profileId: number) => { profile: MineralProfile; category: ProfileCategory } | undefined>;
   private _profileIdSubject = new BehaviorSubject<number | undefined>(undefined);
 
   constructor(

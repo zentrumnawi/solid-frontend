@@ -1,6 +1,7 @@
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {MineralProfile, Profile, ProfileCategory} from "./profile.model";
 import {ProfileSetAction} from "./profile.actions";
+import {Injectable} from "@angular/core";
 
 export type ProfileStateModel = Profile[];
 
@@ -8,6 +9,7 @@ export type ProfileStateModel = Profile[];
   name: 'profile',
   defaults: []
 })
+@Injectable()
 export class ProfileState {
   private static findProfileDeep(profiles: Profile[], profileId: number): { profile: MineralProfile, category: ProfileCategory | null } | null {
     for (let profile of profiles) {

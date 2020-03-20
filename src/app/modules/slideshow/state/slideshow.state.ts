@@ -3,6 +3,7 @@ import {determinationhelper} from "./determination-helper.pages";
 import {Slideshow, SlideshowPage} from "./slideshow.model";
 import {HttpClient} from "@angular/common/http";
 import {SlideshowLoadContentAction} from "./slideshow.actions";
+import {Injectable} from "@angular/core";
 
 export type SlideshowStateModel = { [key: string]: Slideshow };
 
@@ -10,6 +11,7 @@ export type SlideshowStateModel = { [key: string]: Slideshow };
   name: 'slideshow',
   defaults: {determination: determinationhelper}
 })
+@Injectable()
 export class SlideshowState {
   // TODO: Remove this ugly loading mechanism. (New API needed)
   private _loadingSlideshows: string[] = [];
@@ -19,7 +21,7 @@ export class SlideshowState {
 
   @Selector()
   public static getSlideshowById(state: SlideshowStateModel) {
-    return (id: string) => state[id];
+    return (id: string): Slideshow | undefined => state[id];
   }
 
   @Action(SlideshowLoadContentAction)

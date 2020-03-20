@@ -50,9 +50,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     FeedbackDialogComponent,
     LandingPageComponent,
   ],
-  entryComponents: [
-    FeedbackDialogComponent,
-  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
