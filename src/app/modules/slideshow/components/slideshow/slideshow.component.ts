@@ -19,7 +19,7 @@ export enum KEY {
 })
 export class SlideshowComponent {
   public MaxStep = 0;
-  @ViewChild('stepper', {static: false}) public Stepper!: MatStepper;
+  @ViewChild('stepper') public Stepper!: MatStepper;
   public Slideshow: Observable<Slideshow | undefined> = of(undefined);
   @Select((s: any) => s.router.state.params['slideshowId']) slideshowId!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<(id: string) => Slideshow | undefined>;

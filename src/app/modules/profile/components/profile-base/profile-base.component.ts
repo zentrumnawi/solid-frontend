@@ -14,7 +14,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./profile-base.component.scss']
 })
 export class ProfileBaseComponent implements AfterViewInit {
-  @ViewChild('contentContainer', {static: false}) public ContentContainer!: ElementRef;
+  @ViewChild('contentContainer') public ContentContainer!: ElementRef;
   public SplitLayout = false;
   public Filter = new FormControl('');
   public FilteredProfiles: MineralProfile[] = [];

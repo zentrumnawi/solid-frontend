@@ -20,7 +20,7 @@ import {GalleryLoadAction} from "../../state/gallery.actions";
   ]
 })
 export class GalleryOverviewComponent extends BaseComponent {
-  @ViewChild('searchInput', {static: false}) searchInputRef?: ElementRef;
+  @ViewChild('searchInput') searchInputRef?: ElementRef;
   public Entries: PhotographModel[] = [];
   public EntriesLoaded: { [key: number]: boolean } = {};
   public LoadingCompleted = false;

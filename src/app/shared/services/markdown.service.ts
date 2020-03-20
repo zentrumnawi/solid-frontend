@@ -1,6 +1,7 @@
 import {Injectable, SecurityContext} from '@angular/core';
 import * as MarkdownIt from 'markdown-it';
 import {DomSanitizer} from '@angular/platform-browser';
+import overlinePlugin from './overline.plugin';
 
 @Injectable()
 export class MarkdownService {
@@ -9,7 +10,7 @@ export class MarkdownService {
   })
     .use(require('markdown-it-sub') as any)
     .use(require('markdown-it-sup') as any)
-    .use(require('./overline.plugin') as any);
+    .use(overlinePlugin);
 
     constructor(
         private _domSanitizer: DomSanitizer

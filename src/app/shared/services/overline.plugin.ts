@@ -1,13 +1,13 @@
 // Process $overline$
 
 // same as UNESCAPE_MD_RE plus a space
-var UNESCAPE_RE = /\\([ \\!"#$%&'()*+,.\/:;<=>?@[\]^_`{|}$-])/g;
+const UNESCAPE_RE = /\\([ \\!"#$%&'()*+,.\/:;<=>?@[\]^_`{|}$-])/g;
 
 function subscript(state: any, silent: any) {
-  var found,
+  let found,
     content,
-    token,
-    max = state.posMax,
+    token;
+  const max = state.posMax,
     start = state.pos;
 
   if (state.src.charCodeAt(start) !== 0x24/* $ */) {
@@ -65,6 +65,6 @@ function subscript(state: any, silent: any) {
 }
 
 
-module.exports = function sub_plugin(md: any) {
+export default function sub_plugin(md: any) {
   md.inline.ruler.after('emphasis', 'over', subscript);
 };

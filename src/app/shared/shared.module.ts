@@ -73,7 +73,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
   ]
 })
 export class SharedModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
       providers: [
