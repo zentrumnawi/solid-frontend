@@ -1,5 +1,7 @@
 import {ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy} from "@angular/router";
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class CustomRouteReuseStrategy implements RouteReuseStrategy {
   shouldDetach(route: ActivatedRouteSnapshot): boolean { return false; }
   store(route: ActivatedRouteSnapshot, detachedTree: DetachedRouteHandle): void {}

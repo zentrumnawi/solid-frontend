@@ -1,5 +1,6 @@
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {GlossarySetAction} from "./glossary.actions";
+import {Injectable} from "@angular/core";
 
 export interface GlossaryEntryModel {
   id: string;
@@ -19,6 +20,7 @@ export interface GlossaryStateModel {
     entries: {}
   }
 })
+@Injectable()
 export class GlossaryState {
   @Selector()
   static entries(state: GlossaryStateModel) {

@@ -10,7 +10,8 @@ import {Store} from "@ngxs/store";
 export type FlatTreeNode = MineralNode | CategoryNode;
 
 export interface MineralNode {
-  type: 'mineral'
+  title: string;
+  type: 'mineral';
   level: number;
   imageFiles: ImageFiles;
   imageLoaded: boolean;

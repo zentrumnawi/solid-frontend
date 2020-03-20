@@ -3,6 +3,7 @@ import {PhotographModel} from "./gallery.model";
 import {GalleryLoadAction} from "./gallery.actions";
 import {GalleryService} from "../services/gallery.service";
 import {tap} from "rxjs/operators";
+import {Injectable} from "@angular/core";
 
 export interface GalleryStateModel {
   photographs: PhotographModel[];
@@ -16,6 +17,7 @@ export interface GalleryStateModel {
     _loaded: false,
   }
 })
+@Injectable()
 export class GalleryState {
   constructor(private _service: GalleryService) {
   }

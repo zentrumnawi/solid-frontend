@@ -26,9 +26,6 @@ import {ProfileBaseComponent} from './components/profile-base/profile-base.compo
     MediaErrorDialogComponent,
     ProfileBaseComponent,
   ],
-  entryComponents: [
-    MediaErrorDialogComponent,
-  ],
   imports: [
     SharedModule,
     MatTabsModule,

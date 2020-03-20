@@ -1,4 +1,4 @@
-import {ErrorHandler, NgModule} from '@angular/core';
+import { ErrorHandler, NgModule, Injectable } from '@angular/core';
 import {BrowserModule, DomSanitizer, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
@@ -29,6 +29,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {NgxsDispatchPluginModule} from "@ngxs-labs/dispatch-decorator";
 
+@Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
     pan: {
@@ -48,9 +49,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     PrivacyComponent,
     FeedbackDialogComponent,
     LandingPageComponent,
-  ],
-  entryComponents: [
-    FeedbackDialogComponent,
   ],
   imports: [
     BrowserModule,

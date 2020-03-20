@@ -10,9 +10,6 @@ import {InfoOverlayComponent} from "./components/info-overlay/info-overlay.compo
     CrystalsystemdetailComponent,
     InfoOverlayComponent,
   ],
-  entryComponents: [
-    InfoOverlayComponent
-  ],
   imports: [
     SharedModule,
     CrystalsystemRoutingModule

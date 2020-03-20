@@ -1,6 +1,7 @@
 import {Action, State, StateContext} from "@ngxs/store";
 import {QuizQuestion, QuizQuestionInSession, QuizSession} from "./quiz.model";
 import {QuizQuestionAnswered, QuizQuestionsAdd, QuizSessionEnd, QuizSessionStart} from "./quiz.actions";
+import {Injectable} from "@angular/core";
 
 export interface QuizStateModel {
   questions: QuizQuestion[];
@@ -14,6 +15,7 @@ export interface QuizStateModel {
     session: null,
   }
 })
+@Injectable()
 export class QuizState {
 
   @Action(QuizQuestionsAdd)
