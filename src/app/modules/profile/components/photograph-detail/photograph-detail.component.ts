@@ -4,7 +4,7 @@ import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {PhotographModel} from '../../state/gallery.model';
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
-import {MatDialog} from "@angular/material";
+import {MatDialog} from "@angular/material/dialog";
 import {MediaErrorDialogComponent} from "../media-error-dialog/media-error-dialog.component";
 import {Store} from "@ngxs/store";
 import {GalleryState} from "../../state/gallery.state";
