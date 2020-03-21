@@ -37,7 +37,10 @@ mat-radio-group {
         .mat-radio-outer-circle {
           border-color: mat-color($quiz-correct);
         }
-      }
+        .mat-radio-label {
+          font-weight: bold;
+        }
+      } 
     }
 
     &.incorrect {
@@ -50,8 +53,6 @@ mat-radio-group {
         }
       }
     }
-  ;
-
   }
 }
 
@@ -85,9 +86,11 @@ mat-card-content.multiple-choice {
         .mat-checkbox-background {
           background-color: mat-color($quiz-correct);
         }
+        .mat-checkbox-label {
+          font-weight: bold;
+        }
       }
     }
-
     &.incorrect {
       ::ng-deep {
         .mat-checkbox-background {
@@ -95,14 +98,17 @@ mat-card-content.multiple-choice {
         }
       }
     }
-  }
+   }
+}
 
-  //span.atext {
-  //  display: inline-block;
-  //  height: 24px;
-  //}
+span.selected {
+  ::ng-deep {
+    color: mat-color($foreground, text);
+  }
 }
 
 span.feedback {
   color: mat-color($foreground, text);
+  font-style: italic;
+  font-weight: normal;
 }

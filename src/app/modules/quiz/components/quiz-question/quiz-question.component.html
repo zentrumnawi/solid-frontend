@@ -13,7 +13,9 @@
                             [class.incorrect]="isAnswerIncorrect(answer)"
                             [value]="answer.id"
           >
-            <span Md [data]="answer.atext" class="atext"></span>
+            <span Md [data]="answer.atext" 
+                  [class.selected]="ShowAnswers && SelectedAnswers.includes(answer.id)"
+            ></span>
             <span *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
                   Md [data]="answer.correct ? answer.feedback_correct : answer.feedback_incorrect"
                   class="feedback"></span>
@@ -30,7 +32,9 @@
                       [disabled]="ShowAnswers"
                       color="primary"
         >
-          <span Md [data]="answer.atext" class="atext"></span>
+          <span Md [data]="answer.atext"
+                [class.selected]="ShowAnswers && SelectedAnswers.includes(answer.id)"
+          ></span>
           <span *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
                 Md [data]="answer.correct ? answer.feedback_correct : answer.feedback_incorrect"
                 class="feedback"></span>
