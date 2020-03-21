@@ -49,7 +49,7 @@ mat-radio-group {
         //  background-color: mat-color($warn);
         //}
         .mat-radio-outer-circle {
-          border-color: mat-color($quiz-wrong);
+          border-color: mat-color($quiz-incorrect);
         }
       }
     }
@@ -81,7 +81,7 @@ mat-card-content.multiple-choice {
         margin-bottom: auto;
       }
     }
-    &.correct {
+    &.correctselected {
       ::ng-deep {
         .mat-checkbox-background {
           background-color: mat-color($quiz-correct);
@@ -91,10 +91,27 @@ mat-card-content.multiple-choice {
         }
       }
     }
-    &.incorrect {
+    &.correctunselected {
       ::ng-deep {
         .mat-checkbox-background {
-          background-color: mat-color($quiz-wrong);
+          background-color: mat-color($quiz-correct, lighter);
+        }
+        .mat-checkbox-label {
+          font-weight: bold;
+        }
+      }
+    }
+    &.incorrectselected {
+      ::ng-deep {
+        .mat-checkbox-background {
+          background-color: mat-color($quiz-incorrect);
+        }
+      }
+    }
+    &.incorrectunselected {
+      ::ng-deep {
+        .mat-checkbox-background {
+          background-color: mat-color($quiz-incorrect, lighter);
         }
       }
     }

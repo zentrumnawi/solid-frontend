@@ -6,8 +6,8 @@
 $app-primary: mat-palette($mat-orange);
 $app-accent: mat-palette($mat-light-blue, A200, A100, A400);
 
-$quiz-correct: mat-palette($mat-green, 400, 200, 600);
-$quiz-wrong: mat-palette($mat-red, 400, 200, 600);
+$quiz-correct: mat-palette($mat-light-green, 600, 200, 600);
+$quiz-incorrect: mat-palette($mat-red, 700, 200, 600);
 
 // The warn palette is optional (defaults to red).
 $app-warn:    mat-palette($mat-red);
