@@ -1,65 +1,61 @@
-<ng-container *ngIf="Profile">
-  <div *ngIf="Profile.images.length > 0; else noImg" class="img">
-    <div *ngIf="!ImageLoaded[0]" class="spinner">
-      <mat-spinner color="primary"></mat-spinner>
-    </div>
-    <img (load)="onImageLoaded(0)" [class.hidden]="!ImageLoaded" [src]="Profile.images[0].medium"/>
-    <div class="img-toolbar">
-      <button (click)="onImageSelect(ImageSelected - 1)" [disabled]="ImageSelected === 0" mat-icon-button>
-        <mat-icon>navigate_before</mat-icon>
-      </button>
-      <ng-container *ngFor="let img of Profile.images; let i = index;">
-        <img (click)="onImageSelect(i)" *ngIf="ImageStartIndex <= i && ImageEndIndex >= i"
-             [class.not-selected]="ImageSelected !== i" [src]="img.thumbnail"/>
-      </ng-container>
-      <button (click)="onImageSelect(ImageSelected + 1)" [disabled]="ImageSelected === Profile.images.length - 1"
-              mat-icon-button>
-        <mat-icon>navigate_next</mat-icon>
-      </button>
-      <button class="img-detail-btn" mat-icon-button>
-        <mat-icon>search</mat-icon>
-      </button>
-    </div>
+<div *ngIf="profile.images.length > 0; else noImg" class="img">
+  <div *ngIf="!ImageLoaded[ImageSelected]" class="spinner">
+    <mat-spinner color="primary"></mat-spinner>
   </div>
-  <ng-template #noImg>
-    <div class="img">
-      <img (load)="onImageLoaded(0)" [class.hidden]="!ImageLoaded" src="/assets/profile/no_image.svg"/>
-    </div>
-  </ng-template>
-  <!--  <app-image-card-->
-  <!--    [src]="Profile.imageFiles.large"></app-image-card>-->
-  <ng-container *ngIf="Category">
-    <p class="heading">Systematik</p>
-    <p>{{ Category.title }}</p>
-  </ng-container>
-  <ng-container *ngIf="Profile.variety">
-    <p class="heading">Mineralname</p>
-    <p>{{ Profile.mineralName }}</p>
-  </ng-container>
-  <ng-container *ngIf="Profile.trivialName && Profile.trivialName !== Profile.mineralName">
-    <p class="heading">Trivialname</p>
-    <p>{{ Profile.trivialName }}</p>
-  </ng-container>
-  <p class="heading">chemische Formel</p>
-  <p Md [data]="Profile.chemicalFormula"></p>
-  <p class="heading">Kristallsystem</p>
-  <p *ngFor="let crystalSystem of Profile.crystalSystems">{{ crystalSystem.name}}</p>
-  <p class="heading">Mohshärte</p>
-  <p>{{ Profile.mohsScale}}</p>
-  <p class="heading">Dichte</p>
-  <p>{{ Profile.density}}</p>
-  <p class="heading">Spaltbarkeit</p>
-  <p *ngFor="let cleavage of Profile.cleavage">{{ cleavage.cleavage }} {{ cleavage.coordinates}}</p>
-  <p class="heading">Bruch</p>
-  <p *ngFor="let fracture of Profile.fractures">{{ fracture }}</p>
-  <p class="heading">Farbe</p>
-  <p>{{ Profile.color}}</p>
-  <p class="heading">Glanz</p>
-  <p *ngFor="let lustre of Profile.lustres">{{ lustre }}</p>
-  <p class="heading">Strichfarbe</p>
-  <p>{{ Profile.streak}}</p>
-  <ng-container *ngIf="Profile.other">
-    <p class="heading">Zusatzinformationen</p>
-    <p Md [data]="Profile.other"></p>
-  </ng-container>
+  <img (load)="onImageLoaded(ImageSelected)" [class.hidden]="!ImageLoaded[ImageSelected]"
+       [src]="profile.images[ImageSelected].medium"/>
+  <div *ngIf="ImageLoaded[ImageSelected]" class="img-toolbar">
+    <button (click)="onImageSelect(ImageSelected - 1)" [disabled]="ImageSelected === 0" mat-icon-button>
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <ng-container *ngFor="let img of profile.images; let i = index;">
+      <img (click)="onImageSelect(i)" *ngIf="ImageStartIndex <= i && ImageEndIndex >= i"
+           [class.not-selected]="ImageSelected !== i" [src]="img.thumbnail"/>
+    </ng-container>
+    <button (click)="onImageSelect(ImageSelected + 1)" [disabled]="ImageSelected === profile.images.length - 1"
+            mat-icon-button>
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+    <button class="img-detail-btn" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>
+<ng-template #noImg>
+  <div class="img">
+    <img (load)="onImageLoaded(0)" [class.hidden]="!ImageLoaded" src="/assets/profile/no_image.svg"/>
+  </div>
+</ng-template>
+<p class="hweading">Systematik</p>
+<p>{{ category.title }}</p>
+<!--</ng-container>-->
+<ng-container *ngIf="profile.variety">
+  <p class="heading">Mineralname</p>
+  <p>{{ profile.mineralName }}</p>
+</ng-container>
+<ng-container *ngIf="profile.trivialName && profile.trivialName !== profile.mineralName">
+  <p class="heading">Trivialname</p>
+  <p>{{ profile.trivialName }}</p>
+</ng-container>
+<p class="heading">chemische Formel</p>
+<p Md [data]="profile.chemicalFormula"></p>
+<p class="heading">Kristallsystem</p>
+<p *ngFor="let crystalSystem of profile.crystalSystems">{{ crystalSystem.name}}</p>
+<p class="heading">Mohshärte</p>
+<p>{{ profile.mohsScale}}</p>
+<p class="heading">Dichte</p>
+<p>{{ profile.density}}</p>
+<p class="heading">Spaltbarkeit</p>
+<p *ngFor="let cleavage of profile.cleavage">{{ cleavage.cleavage }} {{ cleavage.coordinates}}</p>
+<p class="heading">Bruch</p>
+<p *ngFor="let fracture of profile.fractures">{{ fracture }}</p>
+<p class="heading">Farbe</p>
+<p>{{ profile.color}}</p>
+<p class="heading">Glanz</p>
+<p *ngFor="let lustre of profile.lustres">{{ lustre }}</p>
+<p class="heading">Strichfarbe</p>
+<p>{{ profile.streak}}</p>
+<ng-container *ngIf="profile.other">
+  <p class="heading">Zusatzinformationen</p>
+  <p Md [data]="profile.other"></p>
 </ng-container>

@@ -3,16 +3,13 @@
     <mat-icon matListIcon svgIcon="icon"></mat-icon>
     <h3 matLine>Startseite</h3>
   </mat-list-item>
-  <mat-list-item (click)="navigateTo('/profile')"
-                 [class.active]="ActiveUrl.startsWith('/profile') && !ActiveUrl.includes('/img')">
+  <mat-list-item (click)="navigateTo('/profile/tree')"
+                 [class.active]="ActiveUrl.startsWith('/profile')">
     <mat-icon matListIcon svgIcon="profile"></mat-icon>
     <h3 matLine>Steckbriefe</h3>
   </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl.startsWith('/profile/img')" (click)="navigateTo('/profile/img')">
-    <mat-icon matListIcon svgIcon="gallery"></mat-icon>
-    <h3 matLine>Galerie</h3>
-  </mat-list-item>
-  <mat-list-item [class.active]="ActiveUrl === '/slideshow/determination'" (click)="navigateTo('/slideshow/determination')">
+  <mat-list-item [class.active]="ActiveUrl === '/slideshow/determination'"
+                 (click)="navigateTo('/slideshow/determination')">
     <mat-icon matListIcon svgIcon="assistant"></mat-icon>
     <h3 matLine>Bestimmungshelfer</h3>
   </mat-list-item>

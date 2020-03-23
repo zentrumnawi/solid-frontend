@@ -5,9 +5,9 @@
 }
 
 mat-form-field {
-  padding: 0.5em;
+  //padding: 0.5em;
   //grid-area: search;
-  grid-row: 1 / 1;
+  //grid-row: 1 / 1;
   max-width: 20em;
 }
 
@@ -22,13 +22,17 @@ div.content-container {
   overflow: hidden;
 
   &.splitLayout {
-    grid-template-areas: 'search toolbar' 'tree profile';
+    grid-template-areas: 'main-toolbar toolbar' 'tree profile';
     grid-template-columns: 0.5fr 0.5fr;
     grid-template-rows: 64px 1fr;
     max-height: 100%;
 
-    mat-toolbar {
+    mat-toolbar.detail-toolbar {
       grid-area: toolbar;
+    }
+
+    mat-toolbar.main-toolbar {
+      grid-area: main-toolbar;
     }
 
     app-profile-detail {

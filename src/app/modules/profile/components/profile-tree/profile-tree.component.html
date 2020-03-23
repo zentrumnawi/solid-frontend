@@ -1,6 +1,6 @@
 <!--suppress AngularInvalidExpressionResultType -->
 <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
-  <mat-tree-node (click)="onProfileSelect.emit(node.id)"
+  <mat-tree-node (click)="onSelect.emit(node.id)"
                  *matTreeNodeDef="let node; when: !hasChild" class="profile-link"
                  matTreeNodePadding matTreeNodeToggle>
     <img [alt]="node.title"

@@ -1,11 +1,12 @@
 import {FlatTreeControl} from '@angular/cdk/tree';
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
-import {of as observableOf} from 'rxjs';
+import {Observable, of as observableOf} from 'rxjs';
 import {Image} from '../../../../shared/models';
 import {ProfileService} from '../../services/profile.service';
 import {Profile} from '../../state/profile.model';
 import {Store} from "@ngxs/store";
+import {ActivatedRoute} from "@angular/router";
 
 export type FlatTreeNode = MineralNode | CategoryNode;
 
@@ -31,9 +32,10 @@ export interface CategoryNode {
   templateUrl: './profile-tree.component.html',
   styleUrls: ['./profile-tree.component.scss'],
 })
-export class ProfileTreeComponent {
-  @Output() onProfileSelect = new EventEmitter<number>();
+export class ProfileTreeComponent implements OnInit {
   @Input() selectedProfileId?: number;
+  @Input() profiles!: Observable<Profile[]>;
+  @Output() onSelect = new EventEmitter<number>();
 
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
@@ -50,6 +52,7 @@ export class ProfileTreeComponent {
   constructor(
     private _service: ProfileService,
     private _store: Store,
+    private _route: ActivatedRoute
   ) {
     this._treeFlattener = new MatTreeFlattener(
       ProfileTreeComponent.transformer,
@@ -59,8 +62,12 @@ export class ProfileTreeComponent {
 
     this.TreeControl = new FlatTreeControl(ProfileTreeComponent.getLevel, ProfileTreeComponent.isExpandable);
     this.DataSource = new MatTreeFlatDataSource(this.TreeControl, this._treeFlattener);
-    this._store.select(s => s.profile).subscribe(profiles => {
-      this.DataSource.data = profiles;
+  }
+
+  public ngOnInit(): void {
+    this.profiles.subscribe(profiles => {
+      console.log(profiles);
+      this.DataSource.data = profiles
     });
   }
 
@@ -116,17 +123,17 @@ export class ProfileTreeComponent {
       this._selectedNode = null;
     } else {
       if (this._selectedNode) {
-          const children = this.TreeControl.getDescendants(this._selectedNode);
-          if (!children || (Array.isArray(children) && !children.includes(node))) {
-            this.TreeControl.collapse(this._selectedNode);
+        const children = this.TreeControl.getDescendants(this._selectedNode);
+        if (!children || (Array.isArray(children) && !children.includes(node))) {
+          this.TreeControl.collapse(this._selectedNode);
           this.TreeControl.dataNodes.forEach(n => {
             const c = this.TreeControl.getDescendants(n);
             if (c && Array.isArray(c) && c.includes(this._selectedNode!) && !c.includes(node)) {
               this.TreeControl.collapse(n);
             }
           })
-          }
         }
+      }
       this.TreeControl.expand(node);
       this._selectedNode = node;
     }

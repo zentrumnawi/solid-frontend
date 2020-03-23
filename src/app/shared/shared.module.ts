@@ -15,7 +15,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTreeModule} from '@angular/material/tree';
-import {ImageCardComponent} from './components/image-card/image-card.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MarkdownService} from './services/markdown.service';
 import {MarkdownComponent} from './components/markdown/markdown.component';
@@ -23,7 +22,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
-    ImageCardComponent,
     MarkdownComponent,
   ],
   imports: [
@@ -65,7 +63,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatTooltipModule,
     MatTreeModule,
     LayoutModule,
-    ImageCardComponent,
     MarkdownComponent,
   ],
   providers: [

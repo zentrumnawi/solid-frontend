@@ -26,8 +26,11 @@ export class ProfileState {
   };
 
   @Selector()
-  static selectProfile(state: ProfileStateModel): (profileId: number) => { profile: MineralProfile; category: ProfileCategory } | undefined {
-    return (profileId: number) => {
+  static selectProfileAndCategory(state: ProfileStateModel): (profileId?: number) => ({ profile: MineralProfile; category: ProfileCategory } | null) {
+    return (profileId?: number) => {
+      if (!profileId) {
+        return null;
+      }
       for (let profile of state) {
         if (profile.type === 'category') {
           const childSearch = ProfileState.findProfileDeep(profile.children, profileId);
@@ -36,11 +39,12 @@ export class ProfileState {
           }
         }
       }
+      return null;
     };
   }
 
   @Selector()
-  static select(state: ProfileStateModel) {
+  static select(state: ProfileStateModel): Profile[] {
     return [...state];
   }
 
