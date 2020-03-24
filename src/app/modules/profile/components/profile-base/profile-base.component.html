@@ -1,5 +1,6 @@
 <div #contentContainer [class.splitLayout]="SplitLayout" class="content-container">
-  <mat-toolbar *ngIf="SplitLayout || !SelectedProfile" class="main-toolbar" color="accent">
+  <mat-toolbar *ngIf="SplitLayout || !SelectedProfile" [class.full-width]="!SelectedProfile" class="main-toolbar"
+               color="accent">
     <button (click)="toggleGridTree()" mat-icon-button>
       <mat-icon>{{ View === 'tree' ? 'view_module' : 'account_tree'}}</mat-icon>
     </button>
@@ -25,12 +26,13 @@
   </mat-toolbar>
   <ng-container *ngIf="SplitLayout || !SelectedProfile">
     <ng-container [ngSwitch]="Filter.value !== '' || View">
-      <app-profile-grid *ngSwitchCase="'grid'"></app-profile-grid>
+      <app-profile-grid (onSelect)="selectProfile($event)" *ngSwitchCase="'grid'" [class.full-width]="!SelectedProfile"
+                        [profiles]="$profilesFlat"></app-profile-grid>
       <app-profile-tree (onSelect)="selectProfile($event)" *ngSwitchCase="'tree'"
-                        [profiles]="Profiles"
+                        [profiles]="$profilesTree"
                         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"></app-profile-tree>
       <app-profile-list (onSelect)="selectProfile($event)" *ngSwitchDefault [filterValue]="FilterValue.asObservable()"
-                        [profiles]="Profiles"></app-profile-list>
+                        [profiles]="$profilesFlat"></app-profile-list>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="SelectedProfile && SelectedCategory">

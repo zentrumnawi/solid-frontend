@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MineralProfile, Profile} from "../../state/profile.model";
+import {MineralProfile} from "../../state/profile.model";
 import {combineLatest, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
@@ -9,7 +9,7 @@ import {map} from "rxjs/operators";
   styleUrls: ['./profile-list.component.scss']
 })
 export class ProfileListComponent implements OnInit {
-  @Input() profiles!: Observable<Profile[]>;
+  @Input() profiles!: Observable<MineralProfile[]>;
   @Input() filterValue!: Observable<string>;
   @Output() onSelect = new EventEmitter<number>();
   public FilteredProfiles!: Observable<MineralProfile[]>;
@@ -20,20 +20,8 @@ export class ProfileListComponent implements OnInit {
 
   ngOnInit(): void {
     this.FilteredProfiles = combineLatest([this.profiles, this.filterValue]).pipe(map(v => {
-      const mapit = (result: MineralProfile[], value: Profile[]) => {
-        for (let v of value) {
-          if (v.type === 'category') {
-            result.push(...mapit([], v.children));
-          } else {
-            result.push(v);
-          }
-        }
-        return result;
-      };
-      const flatProfiles = mapit([], v[0]);
-      // this.Filter.valueChanges.subscribe(filterString => {
       const regExp = new RegExp(v[1], 'i');
-      return flatProfiles.filter(profile => {
+      return v[0].filter(profile => {
         if (profile.mineralName.match(regExp)) {
           return true;
         }

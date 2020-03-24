@@ -44,8 +44,23 @@ export class ProfileState {
   }
 
   @Selector()
-  static select(state: ProfileStateModel): Profile[] {
+  static selectTree(state: ProfileStateModel): Profile[] {
     return [...state];
+  }
+
+  @Selector()
+  static selectFlat(state: ProfileStateModel): MineralProfile[] {
+    const map = (result: MineralProfile[], value: Profile[]) => {
+      for (let v of value) {
+        if (v.type === 'category') {
+          result.push(...map([], v.children));
+        } else {
+          result.push(v);
+        }
+      }
+      return result;
+    };
+    return map([], state);
   }
 
   @Action(ProfileSetAction)

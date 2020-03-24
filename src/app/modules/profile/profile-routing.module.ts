@@ -7,7 +7,7 @@ import {ProfileBaseComponent} from "./components/profile-base/profile-base.compo
 const routes: Routes = [
   {path: 'img', pathMatch: 'full', component: GalleryOverviewComponent, data: {title: 'Galerie'}},
   {path: 'img/:id', component: PhotographDetailComponent, data: {title: 'Galerie', noReuse: true}},
-  {path: ':view', component: ProfileBaseComponent, data: {title: 'Steckbriefe'}},
+  {path: ':view', redirectTo: ':view/', data: {title: 'Steckbriefe'}},
   {path: ':view/:id', component: ProfileBaseComponent, data: {title: 'Steckbriefe'}}
 ];
 

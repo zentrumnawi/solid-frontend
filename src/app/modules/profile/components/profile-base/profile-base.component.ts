@@ -6,7 +6,7 @@ import {MineralProfile, Profile, ProfileCategory} from "../../state/profile.mode
 import {FormControl} from "@angular/forms";
 import {Navigate} from "@ngxs/router-plugin";
 import {map} from "rxjs/operators";
-import {BehaviorSubject, combineLatest, Observable, of} from "rxjs";
+import {BehaviorSubject, combineLatest, Observable} from "rxjs";
 import {HammerInput} from '@angular/material/core';
 import {Dispatch} from "@ngxs-labs/dispatch-decorator";
 
@@ -16,15 +16,16 @@ import {Dispatch} from "@ngxs-labs/dispatch-decorator";
   styleUrls: ['./profile-base.component.scss']
 })
 export class ProfileBaseComponent implements OnInit, AfterViewInit {
-  @Select(ProfileState.select)
-  public $profiles!: Observable<Profile[]>;
+  @Select(ProfileState.selectTree)
+  public $profilesTree!: Observable<Profile[]>;
+  @Select(ProfileState.selectFlat)
+  public $profilesFlat!: Observable<MineralProfile[]>;
   @Select(ProfileState.selectProfileAndCategory)
   public $profileAndCategorySelector!: Observable<(profileId?: number) => { profile: MineralProfile; category: ProfileCategory } | null>;
   @Select((s: any) => s.router.state.params)
   public $routerParams!: Observable<{ [key: string]: string }>;
   @ViewChild('contentContainer', {static: false}) public ContentContainer!: ElementRef;
   public SplitLayout = false;
-  public Profiles: Observable<Profile[]> = of([]);
   public Filter = new FormControl('');
   public FilterValue = new BehaviorSubject<string>('');
   public SelectedProfile: MineralProfile | null = null;
@@ -38,14 +39,13 @@ export class ProfileBaseComponent implements OnInit, AfterViewInit {
     private _store: Store,
   ) {
     this._service.loadProfiles();
-    this.Profiles = this.$profiles;
   }
 
   ngOnInit(): void {
     combineLatest([this.$routerParams, this.$profileAndCategorySelector])
       .pipe(map(v => {
         const {params, selector} = {params: v[0], selector: v[1]};
-        const profileId = params.id !== undefined ? parseInt(params.id, 10) : undefined;
+        const profileId = params.id !== undefined && params.id !== '' ? parseInt(params.id, 10) : undefined;
         const profile = selector(profileId);
         if (profileId && profile) {
           const index = profile.category.children.indexOf(profile.profile);
