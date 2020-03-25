@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -23,6 +23,8 @@
     ],
     "types": [
       "node"
-    ]
+    ],
+    "paths": {},
+    "rootDir": "."
   }
 }

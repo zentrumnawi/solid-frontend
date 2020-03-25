@@ -1,0 +1,52 @@
+<mat-toolbar color="accent">
+  {{ Entry ? Entry.handpiece.name : 'Lade Daten...' }}
+  <div class="spacer"></div>
+  <ng-container *ngIf="Entry && Entry.audio_file">
+    <span>{{ PlayPosition }}</span>
+    <button (click)="onPlayPauseClick()" mat-icon-button>
+      <mat-icon
+        [matTooltip]="Playing ? 'Audiowiedergabe pausieren' : 'Audiobeschreibung abspielen'">{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
+    </button>
+    <button (click)="onReplayClick()" *ngIf="PlayingStarted" mat-icon-button>
+      <mat-icon matTooltip="Audiowiedergabe neu starten">replay</mat-icon>
+    </button>
+  </ng-container>
+  <button (click)="onPrevClick()" [disabled]="Surrounding.before === null" mat-icon-button>
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+  <button (click)="onCloseClick()" mat-icon-button>
+    <mat-icon>expand_less</mat-icon>
+  </button>
+  <button (click)="onNextClick()" [disabled]="Surrounding.after === null" mat-icon-button>
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+</mat-toolbar>
+<audio #audioplayer (ended)="onPlayerEnded()" (timeupdate)="onPlayerTimeUpdate()" *ngIf="Entry && Entry.audio_file">
+  <source (error)="onPlayerMediaError()" [src]="Entry.audio_file" type="audio/mpeg">
+</audio>
+<mat-tab-group *ngIf="Entry">
+  <mat-tab label="Bild">
+    <div class="content image">
+      <div *ngIf="!ImageLoaded || !Entry" class="spinner">
+        <mat-spinner color="primary"></mat-spinner>
+      </div>
+      <img (load)="imageLoaded()"
+           *ngIf="Entry"
+           [class.hidden]="!ImageLoaded"
+           [src]="Entry.image.small"
+           alt="Großes Bild des Minerals"
+           sizes="(max-width: 600px) 600px, (max-width: 1000px) 900w, 1200w"
+           srcset="{{ Entry.image.small }} 600w,
+            {{ Entry.image.medium }} 900w,
+            {{ Entry.image.large }} 1200w">
+    </div>
+  </mat-tab>
+  <mat-tab label="Steckbrief">
+    <div class="content profile">
+      <!--      <app-profile-detail [profileId]="Entry.handpiece.mineral_type[0].id"></app-profile-detail>-->
+    </div>
+  </mat-tab>
+  <mat-tab label="Beschreibung">
+    <div Md [data]="Entry.description" class="content description"></div>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,110 @@
+@import '../../../../../theme.scss';
+
+$accent: map-get($app-theme, accent);
+$foreground: map-get($app-theme, foreground);
+$warn: map-get($app-theme, warn);
+
+mat-radio-group {
+  display: flex;
+  flex-direction: column;
+
+  mat-radio-button {
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    ::ng-deep {
+      label.mat-radio-label {
+        vertical-align: top;
+
+        div.mat-radio-container {
+          margin-bottom: auto;
+        }
+      }
+
+      div.mat-radio-label-content {
+        display: inline-flex;
+        flex-direction: column;
+        width: calc(100% - 28px);
+        white-space: normal;
+      }
+    }
+
+    &.correct {
+      ::ng-deep {
+        //.mat-radio-inner-circle {
+        //  background-color: mat-color($accent);
+        //}
+        .mat-radio-outer-circle {
+          border-color: mat-color($quiz-correct);
+        }
+      }
+    }
+
+    &.incorrect {
+      ::ng-deep {
+        //.mat-radio-inner-circle {
+        //  background-color: mat-color($warn);
+        //}
+        .mat-radio-outer-circle {
+          border-color: mat-color($quiz-wrong);
+        }
+      }
+    }
+  ;
+
+  }
+}
+
+mat-card-content.multiple-choice {
+  display: flex;
+  flex-direction: column;
+
+  mat-checkbox {
+    width: 100%;
+
+    ::ng-deep {
+      span.mat-checkbox-label {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 24px);
+        white-space: normal;
+      }
+
+      label.mat-checkbox-layout {
+        vertical-align: top;
+        width: 100%;
+      }
+
+      div.mat-checkbox-inner-container {
+        margin-top: 0;
+        margin-bottom: auto;
+      }
+    }
+
+    &.correct {
+      ::ng-deep {
+        .mat-checkbox-background {
+          background-color: mat-color($quiz-correct);
+        }
+      }
+    }
+
+    &.incorrect {
+      ::ng-deep {
+        .mat-checkbox-background {
+          background-color: mat-color($quiz-wrong);
+        }
+      }
+    }
+  }
+
+  //span.atext {
+  //  display: inline-block;
+  //  height: 24px;
+  //}
+}
+
+span.feedback {
+  color: mat-color($foreground, text);
+}
