@@ -13,6 +13,27 @@
     },
     "app-geomat-e2e": {
       "tags": []
+    },
+    "solid": {
+      "tags": []
+    },
+    "dive": {
+      "tags": []
+    },
+    "dive-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "dive"
+      ]
+    },
+    "geomat": {
+      "tags": []
+    },
+    "geomat-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "geomat"
+      ]
     }
   }
 }

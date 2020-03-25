@@ -175,7 +175,320 @@
           }
         }
       }
+    },
+    "solid": {
+      "projectType": "library",
+      "root": "libs/solid",
+      "sourceRoot": "libs/solid/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/tsconfig.lib.json",
+              "libs/solid/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/jest.config.js",
+            "tsConfig": "libs/solid/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "dive": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/dive",
+      "sourceRoot": "apps/dive/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/dive",
+            "index": "apps/dive/src/index.html",
+            "main": "apps/dive/src/main.ts",
+            "polyfills": "apps/dive/src/polyfills.ts",
+            "tsConfig": "apps/dive/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/dive/src/favicon.ico",
+              "apps/dive/src/assets"
+            ],
+            "styles": [
+              "apps/dive/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dive/src/environments/environment.ts",
+                  "with": "apps/dive/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "dive:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dive:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dive:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/dive/tsconfig.app.json",
+              "apps/dive/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/dive/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/dive/jest.config.js",
+            "tsConfig": "apps/dive/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/dive/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "dive-e2e": {
+      "root": "apps/dive-e2e",
+      "sourceRoot": "apps/dive-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/dive-e2e/cypress.json",
+            "tsConfig": "apps/dive-e2e/tsconfig.e2e.json",
+            "devServerTarget": "dive:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dive:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/dive-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/dive-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "geomat": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/geomat",
+      "sourceRoot": "apps/geomat/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/geomat",
+            "index": "apps/geomat/src/index.html",
+            "main": "apps/geomat/src/main.ts",
+            "polyfills": "apps/geomat/src/polyfills.ts",
+            "tsConfig": "apps/geomat/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/geomat/src/favicon.ico",
+              "apps/geomat/src/assets"
+            ],
+            "styles": [
+              "apps/geomat/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/geomat/src/environments/environment.ts",
+                  "with": "apps/geomat/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "geomat:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "geomat:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "geomat:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/geomat/tsconfig.app.json",
+              "apps/geomat/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/geomat/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/geomat/jest.config.js",
+            "tsConfig": "apps/geomat/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/geomat/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "geomat-e2e": {
+      "root": "apps/geomat-e2e",
+      "sourceRoot": "apps/geomat-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/geomat-e2e/cypress.json",
+            "tsConfig": "apps/geomat-e2e/tsconfig.e2e.json",
+            "devServerTarget": "geomat:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "geomat:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/geomat-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/geomat-e2e/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "app-geomat"
+  "defaultProject": "app-geomat",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  }
 }

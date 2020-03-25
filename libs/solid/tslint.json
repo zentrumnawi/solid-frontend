@@ -1,0 +1,22 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "zentrumnawi",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "zentrumnawi",
+      "kebab-case"
+    ]
+  },
+  "linterOptions": {
+    "exclude": [
+      "!**/*"
+    ]
+  }
+}

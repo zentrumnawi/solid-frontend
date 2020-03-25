@@ -24,7 +24,11 @@
     "types": [
       "node"
     ],
-    "paths": {},
+    "paths": {
+      "@zentrumnawi/solid": [
+        "libs/solid/src/index.ts"
+      ]
+    },
     "rootDir": "."
   },
   "angularCompilerOptions": {
