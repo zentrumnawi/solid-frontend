@@ -67,4 +67,4 @@ function subscript(state: any, silent: any) {
 
 export default function sub_plugin(md: any) {
   md.inline.ruler.after('emphasis', 'over', subscript);
-};
+}

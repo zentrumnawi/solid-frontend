@@ -38,7 +38,7 @@
   <p>{{ profile.trivialName }}</p>
 </ng-container>
 <p class="heading">chemische Formel</p>
-<p Md [data]="profile.chemicalFormula"></p>
+<p [data]="profile.chemicalFormula" markdown></p>
 <p class="heading">Kristallsystem</p>
 <p *ngFor="let crystalSystem of profile.crystalSystems">{{ crystalSystem.name}}</p>
 <p class="heading">Mohshärte</p>
@@ -57,5 +57,5 @@
 <p>{{ profile.streak}}</p>
 <ng-container *ngIf="profile.other">
   <p class="heading">Zusatzinformationen</p>
-  <p Md [data]="profile.other"></p>
+  <p [data]="profile.other" markdown></p>
 </ng-container>

@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/browser';
-import {ErrorHandler, Injectable} from "@angular/core";
-import {environment} from "../../environments/environment";
+import { ErrorHandler, Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 if (environment.production) {
   const version = require('../../environments/version.json');

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-quiz-start',
+  selector: 'solid-quiz-start',
   templateUrl: './quiz-start.component.html',
   styleUrls: ['./quiz-start.component.scss']
 })

@@ -15,7 +15,8 @@
   </button>
   <mat-select (ngModelChange)="onLayerSelectChange($event)" *ngIf="SelectedConfig.layers.length > 0" [ngModel]="Layer"
               matTooltip="Ebene" placeholder="Ebene">
-    <mat-option *ngFor="let layer of SelectedConfig.layers" [value]="layer.name"><span Md [data]="layer.title"></span>
+    <mat-option *ngFor="let layer of SelectedConfig.layers" [value]="layer.name"><span [data]="layer.title"
+                                                                                       markdown></span>
     </mat-option>
   </mat-select>
   <button (click)="onInfoClick()" *ngIf="ShowInPreview" mat-icon-button matTooltip="Legende">
@@ -28,5 +29,5 @@
 <iframe #iframe src="/assets/crystalsystem/iframe.html"></iframe>
 <div class="model-info">
   <h3>{{ SelectedConfig.displayName }}</h3>
-  <p Md [data]="SelectedConfig.description"></p>
+  <p [data]="SelectedConfig.description" markdown></p>
 </div>

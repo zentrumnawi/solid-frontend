@@ -5,7 +5,7 @@ import { QuizSessionStart } from '../../state/quiz.actions';
 import { QuizFeedback } from './quiz-end-feedback';
 
 @Component({
-  selector: 'app-quiz-end',
+  selector: 'solid-quiz-end',
   templateUrl: './quiz-end.component.html',
   styleUrls: ['./quiz-end.component.scss']
 })

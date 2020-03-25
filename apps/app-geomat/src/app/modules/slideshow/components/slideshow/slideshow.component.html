@@ -13,7 +13,7 @@
         <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
       </button>
     </div>
-    <div *ngIf="page.content" Md [data]="page.content"></div>
+    <div *ngIf="page.content" [data]="page.content" markdown></div>
     <div class="page-images">
       <mat-card *ngFor="let img of page.images">
         <mat-card-header>

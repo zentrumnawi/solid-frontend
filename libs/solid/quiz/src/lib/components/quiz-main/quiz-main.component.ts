@@ -5,7 +5,7 @@ import { QuizService } from '../../services/quiz.service';
 import { QuizSession } from '../../state/quiz.model';
 
 @Component({
-  selector: 'app-quiz-main-component',
+  selector: 'solid-quiz-main',
   templateUrl: './quiz-main.component.html',
   styleUrls: ['./quiz-main.component.scss']
 })

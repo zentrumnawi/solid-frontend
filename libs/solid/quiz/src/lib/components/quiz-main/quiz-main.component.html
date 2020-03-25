@@ -1,6 +1,6 @@
 <ng-container *ngIf="(QuizSession | async) as quizSession; else quizStart">
   <div *ngIf="quizSession.progress !== 100; else quizEnd">
-    <app-quiz-question [question]="quizSession.questions[quizSession.currentQuestion]"></app-quiz-question>
+    <solid-quiz-question [question]="quizSession.questions[quizSession.currentQuestion]"></solid-quiz-question>
     <mat-card>
       <mat-card-content>
         <mat-progress-bar [value]="quizSession.progress" mode="determinate"></mat-progress-bar>
@@ -9,8 +9,8 @@
   </div>
 </ng-container>
 <ng-template #quizStart>
-  <app-quiz-start></app-quiz-start>
+  <solid-quiz-start></solid-quiz-start>
 </ng-template>
 <ng-template #quizEnd>
-  <app-quiz-end></app-quiz-end>
+  <solid-quiz-end></solid-quiz-end>
 </ng-template>

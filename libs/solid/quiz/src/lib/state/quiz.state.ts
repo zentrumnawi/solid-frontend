@@ -34,23 +34,23 @@ export class QuizState {
       if (sessionQuestions.find(q => q.id === questions[rnd].id)) {
         continue;
       }
-      sessionQuestions.push({answered: 0, ...questions[rnd],});
+      sessionQuestions.push({ answered: 0, ...questions[rnd] });
       i++;
     }
     patchState({
       session: {
         progress: 0,
         currentQuestion: 0,
-        questions: sessionQuestions,
+        questions: sessionQuestions
       }
-    })
+    });
   }
 
   @Action(QuizSessionEnd)
   public endSession({patchState}: StateContext<QuizStateModel>, {}: QuizSessionEnd) {
     patchState({
-      session: null,
-    })
+      session: null
+    });
   }
 
   @Action(QuizQuestionAnswered)
@@ -61,9 +61,9 @@ export class QuizState {
       session: {
         currentQuestion: session.currentQuestion + 1,
         progress: 100.0 / session.questions.length * (session.currentQuestion + 1),
-        questions: session.questions.map(q => q.id === answeredQuestion.id ? answeredQuestion : q),
-      },
-    })
+        questions: session.questions.map(q => q.id === answeredQuestion.id ? answeredQuestion : q)
+      }
+    });
   }
 
 

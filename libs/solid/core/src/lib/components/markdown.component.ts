@@ -1,8 +1,9 @@
 import { MarkdownService } from '../services/markdown.service';
 import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 
+/* tslint:disable:component-selector */
 @Component({
-  selector: 'md,[Md]',
+  selector: '[markdown]',
   template: '<ng-content></ng-content>',
   host: {
     class: 'md-rendered'

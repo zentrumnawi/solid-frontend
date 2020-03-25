@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {CrystalsystemdetailComponent} from "./components/crystalsystemdetail/crystalsystemdetail.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CrystalsystemdetailComponent } from './components/crystalsystemdetail/crystalsystemdetail.component';
 
 const routes: Routes = [
-  {path: '', component: CrystalsystemdetailComponent, data: {title: 'Kristallsysteme'}},
+  { path: '', component: CrystalsystemdetailComponent, data: { title: 'Kristallsysteme' } }
 ];
 
 @NgModule({

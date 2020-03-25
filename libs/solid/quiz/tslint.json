@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "zentrumnawi",
+      "solid-quiz",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "zentrumnawi",
+      "solid-quiz",
       "kebab-case"
     ]
   },

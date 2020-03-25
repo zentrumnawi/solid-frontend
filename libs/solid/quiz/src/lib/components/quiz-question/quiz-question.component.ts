@@ -6,12 +6,12 @@ import { Store } from '@ngxs/store';
 import { QuizQuestionAnswered } from '../../state/quiz.actions';
 
 @Component({
-  selector: 'app-quiz-question',
+  selector: 'solid-quiz-question',
   templateUrl: './quiz-question.component.html',
   styleUrls: ['./quiz-question.component.scss']
 })
 export class QuizQuestionComponent implements OnChanges {
-  @Input('question') public Question?: QuizQuestion;
+  @Input() public question?: QuizQuestion;
   public QuestionTypes = QuizQuestionType;
   public SelectedAnswers: number[] = [];
   public ShowAnswers = false;
@@ -26,10 +26,10 @@ export class QuizQuestionComponent implements OnChanges {
 
   public onShowAnswersClick() {
     this.ShowAnswers = true;
-    if (this.Question) {
+    if (this.question) {
       this.Correct = true;
       let correctAnswers = 0;
-      this.Question.answers.forEach(answer => {
+      this.question.answers.forEach(answer => {
         if (answer.correct) {
           correctAnswers++;
           if (!this.SelectedAnswers.includes(answer.id)) {
@@ -49,7 +49,7 @@ export class QuizQuestionComponent implements OnChanges {
   }
 
   onNextQuestionClick() {
-    if (this.Question && this.Correct !== undefined) {
+    if (this.question && this.Correct !== undefined) {
       this._store.dispatch(new QuizQuestionAnswered(this.Correct));
     }
   }

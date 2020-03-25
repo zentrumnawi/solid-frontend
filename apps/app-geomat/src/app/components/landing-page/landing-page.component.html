@@ -20,7 +20,7 @@
   <mat-list-item *ngFor="let msg of Messages">
     <h3 matLine>{{msg.title}} <span *ngIf="msg.validFrom">&nbsp;|&nbsp;{{ msg.validFrom | date: 'dd.MM.yyyy'}}</span>
     </h3>
-    <span Md [data]="msg.content" matLine></span>
+    <span [data]="msg.content" markdown matLine></span>
   </mat-list-item>
 </mat-list>
 <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">

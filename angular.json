@@ -168,7 +168,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": "apps/app-geomat-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
@@ -446,7 +446,7 @@
       "projectType": "library",
       "root": "libs/solid/core",
       "sourceRoot": "libs/solid/core/src",
-      "prefix": "zentrumnawi",
+      "prefix": "solid-core",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -481,7 +481,7 @@
       "projectType": "library",
       "root": "libs/solid/quiz",
       "sourceRoot": "libs/solid/quiz/src",
-      "prefix": "zentrumnawi",
+      "prefix": "solid-quiz",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -503,6 +503,41 @@
             "tsConfig": "libs/solid/quiz/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/solid/quiz/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-slideshow": {
+      "projectType": "library",
+      "root": "libs/solid/slideshow",
+      "sourceRoot": "libs/solid/slideshow/src",
+      "prefix": "solid-slideshow",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/slideshow/tsconfig.lib.json",
+              "libs/solid/slideshow/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/slideshow/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/slideshow/jest.config.js",
+            "tsConfig": "libs/solid/slideshow/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/slideshow/src/test-setup.ts"
           }
         }
       },
