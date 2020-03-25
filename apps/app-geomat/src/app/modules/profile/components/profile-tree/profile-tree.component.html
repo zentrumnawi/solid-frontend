@@ -1,7 +1,7 @@
 <!--suppress AngularInvalidExpressionResultType -->
 <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
   <mat-tree-node (click)="onSelect.emit(node.id)"
-                 *matTreeNodeDef="let node; when: !hasChild" class="profile-link"
+                 *matTreeNodeDef="let node; when: hasNoChild" class="profile-link"
                  matTreeNodePadding matTreeNodeToggle>
     <img [alt]="node.title"
          [src]="node.images.length > 0 ? node.images[0].thumbnail : '/assets/profile/no_image.svg'"

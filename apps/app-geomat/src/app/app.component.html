@@ -14,13 +14,13 @@
     </ng-container>
     <ng-container *ngIf="!FixedLayout">
       <div class="mainmenu-button">
-        <button (click)="MainMenu.toggle()" mat-icon-button>
+        <button (click)="MainMenu?.toggle()" mat-icon-button>
           <mat-icon aria-label="Menü öffnen">menu</mat-icon>
         </button>
       </div>
       <span [class.app-title-fixed]="FixedLayout">GeoMat</span>
       <span class="spacer"></span>
-      <button (click)="Glossary.toggle()" mat-icon-button>
+      <button (click)="Glossary?.toggle()" mat-icon-button>
         <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
       </button>
     </ng-container>
@@ -33,7 +33,7 @@
       class="mainmenu-sidenav"
       position="start"
     >
-      <mat-toolbar (click)="MainMenu.toggle()" *ngIf="!FixedLayout" color="primary">
+      <mat-toolbar (click)="MainMenu?.toggle()" *ngIf="!FixedLayout" color="primary">
         Menü
       </mat-toolbar>
       <app-mainmenu (MenuSelect)="onMenuSelectionChanged()"></app-mainmenu>
@@ -48,7 +48,7 @@
       class="glossary-sidenav"
       position="end"
     >
-      <mat-toolbar (click)="Glossary.toggle()" *ngIf="!FixedLayout" class="glossary-toolbar" color="primary">
+      <mat-toolbar (click)="Glossary?.toggle()" *ngIf="!FixedLayout" class="glossary-toolbar" color="primary">
         Glossar
       </mat-toolbar>
       <app-glossary></app-glossary>

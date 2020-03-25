@@ -117,6 +117,10 @@ export class ProfileTreeComponent implements OnInit {
     return node.expandable;
   }
 
+  public hasNoChild(index: number, node: FlatTreeNode) {
+    return !this.hasChild(index, node);
+  }
+
   onNodeClick(node: MineralNode | CategoryNode) {
     if (this.TreeControl.isExpanded(node)) {
       this.TreeControl.collapse(node);

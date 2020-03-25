@@ -122,7 +122,7 @@ export class PhotographDetailComponent extends BaseComponent {
     }
   }
 
-  private onPlayerTimeUpdate() {
+  public onPlayerTimeUpdate() {
     if (this.player) {
       const duration = this.player.nativeElement.duration;
       const currentTime = this.player.nativeElement.currentTime;
@@ -136,11 +136,11 @@ export class PhotographDetailComponent extends BaseComponent {
     this.PlayPosition = '';
   }
 
-  private onPlayerMediaError() {
+  public onPlayerMediaError() {
     this.loadError = true;
   }
 
-  private onPlayerEnded() {
+  public onPlayerEnded() {
     if (this.player) {
       this.PlayingStarted = false;
       this.Playing = false;

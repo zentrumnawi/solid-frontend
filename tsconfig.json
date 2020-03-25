@@ -26,5 +26,9 @@
     ],
     "paths": {},
     "rootDir": "."
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true,
+    "strictInjectionParameters": true
   }
 }

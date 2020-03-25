@@ -50,12 +50,12 @@ http.createServer(function (req, res) {
   // e.g curl --path-as-is http://localhost:9000/../fileInDanger.txt
   // by limiting the path to current directory only
   const sanitizePath = path.normalize(parsedUrl.pathname).replace(/^(\.\.[\/\\])+/, '');
-  let pathname = path.join(__dirname, 'dist', 'app-geomat', sanitizePath);
+  let pathname = path.join(__dirname, 'dist', 'apps', 'app-geomat', sanitizePath);
 
   fs.exists(pathname, function (exist) {
     if (!exist) {
       // if the file is not found, return 404
-      readFile(path.join(__dirname, 'dist', 'app-geomat', 'index.html'), res);
+      readFile(path.join(__dirname, 'dist', 'apps', 'app-geomat', 'index.html'), res);
       return;
     }
 

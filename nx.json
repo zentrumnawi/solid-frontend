@@ -1,5 +1,5 @@
 {
-  "npmScope": "app-geomat",
+  "npmScope": "zentrumnawi",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
