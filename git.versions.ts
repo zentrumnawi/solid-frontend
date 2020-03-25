@@ -26,4 +26,4 @@ if (p.version) {
 }
 
 
-writeFileSync('src/environments/version.json', versionInfo);
+writeFileSync('apps/app-geomat/src/environments/version.json', versionInfo);

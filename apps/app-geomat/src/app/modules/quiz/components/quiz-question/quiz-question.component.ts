@@ -1,9 +1,9 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {QuizAnswer, QuizQuestion, QuizQuestionType} from "../../state/quiz.model";
-import {MatRadioChange} from "@angular/material/radio";
-import {MatCheckboxChange} from "@angular/material/checkbox";
-import {Store} from "@ngxs/store";
-import {QuizQuestionAnswered} from "../../state/quiz.actions";
+import {QuizAnswer, QuizQuestion, QuizQuestionType} from '../../state/quiz.model';
+import {MatRadioChange} from '@angular/material/radio';
+import {MatCheckboxChange} from '@angular/material/checkbox';
+import {Store} from '@ngxs/store';
+import {QuizQuestionAnswered} from '../../state/quiz.actions';
 
 @Component({
   selector: 'app-quiz-question',
@@ -40,7 +40,7 @@ export class QuizQuestionComponent implements OnChanges {
       if (this.SelectedAnswers.length !== correctAnswers) {
         this.Correct = false;
       }
-      console.log(this.ShowAnswers, this.Correct)
+      console.log(this.ShowAnswers, this.Correct);
     }
   }
 
@@ -74,13 +74,13 @@ export class QuizQuestionComponent implements OnChanges {
     if (!this.ShowAnswers) {
       return false;
     }
-    return answer.correct;// && this.SelectedAnswers.includes(answer.id);
+    return answer.correct; // && this.SelectedAnswers.includes(answer.id);
   }
 
   isAnswerIncorrect(answer: QuizAnswer) {
     if (!this.ShowAnswers) {
       return false;
     }
-    return !answer.correct;// && this.SelectedAnswers.includes(answer.id);
+    return !answer.correct; // && this.SelectedAnswers.includes(answer.id);
   }
 }

@@ -2,8 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {ApiHttpClient} from '../shared/abstract/api-http-client';
 import {GlossarySetAction} from '../state/glossary.actions';
-import {Store} from "@ngxs/store";
-import {GlossaryEntriesOrdered, GlossaryEntryModel} from "../state/glossary.state";
+import {Store} from '@ngxs/store';
+import {GlossaryEntriesOrdered, GlossaryEntryModel} from '../state/glossary.state';
 
 @Injectable()
 export class GlossaryService extends ApiHttpClient {
@@ -26,6 +26,6 @@ export class GlossaryService extends ApiHttpClient {
         ordered[firstChar].push(entry);
       });
       this._store.dispatch(new GlossarySetAction(ordered));
-    })
+    });
   }
 }

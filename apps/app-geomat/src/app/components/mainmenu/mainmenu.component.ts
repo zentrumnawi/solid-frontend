@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {BaseComponent} from '../../shared/abstract/base.component';
-import {FeedbackService} from "../../services/feedback.service";
-import {Store} from "@ngxs/store";
-import {Navigate} from "@ngxs/router-plugin";
-import {oc} from "ts-optchain";
+import {FeedbackService} from '../../services/feedback.service';
+import {Store} from '@ngxs/store';
+import {Navigate} from '@ngxs/router-plugin';
+import {oc} from 'ts-optchain';
 
 @Component({
   selector: 'app-mainmenu',

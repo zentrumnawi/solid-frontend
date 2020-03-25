@@ -1,6 +1,6 @@
 import {Params, RouterStateSnapshot} from '@angular/router';
-import {RouterStateSerializer} from "@ngxs/router-plugin";
-import {Injectable} from "@angular/core";
+import {RouterStateSerializer} from '@ngxs/router-plugin';
+import {Injectable} from '@angular/core';
 
 export interface RouterStateParams {
   url: string;

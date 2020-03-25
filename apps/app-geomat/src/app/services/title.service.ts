@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {map} from 'rxjs/operators';
-import {MatDialogRef} from "@angular/material/dialog";
-import {Actions, ofActionSuccessful} from "@ngxs/store";
-import {RouterNavigation} from "@ngxs/router-plugin";
-import {RouterStateParams} from "../custom-router-state-serializer";
+import {MatDialogRef} from '@angular/material/dialog';
+import {Actions, ofActionSuccessful} from '@ngxs/store';
+import {RouterNavigation} from '@ngxs/router-plugin';
+import {RouterStateParams} from '../custom-router-state-serializer';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +31,6 @@ export class TitleService {
     const sub = dialogRef.afterClosed().subscribe(() => {
       this._title.setTitle(oldTitle);
       sub.unsubscribe();
-    })
+    });
   }
 }

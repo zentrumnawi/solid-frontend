@@ -1,11 +1,13 @@
-import {Action, Selector, State, StateContext} from "@ngxs/store";
-import {determinationhelper} from "./determination-helper.pages";
-import {Slideshow} from "./slideshow.model";
-import {HttpClient} from "@angular/common/http";
-import {SlideshowLoadContentAction} from "./slideshow.actions";
-import {Injectable} from "@angular/core";
+import {Action, Selector, State, StateContext} from '@ngxs/store';
+import {determinationhelper} from './determination-helper.pages';
+import {Slideshow} from './slideshow.model';
+import {HttpClient} from '@angular/common/http';
+import {SlideshowLoadContentAction} from './slideshow.actions';
+import {Injectable} from '@angular/core';
 
-export type SlideshowStateModel = { [key: string]: Slideshow };
+export interface SlideshowStateModel {
+  [key: string]: Slideshow;
+}
 
 @State<SlideshowStateModel>({
   name: 'slideshow',
@@ -32,7 +34,7 @@ export class SlideshowState {
         return;
       }
       this._loadingSlideshows.push(id);
-      let slideshow = ctx.getState()[id];
+      const slideshow = ctx.getState()[id];
 
       const newPages = await Promise.all(slideshow.pages
         .map(async v => {
@@ -48,6 +50,6 @@ export class SlideshowState {
       });
       this._loadingSlideshows = this._loadingSlideshows.filter(v => v !== id);
       resolve();
-    })
+    });
   }
 }

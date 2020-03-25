@@ -18,7 +18,7 @@ export interface MineralProfile {
   images: Image[];
   chemicalFormula: string;
   mohsScale: string;
-  cleavage: { cleavage: string, coordinates: string }[]
+  cleavage: { cleavage: string, coordinates: string }[];
   density: string;
   streak: string;
   color: string;
@@ -44,7 +44,7 @@ export interface MineralProfileApi {
   minerals: string;
   variety: string;
   mohs_scale: string;
-  cleavage: { cleavage: string, coordinates: string }[]
+  cleavage: { cleavage: string, coordinates: string }[];
   density: string;
   streak: string;
   crystal_system: CrystalSystemApi[];

@@ -5,7 +5,7 @@ export interface CrystalsystemdetailConfiguration {
   layers: {
     name: number,
     title: string,
-  }[]
+  }[];
 }
 
 export const configurations: CrystalsystemdetailConfiguration[] = [

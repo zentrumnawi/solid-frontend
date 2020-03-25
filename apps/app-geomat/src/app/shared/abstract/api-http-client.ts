@@ -6,7 +6,7 @@ import {environment} from '../../../environments/environment';
 type RelativeUrl = string | number | (number | string)[] | undefined;
 
 export interface Options {
-  urlFromRoot?: boolean
+  urlFromRoot?: boolean;
 }
 
 export abstract class ApiHttpClient {

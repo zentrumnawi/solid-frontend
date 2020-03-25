@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {Store} from "@ngxs/store";
-import {QuizSessionStart} from "../../state/quiz.actions";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {Store} from '@ngxs/store';
+import {QuizSessionStart} from '../../state/quiz.actions';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-quiz-start',

@@ -1,10 +1,10 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {ApiHttpClient} from '../../../shared/abstract/api-http-client';
-import {Store} from "@ngxs/store";
-import {QuizQuestion} from "../state/quiz.model";
-import {QuizQuestionsAdd} from "../state/quiz.actions";
-import {environment} from "../../../../environments/environment";
+import {Store} from '@ngxs/store';
+import {QuizQuestion} from '../state/quiz.model';
+import {QuizQuestionsAdd} from '../state/quiz.actions';
+import {environment} from '../../../../environments/environment';
 
 @Injectable()
 export class QuizService extends ApiHttpClient {

@@ -1,11 +1,11 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {PhotographModel} from '../../state/gallery.model';
-import {Store} from "@ngxs/store";
-import {GalleryState} from "../../state/gallery.state";
-import {Navigate} from "@ngxs/router-plugin";
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {GalleryLoadAction} from "../../state/gallery.actions";
+import {Store} from '@ngxs/store';
+import {GalleryState} from '../../state/gallery.state';
+import {Navigate} from '@ngxs/router-plugin';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {GalleryLoadAction} from '../../state/gallery.actions';
 
 @Component({
   selector: 'gallery-gallery-overview',

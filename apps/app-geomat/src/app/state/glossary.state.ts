@@ -1,6 +1,6 @@
-import {Action, Selector, State, StateContext} from "@ngxs/store";
-import {GlossarySetAction} from "./glossary.actions";
-import {Injectable} from "@angular/core";
+import {Action, Selector, State, StateContext} from '@ngxs/store';
+import {GlossarySetAction} from './glossary.actions';
+import {Injectable} from '@angular/core';
 
 export interface GlossaryEntryModel {
   id: string;
@@ -8,10 +8,12 @@ export interface GlossaryEntryModel {
   description: string;
 }
 
-export type GlossaryEntriesOrdered = { [key: string]: GlossaryEntryModel[] };
+export interface GlossaryEntriesOrdered {
+  [key: string]: GlossaryEntryModel[];
+}
 
 export interface GlossaryStateModel {
-  entries: GlossaryEntriesOrdered
+  entries: GlossaryEntriesOrdered;
 }
 
 @State<GlossaryStateModel>({

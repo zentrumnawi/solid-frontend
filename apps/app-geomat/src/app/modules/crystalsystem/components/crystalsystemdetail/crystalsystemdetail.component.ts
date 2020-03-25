@@ -1,7 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {environment} from "../../../../../environments/environment";
-import {configurations} from "./crystalsystemdetail-configuration";
+import {MatDialog} from '@angular/material/dialog';
+import {environment} from '../../../../../environments/environment';
+import {configurations} from './crystalsystemdetail-configuration';
 
 type Models = 'cubic' | 'hexagonal' | 'monoclinic' | 'orthorhombic' | 'trigonal' | 'tetragonal' | 'triclinic';
 

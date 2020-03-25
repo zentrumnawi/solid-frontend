@@ -2,15 +2,15 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {Component, HostListener, ViewChild} from '@angular/core';
 import {BaseComponent} from '../../../../shared/abstract/base.component';
 import {PhotographModel} from '../../state/gallery.model';
-import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs";
-import {MatDialog} from "@angular/material/dialog";
-import {MediaErrorDialogComponent} from "../media-error-dialog/media-error-dialog.component";
-import {Store} from "@ngxs/store";
-import {GalleryState} from "../../state/gallery.state";
-import {map} from "rxjs/operators";
-import {Navigate} from "@ngxs/router-plugin";
-import {GalleryLoadAction} from "../../state/gallery.actions";
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {MediaErrorDialogComponent} from '../media-error-dialog/media-error-dialog.component';
+import {Store} from '@ngxs/store';
+import {GalleryState} from '../../state/gallery.state';
+import {map} from 'rxjs/operators';
+import {Navigate} from '@ngxs/router-plugin';
+import {GalleryLoadAction} from '../../state/gallery.actions';
 
 @Component({
   selector: 'gallery-photograph-detail-modal',
@@ -57,13 +57,13 @@ export class PhotographDetailComponent extends BaseComponent {
         .pipe(map(filter => filter(entryId)))
         .subscribe(surrounding => {
           this.Surrounding = surrounding;
-        })
+        });
     });
     this.addOnDestroy(() => {
       if (this.PlayingStarted && this.Entry && this.Entry.audio_file && this.player) {
         this.player.nativeElement.pause();
       }
-    })
+    });
   }
 
   public imageLoaded() {

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Observable} from "rxjs";
-import {MineralProfile} from "../../state/profile.model";
+import {Observable} from 'rxjs';
+import {MineralProfile} from '../../state/profile.model';
 
 @Component({
   selector: 'app-profile-grid',

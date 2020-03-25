@@ -1,4 +1,4 @@
-import {Slideshow} from "./slideshow.model";
+import {Slideshow} from './slideshow.model';
 
 export const determinationhelper: Slideshow = {
   title: 'Bestimmungshelfer',

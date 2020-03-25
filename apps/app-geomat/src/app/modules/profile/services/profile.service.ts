@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {ApiHttpClient} from '../../../shared/abstract/api-http-client';
 import {ProfileSetAction} from '../state/profile.actions';
 import {MineralProfile, MineralProfileApi, NodeApi, ProfileCategory} from '../state/profile.model';
-import {Store} from "@ngxs/store";
+import {Store} from '@ngxs/store';
 
 @Injectable()
 export class ProfileService extends ApiHttpClient {

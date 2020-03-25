@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {Store} from "@ngxs/store";
-import {QuizSession} from "../../state/quiz.model";
-import {QuizSessionStart} from "../../state/quiz.actions";
-import {QuizFeedback} from "./quiz-end-feedback";
+import {Store} from '@ngxs/store';
+import {QuizSession} from '../../state/quiz.model';
+import {QuizSessionStart} from '../../state/quiz.actions';
+import {QuizFeedback} from './quiz-end-feedback';
 
 @Component({
   selector: 'app-quiz-end',
@@ -36,10 +36,10 @@ export class QuizEndComponent {
           feedbacks = QuizFeedback.ge75;
         }
         this.FeedbackText = feedbacks[Math.floor(Math.random() * (feedbacks.length))];
-        this.FeedbackText = this.FeedbackText.replace("{{correctPercentage}}", Math.round(100 * this.correctPercentage).toString(10));
-        this.FeedbackText = this.FeedbackText.replace("{{Count}}", this.QuestionCount.toString(10));
+        this.FeedbackText = this.FeedbackText.replace('{{correctPercentage}}', Math.round(100 * this.correctPercentage).toString(10));
+        this.FeedbackText = this.FeedbackText.replace('{{Count}}', this.QuestionCount.toString(10));
       }
-    })
+    });
   }
 
 

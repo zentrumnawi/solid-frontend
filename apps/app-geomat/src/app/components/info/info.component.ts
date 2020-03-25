@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {BaseComponent} from '../../shared/abstract/base.component';
-import {FeedbackService} from "../../services/feedback.service";
-import {Store} from "@ngxs/store";
+import {FeedbackService} from '../../services/feedback.service';
+import {Store} from '@ngxs/store';
 
 const version = require('../../../environments/version.json');
 

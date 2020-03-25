@@ -1,11 +1,11 @@
 import {Component, HostListener, ViewChild} from '@angular/core';
-import {MatStepper} from "@angular/material/stepper";
-import {Select, Store} from "@ngxs/store";
-import {combineLatest, Observable, of} from "rxjs";
-import {Slideshow} from "../../state/slideshow.model";
-import {SlideshowState} from "../../state/slideshow.state";
-import {map, tap} from "rxjs/operators";
-import {SlideshowLoadContentAction} from "../../state/slideshow.actions";
+import {MatStepper} from '@angular/material/stepper';
+import {Select, Store} from '@ngxs/store';
+import {combineLatest, Observable, of} from 'rxjs';
+import {Slideshow} from '../../state/slideshow.model';
+import {SlideshowState} from '../../state/slideshow.state';
+import {map, tap} from 'rxjs/operators';
+import {SlideshowLoadContentAction} from '../../state/slideshow.actions';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',

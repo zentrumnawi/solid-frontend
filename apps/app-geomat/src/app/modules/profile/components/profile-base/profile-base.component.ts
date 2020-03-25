@@ -1,14 +1,14 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {ProfileService} from "../../services/profile.service";
-import {Select, Store} from "@ngxs/store";
-import {ProfileState} from "../../state/profile.state";
-import {MineralProfile, Profile, ProfileCategory} from "../../state/profile.model";
-import {FormControl} from "@angular/forms";
-import {Navigate} from "@ngxs/router-plugin";
-import {map} from "rxjs/operators";
-import {BehaviorSubject, combineLatest, Observable} from "rxjs";
+import {ProfileService} from '../../services/profile.service';
+import {Select, Store} from '@ngxs/store';
+import {ProfileState} from '../../state/profile.state';
+import {MineralProfile, Profile, ProfileCategory} from '../../state/profile.model';
+import {FormControl} from '@angular/forms';
+import {Navigate} from '@ngxs/router-plugin';
+import {map} from 'rxjs/operators';
+import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
 import {HammerInput} from '@angular/material/core';
-import {Dispatch} from "@ngxs-labs/dispatch-decorator";
+import {Dispatch} from '@ngxs-labs/dispatch-decorator';
 
 @Component({
   selector: 'app-profile-base',

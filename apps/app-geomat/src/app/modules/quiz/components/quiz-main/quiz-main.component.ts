@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {Store} from "@ngxs/store";
-import {Observable, of} from "rxjs";
-import {QuizService} from "../../services/quiz.service";
-import {QuizSession} from "../../state/quiz.model";
+import {Store} from '@ngxs/store';
+import {Observable, of} from 'rxjs';
+import {QuizService} from '../../services/quiz.service';
+import {QuizSession} from '../../state/quiz.model';
 
 @Component({
   selector: 'app-quiz-main-component',

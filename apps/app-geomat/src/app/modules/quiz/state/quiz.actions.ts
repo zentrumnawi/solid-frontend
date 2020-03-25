@@ -1,4 +1,4 @@
-import {QuizQuestion} from "./quiz.model";
+import {QuizQuestion} from './quiz.model';
 
 export class QuizQuestionsAdd {
   static readonly type = '[Quiz] questions add';

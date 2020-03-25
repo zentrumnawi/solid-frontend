@@ -1,10 +1,10 @@
-import {MatDialog} from "@angular/material/dialog";
-import {FeedbackDialogComponent} from "../components/feedback-overlay/feedback-dialog.component";
-import {TitleService} from "./title.service";
-import {ApiHttpClient} from "../shared/abstract/api-http-client";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Injectable} from "@angular/core";
+import {MatDialog} from '@angular/material/dialog';
+import {FeedbackDialogComponent} from '../components/feedback-overlay/feedback-dialog.component';
+import {TitleService} from './title.service';
+import {ApiHttpClient} from '../shared/abstract/api-http-client';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class FeedbackService extends ApiHttpClient {

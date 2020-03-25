@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MineralProfile} from "../../state/profile.model";
-import {combineLatest, Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {MineralProfile} from '../../state/profile.model';
+import {combineLatest, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile-list',
@@ -32,7 +32,7 @@ export class ProfileListComponent implements OnInit {
           return true;
         }
         return false;
-      })
+      });
     }));
   }
 }

@@ -1,9 +1,9 @@
-import {Action, Selector, State, StateContext} from "@ngxs/store";
-import {PhotographModel} from "./gallery.model";
-import {GalleryLoadAction} from "./gallery.actions";
-import {GalleryService} from "../services/gallery.service";
-import {tap} from "rxjs/operators";
-import {Injectable} from "@angular/core";
+import {Action, Selector, State, StateContext} from '@ngxs/store';
+import {PhotographModel} from './gallery.model';
+import {GalleryLoadAction} from './gallery.actions';
+import {GalleryService} from '../services/gallery.service';
+import {tap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 
 export interface GalleryStateModel {
   photographs: PhotographModel[];
@@ -59,7 +59,7 @@ export class GalleryState {
       ctx.patchState({
         _loaded: true,
         photographs: entries
-      })
-    }))
+      });
+    }));
   }
 }

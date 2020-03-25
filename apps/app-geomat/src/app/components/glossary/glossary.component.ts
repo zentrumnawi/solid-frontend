@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {GlossaryService} from '../../services/glossary.service';
-import {Store} from "@ngxs/store";
-import {GlossaryState} from "../../state/glossary.state";
+import {Store} from '@ngxs/store';
+import {GlossaryState} from '../../state/glossary.state';
 
 @Component({
   selector: 'app-glossary',

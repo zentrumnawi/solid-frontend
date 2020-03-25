@@ -5,8 +5,8 @@ import {Observable, of as observableOf} from 'rxjs';
 import {Image} from '../../../../shared/models';
 import {ProfileService} from '../../services/profile.service';
 import {Profile} from '../../state/profile.model';
-import {Store} from "@ngxs/store";
-import {ActivatedRoute} from "@angular/router";
+import {Store} from '@ngxs/store';
+import {ActivatedRoute} from '@angular/router';
 
 export type FlatTreeNode = MineralNode | CategoryNode;
 
@@ -15,7 +15,7 @@ export interface MineralNode {
   type: 'mineral';
   level: number;
   images: Image[];
-  expandable: false,
+  expandable: false;
   id: number;
 }
 
@@ -108,7 +108,7 @@ export class ProfileTreeComponent implements OnInit {
   public ngOnInit(): void {
     this.profiles.subscribe(profiles => {
       console.log(profiles);
-      this.DataSource.data = profiles
+      this.DataSource.data = profiles;
     });
   }
 
@@ -131,7 +131,7 @@ export class ProfileTreeComponent implements OnInit {
             if (c && Array.isArray(c) && c.includes(this._selectedNode!) && !c.includes(node)) {
               this.TreeControl.collapse(n);
             }
-          })
+          });
         }
       }
       this.TreeControl.expand(node);
