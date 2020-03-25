@@ -23,7 +23,7 @@ div.content-container {
 
   &.splitLayout {
     grid-template-areas: 'main-toolbar toolbar' 'view profile';
-    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-columns: 400px 1fr;
     grid-template-rows: 64px 1fr;
     max-height: 100%;
 

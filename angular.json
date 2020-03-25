@@ -176,41 +176,6 @@
         }
       }
     },
-    "solid": {
-      "projectType": "library",
-      "root": "libs/solid",
-      "sourceRoot": "libs/solid/src",
-      "prefix": "zentrumnawi",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/solid/tsconfig.lib.json",
-              "libs/solid/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/solid/jest.config.js",
-            "tsConfig": "libs/solid/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/solid/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
     "dive": {
       "projectType": "application",
       "schematics": {
@@ -220,7 +185,7 @@
       },
       "root": "apps/dive",
       "sourceRoot": "apps/dive/src",
-      "prefix": "zentrumnawi",
+      "prefix": "dive",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -353,7 +318,7 @@
       },
       "root": "apps/geomat",
       "sourceRoot": "apps/geomat/src",
-      "prefix": "zentrumnawi",
+      "prefix": "geomat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -474,6 +439,76 @@
               "!apps/geomat-e2e/**"
             ]
           }
+        }
+      }
+    },
+    "solid-core": {
+      "projectType": "library",
+      "root": "libs/solid/core",
+      "sourceRoot": "libs/solid/core/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/core/tsconfig.lib.json",
+              "libs/solid/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/core/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/core/jest.config.js",
+            "tsConfig": "libs/solid/core/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-quiz": {
+      "projectType": "library",
+      "root": "libs/solid/quiz",
+      "sourceRoot": "libs/solid/quiz/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/quiz/tsconfig.lib.json",
+              "libs/solid/quiz/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/quiz/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/quiz/jest.config.js",
+            "tsConfig": "libs/solid/quiz/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/quiz/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }

@@ -25,8 +25,11 @@
       "node"
     ],
     "paths": {
-      "@zentrumnawi/solid": [
-        "libs/solid/src/index.ts"
+      "@zentrumnawi/solid/core": [
+        "libs/solid/core/src/index.ts"
+      ],
+      "@zentrumnawi/solid/quiz": [
+        "libs/solid/quiz/src/index.ts"
       ]
     },
     "rootDir": "."

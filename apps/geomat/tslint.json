@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "zentrumnawi",
+      "geomat",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "zentrumnawi",
+      "geomat",
       "kebab-case"
     ]
   },

@@ -14,9 +14,6 @@
     "app-geomat-e2e": {
       "tags": []
     },
-    "solid": {
-      "tags": []
-    },
     "dive": {
       "tags": []
     },
@@ -33,6 +30,16 @@
       "tags": [],
       "implicitDependencies": [
         "geomat"
+      ]
+    },
+    "solid-core": {
+      "tags": [
+        "solid"
+      ]
+    },
+    "solid-quiz": {
+      "tags": [
+        "solid"
       ]
     }
   }
