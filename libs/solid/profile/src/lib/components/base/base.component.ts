@@ -19,7 +19,6 @@ import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { HammerInput } from 'hammerjs';
 
 @Component({
   selector: 'solid-profile-base',
@@ -160,7 +159,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public onPanEnd($event: HammerInput) {
+  public onPanEnd($event: any ) {
     if ($event.deltaX > 100 && this.CanSwipeLeft) {
       $event.preventDefault();
       this.swipeLeft();
