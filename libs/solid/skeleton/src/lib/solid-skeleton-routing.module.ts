@@ -7,31 +7,32 @@ export interface RouteConfig {
   component: Type<any>;
   menuItem?: boolean;
   order?: number;
+  matIcon?: string;
+  svgIcon?: string;
 }
 
 export interface AppRoutingModuleConfig {
-  privacy?: RouteConfig;
+  landing: RouteConfig;
+  privacy: RouteConfig;
   feedbackDisabled?: boolean;
 }
 
 export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
   const routes: Route[] = [];
-  const addRoute = (cfg: RouteConfig | undefined, defaultUrl: string, defaultTitle: string, defaultOrder: number, icon?: string, svgIcon?: string) => {
-    if (!cfg) {
-      return;
-    }
+  const addRoute = (cfg: RouteConfig, defaultUrl: string, defaultTitle: string, defaultOrder: number, icon?: string, svgIcon?: string) => {
     routes.push({
       path: cfg.url || defaultUrl,
       component: cfg.component,
       data: {
         title: cfg.title || defaultTitle,
         menuItem: cfg.menuItem !== undefined ? cfg.menuItem : true,
-        icon: icon,
-        svgIcon: svgIcon,
+        icon: cfg.matIcon || icon,
+        svgIcon: cfg.svgIcon || svgIcon,
         order: cfg.order || defaultOrder
       }
     });
   };
-  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', 1, undefined, 'privacy');
+  addRoute(cfg.landing, '', 'Startseite', 1, 'home', undefined);
+  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', 2, undefined, 'privacy');
   return routes;
 }

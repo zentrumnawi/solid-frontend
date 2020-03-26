@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { generateAppRoutes, SolidSkeletonConfig, SolidSkeletonModule } from '@zentrumnawi/solid/skeleton';
@@ -13,6 +13,12 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { LandingComponent } from './landing/landing.component';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 const skeletonConfig: SolidSkeletonConfig = {
   ...environment,
@@ -24,13 +30,15 @@ const skeletonConfig: SolidSkeletonConfig = {
 };
 
 const routes = generateAppRoutes({
+  landing: { component: LandingComponent, svgIcon: 'icon' },
   privacy: { component: PrivacyComponent }
 });
 
 @NgModule({
   declarations: [
     AppComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -44,10 +52,24 @@ const routes = generateAppRoutes({
     NgxsReduxDevtoolsPluginModule.forRoot(),
     SolidCoreModule,
     SolidSkeletonModule.forRoot(skeletonConfig),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(registry: MatIconRegistry, url: DomSanitizer) {
+    const addIcon = (name: string) => registry.addSvgIcon(name, url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`));
+    addIcon('icon');
+    addIcon('assistant');
+    addIcon('crystalsystem');
+    addIcon('profile');
+    addIcon('quiz');
+    addIcon('info2');
+  }
 }
