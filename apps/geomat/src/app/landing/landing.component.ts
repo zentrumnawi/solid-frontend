@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Message, messages } from '../../../../app-geomat/src/app/components/landing-page/message';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Message, messages } from './message';
 
 @Component({
   selector: 'geomat-landing',

@@ -1,0 +1,6 @@
+@import "lib/components/question/question.theme";
+
+@mixin solid-quiz-theme($mat-theme) {
+  @include solid-quiz-question-theme($mat-theme);
+}
+

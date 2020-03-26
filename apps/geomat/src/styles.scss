@@ -2,6 +2,7 @@
 @import "theme";
 @import "glossary-theme";
 @import "profile-theme";
+@import "quiz-theme";
 @import "skeleton-theme";
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -16,4 +17,5 @@
 
 @include solid-glossary-theme($app-theme);
 @include solid-profile-theme($app-theme);
+@include solid-quiz-theme($app-theme);
 @include solid-skeleton-theme($app-theme);

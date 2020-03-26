@@ -1,5 +1,5 @@
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule, DomSanitizer, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
+import { ErrorHandler, Injectable, NgModule } from '@angular/core';
 
 import { generateAppRoutes, SolidSkeletonModule } from '@zentrumnawi/solid/skeleton';
 import { environment } from '../environments/environment';
@@ -20,6 +20,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { InfoComponent } from './info/info.component';
+import { SentryErrorHandler } from './sentry.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const coreConfig: SolidCoreConfig = {
   ...environment,
@@ -29,6 +31,17 @@ const coreConfig: SolidCoreConfig = {
     overlinePlugin
   ]
 };
+
+@Injectable()
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = {
+    pan: {
+      direction: 6
+    },
+    'pinch': { enable: false },
+    'rotate': { enable: false }
+  };
+}
 
 const routes = generateAppRoutes({
   landing: { component: LandingComponent, svgIcon: 'icon' },
@@ -61,20 +74,34 @@ const routes = generateAppRoutes({
     NgxsModule.forRoot([], {
       developmentMode: !environment.production
     }),
-    NgxsLoggerPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.production
+    }),
     NgxsDispatchPluginModule.forRoot(),
     NgxsRouterPluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      disabled: environment.production
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot({}),
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: SentryErrorHandler
+    },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

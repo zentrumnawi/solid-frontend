@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { QuizStartComponent } from './components/quiz-start/quiz-start.component';
-import { QuizMainComponent } from './components/quiz-main/quiz-main.component';
-import { QuizQuestionComponent } from './components/quiz-question/quiz-question.component';
-import { QuizEndComponent } from './components/quiz-end/quiz-end.component';
+import { StartComponent } from './components/start/start.component';
+import { MainComponent } from './components/main/main.component';
+import { QuestionComponent } from './components/question/question.component';
+import { EndComponent } from './components/end/end.component';
 import { NgxsModule } from '@ngxs/store';
 import { QuizState } from './state/quiz.state';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -18,15 +18,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 export const routes: Route[] = [
-  { path: '', component: QuizMainComponent, data: { title: 'Selbsttest' } }
+  { path: '', component: MainComponent, data: { title: 'Selbsttest' } }
 ];
 
 @NgModule({
   declarations: [
-    QuizStartComponent,
-    QuizMainComponent,
-    QuizQuestionComponent,
-    QuizEndComponent
+    StartComponent,
+    MainComponent,
+    QuestionComponent,
+    EndComponent
   ],
   imports: [
     SolidCoreModule,

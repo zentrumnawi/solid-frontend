@@ -74,5 +74,6 @@ export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
       addModuleRoute(custom as RouteConfigFromModule, '', '', order++);
     }
   });
+  routes.push({ path: '**', redirectTo: '' });
   return routes;
 }
