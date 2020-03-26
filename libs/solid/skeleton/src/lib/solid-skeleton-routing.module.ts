@@ -19,6 +19,7 @@ export interface AppRoutingModuleConfig {
   privacy: RouteConfigWithComponent;
   profile?: RouteConfig;
   quiz?: RouteConfig;
+  slideshow?: RouteConfig;
   custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
 }
 
@@ -50,22 +51,27 @@ export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
       }
     });
   };
-  addRoute(cfg.landing, '', 'Startseite', 1, 'home', undefined);
+  let order = 0;
+  addRoute(cfg.landing, '', 'Startseite', order++, 'home', undefined);
   addModuleRoute({
     ...cfg.profile,
     moduleImport: () => import('@zentrumnawi/solid/profile').then(m => m.SolidProfileModule)
-  }, 'profile', 'Steckbriefe', 2, 'list');
+  }, 'profile', 'Steckbriefe', order++, 'list');
+  addModuleRoute({
+    ...cfg.slideshow,
+    moduleImport: () => import('@zentrumnawi/solid/slideshow').then(m => m.SolidSlideshowModule)
+  }, 'slideshow', 'Slideshow', order++, 'slideshow');
   addModuleRoute({
     ...cfg.quiz,
     moduleImport: () => import('@zentrumnawi/solid/quiz').then(m => m.SolidQuizModule)
-  }, 'quiz', 'Selbsttest', 3, 'question_answer');
-  addRoute(cfg.info, 'info', 'Informationen', 4, 'info');
-  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', 5, undefined, 'privacy');
+  }, 'quiz', 'Selbsttest', order++, 'question_answer');
+  addRoute(cfg.info, 'info', 'Informationen', order++, 'info');
+  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', order++, undefined, 'privacy');
   cfg.custom?.forEach(custom => {
     if ((custom as RouteConfigWithComponent).component) {
-      addRoute(custom as RouteConfigWithComponent, '', '', 0);
+      addRoute(custom as RouteConfigWithComponent, '', '', order++);
     } else {
-      addModuleRoute(custom as RouteConfigFromModule, '', '', 0);
+      addModuleRoute(custom as RouteConfigFromModule, '', '', order++);
     }
   });
   return routes;

@@ -8,7 +8,7 @@ import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
   host: {
     class: 'md-rendered'
   },
-  styles: []
+  styleUrls: ['./markdown.component.scss']
 })
 export class MarkdownComponent implements AfterViewInit {
   constructor(
