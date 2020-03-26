@@ -32,7 +32,16 @@ const coreConfig: SolidCoreConfig = {
 const routes = generateAppRoutes({
   landing: { component: LandingComponent, svgIcon: 'icon' },
   privacy: { component: PrivacyComponent },
-  profile: { svgIcon: 'profile' }
+  profile: { svgIcon: 'profile' },
+  custom: [
+    {
+      url: 'system',
+      title: 'Kristallsysteme',
+      svgIcon: 'crystalsystem',
+      order: 2,
+      moduleImport: () => import('./crystalsystem/crystalsystem.module').then(m => m.CrystalsystemModule)
+    }
+  ]
 });
 
 @NgModule({

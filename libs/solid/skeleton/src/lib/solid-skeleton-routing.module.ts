@@ -17,6 +17,7 @@ export interface AppRoutingModuleConfig {
   landing: RouteConfigWithComponent;
   privacy: RouteConfigWithComponent;
   profile?: RouteConfig;
+  custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
 }
 
 export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
@@ -53,5 +54,12 @@ export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
     ...cfg.profile,
     moduleImport: () => import('@zentrumnawi/solid/profile').then(m => m.SolidProfileModule)
   }, 'profile', 'Steckbriefe', 2, 'list');
+  cfg.custom?.forEach(custom => {
+    if ((custom as RouteConfigWithComponent).component) {
+      addRoute(custom as RouteConfigWithComponent, '', '', 0);
+    } else {
+      addModuleRoute(custom as RouteConfigFromModule, '', '', 0);
+    }
+  });
   return routes;
 }
