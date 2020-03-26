@@ -15,6 +15,7 @@ export type RouteConfigFromModule = RouteConfig & { moduleImport: LoadChildren }
 
 export interface AppRoutingModuleConfig {
   landing: RouteConfigWithComponent;
+  info: RouteConfigWithComponent;
   privacy: RouteConfigWithComponent;
   profile?: RouteConfig;
   custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
@@ -49,7 +50,8 @@ export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
     });
   };
   addRoute(cfg.landing, '', 'Startseite', 1, 'home', undefined);
-  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', 3, undefined, 'privacy');
+  addRoute(cfg.info, 'info', 'Informationen', 3, 'info');
+  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', 4, undefined, 'privacy');
   addModuleRoute({
     ...cfg.profile,
     moduleImport: () => import('@zentrumnawi/solid/profile').then(m => m.SolidProfileModule)

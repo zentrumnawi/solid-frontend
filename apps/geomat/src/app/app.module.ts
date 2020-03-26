@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { InfoComponent } from './info/info.component';
 
 const coreConfig: SolidCoreConfig = {
   ...environment,
@@ -31,6 +32,7 @@ const coreConfig: SolidCoreConfig = {
 
 const routes = generateAppRoutes({
   landing: { component: LandingComponent, svgIcon: 'icon' },
+  info: { component: InfoComponent, svgIcon: 'info' },
   privacy: { component: PrivacyComponent },
   profile: { svgIcon: 'profile' },
   custom: [
@@ -48,7 +50,8 @@ const routes = generateAppRoutes({
   declarations: [
     AppComponent,
     PrivacyComponent,
-    LandingComponent
+    LandingComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +83,7 @@ export class AppModule {
     addIcon('crystalsystem');
     addIcon('profile');
     addIcon('quiz');
+    addIcon('info');
     addIcon('info2');
   }
 }
