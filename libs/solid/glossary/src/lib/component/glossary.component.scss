@@ -1,0 +1,34 @@
+mat-list {
+  padding: 0;
+  display: inline-block;
+  height: calc(100vh - 64px);
+  width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  h3 {
+    margin: 0;
+    padding: 4px 16px;
+  }
+
+  mat-list-item {
+    padding: 4px;
+
+    .entry-header {
+      font-weight: 500;
+    }
+
+    sup {
+      top: -.4em;
+    }
+  }
+}
+
+::ng-deep .mat-list .mat-list-item .mat-line {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+::ng-deep .mat-list .mat-list-item {
+  height: initial !important;
+}

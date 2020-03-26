@@ -5,6 +5,10 @@ import { MarkdownComponent } from './components/markdown.component';
 import { MarkdownService } from './services/markdown.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from './solid-core-config';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
+import { RouterStateSerializer } from '@ngxs/router-plugin';
+import { CustomRouterStateSerializer } from './custom-router-state-serializer';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,14 @@ export class SolidCoreModule {
         {
           provide: SOLID_CORE_CONFIG,
           useValue: config
+        },
+        {
+          provide: RouteReuseStrategy,
+          useClass: CustomRouteReuseStrategy
+        },
+        {
+          provide: RouterStateSerializer,
+          useClass: CustomRouterStateSerializer
         }
       ]
     };

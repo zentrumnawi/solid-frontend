@@ -14,15 +14,6 @@
     "app-geomat-e2e": {
       "tags": []
     },
-    "dive": {
-      "tags": []
-    },
-    "dive-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "dive"
-      ]
-    },
     "geomat": {
       "tags": []
     },
@@ -46,6 +37,12 @@
       "tags": [
         "solid"
       ]
+    },
+    "solid-glossary": {
+      "tags": []
+    },
+    "solid-skeleton": {
+      "tags": []
     }
   }
 }

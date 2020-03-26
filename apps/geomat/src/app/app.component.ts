@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'geomat-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: '<solid-skeleton-base-layout></solid-skeleton-base-layout>',
+  styleUrls: []
 })
 export class AppComponent {
-  title = 'geomat';
 }

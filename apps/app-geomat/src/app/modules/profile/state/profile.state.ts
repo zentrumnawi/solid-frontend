@@ -1,7 +1,7 @@
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {MineralProfile, Profile, ProfileCategory} from './profile.model';
-import {ProfileSetAction} from './profile.actions';
-import {Injectable} from '@angular/core';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { MineralProfile, Profile, ProfileCategory } from './profile.model';
+import { ProfileSetAction } from './profile.actions';
+import { Injectable } from '@angular/core';
 
 export type ProfileStateModel = Profile[];
 
@@ -12,7 +12,8 @@ export type ProfileStateModel = Profile[];
 @Injectable()
 export class ProfileState {
   @Selector()
-  static selectProfileAndCategory(state: ProfileStateModel): (profileId?: number) => ({ profile: MineralProfile; category: ProfileCategory } | null) {
+  static selectProfileAndCategory(state: ProfileStateModel):
+    (profileId?: number) => ({ profile: MineralProfile; category: ProfileCategory } | null) {
     return (profileId?: number) => {
       if (!profileId) {
         return null;
@@ -21,7 +22,7 @@ export class ProfileState {
         if (profile.type === 'category') {
           const childSearch = ProfileState.findProfileDeep(profile.children, profileId);
           if (childSearch) {
-            return {profile: childSearch.profile, category: childSearch.category ? childSearch.category : profile};
+            return { profile: childSearch.profile, category: childSearch.category ? childSearch.category : profile };
           }
         }
       }
@@ -49,14 +50,15 @@ export class ProfileState {
     return map([], state);
   }
 
-  private static findProfileDeep(profiles: Profile[], profileId: number): { profile: MineralProfile, category: ProfileCategory | null } | null {
+  private static findProfileDeep(profiles: Profile[], profileId: number):
+    { profile: MineralProfile, category: ProfileCategory | null } | null {
     for (const profile of profiles) {
       if (profile.type === 'mineral' && profile.id === profileId) {
-        return {profile, category: null};
+        return { profile, category: null };
       } else if (profile.type === 'category') {
         const childSearch = ProfileState.findProfileDeep(profile.children, profileId);
         if (childSearch) {
-          return {profile: childSearch.profile, category: childSearch.category ? childSearch.category : profile};
+          return { profile: childSearch.profile, category: childSearch.category ? childSearch.category : profile };
         }
       }
     }

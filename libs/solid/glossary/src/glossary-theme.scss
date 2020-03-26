@@ -1,0 +1,5 @@
+@import 'libs/solid/glossary/src/lib/component/glossary.theme';
+
+@mixin solid-glossary-theme($mat-theme) {
+  @include glossary-component-theme($mat-theme);
+}

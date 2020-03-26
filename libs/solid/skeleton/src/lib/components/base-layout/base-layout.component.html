@@ -1,0 +1,57 @@
+<div class="base-layout-container mat-typography">
+  <mat-toolbar color="primary">
+    <ng-container *ngIf="FixedLayout">
+      <div class="right-border">
+        Menü
+      </div>
+      <span>
+        GeoMat
+      </span>
+      <div class="spacer"></div>
+      <div class="left-border">
+        Glossar
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!FixedLayout">
+      <div class="mainmenu-button">
+        <button (click)="MainMenu?.toggle()" mat-icon-button>
+          <mat-icon aria-label="Menü öffnen">menu</mat-icon>
+        </button>
+      </div>
+      <span [class.app-title-fixed]="FixedLayout">GeoMat</span>
+      <div class="spacer"></div>
+      <button (click)="Glossary?.toggle()" mat-icon-button>
+        <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
+      </button>
+    </ng-container>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav
+      #mainmenu
+      [fixedInViewport]="!FixedLayout"
+      [mode]="FixedLayout ? 'side' : 'over'"
+      class="mainmenu-sidenav"
+      position="start"
+    >
+      <mat-toolbar (click)="MainMenu?.toggle()" *ngIf="!FixedLayout" color="primary">
+        Menü
+      </mat-toolbar>
+      <solid-skeleton-main-menu (select)="onMenuSelectionChanged()"></solid-skeleton-main-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+    <mat-sidenav
+      #glossary
+      [fixedInViewport]="!FixedLayout"
+      [mode]="FixedLayout ? 'side' : 'over'"
+      class="glossary-sidenav"
+      position="end"
+    >
+      <mat-toolbar (click)="Glossary?.toggle()" *ngIf="!FixedLayout" class="glossary-toolbar" color="primary">
+        Glossar
+      </mat-toolbar>
+      <solid-glossary></solid-glossary>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>

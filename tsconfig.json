@@ -33,6 +33,12 @@
       ],
       "@zentrumnawi/solid/slideshow": [
         "libs/solid/slideshow/src/index.ts"
+      ],
+      "@zentrumnawi/solid/glossary": [
+        "libs/solid/glossary/src/index.ts"
+      ],
+      "@zentrumnawi/solid/skeleton": [
+        "libs/solid/skeleton/src/index.ts"
       ]
     },
     "rootDir": "."

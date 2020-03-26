@@ -1,0 +1,13 @@
+@mixin glossary-component-theme($mat-theme) {
+  $background: map-get($mat-theme, background);
+  solid-glossary {
+    h3 {
+      background-color: mat-color($background, status-bar);
+    }
+
+    mat-list-item {
+      border-bottom: 1px solid mat-color($background, app-bar);
+    }
+  }
+
+}

@@ -1,11 +1,11 @@
-import {Component, HostListener, ViewChild} from '@angular/core';
-import {MatStepper} from '@angular/material/stepper';
-import {Select, Store} from '@ngxs/store';
-import {combineLatest, Observable, of} from 'rxjs';
-import {Slideshow} from '../../state/slideshow.model';
-import {SlideshowState} from '../../state/slideshow.state';
-import {map, tap} from 'rxjs/operators';
-import {SlideshowLoadContentAction} from '../../state/slideshow.actions';
+import { Component, HostListener, ViewChild } from '@angular/core';
+import { MatStepper } from '@angular/material/stepper';
+import { Select, Store } from '@ngxs/store';
+import { combineLatest, Observable, of } from 'rxjs';
+import { Slideshow } from '../../state/slideshow.model';
+import { SlideshowState } from '../../state/slideshow.state';
+import { map, tap } from 'rxjs/operators';
+import { SlideshowLoadContentAction } from '../../state/slideshow.actions';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
@@ -15,7 +15,7 @@ export enum KEY {
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
-  styleUrls: ['./slideshow.component.scss'],
+  styleUrls: ['./slideshow.component.scss']
 })
 export class SlideshowComponent {
   public MaxStep = 0;
@@ -39,7 +39,6 @@ export class SlideshowComponent {
   @HostListener('window:keyup', ['$event'])
   public keyEvent(event: KeyboardEvent) {
     if (event.key === KEY.LEFT_ARROW) {
-      debugger;
       this.Stepper.previous();
     } else if (event.key === KEY.RIGHT_ARROW) {
       this.Stepper.next();

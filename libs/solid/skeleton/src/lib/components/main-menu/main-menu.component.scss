@@ -1,0 +1,8 @@
+mat-nav-list {
+  padding: 0;
+  display: inline-block;
+  height: calc(100vh - 64px);
+  width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

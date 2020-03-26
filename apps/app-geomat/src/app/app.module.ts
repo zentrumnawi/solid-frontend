@@ -5,11 +5,9 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GlossaryComponent } from './components/glossary/glossary.component';
 import { InfoComponent } from './components/info/info.component';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
-import { GlossaryService } from './services/glossary.service';
 import { TitleService } from './services/title.service';
 import { SharedModule } from './shared/shared.module';
 import { FeedbackDialogComponent } from './components/feedback-overlay/feedback-dialog.component';
@@ -18,7 +16,6 @@ import { SentryErrorHandler } from './services/sentry.service';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
 import { NgxsModule } from '@ngxs/store';
-import { GlossaryState } from './state/glossary.state';
 import { NgxsRouterPluginModule, RouterStateSerializer } from '@ngxs/router-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -29,6 +26,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { SolidCoreModule } from '@zentrumnawi/solid/core';
+import { SolidGlossaryModule } from '@zentrumnawi/solid/glossary';
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
@@ -44,7 +42,6 @@ export class MyHammerConfig extends HammerGestureConfig {
 @NgModule({
   declarations: [
     AppComponent,
-    GlossaryComponent,
     MainmenuComponent,
     InfoComponent,
     PrivacyComponent,
@@ -59,15 +56,13 @@ export class MyHammerConfig extends HammerGestureConfig {
     }),
     SharedModule.forRoot(),
     BrowserAnimationsModule,
-    NgxsModule.forRoot([
-        GlossaryState
-      ],
+    NgxsModule.forRoot([],
       {
         developmentMode: !environment.production
       }),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
-      collapsed: true,
+      collapsed: true
     }),
     NgxsReduxDevtoolsPluginModule.forRoot({
       disabled: environment.production
@@ -75,10 +70,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgxsRouterPluginModule.forRoot(),
     NgxsDispatchPluginModule.forRoot(),
     MatGridListModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    SolidGlossaryModule
   ],
   providers: [
-    GlossaryService,
     TitleService,
     FeedbackService,
     {

@@ -33,7 +33,13 @@
               "./node_modules/material-icons/iconfont/material-icons.scss",
               "apps/app-geomat/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src"
+              ]
+            }
           },
           "configurations": {
             "staging": {
@@ -176,139 +182,6 @@
         }
       }
     },
-    "dive": {
-      "projectType": "application",
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "apps/dive",
-      "sourceRoot": "apps/dive/src",
-      "prefix": "dive",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/dive",
-            "index": "apps/dive/src/index.html",
-            "main": "apps/dive/src/main.ts",
-            "polyfills": "apps/dive/src/polyfills.ts",
-            "tsConfig": "apps/dive/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "apps/dive/src/favicon.ico",
-              "apps/dive/src/assets"
-            ],
-            "styles": [
-              "apps/dive/src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/dive/src/environments/environment.ts",
-                  "with": "apps/dive/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "dive:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "dive:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "dive:build"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/dive/tsconfig.app.json",
-              "apps/dive/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/dive/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/dive/jest.config.js",
-            "tsConfig": "apps/dive/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/dive/src/test-setup.ts"
-          }
-        }
-      }
-    },
-    "dive-e2e": {
-      "root": "apps/dive-e2e",
-      "sourceRoot": "apps/dive-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/dive-e2e/cypress.json",
-            "tsConfig": "apps/dive-e2e/tsconfig.e2e.json",
-            "devServerTarget": "dive:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "dive:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/dive-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/dive-e2e/**"
-            ]
-          }
-        }
-      }
-    },
     "geomat": {
       "projectType": "application",
       "schematics": {
@@ -334,9 +207,16 @@
               "apps/geomat/src/assets"
             ],
             "styles": [
+              "./node_modules/material-icons/iconfont/material-icons.scss",
               "apps/geomat/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -372,7 +252,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "geomat:build"
+            "browserTarget": "geomat:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -538,6 +419,76 @@
             "tsConfig": "libs/solid/slideshow/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/solid/slideshow/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-glossary": {
+      "projectType": "library",
+      "root": "libs/solid/glossary",
+      "sourceRoot": "libs/solid/glossary/src",
+      "prefix": "solid-glossary",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/glossary/tsconfig.lib.json",
+              "libs/solid/glossary/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/glossary/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/glossary/jest.config.js",
+            "tsConfig": "libs/solid/glossary/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/glossary/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-skeleton": {
+      "projectType": "library",
+      "root": "libs/solid/skeleton",
+      "sourceRoot": "libs/solid/skeleton/src",
+      "prefix": "solid-skeleton",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/skeleton/tsconfig.lib.json",
+              "libs/solid/skeleton/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/skeleton/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/skeleton/jest.config.js",
+            "tsConfig": "libs/solid/skeleton/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/skeleton/src/test-setup.ts"
           }
         }
       },
