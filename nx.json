@@ -13,39 +13,25 @@
     },
     "geomat-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "geomat"
-      ]
+      "implicitDependencies": ["geomat"]
     },
     "solid-core": {
-      "tags": [
-        "solid"
-      ]
+      "tags": ["solid"]
     },
     "solid-quiz": {
-      "tags": [
-        "solid"
-      ]
+      "tags": ["solid"]
     },
     "solid-slideshow": {
-      "tags": [
-        "solid"
-      ]
+      "tags": ["solid"]
     },
     "solid-glossary": {
-      "tags": [
-        "solid"
-      ]
+      "tags": ["solid"]
     },
     "solid-skeleton": {
-      "tags": [
-        "solid"
-      ]
+      "tags": ["solid"]
     },
     "solid-profile": {
-      "tags": [
-        "solid"
-      ]
+      "tags": ["solid"]
     }
   }
 }

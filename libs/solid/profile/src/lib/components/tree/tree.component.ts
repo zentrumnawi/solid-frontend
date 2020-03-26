@@ -1,6 +1,9 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import {
+  MatTreeFlatDataSource,
+  MatTreeFlattener
+} from '@angular/material/tree';
 import { Observable, of as observableOf } from 'rxjs';
 import { ProfileService } from '../../services/profile.service';
 import { Image, Profile } from '../../state/profile.model';
@@ -36,7 +39,6 @@ export class TreeComponent implements OnInit {
   @Input() profiles!: Observable<Profile[]>;
   @Output() select = new EventEmitter<number>();
 
-
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<Profile, FlatTreeNode>;
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
@@ -47,7 +49,6 @@ export class TreeComponent implements OnInit {
 
   private _selectedNode: CategoryNode | MineralNode | null = null;
 
-
   constructor(
     private _service: ProfileService,
     private _store: Store,
@@ -57,10 +58,17 @@ export class TreeComponent implements OnInit {
       TreeComponent.transformer,
       TreeComponent.getLevel,
       TreeComponent.isExpandable,
-      node => TreeComponent.getChildren(node));
+      node => TreeComponent.getChildren(node)
+    );
 
-    this.TreeControl = new FlatTreeControl(TreeComponent.getLevel, TreeComponent.isExpandable);
-    this.DataSource = new MatTreeFlatDataSource(this.TreeControl, this._treeFlattener);
+    this.TreeControl = new FlatTreeControl(
+      TreeComponent.getLevel,
+      TreeComponent.isExpandable
+    );
+    this.DataSource = new MatTreeFlatDataSource(
+      this.TreeControl,
+      this._treeFlattener
+    );
   }
 
   /** Transform the data to something the tree can read. */
@@ -127,12 +135,20 @@ export class TreeComponent implements OnInit {
     } else {
       if (this._selectedNode) {
         const children = this.TreeControl.getDescendants(this._selectedNode);
-        if (!children || (Array.isArray(children) && !children.includes(node))) {
+        if (
+          !children ||
+          (Array.isArray(children) && !children.includes(node))
+        ) {
           this.TreeControl.collapse(this._selectedNode);
           this.TreeControl.dataNodes.forEach(n => {
             const c = this.TreeControl.getDescendants(n);
             /* tslint:disable-next-line:no-non-null-assertion */
-            if (c && Array.isArray(c) && c.includes(this._selectedNode!) && !c.includes(node)) {
+            if (
+              c &&
+              Array.isArray(c) &&
+              c.includes(this._selectedNode!) &&
+              !c.includes(node)
+            ) {
               this.TreeControl.collapse(n);
             }
           });

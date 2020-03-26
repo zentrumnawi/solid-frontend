@@ -6,7 +6,7 @@ import * as version from '../environments/version.json';
 if (environment.production) {
   Sentry.init({
     dsn: environment.sentry,
-    release: !environment.preview && version.semver?.version || 'dev',
+    release: (!environment.preview && version.semver?.version) || 'dev',
     beforeSend(event) {
       // Check if it is an exception, if so, show the report dialog
       if (event.exception) {
@@ -21,8 +21,7 @@ if (environment.production) {
 
 @Injectable()
 export class SentryErrorHandler implements ErrorHandler {
-  constructor() {
-  }
+  constructor() {}
 
   handleError(error: any) {
     if (environment.production) {

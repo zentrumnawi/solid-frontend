@@ -9,8 +9,7 @@ describe('CrystalsystemdetailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CrystalsystemdetailComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

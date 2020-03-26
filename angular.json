@@ -23,10 +23,7 @@
             "polyfills": "apps/geomat/src/polyfills.ts",
             "tsConfig": "apps/geomat/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/geomat/src/favicon.ico",
-              "apps/geomat/src/assets"
-            ],
+            "assets": ["apps/geomat/src/favicon.ico", "apps/geomat/src/assets"],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
               "apps/geomat/src/styles.scss"
@@ -129,10 +126,7 @@
               "apps/geomat/tsconfig.app.json",
               "apps/geomat/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/geomat/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/geomat/**"]
           }
         },
         "test": {
@@ -167,13 +161,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/geomat-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/geomat-e2e/**"
-            ]
+            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**"]
           }
         }
       }
@@ -191,10 +180,7 @@
               "libs/solid/core/tsconfig.lib.json",
               "libs/solid/core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/core/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/core/**"]
           }
         },
         "test": {
@@ -226,10 +212,7 @@
               "libs/solid/quiz/tsconfig.lib.json",
               "libs/solid/quiz/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/quiz/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**"]
           }
         },
         "test": {
@@ -261,10 +244,7 @@
               "libs/solid/slideshow/tsconfig.lib.json",
               "libs/solid/slideshow/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/slideshow/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**"]
           }
         },
         "test": {
@@ -296,10 +276,7 @@
               "libs/solid/glossary/tsconfig.lib.json",
               "libs/solid/glossary/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/glossary/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**"]
           }
         },
         "test": {
@@ -331,10 +308,7 @@
               "libs/solid/skeleton/tsconfig.lib.json",
               "libs/solid/skeleton/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/skeleton/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**"]
           }
         },
         "test": {
@@ -366,10 +340,7 @@
               "libs/solid/profile/tsconfig.lib.json",
               "libs/solid/profile/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/profile/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/profile/**"]
           }
         },
         "test": {

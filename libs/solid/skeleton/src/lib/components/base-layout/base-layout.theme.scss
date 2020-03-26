@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@import '~@angular/material/theming';
 
 @mixin base-layout-component($mat-theme) {
   $background: map-get($mat-theme, background);

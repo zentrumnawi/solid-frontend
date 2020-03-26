@@ -8,16 +8,18 @@ import { RouterStateParams } from '../custom-router-state-serializer';
 
 @Injectable()
 export class TitleService {
-  constructor(
-    private _title: Title,
-    actions: Actions
-  ) {
-    actions.pipe(
-      ofActionSuccessful(RouterNavigation),
-      map((value: RouterNavigation<RouterStateParams>) => value.routerState.routeData.title)
-    ).subscribe(title => {
-      this._title.setTitle(title ? `${title} | GeoMat` : 'GeoMat');
-    });
+  constructor(private _title: Title, actions: Actions) {
+    actions
+      .pipe(
+        ofActionSuccessful(RouterNavigation),
+        map(
+          (value: RouterNavigation<RouterStateParams>) =>
+            value.routerState.routeData.title
+        )
+      )
+      .subscribe(title => {
+        this._title.setTitle(title ? `${title} | GeoMat` : 'GeoMat');
+      });
   }
 
   /**

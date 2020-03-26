@@ -12,15 +12,8 @@ import { CustomRouterStateSerializer } from './custom-router-state-serializer';
 import { TitleService } from './services/title.service';
 
 @NgModule({
-  declarations: [
-    MarkdownComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule
-  ],
+  declarations: [MarkdownComponent],
+  imports: [CommonModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   exports: [
     CommonModule,
     FormsModule,
@@ -28,16 +21,14 @@ import { TitleService } from './services/title.service';
     ReactiveFormsModule,
     MarkdownComponent
   ],
-  providers: [
-    MarkdownService,
-    TitleService
-  ]
+  providers: [MarkdownService, TitleService]
 })
 export class SolidCoreModule {
-  constructor(title: TitleService) {
-  }
+  constructor(title: TitleService) {}
 
-  public static forRoot(config: SolidCoreConfig): ModuleWithProviders<SolidCoreModule> {
+  public static forRoot(
+    config: SolidCoreConfig
+  ): ModuleWithProviders<SolidCoreModule> {
     return {
       ngModule: SolidCoreModule,
       providers: [

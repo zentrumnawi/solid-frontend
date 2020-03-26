@@ -4,4 +4,4 @@ Bei der Mineralbestimmung geht es neben der optischen Beschreibung auch darum, M
 
 Zur Mineralbestimmung sollte man sich stets an der hier vorgestellten Reihenfolge der Eigenschaften orientieren.
 
- **Achtung: nicht jedes Erkennungsmerkmal ist für jedes Mineral charakteristisch!**
+**Achtung: nicht jedes Erkennungsmerkmal ist für jedes Mineral charakteristisch!**

@@ -9,8 +9,7 @@ describe('GlossaryComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [GlossaryComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

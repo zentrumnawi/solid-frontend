@@ -9,8 +9,7 @@ describe('DeterminationHelperComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SlideshowComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

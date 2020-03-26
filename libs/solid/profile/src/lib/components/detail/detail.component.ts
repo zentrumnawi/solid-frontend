@@ -37,7 +37,8 @@ export class DetailComponent {
       this.ImageEndIndex = index + 3 + (3 - index);
     } else if (index > this.profile.images.length - 4) {
       this.ImageEndIndex = this.profile.images.length - 1;
-      this.ImageStartIndex = index - 3 - (3 - (this.profile.images.length - index - 1));
+      this.ImageStartIndex =
+        index - 3 - (3 - (this.profile.images.length - index - 1));
     } else {
       this.ImageStartIndex = index - 3;
       this.ImageEndIndex = index + 3;

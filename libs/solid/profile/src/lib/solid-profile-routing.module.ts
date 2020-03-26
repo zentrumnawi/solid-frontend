@@ -4,7 +4,11 @@ import { BaseComponent } from './components/base/base.component';
 
 const routes: Routes = [
   { path: ':view', redirectTo: ':view/', data: { title: 'Steckbriefe' } },
-  { path: ':view/:id', component: BaseComponent, data: { title: 'Steckbriefe' } },
+  {
+    path: ':view/:id',
+    component: BaseComponent,
+    data: { title: 'Steckbriefe' }
+  },
   { path: '', pathMatch: 'full', redirectTo: 'tree/' }
 ];
 
@@ -12,5 +16,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SolidProfileRoutingModule {
-}
+export class SolidProfileRoutingModule {}

@@ -1,15 +1,16 @@
-@import "lib/components/base-layout/base-layout.theme";
-@import "lib/components/main-menu/main-menu.theme";
+@import 'lib/components/base-layout/base-layout.theme';
+@import 'lib/components/main-menu/main-menu.theme';
 
 @mixin solid-skeleton-theme($mat-theme) {
-  html, body {
+  html,
+  body {
     height: 100%;
-    box-sizing: border-box;;
+    box-sizing: border-box;
   }
 
   body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
   }
 
   div.spacer {
@@ -19,4 +20,3 @@
   @include base-layout-component($mat-theme);
   @include main-menu-component($mat-theme);
 }
-

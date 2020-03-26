@@ -21,7 +21,7 @@ mat-list {
 }
 
 mat-list-item {
-  margin-top: .5em;
+  margin-top: 0.5em;
 
   ::ng-deep {
     p {
@@ -29,7 +29,7 @@ mat-list-item {
     }
 
     h3.mat-line {
-      padding-bottom: .5em;
+      padding-bottom: 0.5em;
     }
   }
 }
@@ -74,5 +74,3 @@ mat-grid-tile {
     font-size: 4rem;
   }
 }
-
-

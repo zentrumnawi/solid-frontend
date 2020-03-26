@@ -11,11 +11,7 @@ describe('ProfileTreeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TreeComponent],
-      imports: [
-        MatButtonModule,
-        MatIconModule,
-        MatTreeModule
-      ]
+      imports: [MatButtonModule, MatIconModule, MatTreeModule]
     }).compileComponents();
   }));
 

@@ -8,11 +8,13 @@ import { SolidSkeletonModule } from '@zentrumnawi/solid/skeleton';
   styleUrls: []
 })
 export class AppComponent implements OnInit {
-  constructor(@Inject(DOCUMENT) private document: Document) {
-  }
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {
-    if (sessionStorage.getItem('hide_landing') === 'true' && SolidSkeletonModule.isLandingHiddenEnabled) {
+    if (
+      sessionStorage.getItem('hide_landing') === 'true' &&
+      SolidSkeletonModule.isLandingHiddenEnabled
+    ) {
       this.document.body.classList.add('landing-hidden');
     }
   }

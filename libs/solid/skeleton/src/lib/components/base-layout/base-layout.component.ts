@@ -13,33 +13,30 @@ export class BaseLayoutComponent implements OnInit {
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
   // noinspection JSUnusedLocalSymbols
-  constructor(
-    private _breakpointObserver: BreakpointObserver
-  ) {
-  }
+  constructor(private _breakpointObserver: BreakpointObserver) {}
 
   public ngOnInit() {
-    this._breakpointObserver.observe([
-      '(min-width: 1000px)'
-    ]).subscribe(isFixed => {
-      const newFixedLayout = isFixed.matches;
-      if (newFixedLayout) {
-        if (this.MainMenu) {
-          this.MainMenu.open();
+    this._breakpointObserver
+      .observe(['(min-width: 1000px)'])
+      .subscribe(isFixed => {
+        const newFixedLayout = isFixed.matches;
+        if (newFixedLayout) {
+          if (this.MainMenu) {
+            this.MainMenu.open();
+          }
+          if (this.Glossary) {
+            this.Glossary.open();
+          }
+        } else {
+          if (this.MainMenu) {
+            this.MainMenu.close();
+          }
+          if (this.Glossary) {
+            this.Glossary.close();
+          }
         }
-        if (this.Glossary) {
-          this.Glossary.open();
-        }
-      } else {
-        if (this.MainMenu) {
-          this.MainMenu.close();
-        }
-        if (this.Glossary) {
-          this.Glossary.close();
-        }
-      }
-      this.FixedLayout = newFixedLayout;
-    });
+        this.FixedLayout = newFixedLayout;
+      });
   }
 
   public async onMenuSelectionChanged() {

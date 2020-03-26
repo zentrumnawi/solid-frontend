@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@import '~@angular/material/theming';
 
 @mixin solid-quiz-question-theme($mat-theme) {
   $accent: map-get($mat-theme, accent);

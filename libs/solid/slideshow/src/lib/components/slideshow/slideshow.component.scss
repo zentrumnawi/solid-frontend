@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@import '~@angular/material/theming';
 
 .float-right {
   float: right;
@@ -8,7 +8,7 @@
 .step-actions {
   margin-top: 1em;
   display: grid;
-  grid-template-areas: "previous header next";
+  grid-template-areas: 'previous header next';
   grid-template-columns: 40px auto 40px;
   width: 100%;
 }
@@ -24,13 +24,15 @@ h1 {
   }
 
   .md-rendered {
-    ul, li {
+    ul,
+    li {
       margin-bottom: 0.5em;
       margin-left: 0.5em;
       padding-left: 0.25em;
     }
 
-    ol, li {
+    ol,
+    li {
       margin-top: 0.5em;
       padding-left: 0.5em;
     }

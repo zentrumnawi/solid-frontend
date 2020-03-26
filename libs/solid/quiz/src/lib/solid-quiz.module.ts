@@ -31,9 +31,7 @@ export const routes: Route[] = [
   imports: [
     SolidCoreModule,
     RouterModule.forChild(routes),
-    NgxsModule.forFeature([
-      QuizState
-    ]),
+    NgxsModule.forFeature([QuizState]),
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -43,9 +41,6 @@ export const routes: Route[] = [
     MatRadioModule,
     MatProgressSpinnerModule
   ],
-  providers: [
-    QuizService
-  ]
+  providers: [QuizService]
 })
-export class SolidQuizModule {
-}
+export class SolidQuizModule {}

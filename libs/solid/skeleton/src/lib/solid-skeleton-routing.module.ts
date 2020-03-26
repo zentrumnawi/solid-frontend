@@ -11,7 +11,9 @@ export interface RouteConfig {
 }
 
 export type RouteConfigWithComponent = RouteConfig & { component: Type<any> };
-export type RouteConfigFromModule = RouteConfig & { moduleImport: LoadChildren };
+export type RouteConfigFromModule = RouteConfig & {
+  moduleImport: LoadChildren;
+};
 
 export interface AppRoutingModuleConfig {
   landing: RouteConfigWithComponent;
@@ -67,20 +69,48 @@ export function generateAppRoutes(config: AppRoutingModuleConfig) {
   };
   let order = 0;
   addRoute(config.landing, '', 'Startseite', order++, 'home', undefined);
-  addModuleRoute({
-    ...config.profile,
-    moduleImport: () => import('@zentrumnawi/solid/profile').then(m => m.SolidProfileModule)
-  }, 'profile', 'Steckbriefe', order++, 'list');
-  addModuleRoute({
-    ...config.slideshow,
-    moduleImport: () => import('@zentrumnawi/solid/slideshow').then(m => m.SolidSlideshowModule)
-  }, 'slideshow', 'Slideshow', order++, 'slideshow');
-  addModuleRoute({
-    ...config.quiz,
-    moduleImport: () => import('@zentrumnawi/solid/quiz').then(m => m.SolidQuizModule)
-  }, 'quiz', 'Selbsttest', order++, 'question_answer');
+  addModuleRoute(
+    {
+      ...config.profile,
+      moduleImport: () =>
+        import('@zentrumnawi/solid/profile').then(m => m.SolidProfileModule)
+    },
+    'profile',
+    'Steckbriefe',
+    order++,
+    'list'
+  );
+  addModuleRoute(
+    {
+      ...config.slideshow,
+      moduleImport: () =>
+        import('@zentrumnawi/solid/slideshow').then(m => m.SolidSlideshowModule)
+    },
+    'slideshow',
+    'Slideshow',
+    order++,
+    'slideshow'
+  );
+  addModuleRoute(
+    {
+      ...config.quiz,
+      moduleImport: () =>
+        import('@zentrumnawi/solid/quiz').then(m => m.SolidQuizModule)
+    },
+    'quiz',
+    'Selbsttest',
+    order++,
+    'question_answer'
+  );
   addRoute(config.info, 'info', 'Informationen', order++, 'info');
-  addRoute(config.privacy, 'privacy', 'Datenschutzerklärung', order++, undefined, 'privacy');
+  addRoute(
+    config.privacy,
+    'privacy',
+    'Datenschutzerklärung',
+    order++,
+    undefined,
+    'privacy'
+  );
   config.custom?.forEach(custom => {
     if ((custom as RouteConfigWithComponent).component) {
       addRoute(custom as RouteConfigWithComponent, '', '', order++);

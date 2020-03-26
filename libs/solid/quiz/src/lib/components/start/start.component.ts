@@ -13,10 +13,10 @@ export class StartComponent {
   public QuizLoaded: Observable<boolean>;
   questionCount = 10;
 
-  constructor(
-    private _store: Store
-  ) {
-    this.QuizLoaded = this._store.select(s => s.quiz.questions).pipe(map(v => v.length > 0));
+  constructor(private _store: Store) {
+    this.QuizLoaded = this._store
+      .select(s => s.quiz.questions)
+      .pipe(map(v => v.length > 0));
   }
 
   public onStartClick() {

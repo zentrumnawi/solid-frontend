@@ -1,5 +1,9 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { QuizAnswer, QuizQuestion, QuizQuestionType } from '../../state/quiz.model';
+import {
+  QuizAnswer,
+  QuizQuestion,
+  QuizQuestionType
+} from '../../state/quiz.model';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Store } from '@ngxs/store';
@@ -17,8 +21,7 @@ export class QuestionComponent implements OnChanges {
   public ShowAnswers = false;
   public Correct?: boolean;
 
-  constructor(private _store: Store) {
-  }
+  constructor(private _store: Store) {}
 
   public onRadioChange(e: MatRadioChange) {
     this.SelectedAnswers = [e.value];
@@ -66,7 +69,9 @@ export class QuestionComponent implements OnChanges {
     if (e.checked) {
       this.SelectedAnswers.push(answer.id);
     } else {
-      this.SelectedAnswers = this.SelectedAnswers.filter(id => id !== answer.id);
+      this.SelectedAnswers = this.SelectedAnswers.filter(
+        id => id !== answer.id
+      );
     }
   }
 

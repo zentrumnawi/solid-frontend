@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@import '~@angular/material/theming';
 
 @mixin solid-profile-base($mat-theme) {
   $background: map-get($mat-theme, background);

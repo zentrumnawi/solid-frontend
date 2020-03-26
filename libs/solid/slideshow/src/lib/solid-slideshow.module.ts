@@ -11,9 +11,7 @@ import { SlideshowState } from './state/slideshow.state';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @NgModule({
-  declarations: [
-    SlideshowComponent
-  ],
+  declarations: [SlideshowComponent],
   imports: [
     SolidCoreModule,
     SolidSlideshowRoutingModule,
@@ -30,5 +28,4 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     }
   ]
 })
-export class SolidSlideshowModule {
-}
+export class SolidSlideshowModule {}

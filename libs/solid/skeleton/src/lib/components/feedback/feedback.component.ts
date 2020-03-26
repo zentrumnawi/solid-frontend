@@ -15,7 +15,8 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   constructor(
     private _ref: MatDialogRef<FeedbackComponent>,
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
-    @Inject(MAT_DIALOG_DATA) private _submitFeedback: (data: any) => Observable<boolean>,
+    @Inject(MAT_DIALOG_DATA)
+    private _submitFeedback: (data: any) => Observable<boolean>,
     fb: FormBuilder
   ) {
     this.Form = fb.group({
@@ -37,7 +38,10 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    sessionStorage.setItem(FeedbackComponent.STORAGE_KEY, JSON.stringify(this.Form.value));
+    sessionStorage.setItem(
+      FeedbackComponent.STORAGE_KEY,
+      JSON.stringify(this.Form.value)
+    );
   }
 
   public ngOnInit(): void {
@@ -48,5 +52,4 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     const obj = JSON.parse(str);
     this.Form.setValue(obj);
   }
-
 }

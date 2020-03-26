@@ -1,7 +1,14 @@
 <mat-nav-list *ngIf="$activeRoute | async as activeRoute">
-  <mat-list-item (click)="navigateTo(item.route)" *ngFor="let item of MenuItems"
-                 [class.active]="item.menuRouteCheck(activeRoute)">
-    <mat-icon *ngIf="item.svgIcon" [svgIcon]="item.svgIcon" matListIcon></mat-icon>
+  <mat-list-item
+    (click)="navigateTo(item.route)"
+    *ngFor="let item of MenuItems"
+    [class.active]="item.menuRouteCheck(activeRoute)"
+  >
+    <mat-icon
+      *ngIf="item.svgIcon"
+      [svgIcon]="item.svgIcon"
+      matListIcon
+    ></mat-icon>
     <mat-icon *ngIf="!item.svgIcon" matListIcon>{{ item.icon }}</mat-icon>
     <h3 matLine>{{ item.title }}</h3>
   </mat-list-item>

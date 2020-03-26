@@ -1,9 +1,23 @@
-import { BrowserModule, DomSanitizer, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  DomSanitizer,
+  HAMMER_GESTURE_CONFIG,
+  HammerGestureConfig
+} from '@angular/platform-browser';
 import { ErrorHandler, Injectable, NgModule } from '@angular/core';
 
-import { generateAppRoutes, SolidSkeletonModule } from '@zentrumnawi/solid/skeleton';
+import {
+  generateAppRoutes,
+  SolidSkeletonModule
+} from '@zentrumnawi/solid/skeleton';
 import { environment } from '../environments/environment';
-import { overlinePlugin, SolidCoreConfig, SolidCoreModule, subscriptPlugin, superscriptPlugin } from '@zentrumnawi/solid/core';
+import {
+  overlinePlugin,
+  SolidCoreConfig,
+  SolidCoreModule,
+  subscriptPlugin,
+  superscriptPlugin
+} from '@zentrumnawi/solid/core';
 import { AppComponent } from './app.component';
 import { NgxsModule } from '@ngxs/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,11 +39,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 const coreConfig: SolidCoreConfig = {
   ...environment,
-  markdownPlugins: [
-    superscriptPlugin,
-    subscriptPlugin,
-    overlinePlugin
-  ]
+  markdownPlugins: [superscriptPlugin, subscriptPlugin, overlinePlugin]
 };
 
 @Injectable()
@@ -38,8 +48,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     pan: {
       direction: 6
     },
-    'pinch': { enable: false },
-    'rotate': { enable: false }
+    pinch: { enable: false },
+    rotate: { enable: false }
   };
 }
 
@@ -49,14 +59,21 @@ const routes = generateAppRoutes({
   privacy: { component: PrivacyComponent },
   profile: { svgIcon: 'profile' },
   quiz: { svgIcon: 'quiz' },
-  slideshow: { url: 'determination', title: 'Bestimmungshelfer', svgIcon: 'assistant' },
+  slideshow: {
+    url: 'determination',
+    title: 'Bestimmungshelfer',
+    svgIcon: 'assistant'
+  },
   custom: [
     {
       url: 'system',
       title: 'Kristallsysteme',
       svgIcon: 'crystalsystem',
       order: 2,
-      moduleImport: () => import('./crystalsystem/crystalsystem.module').then(m => m.CrystalsystemModule)
+      moduleImport: () =>
+        import('./crystalsystem/crystalsystem.module').then(
+          m => m.CrystalsystemModule
+        )
     }
   ]
 });
@@ -82,7 +99,9 @@ const routes = generateAppRoutes({
     NgxsReduxDevtoolsPluginModule.forRoot({
       disabled: environment.production
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    }),
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot({}),
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
@@ -106,7 +125,11 @@ const routes = generateAppRoutes({
 })
 export class AppModule {
   constructor(registry: MatIconRegistry, url: DomSanitizer) {
-    const addIcon = (name: string) => registry.addSvgIcon(name, url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`));
+    const addIcon = (name: string) =>
+      registry.addSvgIcon(
+        name,
+        url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`)
+      );
     addIcon('icon');
     addIcon('assistant');
     addIcon('crystalsystem');

@@ -4,7 +4,10 @@ import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { FeedbackService, SOLID_SKELETON_FEEDBACK_SERVICE } from '../../services/feedback.service';
+import {
+  FeedbackService,
+  SOLID_SKELETON_FEEDBACK_SERVICE
+} from '../../services/feedback.service';
 
 interface MenuItem {
   route: string;
@@ -26,22 +29,25 @@ export class MainMenuComponent implements OnInit {
   public $activeRoute!: Observable<string>;
 
   constructor(
-    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService | null,
-    private _router: Router) {
-  }
+    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
+    public feedback: FeedbackService | null,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
-    for (const route of this._router.config.sort((a, b) => a.data?.order - b.data?.order)) {
+    for (const route of this._router.config.sort(
+      (a, b) => a.data?.order - b.data?.order
+    )) {
       if (route.data?.menuItem) {
         this.MenuItems.push({
           route: route.path || '',
-          menuRouteCheck: (activeRoute => {
+          menuRouteCheck: activeRoute => {
             const path = `/${route.path}`;
             if (path === '/') {
               return activeRoute === path;
             }
             return activeRoute.startsWith(path);
-          }),
+          },
           title: route.data?.title,
           icon: route.data?.icon,
           svgIcon: route.data?.svgIcon

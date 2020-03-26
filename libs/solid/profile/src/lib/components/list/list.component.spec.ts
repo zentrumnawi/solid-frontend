@@ -9,8 +9,7 @@ describe('ProfileListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ListComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

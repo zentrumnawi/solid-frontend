@@ -19,20 +19,25 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.FilteredProfiles = combineLatest([this.profiles, this.filterValue]).pipe(map(v => {
-      const regExp = new RegExp(v[1], 'i');
-      return v[0].filter(profile => {
-        if (profile.mineralName.match(regExp)) {
-          return true;
-        }
-        if (profile.trivialName && profile.trivialName.match(regExp)) {
-          return true;
-        }
-        if (profile.variety && profile.variety.match(regExp)) {
-          return true;
-        }
-        return false;
-      });
-    }));
+    this.FilteredProfiles = combineLatest([
+      this.profiles,
+      this.filterValue
+    ]).pipe(
+      map(v => {
+        const regExp = new RegExp(v[1], 'i');
+        return v[0].filter(profile => {
+          if (profile.mineralName.match(regExp)) {
+            return true;
+          }
+          if (profile.trivialName && profile.trivialName.match(regExp)) {
+            return true;
+          }
+          if (profile.variety && profile.variety.match(regExp)) {
+            return true;
+          }
+          return false;
+        });
+      })
+    );
   }
 }

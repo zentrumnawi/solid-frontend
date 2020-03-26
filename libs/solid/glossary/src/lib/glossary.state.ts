@@ -30,8 +30,7 @@ export class GlossaryState {
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
     private _http: HttpClient
-  ) {
-  }
+  ) {}
 
   @Selector()
   static entries(state: GlossaryStateModel) {
@@ -40,20 +39,23 @@ export class GlossaryState {
 
   @Action(GlossaryActions.Load)
   public load(ctx: StateContext<GlossaryStateModel>, {}: GlossaryActions.Load) {
-    return this._http.get<GlossaryEntryModel[]>(`${this._config.apiUrl}/api/glossary`).pipe(
-      map(result => {
-        const ordered: GlossaryEntriesOrdered = {};
-        result.forEach(entry => {
-          const firstChar = entry.header[0].toUpperCase();
-          if (ordered[firstChar] === undefined) {
-            ordered[firstChar] = [];
-          }
-          ordered[firstChar].push(entry);
-        });
-        return ordered;
-      }),
-      tap(v => {
-        ctx.patchState({ entries: v });
-      }));
+    return this._http
+      .get<GlossaryEntryModel[]>(`${this._config.apiUrl}/api/glossary`)
+      .pipe(
+        map(result => {
+          const ordered: GlossaryEntriesOrdered = {};
+          result.forEach(entry => {
+            const firstChar = entry.header[0].toUpperCase();
+            if (ordered[firstChar] === undefined) {
+              ordered[firstChar] = [];
+            }
+            ordered[firstChar].push(entry);
+          });
+          return ordered;
+        }),
+        tap(v => {
+          ctx.patchState({ entries: v });
+        })
+      );
   }
 }

@@ -15,7 +15,9 @@ let supportedBrowser = true;
 if (browser) {
   switch (browser.name) {
     case 'ie':
-      const text = document.createTextNode(`Ihr Webbrowser (Internet Explorer ${browser.version}) ist veraltet und wird nicht von der Anwendung unterstützt. Bitte nutzen Sie einen aktuelleren Browser.`);
+      const text = document.createTextNode(
+        `Ihr Webbrowser (Internet Explorer ${browser.version}) ist veraltet und wird nicht von der Anwendung unterstützt. Bitte nutzen Sie einen aktuelleren Browser.`
+      );
       const body = document.getElementsByTagName('body');
       body[0].appendChild(text);
       supportedBrowser = false;
@@ -29,6 +31,7 @@ if (supportedBrowser) {
   if (environment.production) {
     enableProdMode();
   }
-  platformBrowserDynamic().bootstrapModule(AppModule)
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
     .catch(err => console.error(err));
 }

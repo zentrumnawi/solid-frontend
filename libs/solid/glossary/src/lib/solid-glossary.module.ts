@@ -6,17 +6,12 @@ import { NgxsModule } from '@ngxs/store';
 import { GlossaryState } from './glossary.state';
 
 @NgModule({
-  declarations: [
-    GlossaryComponent
-  ],
+  declarations: [GlossaryComponent],
   imports: [
     SolidCoreModule,
     MatListModule,
     NgxsModule.forFeature([GlossaryState])
   ],
-  exports: [
-    GlossaryComponent
-  ]
+  exports: [GlossaryComponent]
 })
-export class SolidGlossaryModule {
-}
+export class SolidGlossaryModule {}

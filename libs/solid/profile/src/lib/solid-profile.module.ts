@@ -33,9 +33,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     MatTabsModule,
     SolidCoreModule,
     SolidProfileRoutingModule,
-    NgxsModule.forFeature([
-      ProfileState
-    ]),
+    NgxsModule.forFeature([ProfileState]),
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
@@ -45,13 +43,15 @@ import { DomSanitizer } from '@angular/platform-browser';
     MatToolbarModule,
     MatTreeModule
   ],
-  providers: [
-    ProfileService
-  ]
+  providers: [ProfileService]
 })
 export class SolidProfileModule {
   constructor(registry: MatIconRegistry, url: DomSanitizer) {
-    const addIcon = (name: string) => registry.addSvgIcon(name, url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`));
+    const addIcon = (name: string) =>
+      registry.addSvgIcon(
+        name,
+        url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`)
+      );
     addIcon('search');
   }
 }

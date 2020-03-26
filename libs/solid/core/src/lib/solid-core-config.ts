@@ -6,4 +6,6 @@ export interface SolidCoreConfig {
   markdownPlugins?: ((md: MarkdownIt, ...params: any[]) => void)[];
 }
 
-export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>('solid-core-config');
+export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>(
+  'solid-core-config'
+);

@@ -1,22 +1,10 @@
 {
   "extends": "../../../tslint.json",
   "rules": {
-    "directive-selector": [
-      true,
-      "attribute",
-      "solid-quiz",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "solid-quiz",
-      "kebab-case"
-    ]
+    "directive-selector": [true, "attribute", "solid-quiz", "camelCase"],
+    "component-selector": [true, "element", "solid-quiz", "kebab-case"]
   },
   "linterOptions": {
-    "exclude": [
-      "!**/*"
-    ]
+    "exclude": ["!**/*"]
   }
 }

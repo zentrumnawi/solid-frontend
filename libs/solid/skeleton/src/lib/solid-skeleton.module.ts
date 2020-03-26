@@ -15,7 +15,10 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { feedbackServiceFactory, SOLID_SKELETON_FEEDBACK_SERVICE } from './services/feedback.service';
+import {
+  feedbackServiceFactory,
+  SOLID_SKELETON_FEEDBACK_SERVICE
+} from './services/feedback.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SolidSkeletonConfig } from './solid-skeleton-config';
@@ -38,26 +41,26 @@ const hidden = Math.random() < 0.1;
     MatSidenavModule,
     MatToolbarModule
   ],
-  declarations: [
-    BaseLayoutComponent,
-    FeedbackComponent,
-    MainMenuComponent
-  ],
-  exports: [
-    BaseLayoutComponent
-  ]
+  declarations: [BaseLayoutComponent, FeedbackComponent, MainMenuComponent],
+  exports: [BaseLayoutComponent]
 })
 export class SolidSkeletonModule {
   static isLandingHiddenEnabled = hidden;
 
   constructor(registry: MatIconRegistry, url: DomSanitizer) {
-    const addIcon = (name: string) => registry.addSvgIcon(name, url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`));
+    const addIcon = (name: string) =>
+      registry.addSvgIcon(
+        name,
+        url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`)
+      );
     addIcon('glossary');
     addIcon('privacy');
     addIcon('feedback');
   }
 
-  public static forRoot(cfg: SolidSkeletonConfig): ModuleWithProviders<SolidSkeletonModule> {
+  public static forRoot(
+    cfg: SolidSkeletonConfig
+  ): ModuleWithProviders<SolidSkeletonModule> {
     return {
       ngModule: SolidSkeletonModule,
       providers: [

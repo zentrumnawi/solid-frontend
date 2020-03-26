@@ -10,9 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-  declarations: [
-    CrystalsystemdetailComponent
-  ],
+  declarations: [CrystalsystemdetailComponent],
   imports: [
     SolidCoreModule,
     MatButtonModule,
@@ -23,5 +21,4 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CrystalsystemRoutingModule
   ]
 })
-export class CrystalsystemModule {
-}
+export class CrystalsystemModule {}

@@ -4,13 +4,11 @@
 const UNESCAPE_RE = /\\([ \\!"#$%&'()*+,.\/:;<=>?@[\]^_`{|}$-])/g;
 
 function subscript(state: any, silent: any) {
-  let found,
-    content,
-    token;
+  let found, content, token;
   const max = state.posMax,
     start = state.pos;
 
-  if (state.src.charCodeAt(start) !== 0x24/* $ */) {
+  if (state.src.charCodeAt(start) !== 0x24 /* $ */) {
     return false;
   }
   if (silent) {
@@ -23,7 +21,7 @@ function subscript(state: any, silent: any) {
   state.pos = start + 1;
 
   while (state.pos < max) {
-    if (state.src.charCodeAt(state.pos) === 0x24/* $ */) {
+    if (state.src.charCodeAt(state.pos) === 0x24 /* $ */) {
       found = true;
       break;
     }
@@ -63,7 +61,6 @@ function subscript(state: any, silent: any) {
   state.posMax = max;
   return true;
 }
-
 
 export function overlinePlugin(md: any) {
   md.inline.ruler.after('emphasis', 'over', subscript);

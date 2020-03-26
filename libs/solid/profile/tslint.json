@@ -1,22 +1,10 @@
 {
   "extends": "../../../tslint.json",
   "rules": {
-    "directive-selector": [
-      true,
-      "attribute",
-      "solid-profile",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "solid-profile",
-      "kebab-case"
-    ]
+    "directive-selector": [true, "attribute", "solid-profile", "camelCase"],
+    "component-selector": [true, "element", "solid-profile", "kebab-case"]
   },
   "linterOptions": {
-    "exclude": [
-      "!**/*"
-    ]
+    "exclude": ["!**/*"]
   }
 }

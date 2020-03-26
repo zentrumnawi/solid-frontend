@@ -13,37 +13,16 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2015",
-      "es2017",
-      "es2018",
-      "dom"
-    ],
-    "types": [
-      "node"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2015", "es2017", "es2018", "dom"],
+    "types": ["node"],
     "paths": {
-      "@zentrumnawi/solid/core": [
-        "libs/solid/core/src/index.ts"
-      ],
-      "@zentrumnawi/solid/quiz": [
-        "libs/solid/quiz/src/index.ts"
-      ],
-      "@zentrumnawi/solid/slideshow": [
-        "libs/solid/slideshow/src/index.ts"
-      ],
-      "@zentrumnawi/solid/glossary": [
-        "libs/solid/glossary/src/index.ts"
-      ],
-      "@zentrumnawi/solid/skeleton": [
-        "libs/solid/skeleton/src/index.ts"
-      ],
-      "@zentrumnawi/solid/profile": [
-        "libs/solid/profile/src/index.ts"
-      ]
+      "@zentrumnawi/solid/core": ["libs/solid/core/src/index.ts"],
+      "@zentrumnawi/solid/quiz": ["libs/solid/quiz/src/index.ts"],
+      "@zentrumnawi/solid/slideshow": ["libs/solid/slideshow/src/index.ts"],
+      "@zentrumnawi/solid/glossary": ["libs/solid/glossary/src/index.ts"],
+      "@zentrumnawi/solid/skeleton": ["libs/solid/skeleton/src/index.ts"],
+      "@zentrumnawi/solid/profile": ["libs/solid/profile/src/index.ts"]
     },
     "rootDir": "."
   },

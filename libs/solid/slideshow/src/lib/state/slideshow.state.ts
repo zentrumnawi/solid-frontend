@@ -18,8 +18,7 @@ export class SlideshowState {
   // TODO: Remove this ugly loading mechanism. (New API needed)
   private _loadingSlideshows: string[] = [];
 
-  constructor(private _http: HttpClient) {
-  }
+  constructor(private _http: HttpClient) {}
 
   @Selector()
   public static getSlideshowById(state: SlideshowStateModel) {
@@ -27,7 +26,10 @@ export class SlideshowState {
   }
 
   @Action(SlideshowLoadContentAction)
-  public async contentLoad(ctx: StateContext<SlideshowStateModel>, { id }: SlideshowLoadContentAction) {
+  public async contentLoad(
+    ctx: StateContext<SlideshowStateModel>,
+    { id }: SlideshowLoadContentAction
+  ) {
     return new Promise(async resolve => {
       if (this._loadingSlideshows.includes(id)) {
         resolve();
@@ -36,14 +38,17 @@ export class SlideshowState {
       this._loadingSlideshows.push(id);
       const slideshow = ctx.getState()[id];
 
-      const newPages = await Promise.all(slideshow.pages
-        .map(async v => {
+      const newPages = await Promise.all(
+        slideshow.pages.map(async v => {
           if (!v.content) {
-            const result = await this._http.get(v.contentPath, { responseType: 'text' }).toPromise();
+            const result = await this._http
+              .get(v.contentPath, { responseType: 'text' })
+              .toPromise();
             return { ...v, content: result };
           }
           return v;
-        }));
+        })
+      );
 
       ctx.patchState({
         [id]: { ...slideshow, pages: newPages }

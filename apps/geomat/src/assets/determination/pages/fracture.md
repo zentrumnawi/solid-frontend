@@ -1,4 +1,5 @@
-Der *Bruch* ist ein wichtiges Merkmal von Mineralen und beschreibt das ungerichtete Brechen des Minerals. Ungerichtet bedeutet, dass der Verlauf des Bruches keiner kristallographischen Richtung folgt. Es werden folgende übliche Brucharten unterschieden: 
+Der _Bruch_ ist ein wichtiges Merkmal von Mineralen und beschreibt das ungerichtete Brechen des Minerals. Ungerichtet bedeutet, dass der Verlauf des Bruches keiner kristallographischen Richtung folgt. Es werden folgende übliche Brucharten unterschieden:
+
 - **muschelig**
 - **uneben**
 - **glatt**

@@ -12,9 +12,7 @@ export class GlossaryComponent {
   @Select(GlossaryState.entries)
   public Entries: any;
 
-  constructor(
-    store: Store,
-  ) {
+  constructor(store: Store) {
     store.dispatch(new GlossaryActions.Load());
   }
 }

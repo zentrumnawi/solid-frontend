@@ -1,9 +1,9 @@
 @import '~@angular/material/theming';
-@import "theme";
-@import "glossary-theme";
-@import "profile-theme";
-@import "quiz-theme";
-@import "skeleton-theme";
+@import 'theme';
+@import 'glossary-theme';
+@import 'profile-theme';
+@import 'quiz-theme';
+@import 'skeleton-theme';
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.

@@ -11,11 +11,7 @@ import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
   styleUrls: ['./markdown.component.scss']
 })
 export class MarkdownComponent implements AfterViewInit {
-  constructor(
-    private _md: MarkdownService,
-    private _element: ElementRef,
-  ) {
-  }
+  constructor(private _md: MarkdownService, private _element: ElementRef) {}
 
   private _data = '';
 

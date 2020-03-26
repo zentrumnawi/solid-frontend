@@ -33,10 +33,16 @@
       class="mainmenu-sidenav"
       position="start"
     >
-      <mat-toolbar (click)="MainMenu?.toggle()" *ngIf="!FixedLayout" color="primary">
+      <mat-toolbar
+        (click)="MainMenu?.toggle()"
+        *ngIf="!FixedLayout"
+        color="primary"
+      >
         Menü
       </mat-toolbar>
-      <solid-skeleton-main-menu (select)="onMenuSelectionChanged()"></solid-skeleton-main-menu>
+      <solid-skeleton-main-menu
+        (select)="onMenuSelectionChanged()"
+      ></solid-skeleton-main-menu>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>
@@ -48,7 +54,12 @@
       class="glossary-sidenav"
       position="end"
     >
-      <mat-toolbar (click)="Glossary?.toggle()" *ngIf="!FixedLayout" class="glossary-toolbar" color="primary">
+      <mat-toolbar
+        (click)="Glossary?.toggle()"
+        *ngIf="!FixedLayout"
+        class="glossary-toolbar"
+        color="primary"
+      >
         Glossar
       </mat-toolbar>
       <solid-glossary></solid-glossary>

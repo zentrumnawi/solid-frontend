@@ -37,12 +37,24 @@ function init() {
 
   // CAMERA
   // Perspective camera
-  perspectivecam = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
+  perspectivecam = new THREE.PerspectiveCamera(
+    50,
+    window.innerWidth / window.innerHeight,
+    1,
+    1000
+  );
   scene.add(perspectivecam);
   perspectivecam.position.set(15, 20, 30);
 
   //Orthographic camera (isometric view)
-  isocam = new THREE.OrthographicCamera(window.innerWidth / -50, window.innerWidth / 50, window.innerHeight / 50, window.innerHeight / -50, 1, 1000);
+  isocam = new THREE.OrthographicCamera(
+    window.innerWidth / -50,
+    window.innerWidth / 50,
+    window.innerHeight / 50,
+    window.innerHeight / -50,
+    1,
+    1000
+  );
   scene.add(isocam);
   isocam.position.set(15, 20, 30);
 
@@ -60,13 +72,16 @@ function init() {
   isocontrols.maxDistance = 50;
   isocontrols.maxPolarAngle = Math.PI / 2;
 
-  perspectivecontrols = new THREE.OrbitControls(perspectivecam, renderer.domElement);
+  perspectivecontrols = new THREE.OrbitControls(
+    perspectivecam,
+    renderer.domElement
+  );
   perspectivecontrols.minDistance = 20;
   perspectivecontrols.maxDistance = 50;
   perspectivecontrols.maxPolarAngle = Math.PI / 2;
 
   //add light
-  scene.add(new THREE.AmbientLight(0xFFFFFF));
+  scene.add(new THREE.AmbientLight(0xffffff));
 
   // light
   var light = new THREE.PointLight(0xaaaaff, 0.7);
@@ -139,14 +154,13 @@ function initModel(geoStr) {
 
   // create faces
   const meshMaterial = new THREE.MeshLambertMaterial({
-    color: 0xAAAAAA,
+    color: 0xaaaaaa,
     opacity: 0.5,
     transparent: true
   });
   const facesGeometry = new THREE.ConvexBufferGeometry(vertices);
   groups.faces.remove(...groups.faces.children);
   groups.faces.add(...createTwoSidedFaces(facesGeometry, meshMaterial));
-
 
   // create borders
   const lineMaterial = new THREE.LineBasicMaterial({
@@ -159,7 +173,6 @@ function initModel(geoStr) {
     geometry.vertices.push(border[1]);
     groups.borders.add(new THREE.Line(geometry, lineMaterial));
   });
-
 
   // create special faces
   const highlightMaterial = new THREE.MeshBasicMaterial({
@@ -197,7 +210,6 @@ function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
-
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
@@ -210,7 +222,6 @@ function animate() {
 
 function render() {
   renderer.render(scene, camera);
-
 }
 
 function toggleAxis() {

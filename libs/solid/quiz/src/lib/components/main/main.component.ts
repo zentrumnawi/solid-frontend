@@ -12,10 +12,7 @@ import { QuizSession } from '../../state/quiz.model';
 export class MainComponent {
   QuizSession: Observable<QuizSession | null>;
 
-  constructor(
-    service: QuizService,
-    store: Store
-  ) {
+  constructor(service: QuizService, store: Store) {
     service.loadQuestions();
     this.QuizSession = store.select(s => s.quiz.session);
   }
