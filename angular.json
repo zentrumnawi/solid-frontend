@@ -214,7 +214,8 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "libs/solid/glossary/src",
-                "libs/solid/skeleton/src"
+                "libs/solid/skeleton/src",
+                "libs/solid/profile/src"
               ]
             }
           },
@@ -489,6 +490,41 @@
             "tsConfig": "libs/solid/skeleton/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/solid/skeleton/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-profile": {
+      "projectType": "library",
+      "root": "libs/solid/profile",
+      "sourceRoot": "libs/solid/profile/src",
+      "prefix": "solid-profile",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/profile/tsconfig.lib.json",
+              "libs/solid/profile/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/profile/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/profile/jest.config.js",
+            "tsConfig": "libs/solid/profile/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/profile/src/test-setup.ts"
           }
         }
       },

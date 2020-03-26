@@ -58,10 +58,6 @@ export class SolidSkeletonModule {
       ngModule: SolidSkeletonModule,
       providers: [
         {
-          provide: SOLID_CORE_CONFIG,
-          useValue: cfg
-        },
-        {
           provide: SOLID_SKELETON_FEEDBACK_SERVICE,
           useFactory: feedbackServiceFactory(cfg.feedbackEnabled),
           deps: [HttpClient, MatDialog, SOLID_CORE_CONFIG]

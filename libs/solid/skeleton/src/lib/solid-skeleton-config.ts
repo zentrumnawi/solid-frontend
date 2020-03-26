@@ -1,5 +1,3 @@
-import { SolidCoreConfig } from '@zentrumnawi/solid/core';
-
-export type SolidSkeletonConfig = SolidCoreConfig & {
+export interface SolidSkeletonConfig {
   feedbackEnabled?: boolean;
 }

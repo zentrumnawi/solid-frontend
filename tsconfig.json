@@ -39,6 +39,9 @@
       ],
       "@zentrumnawi/solid/skeleton": [
         "libs/solid/skeleton/src/index.ts"
+      ],
+      "@zentrumnawi/solid/profile": [
+        "libs/solid/profile/src/index.ts"
       ]
     },
     "rootDir": "."

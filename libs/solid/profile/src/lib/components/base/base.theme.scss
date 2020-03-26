@@ -1,0 +1,8 @@
+@import "~@angular/material/theming";
+
+@mixin solid-profile-base($mat-theme) {
+  $background: map-get($mat-theme, background);
+  solid-profile-base {
+    background-color: mat-color($background);
+  }
+}

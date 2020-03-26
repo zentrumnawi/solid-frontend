@@ -1,9 +1,9 @@
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { generateAppRoutes, SolidSkeletonConfig, SolidSkeletonModule } from '@zentrumnawi/solid/skeleton';
+import { generateAppRoutes, SolidSkeletonModule } from '@zentrumnawi/solid/skeleton';
 import { environment } from '../environments/environment';
-import { overlinePlugin, SolidCoreModule, subscriptPlugin, superscriptPlugin } from '@zentrumnawi/solid/core';
+import { overlinePlugin, SolidCoreConfig, SolidCoreModule, subscriptPlugin, superscriptPlugin } from '@zentrumnawi/solid/core';
 import { AppComponent } from './app.component';
 import { NgxsModule } from '@ngxs/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +20,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 
-const skeletonConfig: SolidSkeletonConfig = {
+const coreConfig: SolidCoreConfig = {
   ...environment,
   markdownPlugins: [
     superscriptPlugin,
@@ -31,7 +31,8 @@ const skeletonConfig: SolidSkeletonConfig = {
 
 const routes = generateAppRoutes({
   landing: { component: LandingComponent, svgIcon: 'icon' },
-  privacy: { component: PrivacyComponent }
+  privacy: { component: PrivacyComponent },
+  profile: { svgIcon: 'profile' }
 });
 
 @NgModule({
@@ -50,8 +51,8 @@ const routes = generateAppRoutes({
     NgxsDispatchPluginModule.forRoot(),
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    SolidCoreModule,
-    SolidSkeletonModule.forRoot(skeletonConfig),
+    SolidCoreModule.forRoot(coreConfig),
+    SolidSkeletonModule.forRoot({}),
     RouterModule.forRoot(routes),
     MatButtonModule,
     MatCardModule,

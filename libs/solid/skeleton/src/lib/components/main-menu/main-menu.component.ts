@@ -1,13 +1,15 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouteConfigLoadEnd, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { FeedbackService, SOLID_SKELETON_FEEDBACK_SERVICE } from '../../services/feedback.service';
+import { filter } from 'rxjs/operators';
 
 interface MenuItem {
   route: string;
+  menuRouteCheck: (route: string) => boolean;
   title: string;
   icon?: string;
   svgIcon?: string;
@@ -27,13 +29,22 @@ export class MainMenuComponent implements OnInit {
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService | null,
     private _router: Router) {
+    this._router.events.pipe(filter(e => e instanceof RouteConfigLoadEnd)).subscribe(event => console.log(event));
   }
 
   ngOnInit(): void {
     for (let route of this._router.config.sort((a, b) => a.data?.order - b.data?.order)) {
+      console.log(route.path, route.children);
       if (route.data?.menuItem) {
         this.MenuItems.push({
           route: route.path || '',
+          menuRouteCheck: (activeRoute => {
+            const path = `/${route.path}`;
+            if (path === '/') {
+              return activeRoute === path;
+            }
+            return activeRoute.startsWith(path);
+          }),
           title: route.data?.title,
           icon: route.data?.icon,
           svgIcon: route.data?.svgIcon

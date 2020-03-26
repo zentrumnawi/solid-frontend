@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  //height: calc(100% - 64px);
+  overflow-y: auto;
+}
+
+div.card {
+  cursor: pointer;
+  margin: 1em;
+  max-width: 200px;
+  border-radius: 0.25em;
+
+  div.title {
+    padding: 0.5em;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  img {
+    margin: 0 0.5em 0;
+    max-width: calc(100% - 1em);
+
+    border-radius: 0.25em;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<mat-list role="list">
+  <ng-container *ngIf="FilteredProfiles | async as profilesArr">
+    <mat-list-item (click)="onSelect.emit(profile.id)" *ngFor="let profile of profilesArr;trackBy: trackByFn">
+      <img [src]="profile.images.length > 0 ? profile.images[0].thumbnail : '/assets/profile/no_image.svg'"
+           matListAvatar>
+      <h3 matLine> {{profile.variety ? profile.variety : profile.mineralName}} </h3>
+    </mat-list-item>
+    <mat-list-item *ngIf="profilesArr.length === 0">Keine Suchergebnisse vorhanden</mat-list-item>
+  </ng-container>
+</mat-list>
