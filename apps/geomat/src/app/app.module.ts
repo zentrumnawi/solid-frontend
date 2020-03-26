@@ -35,6 +35,7 @@ const routes = generateAppRoutes({
   info: { component: InfoComponent, svgIcon: 'info' },
   privacy: { component: PrivacyComponent },
   profile: { svgIcon: 'profile' },
+  quiz: { svgIcon: 'quiz' },
   custom: [
     {
       url: 'system',

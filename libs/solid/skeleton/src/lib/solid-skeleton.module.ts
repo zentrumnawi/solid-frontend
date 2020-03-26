@@ -20,6 +20,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SolidSkeletonConfig } from './solid-skeleton-config';
 
+const hidden = Math.random() < 0.1;
+
 @NgModule({
   imports: [
     CommonModule,
@@ -46,6 +48,8 @@ import { SolidSkeletonConfig } from './solid-skeleton-config';
   ]
 })
 export class SolidSkeletonModule {
+  static isLandingHiddenEnabled = hidden;
+
   constructor(registry: MatIconRegistry, url: DomSanitizer) {
     const addIcon = (name: string) => registry.addSvgIcon(name, url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`));
     addIcon('glossary');

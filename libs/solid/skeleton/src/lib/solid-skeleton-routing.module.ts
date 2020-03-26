@@ -18,6 +18,7 @@ export interface AppRoutingModuleConfig {
   info: RouteConfigWithComponent;
   privacy: RouteConfigWithComponent;
   profile?: RouteConfig;
+  quiz?: RouteConfig;
   custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
 }
 
@@ -50,12 +51,16 @@ export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
     });
   };
   addRoute(cfg.landing, '', 'Startseite', 1, 'home', undefined);
-  addRoute(cfg.info, 'info', 'Informationen', 3, 'info');
-  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', 4, undefined, 'privacy');
   addModuleRoute({
     ...cfg.profile,
     moduleImport: () => import('@zentrumnawi/solid/profile').then(m => m.SolidProfileModule)
   }, 'profile', 'Steckbriefe', 2, 'list');
+  addModuleRoute({
+    ...cfg.quiz,
+    moduleImport: () => import('@zentrumnawi/solid/quiz').then(m => m.SolidQuizModule)
+  }, 'quiz', 'Selbsttest', 3, 'question_answer');
+  addRoute(cfg.info, 'info', 'Informationen', 4, 'info');
+  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', 5, undefined, 'privacy');
   cfg.custom?.forEach(custom => {
     if ((custom as RouteConfigWithComponent).component) {
       addRoute(custom as RouteConfigWithComponent, '', '', 0);
