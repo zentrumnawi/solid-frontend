@@ -159,7 +159,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public onPanEnd($event: any ) {
+  public onPanEnd($event: any) {
     if ($event.deltaX > 100 && this.CanSwipeLeft) {
       $event.preventDefault();
       this.swipeLeft();
