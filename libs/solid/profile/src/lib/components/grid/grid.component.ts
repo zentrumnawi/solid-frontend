@@ -9,7 +9,7 @@ import { MineralProfile } from '../../state/profile.model';
 })
 export class GridComponent {
   @Input() profiles!: Observable<MineralProfile[]>;
-  @Output() onSelect = new EventEmitter<number>();
+  @Output() select = new EventEmitter<number>();
 
   public trackByFn(index: number, profile: MineralProfile) {
     return profile.id;

@@ -26,13 +26,13 @@
   </mat-toolbar>
   <ng-container *ngIf="SplitLayout || !SelectedProfile">
     <ng-container [ngSwitch]="Filter.value !== '' || View">
-      <solid-profile-grid (onSelect)="selectProfile($event)" *ngSwitchCase="'grid'"
+      <solid-profile-grid (select)="selectProfile($event)" *ngSwitchCase="'grid'"
                           [class.full-width]="!SelectedProfile"
                           [profiles]="$profilesFlat"></solid-profile-grid>
-      <solid-profile-tree (onSelect)="selectProfile($event)" *ngSwitchCase="'tree'"
+      <solid-profile-tree (select)="selectProfile($event)" *ngSwitchCase="'tree'"
                           [profiles]="$profilesTree"
                           [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"></solid-profile-tree>
-      <solid-profile-list (onSelect)="selectProfile($event)" *ngSwitchDefault [filterValue]="FilterValue.asObservable()"
+      <solid-profile-list (select)="selectProfile($event)" *ngSwitchDefault [filterValue]="FilterValue.asObservable()"
                           [profiles]="$profilesFlat"></solid-profile-list>
     </ng-container>
   </ng-container>

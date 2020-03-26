@@ -8,12 +8,6 @@
     "nx.json": "*"
   },
   "projects": {
-    "app-geomat": {
-      "tags": []
-    },
-    "app-geomat-e2e": {
-      "tags": []
-    },
     "geomat": {
       "tags": []
     },

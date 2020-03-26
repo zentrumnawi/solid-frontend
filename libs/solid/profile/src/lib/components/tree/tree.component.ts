@@ -34,7 +34,7 @@ export interface CategoryNode {
 export class TreeComponent implements OnInit {
   @Input() selectedProfileId?: number;
   @Input() profiles!: Observable<Profile[]>;
-  @Output() onSelect = new EventEmitter<number>();
+  @Output() select = new EventEmitter<number>();
 
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
@@ -131,6 +131,7 @@ export class TreeComponent implements OnInit {
           this.TreeControl.collapse(this._selectedNode);
           this.TreeControl.dataNodes.forEach(n => {
             const c = this.TreeControl.getDescendants(n);
+            /* tslint:disable-next-line:no-non-null-assertion */
             if (c && Array.isArray(c) && c.includes(this._selectedNode!) && !c.includes(node)) {
               this.TreeControl.collapse(n);
             }

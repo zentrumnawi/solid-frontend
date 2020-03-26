@@ -31,7 +31,7 @@ export class MainMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    for (let route of this._router.config.sort((a, b) => a.data?.order - b.data?.order)) {
+    for (const route of this._router.config.sort((a, b) => a.data?.order - b.data?.order)) {
       if (route.data?.menuItem) {
         this.MenuItems.push({
           route: route.path || '',

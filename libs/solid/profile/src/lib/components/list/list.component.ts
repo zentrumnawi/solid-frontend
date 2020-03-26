@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class ListComponent implements OnInit {
   @Input() profiles!: Observable<MineralProfile[]>;
   @Input() filterValue!: Observable<string>;
-  @Output() onSelect = new EventEmitter<number>();
+  @Output() select = new EventEmitter<number>();
   public FilteredProfiles!: Observable<MineralProfile[]>;
 
   public trackByFn(index: number, profile: MineralProfile) {

@@ -7,8 +7,8 @@ import { FormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { HammerInput } from '@angular/material/core';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { HammerInput } from 'hammerjs';
 
 @Component({
   selector: 'solid-profile-base',

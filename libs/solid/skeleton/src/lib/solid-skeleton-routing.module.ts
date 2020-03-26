@@ -23,9 +23,16 @@ export interface AppRoutingModuleConfig {
   custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
 }
 
-export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
+export function generateAppRoutes(config: AppRoutingModuleConfig) {
   const routes: Route[] = [];
-  const addRoute = (cfg: RouteConfigWithComponent, defaultUrl: string, defaultTitle: string, defaultOrder: number, icon?: string, svgIcon?: string) => {
+  const addRoute = (
+    cfg: RouteConfigWithComponent,
+    defaultUrl: string,
+    defaultTitle: string,
+    defaultOrder: number,
+    icon?: string,
+    svgIcon?: string
+  ) => {
     routes.push({
       path: cfg.url || defaultUrl,
       component: cfg.component,
@@ -38,7 +45,14 @@ export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
       }
     });
   };
-  const addModuleRoute = (cfg: RouteConfigFromModule, defaultUrl: string, defaultTitle: string, defaultOrder: number, icon?: string, svgIcon?: string) => {
+  const addModuleRoute = (
+    cfg: RouteConfigFromModule,
+    defaultUrl: string,
+    defaultTitle: string,
+    defaultOrder: number,
+    icon?: string,
+    svgIcon?: string
+  ) => {
     routes.push({
       path: cfg.url || defaultUrl,
       loadChildren: cfg.moduleImport,
@@ -52,22 +66,22 @@ export function generateAppRoutes(cfg: AppRoutingModuleConfig) {
     });
   };
   let order = 0;
-  addRoute(cfg.landing, '', 'Startseite', order++, 'home', undefined);
+  addRoute(config.landing, '', 'Startseite', order++, 'home', undefined);
   addModuleRoute({
-    ...cfg.profile,
+    ...config.profile,
     moduleImport: () => import('@zentrumnawi/solid/profile').then(m => m.SolidProfileModule)
   }, 'profile', 'Steckbriefe', order++, 'list');
   addModuleRoute({
-    ...cfg.slideshow,
+    ...config.slideshow,
     moduleImport: () => import('@zentrumnawi/solid/slideshow').then(m => m.SolidSlideshowModule)
   }, 'slideshow', 'Slideshow', order++, 'slideshow');
   addModuleRoute({
-    ...cfg.quiz,
+    ...config.quiz,
     moduleImport: () => import('@zentrumnawi/solid/quiz').then(m => m.SolidQuizModule)
   }, 'quiz', 'Selbsttest', order++, 'question_answer');
-  addRoute(cfg.info, 'info', 'Informationen', order++, 'info');
-  addRoute(cfg.privacy, 'privacy', 'Datenschutzerklärung', order++, undefined, 'privacy');
-  cfg.custom?.forEach(custom => {
+  addRoute(config.info, 'info', 'Informationen', order++, 'info');
+  addRoute(config.privacy, 'privacy', 'Datenschutzerklärung', order++, undefined, 'privacy');
+  config.custom?.forEach(custom => {
     if ((custom as RouteConfigWithComponent).component) {
       addRoute(custom as RouteConfigWithComponent, '', '', order++);
     } else {
