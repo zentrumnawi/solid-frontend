@@ -140,7 +140,7 @@ export class TreeComponent implements OnInit {
           (Array.isArray(children) && !children.includes(node))
         ) {
           this.TreeControl.collapse(this._selectedNode);
-          for (let dataNode of this.TreeControl.dataNodes) {
+          for (const dataNode of this.TreeControl.dataNodes) {
             const c = this.TreeControl.getDescendants(dataNode);
             if (
               c &&
