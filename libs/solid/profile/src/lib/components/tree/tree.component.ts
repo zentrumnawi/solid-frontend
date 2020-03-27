@@ -140,18 +140,17 @@ export class TreeComponent implements OnInit {
           (Array.isArray(children) && !children.includes(node))
         ) {
           this.TreeControl.collapse(this._selectedNode);
-          this.TreeControl.dataNodes.forEach(n => {
-            const c = this.TreeControl.getDescendants(n);
-            /* tslint:disable-next-line:no-non-null-assertion */
+          for (let dataNode of this.TreeControl.dataNodes) {
+            const c = this.TreeControl.getDescendants(dataNode);
             if (
               c &&
               Array.isArray(c) &&
-              c.includes(this._selectedNode!) &&
+              c.includes(this._selectedNode) &&
               !c.includes(node)
             ) {
-              this.TreeControl.collapse(n);
+              this.TreeControl.collapse(dataNode);
             }
-          });
+          }
         }
       }
       this.TreeControl.expand(node);
