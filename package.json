@@ -28,7 +28,6 @@
     "update": "ng update @nrwl/workspace",
     "update:check": "ng update",
     "dep-graph": "nx dep-graph",
-    "precommit": "nx format:write",
     "workspace-schematic": "nx workspace-schematic",
     "help": "nx help"
   },
