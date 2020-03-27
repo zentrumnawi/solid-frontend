@@ -6,8 +6,6 @@ env:
   secure: UZo/GYemyRIxKV9IOF4XacVfwyUwZ3zqIlEfIljCwEtjgw3tcwp8xme2dIpco1YVDOI88CIBqv+fgznw+mF6B55azaGya4XLexkgVuyhOKvTF4BzlDvKy/7LWH8jv488g1rj6WGl939mRxd4Z/kgHXUbpHIuZwNey5ZzYJcM+aCag72+wV4lA37LXVOFkfhivLVaIWsXufb0Jb6Zh0qO24Ci1ancwUKa54xvOECvnKkUvEojtGMpmHyBB/GRSObXWGZpxvvMTVUlRcfx8+AdFQGOBUFwu9FD4Xm6cZmX0juQ6ox+2IJObH+UyB+eXW+k4Ehoe18aYacfNMlBVF9/wtp4pXOBltG+0p1JUGa83+47Y6OS8DzcRh8yiEACr2fJ676NwAd4QkINSvLlfHFHlMIsHTfxcEPRJgSleT4Wv/1N4wNDxtiMFLh0HhsQhIYaDPwvdY0wJiswykiEHjy3hT+0qoDXQb/MwYAeiLYa5aeig/ywdZl8TWO7OmxBa7CGJwKNwEEN9qL5GjlAmv1GVNj3jPJuYufXdaRdvnaydPycT7j5B7J+WwKjSByQzn2l9Sc9lIVA4+gAXsdzbuauhptRqNkKGctrP4frRmYbfruIYOGMjkJb/qvLxr/XwJAEpw9H3yJ+eFbsSrpujUdDv2teoXNVj5xbUkmEpyVK9Mk=
 jobs:
   include:
-    - stage: format
-      script: yarn format:check
     - stage: lint
       script: yarn lint
     - stage: build
@@ -17,7 +15,6 @@ notifications:
     on_failure: change
 on_success: change
 before_install:
-- git fetch origin master
 - openssl aes-256-cbc -K $encrypted_172b5ce8d004_key -iv $encrypted_172b5ce8d004_iv
   -in .travis/deploy.key.enc -out .travis/deploy.key -d
 - chmod +x .travis/deploy.sh
