@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MineralProfile, ProfileCategory } from '../../state/profile.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageOverlayComponent } from '../image-overlay/image-overlay.component';
 
 @Component({
   selector: 'solid-profile-detail',
@@ -26,6 +28,9 @@ export class DetailComponent {
     this.onImageSelect(0);
   }
 
+  constructor(private _dialog: MatDialog) {
+  }
+
   public onImageLoaded(index: number) {
     this.ImageLoaded[index] = true;
   }
@@ -43,5 +48,15 @@ export class DetailComponent {
       this.ImageStartIndex = index - 3;
       this.ImageEndIndex = index + 3;
     }
+  }
+
+  public onImageDetailClick() {
+    this._dialog.open(ImageOverlayComponent, {
+      width: '80%',
+      height: '80%',
+      closeOnNavigation: true,
+      hasBackdrop: true,
+      data: this.profile.images[this.ImageSelected],
+    });
   }
 }

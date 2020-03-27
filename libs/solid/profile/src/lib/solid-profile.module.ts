@@ -19,6 +19,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
 import { MatTreeModule } from '@angular/material/tree';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ImageOverlayComponent } from './components/image-overlay/image-overlay.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { DomSanitizer } from '@angular/platform-browser';
     ListComponent,
     DetailComponent,
     BaseComponent,
-    GridComponent
+    GridComponent,
+    ImageOverlayComponent
   ],
   imports: [
     SolidCoreModule,
@@ -35,6 +38,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     SolidProfileRoutingModule,
     NgxsModule.forFeature([ProfileState]),
     MatButtonModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,

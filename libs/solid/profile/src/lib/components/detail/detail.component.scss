@@ -7,9 +7,6 @@ p {
 }
 
 div.img {
-  //margin-bottom: -5px;
-  //margin: 0 -16px -16px -16px;
-
   .spinner {
     mat-spinner {
       margin: auto;
@@ -27,12 +24,16 @@ div.img {
 
 div.img-toolbar {
   margin-top: -5px;
-  overflow-y: scroll;
-  //height: 5rem;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 40px;
   align-items: center;
-  justify-content: center;
+  div {
+    overflow-y: scroll;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
 
   img {
     height: 4rem;
@@ -46,7 +47,7 @@ div.img-toolbar {
   }
 
   button.img-detail-btn {
-    position: absolute;
+    //position: absolute;
     right: 0;
   }
 }

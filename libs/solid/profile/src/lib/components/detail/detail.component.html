@@ -8,29 +8,31 @@
     [src]="profile.images[ImageSelected].medium"
   />
   <div *ngIf="ImageLoaded[ImageSelected]" class="img-toolbar">
-    <button
-      (click)="onImageSelect(ImageSelected - 1)"
-      [disabled]="ImageSelected === 0"
-      mat-icon-button
-    >
-      <mat-icon>navigate_before</mat-icon>
-    </button>
-    <ng-container *ngFor="let img of profile.images; let i = index">
-      <img
-        (click)="onImageSelect(i)"
-        *ngIf="ImageStartIndex <= i && ImageEndIndex >= i"
-        [class.not-selected]="ImageSelected !== i"
-        [src]="img.thumbnail"
-      />
-    </ng-container>
-    <button
-      (click)="onImageSelect(ImageSelected + 1)"
-      [disabled]="ImageSelected === profile.images.length - 1"
-      mat-icon-button
-    >
-      <mat-icon>navigate_next</mat-icon>
-    </button>
-    <button class="img-detail-btn" mat-icon-button>
+    <div>
+      <button
+        (click)="onImageSelect(ImageSelected - 1)"
+        [disabled]="ImageSelected === 0"
+        mat-icon-button
+      >
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <ng-container *ngFor="let img of profile.images; let i = index">
+        <img
+          (click)="onImageSelect(i)"
+          *ngIf="ImageStartIndex <= i && ImageEndIndex >= i"
+          [class.not-selected]="ImageSelected !== i"
+          [src]="img.thumbnail"
+        />
+      </ng-container>
+      <button
+        (click)="onImageSelect(ImageSelected + 1)"
+        [disabled]="ImageSelected === profile.images.length - 1"
+        mat-icon-button
+      >
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
+    <button class="img-detail-btn" mat-icon-button (click)="onImageDetailClick()">
       <mat-icon>search</mat-icon>
     </button>
   </div>

@@ -1,0 +1,15 @@
+:host {
+  //width: 100%;
+  //height: 100%;
+  //display: block;
+}
+div.mat-dialog-content {
+  width: 100%;
+  height: 100%;
+  //height: calc(100% - 68px);
+  div#seadragon-container {
+    width: 100%;
+    height: 100%;
+    //background-color: blue;
+  }
+}
