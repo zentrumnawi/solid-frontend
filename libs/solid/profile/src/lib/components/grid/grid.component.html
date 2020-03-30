@@ -1,8 +1,8 @@
 <ng-container *ngFor="let profile of profiles | async; let i = index; trackBy: trackByFn">
   <div
-    *ngIf="selectedProfileId === profile.id"
-    (click)="select.emit(profile.id)"
-    class="card mat-elevation-z2 selected" selected>
+          *ngIf="selectedProfileId === profile.id"
+          (click)="select.emit(profile.id)"
+          class="card mat-elevation-z2 selected" solidProfileSelected>
   <ng-container *ngTemplateOutlet="cardContent;context: { profile: profile }"></ng-container>
   </div>
   <div

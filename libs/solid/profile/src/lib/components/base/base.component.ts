@@ -67,14 +67,14 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
           // filter profiles
           const regExp = new RegExp(filterStr, 'i');
-          const profilesFlatFiltered = flat.filter(profile => {
-            if (profile.mineralName.match(regExp)) {
+          const profilesFlatFiltered = flat.filter(p => {
+            if (p.mineralName.match(regExp)) {
               return true;
             }
-            if (profile.trivialName && profile.trivialName.match(regExp)) {
+            if (p.trivialName && p.trivialName.match(regExp)) {
               return true;
             }
-            if (profile.variety && profile.variety.match(regExp)) {
+            if (p.variety && p.variety.match(regExp)) {
               return true;
             }
             return false;
@@ -105,7 +105,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
             const index = profile.category.children.indexOf(profile.profile);
             if (!this.Filter.value) {
               swipeLeft = (profile.category.children
-                .find((p, i) => i === index -1 && p.type === 'entry') as ProfileEntry | undefined)?.id || -1;
+                .find((p, i) => i === index - 1 && p.type === 'entry') as ProfileEntry | undefined)?.id || -1;
               swipeRight = (profile.category.children
                 .find((p, i) => i > index && p.type === 'entry') as ProfileEntry | undefined)?.id || -1;
             }

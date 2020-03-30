@@ -1,5 +1,6 @@
 import { Directive } from '@angular/core';
 
-@Directive({ selector: '[selected]' })
+/* tslint:disable-next-line */
+@Directive({ selector: '[solidProfileSelected]' })
 export class SelectedDirective {
 }

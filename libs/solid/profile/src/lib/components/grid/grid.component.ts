@@ -30,7 +30,7 @@ export class GridComponent implements AfterViewInit {
         return;
       }
       card.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest'});
-    })
+    });
   }
 
 }
