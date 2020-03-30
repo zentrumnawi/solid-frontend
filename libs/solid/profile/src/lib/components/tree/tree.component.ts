@@ -1,5 +1,16 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  QueryList, SimpleChanges,
+  ViewChildren
+} from '@angular/core';
 import {
   MatTreeFlatDataSource,
   MatTreeFlattener
@@ -9,12 +20,13 @@ import { ProfileService } from '../../services/profile.service';
 import { Image, Profile } from '../../state/profile.model';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
+import { SelectedDirective } from '../selected.directive';
 
-export type FlatTreeNode = MineralNode | CategoryNode;
+export type FlatTreeNode = EntryNode | CategoryNode;
 
-export interface MineralNode {
+export interface EntryNode {
   title: string;
-  type: 'mineral';
+  type: 'entry';
   level: number;
   images: Image[];
   expandable: false;
@@ -34,7 +46,8 @@ export interface CategoryNode {
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss']
 })
-export class TreeComponent implements OnInit {
+export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
+  @ViewChildren(SelectedDirective, { read: ElementRef }) public selectedElements!: QueryList<ElementRef>;
   @Input() selectedProfileId?: number;
   @Input() profiles!: Observable<Profile[]>;
   @Output() select = new EventEmitter<number>();
@@ -47,7 +60,7 @@ export class TreeComponent implements OnInit {
   /** The TreeFlattener is used to generate the flat list of items from hierarchical data. */
   private readonly _treeFlattener: MatTreeFlattener<Profile, FlatTreeNode>;
 
-  private _selectedNode: CategoryNode | MineralNode | null = null;
+  private _selectedNode: CategoryNode | EntryNode | null = null;
 
   constructor(
     private _service: ProfileService,
@@ -85,7 +98,7 @@ export class TreeComponent implements OnInit {
       return {
         title: node.variety ? node.variety : node.mineralName,
         id: node.id,
-        type: 'mineral',
+        type: 'entry',
         level: level,
         expandable: false,
         images: node.images
@@ -114,8 +127,8 @@ export class TreeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.profiles.subscribe(profiles => {
-      console.log(profiles);
       this.DataSource.data = profiles;
+      this.expandSelectedNode();
     });
   }
 
@@ -128,7 +141,7 @@ export class TreeComponent implements OnInit {
     return !node.expandable;
   }
 
-  onNodeClick(node: MineralNode | CategoryNode) {
+  onNodeClick(node: EntryNode | CategoryNode) {
     if (this.TreeControl.isExpanded(node)) {
       this.TreeControl.collapse(node);
       this._selectedNode = null;
@@ -156,5 +169,49 @@ export class TreeComponent implements OnInit {
       this.TreeControl.expand(node);
       this._selectedNode = node;
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.expandSelectedNode();
+  }
+
+  private expandSelectedNode() {
+    if (this.TreeControl.dataNodes) {
+      this.TreeControl.dataNodes.filter(n => n.type === 'entry').forEach(node => {
+        const profileNode = node as EntryNode;
+        if (profileNode.id === this.selectedProfileId) {
+          this.expandParents(node);
+        }
+      });
+    }
+  }
+
+  private expandParents(node: FlatTreeNode): void {
+    if (node.level === 0) {
+      this.TreeControl.expand(node);
+      return;
+    }
+    const startIndex = this.TreeControl.dataNodes.indexOf(node) - 1;
+    for (let i = startIndex; i >= 0; i--) {
+      if (this.TreeControl.dataNodes[i].level === node.level - 1) {
+        this.expandParents(this.TreeControl.dataNodes[i]);
+        this.TreeControl.expand(node);
+        break;
+      }
+    }
+  }
+
+  public ngAfterViewInit(): void {
+    this.selectedElements.changes.subscribe(_ => this.scrollTo());
+  }
+
+  public scrollTo() {
+    setTimeout(() => {
+      const card = this.selectedElements.first || null;
+      if (!card) {
+        return;
+      }
+      card.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
   }
 }

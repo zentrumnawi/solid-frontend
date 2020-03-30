@@ -1,7 +1,9 @@
 @import 'lib/components/detail/detail.theme';
 @import 'lib/components/base/base.theme';
+@import "lib/components/grid/grid.theme";
 
 @mixin solid-profile-theme($mat-theme) {
   @include solid-profile-detail($mat-theme);
   @include solid-profile-base($mat-theme);
+  @include solid-profile-grid-theme($mat-theme);
 }

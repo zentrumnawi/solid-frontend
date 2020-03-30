@@ -58,7 +58,7 @@ export class QuestionComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.Question.previousValue !== changes.Question.currentValue) {
+    if (changes.question.previousValue !== changes.question.currentValue) {
       this.ShowAnswers = false;
       this.SelectedAnswers = [];
       this.Correct = undefined;

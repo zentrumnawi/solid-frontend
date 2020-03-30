@@ -91,9 +91,9 @@ const routes = generateAppRoutes({
     NgxsModule.forRoot([], {
       developmentMode: !environment.production
     }),
-    NgxsLoggerPluginModule.forRoot({
-      disabled: environment.production
-    }),
+    // NgxsLoggerPluginModule.forRoot({
+    //   disabled: environment.production
+    // }),
     NgxsDispatchPluginModule.forRoot(),
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({

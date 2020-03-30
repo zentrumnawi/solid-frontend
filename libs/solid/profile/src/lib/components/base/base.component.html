@@ -38,35 +38,35 @@
         : SelectedProfile.mineralName
     }}
     <div class="spacer"></div>
-    <button (click)="swipeLeft()" [disabled]="!CanSwipeLeft" mat-icon-button>
+    <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
       <mat-icon>navigate_before</mat-icon>
     </button>
-    <button (click)="selectProfile()" *ngIf="!SplitLayout" mat-icon-button>
-      <mat-icon>expand_less</mat-icon>
+    <button (click)="selectProfile()" mat-icon-button>
+      <mat-icon>{{ SplitLayout ? 'close' : 'expand_less'}}</mat-icon>
     </button>
-    <button (click)="swipeRight()" [disabled]="!CanSwipeRight" mat-icon-button>
+    <button (click)="swipeRight()" [disabled]="SwipeRight < 0" mat-icon-button>
       <mat-icon>navigate_next</mat-icon>
     </button>
   </mat-toolbar>
   <ng-container *ngIf="SplitLayout || !SelectedProfile">
-    <ng-container [ngSwitch]="Filter.value !== '' || View">
+    <ng-container [ngSwitch]="(View === 'tree' && Filter.value !== '') || View">
       <solid-profile-grid
-        (select)="selectProfile($event)"
         *ngSwitchCase="'grid'"
+        (select)="selectProfile($event)"
         [class.full-width]="!SelectedProfile"
-        [profiles]="$profilesFlat"
+        [profiles]="ProfilesFlatFiltered.asObservable()"
+        [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
       ></solid-profile-grid>
       <solid-profile-tree
-        (select)="selectProfile($event)"
         *ngSwitchCase="'tree'"
+        (select)="selectProfile($event)"
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
       ></solid-profile-tree>
       <solid-profile-list
-        (select)="selectProfile($event)"
         *ngSwitchDefault
-        [filterValue]="FilterValue.asObservable()"
-        [profiles]="$profilesFlat"
+        (select)="selectProfile($event)"
+        [profiles]="ProfilesFlatFiltered.asObservable()"
       ></solid-profile-list>
     </ng-container>
   </ng-container>

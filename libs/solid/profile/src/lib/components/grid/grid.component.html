@@ -1,8 +1,19 @@
-<div
-  (click)="select.emit(profile.id)"
-  *ngFor="let profile of profiles | async; let i = index; trackBy: trackByFn"
-  class="card mat-elevation-z2"
->
+<ng-container *ngFor="let profile of profiles | async; let i = index; trackBy: trackByFn">
+  <div
+    *ngIf="selectedProfileId === profile.id"
+    (click)="select.emit(profile.id)"
+    class="card mat-elevation-z2 selected" selected>
+  <ng-container *ngTemplateOutlet="cardContent;context: { profile: profile }"></ng-container>
+  </div>
+  <div
+    *ngIf="selectedProfileId !== profile.id"
+    (click)="select.emit(profile.id)"
+    class="card mat-elevation-z2">
+    <ng-container *ngTemplateOutlet="cardContent;context: { profile: profile }"></ng-container>
+  </div>
+</ng-container>
+
+<ng-template #cardContent let-profile="profile">
   <div class="title">
     {{ profile.variety ? profile.variety : profile.mineralName }}
   </div>
@@ -14,4 +25,4 @@
     "
     alt="Bild des Minerals"
   />
-</div>
+</ng-template>

@@ -3,7 +3,7 @@ import { TreeComponent } from './components/tree/tree.component';
 import { ListComponent } from './components/list/list.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { BaseComponent } from './components/base/base.component';
-import { GridComponent } from './components/grid/grid.component';
+import {  GridComponent} from './components/grid/grid.component';
 import { SolidCoreModule } from '@zentrumnawi/solid/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SolidProfileRoutingModule } from './solid-profile-routing.module';
@@ -19,6 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
 import { MatTreeModule } from '@angular/material/tree';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SelectedDirective } from './components/selected.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DomSanitizer } from '@angular/platform-browser';
     ListComponent,
     DetailComponent,
     BaseComponent,
-    GridComponent
+    GridComponent,
+    SelectedDirective,
   ],
   imports: [
     SolidCoreModule,

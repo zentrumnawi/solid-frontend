@@ -16,9 +16,12 @@
       "
       class="thumbnail"
     />
-    <span [class.selected]="selectedProfileId === node.id">{{
+    <span *ngIf="selectedProfileId === node.id" selected class="selected">{{
       node.title
     }}</span>
+    <span *ngIf="selectedProfileId !== node.id">{{
+      node.title
+      }}</span>
   </mat-tree-node>
 
   <mat-tree-node

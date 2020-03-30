@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MineralProfile, ProfileCategory } from '../../state/profile.model';
+import { ProfileEntry, ProfileCategory } from '../../state/profile.model';
 
 @Component({
   selector: 'solid-profile-detail',
@@ -13,14 +13,14 @@ export class DetailComponent {
   public ImageStartIndex = 0;
   public ImageEndIndex = 0;
 
-  private _profile!: MineralProfile;
+  private _profile!: ProfileEntry;
 
   public get profile() {
     return this._profile;
   }
 
   @Input()
-  public set profile(profile: MineralProfile) {
+  public set profile(profile: ProfileEntry) {
     this._profile = profile;
     this.ImageLoaded = profile.images.map(_ => false);
     this.onImageSelect(0);

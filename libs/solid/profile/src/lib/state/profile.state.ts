@@ -1,5 +1,5 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { MineralProfile, Profile, ProfileCategory } from './profile.model';
+import { ProfileEntry, Profile, ProfileCategory } from './profile.model';
 import { ProfileSetAction } from './profile.actions';
 import { Injectable } from '@angular/core';
 
@@ -16,7 +16,7 @@ export class ProfileState {
     state: ProfileStateModel
   ): (
     profileId?: number
-  ) => { profile: MineralProfile; category: ProfileCategory } | null {
+  ) => { profile: ProfileEntry; category: ProfileCategory } | null {
     return (profileId?: number) => {
       if (!profileId) {
         return null;
@@ -45,8 +45,8 @@ export class ProfileState {
   }
 
   @Selector()
-  static selectFlat(state: ProfileStateModel): MineralProfile[] {
-    const map = (result: MineralProfile[], value: Profile[]) => {
+  static selectFlat(state: ProfileStateModel): ProfileEntry[] {
+    const map = (result: ProfileEntry[], value: Profile[]) => {
       for (const v of value) {
         if (v.type === 'category') {
           result.push(...map([], v.children));
@@ -62,9 +62,9 @@ export class ProfileState {
   private static findProfileDeep(
     profiles: Profile[],
     profileId: number
-  ): { profile: MineralProfile; category: ProfileCategory | null } | null {
+  ): { profile: ProfileEntry; category: ProfileCategory | null } | null {
     for (const profile of profiles) {
-      if (profile.type === 'mineral' && profile.id === profileId) {
+      if (profile.type === 'entry' && profile.id === profileId) {
         return { profile, category: null };
       } else if (profile.type === 'category') {
         const childSearch = ProfileState.findProfileDeep(

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ProfileSetAction } from '../state/profile.actions';
 import {
-  MineralProfile,
+  ProfileEntry,
   MineralProfileApi,
   NodeApi,
   ProfileCategory
@@ -36,14 +36,14 @@ export class ProfileService {
       description: child.info_text.length === 0 ? null : child.info_text,
       children: [
         ...this.mapTree(child.leaf_nodes),
-        ...this.mapMinerals(child.mineraltypes)
+        ...this.mapEntries(child.mineraltypes)
       ]
     }));
   }
 
-  private mapMinerals(children: MineralProfileApi[]): MineralProfile[] {
+  private mapEntries(children: MineralProfileApi[]): ProfileEntry[] {
     return children.map(child => ({
-      type: 'mineral' as 'mineral',
+      type: 'entry',
       id: child.id,
       mineralName: child.minerals,
       images: child.image_file ? [child.image_file] : [],

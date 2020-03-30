@@ -1,4 +1,4 @@
-export type Profile = ProfileCategory | MineralProfile;
+export type Profile = ProfileCategory | ProfileEntry;
 
 export interface Image {
   large: string;
@@ -14,8 +14,8 @@ export interface ProfileCategory {
   children: Profile[];
 }
 
-export interface MineralProfile {
-  type: 'mineral';
+export interface ProfileEntry {
+  type: 'entry';
   id: number;
   variety?: string;
   mineralName: string;
