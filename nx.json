@@ -1,0 +1,37 @@
+{
+  "npmScope": "zentrumnawi",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "geomat": {
+      "tags": []
+    },
+    "geomat-e2e": {
+      "tags": [],
+      "implicitDependencies": ["geomat"]
+    },
+    "solid-core": {
+      "tags": ["solid"]
+    },
+    "solid-quiz": {
+      "tags": ["solid"]
+    },
+    "solid-slideshow": {
+      "tags": ["solid"]
+    },
+    "solid-glossary": {
+      "tags": ["solid"]
+    },
+    "solid-skeleton": {
+      "tags": ["solid"]
+    },
+    "solid-profile": {
+      "tags": ["solid"]
+    }
+  }
+}

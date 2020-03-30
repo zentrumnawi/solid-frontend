@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+
+@mixin base-layout-component($mat-theme) {
+  $background: map-get($mat-theme, background);
+  solid-skeleton-base-layout {
+    .base-layout-container {
+      mat-toolbar {
+        .right-border {
+          border-right: 1px solid mat-color($background, status-bar);
+        }
+
+        .left-border {
+          border-left: 1px solid mat-color($background, status-bar);
+        }
+      }
+    }
+  }
+  body.landing-hidden {
+    transform: scale(-1, 1);
+  }
+}

@@ -1,0 +1,49 @@
+@import '~@angular/material/theming';
+
+@mixin solid-quiz-question-theme($mat-theme) {
+  $accent: map-get($mat-theme, accent);
+  $foreground: map-get($mat-theme, foreground);
+  $warn: map-get($mat-theme, warn);
+  $quiz-correct: mat-palette($mat-green, 400, 200, 600);
+  $quiz-wrong: mat-palette($mat-red, 400, 200, 600);
+  solid-quiz-question {
+    mat-radio-group {
+      display: flex;
+      flex-direction: column;
+
+      mat-radio-button {
+        &.correct {
+          .mat-radio-outer-circle {
+            border-color: mat-color($quiz-correct);
+          }
+        }
+      }
+
+      &.incorrect {
+        .mat-radio-outer-circle {
+          border-color: mat-color($quiz-wrong);
+        }
+      }
+    }
+
+    mat-card-content.multiple-choice {
+      mat-checkbox {
+        &.correct {
+          .mat-checkbox-background {
+            background-color: mat-color($quiz-correct);
+          }
+        }
+
+        &.incorrect {
+          .mat-checkbox-background {
+            background-color: mat-color($quiz-wrong);
+          }
+        }
+      }
+    }
+
+    span.feedback {
+      color: mat-color($foreground, text);
+    }
+  }
+}

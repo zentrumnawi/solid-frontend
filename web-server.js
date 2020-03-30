@@ -25,7 +25,7 @@ const mimeType = {
 
 function readFile(pathname, res) {
   // read file from file system
-  fs.readFile(pathname, function (err, data) {
+  fs.readFile(pathname, function(err, data) {
     if (err) {
       res.statusCode = 500;
       res.end(`Error getting the file: ${err}.`);
@@ -39,36 +39,40 @@ function readFile(pathname, res) {
   });
 }
 
-http.createServer(function (req, res) {
-  console.log(`${req.method} ${req.url}`);
+http
+  .createServer(function(req, res) {
+    console.log(`${req.method} ${req.url}`);
 
-  // parse URL
-  const parsedUrl = url.parse(req.url);
+    // parse URL
+    const parsedUrl = url.parse(req.url);
 
-  // extract URL path
-  // Avoid https://en.wikipedia.org/wiki/Directory_traversal_attack
-  // e.g curl --path-as-is http://localhost:9000/../fileInDanger.txt
-  // by limiting the path to current directory only
-  const sanitizePath = path.normalize(parsedUrl.pathname).replace(/^(\.\.[\/\\])+/, '');
-  let pathname = path.join(__dirname, 'dist', 'app-geomat', sanitizePath);
+    // extract URL path
+    // Avoid https://en.wikipedia.org/wiki/Directory_traversal_attack
+    // e.g curl --path-as-is http://localhost:9000/../fileInDanger.txt
+    // by limiting the path to current directory only
+    const sanitizePath = path
+      .normalize(parsedUrl.pathname)
+      .replace(/^(\.\.[\/\\])+/, '');
+    let pathname = path.join(__dirname, 'dist', 'apps', 'geomat', sanitizePath);
 
-  fs.exists(pathname, function (exist) {
-    if (!exist) {
-      // if the file is not found, return 404
-      readFile(path.join(__dirname, 'dist', 'app-geomat', 'index.html'), res);
-      return;
-    }
+    fs.exists(pathname, function(exist) {
+      if (!exist) {
+        // if the file is not found, return 404
+        readFile(
+          path.join(__dirname, 'dist', 'apps', 'geomat', 'index.html'),
+          res
+        );
+        return;
+      }
 
-    // if is a directory, then look for index.html
-    if (fs.statSync(pathname).isDirectory()) {
-      pathname += '/index.html';
-    }
+      // if is a directory, then look for index.html
+      if (fs.statSync(pathname).isDirectory()) {
+        pathname += '/index.html';
+      }
 
-    readFile(pathname, res);
-
-  });
-
-
-}).listen(parseInt(port), '0.0.0.0');
+      readFile(pathname, res);
+    });
+  })
+  .listen(parseInt(port), '0.0.0.0');
 
 console.log(`Server listening on port ${port}`);

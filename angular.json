@@ -1,46 +1,49 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
-    "app-geomat": {
-      "root": "",
-      "sourceRoot": "src",
+    "geomat": {
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
-        "@schematics/angular:component": {
+        "@nrwl/angular:component": {
           "style": "scss"
         }
       },
+      "root": "apps/geomat",
+      "sourceRoot": "apps/geomat/src",
+      "prefix": "geomat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "outputPath": "dist/apps/geomat",
+            "index": "apps/geomat/src/index.html",
+            "main": "apps/geomat/src/main.ts",
+            "polyfills": "apps/geomat/src/polyfills.ts",
+            "tsConfig": "apps/geomat/tsconfig.app.json",
             "aot": true,
-            "outputPath": "dist/app-geomat",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/_redirects",
-              "src/manifest.webmanifest"
-            ],
+            "assets": ["apps/geomat/src/favicon.ico", "apps/geomat/src/assets"],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
-              "src/styles.scss"
+              "apps/geomat/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            }
           },
           "configurations": {
-            "staging": {
+            "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.staging.ts"
+                  "replace": "apps/geomat/src/environments/environment.ts",
+                  "with": "apps/geomat/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -48,7 +51,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -60,17 +62,18 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             },
-            "production": {
+            "staging": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/geomat/src/environments/environment.ts",
+                  "with": "apps/geomat/src/environments/environment.staging.ts"
                 }
               ],
               "optimization": true,
@@ -78,7 +81,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -90,7 +92,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "serviceWorker": true,
@@ -101,81 +104,273 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "app-geomat:build",
+            "browserTarget": "geomat:build",
             "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app-geomat:build:production"
+              "browserTarget": "geomat:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app-geomat:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
-            ]
+            "browserTarget": "geomat:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "apps/geomat/tsconfig.app.json",
+              "apps/geomat/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/geomat/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/geomat/jest.config.js",
+            "tsConfig": "apps/geomat/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/geomat/src/test-setup.ts"
           }
         }
       }
     },
-    "app-geomat-e2e": {
-      "root": "e2e/",
+    "geomat-e2e": {
+      "root": "apps/geomat-e2e",
+      "sourceRoot": "apps/geomat-e2e/src",
       "projectType": "application",
-      "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "app-geomat:serve"
+            "cypressConfig": "apps/geomat-e2e/cypress.json",
+            "tsConfig": "apps/geomat-e2e/tsconfig.e2e.json",
+            "devServerTarget": "geomat:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "app-geomat:serve:production"
+              "devServerTarget": "geomat:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**"]
           }
+        }
+      }
+    },
+    "solid-core": {
+      "projectType": "library",
+      "root": "libs/solid/core",
+      "sourceRoot": "libs/solid/core/src",
+      "prefix": "solid-core",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/core/tsconfig.lib.json",
+              "libs/solid/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/core/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/core/jest.config.js",
+            "tsConfig": "libs/solid/core/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-quiz": {
+      "projectType": "library",
+      "root": "libs/solid/quiz",
+      "sourceRoot": "libs/solid/quiz/src",
+      "prefix": "solid-quiz",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/quiz/tsconfig.lib.json",
+              "libs/solid/quiz/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/quiz/jest.config.js",
+            "tsConfig": "libs/solid/quiz/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/quiz/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-slideshow": {
+      "projectType": "library",
+      "root": "libs/solid/slideshow",
+      "sourceRoot": "libs/solid/slideshow/src",
+      "prefix": "solid-slideshow",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/slideshow/tsconfig.lib.json",
+              "libs/solid/slideshow/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/slideshow/jest.config.js",
+            "tsConfig": "libs/solid/slideshow/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/slideshow/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-glossary": {
+      "projectType": "library",
+      "root": "libs/solid/glossary",
+      "sourceRoot": "libs/solid/glossary/src",
+      "prefix": "solid-glossary",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/glossary/tsconfig.lib.json",
+              "libs/solid/glossary/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/glossary/jest.config.js",
+            "tsConfig": "libs/solid/glossary/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/glossary/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-skeleton": {
+      "projectType": "library",
+      "root": "libs/solid/skeleton",
+      "sourceRoot": "libs/solid/skeleton/src",
+      "prefix": "solid-skeleton",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/skeleton/tsconfig.lib.json",
+              "libs/solid/skeleton/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/skeleton/jest.config.js",
+            "tsConfig": "libs/solid/skeleton/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/skeleton/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-profile": {
+      "projectType": "library",
+      "root": "libs/solid/profile",
+      "sourceRoot": "libs/solid/profile/src",
+      "prefix": "solid-profile",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/profile/tsconfig.lib.json",
+              "libs/solid/profile/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/profile/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/profile/jest.config.js",
+            "tsConfig": "libs/solid/profile/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/solid/profile/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }
   },
-  "defaultProject": "app-geomat"
+  "defaultProject": "geomat",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  }
 }

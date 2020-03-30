@@ -1,0 +1,82 @@
+<ng-container *ngIf="question">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ question.tags.join(' ') }}</mat-card-title>
+      <mat-card-subtitle>{{ question.qtext }}</mat-card-subtitle>
+    </mat-card-header>
+    <ng-container [ngSwitch]="question.qtype">
+      <mat-card-content *ngSwitchCase="QuestionTypes.SingleChoice">
+        <mat-radio-group
+          (change)="onRadioChange($event)"
+          [disabled]="ShowAnswers"
+          aria-label="Wähle ein Antwort aus"
+          color="primary"
+        >
+          <mat-radio-button
+            *ngFor="let answer of question.answers; trackBy: trackByFn"
+            [class.correct]="isAnswerCorrect(answer)"
+            [class.incorrect]="isAnswerIncorrect(answer)"
+            [value]="answer.id"
+          >
+            <span [data]="answer.atext" class="atext" markdown></span>
+            <span
+              *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
+              [data]="
+                answer.correct
+                  ? answer.feedback_correct
+                  : answer.feedback_incorrect
+              "
+              markdown
+              class="feedback"
+            ></span>
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+      <mat-card-content
+        *ngSwitchCase="QuestionTypes.MultipleChoice"
+        class="multiple-choice"
+      >
+        <mat-checkbox
+          (change)="onSelectChange($event, answer)"
+          *ngFor="let answer of question.answers; trackBy: trackByFn"
+          [checked]="isAnswerCorrect(answer)"
+          [class.correct]="isAnswerCorrect(answer)"
+          [class.incorrect]="isAnswerIncorrect(answer)"
+          [disabled]="ShowAnswers"
+          [indeterminate]="isAnswerIncorrect(answer)"
+          color="primary"
+        >
+          <span [data]="answer.atext" class="atext" markdown></span>
+          <span
+            *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
+            [data]="
+              answer.correct
+                ? answer.feedback_correct
+                : answer.feedback_incorrect
+            "
+            markdown
+            class="feedback"
+          ></span>
+        </mat-checkbox>
+      </mat-card-content>
+    </ng-container>
+    <mat-card-actions>
+      <button
+        (click)="onShowAnswersClick()"
+        *ngIf="!ShowAnswers"
+        color="primary"
+        mat-raised-button
+      >
+        Lösungen anzeigen
+      </button>
+      <button
+        (click)="onNextQuestionClick()"
+        *ngIf="ShowAnswers"
+        color="primary"
+        mat-raised-button
+      >
+        {{ Correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

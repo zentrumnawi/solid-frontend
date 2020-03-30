@@ -1,0 +1,75 @@
+@import '~@angular/material/theming';
+
+.float-right {
+  float: right;
+  grid-area: next;
+}
+
+.step-actions {
+  margin-top: 1em;
+  display: grid;
+  grid-template-areas: 'previous header next';
+  grid-template-columns: 40px auto 40px;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  grid-area: header;
+}
+
+::ng-deep {
+  div.mat-horizontal-stepper-header-container {
+    display: none;
+  }
+
+  .md-rendered {
+    ul,
+    li {
+      margin-bottom: 0.5em;
+      margin-left: 0.5em;
+      padding-left: 0.25em;
+    }
+
+    ol,
+    li {
+      margin-top: 0.5em;
+      padding-left: 0.5em;
+    }
+  }
+}
+
+div.page-images {
+  display: grid;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1000px) and (max-width: 1400px) {
+    grid-template-columns: 1fr;
+  }
+  grid-template-columns: 1fr 1fr;
+
+  mat-card {
+    min-width: 200px;
+
+    mat-card-header {
+      ::ng-deep {
+        div.mat-card-header-text {
+          margin: 0;
+        }
+      }
+
+      mat-card-title {
+        font-size: 16px;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    margin: 1em;
+  }
+}

@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+@mixin main-menu-component($mat-theme) {
+  $background: map-get($mat-theme, background);
+  solid-skeleton-main-menu {
+    mat-nav-list {
+      mat-list-item {
+        border-bottom: 1px solid mat-color($background, status-bar);
+
+        &.active {
+          background-color: mat-color($background, selected-button);
+        }
+      }
+    }
+  }
+}

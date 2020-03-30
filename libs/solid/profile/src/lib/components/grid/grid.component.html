@@ -1,0 +1,17 @@
+<div
+  (click)="select.emit(profile.id)"
+  *ngFor="let profile of profiles | async; let i = index; trackBy: trackByFn"
+  class="card mat-elevation-z2"
+>
+  <div class="title">
+    {{ profile.variety ? profile.variety : profile.mineralName }}
+  </div>
+  <img
+    [src]="
+      profile.images.length > 0
+        ? profile.images[0].small
+        : '/assets/profile/no_image.svg'
+    "
+    alt="Bild des Minerals"
+  />
+</div>
