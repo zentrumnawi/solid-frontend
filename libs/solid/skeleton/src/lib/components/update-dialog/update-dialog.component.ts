@@ -10,7 +10,7 @@ export class UpdateDialogComponent {
   private readonly cb: () => void;
   constructor(
     private _ref: MatDialogRef<UpdateDialogComponent>,
-              /** Inject the required service function to prevent a circular dependency between the Component and the service */
+    /** Inject the required service function to prevent a circular dependency between the Component and the service */
     @Inject(MAT_DIALOG_DATA) data: { cb: () => void }
   ) {
     this.cb = data.cb;

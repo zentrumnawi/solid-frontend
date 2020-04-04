@@ -3,7 +3,7 @@ import { TreeComponent } from './components/tree/tree.component';
 import { ListComponent } from './components/list/list.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { BaseComponent } from './components/base/base.component';
-import {  GridComponent} from './components/grid/grid.component';
+import { GridComponent } from './components/grid/grid.component';
 import { SolidCoreModule } from '@zentrumnawi/solid/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SolidProfileRoutingModule } from './solid-profile-routing.module';
@@ -28,7 +28,7 @@ import { SelectedDirective } from './components/selected.directive';
     DetailComponent,
     BaseComponent,
     GridComponent,
-    SelectedDirective,
+    SelectedDirective
   ],
   imports: [
     SolidCoreModule,

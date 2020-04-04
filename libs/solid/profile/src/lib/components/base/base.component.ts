@@ -31,9 +31,11 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @Select(ProfileState.selectFlat)
   public $profilesFlat!: Observable<ProfileEntry[]>;
   @Select(ProfileState.selectProfileAndCategory)
-  public $profileAndCategorySelector!: Observable<(
-    profileId?: number
-  ) => { profile: ProfileEntry; category: ProfileCategory } | null>;
+  public $profileAndCategorySelector!: Observable<
+    (
+      profileId?: number
+    ) => { profile: ProfileEntry; category: ProfileCategory } | null
+  >;
   @Select((s: any) => s.router.state.params)
   public $routerParams!: Observable<{ [key: string]: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<ProfileEntry[]>([]);
@@ -53,10 +55,20 @@ export class BaseComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    combineLatest([this.$routerParams, this.$profileAndCategorySelector, this.$profilesFlat, this.FilterValue])
+    combineLatest([
+      this.$routerParams,
+      this.$profileAndCategorySelector,
+      this.$profilesFlat,
+      this.FilterValue
+    ])
       .pipe(
         map(v => {
-          const { params, selector, flat, filterStr } = { params: v[0], selector: v[1], flat: v[2], filterStr: v[3] };
+          const { params, selector, flat, filterStr } = {
+            params: v[0],
+            selector: v[1],
+            flat: v[2],
+            filterStr: v[3]
+          };
 
           // select profile
           const profileId =
@@ -94,7 +106,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
           let swipeRight = -1;
           let swipeLeft = -1;
           if (params.view === 'grid' || filterStr !== '') {
-            const flatIndex = profilesFlatFiltered.findIndex(p => p.id === profileId);
+            const flatIndex = profilesFlatFiltered.findIndex(
+              p => p.id === profileId
+            );
             if (flatIndex !== 0) {
               swipeLeft = profilesFlatFiltered[flatIndex - 1]?.id || -1;
             }
@@ -104,10 +118,14 @@ export class BaseComponent implements OnInit, AfterViewInit {
           } else {
             const index = profile.category.children.indexOf(profile.profile);
             if (!this.Filter.value) {
-              swipeLeft = (profile.category.children
-                .find((p, i) => i === index - 1 && p.type === 'entry') as ProfileEntry | undefined)?.id || -1;
-              swipeRight = (profile.category.children
-                .find((p, i) => i > index && p.type === 'entry') as ProfileEntry | undefined)?.id || -1;
+              swipeLeft =
+                (profile.category.children.find(
+                  (p, i) => i === index - 1 && p.type === 'entry'
+                ) as ProfileEntry | undefined)?.id || -1;
+              swipeRight =
+                (profile.category.children.find(
+                  (p, i) => i > index && p.type === 'entry'
+                ) as ProfileEntry | undefined)?.id || -1;
             }
           }
           return {

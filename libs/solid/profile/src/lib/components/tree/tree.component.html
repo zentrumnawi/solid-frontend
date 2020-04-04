@@ -16,12 +16,13 @@
       "
       class="thumbnail"
     />
-    <span *ngIf="selectedProfileId === node.id" solidProfileSelected class="selected">{{
-      node.title
-    }}</span>
-    <span *ngIf="selectedProfileId !== node.id">{{
-      node.title
-      }}</span>
+    <span
+      *ngIf="selectedProfileId === node.id"
+      solidProfileSelected
+      class="selected"
+      >{{ node.title }}</span
+    >
+    <span *ngIf="selectedProfileId !== node.id">{{ node.title }}</span>
   </mat-tree-node>
 
   <mat-tree-node

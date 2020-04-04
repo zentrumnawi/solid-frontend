@@ -43,9 +43,14 @@ const hidden = Math.random() < 0.1;
     MatSidenavModule,
     MatToolbarModule
   ],
-  declarations: [BaseLayoutComponent, FeedbackComponent, MainMenuComponent, UpdateDialogComponent],
+  declarations: [
+    BaseLayoutComponent,
+    FeedbackComponent,
+    MainMenuComponent,
+    UpdateDialogComponent
+  ],
   exports: [BaseLayoutComponent],
-  providers: [UpdateService],
+  providers: [UpdateService]
 })
 export class SolidSkeletonModule {
   static isLandingHiddenEnabled = hidden;

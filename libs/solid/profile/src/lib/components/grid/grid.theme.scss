@@ -5,7 +5,7 @@
   $accent: map-get($mat-theme, accent);
   solid-profile-grid {
     div.card.selected {
-    background-color: mat-color($accent);
+      background-color: mat-color($accent);
     }
   }
 }

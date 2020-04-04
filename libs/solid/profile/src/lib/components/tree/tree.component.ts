@@ -8,7 +8,8 @@ import {
   OnChanges,
   OnInit,
   Output,
-  QueryList, SimpleChanges,
+  QueryList,
+  SimpleChanges,
   ViewChildren
 } from '@angular/core';
 import {
@@ -47,7 +48,8 @@ export interface CategoryNode {
   styleUrls: ['./tree.component.scss']
 })
 export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
-  @ViewChildren(SelectedDirective, { read: ElementRef }) public selectedElements!: QueryList<ElementRef>;
+  @ViewChildren(SelectedDirective, { read: ElementRef })
+  public selectedElements!: QueryList<ElementRef>;
   @Input() selectedProfileId?: number;
   @Input() profiles!: Observable<Profile[]>;
   @Output() select = new EventEmitter<number>();
@@ -177,12 +179,14 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   private expandSelectedNode() {
     if (this.TreeControl.dataNodes) {
-      this.TreeControl.dataNodes.filter(n => n.type === 'entry').forEach(node => {
-        const profileNode = node as EntryNode;
-        if (profileNode.id === this.selectedProfileId) {
-          this.expandParents(node);
-        }
-      });
+      this.TreeControl.dataNodes
+        .filter(n => n.type === 'entry')
+        .forEach(node => {
+          const profileNode = node as EntryNode;
+          if (profileNode.id === this.selectedProfileId) {
+            this.expandParents(node);
+          }
+        });
     }
   }
 
@@ -211,7 +215,10 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       if (!card) {
         return;
       }
-      card.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      card.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
     });
   }
 }

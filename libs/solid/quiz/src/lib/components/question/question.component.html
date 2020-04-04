@@ -17,9 +17,13 @@
             [class.correct]="isAnswerCorrect(answer)"
             [class.incorrect]="isAnswerIncorrect(answer)"
             [value]="answer.id"
-          ><p>test {{ isAnswerCorrect(answer) ? 'yes' : 'no'}}</p>
-            <span markdown [data]="answer.atext"
-                  [class.selected]="ShowAnswers && SelectedAnswers.includes(answer.id)"
+            ><p>test {{ isAnswerCorrect(answer) ? 'yes' : 'no' }}</p>
+            <span
+              markdown
+              [data]="answer.atext"
+              [class.selected]="
+                ShowAnswers && SelectedAnswers.includes(answer.id)
+              "
             ></span>
             <span
               *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
@@ -42,16 +46,28 @@
           (change)="onSelectChange($event, answer)"
           *ngFor="let answer of question.answers; trackBy: trackByFn"
           [checked]="isAnswerCorrect(answer)"
-          [class.correctselected]="isAnswerCorrect(answer) && SelectedAnswers.includes(answer.id)"
-          [class.incorrectselected]="isAnswerIncorrect(answer) && SelectedAnswers.includes(answer.id)"
-          [class.correctunselected]="isAnswerCorrect(answer) && !SelectedAnswers.includes(answer.id)"
-          [class.incorrectunselected]="isAnswerIncorrect(answer) && !SelectedAnswers.includes(answer.id)"
+          [class.correctselected]="
+            isAnswerCorrect(answer) && SelectedAnswers.includes(answer.id)
+          "
+          [class.incorrectselected]="
+            isAnswerIncorrect(answer) && SelectedAnswers.includes(answer.id)
+          "
+          [class.correctunselected]="
+            isAnswerCorrect(answer) && !SelectedAnswers.includes(answer.id)
+          "
+          [class.incorrectunselected]="
+            isAnswerIncorrect(answer) && !SelectedAnswers.includes(answer.id)
+          "
           [disabled]="ShowAnswers"
           [indeterminate]="isAnswerIncorrect(answer)"
           color="primary"
         >
-          <span markdown [data]="answer.atext"
-                [class.selected]="ShowAnswers && SelectedAnswers.includes(answer.id)"
+          <span
+            markdown
+            [data]="answer.atext"
+            [class.selected]="
+              ShowAnswers && SelectedAnswers.includes(answer.id)
+            "
           ></span>
           <span
             *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
