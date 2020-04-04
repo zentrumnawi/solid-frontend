@@ -22,6 +22,8 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SolidSkeletonConfig } from './solid-skeleton-config';
+import { UpdateService } from './services/update.service';
+import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
 
 const hidden = Math.random() < 0.1;
 
@@ -41,8 +43,9 @@ const hidden = Math.random() < 0.1;
     MatSidenavModule,
     MatToolbarModule
   ],
-  declarations: [BaseLayoutComponent, FeedbackComponent, MainMenuComponent],
-  exports: [BaseLayoutComponent]
+  declarations: [BaseLayoutComponent, FeedbackComponent, MainMenuComponent, UpdateDialogComponent],
+  exports: [BaseLayoutComponent],
+  providers: [UpdateService],
 })
 export class SolidSkeletonModule {
   static isLandingHiddenEnabled = hidden;

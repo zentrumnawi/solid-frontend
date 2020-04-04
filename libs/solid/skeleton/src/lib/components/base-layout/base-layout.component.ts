@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { UpdateService } from '../../services/update.service';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -13,7 +14,10 @@ export class BaseLayoutComponent implements OnInit {
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
   // noinspection JSUnusedLocalSymbols
-  constructor(private _breakpointObserver: BreakpointObserver) {}
+  constructor(
+    update: UpdateService,
+    private _breakpointObserver: BreakpointObserver
+  ) {}
 
   public ngOnInit() {
     this._breakpointObserver

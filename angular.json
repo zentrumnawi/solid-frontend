@@ -23,7 +23,11 @@
             "polyfills": "apps/geomat/src/polyfills.ts",
             "tsConfig": "apps/geomat/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/geomat/src/favicon.ico", "apps/geomat/src/assets"],
+            "assets": [
+              "apps/geomat/src/favicon.ico",
+              "apps/geomat/src/assets",
+              "apps/geomat/src/manifest.webmanifest"
+            ],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
               "apps/geomat/src/styles.scss"
