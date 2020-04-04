@@ -17,5 +17,5 @@
 
 @include solid-glossary-theme($app-theme);
 @include solid-profile-theme($app-theme);
-@include solid-quiz-theme($app-theme);
+@include solid-quiz-theme($app-theme, $quiz-correct, $quiz-incorrect);
 @include solid-skeleton-theme($app-theme);

@@ -14,6 +14,10 @@ mat-radio-group {
         div.mat-radio-container {
           margin-bottom: auto;
         }
+
+        &.correct {
+          font-weight: bold;
+        }
       }
 
       div.mat-radio-label-content {
@@ -34,6 +38,12 @@ mat-card-content.multiple-choice {
     width: 100%;
 
     ::ng-deep {
+      &.correctunselected,
+      &.correctselected {
+        span.mat-checkbox-label {
+          font-weight: bold;
+        }
+      }
       span.mat-checkbox-label {
         display: flex;
         flex-direction: column;
@@ -52,4 +62,9 @@ mat-card-content.multiple-choice {
       }
     }
   }
+}
+
+span.feedback {
+  font-style: italic;
+  font-weight: norma;
 }

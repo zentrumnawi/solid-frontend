@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-@mixin solid-quiz-question-theme($mat-theme) {
+@mixin solid-quiz-question-theme($mat-theme, $quiz-correct, $quiz-incorrect) {
   $accent: map-get($mat-theme, accent);
   $foreground: map-get($mat-theme, foreground);
   $warn: map-get($mat-theme, warn);
@@ -14,29 +14,39 @@
       mat-radio-button {
         &.correct {
           .mat-radio-outer-circle {
-            border-color: mat-color($quiz-correct);
+            border-color: mat-color($quiz-correct) !important;
           }
         }
-      }
 
-      &.incorrect {
-        .mat-radio-outer-circle {
-          border-color: mat-color($quiz-wrong);
+        &.incorrect {
+          .mat-radio-outer-circle {
+            border-color: mat-color($quiz-incorrect) !important;
+          }
         }
       }
     }
 
     mat-card-content.multiple-choice {
       mat-checkbox {
-        &.correct {
+        &.correctselected {
           .mat-checkbox-background {
             background-color: mat-color($quiz-correct);
           }
         }
-
-        &.incorrect {
+        &.correctunselected {
           .mat-checkbox-background {
-            background-color: mat-color($quiz-wrong);
+            background-color: mat-color($quiz-correct, lighter);
+          }
+        }
+
+        &.incorrectselected {
+          .mat-checkbox-background {
+            background-color: mat-color($quiz-incorrect);
+          }
+        }
+        &.incorrectunselected {
+          .mat-checkbox-background {
+            background-color: mat-color($quiz-incorrect, lighter);
           }
         }
       }
