@@ -55,7 +55,7 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "material-icons": "^0.3.1",
-    "rxjs": "~6.5.4",
+    "rxjs": "~6.5.5",
     "ts-optchain": "^0.1.8",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
