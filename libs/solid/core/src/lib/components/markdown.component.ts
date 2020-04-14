@@ -1,5 +1,5 @@
 import { MarkdownService } from '../services/markdown.service';
-import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, Input } from '@angular/core';
 
 /* tslint:disable:component-selector */
 @Component({
@@ -10,32 +10,28 @@ import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
   },
   styleUrls: ['./markdown.component.scss']
 })
-export class MarkdownComponent implements AfterViewInit {
-  constructor(private _md: MarkdownService, private _element: ElementRef) {}
-
+export class MarkdownComponent {
+  @Input() public set inline(value: boolean) {
+    this._inline = value;
+    this.onDataChange();
+  }
+  @HostBinding('innerHTML') public innerHTML = '';
   private _data = '';
+  private _inline = false;
+  @HostBinding('class.md-inline') public inlineClass = () => this._inline;
+  constructor(private _md: MarkdownService) {}
 
   @Input()
   public set data(value: string) {
     this._data = value;
-    this.onDataChange(value);
+    this.onDataChange();
   }
 
-  public ngAfterViewInit(): void {
-    if (!this._data) {
-      this.processRaw();
-    }
-  }
-
-  public onDataChange(data: string) {
-    if (data) {
-      this._element.nativeElement.innerHTML = this._md.compile(data);
+  public onDataChange() {
+    if (this._data) {
+      this.innerHTML = this._md.compile(this._data, this._inline);
     } else {
-      this._element.nativeElement.innerHTML = '';
+      this.innerHTML = '';
     }
-  }
-
-  private processRaw() {
-    this.onDataChange(this._element.nativeElement.innerHTML);
   }
 }

@@ -6,7 +6,6 @@ import { UpdateDialogComponent } from '../components/update-dialog/update-dialog
 @Injectable()
 export class UpdateService {
   constructor(updates: SwUpdate, dialog: MatDialog) {
-    console.log('this is sparta');
     updates.available.subscribe(event => {
       dialog.open(UpdateDialogComponent, {
         disableClose: true,

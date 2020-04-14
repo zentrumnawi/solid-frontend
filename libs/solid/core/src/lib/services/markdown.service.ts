@@ -1,4 +1,4 @@
-import { Inject, Injectable, SecurityContext } from '@angular/core';
+import { Inject, Injectable, Input, SecurityContext } from '@angular/core';
 import * as MarkdownIt from 'markdown-it';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../solid-core-config';
@@ -18,10 +18,10 @@ export class MarkdownService {
     this._markdownIt = md;
   }
 
-  public compile(data: string): any {
+  public compile(data: string, inline: boolean): any {
     return this._domSanitizer.sanitize(
       SecurityContext.HTML,
-      this._markdownIt.render(data)
+      inline ? this._markdownIt.renderInline(data) : this._markdownIt.render(data)
     );
   }
 }
