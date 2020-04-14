@@ -1,11 +1,32 @@
-<mat-list>
-  <ng-container *ngFor="let letter of Entries | async">
-    <h3 mat-subeader>{{ letter[0] }}</h3>
-    <mat-list-item *ngFor="let entry of letter[1]">
+<mat-list *ngIf="State | async as state">
+  <ng-container *ngFor="let kvp of state.sections">
+    <h3 mat-subeader>{{ kvp[0] }}</h3>
+    <mat-list-item
+      *ngFor="let entryId of kvp[1]"
+      solidGlossaryEntry
+      [refId]="entryId"
+    >
       <span class="mat-body-strong entry-header" mat-line>{{
-        entry.header
+        state.entries[entryId].term
       }}</span>
-      <p [data]="entry.description" markdown mat-line></p>
+      <div
+        [data]="state.entries[entryId].text"
+        markdown
+        [inline]="true"
+        mat-line
+      ></div>
+      <span
+        class="links"
+        *ngIf="state.entries[entryId].links.length > 0"
+        mat-line
+        >siehe:<a
+          (click)="followRef(refId)"
+          *ngFor="let refId of state.entries[entryId].links; let i = index"
+        >
+          {{ state.entries[refId].term
+          }}{{ i < state.entries[entryId].links.length - 1 ? ',' : '' }}</a
+        >
+      </span>
     </mat-list-item>
   </ng-container>
 </mat-list>

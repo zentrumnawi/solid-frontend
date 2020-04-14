@@ -13,6 +13,7 @@ mat-list {
 
   mat-list-item {
     padding: 4px;
+    transition: background-color linear 300ms;
 
     .entry-header {
       font-weight: 500;
@@ -20,6 +21,18 @@ mat-list {
 
     sup {
       top: -0.4em;
+    }
+
+    span.links {
+      margin-top: 1em;
+      font-style: italic;
+
+      a {
+        transition: color linear 150ms;
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

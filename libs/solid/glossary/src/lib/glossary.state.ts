@@ -6,23 +6,29 @@ import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 
 export interface GlossaryEntryModel {
-  id: string;
-  header: string;
-  description: string;
+  id: number;
+  term: string;
+  text: string;
+  // images are not used
+  // img?: string;
+  // img_alt?: string;
+  links: number[];
 }
 
-export interface GlossaryEntriesOrdered {
-  [key: string]: GlossaryEntryModel[];
+export interface GlossaryEntries {
+  [key: number]: GlossaryEntryModel;
 }
 
 export interface GlossaryStateModel {
-  entries: GlossaryEntriesOrdered;
+  entries: GlossaryEntries;
+  sections: [string, number[]][];
 }
 
 @State<GlossaryStateModel>({
   name: 'glossary',
   defaults: {
-    entries: {}
+    entries: {},
+    sections: []
   }
 })
 @Injectable()
@@ -33,8 +39,8 @@ export class GlossaryState {
   ) {}
 
   @Selector()
-  static entries(state: GlossaryStateModel) {
-    return Object.entries(state.entries);
+  static state(state: GlossaryStateModel) {
+    return { ...state };
   }
 
   @Action(GlossaryActions.Load)
@@ -43,18 +49,25 @@ export class GlossaryState {
       .get<GlossaryEntryModel[]>(`${this._config.apiUrl}/api/glossary`)
       .pipe(
         map(result => {
-          const ordered: GlossaryEntriesOrdered = {};
+          const entries: GlossaryEntries = {};
+          const sections: { [key: string]: number[] } = {};
           result.forEach(entry => {
-            const firstChar = entry.header[0].toUpperCase();
-            if (ordered[firstChar] === undefined) {
-              ordered[firstChar] = [];
+            entries[entry.id] = entry;
+            const firstChar = entry.term[0].toUpperCase();
+            if (sections[firstChar] === undefined) {
+              sections[firstChar] = [];
             }
-            ordered[firstChar].push(entry);
+            sections[firstChar].push(entry.id);
           });
-          return ordered;
+          Object.keys(sections).forEach(sectionKey =>
+            sections[sectionKey].sort((a, b) =>
+              entries[a].term.localeCompare(entries[b].term)
+            )
+          );
+          return { entries, sections: Object.entries(sections) };
         }),
         tap(v => {
-          ctx.patchState({ entries: v });
+          ctx.patchState(v);
         })
       );
   }

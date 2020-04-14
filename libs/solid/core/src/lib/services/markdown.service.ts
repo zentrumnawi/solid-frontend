@@ -21,7 +21,9 @@ export class MarkdownService {
   public compile(data: string, inline: boolean): any {
     return this._domSanitizer.sanitize(
       SecurityContext.HTML,
-      inline ? this._markdownIt.renderInline(data) : this._markdownIt.render(data)
+      inline
+        ? this._markdownIt.renderInline(data)
+        : this._markdownIt.render(data)
     );
   }
 }

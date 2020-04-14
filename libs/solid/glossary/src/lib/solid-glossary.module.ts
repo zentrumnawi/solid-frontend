@@ -4,9 +4,10 @@ import { GlossaryComponent } from './component/glossary.component';
 import { MatListModule } from '@angular/material/list';
 import { NgxsModule } from '@ngxs/store';
 import { GlossaryState } from './glossary.state';
+import { RefDirective } from './component/link.directive';
 
 @NgModule({
-  declarations: [GlossaryComponent],
+  declarations: [GlossaryComponent, RefDirective],
   imports: [
     SolidCoreModule,
     MatListModule,

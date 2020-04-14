@@ -1,5 +1,11 @@
 import { MarkdownService } from '../services/markdown.service';
-import { AfterViewInit, Component, ElementRef, HostBinding, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  Input
+} from '@angular/core';
 
 /* tslint:disable:component-selector */
 @Component({
