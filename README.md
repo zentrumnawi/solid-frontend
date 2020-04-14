@@ -6,8 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 | Branch   | Version    | Status                                                                                                                              | URL                                              |
 | -------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| `master` | production | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=master)](https://travis-ci.org/GeoMatDigital/web-geomat) | [Link](https://app.geomat.uni-frankfurt.de/)     |
-| `dev`    | staging    | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=dev)](https://travis-ci.org/GeoMatDigital/web-geomat)    | [Link](https://preview.geomat.uni-frankfurt.de/) |
+| `master` | production | [![Build Status](https://travis-ci.org/zentrumnawi/solid-frontend.svg?branch=master)](https://travis-ci.org/zentrumnawi/solid-frontend) | [Link](https://app.geomat.uni-frankfurt.de/)     |
+| `dev`    | staging    | [![Build Status](https://travis-ci.org/zentrumnawi/solid-frontend.svg?branch=dev)](https://travis-ci.org/zentrumnawi/solid-frontend)    | [Link](https://preview.geomat.uni-frankfurt.de/) |
 
 ## Dependabot-Status
 
