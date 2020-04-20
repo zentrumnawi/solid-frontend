@@ -3,6 +3,7 @@ import * as MarkdownIt from 'markdown-it/lib';
 
 export interface SolidCoreConfig {
   apiUrl: string;
+  newApiUrl: string;
   markdownPlugins?: ((md: MarkdownIt, ...params: any[]) => void)[];
 }
 
