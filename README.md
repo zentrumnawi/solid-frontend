@@ -7,11 +7,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 | Branch   | Version    | Status                                                                                                                              | URL                                              |
 | -------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | `master` | production | [![Build Status](https://travis-ci.org/zentrumnawi/solid-frontend.svg?branch=master)](https://travis-ci.org/zentrumnawi/solid-frontend) | [Link](https://app.geomat.uni-frankfurt.de/)     |
-| `dev`    | staging    | [![Build Status](https://travis-ci.org/zentrumnawi/solid-frontend.svg?branch=dev)](https://travis-ci.org/zentrumnawi/solid-frontend)    | [Link](https://preview.geomat.uni-frankfurt.de/) |
+| `dev`    | staging    | [![Build Status](https://travis-ci.org/zentrumnavi/solid-frontend.svg?branch=dev)](https://travis-ci.org/zentrumnawi/solid-frontend)    | [Link](https://preview.geomat.uni-frankfurt.de/) |
 
 ## Dependabot-Status
 
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=GeoMatDigital/web-geomat)](https://dependabot.com)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=zentrumnawi/solid-frontend)](https://dependabot.com)
 
 ## Development server
 
