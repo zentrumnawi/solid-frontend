@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { UpdateService } from '../../services/update.service';
+import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid/core';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -15,6 +16,7 @@ export class BaseLayoutComponent implements OnInit {
 
   // noinspection JSUnusedLocalSymbols
   constructor(
+    @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig,
     update: UpdateService,
     private _breakpointObserver: BreakpointObserver
   ) {}

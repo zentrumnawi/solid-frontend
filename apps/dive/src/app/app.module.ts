@@ -16,13 +16,18 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { SolidCoreConfig, SolidCoreModule } from '@zentrumnawi/solid/core';
 import {
-  generateAppRoutes,
+  generateAppRoutes, SolidSkeletonConfig,
   SolidSkeletonModule
 } from '@zentrumnawi/solid/skeleton';
 
 const coreConfig: SolidCoreConfig = {
   ...environment,
-  markdownPlugins: []
+  markdownPlugins: [],
+  appName: 'DIVE'
+};
+
+const skeletonConfig: SolidSkeletonConfig = {
+  feedbackEnabled: true,
 };
 
 const routes = generateAppRoutes({});
@@ -55,7 +60,7 @@ export class MyHammerConfig extends HammerGestureConfig {
       enabled: environment.production
     }),
     SolidCoreModule.forRoot(coreConfig),
-    SolidSkeletonModule.forRoot({}),
+    SolidSkeletonModule.forRoot(skeletonConfig),
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
   ],
   providers: [

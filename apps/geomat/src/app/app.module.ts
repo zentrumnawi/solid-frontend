@@ -7,7 +7,7 @@ import {
 import { ErrorHandler, Injectable, NgModule } from '@angular/core';
 
 import {
-  generateAppRoutes,
+  generateAppRoutes, SolidSkeletonConfig,
   SolidSkeletonModule
 } from '@zentrumnawi/solid/skeleton';
 import { environment } from '../environments/environment';
@@ -23,7 +23,6 @@ import { NgxsModule } from '@ngxs/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { RouterModule } from '@angular/router';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -39,7 +38,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 const coreConfig: SolidCoreConfig = {
   ...environment,
-  markdownPlugins: [superscriptPlugin, subscriptPlugin, overlinePlugin]
+  markdownPlugins: [superscriptPlugin, subscriptPlugin, overlinePlugin],
+  appName: 'GeoMat',
+};
+
+const skeletonConfig: SolidSkeletonConfig = {
+  feedbackEnabled: true,
 };
 
 @Injectable()
@@ -103,7 +107,7 @@ const routes = generateAppRoutes({
       enabled: environment.production
     }),
     SolidCoreModule.forRoot(coreConfig),
-    SolidSkeletonModule.forRoot({}),
+    SolidSkeletonModule.forRoot(skeletonConfig),
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     MatButtonModule,
     MatCardModule,
