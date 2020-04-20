@@ -5,8 +5,9 @@ import * as version from '../environments/version.json';
 
 if (environment.production) {
   Sentry.init({
-    dsn: environment.sentry,
+    dsn: environment.sentry.dsn,
     release: (!environment.preview && version.semver?.version) || 'dev',
+    environment: environment.sentry.environment,
     beforeSend(event) {
       // Check if it is an exception, if so, show the report dialog
       if (event.exception) {

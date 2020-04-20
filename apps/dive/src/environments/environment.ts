@@ -3,14 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  staging: false,
   production: false,
   apiUrl: 'http://localhost:4200',
   newApiUrl: 'http://localhost:4200',
-  sentry: {
-    environment: '',
-    dsn: ''
-  },
+  sentry: '',
   preview: false
 };
 

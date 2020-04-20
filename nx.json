@@ -32,6 +32,13 @@
     },
     "solid-profile": {
       "tags": ["solid"]
+    },
+    "dive": {
+      "tags": []
+    },
+    "dive-e2e": {
+      "tags": [],
+      "implicitDependencies": ["dive"]
     }
   }
 }
