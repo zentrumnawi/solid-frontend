@@ -77,7 +77,7 @@
     "@types/jasminewd2": "~2.0.8",
     "@types/jest": "^25.2.1",
     "@types/markdown-it": "^10.0.0",
-    "@types/node": "^13.13.1",
+    "@types/node": "^13.13.2",
     "@types/punycode": "^2.1.0",
     "codelyzer": "^5.2.2",
     "cypress": "^4.4.1",
