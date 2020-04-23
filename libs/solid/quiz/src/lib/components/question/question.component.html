@@ -2,9 +2,9 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ question.tags.join(' ') }}</mat-card-title>
-      <mat-card-subtitle>{{ question.qtext }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ question.text }}</mat-card-subtitle>
     </mat-card-header>
-    <ng-container [ngSwitch]="question.qtype">
+    <ng-container [ngSwitch]="question.type">
       <mat-card-content *ngSwitchCase="QuestionTypes.SingleChoice">
         <mat-radio-group
           (change)="onRadioChange($event)"
@@ -20,7 +20,7 @@
             ><p>test {{ isAnswerCorrect(answer) ? 'yes' : 'no' }}</p>
             <span
               markdown
-              [data]="answer.atext"
+              [data]="answer.text"
               [class.selected]="
                 ShowAnswers && SelectedAnswers.includes(answer.id)
               "
@@ -64,7 +64,7 @@
         >
           <span
             markdown
-            [data]="answer.atext"
+            [data]="answer.text"
             [class.selected]="
               ShowAnswers && SelectedAnswers.includes(answer.id)
             "

@@ -1,15 +1,17 @@
 export interface QuizQuestion {
   id: number;
-  qtype: QuizQuestionType;
+  type: QuizQuestionType;
   difficulty: 1 | 2 | 3 | 4 | 5;
   answers: QuizAnswer[];
+  img: string | null;
+  img_alt: string;
   tags: string[];
-  qtext: string;
+  text: string;
 }
 
 export interface QuizAnswer {
   id: number;
-  atext: string;
+  text: string;
   correct: boolean;
   feedback_correct: string;
   feedback_incorrect: string;

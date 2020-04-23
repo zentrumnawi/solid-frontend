@@ -1,5 +1,6 @@
 import {
   BrowserModule,
+  DomSanitizer,
   HAMMER_GESTURE_CONFIG,
   HammerGestureConfig
 } from '@angular/platform-browser';
@@ -16,9 +17,11 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { SolidCoreConfig, SolidCoreModule } from '@zentrumnawi/solid/core';
 import {
-  generateAppRoutes, SolidSkeletonConfig,
+  generateAppRoutes,
+  SolidSkeletonConfig,
   SolidSkeletonModule
 } from '@zentrumnawi/solid/skeleton';
+import { MatIconRegistry } from '@angular/material/icon';
 
 const coreConfig: SolidCoreConfig = {
   ...environment,
@@ -27,10 +30,14 @@ const coreConfig: SolidCoreConfig = {
 };
 
 const skeletonConfig: SolidSkeletonConfig = {
-  feedbackEnabled: true,
+  feedbackEnabled: true
 };
 
-const routes = generateAppRoutes({});
+const routes = generateAppRoutes({
+  quiz: {
+    svgIcon: 'quiz'
+  }
+});
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
@@ -71,4 +78,13 @@ export class MyHammerConfig extends HammerGestureConfig {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(registry: MatIconRegistry, url: DomSanitizer) {
+    const addIcon = (name: string) =>
+      registry.addSvgIcon(
+        name,
+        url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`)
+      );
+    addIcon('quiz');
+  }
+}

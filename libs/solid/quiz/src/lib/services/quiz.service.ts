@@ -15,7 +15,7 @@ export class QuizService {
 
   public loadQuestions() {
     this._http
-      .get<QuizQuestion[]>(`${this._config.apiUrl}/api/quizquestion`)
+      .get<QuizQuestion[]>(`${this._config.newApiUrl}/api/quizquestion`)
       .subscribe(data => {
         this._store.dispatch(new QuizQuestionsAdd(data));
       });

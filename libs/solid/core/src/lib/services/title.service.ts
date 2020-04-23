@@ -12,8 +12,8 @@ export class TitleService {
   constructor(
     @Inject(SOLID_CORE_CONFIG) private cfg: SolidCoreConfig,
     private _title: Title,
-    actions: Actions,
-    ) {
+    actions: Actions
+  ) {
     actions
       .pipe(
         ofActionSuccessful(RouterNavigation),

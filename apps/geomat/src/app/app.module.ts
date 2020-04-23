@@ -7,7 +7,8 @@ import {
 import { ErrorHandler, Injectable, NgModule } from '@angular/core';
 
 import {
-  generateAppRoutes, SolidSkeletonConfig,
+  generateAppRoutes,
+  SolidSkeletonConfig,
   SolidSkeletonModule
 } from '@zentrumnawi/solid/skeleton';
 import { environment } from '../environments/environment';
@@ -39,11 +40,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 const coreConfig: SolidCoreConfig = {
   ...environment,
   markdownPlugins: [superscriptPlugin, subscriptPlugin, overlinePlugin],
-  appName: 'GeoMat',
+  appName: 'GeoMat'
 };
 
 const skeletonConfig: SolidSkeletonConfig = {
-  feedbackEnabled: true,
+  feedbackEnabled: true
 };
 
 @Injectable()
