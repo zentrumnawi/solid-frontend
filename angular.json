@@ -419,6 +419,7 @@
               "apps/dive/src/manifest.webmanifest"
             ],
             "styles": [
+              "./node_modules/material-icons/iconfont/material-icons.scss",
               "apps/dive/src/styles.scss"
             ],
             "scripts": [],

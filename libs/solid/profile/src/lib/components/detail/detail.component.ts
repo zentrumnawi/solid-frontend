@@ -1,5 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { ProfileEntry, ProfileCategory } from '../../state/profile.model';
+import {
+  ProfileEntry,
+  ProfileCategory,
+  ProfileNEW,
+  TreeNode,
+  ProfileProperty,
+  ProfilePropertyType
+} from '../../state/profile.model';
+import { ProfileState } from '../../state/profile.state';
+import { Observable } from 'rxjs';
+import { Select } from '@ngxs/store';
 
 @Component({
   selector: 'solid-profile-detail',
@@ -7,20 +17,24 @@ import { ProfileEntry, ProfileCategory } from '../../state/profile.model';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent {
-  @Input() public category!: ProfileCategory;
+  public PropertyTypes = ProfilePropertyType;
+  @Select(ProfileState.selectDefinition) $ProfileDefinition!: Observable<
+    ProfileProperty[]
+  >;
+  @Input() public node!: TreeNode;
   public ImageLoaded = [false];
   public ImageSelected = 0;
   public ImageStartIndex = 0;
   public ImageEndIndex = 0;
 
-  private _profile!: ProfileEntry;
+  private _profile!: ProfileNEW;
 
   public get profile() {
     return this._profile;
   }
 
   @Input()
-  public set profile(profile: ProfileEntry) {
+  public set profile(profile: ProfileNEW) {
     this._profile = profile;
     this.ImageLoaded = profile.images.map(_ => false);
     this.onImageSelect(0);
@@ -42,6 +56,22 @@ export class DetailComponent {
     } else {
       this.ImageStartIndex = index - 3;
       this.ImageEndIndex = index + 3;
+    }
+  }
+
+  public shouldDisplayProperty(property: ProfileProperty, profile_obj: any) {
+    if (property.required) {
+      return true;
+    }
+    const val = profile_obj[property.key];
+    switch (property.type) {
+      case ProfilePropertyType.List:
+        return Array.isArray(val) && val.length > 0;
+      case ProfilePropertyType.Group:
+      case ProfilePropertyType.String:
+      case ProfilePropertyType.Integer:
+      case ProfilePropertyType.Boolean:
+        return val !== undefined;
     }
   }
 }

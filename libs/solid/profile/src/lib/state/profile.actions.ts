@@ -1,7 +1,12 @@
-import { Profile } from './profile.model';
+export namespace ProfileActions {
+  export class LoadProfiles {
+    static readonly type = '[Profile] LoadProfiles';
 
-export class ProfileSetAction {
-  static readonly type = '[Profile] SetEntries';
+    constructor() {}
+  }
 
-  constructor(public entries: Profile[]) {}
+  export class LoadDefinition {
+    static readonly type = '[Profile] LoadDefinition';
+    constructor() {}
+  }
 }

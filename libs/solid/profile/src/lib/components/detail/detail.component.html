@@ -44,42 +44,53 @@
     />
   </div>
 </ng-template>
-<p class="hweading">Systematik</p>
-<p>{{ category.title }}</p>
-<!--</ng-container>-->
-<ng-container *ngIf="profile.variety">
-  <p class="heading">Mineralname</p>
-  <p>{{ profile.mineralName }}</p>
+<ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
+  <ng-container *ngFor="let property of profileDefinitions">
+    <ng-container *ngIf="property.type !== PropertyTypes.Group">
+      <ng-container
+        *ngTemplateOutlet="
+          propertyTemplate;
+          context: { profile_obj: profile, property: property }
+        "
+      ></ng-container>
+    </ng-container>
+  </ng-container>
+  <mat-accordion [multi]="false">
+    <ng-container *ngFor="let property of profileDefinitions">
+      <mat-expansion-panel *ngIf="property.type === PropertyTypes.Group">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ property.title }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let childProperty of property.properties">
+          <ng-container
+            *ngTemplateOutlet="
+              propertyTemplate;
+              context: {
+                profile_obj: profile[property.key],
+                property: childProperty
+              }
+            "
+          ></ng-container>
+        </ng-container>
+      </mat-expansion-panel>
+    </ng-container>
+  </mat-accordion>
 </ng-container>
-<ng-container
-  *ngIf="profile.trivialName && profile.trivialName !== profile.mineralName"
+<ng-template
+  #propertyTemplate
+  let-profile_obj="profile_obj"
+  let-property="property"
 >
-  <p class="heading">Trivialname</p>
-  <p>{{ profile.trivialName }}</p>
-</ng-container>
-<p class="heading">chemische Formel</p>
-<p [data]="profile.chemicalFormula" markdown></p>
-<p class="heading">Kristallsystem</p>
-<p *ngFor="let crystalSystem of profile.crystalSystems">
-  {{ crystalSystem.name }}
-</p>
-<p class="heading">Mohshärte</p>
-<p>{{ profile.mohsScale }}</p>
-<p class="heading">Dichte</p>
-<p>{{ profile.density }}</p>
-<p class="heading">Spaltbarkeit</p>
-<p *ngFor="let cleavage of profile.cleavage">
-  {{ cleavage.cleavage }} {{ cleavage.coordinates }}
-</p>
-<p class="heading">Bruch</p>
-<p *ngFor="let fracture of profile.fractures">{{ fracture }}</p>
-<p class="heading">Farbe</p>
-<p>{{ profile.color }}</p>
-<p class="heading">Glanz</p>
-<p *ngFor="let lustre of profile.lustres">{{ lustre }}</p>
-<p class="heading">Strichfarbe</p>
-<p>{{ profile.streak }}</p>
-<ng-container *ngIf="profile.other">
-  <p class="heading">Zusatzinformationen</p>
-  <p [data]="profile.other" markdown></p>
-</ng-container>
+  <ng-container
+    *ngIf="shouldDisplayProperty(property, profile_obj)"
+    [ngSwitch]="property.type"
+  >
+    <p class="heading">{{ property.title }}</p>
+    <p *ngSwitchCase="PropertyTypes.String">{{ profile_obj[property.key] }}</p>
+    <p *ngSwitchCase="PropertyTypes.Integer">{{ profile_obj[property.key] }}</p>
+    <p *ngSwitchCase="PropertyTypes.Boolean">{{ profile_obj[property.key] }}</p>
+    <ng-container *ngSwitchCase="PropertyTypes.List">
+      <p *ngFor="let val of profile_obj[property.key]">{{ val }}</p>
+    </ng-container>
+  </ng-container>
+</ng-template>

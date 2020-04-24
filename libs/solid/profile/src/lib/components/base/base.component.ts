@@ -12,13 +12,17 @@ import { ProfileState } from '../../state/profile.state';
 import {
   ProfileEntry,
   Profile,
-  ProfileCategory
+  ProfileCategory,
+  TreeNodeApi,
+  TreeNode,
+  ProfileNEW
 } from '../../state/profile.model';
 import { FormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { ProfileActions } from '../../state/profile.actions';
 
 @Component({
   selector: 'solid-profile-base',
@@ -27,31 +31,33 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 })
 export class BaseComponent implements OnInit, AfterViewInit {
   @Select(ProfileState.selectTree)
-  public $profilesTree!: Observable<Profile[]>;
+  public $profilesTree!: Observable<TreeNode[]>;
   @Select(ProfileState.selectFlat)
-  public $profilesFlat!: Observable<ProfileEntry[]>;
-  @Select(ProfileState.selectProfileAndCategory)
+  public $profilesFlat!: Observable<ProfileNEW[]>;
+  @Select(ProfileState.selectProfileAndNode)
   public $profileAndCategorySelector!: Observable<
-    (
-      profileId?: number
-    ) => { profile: ProfileEntry; category: ProfileCategory } | null
+    (profileId?: number) => { profile: ProfileNEW; node: TreeNode } | null
   >;
   @Select((s: any) => s.router.state.params)
   public $routerParams!: Observable<{ [key: string]: string }>;
-  public ProfilesFlatFiltered = new BehaviorSubject<ProfileEntry[]>([]);
+  public ProfilesFlatFiltered = new BehaviorSubject<ProfileNEW[]>([]);
   @ViewChild('contentContainer', { static: false })
   public ContentContainer!: ElementRef;
   public SplitLayout = false;
   public Filter = new FormControl('');
   public FilterValue = new BehaviorSubject<string>('');
-  public SelectedProfile: ProfileEntry | null = null;
-  public SelectedCategory: ProfileCategory | null = null;
+  public SelectedProfile: ProfileNEW | null = null;
+  public SelectedNode: TreeNode | null = null;
   public SwipeLeft = -1;
   public SwipeRight = -1;
   public View = 'tree';
 
   constructor(private _service: ProfileService, private _store: Store) {
-    this._service.loadProfiles();
+    // this._service.loadProfiles();
+    this._store.dispatch([
+      new ProfileActions.LoadDefinition(),
+      new ProfileActions.LoadProfiles()
+    ]);
   }
 
   ngOnInit(): void {
@@ -75,29 +81,24 @@ export class BaseComponent implements OnInit, AfterViewInit {
             params.id !== undefined && params.id !== ''
               ? parseInt(params.id, 10)
               : undefined;
-          const profile = selector(profileId);
+          const profileAndNode = selector(profileId);
 
           // filter profiles
           const regExp = new RegExp(filterStr, 'i');
           const profilesFlatFiltered = flat.filter(p => {
-            if (p.mineralName.match(regExp)) {
+            if (p.name.match(regExp)) {
               return true;
             }
-            if (p.trivialName && p.trivialName.match(regExp)) {
-              return true;
-            }
-            if (p.variety && p.variety.match(regExp)) {
-              return true;
-            }
-            return false;
+            return !!p.trivial_name.match(regExp);
+            // TODO: Filter varierety for geomat
           });
 
-          // no profile selecte
-          if (!profileId || !profile) {
+          // no profile selected
+          if (!profileId || !profileAndNode) {
             return {
               view: params.view,
               selectedProfile: null,
-              selectedCategory: null,
+              selectedNode: null,
               profilesFlatFiltered,
               swipeRight: -1,
               swipeLeft: -1
@@ -116,22 +117,25 @@ export class BaseComponent implements OnInit, AfterViewInit {
               swipeRight = profilesFlatFiltered[flatIndex + 1]?.id || -1;
             }
           } else {
-            const index = profile.category.children.indexOf(profile.profile);
+            // TODO: Handle indices for mixed leaf nodes and categories
+            const index = profileAndNode.node.profiles.indexOf(
+              profileAndNode.profile
+            );
             if (!this.Filter.value) {
               swipeLeft =
-                (profile.category.children.find(
-                  (p, i) => i === index - 1 && p.type === 'entry'
+                (profileAndNode.node.profiles.find(
+                  (p, i) => i === index - 1
                 ) as ProfileEntry | undefined)?.id || -1;
               swipeRight =
-                (profile.category.children.find(
-                  (p, i) => i > index && p.type === 'entry'
-                ) as ProfileEntry | undefined)?.id || -1;
+                (profileAndNode.node.profiles.find((p, i) => i > index) as
+                  | ProfileEntry
+                  | undefined)?.id || -1;
             }
           }
           return {
             view: params.view,
-            selectedProfile: profile.profile,
-            selectedCategory: profile.category,
+            selectedProfile: profileAndNode.profile,
+            selectedNode: profileAndNode.node,
             profilesFlatFiltered,
             swipeRight,
             swipeLeft
@@ -141,7 +145,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
       .subscribe(v => {
         this.View = v.view;
         this.SelectedProfile = v.selectedProfile;
-        this.SelectedCategory = v.selectedCategory;
+        this.SelectedNode = v.selectedNode;
         this.ProfilesFlatFiltered.next(v.profilesFlatFiltered);
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
