@@ -388,7 +388,10 @@
               "apps/dive/src/assets",
               "apps/dive/src/manifest.webmanifest"
             ],
-            "styles": ["apps/dive/src/styles.scss"],
+            "styles": [
+              "./node_modules/material-icons/iconfont/material-icons.scss",
+              "apps/dive/src/styles.scss"
+            ],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [

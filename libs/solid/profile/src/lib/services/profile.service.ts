@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ProfileSetAction } from '../state/profile.actions';
+import { ProfileActions } from '../state/profile.actions';
 import {
   ProfileEntry,
   MineralProfileApi,
@@ -19,14 +19,14 @@ export class ProfileService {
   ) {}
 
   public loadProfiles() {
-    if (this._store.selectSnapshot(state => state.profile).length === 0) {
-      this._http
-        .get<NodeApi[]>(`${this._config.apiUrl}/api/profiles/`)
-        .subscribe(data => {
-          const categories: ProfileCategory[] = this.mapTree(data);
-          this._store.dispatch(new ProfileSetAction(categories));
-        });
-    }
+    // if (this._store.selectSnapshot(state => state.profile).length === 0) {
+    //   this._http
+    //     .get<NodeApi[]>(`${this._config.apiUrl}/api/profiles/`)
+    //     .subscribe(data => {
+    //       const categories: ProfileCategory[] = this.mapTree(data);
+    //       this._store.dispatch(new ProfileActions.LoadProfiles(categories));
+    //     });
+    // }
   }
 
   private mapTree(children: NodeApi[]): ProfileCategory[] {

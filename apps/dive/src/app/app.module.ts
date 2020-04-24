@@ -36,6 +36,9 @@ const skeletonConfig: SolidSkeletonConfig = {
 const routes = generateAppRoutes({
   quiz: {
     svgIcon: 'quiz'
+  },
+  profile: {
+    svgIcon: 'profile'
   }
 });
 
@@ -86,5 +89,6 @@ export class AppModule {
         url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`)
       );
     addIcon('quiz');
+    addIcon('profile');
   }
 }

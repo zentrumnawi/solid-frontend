@@ -17,8 +17,12 @@ import {
   MatTreeFlattener
 } from '@angular/material/tree';
 import { Observable, of as observableOf } from 'rxjs';
-import { ProfileService } from '../../services/profile.service';
-import { Image, Profile } from '../../state/profile.model';
+import {
+  Image,
+  Profile,
+  ProfileNEW,
+  TreeNode
+} from '../../state/profile.model';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 import { SelectedDirective } from '../selected.directive';
@@ -51,24 +55,23 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChildren(SelectedDirective, { read: ElementRef })
   public selectedElements!: QueryList<ElementRef>;
   @Input() selectedProfileId?: number;
-  @Input() profiles!: Observable<Profile[]>;
+  @Input() profiles!: Observable<TreeNode[]>;
   @Output() select = new EventEmitter<number>();
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
-  public DataSource: MatTreeFlatDataSource<Profile, FlatTreeNode>;
+  public DataSource: MatTreeFlatDataSource<TreeNode | ProfileNEW, FlatTreeNode>;
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   public readonly TreeControl: FlatTreeControl<FlatTreeNode>;
 
   /** The TreeFlattener is used to generate the flat list of items from hierarchical data. */
-  private readonly _treeFlattener: MatTreeFlattener<Profile, FlatTreeNode>;
+  private readonly _treeFlattener: MatTreeFlattener<
+    TreeNode | ProfileNEW,
+    FlatTreeNode
+  >;
 
   private _selectedNode: CategoryNode | EntryNode | null = null;
 
-  constructor(
-    private _service: ProfileService,
-    private _store: Store,
-    private _route: ActivatedRoute
-  ) {
+  constructor(private _store: Store, private _route: ActivatedRoute) {
     this._treeFlattener = new MatTreeFlattener(
       TreeComponent.transformer,
       TreeComponent.getLevel,
@@ -87,23 +90,25 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   /** Transform the data to something the tree can read. */
-  static transformer(node: Profile, level: number): FlatTreeNode {
+  static transformer(node: TreeNode | ProfileNEW, level: number): FlatTreeNode {
     if (node.type === 'category') {
       return {
-        title: node.title,
+        title: node.node_name,
         type: 'category',
-        info: node.description,
+        info: node.info_text,
         level: level,
         expandable: true
       };
     } else {
       return {
-        title: node.variety ? node.variety : node.mineralName,
+        // title: node.variety ? node.variety : node.mineralName,
+        title: node.name,
         id: node.id,
         type: 'entry',
         level: level,
         expandable: false,
-        images: node.images
+        images: []
+        // images: node.images
       };
     }
   }
@@ -119,9 +124,9 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   /** Get the children for the node. */
-  static getChildren(node: Profile) {
+  static getChildren(node: TreeNode | ProfileNEW) {
     if (node.type === 'category') {
-      return observableOf(node.children);
+      return [...node.leaf_nodes, ...node.profiles];
     } else {
       return null;
     }

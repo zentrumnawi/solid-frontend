@@ -32,11 +32,7 @@
     </button>
   </mat-toolbar>
   <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
-    {{
-      SelectedProfile.variety
-        ? SelectedProfile.variety
-        : SelectedProfile.mineralName
-    }}
+    {{ SelectedProfile.display_name }}
     <div class="spacer"></div>
     <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
       <mat-icon>navigate_before</mat-icon>
@@ -63,16 +59,16 @@
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
       ></solid-profile-tree>
-      <solid-profile-list
-        *ngSwitchDefault
-        (select)="selectProfile($event)"
-        [profiles]="ProfilesFlatFiltered.asObservable()"
-      ></solid-profile-list>
+      <!--      <solid-profile-list-->
+      <!--        *ngSwitchDefault-->
+      <!--        (select)="selectProfile($event)"-->
+      <!--        [profiles]="ProfilesFlatFiltered.asObservable()"-->
+      <!--      ></solid-profile-list>-->
     </ng-container>
   </ng-container>
-  <ng-container *ngIf="SelectedProfile && SelectedCategory">
+  <ng-container *ngIf="SelectedProfile && SelectedNode">
     <solid-profile-detail
-      [category]="SelectedCategory"
+      [node]="SelectedNode"
       [profile]="SelectedProfile"
     ></solid-profile-detail>
   </ng-container>

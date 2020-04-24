@@ -7,6 +7,35 @@ export interface Image {
   thumbnail: string;
 }
 
+export interface ProfilePropertyBase {
+  key: string;
+  required: boolean;
+  title: string;
+}
+
+export interface ProfilePropertySimple extends ProfilePropertyBase {
+  type:
+    | ProfilePropertyType.String
+    | ProfilePropertyType.Integer
+    | ProfilePropertyType.Boolean
+    | ProfilePropertyType.List;
+}
+
+export interface ProfilePropertyGroup extends ProfilePropertyBase {
+  type: ProfilePropertyType.Group;
+  properties: ProfileProperty[];
+}
+
+export enum ProfilePropertyType {
+  String,
+  Integer,
+  Boolean,
+  List,
+  Group
+}
+
+export type ProfileProperty = ProfilePropertySimple | ProfilePropertyGroup;
+
 export interface ProfileCategory {
   type: 'category';
   title: string;
@@ -31,6 +60,32 @@ export interface ProfileEntry {
   fractures: string[];
   lustres: string[];
   other: string | null;
+}
+
+export interface TreeNode extends TreeNodeApi {
+  type: 'category';
+  leaf_nodes: TreeNode[];
+  profiles: ProfileNEW[];
+}
+
+export interface TreeNodeApi {
+  node_name: string;
+  leaf_nodes: TreeNodeApi[];
+  profiles: ProfileApi[];
+  info_text: string;
+}
+
+export interface ProfileNEW extends ProfileApi {
+  type: 'profile';
+  images: Image[];
+  display_name: string;
+  [key: string]: any;
+}
+
+export interface ProfileApi {
+  id: number;
+  name: string;
+  trivial_name: string;
 }
 
 export interface NodeApi {

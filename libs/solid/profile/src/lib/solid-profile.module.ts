@@ -20,6 +20,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTreeModule } from '@angular/material/tree';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SelectedDirective } from './components/selected.directive';
+import { ProfileDefinitionService } from './services/profile-definition.service';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { SelectedDirective } from './components/selected.directive';
     SolidProfileRoutingModule,
     NgxsModule.forFeature([ProfileState]),
     MatButtonModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -45,7 +48,7 @@ import { SelectedDirective } from './components/selected.directive';
     MatToolbarModule,
     MatTreeModule
   ],
-  providers: [ProfileService]
+  providers: [ProfileService, ProfileDefinitionService]
 })
 export class SolidProfileModule {
   constructor(registry: MatIconRegistry, url: DomSanitizer) {
