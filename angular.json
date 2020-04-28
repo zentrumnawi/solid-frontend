@@ -130,7 +130,10 @@
               "apps/geomat/tsconfig.app.json",
               "apps/geomat/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/geomat/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/geomat/**"
+            ]
           }
         },
         "test": {
@@ -141,6 +144,10 @@
             "passWithNoTests": true,
             "setupFile": "apps/geomat/src/test-setup.ts"
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     },
@@ -165,8 +172,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**"]
+            "tsConfig": [
+              "apps/geomat-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/geomat-e2e/**"
+            ]
           }
         }
       }
@@ -184,7 +196,10 @@
               "libs/solid/core/tsconfig.lib.json",
               "libs/solid/core/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/core/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/core/**"
+            ]
           }
         },
         "test": {
@@ -216,7 +231,10 @@
               "libs/solid/quiz/tsconfig.lib.json",
               "libs/solid/quiz/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/quiz/**"
+            ]
           }
         },
         "test": {
@@ -248,7 +266,10 @@
               "libs/solid/slideshow/tsconfig.lib.json",
               "libs/solid/slideshow/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/slideshow/**"
+            ]
           }
         },
         "test": {
@@ -280,7 +301,10 @@
               "libs/solid/glossary/tsconfig.lib.json",
               "libs/solid/glossary/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/glossary/**"
+            ]
           }
         },
         "test": {
@@ -312,7 +336,10 @@
               "libs/solid/skeleton/tsconfig.lib.json",
               "libs/solid/skeleton/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/skeleton/**"
+            ]
           }
         },
         "test": {
@@ -344,7 +371,10 @@
               "libs/solid/profile/tsconfig.lib.json",
               "libs/solid/profile/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/profile/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/profile/**"
+            ]
           }
         },
         "test": {
@@ -388,7 +418,9 @@
               "apps/dive/src/assets",
               "apps/dive/src/manifest.webmanifest"
             ],
-            "styles": ["apps/dive/src/styles.scss"],
+            "styles": [
+              "apps/dive/src/styles.scss"
+            ],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -487,7 +519,10 @@
               "apps/dive/tsconfig.app.json",
               "apps/dive/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/dive/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/dive/**"
+            ]
           }
         },
         "test": {
@@ -497,6 +532,13 @@
             "tsConfig": "apps/dive/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "apps/dive/src/test-setup.ts"
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/solid-frontend/",
+            "repo": "https://github.com/zentrumnawi/dive-frontend-preview.git"
           }
         }
       }
@@ -522,8 +564,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/dive-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/dive-e2e/**"]
+            "tsConfig": [
+              "apps/dive-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/dive-e2e/**"
+            ]
           }
         }
       }

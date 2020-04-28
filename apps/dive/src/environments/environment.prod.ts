@@ -2,6 +2,7 @@ export const environment = {
   preview: false,
   production: true,
   apiUrl: 'https://dive-backend-staging.physikelearning.de',
+  newApiUrl: 'https://dive-backend-staging.physikelearning.de',
   sentry: {
     environment: 'dive-prod',
     dsn:
