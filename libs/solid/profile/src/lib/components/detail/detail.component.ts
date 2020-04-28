@@ -72,7 +72,7 @@ export class DetailComponent {
       case ProfilePropertyType.String:
       case ProfilePropertyType.Integer:
       case ProfilePropertyType.Boolean:
-        return val !== undefined;
+        return val !== undefined && val !== '';
     }
   }
 }
