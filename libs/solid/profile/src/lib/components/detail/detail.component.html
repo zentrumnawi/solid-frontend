@@ -45,17 +45,24 @@
   </div>
 </ng-template>
 <ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
-  <ng-container *ngFor="let property of profileDefinitions">
-    <ng-container *ngIf="property.type !== PropertyTypes.Group">
-      <ng-container
-        *ngTemplateOutlet="
-          propertyTemplate;
-          context: { profile_obj: profile, property: property }
-        "
-      ></ng-container>
-    </ng-container>
-  </ng-container>
-  <mat-accordion [multi]="false">
+  <mat-accordion [multi]="false" displayMode="flat">
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header
+        ><mat-panel-title
+          >Allgemein</mat-panel-title
+        ></mat-expansion-panel-header
+      >
+      <ng-container *ngFor="let property of profileDefinitions">
+        <ng-container *ngIf="property.type !== PropertyTypes.Group">
+          <ng-container
+            *ngTemplateOutlet="
+              propertyTemplate;
+              context: { profile_obj: profile, property: property }
+            "
+          ></ng-container>
+        </ng-container>
+      </ng-container>
+    </mat-expansion-panel>
     <ng-container *ngFor="let property of profileDefinitions">
       <mat-expansion-panel *ngIf="property.type === PropertyTypes.Group">
         <mat-expansion-panel-header>
