@@ -30,4 +30,4 @@ jobs:
     - name: Deploy dive preview
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: yarn ng -- deploy --project=dive --base-href=/dive-frontend-preview/ --name="Github Actions" --email="gh@example.com" --no-silent
+      run: yarn ng -- deploy --project=dive --base-href=/solid-frontend/ --name="Github Actions" --email="gh@example.com" --no-silent
