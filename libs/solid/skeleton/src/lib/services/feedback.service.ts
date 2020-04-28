@@ -39,7 +39,7 @@ export class FeedbackService {
 
   private submitFeedback(value: any): Observable<boolean> {
     return this._http.post<boolean>(
-      `${this._config.apiUrl}/api/feedback`,
+      `${this._config.newApiUrl}/api/contact`,
       value
     );
   }

@@ -3,7 +3,7 @@
   <form [formGroup]="Form">
     <mat-form-field>
       <input
-        formControlName="username"
+        formControlName="name"
         matInput
         placeholder="Name"
         type="text"
@@ -11,30 +11,22 @@
     </mat-form-field>
     <mat-form-field>
       <input
-        formControlName="userEmail"
+        formControlName="email"
         matInput
         placeholder="Email"
         type="email"
       />
     </mat-form-field>
     <mat-form-field>
-      <mat-select
-        formControlName="emailTitle"
-        placeholder="Art Deiner Nachricht"
-      >
-        <mat-option value="Feedback">Feedback</mat-option>
-        <mat-option value="Supportanfrage">Supportanfrage</mat-option>
-        <mat-option value="Fehlermeldung">Fehlermeldung</mat-option>
-        <mat-option value="neues Feature">neues Feature</mat-option>
-      </mat-select>
+      <input matInput formControlName="subject" placeholder="Betreff"/>
     </mat-form-field>
     <mat-form-field>
       <textarea
         cdkAutosizeMinRows="8"
         cdkTextareaAutosize
-        formControlName="emailContent"
+        formControlName="message"
         matInput
-        placeholder="Anmerkungen"
+        placeholder="Nachricht"
       ></textarea>
     </mat-form-field>
   </form>
@@ -42,7 +34,7 @@
 <div mat-dialog-actions>
   <div class="spacer"></div>
   <button (click)="onCancelClick()" mat-button>Abbrechen</button>
-  <button (click)="onOkClick()" [disabled]="!Form.valid" mat-button>
+  <button (click)="onOkClick()" mat-button>
     Abschicken
   </button>
 </div>

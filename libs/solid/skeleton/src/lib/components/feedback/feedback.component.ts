@@ -20,10 +20,10 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     fb: FormBuilder
   ) {
     this.Form = fb.group({
-      username: [''],
-      userEmail: ['', [Validators.required, Validators.email]],
-      emailTitle: ['Feedback', Validators.required],
-      emailContent: ['']
+      name: [''],
+      email: ['', [Validators.required, Validators.email]],
+      subject: ['Feedback', Validators.required],
+      message: ['']
     });
   }
 
@@ -32,9 +32,13 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   }
 
   public onOkClick() {
-    this._submitFeedback(this.Form.value).subscribe(res => {
-      this._ref.close();
-    });
+    if (!this.Form.valid) {
+      this.Form.markAllAsTouched();
+    } else {
+      this._submitFeedback(this.Form.value).subscribe(res => {
+        this._ref.close();
+      });
+    }
   }
 
   public ngOnDestroy(): void {
