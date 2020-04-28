@@ -22,6 +22,7 @@ import {
   SolidSkeletonModule
 } from '@zentrumnawi/solid/skeleton';
 import { MatIconRegistry } from '@angular/material/icon';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 const coreConfig: SolidCoreConfig = {
   ...environment,
@@ -36,7 +37,8 @@ const skeletonConfig: SolidSkeletonConfig = {
 const routes = generateAppRoutes({
   quiz: {
     svgIcon: 'quiz'
-  }
+  },
+  privacy: { component: PrivacyComponent },
 });
 
 @Injectable()
@@ -51,7 +53,7 @@ export class MyHammerConfig extends HammerGestureConfig {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PrivacyComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
