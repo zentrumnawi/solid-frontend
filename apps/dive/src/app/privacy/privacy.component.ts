@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'zentrumnawi-privacy',
+  selector: 'dive-privacy',
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.scss']
 })
 export class PrivacyComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

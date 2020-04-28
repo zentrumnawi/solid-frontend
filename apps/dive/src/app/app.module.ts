@@ -38,7 +38,7 @@ const routes = generateAppRoutes({
   quiz: {
     svgIcon: 'quiz'
   },
-  privacy: { component: PrivacyComponent },
+  privacy: { component: PrivacyComponent }
 });
 
 @Injectable()
