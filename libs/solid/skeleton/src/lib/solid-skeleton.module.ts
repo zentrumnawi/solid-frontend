@@ -1,5 +1,5 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { SOLID_CORE_CONFIG, SolidCoreModule } from '@zentrumnawi/solid/core';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
 import { SolidGlossaryModule } from '@zentrumnawi/solid/glossary';
@@ -59,7 +59,7 @@ export class SolidSkeletonModule {
     const addIcon = (name: string) =>
       registry.addSvgIcon(
         name,
-        url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`)
+        url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`)
       );
     addIcon('glossary');
     addIcon('privacy');

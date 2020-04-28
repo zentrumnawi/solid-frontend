@@ -43,7 +43,8 @@ const routes = generateAppRoutes({
   },
   profile: {
     svgIcon: 'profile'
-  }
+  },
+  privacy: { component: PrivacyComponent }
 });
 
 @Injectable()
@@ -90,7 +91,7 @@ export class AppModule {
     const addIcon = (name: string) =>
       registry.addSvgIcon(
         name,
-        url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`)
+        url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`)
       );
     addIcon('quiz');
     addIcon('profile');

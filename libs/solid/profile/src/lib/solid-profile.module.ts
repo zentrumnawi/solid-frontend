@@ -55,7 +55,7 @@ export class SolidProfileModule {
     const addIcon = (name: string) =>
       registry.addSvgIcon(
         name,
-        url.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`)
+        url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`)
       );
     addIcon('search');
   }
