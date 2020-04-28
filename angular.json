@@ -537,8 +537,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/solid-frontend/",
-            "repo": "https://github.com/zentrumnawi/dive-frontend-preview.git"
+            "baseHref": "/solid-frontend/"
           }
         }
       }
