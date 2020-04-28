@@ -3,6 +3,16 @@ p {
 
   &.heading {
     padding: 0.5em;
+    //padding: 24px;
+  }
+}
+
+mat-expansion-panel {
+  mat-expansion-panel-header {
+    mat-panel-title {
+      font-weight: bold;
+    }
+    //padding: 0 24px 0 0;
   }
 }
 

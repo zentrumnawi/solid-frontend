@@ -10,6 +10,7 @@ import {
 import { ProfileState } from '../../state/profile.state';
 import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
+import { MatAccordionDisplayMode } from '@angular/material/expansion/accordion-base';
 
 @Component({
   selector: 'solid-profile-detail',
