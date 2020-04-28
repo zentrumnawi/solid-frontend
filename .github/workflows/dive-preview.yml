@@ -9,17 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      
-    - name: Install
-      uses: CultureHQ/actions-yarn@master
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
       with:
-        args: install
-
-    - name: Prepare and deploy
-      uses: CultureHQ/actions-yarn@master
+        node-version: '12.x'
+  
+    - run: yarn install
+    - name: Deploy dive preview
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        args: ng -- deploy --base-href=/dive-frontend-preview/ --name="Github Actions" --email="" --no-silent
+      run: yarn ng -- deploy --base-href=/dive-frontend-preview/ --name="Github Actions" --email="" --no-silent
