@@ -1,0 +1,42 @@
+name: Deploy dive preview 
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  lint-and-test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install
+      uses: CultureHQ/actions-yarn@master
+      with:
+        args: install
+    - name: Lint
+      uses: CultureHQ/actions-yarn@master
+      with:
+        args: lint
+    - name: Test
+      uses: CultureHQ/actions-yarn@master
+      with:
+        args: test
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Install
+      uses: CultureHQ/actions-yarn@master
+      with:
+        args: install
+
+    - name: Prepare and deploy
+      uses: CultureHQ/actions-yarn@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: ng -- deploy --base-href=/dive-frontend-preview/ --name="Github Actions" --email="" --no-silent
