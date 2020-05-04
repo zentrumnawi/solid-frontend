@@ -49,7 +49,7 @@
     "@ngxs/store": "^3.6.2",
     "@sentry/browser": "5.15.5",
     "core-js": "^3.6.5",
-    "detect-browser": "^5.0.0",
+    "detect-browser": "^5.1.0",
     "hammerjs": "^2.0.8",
     "markdown-it": "^10.0.0",
     "markdown-it-sub": "^1.0.0",
