@@ -44,7 +44,6 @@ const routes = generateAppRoutes({
   profile: {
     svgIcon: 'profile'
   },
-  privacy: { component: PrivacyComponent }
 });
 
 @Injectable()
