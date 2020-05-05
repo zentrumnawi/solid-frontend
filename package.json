@@ -57,7 +57,7 @@
     "material-icons": "^0.3.1",
     "rxjs": "~6.5.5",
     "ts-optchain": "^0.1.8",
-    "tslib": "^1.10.0",
+    "tslib": "^1.11.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
