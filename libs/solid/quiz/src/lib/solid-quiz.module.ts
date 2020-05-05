@@ -39,6 +39,6 @@ export const routes: Route[] = [
     MatProgressBarModule,
     MatRadioModule,
     MatProgressSpinnerModule
-  ],
+  ]
 })
 export class SolidQuizModule {}

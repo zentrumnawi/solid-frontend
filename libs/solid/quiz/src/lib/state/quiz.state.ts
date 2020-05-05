@@ -24,11 +24,15 @@ export class QuizState {
   static getSession(state: QuizStateModel): QuizSession | null {
     return state.session;
   }
-  constructor(@Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig, private _http: HttpClient) {}
+  constructor(
+    @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
+    private _http: HttpClient
+  ) {}
 
   @Action(QuizActions.LoadQuestions)
   public set(ctx: StateContext<QuizStateModel>, {}: QuizActions.LoadQuestions) {
-    return this._http.get<QuizQuestion[]>(`${this._config.newApiUrl}/api/quizquestions`)
+    return this._http
+      .get<QuizQuestion[]>(`${this._config.newApiUrl}/api/quizquestions`)
       .pipe(
         tap(res => {
           ctx.patchState({

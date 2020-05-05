@@ -1,4 +1,4 @@
-name: Deploy dive preview 
+name: Deploy dive preview
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-        
+
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -25,9 +25,9 @@ jobs:
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
-  
+
     - run: yarn install
     - name: Deploy dive preview
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: yarn ng -- deploy --project=dive --base-href=/solid-frontend/ --name="Github Actions" --email="gh@example.com" --no-silent
+      run: yarn ng -- deploy --project=dive --base-href=/solid-frontend/ -c=staging --name="Github Actions" --email="gh@example.com" --no-silent

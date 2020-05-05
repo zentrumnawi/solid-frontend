@@ -1,6 +1,6 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { QuizSession } from '../../state/quiz.model';
 import { QuizActions } from '../../state/quiz.actions';
 import { QuizState } from '../../state/quiz.state';
