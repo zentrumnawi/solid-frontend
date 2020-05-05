@@ -9,7 +9,6 @@ import { QuizState } from './state/quiz.state';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
-import { QuizService } from './services/quiz.service';
 import { SolidCoreModule } from '@zentrumnawi/solid/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -41,6 +40,5 @@ export const routes: Route[] = [
     MatRadioModule,
     MatProgressSpinnerModule
   ],
-  providers: [QuizService]
 })
 export class SolidQuizModule {}

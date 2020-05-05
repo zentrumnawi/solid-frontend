@@ -18,8 +18,8 @@ export interface QuizAnswer {
 }
 
 export enum QuizQuestionType {
-  SingleChoice = 'Single Choice',
-  MultipleChoice = 'Multiple Choice'
+  SingleChoice = 'SC',
+  MultipleChoice = 'MC'
 }
 
 export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };

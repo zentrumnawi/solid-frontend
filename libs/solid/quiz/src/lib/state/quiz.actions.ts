@@ -1,25 +1,29 @@
-import { QuizQuestion } from './quiz.model';
+export namespace QuizActions {
+  export class LoadQuestions {
+    static readonly type = '[Quiz] questions load';
 
-export class QuizQuestionsAdd {
-  static readonly type = '[Quiz] questions add';
+    constructor() {
+    }
+  }
 
-  constructor(public questions: QuizQuestion[]) {}
-}
+  export class StartSession {
+    static readonly type = '[Quiz] session start';
 
-export class QuizSessionStart {
-  static readonly type = '[Quiz] session start';
+    constructor(public questionCount: number) {
+    }
+  }
 
-  constructor(public questionCount: number) {}
-}
+  export class EndSession {
+    static readonly type = '[Quiz] session end';
 
-export class QuizSessionEnd {
-  static readonly type = '[Quiz] session end';
+    constructor() {
+    }
+  }
 
-  constructor() {}
-}
+  export class QuestionAnswered {
+    static readonly type = '[Quiz] question answered';
 
-export class QuizQuestionAnswered {
-  static readonly type = '[Quiz] question answered';
-
-  constructor(public correct: boolean) {}
+    constructor(public correct: boolean) {
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { QuizSessionStart } from '../../state/quiz.actions';
+import { QuizActions } from '../../state/quiz.actions';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -20,6 +20,6 @@ export class StartComponent {
   }
 
   public onStartClick() {
-    this._store.dispatch(new QuizSessionStart(this.questionCount));
+    this._store.dispatch(new QuizActions.StartSession(this.questionCount));
   }
 }

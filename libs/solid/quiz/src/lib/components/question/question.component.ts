@@ -7,7 +7,7 @@ import {
 import { MatRadioChange } from '@angular/material/radio';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Store } from '@ngxs/store';
-import { QuizQuestionAnswered } from '../../state/quiz.actions';
+import { QuizActions } from '../../state/quiz.actions';
 
 @Component({
   selector: 'solid-quiz-question',
@@ -53,7 +53,7 @@ export class QuestionComponent implements OnChanges {
 
   onNextQuestionClick() {
     if (this.question && this.Correct !== undefined) {
-      this._store.dispatch(new QuizQuestionAnswered(this.Correct));
+      this._store.dispatch(new QuizActions.QuestionAnswered(this.Correct));
     }
   }
 

@@ -1,9 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { FeedbackComponent } from '../components/feedback/feedback.component';
 import { SolidCoreConfig } from '@zentrumnawi/solid/core';
+import { catchError, map } from 'rxjs/operators';
 
 export const SOLID_SKELETON_FEEDBACK_SERVICE = new InjectionToken<FeedbackService | null>(
   'SOLID_SKELETON_FEEDBACK_SERVICE'
@@ -38,9 +39,12 @@ export class FeedbackService {
   }
 
   private submitFeedback(value: any): Observable<boolean> {
-    return this._http.post<boolean>(
+    return this._http.post<{}>(
       `${this._config.newApiUrl}/api/contact`,
       value
+    ).pipe(
+      map(_ => true),
+      catchError(err => of(false))
     );
   }
 }

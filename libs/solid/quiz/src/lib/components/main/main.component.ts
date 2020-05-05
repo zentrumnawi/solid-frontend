@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
-import { QuizService } from '../../services/quiz.service';
+import { Component} from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable} from 'rxjs';
 import { QuizSession } from '../../state/quiz.model';
+import { QuizActions } from '../../state/quiz.actions';
+import { QuizState } from '../../state/quiz.state';
 
 @Component({
   selector: 'solid-quiz-main',
@@ -10,14 +11,10 @@ import { QuizSession } from '../../state/quiz.model';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-  QuizSession: Observable<QuizSession | null>;
+  @Select(QuizState.getSession)
+  QuizSession!: Observable<QuizSession | null>;
 
-  constructor(service: QuizService, store: Store) {
-    service.loadQuestions();
-    this.QuizSession = store.select(s => s.quiz.session);
-  }
-
-  test() {
-    this.QuizSession = of(null);
+  constructor(store: Store) {
+    store.dispatch(new QuizActions.LoadQuestions());
   }
 }

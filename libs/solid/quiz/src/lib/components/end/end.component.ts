@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { QuizSession } from '../../state/quiz.model';
-import { QuizSessionStart } from '../../state/quiz.actions';
+import { QuizActions } from '../../state/quiz.actions';
 import { QuizFeedback } from './end-feedback';
 
 @Component({
@@ -54,6 +54,6 @@ export class EndComponent {
   }
 
   onStartClick() {
-    this._store.dispatch(new QuizSessionStart(this.QuestionCount));
+    this._store.dispatch(new QuizActions.StartSession(this.QuestionCount));
   }
 }

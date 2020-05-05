@@ -1,12 +1,10 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { QuizQuestion, QuizQuestionInSession, QuizSession } from './quiz.model';
-import {
-  QuizQuestionAnswered,
-  QuizQuestionsAdd,
-  QuizSessionEnd,
-  QuizSessionStart
-} from './quiz.actions';
-import { Injectable } from '@angular/core';
+import { QuizActions } from './quiz.actions';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid/core';
+import { tap } from 'rxjs/operators';
 
 export interface QuizStateModel {
   questions: QuizQuestion[];
@@ -22,17 +20,28 @@ export interface QuizStateModel {
 })
 @Injectable()
 export class QuizState {
-  @Action(QuizQuestionsAdd)
-  public set(ctx: StateContext<QuizStateModel>, action: QuizQuestionsAdd) {
-    ctx.patchState({
-      questions: action.questions
-    });
+  @Selector()
+  static getSession(state: QuizStateModel): QuizSession | null {
+    return state.session;
+  }
+  constructor(@Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig, private _http: HttpClient) {}
+
+  @Action(QuizActions.LoadQuestions)
+  public set(ctx: StateContext<QuizStateModel>, {}: QuizActions.LoadQuestions) {
+    return this._http.get<QuizQuestion[]>(`${this._config.newApiUrl}/api/quizquestions`)
+      .pipe(
+        tap(res => {
+          ctx.patchState({
+            questions: res
+          });
+        })
+      );
   }
 
-  @Action(QuizSessionStart)
+  @Action(QuizActions.StartSession)
   public startSession(
     { patchState, getState }: StateContext<QuizStateModel>,
-    { questionCount }: QuizSessionStart
+    { questionCount }: QuizActions.StartSession
   ) {
     const questions = getState().questions;
     const sessionQuestions: QuizQuestionInSession[] = [];
@@ -55,20 +64,20 @@ export class QuizState {
     });
   }
 
-  @Action(QuizSessionEnd)
+  @Action(QuizActions.EndSession)
   public endSession(
     { patchState }: StateContext<QuizStateModel>,
-    {}: QuizSessionEnd
+    {}: QuizActions.EndSession
   ) {
     patchState({
       session: null
     });
   }
 
-  @Action(QuizQuestionAnswered)
+  @Action(QuizActions.QuestionAnswered)
   public questionAnswered(
     { patchState, getState }: StateContext<QuizStateModel>,
-    { correct }: QuizQuestionAnswered
+    { correct }: QuizActions.QuestionAnswered
   ) {
     const session = { ...(getState().session as QuizSession) };
     const answeredQuestion = {
