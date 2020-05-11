@@ -27,6 +27,7 @@ jobs:
           ${{ runner.os }}-yarn-
 
     - run: yarn install
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
     - name: Deploy dive preview
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
