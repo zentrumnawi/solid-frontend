@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+@mixin solid-skeleton-landing-component-theme($theme) {
+  $accent: map-get($theme, accent);
+  solid-skeleton-landing {
+    mat-grid-tile:hover {
+      background-color: mat-color($accent, lighter);
+    }
+  }
+}

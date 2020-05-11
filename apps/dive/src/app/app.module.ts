@@ -21,8 +21,11 @@ import {
   SolidSkeletonConfig,
   SolidSkeletonModule
 } from '@zentrumnawi/solid/skeleton';
-import { MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
 
 const coreConfig: SolidCoreConfig = {
   ...environment,
@@ -31,7 +34,8 @@ const coreConfig: SolidCoreConfig = {
 };
 
 const skeletonConfig: SolidSkeletonConfig = {
-  feedbackEnabled: true
+  feedbackEnabled: true,
+  landingBannerContent: LandingBannerContentComponent
 };
 
 const routes = generateAppRoutes({
@@ -44,6 +48,9 @@ const routes = generateAppRoutes({
   profile: {
     svgIcon: 'profile'
   },
+  landing: {
+    svgIcon: 'icon'
+  }
 });
 
 @Injectable()
@@ -58,7 +65,7 @@ export class MyHammerConfig extends HammerGestureConfig {
 }
 
 @NgModule({
-  declarations: [AppComponent, PrivacyComponent],
+  declarations: [AppComponent, PrivacyComponent, LandingBannerContentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -75,7 +82,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     }),
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot(skeletonConfig),
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [
     {
@@ -94,5 +104,6 @@ export class AppModule {
       );
     addIcon('quiz');
     addIcon('profile');
+    addIcon('icon');
   }
 }

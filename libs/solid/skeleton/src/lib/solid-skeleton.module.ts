@@ -1,5 +1,5 @@
-import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
-import { APP_BASE_HREF, CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SOLID_CORE_CONFIG, SolidCoreModule } from '@zentrumnawi/solid/core';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
 import { SolidGlossaryModule } from '@zentrumnawi/solid/glossary';
@@ -21,9 +21,17 @@ import {
 } from './services/feedback.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { SolidSkeletonConfig } from './solid-skeleton-config';
+import {
+  SOLID_SKELETON_CONFIG,
+  SolidSkeletonConfig
+} from './solid-skeleton-config';
 import { UpdateService } from './services/update.service';
 import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { LandingComponent } from './components/landing/landing.component';
+import { MatCardModule } from '@angular/material/card';
+import { NgxsModule } from '@ngxs/store';
+import { MenuState } from './state/menu.state';
 
 const hidden = Math.random() < 0.1;
 
@@ -34,20 +42,24 @@ const hidden = Math.random() < 0.1;
     SolidGlossaryModule,
     RouterModule,
     MatButtonModule,
+    MatCardModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
     MatSelectModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    NgxsModule.forFeature([MenuState])
   ],
   declarations: [
     BaseLayoutComponent,
     FeedbackComponent,
     MainMenuComponent,
-    UpdateDialogComponent
+    UpdateDialogComponent,
+    LandingComponent
   ],
   exports: [BaseLayoutComponent],
   providers: [UpdateService]
@@ -72,6 +84,10 @@ export class SolidSkeletonModule {
     return {
       ngModule: SolidSkeletonModule,
       providers: [
+        {
+          provide: SOLID_SKELETON_CONFIG,
+          useValue: cfg
+        },
         {
           provide: SOLID_SKELETON_FEEDBACK_SERVICE,
           useFactory: feedbackServiceFactory(cfg.feedbackEnabled),

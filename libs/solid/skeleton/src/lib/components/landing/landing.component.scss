@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  padding: 1rem;
+  height: calc(100% - 2rem);
+}
+
+mat-card {
+  margin-bottom: 1.5rem;
+}
+
+mat-grid-tile {
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.05s linear 0.05s;
+
+  ::ng-deep {
+    figure.mat-figure {
+      display: inline-flex;
+      flex-direction: column;
+      align-content: center;
+    }
+  }
+
+  mat-icon {
+    height: 4rem;
+    width: 4rem;
+    font-size: 4rem;
+  }
+}

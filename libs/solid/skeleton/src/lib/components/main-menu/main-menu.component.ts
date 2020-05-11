@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -8,53 +8,24 @@ import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE
 } from '../../services/feedback.service';
-
-interface MenuItem {
-  route: string;
-  menuRouteCheck: (route: string) => boolean;
-  title: string;
-  icon?: string;
-  svgIcon?: string;
-}
+import { MenuState } from '../../state/menu.state';
+import { MenuItem } from '../../state/menu.model';
 
 @Component({
   selector: 'solid-skeleton-main-menu',
   templateUrl: './main-menu.component.html',
   styleUrls: ['./main-menu.component.scss']
 })
-export class MainMenuComponent implements OnInit {
+export class MainMenuComponent {
   @Output() public select = new EventEmitter();
-  public MenuItems: MenuItem[] = [];
-  @Select((s: any) => s.router?.state?.url)
-  public $activeRoute!: Observable<string>;
+  @Select(MenuState.getMenuItems)
+  public MenuItems!: Observable<MenuItem[]>;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService | null,
     private _router: Router
   ) {}
-
-  ngOnInit(): void {
-    for (const route of this._router.config.sort(
-      (a, b) => a.data?.order - b.data?.order
-    )) {
-      if (route.data?.menuItem) {
-        this.MenuItems.push({
-          route: route.path || '',
-          menuRouteCheck: activeRoute => {
-            const path = `/${route.path}`;
-            if (path === '/') {
-              return activeRoute === path;
-            }
-            return activeRoute.startsWith(path);
-          },
-          title: route.data?.title,
-          icon: route.data?.icon,
-          svgIcon: route.data?.svgIcon
-        });
-      }
-    }
-  }
 
   @Dispatch()
   public async navigateTo(url: string) {

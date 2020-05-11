@@ -1,5 +1,6 @@
 @import 'lib/components/base-layout/base-layout.theme';
 @import 'lib/components/main-menu/main-menu.theme';
+@import 'lib/components/landing/landing.theme';
 
 @mixin solid-skeleton-theme($mat-theme) {
   html,
@@ -19,4 +20,5 @@
 
   @include base-layout-component($mat-theme);
   @include main-menu-component($mat-theme);
+  @include solid-skeleton-landing-component-theme($mat-theme);
 }

@@ -1,8 +1,8 @@
-<mat-nav-list *ngIf="$activeRoute | async as activeRoute">
+<mat-nav-list>
   <mat-list-item
     (click)="navigateTo(item.route)"
-    *ngFor="let item of MenuItems"
-    [class.active]="item.menuRouteCheck(activeRoute)"
+    *ngFor="let item of MenuItems | async"
+    [class.active]="item.active"
   >
     <mat-icon
       *ngIf="item.svgIcon"

@@ -1,5 +1,6 @@
 import { LoadChildren, Route } from '@angular/router';
 import { Type } from '@angular/core';
+import { LandingComponent } from './components/landing/landing.component';
 
 export interface RouteConfig {
   url?: string;
@@ -16,7 +17,7 @@ export type RouteConfigFromModule = RouteConfig & {
 };
 
 export interface AppRoutingModuleConfig {
-  landing?: RouteConfigWithComponent;
+  landing?: RouteConfig;
   info?: RouteConfigWithComponent;
   privacy?: RouteConfigWithComponent;
   profile?: RouteConfig;
@@ -68,8 +69,16 @@ export function generateAppRoutes(config: AppRoutingModuleConfig) {
     });
   };
   let order = 0;
+  // landing page
   if (config.landing) {
-    addRoute(config.landing, '', 'Startseite', order++, 'home', undefined);
+    addRoute(
+      { ...config.landing, component: LandingComponent },
+      '',
+      'Startseite',
+      order++,
+      'home',
+      undefined
+    );
   }
   if (config.profile) {
     addModuleRoute(
