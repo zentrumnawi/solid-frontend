@@ -64,7 +64,12 @@
       </ng-container>
     </mat-expansion-panel>
     <ng-container *ngFor="let property of profileDefinitions">
-      <mat-expansion-panel *ngIf="property.type === PropertyTypes.Group">
+      <mat-expansion-panel
+        *ngIf="
+          property.type === PropertyTypes.Group &&
+          (property.required || profile[property.key])
+        "
+      >
         <mat-expansion-panel-header>
           <mat-panel-title>{{ property.title }}</mat-panel-title>
         </mat-expansion-panel-header>

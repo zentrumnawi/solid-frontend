@@ -6,17 +6,9 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../../state/profile.state';
-import {
-  ProfileEntry,
-  Profile,
-  ProfileCategory,
-  TreeNodeApi,
-  TreeNode,
-  ProfileNEW
-} from '../../state/profile.model';
+import { TreeNode, Profile } from '../../state/profile.model';
 import { FormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
@@ -33,27 +25,26 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @Select(ProfileState.selectTree)
   public $profilesTree!: Observable<TreeNode[]>;
   @Select(ProfileState.selectFlat)
-  public $profilesFlat!: Observable<ProfileNEW[]>;
+  public $profilesFlat!: Observable<Profile[]>;
   @Select(ProfileState.selectProfileAndNode)
   public $profileAndCategorySelector!: Observable<
-    (profileId?: number) => { profile: ProfileNEW; node: TreeNode } | null
+    (profileId?: number) => { profile: Profile; node: TreeNode } | null
   >;
   @Select((s: any) => s.router.state.params)
   public $routerParams!: Observable<{ [key: string]: string }>;
-  public ProfilesFlatFiltered = new BehaviorSubject<ProfileNEW[]>([]);
+  public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
   @ViewChild('contentContainer', { static: false })
   public ContentContainer!: ElementRef;
   public SplitLayout = false;
   public Filter = new FormControl('');
   public FilterValue = new BehaviorSubject<string>('');
-  public SelectedProfile: ProfileNEW | null = null;
+  public SelectedProfile: Profile | null = null;
   public SelectedNode: TreeNode | null = null;
   public SwipeLeft = -1;
   public SwipeRight = -1;
   public View = 'tree';
 
-  constructor(private _service: ProfileService, private _store: Store) {
-    // this._service.loadProfiles();
+  constructor(private _store: Store) {
     this._store.dispatch([
       new ProfileActions.LoadDefinition(),
       new ProfileActions.LoadProfiles()
@@ -125,10 +116,10 @@ export class BaseComponent implements OnInit, AfterViewInit {
               swipeLeft =
                 (profileAndNode.node.profiles.find(
                   (p, i) => i === index - 1
-                ) as ProfileEntry | undefined)?.id || -1;
+                ) as Profile | undefined)?.id || -1;
               swipeRight =
                 (profileAndNode.node.profiles.find((p, i) => i > index) as
-                  | ProfileEntry
+                  | Profile
                   | undefined)?.id || -1;
             }
           }

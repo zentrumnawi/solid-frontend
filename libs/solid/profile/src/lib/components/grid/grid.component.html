@@ -23,9 +23,7 @@
 </ng-container>
 
 <ng-template #cardContent let-profile="profile">
-  <div class="title">
-    {{ profile.name }}
-  </div>
+  <div class="title" [innerHTML]="profile.name | profileTitle"></div>
   <img
     [src]="
       profile.images.length > 0

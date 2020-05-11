@@ -17,12 +17,7 @@ import {
   MatTreeFlattener
 } from '@angular/material/tree';
 import { Observable, of as observableOf } from 'rxjs';
-import {
-  Image,
-  Profile,
-  ProfileNEW,
-  TreeNode
-} from '../../state/profile.model';
+import { Image, Profile, TreeNode } from '../../state/profile.model';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 import { SelectedDirective } from '../selected.directive';
@@ -59,13 +54,13 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() select = new EventEmitter<number>();
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
-  public DataSource: MatTreeFlatDataSource<TreeNode | ProfileNEW, FlatTreeNode>;
+  public DataSource: MatTreeFlatDataSource<TreeNode | Profile, FlatTreeNode>;
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   public readonly TreeControl: FlatTreeControl<FlatTreeNode>;
 
   /** The TreeFlattener is used to generate the flat list of items from hierarchical data. */
   private readonly _treeFlattener: MatTreeFlattener<
-    TreeNode | ProfileNEW,
+    TreeNode | Profile,
     FlatTreeNode
   >;
 
@@ -90,7 +85,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   /** Transform the data to something the tree can read. */
-  static transformer(node: TreeNode | ProfileNEW, level: number): FlatTreeNode {
+  static transformer(node: TreeNode | Profile, level: number): FlatTreeNode {
     if (node.type === 'category') {
       return {
         title: node.node_name,
@@ -124,7 +119,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   /** Get the children for the node. */
-  static getChildren(node: TreeNode | ProfileNEW) {
+  static getChildren(node: TreeNode | Profile) {
     if (node.type === 'category') {
       return [...node.leaf_nodes, ...node.profiles];
     } else {

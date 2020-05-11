@@ -20,9 +20,12 @@
       *ngIf="selectedProfileId === node.id"
       solidProfileSelected
       class="selected"
-      >{{ node.title }}</span
-    >
-    <span *ngIf="selectedProfileId !== node.id">{{ node.title }}</span>
+      [innerHTML]="node.title | profileTitle"
+    ></span>
+    <span
+      *ngIf="selectedProfileId !== node.id"
+      [innerHTML]="node.title | profileTitle"
+    ></span>
   </mat-tree-node>
 
   <mat-tree-node

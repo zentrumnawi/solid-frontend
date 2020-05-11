@@ -9,7 +9,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { SolidProfileRoutingModule } from './solid-profile-routing.module';
 import { NgxsModule } from '@ngxs/store';
 import { ProfileState } from './state/profile.state';
-import { ProfileService } from './services/profile.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +21,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { SelectedDirective } from './components/selected.directive';
 import { ProfileDefinitionService } from './services/profile-definition.service';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ProfileTitlePipe } from './profile-title.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     DetailComponent,
     BaseComponent,
     GridComponent,
-    SelectedDirective
+    SelectedDirective,
+    ProfileTitlePipe
   ],
   imports: [
     SolidCoreModule,
@@ -48,7 +49,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatToolbarModule,
     MatTreeModule
   ],
-  providers: [ProfileService, ProfileDefinitionService]
+  providers: [ProfileDefinitionService]
 })
 export class SolidProfileModule {
   constructor(registry: MatIconRegistry, url: DomSanitizer) {

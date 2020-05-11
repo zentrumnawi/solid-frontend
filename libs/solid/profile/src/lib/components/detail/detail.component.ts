@@ -1,16 +1,12 @@
 import { Component, Input } from '@angular/core';
-import {
-  ProfileEntry,
-  ProfileCategory,
-  ProfileNEW,
-  TreeNode,
-  ProfileProperty,
-  ProfilePropertyType
-} from '../../state/profile.model';
+import { Profile, TreeNode } from '../../state/profile.model';
 import { ProfileState } from '../../state/profile.state';
 import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
-import { MatAccordionDisplayMode } from '@angular/material/expansion/accordion-base';
+import {
+  ProfileProperty,
+  ProfilePropertyType
+} from '../../state/profile-definition.model';
 
 @Component({
   selector: 'solid-profile-detail',
@@ -28,14 +24,14 @@ export class DetailComponent {
   public ImageStartIndex = 0;
   public ImageEndIndex = 0;
 
-  private _profile!: ProfileNEW;
+  private _profile!: Profile;
 
   public get profile() {
     return this._profile;
   }
 
   @Input()
-  public set profile(profile: ProfileNEW) {
+  public set profile(profile: Profile) {
     this._profile = profile;
     this.ImageLoaded = profile.images.map(_ => false);
     this.onImageSelect(0);

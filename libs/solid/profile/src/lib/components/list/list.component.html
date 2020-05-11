@@ -12,9 +12,7 @@
         "
         matListAvatar
       />
-      <h3 matLine>
-        {{ profile.variety ? profile.variety : profile.mineralName }}
-      </h3>
+      <h3 [innerHTML]="profile.mineralName | profileTitle"></h3>
     </mat-list-item>
     <mat-list-item *ngIf="profilesArr.length === 0"
       >Keine Suchergebnisse vorhanden</mat-list-item

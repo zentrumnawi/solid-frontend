@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ProfileEntry } from '../../state/profile.model';
+import { Profile } from '../../state/profile.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  @Input() profiles!: Observable<ProfileEntry[]>;
+  @Input() profiles!: Observable<Profile[]>;
   @Output() select = new EventEmitter<number>();
 
-  public trackByFn(index: number, profile: ProfileEntry) {
+  public trackByFn(index: number, profile: Profile) {
     return profile.id;
   }
 }

@@ -1,21 +1,15 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import {
-  ProfileNEW,
-  ProfileProperty,
-  ProfilePropertyType,
-  TreeNode,
-  TreeNodeApi
-} from './profile.model';
+import { Profile, TreeNode, TreeNodeApi } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid/core';
 import { ProfileActions } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
-import { Schema, Spec } from 'swagger-schema-official';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
+import { ProfileProperty } from './profile-definition.model';
 
 export interface ProfileStateModel {
-  profiles: ProfileNEW[];
+  profiles: Profile[];
   nodes: TreeNode[];
   definition: ProfileProperty[];
 }
@@ -39,7 +33,7 @@ export class ProfileState {
   @Selector()
   static selectProfileAndNode(
     state: ProfileStateModel
-  ): (profileId?: number) => { profile: ProfileNEW; node: TreeNode } | null {
+  ): (profileId?: number) => { profile: Profile; node: TreeNode } | null {
     return (profileId?: number) => {
       if (!profileId) {
         return null;
@@ -65,14 +59,14 @@ export class ProfileState {
   }
 
   @Selector()
-  static selectFlat(state: ProfileStateModel): ProfileNEW[] {
+  static selectFlat(state: ProfileStateModel): Profile[] {
     return [...state.profiles];
   }
 
   private static findProfileDeep(
     node: TreeNode,
     profileId: number
-  ): { profile: ProfileNEW; node: TreeNode } | null {
+  ): { profile: Profile; node: TreeNode } | null {
     const profile = node.profiles.find(p => p.id === profileId);
     if (profile) {
       return {
@@ -111,8 +105,7 @@ export class ProfileState {
                 profiles: node.profiles.map(profile => ({
                   ...profile,
                   type: 'profile',
-                  images: [], // TODO: Fix if images are set from api
-                  display_name: `${profile.name} (${profile.trivial_name})`
+                  images: [] // TODO: Fix if images are set from api
                 }))
               };
             });
@@ -120,7 +113,7 @@ export class ProfileState {
           return mapit(response);
         }),
         tap(nodes => {
-          const mapIt = (result: ProfileNEW[], value: TreeNode[]) => {
+          const mapIt = (result: Profile[], value: TreeNode[]) => {
             for (const v of value) {
               result.push(...mapIt([], v.leaf_nodes));
               result.push(...v.profiles);

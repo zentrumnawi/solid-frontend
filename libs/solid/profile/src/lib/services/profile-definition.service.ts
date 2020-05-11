@@ -3,9 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid/core';
 import { Schema, Spec } from 'swagger-schema-official';
 import { map } from 'rxjs/operators';
-import { ProfileProperty, ProfilePropertyType } from '../state/profile.model';
+import {
+  ProfileProperty,
+  ProfilePropertyType
+} from '../state/profile-definition.model';
 
-const ignoredProperties = ['id', 'systematics'];
+const ignoredProperties = ['id', 'name', 'systematics'];
 
 @Injectable()
 export class ProfileDefinitionService {

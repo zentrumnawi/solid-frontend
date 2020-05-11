@@ -32,7 +32,7 @@
     </button>
   </mat-toolbar>
   <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
-    {{ SelectedProfile.display_name }}
+    <span [innerHTML]="SelectedProfile.name | profileTitle"></span>
     <div class="spacer"></div>
     <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
       <mat-icon>navigate_before</mat-icon>

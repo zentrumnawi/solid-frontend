@@ -9,7 +9,7 @@ import {
   ViewChildren
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProfileEntry, ProfileNEW } from '../../state/profile.model';
+import { Profile } from '../../state/profile.model';
 import { SelectedDirective } from '../selected.directive';
 
 @Component({
@@ -20,10 +20,10 @@ import { SelectedDirective } from '../selected.directive';
 export class GridComponent implements AfterViewInit {
   @ViewChildren(SelectedDirective, { read: ElementRef })
   public selectedElements!: QueryList<ElementRef>;
-  @Input() profiles!: Observable<ProfileNEW[]>;
+  @Input() profiles!: Observable<Profile[]>;
   @Input() selectedProfileId?: number;
   @Output() select = new EventEmitter<number>();
-  public trackByFn(index: number, profile: ProfileNEW) {
+  public trackByFn(index: number, profile: Profile) {
     return profile.id;
   }
 
