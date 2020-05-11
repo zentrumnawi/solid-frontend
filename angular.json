@@ -141,10 +141,6 @@
             "passWithNoTests": true,
             "setupFile": "apps/geomat/src/test-setup.ts"
           }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {}
         }
       }
     },
@@ -509,7 +505,10 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/solid-frontend/"
+            "configuration": "staging",
+            "baseHref": "/solid-frontend/",
+            "name": "Github Actions",
+            "email": "github@example.com"
           }
         }
       }
