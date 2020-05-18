@@ -111,7 +111,7 @@ export function compileTypeScriptFiles(
       if (code === 0) {
         context.logger.info(
           `Done compiling TypeScript files for library ${
-          // tslint:disable-next-line:no-non-null-assertion
+            // tslint:disable-next-line:no-non-null-assertion
             context.target!.project
           }`
         );
