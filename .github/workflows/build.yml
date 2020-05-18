@@ -33,12 +33,12 @@ jobs:
       - name: Install packages
         run: yarn install
 
-      - name: Test
+      - name: test
         run: yarn nx affected --target=test --base=origin/dev --parallel
 
-      - name: Test
+      - name: lint
         run: yarn nx affected --target=lint --base=origin/dev --parallel
 
-      - name: Test
+      - name: build - staging
         run: yarn nx affected --target=build --base=origin/dev --parallel -c=staging
 
