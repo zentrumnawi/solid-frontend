@@ -16,7 +16,7 @@
           <mat-icon aria-label="Menü öffnen">menu</mat-icon>
         </button>
       </div>
-      <span [class.app-title-fixed]="FixedLayout">GeoMat</span>
+      <span [class.app-title-fixed]="FixedLayout">{{ config.appName }}</span>
       <div class="spacer"></div>
       <button (click)="Glossary?.toggle()" mat-icon-button>
         <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
