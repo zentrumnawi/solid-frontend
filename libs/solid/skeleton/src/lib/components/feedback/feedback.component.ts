@@ -14,10 +14,10 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   constructor(
     private _ref: MatDialogRef<FeedbackComponent>,
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
-    @Inject(MAT_DIALOG_DATA)
-    private // type is defined as any to prevent ng-packagr issues
+    // type is defined as any to prevent ng-packagr issues
     //  (data: any) => Observable<boolean>
-    _submitFeedback: any,
+    @Inject(MAT_DIALOG_DATA)
+    private _submitFeedback: any,
     fb: FormBuilder
   ) {
     this.Form = fb.group({
