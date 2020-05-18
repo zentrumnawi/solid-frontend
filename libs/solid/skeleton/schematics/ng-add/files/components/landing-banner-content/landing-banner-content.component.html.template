@@ -1,0 +1,12 @@
+<mat-card-header>
+<img mat-card-avatar src="assets/icons/icon.svg" />
+  <mat-card-title><%= project %></mat-card-title>
+  <mat-card-subtitle>Banner title</mat-card-subtitle>
+<div class="spacer"></div>
+<button (click)="onCloseClick()" mat-icon-button>
+<mat-icon>close</mat-icon>
+</button>
+</mat-card-header>
+<mat-card-content>
+  Put your custom content for the banner in this component.
+</mat-card-content>

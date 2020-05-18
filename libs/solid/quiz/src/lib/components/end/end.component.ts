@@ -7,7 +7,7 @@ import { QuizFeedback } from './end-feedback';
 @Component({
   selector: 'solid-quiz-end',
   templateUrl: './end.component.html',
-  styleUrls: ['./end.component.scss']
+  styleUrls: ['./end.component.scss'],
 })
 export class EndComponent {
   QuizSession: QuizSession | null = null;
@@ -18,13 +18,13 @@ export class EndComponent {
 
   constructor(private _store: Store) {
     this._store
-      .select(s => s.quiz.session)
+      .select((s) => s.quiz.session)
       .subscribe((session: QuizSession | null) => {
         if (session) {
           this.QuizSession = session;
           this.QuestionCount = session.questions.length;
           this.correctQuestions = session.questions
-            .map(q => q.answered)
+            .map((q) => q.answered)
             .reduce((curr, val) => (val === 1 ? curr + 1 : curr), 0 as number);
           this.correctPercentage = this.correctQuestions / this.QuestionCount;
           let feedbacks: string[] = [];

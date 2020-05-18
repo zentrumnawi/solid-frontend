@@ -23,7 +23,7 @@ interface CrystalsystemIFrameWindowProxy extends Window {
 @Component({
   selector: 'geomat-crystalsystemdetail',
   templateUrl: './crystalsystemdetail.component.html',
-  styleUrls: ['./crystalsystemdetail.component.scss']
+  styleUrls: ['./crystalsystemdetail.component.scss'],
 })
 export class CrystalsystemdetailComponent {
   @ViewChild('iframe', { static: false }) public iFrame: ElementRef<
@@ -83,7 +83,7 @@ export class CrystalsystemdetailComponent {
     const cw = this.contentWindow;
     if (cw && cw.switchModel && cw.toggleHighlight) {
       /* tslint:disable-next-line:no-non-null-assertion */
-      this.SelectedConfig = this.Configs.find(c => c.name === newModel)!;
+      this.SelectedConfig = this.Configs.find((c) => c.name === newModel)!;
       this.Model = this.SelectedConfig.name;
       this.Layer =
         this.SelectedConfig.layers.length > 0

@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { SolidSkeletonModule } from '@zentrumnawi/solid/skeleton';
+import { SolidSkeletonModule } from '@zentrumnawi/solid-skeleton';
 
 @Component({
   selector: 'geomat-root',
   template: '<solid-skeleton-base-layout></solid-skeleton-base-layout>',
-  styleUrls: []
+  styleUrls: [],
 })
 export class AppComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private document: Document) {}

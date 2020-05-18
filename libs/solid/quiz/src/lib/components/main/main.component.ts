@@ -8,7 +8,7 @@ import { QuizState } from '../../state/quiz.state';
 @Component({
   selector: 'solid-quiz-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
   @Select(QuizState.getSession)

@@ -22,7 +22,7 @@ export class TitleService {
             value.routerState.routeData.title
         )
       )
-      .subscribe(title => {
+      .subscribe((title) => {
         this._title.setTitle(title ? `${title} | ${cfg.appName}` : cfg.appName);
       });
   }

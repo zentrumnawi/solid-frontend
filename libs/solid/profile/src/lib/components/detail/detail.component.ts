@@ -5,14 +5,14 @@ import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
 import {
   ProfileProperty,
-  ProfilePropertyType
+  ProfilePropertyType,
 } from '../../state/profile-definition.model';
 import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'solid-profile-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent {
   @ViewChild('expansion', { static: false, read: MatAccordion }) expansion?: MatAccordion;
@@ -36,7 +36,7 @@ export class DetailComponent {
   public set profile(profile: Profile) {
     console.log('update');
     this._profile = profile;
-    this.ImageLoaded = profile.images.map(_ => false);
+    this.ImageLoaded = profile.images.map((_) => false);
     this.onImageSelect(0);
     this.expansion?._headers.forEach(panel => panel?.panel.close());
   }

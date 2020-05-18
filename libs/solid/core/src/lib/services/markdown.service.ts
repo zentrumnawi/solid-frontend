@@ -12,9 +12,9 @@ export class MarkdownService {
     private _domSanitizer: DomSanitizer
   ) {
     const md = new MarkdownIt({
-      html: true
+      html: true,
     });
-    _config.markdownPlugins?.forEach(plugin => md.use(plugin));
+    _config.markdownPlugins?.forEach((plugin) => md.use(plugin));
     this._markdownIt = md;
   }
 

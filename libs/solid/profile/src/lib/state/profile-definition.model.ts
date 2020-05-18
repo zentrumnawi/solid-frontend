@@ -22,7 +22,7 @@ export enum ProfilePropertyType {
   Integer,
   Boolean,
   List,
-  Group
+  Group,
 }
 
 export type ProfileProperty = ProfilePropertySimple | ProfilePropertyGroup;

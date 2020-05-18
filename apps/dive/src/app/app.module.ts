@@ -2,7 +2,7 @@ import {
   BrowserModule,
   DomSanitizer,
   HAMMER_GESTURE_CONFIG,
-  HammerGestureConfig
+  HammerGestureConfig,
 } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
 
@@ -15,56 +15,25 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { SolidCoreConfig, SolidCoreModule } from '@zentrumnawi/solid/core';
-import {
-  generateAppRoutes,
-  SolidSkeletonConfig,
-  SolidSkeletonModule
-} from '@zentrumnawi/solid/skeleton';
+import { SolidCoreModule } from '@zentrumnawi/solid-core';
+import { SolidSkeletonModule } from '@zentrumnawi/solid-skeleton';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
-import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid/profile';
-
-const coreConfig: SolidCoreConfig = {
-  ...environment,
-  markdownPlugins: [],
-  appName: 'DIVE'
-};
-
-const skeletonConfig: SolidSkeletonConfig = {
-  feedbackEnabled: true,
-  landingBannerContent: LandingBannerContentComponent
-};
-
-const routes = generateAppRoutes({
-  quiz: {
-    svgIcon: 'quiz'
-  },
-  privacy: {
-    component: PrivacyComponent
-  },
-  profile: {
-    svgIcon: 'profile'
-  },
-  landing: {
-    svgIcon: 'icon'
-  },
-  slideshow: {
-    svgIcon: 'assistant'
-  }
-});
+// import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile';
+import { coreConfig } from './solid-core-config';
+import { skeletonConfig } from './solid-skeleton-config';
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
     pan: {
-      direction: 6
+      direction: 6,
     },
     pinch: { enable: false },
-    rotate: { enable: false }
+    rotate: { enable: false },
   };
 }
 
@@ -85,34 +54,34 @@ function profileTitleFormatter(title: string): string {
     BrowserModule,
     BrowserAnimationsModule,
     NgxsModule.forRoot([], {
-      developmentMode: !environment.production
+      developmentMode: !environment.production,
     }),
     NgxsDispatchPluginModule.forRoot(),
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
-      disabled: environment.production
+      disabled: environment.production,
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot(skeletonConfig),
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
+    RouterModule.forRoot([], { onSameUrlNavigation: 'reload' }),
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [
     {
       provide: HAMMER_GESTURE_CONFIG,
-      useClass: MyHammerConfig
+      useClass: MyHammerConfig,
     },
-    {
-      provide: SOLID_PROFILE_TITLE_FORMATTER,
-      useValue: profileTitleFormatter
-    }
+    // {
+    //   provide: SOLID_PROFILE_TITLE_FORMATTER,
+    //   useValue: profileTitleFormatter
+    // }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(registry: MatIconRegistry, url: DomSanitizer) {
@@ -124,6 +93,8 @@ export class AppModule {
     addIcon('quiz');
     addIcon('profile');
     addIcon('icon');
-    addIcon('assistant');
+    addIcon('glossary');
+    addIcon('privacy');
+    addIcon('feedback');
   }
 }

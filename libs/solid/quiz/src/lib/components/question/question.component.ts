@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import {
   QuizAnswer,
   QuizQuestion,
-  QuizQuestionType
+  QuizQuestionType,
 } from '../../state/quiz.model';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -12,7 +12,7 @@ import { QuizActions } from '../../state/quiz.actions';
 @Component({
   selector: 'solid-quiz-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss']
+  styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnChanges {
   @Input() public question?: QuizQuestion;
@@ -32,7 +32,7 @@ export class QuestionComponent implements OnChanges {
     if (this.question) {
       this.Correct = true;
       let correctAnswers = 0;
-      this.question.answers.forEach(answer => {
+      this.question.answers.forEach((answer) => {
         if (answer.correct) {
           correctAnswers++;
           if (!this.SelectedAnswers.includes(answer.id)) {
@@ -70,7 +70,7 @@ export class QuestionComponent implements OnChanges {
       this.SelectedAnswers.push(answer.id);
     } else {
       this.SelectedAnswers = this.SelectedAnswers.filter(
-        id => id !== answer.id
+        (id) => id !== answer.id
       );
     }
   }

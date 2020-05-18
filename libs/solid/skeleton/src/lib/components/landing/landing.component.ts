@@ -4,11 +4,11 @@ import {
   InjectionToken,
   Injector,
   OnInit,
-  Type
+  Type,
 } from '@angular/core';
 import {
   SOLID_SKELETON_CONFIG,
-  SolidSkeletonConfig
+  InternalSolidSkeletonConfig,
 } from '../../solid-skeleton-config';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MenuState } from '../../state/menu.state';
@@ -23,17 +23,17 @@ export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
 @Component({
   selector: 'solid-skeleton-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent {
   public BannerComponent?: Type<any>;
   public BannerInjector: Injector;
   public ShowLanding = false;
-  @Select(MenuState.getMenuItems)
+  @Select(MenuState.getLandingItems)
   public MenuItems!: Observable<MenuItem[]>;
 
   constructor(
-    @Inject(SOLID_SKELETON_CONFIG) cfg: SolidSkeletonConfig,
+    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
     injector: Injector,
     breakpointObserver: BreakpointObserver
   ) {
@@ -42,14 +42,14 @@ export class LandingComponent {
       providers: [
         {
           provide: SOLID_SKELETON_HACKY_INJECTION,
-          useValue: () => this.onCloseClick()
-        }
+          useValue: () => this.onCloseClick(),
+        },
       ],
-      parent: injector
+      parent: injector,
     });
     breakpointObserver
       .observe([Breakpoints.XLarge, Breakpoints.Large, Breakpoints.Medium])
-      .subscribe(result => {
+      .subscribe((result) => {
         if (
           result.matches &&
           sessionStorage.getItem('hide_landing') !== 'true'

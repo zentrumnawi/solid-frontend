@@ -4,7 +4,7 @@ import {
   ElementRef,
   HostListener,
   OnInit,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../../state/profile.state';
@@ -16,10 +16,14 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { ProfileActions } from '../../state/profile.actions';
 
+export function __internal__selectRouterStateParams(s: any) {
+  return s.router.state.params;
+}
+
 @Component({
   selector: 'solid-profile-base',
   templateUrl: './base.component.html',
-  styleUrls: ['./base.component.scss']
+  styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent implements OnInit, AfterViewInit {
   @Select(ProfileState.selectTree)
@@ -30,7 +34,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public $profileAndCategorySelector!: Observable<
     (profileId?: number) => { profile: Profile; node: TreeNode } | null
   >;
-  @Select((s: any) => s.router.state.params)
+  @Select(__internal__selectRouterStateParams)
   public $routerParams!: Observable<{ [key: string]: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
   @ViewChild('contentContainer', { static: false })
@@ -47,7 +51,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   constructor(private _store: Store) {
     this._store.dispatch([
       new ProfileActions.LoadDefinition(),
-      new ProfileActions.LoadProfiles()
+      new ProfileActions.LoadProfiles(),
     ]);
   }
 
@@ -56,15 +60,15 @@ export class BaseComponent implements OnInit, AfterViewInit {
       this.$routerParams,
       this.$profileAndCategorySelector,
       this.$profilesFlat,
-      this.FilterValue
+      this.FilterValue,
     ])
       .pipe(
-        map(v => {
+        map((v) => {
           const { params, selector, flat, filterStr } = {
             params: v[0],
             selector: v[1],
             flat: v[2],
-            filterStr: v[3]
+            filterStr: v[3],
           };
 
           // select profile
@@ -76,7 +80,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
           // filter profiles
           const regExp = new RegExp(filterStr, 'i');
-          const profilesFlatFiltered = flat.filter(p => {
+          const profilesFlatFiltered = flat.filter((p) => {
             if (p.name.match(regExp)) {
               return true;
             }
@@ -92,14 +96,14 @@ export class BaseComponent implements OnInit, AfterViewInit {
               selectedNode: null,
               profilesFlatFiltered,
               swipeRight: -1,
-              swipeLeft: -1
+              swipeLeft: -1,
             };
           }
           let swipeRight = -1;
           let swipeLeft = -1;
           if (params.view === 'grid' || filterStr !== '') {
             const flatIndex = profilesFlatFiltered.findIndex(
-              p => p.id === profileId
+              (p) => p.id === profileId
             );
             if (flatIndex !== 0) {
               swipeLeft = profilesFlatFiltered[flatIndex - 1]?.id || -1;
@@ -129,11 +133,11 @@ export class BaseComponent implements OnInit, AfterViewInit {
             selectedNode: profileAndNode.node,
             profilesFlatFiltered,
             swipeRight,
-            swipeLeft
+            swipeLeft,
           };
         })
       )
-      .subscribe(v => {
+      .subscribe((v) => {
         this.View = v.view;
         this.SelectedProfile = v.selectedProfile;
         this.SelectedNode = v.selectedNode;
@@ -141,7 +145,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.Filter.valueChanges.subscribe(_ =>
+    this.Filter.valueChanges.subscribe((_) =>
       this.FilterValue.next(this.Filter.value)
     );
   }
@@ -162,7 +166,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
         [
           '/profile',
           this.View === 'tree' ? 'grid' : 'tree',
-          this.SelectedProfile.id
+          this.SelectedProfile.id,
         ],
         undefined,
         { replaceUrl: true }

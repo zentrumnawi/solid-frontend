@@ -4,7 +4,7 @@ import { ListComponent } from './components/list/list.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { BaseComponent } from './components/base/base.component';
 import { GridComponent } from './components/grid/grid.component';
-import { SolidCoreModule } from '@zentrumnawi/solid/core';
+import { SolidCoreModule } from '@zentrumnawi/solid-core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SolidProfileRoutingModule } from './solid-profile-routing.module';
 import { NgxsModule } from '@ngxs/store';
@@ -23,6 +23,10 @@ import { ProfileDefinitionService } from './services/profile-definition.service'
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProfileTitlePipe } from './profile-title.pipe';
 
+// This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
+// https://github.com/ng-packagr/ng-packagr/issues/767
+export const ngxsFeatureModule = NgxsModule.forFeature([ProfileState]);
+
 @NgModule({
   declarations: [
     TreeComponent,
@@ -31,14 +35,14 @@ import { ProfileTitlePipe } from './profile-title.pipe';
     BaseComponent,
     GridComponent,
     SelectedDirective,
-    ProfileTitlePipe
+    ProfileTitlePipe,
   ],
   imports: [
     SolidCoreModule,
     MatTabsModule,
     SolidCoreModule,
     SolidProfileRoutingModule,
-    NgxsModule.forFeature([ProfileState]),
+    ngxsFeatureModule,
     MatButtonModule,
     MatExpansionModule,
     MatFormFieldModule,
@@ -47,9 +51,9 @@ import { ProfileTitlePipe } from './profile-title.pipe';
     MatListModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatTreeModule
+    MatTreeModule,
   ],
-  providers: [ProfileDefinitionService]
+  providers: [ProfileDefinitionService],
 })
 export class SolidProfileModule {
   constructor(registry: MatIconRegistry, url: DomSanitizer) {

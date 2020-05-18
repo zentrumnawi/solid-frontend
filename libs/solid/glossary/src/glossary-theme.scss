@@ -1,4 +1,4 @@
-@import 'libs/solid/glossary/src/lib/component/glossary.theme';
+@import './lib/components/glossary.theme';
 
 @mixin solid-glossary-theme($mat-theme) {
   @include glossary-component-theme($mat-theme);

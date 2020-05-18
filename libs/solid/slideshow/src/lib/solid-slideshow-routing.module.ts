@@ -11,8 +11,8 @@ const routes: Routes = [
   {
     path: ':slideshowId',
     component: SlideshowComponent,
-    data: { title: 'Bestimmungshelfer' }
-  }
+    data: { title: 'Bestimmungshelfer' },
+  },
 ];
 
 export const SolidSlideshowRoutingModule = RouterModule.forChild(routes);

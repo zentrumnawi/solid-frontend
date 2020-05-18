@@ -4,7 +4,7 @@ import {
   Component,
   ElementRef,
   HostBinding,
-  Input
+  Input,
 } from '@angular/core';
 
 /* tslint:disable:component-selector */
@@ -12,9 +12,9 @@ import {
   selector: '[markdown]',
   template: '<ng-content></ng-content>',
   host: {
-    class: 'md-rendered'
+    class: 'md-rendered',
   },
-  styleUrls: ['./markdown.component.scss']
+  styleUrls: ['./markdown.component.scss'],
 })
 export class MarkdownComponent {
   @Input() public set inline(value: boolean) {

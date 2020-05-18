@@ -5,7 +5,7 @@ import { Message, messages } from './message';
 @Component({
   selector: 'geomat-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent {
   public ShowLanding = false;
@@ -14,7 +14,7 @@ export class LandingComponent {
   constructor(breakpointObserver: BreakpointObserver) {
     breakpointObserver
       .observe([Breakpoints.XLarge, Breakpoints.Large, Breakpoints.Medium])
-      .subscribe(result => {
+      .subscribe((result) => {
         if (
           result.matches &&
           sessionStorage.getItem('hide_landing') !== 'true'
@@ -24,7 +24,7 @@ export class LandingComponent {
       });
     const now = new Date(Date.now());
     this.Messages = messages.filter(
-      m =>
+      (m) =>
         (!m.validFrom || m.validFrom <= now) && (!m.validTo || m.validTo > now)
     );
   }

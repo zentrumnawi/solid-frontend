@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "package-with-schematics": {
+      "implementation": "./src/builders/package-with-schematics/builder",
+      "schema": "./src/builders/package-with-schematics/schema.json",
+      "description": "runs @nrwl/angular:package and builds schematics for the same project"
+    }
+  }
+}

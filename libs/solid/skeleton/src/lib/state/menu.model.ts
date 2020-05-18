@@ -4,4 +4,6 @@ export interface MenuItem {
   title: string;
   icon?: string;
   svgIcon?: string;
+  showOnLanding: boolean;
+  showInMenu: boolean;
 }

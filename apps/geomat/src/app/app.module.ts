@@ -2,23 +2,13 @@ import {
   BrowserModule,
   DomSanitizer,
   HAMMER_GESTURE_CONFIG,
-  HammerGestureConfig
+  HammerGestureConfig,
 } from '@angular/platform-browser';
 import { ErrorHandler, Injectable, NgModule } from '@angular/core';
 
-import {
-  generateAppRoutes,
-  SolidSkeletonConfig,
-  SolidSkeletonModule
-} from '@zentrumnawi/solid/skeleton';
+import { SolidSkeletonModule } from '@zentrumnawi/solid-skeleton';
 import { environment } from '../environments/environment';
-import {
-  overlinePlugin,
-  SolidCoreConfig,
-  SolidCoreModule,
-  subscriptPlugin,
-  superscriptPlugin
-} from '@zentrumnawi/solid/core';
+import { SolidCoreModule } from '@zentrumnawi/solid-core';
 import { AppComponent } from './app.component';
 import { NgxsModule } from '@ngxs/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,97 +26,63 @@ import { MatCardModule } from '@angular/material/card';
 import { InfoComponent } from './info/info.component';
 import { SentryErrorHandler } from './sentry.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
-
-const coreConfig: SolidCoreConfig = {
-  ...environment,
-  markdownPlugins: [superscriptPlugin, subscriptPlugin, overlinePlugin],
-  appName: 'GeoMat'
-};
-
-const skeletonConfig: SolidSkeletonConfig = {
-  feedbackEnabled: true
-};
+import { coreConfig } from './solid-core-config';
+import { skeletonConfig } from './solid-skeleton-config';
+import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
     pan: {
-      direction: 6
+      direction: 6,
     },
     pinch: { enable: false },
-    rotate: { enable: false }
+    rotate: { enable: false },
   };
 }
-
-const routes = generateAppRoutes({
-  landing: { component: LandingComponent, svgIcon: 'icon' },
-  info: { component: InfoComponent, svgIcon: 'info' },
-  privacy: { component: PrivacyComponent },
-  profile: { svgIcon: 'profile' },
-  quiz: { svgIcon: 'quiz' },
-  slideshow: {
-    url: 'determination',
-    title: 'Bestimmungshelfer',
-    svgIcon: 'assistant'
-  },
-  custom: [
-    {
-      url: 'system',
-      title: 'Kristallsysteme',
-      svgIcon: 'crystalsystem',
-      order: 2,
-      moduleImport: () =>
-        import('./crystalsystem/crystalsystem.module').then(
-          m => m.CrystalsystemModule
-        )
-    }
-  ]
-});
 
 @NgModule({
   declarations: [
     AppComponent,
     PrivacyComponent,
     LandingComponent,
-    InfoComponent
+    InfoComponent,
+    LandingBannerContentComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     NgxsModule.forRoot([], {
-      developmentMode: !environment.production
+      developmentMode: !environment.production,
     }),
-    // NgxsLoggerPluginModule.forRoot({
-    //   disabled: environment.production
-    // }),
     NgxsDispatchPluginModule.forRoot(),
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
-      disabled: environment.production
+      disabled: environment.production,
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot(skeletonConfig),
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
+    RouterModule.forRoot([], { onSameUrlNavigation: 'reload' }),
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [
     {
       provide: ErrorHandler,
-      useClass: SentryErrorHandler
+      useClass: SentryErrorHandler,
     },
     {
       provide: HAMMER_GESTURE_CONFIG,
-      useClass: MyHammerConfig
-    }
+      useClass: MyHammerConfig,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(registry: MatIconRegistry, url: DomSanitizer) {

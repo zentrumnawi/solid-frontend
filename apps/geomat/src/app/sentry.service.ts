@@ -12,11 +12,11 @@ if (environment.production) {
       // Check if it is an exception, if so, show the report dialog
       if (event.exception) {
         Sentry.showReportDialog({
-          lang: 'de'
+          lang: 'de',
         });
       }
       return event;
-    }
+    },
   });
 }
 

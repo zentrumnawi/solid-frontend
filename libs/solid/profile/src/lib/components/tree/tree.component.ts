@@ -10,11 +10,11 @@ import {
   Output,
   QueryList,
   SimpleChanges,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import {
   MatTreeFlatDataSource,
-  MatTreeFlattener
+  MatTreeFlattener,
 } from '@angular/material/tree';
 import { Observable, of as observableOf } from 'rxjs';
 import { Image, Profile, TreeNode } from '../../state/profile.model';
@@ -44,7 +44,7 @@ export interface CategoryNode {
 @Component({
   selector: 'solid-profile-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss']
+  styleUrls: ['./tree.component.scss'],
 })
 export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChildren(SelectedDirective, { read: ElementRef })
@@ -71,7 +71,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       TreeComponent.transformer,
       TreeComponent.getLevel,
       TreeComponent.isExpandable,
-      node => TreeComponent.getChildren(node)
+      (node) => TreeComponent.getChildren(node)
     );
 
     this.TreeControl = new FlatTreeControl(
@@ -92,7 +92,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         type: 'category',
         info: node.info_text,
         level: level,
-        expandable: true
+        expandable: true,
       };
     } else {
       return {
@@ -102,7 +102,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         type: 'entry',
         level: level,
         expandable: false,
-        images: []
+        images: [],
         // images: node.images
       };
     }
@@ -128,7 +128,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public ngOnInit(): void {
-    this.profiles.subscribe(profiles => {
+    this.profiles.subscribe((profiles) => {
       this.DataSource.data = profiles;
       this.expandSelectedNode();
     });
@@ -180,8 +180,8 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   private expandSelectedNode() {
     if (this.TreeControl.dataNodes) {
       this.TreeControl.dataNodes
-        .filter(n => n.type === 'entry')
-        .forEach(node => {
+        .filter((n) => n.type === 'entry')
+        .forEach((node) => {
           const profileNode = node as EntryNode;
           if (profileNode.id === this.selectedProfileId) {
             this.expandParents(node);
@@ -206,7 +206,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.selectedElements.changes.subscribe(_ => this.scrollTo());
+    this.selectedElements.changes.subscribe((_) => this.scrollTo());
   }
 
   public scrollTo() {
@@ -217,7 +217,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       }
       card.nativeElement.scrollIntoView({
         behavior: 'smooth',
-        block: 'nearest'
+        block: 'nearest',
       });
     });
   }

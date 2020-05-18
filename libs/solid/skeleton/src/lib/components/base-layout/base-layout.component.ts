@@ -2,12 +2,12 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { UpdateService } from '../../services/update.service';
-import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid/core';
+import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
   templateUrl: './base-layout.component.html',
-  styleUrls: ['./base-layout.component.scss']
+  styleUrls: ['./base-layout.component.scss'],
 })
 export class BaseLayoutComponent implements OnInit {
   public FixedLayout = false;
@@ -24,7 +24,7 @@ export class BaseLayoutComponent implements OnInit {
   public ngOnInit() {
     this._breakpointObserver
       .observe(['(min-width: 1000px)'])
-      .subscribe(isFixed => {
+      .subscribe((isFixed) => {
         const newFixedLayout = isFixed.matches;
         if (newFixedLayout) {
           if (this.MainMenu) {

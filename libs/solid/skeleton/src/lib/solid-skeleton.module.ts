@@ -1,14 +1,13 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SOLID_CORE_CONFIG, SolidCoreModule } from '@zentrumnawi/solid/core';
+import { SOLID_CORE_CONFIG, SolidCoreModule } from '@zentrumnawi/solid-core';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
-import { SolidGlossaryModule } from '@zentrumnawi/solid/glossary';
+import { SolidGlossaryModule } from '@zentrumnawi/solid-glossary';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { DomSanitizer } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ROUTES } from '@angular/router';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { MatListModule } from '@angular/material/list';
 import { FeedbackComponent } from './components/feedback/feedback.component';
@@ -17,13 +16,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {
   feedbackServiceFactory,
-  SOLID_SKELETON_FEEDBACK_SERVICE
+  SOLID_SKELETON_FEEDBACK_SERVICE,
 } from './services/feedback.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {
+  defaultSkeletonConfig,
+  InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
-  SolidSkeletonConfig
+  SolidSkeletonConfig,
 } from './solid-skeleton-config';
 import { UpdateService } from './services/update.service';
 import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
@@ -32,8 +33,28 @@ import { LandingComponent } from './components/landing/landing.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgxsModule } from '@ngxs/store';
 import { MenuState } from './state/menu.state';
+import { generateRoutes } from './skeleton-routing';
+// TODO: Get rid of lodash. It increases the bundle size...
+import * as _ from 'lodash';
 
 const hidden = Math.random() < 0.1;
+
+// This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
+// https://github.com/ng-packagr/ng-packagr/issues/767
+export const ngxsFeatureModule = NgxsModule.forFeature([MenuState]);
+
+export function configFactory(
+  cfg: SolidSkeletonConfig
+): () => () => InternalSolidSkeletonConfig {
+  const fn = function () {
+    return _.merge({}, defaultSkeletonConfig as any, cfg);
+  };
+  return fn;
+}
+
+export function routingFactory(cfg: InternalSolidSkeletonConfig) {
+  return generateRoutes(cfg.routingConfig);
+}
 
 @NgModule({
   imports: [
@@ -52,48 +73,51 @@ const hidden = Math.random() < 0.1;
     MatSelectModule,
     MatSidenavModule,
     MatToolbarModule,
-    NgxsModule.forFeature([MenuState])
+    ngxsFeatureModule,
   ],
   declarations: [
     BaseLayoutComponent,
     FeedbackComponent,
     MainMenuComponent,
     UpdateDialogComponent,
-    LandingComponent
+    LandingComponent,
   ],
   exports: [BaseLayoutComponent],
-  providers: [UpdateService]
+  providers: [UpdateService],
 })
 export class SolidSkeletonModule {
   static isLandingHiddenEnabled = hidden;
-
-  constructor(registry: MatIconRegistry, url: DomSanitizer) {
-    const addIcon = (name: string) =>
-      registry.addSvgIcon(
-        name,
-        url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`)
-      );
-    addIcon('glossary');
-    addIcon('privacy');
-    addIcon('feedback');
-  }
+  constructor() {}
 
   public static forRoot(
     cfg: SolidSkeletonConfig
   ): ModuleWithProviders<SolidSkeletonModule> {
+    // console.log('test')
+    // const config = Object.assign({}, defaultSkeletonConfig)// _.merge({}, defaultSkeletonConfig, cfg);
     return {
       ngModule: SolidSkeletonModule,
       providers: [
         {
           provide: SOLID_SKELETON_CONFIG,
-          useValue: cfg
+          useFactory: configFactory(cfg),
         },
         {
           provide: SOLID_SKELETON_FEEDBACK_SERVICE,
-          useFactory: feedbackServiceFactory(cfg.feedbackEnabled),
-          deps: [HttpClient, MatDialog, SOLID_CORE_CONFIG]
-        }
-      ]
+          useFactory: feedbackServiceFactory,
+          deps: [
+            HttpClient,
+            MatDialog,
+            SOLID_CORE_CONFIG,
+            SOLID_SKELETON_CONFIG,
+          ],
+        },
+        {
+          provide: ROUTES,
+          useFactory: routingFactory,
+          deps: [SOLID_SKELETON_CONFIG],
+          multi: true,
+        },
+      ],
     };
   }
 }

@@ -1,50 +1,50 @@
-import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
-import { Select } from '@ngxs/store';
-import { combineLatest, Observable, of, Subject } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { combineLatest, Observable, of } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
-import { map, takeUntil, tap } from 'rxjs/operators';
-import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { SlideshowActions } from '../../state/slideshow.actions';
+import { map, tap } from 'rxjs/operators';
+import { SlideshowLoadContentAction } from '../../state/slideshow.actions';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
-  LEFT_ARROW = 'ArrowLeft'
+  LEFT_ARROW = 'ArrowLeft',
+}
+
+export function __internal__selectRouterParamSlideshowId(s: any) {
+  return s.router.state.params['slideshowId'];
 }
 
 @Component({
   selector: 'solid-slideshow',
   templateUrl: './slideshow.component.html',
-  styleUrls: ['./slideshow.component.scss']
+  styleUrls: ['./slideshow.component.scss'],
 })
-export class SlideshowComponent implements OnInit, OnDestroy {
-  private $destroyed = new Subject();
+export class SlideshowComponent {
   public MaxStep = 0;
   @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
-  public Slideshow: Observable<Slideshow | undefined>;
-  @Select((s: any) => s.router.state.params['slideshowId'])
+  public Slideshow: Observable<Slideshow | undefined> = of(undefined);
+  @Select(__internal__selectRouterParamSlideshowId)
   slideshowId!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<
-    (id: number) => Slideshow | undefined
+    (id: string) => Slideshow | undefined
   >;
 
-  constructor() {
+  constructor(store: Store) {
     this.Slideshow = combineLatest([
       this.slideshowId,
-      this.slideshowSelector
+      this.slideshowSelector,
     ]).pipe(
-      map(val => {
-        return val[1](Number.parseInt(val[0], 10));
+      map((val) => {
+        return val[1]('determination'); // TODO: make dynamic
       }),
-      tap(() => this.MaxStep = 0),
-      takeUntil(this.$destroyed),
+      tap((v) => {
+        if (v) {
+          store.dispatch(new SlideshowLoadContentAction(v.id));
+        }
+      })
     );
-  }
-
-  @Dispatch()
-  private load() {
-    return new SlideshowActions.Load();
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -68,13 +68,5 @@ export class SlideshowComponent implements OnInit, OnDestroy {
     } else if ($event.deltaX < -100) {
       this.Stepper.next();
     }
-  }
-
-  ngOnDestroy(): void {
-    this.$destroyed.next();
-  }
-
-  ngOnInit(): void {
-    this.load();
   }
 }

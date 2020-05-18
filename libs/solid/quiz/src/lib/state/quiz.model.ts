@@ -19,7 +19,7 @@ export interface QuizAnswer {
 
 export enum QuizQuestionType {
   SingleChoice = 'SC',
-  MultipleChoice = 'MC'
+  MultipleChoice = 'MC',
 }
 
 export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };

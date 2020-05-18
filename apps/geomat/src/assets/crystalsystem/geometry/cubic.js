@@ -27,10 +27,10 @@ function generate() {
       [a1, b1],
       [a2, b2],
       [a3, b3],
-      [a4, b4]
+      [a4, b4],
     ],
     vertices_100: [a1, a2, a3, a4], // Add a minimum of 4 points for the convex hull algorithm. Duplicates allowed.
     vertices_110: [a2, a3, b1, b4], // Add a minimum of 4 points for the convex hull algorithm. Duplicates allowed.
-    vertices_111: [a1, a3, a3, b4] // Add a minimum of 4 points for the convex hull algorithm. Duplicates allowed.
+    vertices_111: [a1, a3, a3, b4], // Add a minimum of 4 points for the convex hull algorithm. Duplicates allowed.
   };
 }

@@ -1,0 +1,24 @@
+{
+  "name": "@zentrumnawi/solid-skeleton",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.1.6",
+    "@angular/core": "^9.1.6",
+    "@angular/forms": "^9.1.6",
+    "@angular/material": "^9.1.3",
+    "@ngxs-labs/dispatch-decorator": "^2.1.0",
+    "@ngxs/devtools-plugin": "^3.6.2",
+    "@ngxs/router-plugin": "^3.6.2",
+    "@ngxs/store": "^3.6.2",
+    "tslib": "^1.10.0"
+  },
+  "schematics": "./schematics/collection.json",
+  "scripts": {
+    "build:schematics": "../../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:schemas": "cpx schematics/**/{schema.json} ../../../dist/libs/solid/skeleton/schematics/",
+    "copy:files": "cpx schematics/**/files/** ../../../dist/libs/solid/skeleton/schematics",
+    "copy:collection": "cp schematics/collection.json ../../../dist/libs/solid/skeleton/schematics/collection.json",
+    "postbuil2d": "yarn copy:schemas && yarn copy:files && yarn copy:collection",
+    "test:schematics": "yarn build:schematics && ../../../node_modules/.bin/jasmine schematics/**/*.spec.js"
+  }
+}

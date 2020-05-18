@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'solid-quiz-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  styleUrls: ['./start.component.scss'],
 })
 export class StartComponent {
   public QuizLoaded: Observable<boolean>;
@@ -15,8 +15,8 @@ export class StartComponent {
 
   constructor(private _store: Store) {
     this.QuizLoaded = this._store
-      .select(s => s.quiz.questions)
-      .pipe(map(v => v.length > 0));
+      .select((s) => s.quiz.questions)
+      .pipe(map((v) => v.length > 0));
   }
 
   public onStartClick() {

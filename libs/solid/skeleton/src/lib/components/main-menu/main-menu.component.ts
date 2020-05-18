@@ -6,7 +6,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
   FeedbackService,
-  SOLID_SKELETON_FEEDBACK_SERVICE
+  SOLID_SKELETON_FEEDBACK_SERVICE,
 } from '../../services/feedback.service';
 import { MenuState } from '../../state/menu.state';
 import { MenuItem } from '../../state/menu.model';
@@ -14,7 +14,7 @@ import { MenuItem } from '../../state/menu.model';
 @Component({
   selector: 'solid-skeleton-main-menu',
   templateUrl: './main-menu.component.html',
-  styleUrls: ['./main-menu.component.scss']
+  styleUrls: ['./main-menu.component.scss'],
 })
 export class MainMenuComponent {
   @Output() public select = new EventEmitter();

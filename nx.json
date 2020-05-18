@@ -28,7 +28,8 @@
       "tags": ["solid"]
     },
     "solid-skeleton": {
-      "tags": ["solid"]
+      "tags": ["solid"],
+      "dependencies": ["tools"]
     },
     "solid-profile": {
       "tags": ["solid"]
@@ -39,6 +40,17 @@
     "dive-e2e": {
       "tags": [],
       "implicitDependencies": ["dive"]
+    },
+    "tools": {
+      "tags": []
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
   }
 }

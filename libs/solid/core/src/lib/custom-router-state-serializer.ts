@@ -16,7 +16,7 @@ export class CustomRouterStateSerializer
   serialize(routerState: RouterStateSnapshot): RouterStateParams {
     const {
       url,
-      root: { queryParams }
+      root: { queryParams },
     } = routerState;
 
     let { root: route } = routerState;

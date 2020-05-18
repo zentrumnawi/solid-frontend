@@ -9,9 +9,9 @@ export const environment = {
   newApiUrl: 'http://localhost:4200',
   sentry: {
     environment: '',
-    dsn: ''
+    dsn: '',
   },
-  preview: false
+  preview: false,
 };
 
 /*

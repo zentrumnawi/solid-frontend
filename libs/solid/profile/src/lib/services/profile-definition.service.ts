@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid/core';
+import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { Schema, Spec } from 'swagger-schema-official';
 import { map } from 'rxjs/operators';
 import {
   ProfileProperty,
-  ProfilePropertyType
+  ProfilePropertyType,
 } from '../state/profile-definition.model';
 
 const ignoredProperties = ['id', 'name', 'systematics'];
@@ -21,7 +21,7 @@ export class ProfileDefinitionService {
     return this.http
       .get<Spec>(`${this._config.newApiUrl}/api/swagger/?format=openapi`)
       .pipe(
-        map(swagger => {
+        map((swagger) => {
           const definitions = swagger.definitions || {};
           // tslint:disable-next-line:no-non-null-assertion
           const topLevelRef = (definitions.TreeNode.properties!.profiles!
@@ -65,7 +65,7 @@ export class ProfileDefinitionService {
           type: ProfilePropertyType.Group,
           // tslint:disable-next-line:no-non-null-assertion
           title: schema.title!,
-          properties: this.definitionToGroup(swagger, value.$ref)
+          properties: this.definitionToGroup(swagger, value.$ref),
         });
       } else {
         const pp = this.schemaToProperty(groupSchema, key, value);
@@ -91,7 +91,7 @@ export class ProfileDefinitionService {
           key: key,
           title: title!,
           required,
-          type: ProfilePropertyType.String // TODO: asdf
+          type: ProfilePropertyType.String, // TODO: asdf
         };
       case 'array':
         if (Array.isArray(schema.items)) {
@@ -101,21 +101,21 @@ export class ProfileDefinitionService {
           key: key,
           title: schema.items!.title!,
           required,
-          type: ProfilePropertyType.List
+          type: ProfilePropertyType.List,
         };
       case 'integer':
         return {
           key,
           required,
           type: ProfilePropertyType.Integer,
-          title: title!
+          title: title!,
         };
       case 'boolean':
         return {
           key,
           required,
           type: ProfilePropertyType.Boolean,
-          title: title!
+          title: title!,
         };
       case 'object':
       case 'number':

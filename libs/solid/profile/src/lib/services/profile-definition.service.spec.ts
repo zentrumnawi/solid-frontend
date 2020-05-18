@@ -3,15 +3,15 @@ import { TestBed } from '@angular/core/testing';
 import { ProfileDefinitionService } from './profile-definition.service';
 import {
   HttpClientTestingModule,
-  HttpTestingController
+  HttpTestingController,
 } from '@angular/common/http/testing';
-import { SOLID_CORE_CONFIG } from '@zentrumnawi/solid/core';
+import { SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { Schema, Spec } from 'swagger-schema-official';
 import {
   ProfileProperty,
   ProfilePropertyGroup,
-  ProfilePropertyType
-} from '../state/profile.model';
+  ProfilePropertyType,
+} from '../state/profile-definition.model';
 
 describe('ProfileDefinitionService', () => {
   let service: ProfileDefinitionService;
@@ -25,10 +25,10 @@ describe('ProfileDefinitionService', () => {
         {
           provide: SOLID_CORE_CONFIG,
           useValue: {
-            newApiUrl: ''
-          }
-        }
-      ]
+            newApiUrl: '',
+          },
+        },
+      ],
     });
     service = TestBed.inject(ProfileDefinitionService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -125,9 +125,9 @@ describe('ProfileDefinitionService', () => {
           Leaf: testSwagger.definitions.Leaf,
           Plant: {
             required: ['leaf'],
-            properties: { leaf: testSwagger.definitions.Plant.properties.leaf }
-          }
-        }
+            properties: { leaf: testSwagger.definitions.Plant.properties.leaf },
+          },
+        },
       } as any,
       '#/definitions/Plant'
     );
@@ -167,9 +167,9 @@ const testSwagger = {
           title: 'Anzahl der Keimbl\u00e4tter',
           type: 'integer',
           enum: ['1', '2'],
-          'x-nullable': true
-        }
-      }
+          'x-nullable': true,
+        },
+      },
     },
     Plant: {
       required: [
@@ -180,7 +180,7 @@ const testSwagger = {
         'name',
         'trivial_name',
         'bloom',
-        'nodule'
+        'nodule',
       ],
       type: 'object',
       properties: {
@@ -194,7 +194,7 @@ const testSwagger = {
           title: 'Trivialname',
           type: 'string',
           maxLength: 100,
-          minLength: 1
+          minLength: 1,
         },
         habitat: {
           type: 'array',
@@ -220,9 +220,9 @@ const testSwagger = {
               'Ger\u00f6ll',
               'Extensivgr\u00fcnland oder nat\u00fcrlicher Rasen',
               'W\u00e4lder',
-              'Ufer'
-            ]
-          }
+              'Ufer',
+            ],
+          },
         },
         interaction: {
           title: 'Interaktionen',
@@ -231,17 +231,17 @@ const testSwagger = {
             'parasitisch',
             'nicht parasitisch',
             'obligate Mykorrhiza',
-            'fakultative Mykorrhiza'
-          ]
+            'fakultative Mykorrhiza',
+          ],
         },
         cnt_germ: {
           title: 'Anzahl der Keimbl\u00e4tter',
           type: 'integer',
           enum: ['1', '2'],
-          'x-nullable': true
+          'x-nullable': true,
         },
-        arr_special: { title: 'Anordung ist buchtig.', type: 'boolean' }
-      }
+        arr_special: { title: 'Anordung ist buchtig.', type: 'boolean' },
+      },
     },
     TreeNode: {
       required: ['node_name', 'profiles'],
@@ -250,10 +250,10 @@ const testSwagger = {
         profiles: {
           type: 'array',
           items: {
-            $ref: '#/definitions/Plant'
-          }
-        }
-      }
-    }
-  }
+            $ref: '#/definitions/Plant',
+          },
+        },
+      },
+    },
+  },
 };

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { CrystalsystemRoutingModule } from './crystalsystem-routing.module';
 import { CrystalsystemdetailComponent } from './crystalsystemdetail.component';
-import { SolidCoreModule } from '@zentrumnawi/solid/core';
+import { SolidCoreModule } from '@zentrumnawi/solid-core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     MatTooltipModule,
     MatSelectModule,
-    CrystalsystemRoutingModule
-  ]
+    CrystalsystemRoutingModule,
+  ],
 })
 export class CrystalsystemModule {}

@@ -5,7 +5,7 @@
  *
  */
 
-(function() {
+(function () {
   var Visible = 0;
   var Deleted = 1;
 
@@ -32,7 +32,7 @@
   }
 
   Object.assign(QuickHull.prototype, {
-    setFromPoints: function(points) {
+    setFromPoints: function (points) {
       if (Array.isArray(points) !== true) {
         console.error('THREE.QuickHull: Points parameter is not an array.');
       }
@@ -54,7 +54,7 @@
       return this;
     },
 
-    makeEmpty: function() {
+    makeEmpty: function () {
       this.faces = [];
       this.vertices = [];
 
@@ -63,7 +63,7 @@
 
     // Adds a vertex to the 'assigned' list of vertices and assigns it to the given face
 
-    addVertexToFace: function(vertex, face) {
+    addVertexToFace: function (vertex, face) {
       vertex.face = face;
 
       if (face.outside === null) {
@@ -79,7 +79,7 @@
 
     // Removes a vertex from the 'assigned' list of vertices and from the given face
 
-    removeVertexFromFace: function(vertex, face) {
+    removeVertexFromFace: function (vertex, face) {
       if (vertex === face.outside) {
         // fix face.outside link
 
@@ -101,7 +101,7 @@
 
     // Removes all the visible vertices that a given face is able to see which are stored in the 'assigned' vertext list
 
-    removeAllVerticesFromFace: function(face) {
+    removeAllVerticesFromFace: function (face) {
       if (face.outside !== null) {
         // reference to the first and last vertex of this face
 
@@ -125,7 +125,7 @@
 
     // Removes all the visible vertices that 'face' is able to see
 
-    deleteFaceVertices: function(face, absorbingFace) {
+    deleteFaceVertices: function (face, absorbingFace) {
       var faceVertices = this.removeAllVerticesFromFace(face);
 
       if (faceVertices !== undefined) {
@@ -166,7 +166,7 @@
 
     // Reassigns as many vertices as possible from the unassigned list to the new faces
 
-    resolveUnassignedPoints: function(newFaces) {
+    resolveUnassignedPoints: function (newFaces) {
       if (this.unassigned.isEmpty() === false) {
         var vertex = this.unassigned.first();
 
@@ -209,7 +209,7 @@
 
     // Computes the extremes of a simplex which will be the initial hull
 
-    computeExtremes: function() {
+    computeExtremes: function () {
       var min = new THREE.Vector3();
       var max = new THREE.Vector3();
 
@@ -267,7 +267,7 @@
     // Computes the initial simplex assigning to its faces all the points
     // that are candidates to form part of the hull
 
-    computeInitialHull: (function() {
+    computeInitialHull: (function () {
       var line3, plane, closestPoint;
 
       return function computeInitialHull() {
@@ -437,7 +437,7 @@
 
     // Removes inactive faces
 
-    reindexFaces: function() {
+    reindexFaces: function () {
       var activeFaces = [];
 
       for (var i = 0; i < this.faces.length; i++) {
@@ -455,7 +455,7 @@
 
     // Finds the next vertex to create faces with the current hull
 
-    nextVertexToAdd: function() {
+    nextVertexToAdd: function () {
       // if the 'assigned' list of vertices is empty, no vertices are left. return with 'undefined'
 
       if (this.assigned.isEmpty() === false) {
@@ -488,7 +488,7 @@
     // For an edge to be part of the horizon it must join a face that can see
     // 'eyePoint' and a face that cannot see 'eyePoint'.
 
-    computeHorizon: function(eyePoint, crossEdge, face, horizon) {
+    computeHorizon: function (eyePoint, crossEdge, face, horizon) {
       // moves face's vertices to the 'unassigned' vertex list
 
       this.deleteFaceVertices(face);
@@ -530,7 +530,7 @@
 
     // Creates a face with the vertices 'eyeVertex.point', 'horizonEdge.tail' and 'horizonEdge.head' in CCW order
 
-    addAdjoiningFace: function(eyeVertex, horizonEdge) {
+    addAdjoiningFace: function (eyeVertex, horizonEdge) {
       // all the half edges are created in ccw order thus the face is always pointing outside the hull
 
       var face = Face.create(eyeVertex, horizonEdge.tail(), horizonEdge.head());
@@ -547,7 +547,7 @@
     //  Adds 'horizon.length' faces to the hull, each face will be linked with the
     //  horizon opposite face and the face on the left/right
 
-    addNewFaces: function(eyeVertex, horizon) {
+    addNewFaces: function (eyeVertex, horizon) {
       this.newFaces = [];
 
       var firstSideEdge = null;
@@ -581,7 +581,7 @@
 
     // Adds a vertex to the hull
 
-    addVertexToHull: function(eyeVertex) {
+    addVertexToHull: function (eyeVertex) {
       var horizon = [];
 
       this.unassigned.clear();
@@ -601,7 +601,7 @@
       return this;
     },
 
-    cleanup: function() {
+    cleanup: function () {
       this.assigned.clear();
       this.unassigned.clear();
       this.newFaces = [];
@@ -609,7 +609,7 @@
       return this;
     },
 
-    compute: function() {
+    compute: function () {
       var vertex;
 
       this.computeInitialHull();
@@ -625,7 +625,7 @@
       this.cleanup();
 
       return this;
-    }
+    },
   });
 
   //
@@ -642,7 +642,7 @@
   }
 
   Object.assign(Face, {
-    create: function(a, b, c) {
+    create: function (a, b, c) {
       var face = new Face();
 
       var e0 = new HalfEdge(a, face);
@@ -660,11 +660,11 @@
       face.edge = e0;
 
       return face.compute();
-    }
+    },
   });
 
   Object.assign(Face.prototype, {
-    getEdge: function(i) {
+    getEdge: function (i) {
       var edge = this.edge;
 
       while (i > 0) {
@@ -680,7 +680,7 @@
       return edge;
     },
 
-    compute: (function() {
+    compute: (function () {
       var triangle;
 
       return function compute() {
@@ -702,9 +702,9 @@
       };
     })(),
 
-    distanceToPoint: function(point) {
+    distanceToPoint: function (point) {
       return this.normal.dot(point) - this.constant;
-    }
+    },
   });
 
   // Entity for a Doubly-Connected Edge List (DCEL).
@@ -718,15 +718,15 @@
   }
 
   Object.assign(HalfEdge.prototype, {
-    head: function() {
+    head: function () {
       return this.vertex;
     },
 
-    tail: function() {
+    tail: function () {
       return this.prev ? this.prev.vertex : null;
     },
 
-    length: function() {
+    length: function () {
       var head = this.head();
       var tail = this.tail();
 
@@ -737,7 +737,7 @@
       return -1;
     },
 
-    lengthSquared: function() {
+    lengthSquared: function () {
       var head = this.head();
       var tail = this.tail();
 
@@ -748,12 +748,12 @@
       return -1;
     },
 
-    setTwin: function(edge) {
+    setTwin: function (edge) {
       this.twin = edge;
       edge.twin = this;
 
       return this;
-    }
+    },
   });
 
   // A vertex as a double linked list node.
@@ -773,15 +773,15 @@
   }
 
   Object.assign(VertexList.prototype, {
-    first: function() {
+    first: function () {
       return this.head;
     },
 
-    last: function() {
+    last: function () {
       return this.tail;
     },
 
-    clear: function() {
+    clear: function () {
       this.head = this.tail = null;
 
       return this;
@@ -789,7 +789,7 @@
 
     // Inserts a vertex before the target vertex
 
-    insertBefore: function(target, vertex) {
+    insertBefore: function (target, vertex) {
       vertex.prev = target.prev;
       vertex.next = target;
 
@@ -806,7 +806,7 @@
 
     // Inserts a vertex after the target vertex
 
-    insertAfter: function(target, vertex) {
+    insertAfter: function (target, vertex) {
       vertex.prev = target;
       vertex.next = target.next;
 
@@ -823,7 +823,7 @@
 
     // Appends a vertex to the end of the linked list
 
-    append: function(vertex) {
+    append: function (vertex) {
       if (this.head === null) {
         this.head = vertex;
       } else {
@@ -840,7 +840,7 @@
 
     // Appends a chain of vertices where 'vertex' is the head.
 
-    appendChain: function(vertex) {
+    appendChain: function (vertex) {
       if (this.head === null) {
         this.head = vertex;
       } else {
@@ -862,7 +862,7 @@
 
     // Removes a vertex from the linked list
 
-    remove: function(vertex) {
+    remove: function (vertex) {
       if (vertex.prev === null) {
         this.head = vertex.next;
       } else {
@@ -880,7 +880,7 @@
 
     // Removes a list of vertices whose 'head' is 'a' and whose 'tail' is b
 
-    removeSubList: function(a, b) {
+    removeSubList: function (a, b) {
       if (a.prev === null) {
         this.head = b.next;
       } else {
@@ -896,9 +896,9 @@
       return this;
     },
 
-    isEmpty: function() {
+    isEmpty: function () {
       return this.head === null;
-    }
+    },
   });
 
   // export
