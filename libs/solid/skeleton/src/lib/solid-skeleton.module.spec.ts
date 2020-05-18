@@ -4,7 +4,7 @@ import { SolidSkeletonModule } from './solid-skeleton.module';
 describe('SolidSkeletonModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SolidSkeletonModule]
+      imports: [SolidSkeletonModule],
     }).compileComponents();
   }));
 

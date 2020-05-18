@@ -4,7 +4,7 @@ import { SolidSlideshowModule } from './solid-slideshow.module';
 describe('SolidSlideshowModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SolidSlideshowModule]
+      imports: [SolidSlideshowModule],
     }).compileComponents();
   }));
 

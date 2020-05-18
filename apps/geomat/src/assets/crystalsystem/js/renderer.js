@@ -6,8 +6,8 @@ const settings = {
   display: {
     axis: false,
     points: false,
-    faces: true
-  }
+    faces: true,
+  },
 };
 
 const groups = {
@@ -17,7 +17,7 @@ const groups = {
   axis: new THREE.Group(),
   v_100: new THREE.Group(),
   v_110: new THREE.Group(),
-  v_111: new THREE.Group()
+  v_111: new THREE.Group(),
 };
 
 let scene, renderer;
@@ -145,7 +145,7 @@ function initModel(geoStr) {
     color: 0x0080ff,
     map: texture,
     size: 1,
-    alphaTest: 0.5
+    alphaTest: 0.5,
   });
 
   const pointsGeometry = new THREE.BufferGeometry().setFromPoints(vertices);
@@ -156,7 +156,7 @@ function initModel(geoStr) {
   const meshMaterial = new THREE.MeshLambertMaterial({
     color: 0xaaaaaa,
     opacity: 0.5,
-    transparent: true
+    transparent: true,
   });
   const facesGeometry = new THREE.ConvexBufferGeometry(vertices);
   groups.faces.remove(...groups.faces.children);
@@ -164,10 +164,10 @@ function initModel(geoStr) {
 
   // create borders
   const lineMaterial = new THREE.LineBasicMaterial({
-    color: 0x000000
+    color: 0x000000,
   });
   groups.borders.remove(...groups.borders.children);
-  borders.forEach(border => {
+  borders.forEach((border) => {
     const geometry = new THREE.Geometry();
     geometry.vertices.push(border[0]);
     geometry.vertices.push(border[1]);
@@ -178,7 +178,7 @@ function initModel(geoStr) {
   const highlightMaterial = new THREE.MeshBasicMaterial({
     color: 0x32c832,
     transparent: true,
-    opacity: 0.7
+    opacity: 0.7,
   });
 
   const geometry_100 = new THREE.ConvexBufferGeometry(vertices_100);

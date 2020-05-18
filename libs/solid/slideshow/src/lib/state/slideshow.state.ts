@@ -11,7 +11,7 @@ export interface SlideshowStateModel {
 
 @State<SlideshowStateModel>({
   name: 'slideshow',
-  defaults: { determination: determinationhelper }
+  defaults: { determination: determinationhelper },
 })
 @Injectable()
 export class SlideshowState {
@@ -22,7 +22,12 @@ export class SlideshowState {
 
   @Selector()
   public static getSlideshowById(state: SlideshowStateModel) {
-    return (id: string): Slideshow | undefined => state[id];
+    // This redundant variable is required
+    // https://github.com/ng-packagr/ng-packagr/issues/696
+    const fn = function (id: string): Slideshow | undefined {
+      return state[id];
+    };
+    return fn;
   }
 
   @Action(SlideshowLoadContentAction)
@@ -30,7 +35,7 @@ export class SlideshowState {
     ctx: StateContext<SlideshowStateModel>,
     { id }: SlideshowLoadContentAction
   ) {
-    return new Promise(async resolve => {
+    return new Promise(async (resolve) => {
       if (this._loadingSlideshows.includes(id)) {
         resolve();
         return;
@@ -39,7 +44,7 @@ export class SlideshowState {
       const slideshow = ctx.getState()[id];
 
       const newPages = await Promise.all(
-        slideshow.pages.map(async v => {
+        slideshow.pages.map(async (v) => {
           if (!v.content) {
             const result = await this._http
               .get(v.contentPath, { responseType: 'text' })
@@ -51,9 +56,9 @@ export class SlideshowState {
       );
 
       ctx.patchState({
-        [id]: { ...slideshow, pages: newPages }
+        [id]: { ...slideshow, pages: newPages },
       });
-      this._loadingSlideshows = this._loadingSlideshows.filter(v => v !== id);
+      this._loadingSlideshows = this._loadingSlideshows.filter((v) => v !== id);
       resolve();
     });
   }

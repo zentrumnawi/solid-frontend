@@ -1,7 +1,7 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Inject, Injectable } from '@angular/core';
 import { GlossaryActions } from './glossary.actions';
-import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid/core';
+import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 
@@ -28,8 +28,8 @@ export interface GlossaryStateModel {
   name: 'glossary',
   defaults: {
     entries: {},
-    sections: []
-  }
+    sections: [],
+  },
 })
 @Injectable()
 export class GlossaryState {
@@ -48,10 +48,10 @@ export class GlossaryState {
     return this._http
       .get<GlossaryEntryModel[]>(`${this._config.newApiUrl}/api/glossaries`)
       .pipe(
-        map(result => {
+        map((result) => {
           const entries: GlossaryEntries = {};
           const sections: { [key: string]: number[] } = {};
-          result.forEach(entry => {
+          result.forEach((entry) => {
             entries[entry.id] = entry;
             const firstChar = entry.term[0].toUpperCase();
             if (sections[firstChar] === undefined) {
@@ -59,14 +59,14 @@ export class GlossaryState {
             }
             sections[firstChar].push(entry.id);
           });
-          Object.keys(sections).forEach(sectionKey =>
+          Object.keys(sections).forEach((sectionKey) =>
             sections[sectionKey].sort((a, b) =>
               entries[a].term.localeCompare(entries[b].term)
             )
           );
           return { entries, sections: Object.entries(sections) };
         }),
-        tap(v => {
+        tap((v) => {
           ctx.patchState(v);
         })
       );

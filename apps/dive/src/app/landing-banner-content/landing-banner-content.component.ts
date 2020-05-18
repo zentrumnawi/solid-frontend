@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { SOLID_SKELETON_HACKY_INJECTION } from '@zentrumnawi/solid/skeleton';
+import { SOLID_SKELETON_HACKY_INJECTION } from '@zentrumnawi/solid-skeleton';
 
 @Component({
   selector: 'dive-landing-banner-content',
   templateUrl: './landing-banner-content.component.html',
-  styleUrls: []
+  styleUrls: [],
 })
 export class LandingBannerContentComponent {
   constructor(

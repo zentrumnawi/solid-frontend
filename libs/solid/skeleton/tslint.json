@@ -5,6 +5,6 @@
     "component-selector": [true, "element", "solid-skeleton", "kebab-case"]
   },
   "linterOptions": {
-    "exclude": ["!**/*"]
+    "exclude": ["!**/*", "schematics/**"]
   }
 }

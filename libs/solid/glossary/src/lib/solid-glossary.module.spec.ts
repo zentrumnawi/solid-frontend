@@ -4,7 +4,7 @@ import { SolidGlossaryModule } from './solid-glossary.module';
 describe('SolidGlossaryModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SolidGlossaryModule]
+      imports: [SolidGlossaryModule],
     }).compileComponents();
   }));
 

@@ -9,19 +9,23 @@ import { SlideshowLoadContentAction } from '../../state/slideshow.actions';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
-  LEFT_ARROW = 'ArrowLeft'
+  LEFT_ARROW = 'ArrowLeft',
+}
+
+export function __internal__selectRouterParamSlideshowId(s: any) {
+  return s.router.state.params['slideshowId'];
 }
 
 @Component({
   selector: 'solid-slideshow',
   templateUrl: './slideshow.component.html',
-  styleUrls: ['./slideshow.component.scss']
+  styleUrls: ['./slideshow.component.scss'],
 })
 export class SlideshowComponent {
   public MaxStep = 0;
   @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
   public Slideshow: Observable<Slideshow | undefined> = of(undefined);
-  @Select((s: any) => s.router.state.params['slideshowId'])
+  @Select(__internal__selectRouterParamSlideshowId)
   slideshowId!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<
     (id: string) => Slideshow | undefined
@@ -30,12 +34,12 @@ export class SlideshowComponent {
   constructor(store: Store) {
     this.Slideshow = combineLatest([
       this.slideshowId,
-      this.slideshowSelector
+      this.slideshowSelector,
     ]).pipe(
-      map(val => {
+      map((val) => {
         return val[1]('determination'); // TODO: make dynamic
       }),
-      tap(v => {
+      tap((v) => {
         if (v) {
           store.dispatch(new SlideshowLoadContentAction(v.id));
         }

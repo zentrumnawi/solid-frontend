@@ -4,7 +4,7 @@ import { SolidQuizModule } from './solid-quiz.module';
 describe('SolidQuizModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SolidQuizModule]
+      imports: [SolidQuizModule],
     }).compileComponents();
   }));
 

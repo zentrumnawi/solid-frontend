@@ -8,8 +8,8 @@ const p = JSON.parse(readFileSync('package.json', 'utf8'));
 if (p.version) {
   const version = {
     semver: {
-      version: p.version
-    }
+      version: p.version,
+    },
   };
   versionInfo = JSON.stringify(version, null, 2);
 } else if (existsSync('.git')) {
@@ -19,8 +19,8 @@ if (p.version) {
   const version = {
     hash: process.env.GIT_REV,
     semver: {
-      version: process.env.TRAVIS_TAG
-    }
+      version: process.env.TRAVIS_TAG,
+    },
   };
   versionInfo = JSON.stringify(version, null, 2);
 }

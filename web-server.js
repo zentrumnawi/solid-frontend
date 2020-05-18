@@ -20,12 +20,12 @@ const mimeType = {
   '.pdf': 'application/pdf',
   '.doc': 'application/msword',
   '.eot': 'appliaction/vnd.ms-fontobject',
-  '.ttf': 'aplication/font-sfnt'
+  '.ttf': 'aplication/font-sfnt',
 };
 
 function readFile(pathname, res) {
   // read file from file system
-  fs.readFile(pathname, function(err, data) {
+  fs.readFile(pathname, function (err, data) {
     if (err) {
       res.statusCode = 500;
       res.end(`Error getting the file: ${err}.`);
@@ -40,7 +40,7 @@ function readFile(pathname, res) {
 }
 
 http
-  .createServer(function(req, res) {
+  .createServer(function (req, res) {
     console.log(`${req.method} ${req.url}`);
 
     // parse URL
@@ -55,7 +55,7 @@ http
       .replace(/^(\.\.[\/\\])+/, '');
     let pathname = path.join(__dirname, 'dist', 'apps', 'geomat', sanitizePath);
 
-    fs.exists(pathname, function(exist) {
+    fs.exists(pathname, function (exist) {
       if (!exist) {
         // if the file is not found, return 404
         readFile(

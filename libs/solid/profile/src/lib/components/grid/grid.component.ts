@@ -6,7 +6,7 @@ import {
   Input,
   Output,
   QueryList,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Profile } from '../../state/profile.model';
@@ -15,7 +15,7 @@ import { SelectedDirective } from '../selected.directive';
 @Component({
   selector: 'solid-profile-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.scss']
+  styleUrls: ['./grid.component.scss'],
 })
 export class GridComponent implements AfterViewInit {
   @ViewChildren(SelectedDirective, { read: ElementRef })
@@ -28,7 +28,7 @@ export class GridComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.selectedElements.changes.subscribe(_ => this.scrollTo());
+    this.selectedElements.changes.subscribe((_) => this.scrollTo());
     this.scrollTo();
   }
 
@@ -40,7 +40,7 @@ export class GridComponent implements AfterViewInit {
       }
       card.nativeElement.scrollIntoView({
         behavior: 'smooth',
-        block: 'nearest'
+        block: 'nearest',
       });
     });
   }

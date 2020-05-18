@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Profile, TreeNode, TreeNodeApi } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid/core';
+import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { ProfileActions } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -14,13 +14,39 @@ export interface ProfileStateModel {
   definition: ProfileProperty[];
 }
 
+// export function __selectProfileAndNodeFactory() {//(state: ProfileStateModel) {
+//   function __selector(profileId?: number) {
+//     if (!profileId) {
+//       return null;
+//     }
+//     // for (const node of state.nodes) {
+//     //   const childSearch = ProfileState.findProfileDeep(node, profileId);
+//     //   if (childSearch !== null) {
+//     //     return childSearch;
+//     //   }
+//     // }
+//     return null;
+//   }
+//   const a = __selector;
+//   return a;
+// }
+
+function b() {
+  return null;
+}
+
+function a() {
+  const bb = b;
+  return b;
+}
+
 @State<ProfileStateModel>({
   name: 'profile',
   defaults: {
     profiles: [],
     nodes: [],
-    definition: []
-  }
+    definition: [],
+  },
 })
 @Injectable()
 export class ProfileState {
@@ -34,7 +60,9 @@ export class ProfileState {
   static selectProfileAndNode(
     state: ProfileStateModel
   ): (profileId?: number) => { profile: Profile; node: TreeNode } | null {
-    return (profileId?: number) => {
+    // This redundant variable is required
+    // https://github.com/ng-packagr/ng-packagr/issues/696
+    const fn = function (profileId?: number) {
       if (!profileId) {
         return null;
       }
@@ -46,6 +74,12 @@ export class ProfileState {
       }
       return null;
     };
+    return fn;
+    // return ProfileState.__internal__selectProfileAndNode;
+  }
+
+  static __internal__selectProfileAndNode(profileId?: number) {
+    return null;
   }
 
   @Selector()
@@ -67,11 +101,11 @@ export class ProfileState {
     node: TreeNode,
     profileId: number
   ): { profile: Profile; node: TreeNode } | null {
-    const profile = node.profiles.find(p => p.id === profileId);
+    const profile = node.profiles.find((p) => p.id === profileId);
     if (profile) {
       return {
         profile,
-        node
+        node,
       };
     }
     for (const leafNode of node.leaf_nodes) {
@@ -94,25 +128,25 @@ export class ProfileState {
     return this.http
       .get<TreeNodeApi[]>(`${this._config.apiUrl}/api/profiles/`)
       .pipe(
-        map(response => {
+        map((response) => {
           const mapit = (input: TreeNodeApi[]): TreeNode[] => {
-            return input.map(node => {
+            return input.map((node) => {
               return {
                 type: 'category',
                 node_name: node.node_name,
                 info_text: node.info_text,
                 leaf_nodes: mapit(node.leaf_nodes),
-                profiles: node.profiles.map(profile => ({
+                profiles: node.profiles.map((profile) => ({
                   ...profile,
                   type: 'profile',
-                  images: [] // TODO: Fix if images are set from api
-                }))
+                  images: [], // TODO: Fix if images are set from api
+                })),
               };
             });
           };
           return mapit(response);
         }),
-        tap(nodes => {
+        tap((nodes) => {
           const mapIt = (result: Profile[], value: TreeNode[]) => {
             for (const v of value) {
               result.push(...mapIt([], v.leaf_nodes));
@@ -135,9 +169,9 @@ export class ProfileState {
       return;
     }
     return this._defService.loadDefinitions().pipe(
-      tap(definition => {
+      tap((definition) => {
         ctx.patchState({
-          definition
+          definition,
         });
       })
     );

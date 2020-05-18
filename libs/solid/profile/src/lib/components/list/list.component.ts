@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'solid-profile-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
   @Input() profiles!: Observable<Profile[]>;

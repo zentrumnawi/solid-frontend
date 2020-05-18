@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SolidCoreModule } from '@zentrumnawi/solid/core';
+import { SolidCoreModule } from '@zentrumnawi/solid-core';
 import { SlideshowComponent } from './components/slideshow/slideshow.component';
 import { SolidSlideshowRoutingModule } from './solid-slideshow-routing.module';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -10,22 +10,26 @@ import { NgxsModule } from '@ngxs/store';
 import { SlideshowState } from './state/slideshow.state';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
+// This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
+// https://github.com/ng-packagr/ng-packagr/issues/767
+export const ngxsFeatureModule = NgxsModule.forFeature([SlideshowState]);
+
 @NgModule({
   declarations: [SlideshowComponent],
   imports: [
     SolidCoreModule,
     SolidSlideshowRoutingModule,
-    NgxsModule.forFeature([SlideshowState]),
+    ngxsFeatureModule,
     MatStepperModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { displayDefaultIndicatorType: false }
-    }
-  ]
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
 })
 export class SolidSlideshowModule {}

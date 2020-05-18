@@ -19,9 +19,9 @@ import { TitleService } from './services/title.service';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MarkdownComponent
+    MarkdownComponent,
   ],
-  providers: [MarkdownService, TitleService]
+  providers: [MarkdownService, TitleService],
 })
 export class SolidCoreModule {
   constructor(title: TitleService) {}
@@ -34,17 +34,17 @@ export class SolidCoreModule {
       providers: [
         {
           provide: SOLID_CORE_CONFIG,
-          useValue: config
+          useValue: config,
         },
         {
           provide: RouteReuseStrategy,
-          useClass: CustomRouteReuseStrategy
+          useClass: CustomRouteReuseStrategy,
         },
         {
           provide: RouterStateSerializer,
-          useClass: CustomRouterStateSerializer
-        }
-      ]
+          useClass: CustomRouterStateSerializer,
+        },
+      ],
     };
   }
 }

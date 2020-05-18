@@ -4,7 +4,7 @@ import { SolidCoreModule } from './solid-core.module';
 describe('SolidCoreModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SolidCoreModule]
+      imports: [SolidCoreModule],
     }).compileComponents();
   }));
 

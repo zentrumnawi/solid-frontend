@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
 import {
   ProfileProperty,
-  ProfilePropertyType
+  ProfilePropertyType,
 } from '../../state/profile-definition.model';
 
 @Component({
   selector: 'solid-profile-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent {
   public PropertyTypes = ProfilePropertyType;
@@ -33,7 +33,7 @@ export class DetailComponent {
   @Input()
   public set profile(profile: Profile) {
     this._profile = profile;
-    this.ImageLoaded = profile.images.map(_ => false);
+    this.ImageLoaded = profile.images.map((_) => false);
     this.onImageSelect(0);
   }
 

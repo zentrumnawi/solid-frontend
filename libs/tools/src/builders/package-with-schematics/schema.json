@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "ng-packagr Target",
+  "description": "ng-packagr target options for Build Architect. Use to build library projects.",
+  "type": "object",
+  "properties": {
+    "packageOptions": {
+      "type": "object",
+      "description": "Options for the angular project",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "The file path for the ng-packagr configuration file, relative to the current workspace."
+        },
+        "tsConfig": {
+          "type": "string",
+          "description": "The full path for the TypeScript configuration file, relative to the current workspace."
+        },
+        "watch": {
+          "type": "boolean",
+          "description": "Run build when files change.",
+          "default": false
+        }
+      },
+      "additionalProperties": false,
+      "required": ["project", "tsConfig"]
+    },
+    "schematicOptions": {
+      "type": "object",
+      "description": "Options for the schematics",
+      "properties": {
+        "main": {
+          "type": "string",
+          "description": "The name of the main entry-point file."
+        },
+        "tsConfig": {
+          "type": "string",
+          "description": "The name of the Typescript configuration file."
+        },
+        "outputPath": {
+          "type": "string",
+          "description": "The output path of the generated files."
+        },
+        "watch": {
+          "type": "boolean",
+          "description": "Enable re-building when files change.",
+          "default": false
+        },
+        "sourceMap": {
+          "type": "boolean",
+          "description": "Output sourcemaps.",
+          "default": true
+        },
+        "assets": {
+          "type": "array",
+          "description": "List of static library assets.",
+          "default": [],
+          "items": {
+            "$ref": "#/definitions/assetPattern"
+          }
+        },
+        "packageJson": {
+          "type": "string",
+          "description": "The name of the package.json file"
+        }
+      },
+      "required": ["tsConfig", "main"]
+    }
+  },
+  "additionalProperties": false,
+  "required": ["packageOptions", "schematicOptions"],
+  "definitions": {
+    "assetPattern": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "glob": {
+              "type": "string",
+              "description": "The pattern to match."
+            },
+            "input": {
+              "type": "string",
+              "description": "The input directory path in which to apply 'glob'. Defaults to the project root."
+            },
+            "ignore": {
+              "description": "An array of globs to ignore.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string",
+              "description": "Absolute path within the output."
+            }
+          },
+          "additionalProperties": false,
+          "required": ["glob", "input", "output"]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  }
+}

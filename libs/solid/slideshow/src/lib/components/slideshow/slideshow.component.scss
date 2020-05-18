@@ -5,6 +5,10 @@
   grid-area: next;
 }
 
+.button-left {
+  grid-area: previous;
+}
+
 .step-actions {
   margin-top: 1em;
   display: grid;
