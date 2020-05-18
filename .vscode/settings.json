@@ -1,6 +1,5 @@
 {
   "search.exclude": {
-    "**/node_modules": false,
-    "**/node_moduless": true
+    "**/node_modules": true
   }
 }

@@ -36,6 +36,12 @@ jobs:
       - name: test
         run: yarn nx affected --target=test --base=origin/dev --parallel
 
+      - name: Upload coverage
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage/**/clover.xml
+          name: nx-jest
+
       - name: lint
         run: yarn nx affected --target=lint --base=origin/dev --parallel
 
