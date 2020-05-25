@@ -1,0 +1,44 @@
+language: node_js
+node_js:
+- 'lts/*'
+cache:
+  yarn: true
+  directories:
+    - node_modules
+env:
+  secure: bHCda6sBJg0TLB8K5j+6QKxI075fCSEWOXHIhFyu/G+83UDjnxV3S6MwprtsH0pEexG5qoXlNvWTvnJ+QTqLBChy3dPAPchu5XDdfTnHlj3msoBAwcS5H7zJAc77TTj3OwDTkwyh43Ovcncw6bXm4EXPhz6CC9Mp9o8ziA58P2WTzRpC6RsMPBmnwWi3kd/lI/RRhgsBSoTfw4zaroa0qTjpoQnA7Vm6DAL9+vgteARtWGxckXGYnclILTqtvkXmHx/jv7QbDYuKs2vWQPubvFrlyhEzuMYiEta333grUEPDsYfOFagSq4sTd058ZHKFnMqZ6D0VCuYI673VPVXxMP1Ux8mbX6gFrPDeRSIvfUhbypHHvnAP96u7QaNq/jZST4t94mjN2eyAMo1tn6hhB7cpqpI5g4CvU0khpX782jyldT4xPtjkgRL+5xMLWVPZeRk9ACPchcocVX+XW/CLUCpVgHEYEdDKsIZgjQCxwjTBym8n7ZuQV5WOZ0qkmnh7rvL69ka08jo1WaBysbRsKuR0NYBpi+F29LmRYgE+8b4zLGQZVyT5ZN7/jxOXVuKdsQmm6M/QHbJGOGiuad2btRN16Imnqs1CtjeFllhNQa/lxEEpe7Jlm84Mt3YJsR+J+LeLCqyBpfUJFoX7xu0VkEQYVKDypCnBlm7Sw/GFXZw=
+stages:
+  - name: lint
+  - build
+  - name: deploy
+    if: branch IN (master, dev) AND type != pull_request
+jobs:
+  include:
+    - stage: lint
+      script: yarn lint
+    - stage: build
+      script: ./.travis/build.sh ${TRAVIS_BRANCH}
+    - stage: deploy
+      script: ./.travis/deploy.sh ${TRAVIS_PULL_REQUEST} ${TRAVIS_BRANCH}
+notifications:
+  email:
+    on_failure: change
+on_success: change
+before_install:
+- chmod +x .travis/build.sh
+- chmod +x .travis/deploy.sh
+- openssl aes-256-cbc -K $encrypted_172b5ce8d004_key -iv $encrypted_172b5ce8d004_iv
+  -in .travis/deploy.key.enc -out .travis/deploy.key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 .travis/deploy.key
+- ssh-add .travis/deploy.key
+- ssh-keyscan $SERVER >> ~/.ssh/known_hosts
+- |
+  if [[ ${TRAVIS_PULL_REQUEST} == "false" ]] && [[ ${TRAVIS_BRANCH} == "dev" ]]; then
+    git remote add deploy $USER@$SERVER:$STAGING_DIRECTORY
+  fi
+- |
+  if [[ ${TRAVIS_PULL_REQUEST} == "false" ]] && [[ ${TRAVIS_BRANCH} == "master" ]]; then
+    git remote add deploy $USER@$SERVER:$PRODUCTION_DIRECTORY
+  fi
+- git config --global push.default simple
