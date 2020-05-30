@@ -76,7 +76,7 @@
     "@types/jasminewd2": "~2.0.8",
     "@types/jest": "^25.2.1",
     "@types/markdown-it": "^10.0.1",
-    "@types/node": "^13.13.5",
+    "@types/node": "^14.0.6",
     "@types/punycode": "^2.1.0",
     "angular-cli-ghpages": "^0.6.2",
     "@types/swagger-schema-official": "^2.0.21",
