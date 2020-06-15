@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ question.tags.join(' ') }}</mat-card-title>
-      <mat-card-subtitle>{{ question.text }}</mat-card-subtitle>
+      <mat-card-subtitle markdown [data]="question.text"></mat-card-subtitle>
     </mat-card-header>
     <ng-container [ngSwitch]="question.type">
       <mat-card-content *ngSwitchCase="QuestionTypes.SingleChoice">
