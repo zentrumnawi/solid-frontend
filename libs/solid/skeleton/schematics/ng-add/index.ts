@@ -1,39 +1,34 @@
 import {
-  Rule,
-  SchematicContext,
-  Tree,
-  externalSchematic,
-  chain,
-  SchematicsException,
-  url,
   apply,
   applyTemplates,
-  move,
+  chain,
+  externalSchematic,
+  MergeStrategy,
   mergeWith,
+  move,
+  Rule,
+  SchematicContext,
+  SchematicsException,
+  Tree,
+  url
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Schema } from './schema';
 import { addPackageJsonDependency } from '@schematics/angular/utility/dependencies';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { InsertChange } from '@schematics/angular/utility/change';
 import { targetBuildNotFoundError } from '@schematics/angular/utility/project-targets';
 import { relativePathToWorkspaceRoot } from '@schematics/angular/utility/paths';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import {
-  isImported,
-  insertImport,
-  getEnvironmentExportName,
-  addSymbolToNgModuleMetadata,
-  addDeclarationToModule,
-} from '@schematics/angular/utility/ast-utils';
+import { getEnvironmentExportName, insertImport, addSymbolToNgModuleMetadata } from '@schematics/angular/utility/ast-utils';
 import { DEPENDENCIES } from '../dependencies';
-import { experimental, normalize } from '@angular-devkit/core';
+import { normalize } from '@angular-devkit/core';
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
-import { InsertChange } from '@nrwl/workspace/src/utils/ast-utils';
 
 const materialOptions = {
   theme: 'custom',
   typography: true,
-  animations: true,
+  animations: true
 };
 
 export function addBaseDependency() {
@@ -87,30 +82,30 @@ export function getEnvironmentImport(mainPath: string) {
   };
 }
 
-const modulesToImport = [
+const modulesToImport: [string, string, string?][] = [
   [
     'NgxsModule',
     '@ngxs/store',
     `NgxsModule.forRoot([], {
       developmentMode: !ENV_NAME.production
-    })`,
+    })`
   ],
   [
     'NgxsDispatchPluginModule',
     '@ngxs-labs/dispatch-decorator',
-    'NgxsDispatchPluginModule.forRoot()',
+    'NgxsDispatchPluginModule.forRoot()'
   ],
   [
     'NgxsRouterPluginModule',
     '@ngxs/router-plugin',
-    'NgxsRouterPluginModule.forRoot()',
+    'NgxsRouterPluginModule.forRoot()'
   ],
   [
     'NgxsReduxDevtoolsPluginModule',
     '@ngxs/devtools-plugin',
     `NgxsReduxDevtoolsPluginModule.forRoot({
       disabled: ENV_NAME.production
-    })`,
+    })`
   ],
   ['MatButtonModule', '@angular/material/button'],
   ['MatCardModule', '@angular/material/card'],
@@ -118,17 +113,48 @@ const modulesToImport = [
   [
     'RouterModule',
     '@angular/router',
-    "RouterModule.forRoot([], { onSameUrlNavigation: 'reload' })",
-  ],
+    'RouterModule.forRoot([], { onSameUrlNavigation: \'reload\' })'
+  ]
 ];
 
-const componentsToImport = [
+const componentsToImport: [string, string][] = [
   [
     'LandingBannerContentComponent',
-    './components/landing-banner-content/landing-banner-content.component',
+    './components/landing-banner-content/landing-banner-content.component'
   ],
-  ['PrivacyComponent', './components/privacy/privacy.component'],
+  ['PrivacyComponent', './components/privacy/privacy.component']
 ];
+
+export function addImportToNgModule(host: Tree, modulePath: string, classifiedName: string, importPath: string, customImportFn?: string) {
+  let moduleSource = getTsSourceFile(host, modulePath);
+  {
+    const change = insertImport(moduleSource, modulePath, classifiedName, importPath);
+    const recorder = host.beginUpdate(modulePath);
+    if (change instanceof InsertChange) {
+      recorder.insertLeft(change.pos, change.toAdd);
+    }
+    host.commitUpdate(recorder);
+  }
+  const recorder = host.beginUpdate(modulePath);
+  const changes = addSymbolToNgModuleMetadata(
+    moduleSource,
+    modulePath,
+    'imports',
+    classifiedName,//customImportFn || classifiedName,
+    null);
+  //   (module[0]),// || module[0]).replace('ENV_NAME', environment.name),
+  //   null,
+  // );
+  if (changes) {
+    changes.forEach((change) => {
+      if (change instanceof InsertChange) {
+        const insertChange = change as InsertChange;
+        recorder.insertRight(insertChange.pos, insertChange.toAdd);
+      }
+    });
+  }
+  host.commitUpdate(recorder);
+}
 
 export function updateAppModule(
   mainPath: string,
@@ -137,60 +163,65 @@ export function updateAppModule(
   return (host: Tree) => {
     const modulePath = getAppModulePath(host, mainPath);
     let moduleSource = getTsSourceFile(host, modulePath);
-    [...modulesToImport, ...componentsToImport].forEach((module) => {
-      if (!isImported(moduleSource, module[0], module[1])) {
-        const change = insertImport(
-          moduleSource,
-          modulePath,
-          module[0],
-          module[1]
-        );
-        const recorder = host.beginUpdate(modulePath);
-        recorder.insertLeft(
-          (change as InsertChange).pos,
-          (change as InsertChange).toAdd
-        );
-        host.commitUpdate(recorder);
-      }
-    });
+    for (const module of modulesToImport) {
+      addImportToNgModule(host, modulePath, module[0], module[1], module[2]?.replace('ENV_NAME', environment.name) ?? undefined);
+      // if (!isImported(moduleSource, module[0], module[1])) {
+      //   const change = insertImport(
+      //     moduleSource,
+      //     modulePath,
+      //     module[0],
+      //     module[1],
+      //     false,
+      //   );
+      //   const recorder = host.beginUpdate(modulePath);
+      //   recorder.insertLeft(
+      //     (change as InsertChange).pos,
+      //     (change as InsertChange).toAdd
+      //   );
+      //   host.commitUpdate(recorder);
+    }
+
 
     // register modules as imports in app module
-    let recorder = host.beginUpdate(modulePath);
-    modulesToImport.forEach((module) => {
-      const metadataChanges = addSymbolToNgModuleMetadata(
-        moduleSource,
-        modulePath,
-        'imports',
-        (module[2] || module[0]).replace('ENV_NAME', environment.name)
-      );
-      if (metadataChanges) {
-        metadataChanges.forEach((change) => {
-          const insertChange = change as InsertChange;
-          recorder.insertRight(insertChange.pos, insertChange.toAdd);
-        });
-      }
-    });
-    host.commitUpdate(recorder);
+    for (const module of modulesToImport) {
+      // const recorder = host.beginUpdate(modulePath);
+      // const metadataChanges = addSymbolToNgModuleMetadata(
+      //   moduleSource,
+      //   modulePath,
+      //   'imports',
+      //   (module[0]),// || module[0]).replace('ENV_NAME', environment.name),
+      //   null,
+      // );
+      // if (metadataChanges) {
+      //   metadataChanges.forEach((change) => {
+      //     const insertChange = change as InsertChange;
+      //     recorder.insertRight(insertChange.pos, insertChange.toAdd);
+      //   });
+      // }
+      // host.commitUpdate(recorder);
+    }
 
     // import components in app module
-    recorder = host.beginUpdate(modulePath);
-    componentsToImport.forEach((component) => {
-      const changes = addDeclarationToModule(
-        moduleSource,
-        modulePath,
-        component[0],
-        component[1]
-      );
-      if (changes) {
-        changes.forEach((change) => {
-          const insertChange = change as InsertChange;
-          recorder.insertRight(insertChange.pos, insertChange.toAdd);
-        });
-      }
-    });
-    host.commitUpdate(recorder);
+    for (const component of componentsToImport) {
+      // const recorder = host.beginUpdate(modulePath);
+      // const changes = addSymbolToNgModuleMetadata(
+      //   moduleSource,
+      //   modulePath,
+      //   'declarations',
+      //   component[0],
+      //   null,
+      // );
+      // if (changes) {
+      //   changes.forEach((change) => {
+      //     const insertChange = change as InsertChange;
+      //     recorder.insertRight(insertChange.pos, insertChange.toAdd);
+      //   });
+      // }
+      // host.commitUpdate(recorder);
+    }
   };
 }
+
 
 export default function ngAdd(options: Schema): Rule {
   return chain([
@@ -229,16 +260,16 @@ export default function ngAdd(options: Schema): Rule {
           prefix: project.prefix,
           relativePathToWorkspaceRoot: relativePathToWorkspaceRoot(
             project.root
-          ),
+          )
         }),
         move(
-          normalize(getAppModulePath(tree, buildOptions.main as string) + '/..')
-        ),
+          normalize(getAppModulePath(tree, buildOptions.main as string) + '/../..')
+        )
       ]);
       return chain([
         mergeWith(templateSource),
-        updateAppModule(mainPath, environment),
+        updateAppModule(mainPath, environment)
       ]);
-    },
+    }
   ]);
 }

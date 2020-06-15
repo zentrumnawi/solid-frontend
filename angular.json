@@ -381,7 +381,7 @@
                 {
                   "input": "./libs/solid/skeleton/schematics",
                   "glob": "collection.json",
-                  "output": "."
+                  "output": "./schematics"
                 },
                 {
                   "input": "./libs/solid/skeleton/schematics",

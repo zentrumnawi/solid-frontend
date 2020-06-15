@@ -11,8 +11,7 @@
       "@zentrumnawi/solid-glossary": "zentrumnawi-solid-glossary",
       "@zentrumnawi/solid-profile": "zentrumnawi-solid-profile",
       "@zentrumnawi/solid-quiz": "zentrumnawi-solid-quiz",
-      "@zentrumnawi/solid-slideshow": "zentrumnawi-solid-slideshow",
-      "lodash": "lodash"
+      "@zentrumnawi/solid-slideshow": "zentrumnawi-solid-slideshow"
     }
   }
 }

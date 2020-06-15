@@ -12,13 +12,5 @@
     "@ngxs/store": "^3.6.2",
     "tslib": "^1.10.0"
   },
-  "schematics": "./schematics/collection.json",
-  "scripts": {
-    "build:schematics": "../../../node_modules/.bin/tsc -p tsconfig.schematics.json",
-    "copy:schemas": "cpx schematics/**/{schema.json} ../../../dist/libs/solid/skeleton/schematics/",
-    "copy:files": "cpx schematics/**/files/** ../../../dist/libs/solid/skeleton/schematics",
-    "copy:collection": "cp schematics/collection.json ../../../dist/libs/solid/skeleton/schematics/collection.json",
-    "postbuil2d": "yarn copy:schemas && yarn copy:files && yarn copy:collection",
-    "test:schematics": "yarn build:schematics && ../../../node_modules/.bin/jasmine schematics/**/*.spec.js"
-  }
+  "schematics": "./schematics/collection.json"
 }

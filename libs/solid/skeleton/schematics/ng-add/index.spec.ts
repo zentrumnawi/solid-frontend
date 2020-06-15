@@ -63,6 +63,7 @@ describe('ng-add', () => {
       expect(appTree.files).toEqual(
         expect.arrayContaining([
           '/projects/bar/src/styles.scss',
+          '/projects/bar/src/theme.scss',
           '/projects/bar/src/app/solid-core-config.ts',
           '/projects/bar/src/app/solid-skeleton-config.ts',
           '/projects/bar/src/app/components/landing-banner-content/landing-banner-content.component.ts',
@@ -82,5 +83,12 @@ describe('ng-add', () => {
         expect(dependencies[dep.name]).toEqual(dep.version);
       });
     });
+
+    it('app module correct', async () => {
+      const fileContent = getFileContent(appTree, '/projects/bar/src/app/app.module.ts');
+
+      expect(fileContent)
+        .toContain('declarations: [\w AppComponent \w]',);
+    })
   });
 });

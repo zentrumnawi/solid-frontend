@@ -40,13 +40,13 @@ export function generateRoutes(config: RoutingConfig) {
   if (config.landing.enabled) {
     addRoute({ ...config.landing, component: LandingComponent });
   }
-  if (config.profile.enabled) {
-    addModuleRoute({
-      ...config.profile,
-      moduleImport: () =>
-        import('@zentrumnawi/solid-profile').then((m) => m.SolidProfileModule),
-    });
-  }
+  // if (config.profile.enabled) {
+  //   addModuleRoute({
+  //     ...config.profile,
+  //     moduleImport: () =>
+  //       import('@zentrumnawi/solid-profile').then((m) => m.SolidProfileModule),
+  //   });
+  // }
   // if (config.slideshow) {
   //   addModuleRoute(
   //     {
@@ -62,13 +62,13 @@ export function generateRoutes(config: RoutingConfig) {
   //     'slideshow'
   //   );
   // }
-  if (config.quiz.enabled) {
-    addModuleRoute({
-      ...config.quiz,
-      moduleImport: () =>
-        import('@zentrumnawi/solid-quiz').then((m) => m.SolidQuizModule),
-    });
-  }
+  // if (config.quiz.enabled) {
+  //   addModuleRoute({
+  //     ...config.quiz,
+  //     moduleImport: () =>
+  //       import('@zentrumnawi/solid-quiz').then((m) => m.SolidQuizModule),
+  //   });
+  // }
   // if (config.info.enabled) {
   //   addRoute(config.info);
   // }
