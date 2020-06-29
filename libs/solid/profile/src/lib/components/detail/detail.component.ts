@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
 import { ProfileState } from '../../state/profile.state';
 import { Observable } from 'rxjs';
@@ -7,6 +7,9 @@ import {
   ProfileProperty,
   ProfilePropertyType
 } from '../../state/profile-definition.model';
+import { MatAccordion } from '@angular/material/expansion';
+import { doc } from 'prettier';
+import debug = doc.debug;
 
 @Component({
   selector: 'solid-profile-detail',
@@ -14,6 +17,7 @@ import {
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent {
+  @ViewChild('expansion', { static: false, read: MatAccordion }) expansion?: MatAccordion;
   public PropertyTypes = ProfilePropertyType;
   @Select(ProfileState.selectDefinition) $ProfileDefinition!: Observable<
     ProfileProperty[]
@@ -32,9 +36,11 @@ export class DetailComponent {
 
   @Input()
   public set profile(profile: Profile) {
+    console.log('update');
     this._profile = profile;
     this.ImageLoaded = profile.images.map(_ => false);
     this.onImageSelect(0);
+    this.expansion?._headers.forEach(panel => panel?.panel.close());
   }
 
   public onImageLoaded(index: number) {

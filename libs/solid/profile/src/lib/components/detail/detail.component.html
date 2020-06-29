@@ -45,8 +45,8 @@
   </div>
 </ng-template>
 <ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
-  <mat-accordion [multi]="false" displayMode="flat">
-    <mat-expansion-panel expanded="true">
+  <mat-accordion [multi]="false" displayMode="flat" #expansion>
+    <mat-expansion-panel>
       <mat-expansion-panel-header
         ><mat-panel-title
           >Allgemein</mat-panel-title
