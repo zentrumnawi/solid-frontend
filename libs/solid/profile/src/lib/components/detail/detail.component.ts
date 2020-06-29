@@ -8,8 +8,6 @@ import {
   ProfilePropertyType
 } from '../../state/profile-definition.model';
 import { MatAccordion } from '@angular/material/expansion';
-import { doc } from 'prettier';
-import debug = doc.debug;
 
 @Component({
   selector: 'solid-profile-detail',
