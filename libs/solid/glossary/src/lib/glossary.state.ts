@@ -64,7 +64,9 @@ export class GlossaryState {
               entries[a].term.localeCompare(entries[b].term)
             )
           );
-          return { entries, sections: Object.entries(sections) };
+          const sectionArr = Object.entries(sections);
+          sectionArr.sort((a, b) => a[0].localeCompare(b[0]));
+          return { entries, sections: sectionArr};
         }),
         tap(v => {
           ctx.patchState(v);
