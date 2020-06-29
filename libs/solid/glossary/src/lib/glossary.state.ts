@@ -46,7 +46,7 @@ export class GlossaryState {
   @Action(GlossaryActions.Load)
   public load(ctx: StateContext<GlossaryStateModel>, {}: GlossaryActions.Load) {
     return this._http
-      .get<GlossaryEntryModel[]>(`${this._config.newApiUrl}/api/glossaries`)
+      .get<GlossaryEntryModel[]>(`${this._config.newApiUrl}/api/glossaryentries`)
       .pipe(
         map(result => {
           const entries: GlossaryEntries = {};
