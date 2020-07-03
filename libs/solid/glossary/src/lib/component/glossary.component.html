@@ -19,7 +19,7 @@
         class="links"
         *ngIf="state.entries[entryId].links.length > 0"
         mat-line
-        >siehe:<a
+        >&rarr;<a
           (click)="followRef(refId)"
           *ngFor="let refId of state.entries[entryId].links; let i = index"
         >

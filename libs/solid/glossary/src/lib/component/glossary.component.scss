@@ -25,11 +25,12 @@ mat-list {
 
     span.links {
       margin-top: 0.5em;
-      font-style: italic;
 
       a {
+        font-style: italic;
         transition: color linear 150ms;
         font-size: 13px;
+
         &:hover {
           cursor: pointer;
         }
