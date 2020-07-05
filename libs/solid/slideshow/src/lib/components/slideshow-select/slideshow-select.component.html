@@ -1,0 +1,10 @@
+<mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
+  <mat-grid-tile
+    *ngFor="let slideshow of Slideshows | async"
+    class="mat-elevation-z2"
+    [routerLink]="[slideshow.id]"
+  >
+    <img [src]="slideshow.img" [alt]="slideshow.img_alt"/>
+    <span>{{ slideshow.title }}</span>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -51,6 +51,9 @@ const routes = generateAppRoutes({
   },
   landing: {
     svgIcon: 'icon'
+  },
+  slideshow: {
+    svgIcon: 'assistant'
   }
 });
 
@@ -121,5 +124,6 @@ export class AppModule {
     addIcon('quiz');
     addIcon('profile');
     addIcon('icon');
+    addIcon('assistant');
   }
 }

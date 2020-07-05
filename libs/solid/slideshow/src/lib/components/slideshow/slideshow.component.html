@@ -31,17 +31,17 @@
         <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
       </button>
     </div>
-    <div *ngIf="page.content" [data]="page.content" markdown></div>
-    <div class="page-images">
-      <mat-card *ngFor="let img of page.images">
-        <mat-card-header>
-          <mat-card-title>{{ img.title }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <img [alt]="img.description" [src]="img.url" />
-          <p>{{ img.text }}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
+    <div [data]="page.text" markdown></div>
+<!--    <div class="page-images">-->
+<!--      <mat-card *ngFor="let img of page.images">-->
+<!--        <mat-card-header>-->
+<!--          <mat-card-title>{{ img.title }}</mat-card-title>-->
+<!--        </mat-card-header>-->
+<!--        <mat-card-content>-->
+<!--          <img [alt]="img.description" [src]="img.url" />-->
+<!--          <p>{{ img.text }}</p>-->
+<!--        </mat-card-content>-->
+<!--      </mat-card>-->
+<!--    </div>-->
   </mat-step>
 </mat-horizontal-stepper>
