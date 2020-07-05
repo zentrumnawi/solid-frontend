@@ -1,5 +1,8 @@
-export class SlideshowLoadContentAction {
-  static readonly type = '[Slideshow] content loaded';
+export namespace SlideshowActions {
+  export class Load {
+    static readonly type = '[Slideshow] load all slideshows';
 
-  constructor(public id: string) {}
+    constructor() {
+    }
+  }
 }

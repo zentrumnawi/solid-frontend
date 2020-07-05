@@ -9,9 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxsModule } from '@ngxs/store';
 import { SlideshowState } from './state/slideshow.state';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { SlideshowSelectComponent } from './components/slideshow-select/slideshow-select.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
-  declarations: [SlideshowComponent],
+  declarations: [SlideshowComponent, SlideshowSelectComponent],
   imports: [
     SolidCoreModule,
     SolidSlideshowRoutingModule,
@@ -19,7 +21,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatStepperModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule,
   ],
   providers: [
     {

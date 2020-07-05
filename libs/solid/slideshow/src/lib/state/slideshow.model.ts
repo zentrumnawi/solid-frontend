@@ -1,15 +1,17 @@
 export interface Slideshow {
-  id: string;
+  id: number;
   title: string;
+  img: string | null;
+  img_alt: string | null;
   pages: SlideshowPage[];
 }
 
 export interface SlideshowPage {
   id: number;
+  position: number;
   title: string;
-  contentPath: string;
-  content?: string;
-  images: SlideshowImage[];
+  text: string;
+  // images: SlideshowImage[];
 }
 
 export interface SlideshowImage {

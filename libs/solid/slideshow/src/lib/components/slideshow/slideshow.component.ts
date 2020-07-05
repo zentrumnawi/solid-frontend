@@ -1,11 +1,12 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
-import { Select, Store } from '@ngxs/store';
-import { combineLatest, Observable, of } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { combineLatest, Observable, of, Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
-import { map, tap } from 'rxjs/operators';
-import { SlideshowLoadContentAction } from '../../state/slideshow.actions';
+import { map, takeUntil, tap } from 'rxjs/operators';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { SlideshowActions } from '../../state/slideshow.actions';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
@@ -17,30 +18,33 @@ export enum KEY {
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss']
 })
-export class SlideshowComponent {
+export class SlideshowComponent implements OnInit, OnDestroy {
+  private $destroyed = new Subject();
   public MaxStep = 0;
   @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
-  public Slideshow: Observable<Slideshow | undefined> = of(undefined);
+  public Slideshow: Observable<Slideshow | undefined>;
   @Select((s: any) => s.router.state.params['slideshowId'])
   slideshowId!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<
-    (id: string) => Slideshow | undefined
+    (id: number) => Slideshow | undefined
   >;
 
-  constructor(store: Store) {
+  constructor() {
     this.Slideshow = combineLatest([
       this.slideshowId,
       this.slideshowSelector
     ]).pipe(
       map(val => {
-        return val[1]('determination'); // TODO: make dynamic
+        return val[1](Number.parseInt(val[0], 10));
       }),
-      tap(v => {
-        if (v) {
-          store.dispatch(new SlideshowLoadContentAction(v.id));
-        }
-      })
+      tap(() => this.MaxStep = 0),
+      takeUntil(this.$destroyed),
     );
+  }
+
+  @Dispatch()
+  private load() {
+    return new SlideshowActions.Load();
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -64,5 +68,13 @@ export class SlideshowComponent {
     } else if ($event.deltaX < -100) {
       this.Stepper.next();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.$destroyed.next();
+  }
+
+  ngOnInit(): void {
+    this.load();
   }
 }
