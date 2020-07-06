@@ -63,6 +63,5 @@ export function generateRoutes(config: RoutingConfig) {
   //   }
   // });
   routes.push({ path: '**', redirectTo: '' });
-  console.log(routes);
   return routes.sort((a, b) => a.data?.order - b.data?.order);
 }
