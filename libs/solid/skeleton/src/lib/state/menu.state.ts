@@ -50,7 +50,7 @@ export class MenuState {
         icon: route.data?.icon,
         svgIcon: route.data?.svgIcon,
         showInMenu: route.data?.showInMenu,
-        showOnLanding: route.data?.showOnLanding,
+        showOnLanding: route.data?.showOnLandingPage,
       });
     }
     setTimeout(() => this.store.dispatch(new MenuActions.SetEntries(items)));
