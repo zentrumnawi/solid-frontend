@@ -85,10 +85,12 @@ describe('ng-add', () => {
     });
 
     it('app module correct', async () => {
-      const fileContent = getFileContent(appTree, '/projects/bar/src/app/app.module.ts');
+      const fileContent = getFileContent(
+        appTree,
+        '/projects/bar/src/app/app.module.ts'
+      );
 
-      expect(fileContent)
-        .toContain('declarations: [\w AppComponent \w]',);
-    })
+      expect(fileContent).toContain('declarations: [w AppComponent w]');
+    });
   });
 });

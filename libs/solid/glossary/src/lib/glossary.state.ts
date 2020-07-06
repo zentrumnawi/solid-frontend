@@ -46,7 +46,9 @@ export class GlossaryState {
   @Action(GlossaryActions.Load)
   public load(ctx: StateContext<GlossaryStateModel>, {}: GlossaryActions.Load) {
     return this._http
-      .get<GlossaryEntryModel[]>(`${this._config.newApiUrl}/api/glossaryentries`)
+      .get<GlossaryEntryModel[]>(
+        `${this._config.newApiUrl}/api/glossaryentries`
+      )
       .pipe(
         map((result) => {
           const entries: GlossaryEntries = {};
@@ -66,7 +68,7 @@ export class GlossaryState {
           );
           const sectionArr = Object.entries(sections);
           sectionArr.sort((a, b) => a[0].localeCompare(b[0]));
-          return { entries, sections: sectionArr};
+          return { entries, sections: sectionArr };
         }),
         tap((v) => {
           ctx.patchState(v);

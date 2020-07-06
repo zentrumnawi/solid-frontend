@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: SlideshowSelectComponent,
-    data: { title: 'Bestimmungshelfer' }
+    data: { title: 'Bestimmungshelfer' },
   },
   {
     path: ':slideshowId',

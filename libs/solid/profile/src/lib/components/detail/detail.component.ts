@@ -15,7 +15,8 @@ import { MatAccordion } from '@angular/material/expansion';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent {
-  @ViewChild('expansion', { static: false, read: MatAccordion }) expansion?: MatAccordion;
+  @ViewChild('expansion', { static: false, read: MatAccordion })
+  expansion?: MatAccordion;
   public PropertyTypes = ProfilePropertyType;
   @Select(ProfileState.selectDefinition) $ProfileDefinition!: Observable<
     ProfileProperty[]
@@ -38,7 +39,7 @@ export class DetailComponent {
     this._profile = profile;
     this.ImageLoaded = profile.images.map((_) => false);
     this.onImageSelect(0);
-    this.expansion?._headers.forEach(panel => panel?.panel.close());
+    this.expansion?._headers.forEach((panel) => panel?.panel.close());
   }
 
   public onImageLoaded(index: number) {
