@@ -31,12 +31,15 @@ export class SlideshowState {
 
   @Selector()
   public static getSlideshowOverview(state: SlideshowStateModel) {
-    return state.map((s) => ({
+    // This redundant variable is required
+    // https://github.com/ng-packagr/ng-packagr/issues/696
+    const fn = () => state.map((s) => ({
       id: s.id,
       title: s.title,
       img: s.img,
       img_alt: s.img_alt,
     }));
+    return fn();
   }
 
   @Action(SlideshowActions.Load)
