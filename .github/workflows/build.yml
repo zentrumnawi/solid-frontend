@@ -34,7 +34,7 @@ jobs:
         run: yarn install
 
       - name: test
-        run: yarn nx affected --target=test --base=origin/dev --parallel
+        run: yarn nx run-many --target=test --all --parallel
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
