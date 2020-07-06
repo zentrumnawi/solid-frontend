@@ -1,7 +1,7 @@
 name: build
 
 on:
-  push:
+  pull_request:
     branches: [ dev ]
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
         run: yarn install
 
       - name: test
-        run: yarn nx run-many --target=test --all --parallel
+        run: yarn nx affected --target=test --base=origin/dev --parallel
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
@@ -41,8 +41,8 @@ jobs:
           name: nx-jest
 
       - name: lint
-        run: yarn nx run-many --target=lint --all --parallel
+        run: yarn nx affected --target=lint --base=origin/dev --parallel
 
       - name: build - staging
-        run: yarn nx run-many --target=build --all --parallel -c=staging
+        run: yarn nx affected --target=build --base=origin/dev --parallel -c=staging
 
