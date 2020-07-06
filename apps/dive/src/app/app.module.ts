@@ -96,5 +96,6 @@ export class AppModule {
     addIcon('glossary');
     addIcon('privacy');
     addIcon('feedback');
+    addIcon('assistant');
   }
 }

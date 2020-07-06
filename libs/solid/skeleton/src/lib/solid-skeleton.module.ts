@@ -92,8 +92,6 @@ export class SolidSkeletonModule {
   public static forRoot(
     cfg: SolidSkeletonConfig
   ): ModuleWithProviders<SolidSkeletonModule> {
-    // console.log('test')
-    // const config = Object.assign({}, defaultSkeletonConfig)// _.merge({}, defaultSkeletonConfig, cfg);
     return {
       ngModule: SolidSkeletonModule,
       providers: [

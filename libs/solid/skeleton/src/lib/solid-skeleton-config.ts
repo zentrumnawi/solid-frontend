@@ -22,9 +22,9 @@ export interface RoutingConfig {
   landing: RouteConfig;
   // info: RouteConfigWithComponent;
   privacy: RouteConfigWithComponent;
-  profile: RouteConfig;
-  quiz: RouteConfig;
-  // slideshow?: RouteConfig<{}>;
+  profile: RouteConfigFromModule;
+  quiz: RouteConfigFromModule;
+  slideshow: RouteConfigFromModule;
   // custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
 }
 
@@ -87,6 +87,7 @@ export const defaultSkeletonConfig: Omit<
       title: 'Steckbriefe',
       order: 1,
       matIcon: 'list',
+      moduleImport: () => import('@zentrumnawi/solid-profile').then((m) => m.SolidProfileModule),
     },
     quiz: {
       enabled: true,
@@ -96,6 +97,17 @@ export const defaultSkeletonConfig: Omit<
       title: 'Selbsttest',
       order: 2,
       matIcon: 'question_answer',
+      moduleImport: () => import('@zentrumnawi/solid-quiz').then((m) => m.SolidQuizModule),
+    },
+    slideshow: {
+      enabled: true,
+      showOnLandingPage: true,
+      showInMenu: true,
+      url: 'slideshow',
+      title: 'Bestimmungshelfer',
+      order: 3,
+      matIcon: 'help',
+      moduleImport: () => import('@zentrumnawi/solid-slideshow').then((m) => m.SolidSlideshowModule),
     },
     // info: {
     //   enabled: true,

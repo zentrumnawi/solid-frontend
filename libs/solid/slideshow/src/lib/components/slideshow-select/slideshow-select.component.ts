@@ -25,7 +25,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   private openSlideshow(id: number) {
-    return new Navigate([`/slideshows/${id}`]);
+    return new Navigate([`/slideshow/${id}`]);
   }
 
   ngOnInit(): void {

@@ -40,35 +40,15 @@ export function generateRoutes(config: RoutingConfig) {
   if (config.landing.enabled) {
     addRoute({ ...config.landing, component: LandingComponent });
   }
-  // if (config.profile.enabled) {
-  //   addModuleRoute({
-  //     ...config.profile,
-  //     moduleImport: () =>
-  //       import('@zentrumnawi/solid-profile').then((m) => m.SolidProfileModule),
-  //   });
-  // }
-  // if (config.slideshow) {
-  //   addModuleRoute(
-  //     {
-  //       ...config.slideshow,
-  //       moduleImport: () =>
-  //         import('@zentrumnawi/solid-slideshow').then(
-  //           m => m.SolidSlideshowModule
-  //         )
-  //     },
-  //     'slideshow',
-  //     'Slideshow',
-  //     order++,
-  //     'slideshow'
-  //   );
-  // }
-  // if (config.quiz.enabled) {
-  //   addModuleRoute({
-  //     ...config.quiz,
-  //     moduleImport: () =>
-  //       import('@zentrumnawi/solid-quiz').then((m) => m.SolidQuizModule),
-  //   });
-  // }
+  if (config.profile.enabled) {
+    addModuleRoute(config.profile);
+  }
+  if (config.quiz.enabled) {
+    addModuleRoute(config.quiz);
+  }
+  if (config.slideshow.enabled) {
+    addModuleRoute(config.slideshow);
+  }
   // if (config.info.enabled) {
   //   addRoute(config.info);
   // }
@@ -83,5 +63,6 @@ export function generateRoutes(config: RoutingConfig) {
   //   }
   // });
   routes.push({ path: '**', redirectTo: '' });
+  console.log(routes);
   return routes.sort((a, b) => a.data?.order - b.data?.order);
 }
