@@ -36,12 +36,19 @@ import { MenuState } from './state/menu.state';
 import { generateRoutes } from './skeleton-routing';
 // TODO: Get rid of lodash. It increases the bundle size...
 import * as _ from 'lodash';
+import { InfoComponent } from './components/info/info.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MessageState } from './state/message.state';
+import { MessageListComponent } from './components/message-list/message-list.component';
 
 const hidden = Math.random() < 0.1;
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
-export const ngxsFeatureModule = NgxsModule.forFeature([MenuState]);
+export const ngxsFeatureModule = NgxsModule.forFeature([
+  MenuState,
+  MessageState,
+]);
 
 export function configFactory(
   cfg: SolidSkeletonConfig
@@ -72,6 +79,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     MatListModule,
     MatSelectModule,
     MatSidenavModule,
+    MatTabsModule,
     MatToolbarModule,
     ngxsFeatureModule,
   ],
@@ -81,6 +89,8 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     MainMenuComponent,
     UpdateDialogComponent,
     LandingComponent,
+    InfoComponent,
+    MessageListComponent,
   ],
   exports: [BaseLayoutComponent],
   providers: [UpdateService],

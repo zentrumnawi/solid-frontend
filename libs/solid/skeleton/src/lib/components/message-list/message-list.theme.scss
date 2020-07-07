@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+@mixin solid-skeleton-message-list-theme($theme) {
+  $background: map-get($theme, background);
+  solid-skeleton-message-list {
+    mat-list-item:not(:last-child) {
+      border-bottom: 1px solid mat-color($background, status-bar);
+    }
+  }
+}

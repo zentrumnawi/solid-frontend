@@ -433,7 +433,8 @@
       },
       "schematics": {
         "@nrwl/angular:component": {
-          "styleext": "scss"
+          "styleext": "scss",
+          "style": "scss"
         }
       }
     },

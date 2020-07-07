@@ -5,6 +5,7 @@ import {
   RoutingConfig,
 } from './solid-skeleton-config';
 import { Route } from '@angular/router';
+import { InfoComponent } from './components/info/info.component';
 
 export function generateRoutes(config: RoutingConfig) {
   const routes: Route[] = [];
@@ -49,9 +50,9 @@ export function generateRoutes(config: RoutingConfig) {
   if (config.slideshow.enabled) {
     addModuleRoute(config.slideshow);
   }
-  // if (config.info.enabled) {
-  //   addRoute(config.info);
-  // }
+  if (config.info.enabled) {
+    addRoute({ ...config.info, component: InfoComponent });
+  }
   if (config.privacy.enabled) {
     addRoute(config.privacy);
   }

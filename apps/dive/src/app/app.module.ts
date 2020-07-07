@@ -25,6 +25,7 @@ import { LandingBannerContentComponent } from './landing-banner-content/landing-
 // import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
+import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
@@ -49,7 +50,12 @@ function profileTitleFormatter(title: string): string {
 }
 
 @NgModule({
-  declarations: [AppComponent, PrivacyComponent, LandingBannerContentComponent],
+  declarations: [
+    AppComponent,
+    PrivacyComponent,
+    LandingBannerContentComponent,
+    InfoPageContentComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

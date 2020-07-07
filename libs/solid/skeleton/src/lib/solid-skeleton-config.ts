@@ -20,7 +20,7 @@ export type RouteConfigFromModule = RouteConfig & {
 
 export interface RoutingConfig {
   landing: RouteConfig;
-  // info: RouteConfigWithComponent;
+  info: RouteConfig;
   privacy: RouteConfigWithComponent;
   profile: RouteConfigFromModule;
   quiz: RouteConfigFromModule;
@@ -31,6 +31,7 @@ export interface RoutingConfig {
 export interface InternalSolidSkeletonConfig {
   feedbackEnabled: boolean;
   landingBannerContent: Type<any>;
+  infoPageContent: Type<any>;
   glossary: {
     enabled: boolean;
     svgIcon?: string;
@@ -41,6 +42,7 @@ export interface InternalSolidSkeletonConfig {
 
 export interface RequiredExternalConfig {
   landingBannerContent: Type<any>;
+  infoPageContent: Type<any>;
   routingConfig: {
     privacy: {
       component: Type<any>;
@@ -48,7 +50,10 @@ export interface RequiredExternalConfig {
   };
 }
 
-type componentPropertyKeys = 'landingBannerContent' | 'component';
+type componentPropertyKeys =
+  | 'landingBannerContent'
+  | 'component'
+  | 'infoPageContent';
 
 export type PartialDeep<T> = {
   [P in Exclude<keyof T, componentPropertyKeys>]?: PartialDeep<T[P]>;
@@ -87,7 +92,8 @@ export const defaultSkeletonConfig: Omit<
       title: 'Steckbriefe',
       order: 1,
       matIcon: 'list',
-      moduleImport: () => import('@zentrumnawi/solid-profile').then((m) => m.SolidProfileModule),
+      moduleImport: () =>
+        import('@zentrumnawi/solid-profile').then((m) => m.SolidProfileModule),
     },
     quiz: {
       enabled: true,
@@ -97,7 +103,8 @@ export const defaultSkeletonConfig: Omit<
       title: 'Selbsttest',
       order: 2,
       matIcon: 'question_answer',
-      moduleImport: () => import('@zentrumnawi/solid-quiz').then((m) => m.SolidQuizModule),
+      moduleImport: () =>
+        import('@zentrumnawi/solid-quiz').then((m) => m.SolidQuizModule),
     },
     slideshow: {
       enabled: true,
@@ -107,24 +114,27 @@ export const defaultSkeletonConfig: Omit<
       title: 'Bestimmungshelfer',
       order: 3,
       matIcon: 'help',
-      moduleImport: () => import('@zentrumnawi/solid-slideshow').then((m) => m.SolidSlideshowModule),
+      moduleImport: () =>
+        import('@zentrumnawi/solid-slideshow').then(
+          (m) => m.SolidSlideshowModule
+        ),
     },
-    // info: {
-    //   enabled: true,
-    //   showOnLandingPage: true,
-    //   showInMenu: true,
-    //   url: 'info',
-    //   title: 'Informationen',
-    //   order: 1,
-    //   matIcon: 'info',
-    // },
+    info: {
+      enabled: true,
+      showOnLandingPage: true,
+      showInMenu: true,
+      url: 'info',
+      title: 'Info',
+      order: 4,
+      matIcon: 'info',
+    },
     privacy: {
       enabled: true,
       showOnLandingPage: true,
       showInMenu: true,
       url: 'privacy',
       title: 'Datenschutzerklärung',
-      order: 4,
+      order: 5,
       matIcon: 'info',
     },
   },
