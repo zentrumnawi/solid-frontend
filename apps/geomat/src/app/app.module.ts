@@ -23,12 +23,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { InfoComponent } from './info/info.component';
 import { SentryErrorHandler } from './sentry.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
 import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
+import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
@@ -46,8 +46,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     AppComponent,
     PrivacyComponent,
     LandingComponent,
-    InfoComponent,
     LandingBannerContentComponent,
+    InfoPageContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +93,7 @@ export class AppModule {
       );
     addIcon('icon');
     addIcon('assistant');
+    addIcon('privacy');
     addIcon('crystalsystem');
     addIcon('profile');
     addIcon('quiz');
