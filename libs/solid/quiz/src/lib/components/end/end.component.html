@@ -4,7 +4,7 @@
   </mat-card-header>
   <mat-card-content>
     <p>
-      Du hast {{ correctQuestions }} von {{ QuestionCount }} Fragen richtig
+      Du hast {{ correctQuestions }} von {{ oldCount }} Fragen richtig
       beantwortet.
     </p>
     <p [data]="FeedbackText" markdown></p>
@@ -12,13 +12,19 @@
   <mat-card-actions>
     <mat-form-field>
       <input
-        [(ngModel)]="QuestionCount"
+        [formControl]="questionCount"
         matInput
         placeholder="Anzahl an Fragen"
         type="number"
       />
     </mat-form-field>
-    <button (click)="onStartClick()" mat-raised-button>Start</button>
+    <button
+      (click)="onStartClick()"
+      mat-raised-button
+      [disabled]="!questionCount.valid"
+    >
+      Start
+    </button>
   </mat-card-actions>
   <mat-card-footer>
     <p class="footnote">

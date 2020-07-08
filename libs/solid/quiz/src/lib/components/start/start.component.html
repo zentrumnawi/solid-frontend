@@ -20,13 +20,19 @@
   <mat-card-actions *ngIf="QuizLoaded | async">
     <mat-form-field>
       <input
-        [(ngModel)]="questionCount"
+        [formControl]="questionCount"
         matInput
         placeholder="Anzahl an Fragen"
         type="number"
       />
     </mat-form-field>
-    <button (click)="onStartClick()" mat-raised-button>Start</button>
+    <button
+      (click)="onStartClick()"
+      mat-raised-button
+      [disabled]="!questionCount.valid"
+    >
+      Start
+    </button>
   </mat-card-actions>
 </mat-card>
 <ng-template #quizLoading>
