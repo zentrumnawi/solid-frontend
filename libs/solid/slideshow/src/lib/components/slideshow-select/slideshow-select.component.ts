@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'solid-slideshow-slideshow-select',
   templateUrl: './slideshow-select.component.html',
-  styleUrls: ['./slideshow-select.component.scss']
+  styleUrls: ['./slideshow-select.component.scss'],
 })
 export class SlideshowSelectComponent implements OnInit, OnDestroy {
   private $destroyed = new Subject();
@@ -30,9 +30,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.load();
-    this.Slideshows.pipe(
-      takeUntil(this.$destroyed),
-    ).subscribe(slideshows => {
+    this.Slideshows.pipe(takeUntil(this.$destroyed)).subscribe((slideshows) => {
       if (slideshows.length === 1) {
         this.openSlideshow(slideshows[0].id);
       }
@@ -42,5 +40,4 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.$destroyed.next();
   }
-
 }
