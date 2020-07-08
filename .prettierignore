@@ -1,2 +1,7 @@
 # Add files here to ignore them from prettier formatting
 **/environments/version.json
+coverage/**
+dist/**
+.idea/**
+tmp/**
+.vscode/**
