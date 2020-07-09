@@ -1,6 +1,12 @@
 {
   "name": "@zentrumnawi/solid-glossary",
   "version": "0.0.1",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/zentrumnawi/solid-frontend.git",
+    "directory": "libs/solid/glossary"
+  },
   "peerDependencies": {
     "@angular/common": "^9.1.6",
     "@angular/core": "^9.1.6",
