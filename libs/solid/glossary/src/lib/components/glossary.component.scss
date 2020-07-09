@@ -47,3 +47,16 @@ mat-list {
 ::ng-deep .mat-list .mat-list-item {
   height: initial !important;
 }
+
+mat-form-field {
+  width: 100%;
+  margin-top: 0.5em;
+  ::ng-deep {
+    div.mat-form-field-wrapper {
+      padding: 0;
+    }
+    div.mat-form-field-underline {
+      display: none;
+    }
+  }
+}

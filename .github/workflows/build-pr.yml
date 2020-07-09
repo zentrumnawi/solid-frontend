@@ -32,7 +32,7 @@ jobs:
         run: yarn install
 
       - name: format
-        run: yarn nx format:check --all
+        run: yarn nx format:check --base=origin/dev
 
       - name: lint
         run: yarn nx affected --target=lint --base=origin/dev --parallel
