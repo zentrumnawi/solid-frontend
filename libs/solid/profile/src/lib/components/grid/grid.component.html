@@ -27,7 +27,7 @@
   <img
     [src]="
       profile.images.length > 0
-        ? profile.images[0].small
+        ? profile.images[0].getRawImage('small')
         : 'assets/profile/no_image.svg'
     "
     alt="Bild des Minerals"

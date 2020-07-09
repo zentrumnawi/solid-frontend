@@ -1,7 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MarkdownComponent } from './components/markdown.component';
 import { MarkdownService } from './services/markdown.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from './solid-core-config';
@@ -10,9 +9,10 @@ import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
 import { RouterStateSerializer } from '@ngxs/router-plugin';
 import { CustomRouterStateSerializer } from './custom-router-state-serializer';
 import { TitleService } from './services/title.service';
+import { MarkdownComponent, ImageComponent } from './components';
 
 @NgModule({
-  declarations: [MarkdownComponent],
+  declarations: [MarkdownComponent, ImageComponent],
   imports: [CommonModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   exports: [
     CommonModule,
@@ -20,6 +20,7 @@ import { TitleService } from './services/title.service';
     HttpClientModule,
     ReactiveFormsModule,
     MarkdownComponent,
+    ImageComponent,
   ],
   providers: [MarkdownService, TitleService],
 })

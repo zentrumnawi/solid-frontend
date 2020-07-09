@@ -35,7 +35,6 @@ export class DetailComponent {
 
   @Input()
   public set profile(profile: Profile) {
-    console.log('update');
     this._profile = profile;
     this.ImageLoaded = profile.images.map((_) => false);
     this.onImageSelect(0);

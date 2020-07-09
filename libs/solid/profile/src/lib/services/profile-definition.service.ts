@@ -8,7 +8,7 @@ import {
   ProfilePropertyType,
 } from '../state/profile-definition.model';
 
-const ignoredProperties = ['id', 'name', 'systematics'];
+const ignoredProperties = ['id', 'name', 'systematics', 'photographs'];
 
 @Injectable()
 export class ProfileDefinitionService {

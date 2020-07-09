@@ -17,10 +17,11 @@ import {
   MatTreeFlattener,
 } from '@angular/material/tree';
 import { Observable, of as observableOf } from 'rxjs';
-import { Image, Profile, TreeNode } from '../../state/profile.model';
+import { Profile, TreeNode } from '../../state/profile.model';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 import { SelectedDirective } from '../selected.directive';
+import { ImageModel } from '@zentrumnawi/solid-core';
 
 export type FlatTreeNode = EntryNode | CategoryNode;
 
@@ -28,7 +29,7 @@ export interface EntryNode {
   title: string;
   type: 'entry';
   level: number;
-  images: Image[];
+  images: ImageModel[];
   expandable: false;
   id: number;
 }

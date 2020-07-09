@@ -1,9 +1,4 @@
-export interface Image {
-  large: string;
-  medium: string;
-  small: string;
-  thumbnail: string;
-}
+import { ImageModel, PhotographModel } from '@zentrumnawi/solid-core';
 
 export interface TreeNode extends TreeNodeApi {
   type: 'category';
@@ -20,12 +15,13 @@ export interface TreeNodeApi {
 
 export interface Profile extends ProfileApi {
   type: 'profile';
-  images: Image[];
+  images: ImageModel[];
   [key: string]: any;
 }
 
 export interface ProfileApi {
   id: number;
   name: string;
+  photographs: PhotographModel[];
   trivial_name: string;
 }

@@ -2,7 +2,11 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Profile, TreeNode, TreeNodeApi } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
+import {
+  ImageModel,
+  SOLID_CORE_CONFIG,
+  SolidCoreConfig,
+} from '@zentrumnawi/solid-core';
 import { ProfileActions } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -13,23 +17,6 @@ export interface ProfileStateModel {
   nodes: TreeNode[];
   definition: ProfileProperty[];
 }
-
-// export function __selectProfileAndNodeFactory() {//(state: ProfileStateModel) {
-//   function __selector(profileId?: number) {
-//     if (!profileId) {
-//       return null;
-//     }
-//     // for (const node of state.nodes) {
-//     //   const childSearch = ProfileState.findProfileDeep(node, profileId);
-//     //   if (childSearch !== null) {
-//     //     return childSearch;
-//     //   }
-//     // }
-//     return null;
-//   }
-//   const a = __selector;
-//   return a;
-// }
 
 function b() {
   return null;
@@ -139,7 +126,7 @@ export class ProfileState {
                 profiles: node.profiles.map((profile) => ({
                   ...profile,
                   type: 'profile',
-                  images: [], // TODO: Fix if images are set from api
+                  images: profile.photographs.map((p) => new ImageModel(p)),
                 })),
               };
             });

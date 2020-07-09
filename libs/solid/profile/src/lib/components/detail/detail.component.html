@@ -5,7 +5,7 @@
   <img
     (load)="onImageLoaded(ImageSelected)"
     [class.hidden]="!ImageLoaded[ImageSelected]"
-    [src]="profile.images[ImageSelected].medium"
+    [src]="profile.images[ImageSelected].getRawImage('medium')"
   />
   <div *ngIf="ImageLoaded[ImageSelected]" class="img-toolbar">
     <button
@@ -20,7 +20,7 @@
         (click)="onImageSelect(i)"
         *ngIf="ImageStartIndex <= i && ImageEndIndex >= i"
         [class.not-selected]="ImageSelected !== i"
-        [src]="img.thumbnail"
+        [src]="img.getRawImage('thumbnail')"
       />
     </ng-container>
     <button

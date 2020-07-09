@@ -11,7 +11,7 @@
       [alt]="node.title"
       [src]="
         node.images.length > 0
-          ? node.images[0].thumbnail
+          ? node.images[0].getRawImage('thumbnail')
           : 'assets/profile/no_image.svg'
       "
       class="thumbnail"
