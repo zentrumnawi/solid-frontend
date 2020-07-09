@@ -46,7 +46,15 @@ jobs:
           file: ./coverage/**/clover.xml
           name: nx-jest
 
-
       - name: build - staging
         run: yarn nx run-many --target=build --all --parallel -c=staging
+
+  deploy-dive-staging-gh:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy dive preview
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn ng -- deploy --project=dive --no-silent
 
