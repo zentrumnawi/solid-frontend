@@ -1,7 +1,9 @@
 {
   "name": "@zentrumnawi/solid-profile",
   "version": "0.0.1",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com/zentrumnawi/solid-frontend.git",
