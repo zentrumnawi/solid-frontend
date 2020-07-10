@@ -1,0 +1,21 @@
+<ng-container *ngIf="image">
+  <img [src]="image.getRawImage('medium')" [alt]="image.alt" />
+  <button
+    *ngIf="image.attributions as attributions"
+    mat-mini-fab
+    color="accent"
+    class="attributions"
+    cdkOverlayOrigin
+    #attributionsOverlayOrigin="cdkOverlayOrigin"
+    (click)="attributionsOpen = !attributionsOpen"
+  >
+    <mat-icon>copyright</mat-icon>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="attributionsOverlayOrigin"
+      [cdkConnectedOverlayOpen]="attributionsOpen"
+      [cdkConnectedOverlayPositions]="attributionsPositions"
+      ><div class="attributions-overlay">{{ attributions }}</div></ng-template
+    >
+  </button>
+</ng-container>

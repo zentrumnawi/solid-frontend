@@ -1,13 +1,6 @@
 <div *ngIf="profile.images.length > 0; else noImg" class="img">
-  <div *ngIf="!ImageLoaded[ImageSelected]" class="spinner">
-    <mat-spinner color="primary"></mat-spinner>
-  </div>
-  <img
-    (load)="onImageLoaded(ImageSelected)"
-    [class.hidden]="!ImageLoaded[ImageSelected]"
-    [src]="profile.images[ImageSelected].getRawImage('medium')"
-  />
-  <div *ngIf="ImageLoaded[ImageSelected]" class="img-toolbar">
+  <solid-core-image [image]="profile.images[ImageSelected]"></solid-core-image>
+  <div class="img-toolbar">
     <button
       (click)="onImageSelect(ImageSelected - 1)"
       [disabled]="ImageSelected === 0"

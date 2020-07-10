@@ -10,10 +10,21 @@ import { RouterStateSerializer } from '@ngxs/router-plugin';
 import { CustomRouterStateSerializer } from './custom-router-state-serializer';
 import { TitleService } from './services/title.service';
 import { MarkdownComponent, ImageComponent } from './components';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [MarkdownComponent, ImageComponent],
-  imports: [CommonModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    OverlayModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
   exports: [
     CommonModule,
     FormsModule,
