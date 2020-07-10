@@ -24,6 +24,7 @@
     "affected": "nx affected",
     "format": "nx format:write --base=origin/dev",
     "format:write": "nx format:write --base=origin/dev",
+    "format:write-uncommited": "nx format:write --uncommitted",
     "format:check": "nx format:check --base=origin/dev",
     "update": "ng update @nrwl/workspace",
     "update:check": "ng update",
@@ -31,6 +32,12 @@
     "workspace-schematic": "nx workspace-schematic",
     "help": "nx help"
   },
+  "pre-commit": [
+    "format:write-uncommited",
+    "affected:lint",
+    "affected:test",
+    "affected:build"
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "9.1.7",
@@ -100,6 +107,7 @@
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.3",
     "ng-packagr": "^9.0.0",
+    "pre-commit": "^1.2.2",
     "prettier": "2.0.5",
     "protractor": "~7.0.0",
     "ts-jest": "25.2.1",
