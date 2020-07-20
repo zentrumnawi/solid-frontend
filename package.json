@@ -35,8 +35,7 @@
   "pre-commit": [
     "format:write-uncommited",
     "affected:lint",
-    "affected:test",
-    "affected:build"
+    "affected:test"
   ],
   "private": true,
   "dependencies": {
