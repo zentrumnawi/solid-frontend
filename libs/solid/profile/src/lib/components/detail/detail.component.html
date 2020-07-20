@@ -1,7 +1,8 @@
-<div *ngIf="profile.images.length > 0; else noImg" class="img">
+<ng-container>
   <solid-core-image [image]="profile.images[ImageSelected]"></solid-core-image>
   <div class="img-toolbar">
     <button
+      *ngIf="profile.images.length > 0"
       (click)="onImageSelect(ImageSelected - 1)"
       [disabled]="ImageSelected === 0"
       mat-icon-button
@@ -17,26 +18,15 @@
       />
     </ng-container>
     <button
+      *ngIf="profile.images.length > 0"
       (click)="onImageSelect(ImageSelected + 1)"
       [disabled]="ImageSelected === profile.images.length - 1"
       mat-icon-button
     >
       <mat-icon>navigate_next</mat-icon>
     </button>
-    <button class="img-detail-btn" mat-icon-button>
-      <mat-icon>search</mat-icon>
-    </button>
   </div>
-</div>
-<ng-template #noImg>
-  <div class="img">
-    <img
-      (load)="onImageLoaded(0)"
-      [class.hidden]="!ImageLoaded"
-      src="assets/profile/no_image.svg"
-    />
-  </div>
-</ng-template>
+</ng-container>
 <ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
   <mat-accordion [multi]="false" displayMode="flat" #expansion>
     <mat-expansion-panel>

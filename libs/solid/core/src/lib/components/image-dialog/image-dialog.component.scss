@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+  display: block;
+}
+
+solid-core-image-detail {
+  max-height: 100%;
+  width: 100%;
+  //box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  ::ng-deep {
+    img {
+      border-radius: 4px;
+    }
+  }
+}
+
+::ng-deep {
+  div.cdk-overlay-pane.solid-core-image-dialog {
+    mat-dialog-container {
+      padding: 0;
+      box-shadow: none;
+      background-color: unset;
+    }
+  }
+}
+
+solid-core-image-detail {
+  //margin: -24px;
+}

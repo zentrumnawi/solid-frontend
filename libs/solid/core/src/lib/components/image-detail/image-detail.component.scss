@@ -1,16 +1,22 @@
 :host {
-  background-color: transparent;
-}
-img {
-  max-width: 100%;
-  max-height: 100%;
+  display: block;
 }
 
-button.attributions {
+img {
+  width: 100%;
+  max-height: 100%;
+  height: auto;
+  display: block;
+}
+
+div.toolbar {
   position: relative;
   bottom: 3.75em;
   right: 0.5em;
   float: right;
+  button:not(:last-child) {
+    margin-right: 0.5em;
+  }
 }
 
 ::ng-deep {

@@ -24,12 +24,9 @@
 
 <ng-template #cardContent let-profile="profile">
   <div class="title" [innerHTML]="profile.name | profileTitle"></div>
-  <img
-    [src]="
-      profile.images.length > 0
-        ? profile.images[0].getRawImage('small')
-        : 'assets/profile/no_image.svg'
-    "
-    alt="Bild des Minerals"
-  />
+  <solid-core-image
+    [image]="profile.images[0]"
+    [attributionsDisabled]="true"
+    [dialogDisabled]="true"
+  ></solid-core-image>
 </ng-template>

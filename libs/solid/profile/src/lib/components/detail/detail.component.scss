@@ -16,29 +16,12 @@ mat-expansion-panel {
   }
 }
 
-div.img {
-  //margin-bottom: -5px;
-  //margin: 0 -16px -16px -16px;
-
-  .spinner {
-    mat-spinner {
-      margin: auto;
-    }
-  }
-
-  img {
-    max-width: 100%;
-
-    &.hidden {
-      display: none;
-    }
-  }
-}
-
 div.img-toolbar {
-  margin-top: -5px;
+  //margin-top: -6px;
   overflow-y: scroll;
   //height: 5rem;
+  //width: 100%;
+  //background-color: green;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -53,10 +36,5 @@ div.img-toolbar {
       cursor: pointer;
       filter: saturate(0%);
     }
-  }
-
-  button.img-detail-btn {
-    position: absolute;
-    right: 0;
   }
 }

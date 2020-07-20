@@ -13,9 +13,18 @@ import { MarkdownComponent, ImageComponent } from './components';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
+import { ImageDetailComponent } from './components/image-detail/image-detail.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
-  declarations: [MarkdownComponent, ImageComponent],
+  declarations: [
+    MarkdownComponent,
+    ImageComponent,
+    ImageDialogComponent,
+    ImageDetailComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,6 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
     OverlayModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
+    ScrollingModule,
   ],
   exports: [
     CommonModule,
@@ -32,6 +43,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MarkdownComponent,
     ImageComponent,
+    ScrollingModule,
   ],
   providers: [MarkdownService, TitleService],
 })

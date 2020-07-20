@@ -1,5 +1,5 @@
-@import './lib/components/image/image.theme';
+@import 'lib/components/image-detail/image-detail.theme';
 
 @mixin solid-core-theme($mat-theme) {
-  @include solid-core-image-theme($mat-theme);
+  @include solid-core-image-detail-theme($mat-theme);
 }

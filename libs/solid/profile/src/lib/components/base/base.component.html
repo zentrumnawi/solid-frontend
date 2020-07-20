@@ -21,8 +21,8 @@
         *ngIf="Filter.value != ''"
         class="clear-filter"
         matSuffix
-        >clear</mat-icon
-      >
+        >clear
+      </mat-icon>
     </mat-form-field>
     <div class="spacer"></div>
     <button (click)="toggleGridTree()" mat-icon-button>
@@ -66,10 +66,10 @@
       <!--      ></solid-profile-list>-->
     </ng-container>
   </ng-container>
-  <ng-container *ngIf="SelectedProfile && SelectedNode">
-    <solid-profile-detail
-      [node]="SelectedNode"
-      [profile]="SelectedProfile"
-    ></solid-profile-detail>
-  </ng-container>
+  <solid-profile-detail
+    *ngIf="SelectedProfile && SelectedNode"
+    cdkScrollable
+    [node]="SelectedNode"
+    [profile]="SelectedProfile"
+  ></solid-profile-detail>
 </div>

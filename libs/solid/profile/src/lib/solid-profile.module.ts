@@ -22,6 +22,7 @@ import { SelectedDirective } from './components/selected.directive';
 import { ProfileDefinitionService } from './services/profile-definition.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProfileTitlePipe } from './profile-title.pipe';
+import { CdkScrollableModule } from '@angular/cdk/scrolling';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
