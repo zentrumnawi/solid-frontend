@@ -64,7 +64,7 @@ export class DetailComponent {
     if (property.required) {
       return true;
     }
-    const val = profile_obj[property.key];
+    const val = profile_obj !== null && property.key in profile_obj ? profile_obj[property.key] : undefined;
     switch (property.type) {
       case ProfilePropertyType.List:
         return Array.isArray(val) && val.length > 0;
