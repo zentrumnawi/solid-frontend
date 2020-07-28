@@ -1,6 +1,9 @@
 import { PhotographModel } from './photograph.model';
 
 export class ImageModel {
+  public get isLandscape() {
+    return this._photograph.img_original_width > this._photograph.img_original_height;
+  }
   public get attributions(): string | undefined {
     const author = this._photograph.author;
     const license = this._photograph.license;

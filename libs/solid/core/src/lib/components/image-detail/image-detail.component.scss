@@ -1,12 +1,17 @@
-:host {
-  display: block;
-}
-
 img {
-  width: 100%;
+  // portrait
   max-height: 100%;
-  height: auto;
+  max-width: 100%;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  // landscape
+  &.landscape {
+    width: 100%;
+    max-height: 100%;
+    height: auto;
+  }
 }
 
 div.toolbar {
@@ -14,6 +19,7 @@ div.toolbar {
   bottom: 3.75em;
   right: 0.5em;
   float: right;
+
   button:not(:last-child) {
     margin-right: 0.5em;
   }

@@ -1,5 +1,5 @@
 <ng-container *ngIf="image; else noImg">
-  <img [src]="image.getRawImage('large')" [alt]="image.alt" />
+  <img [src]="image.getRawImage('large')" [alt]="image.alt" [class.landscape]="image.isLandscape" />
   <div class="toolbar">
     <button
       *ngIf="!attributionsDisabled && image.attributions as attributions"
@@ -32,6 +32,7 @@
 </ng-container>
 <ng-template #noImg>
   <img
+    class="landscape"
     src="assets/profile/no_image.svg"
     alt="Leider haben wir kein Bild in der Datenbank"
   />

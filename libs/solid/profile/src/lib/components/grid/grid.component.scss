@@ -13,6 +13,8 @@ div.card {
   height: 178px;
   width: 200px;
   border-radius: 0.25em;
+  display: flex;
+  flex-direction: column;
 
   div.title {
     padding: 0.5em;
@@ -20,6 +22,10 @@ div.card {
     font-size: 16px;
   }
   solid-core-image {
-    display: block;
+  //  display: block;
+    max-height: 142px;
+  //  max-width: 100%;
+  //  margin-left: auto;
+  //  margin-right: auto;
   }
 }
