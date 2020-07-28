@@ -1,5 +1,9 @@
 <ng-container *ngIf="image; else noImg">
-  <img [src]="image.getRawImage('large')" [alt]="image.alt" [class.landscape]="image.isLandscape" />
+  <img
+    [src]="image.getRawImage('large')"
+    [alt]="image.alt"
+    [class.landscape]="image.isLandscape"
+  />
   <div class="toolbar">
     <button
       *ngIf="!attributionsDisabled && image.attributions as attributions"
