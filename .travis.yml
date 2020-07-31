@@ -1,25 +1,25 @@
 language: node_js
 node_js:
-- 'lts/*'
+- lts/*
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 env:
-  secure: bHCda6sBJg0TLB8K5j+6QKxI075fCSEWOXHIhFyu/G+83UDjnxV3S6MwprtsH0pEexG5qoXlNvWTvnJ+QTqLBChy3dPAPchu5XDdfTnHlj3msoBAwcS5H7zJAc77TTj3OwDTkwyh43Ovcncw6bXm4EXPhz6CC9Mp9o8ziA58P2WTzRpC6RsMPBmnwWi3kd/lI/RRhgsBSoTfw4zaroa0qTjpoQnA7Vm6DAL9+vgteARtWGxckXGYnclILTqtvkXmHx/jv7QbDYuKs2vWQPubvFrlyhEzuMYiEta333grUEPDsYfOFagSq4sTd058ZHKFnMqZ6D0VCuYI673VPVXxMP1Ux8mbX6gFrPDeRSIvfUhbypHHvnAP96u7QaNq/jZST4t94mjN2eyAMo1tn6hhB7cpqpI5g4CvU0khpX782jyldT4xPtjkgRL+5xMLWVPZeRk9ACPchcocVX+XW/CLUCpVgHEYEdDKsIZgjQCxwjTBym8n7ZuQV5WOZ0qkmnh7rvL69ka08jo1WaBysbRsKuR0NYBpi+F29LmRYgE+8b4zLGQZVyT5ZN7/jxOXVuKdsQmm6M/QHbJGOGiuad2btRN16Imnqs1CtjeFllhNQa/lxEEpe7Jlm84Mt3YJsR+J+LeLCqyBpfUJFoX7xu0VkEQYVKDypCnBlm7Sw/GFXZw=
+  secure: MbvrtCwyergj7rmh4bIdEt6gOqVXEwY9PKmC+B6nlnuehL6iy6f6qot7oe3MHpadFDA+GtqSqOb9m8ibTIxi9Y43kslFJZYt6SReQsUUu1MREI0iE9yOGDslFKf+/gu2xCUMQl8KzqgGfd5FaytHe++CelC45NbuU13mfTi2NBwiMmFdLk2PrqwhJ9oGa3KIUBmmBENi8oFti53/zWnQZkf7PfzbfK6NcBHl4EitIVAGBcesjanGMsnDNSNlawmmpLnLfRs7xCKf0zG637OzBSZoWeDSo3ugV86fA4Q163wMOdGEorzkb0tniLl7dpZOlZd4UPduhYeIp/51zoMRBB9dEZt7K82NsOJmkTwlNsEHZb/cZfZQ7tIP6m2pbIHaKZwMRJPqC6rbSLRCXcgNIIBfr3rihAq0slZt0/wer0AzK47lpRNKClxXJ1IlGNF7xptIqiwMbViuAN7wR/XtB886hq9nKEJljzpeEOv/nDzgcZhvreIHJGFM/4LYE3b84JWHbzpYCO1srbUF9WV1DBfIOrDjCQgpJ2igrdpmWqRZF7D6PH/mKdA+nVq2/Rkz4c95CETcQzznYfVOrNZoLbdTqVy6+uD9wn3ybD9cEGpIe9XoQrvxCibxd3XSKd34mmHcvu76X7tyJKZJ2k0uIi3d60ExA+ciIQgfaVFkBbo=
 stages:
-  - name: lint
-  - build
-  - name: deploy
-    if: branch IN (master, dev) AND type != pull_request
+- name: lint
+- build
+- name: deploy
+  if: branch IN (master, dev) AND type != pull_request
 jobs:
   include:
-    - stage: lint
-      script: yarn lint
-    - stage: build
-      script: ./.travis/build.sh ${TRAVIS_BRANCH}
-    - stage: deploy
-      script: ./.travis/deploy.sh ${TRAVIS_PULL_REQUEST} ${TRAVIS_BRANCH}
+  - stage: lint
+    script: yarn lint
+  - stage: build
+    script: "./.travis/build.sh ${TRAVIS_BRANCH}"
+  - stage: deploy
+    script: "./.travis/deploy.sh ${TRAVIS_PULL_REQUEST} ${TRAVIS_BRANCH}"
 notifications:
   email:
     on_failure: change
@@ -42,3 +42,4 @@ before_install:
     git remote add deploy $USER@$SERVER:$PRODUCTION_DIRECTORY
   fi
 - git config --global push.default simple
+N
