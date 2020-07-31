@@ -74,7 +74,12 @@ jobs:
       - run: yarn install
 
       - name: Deploy dive preview
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn ng -- deploy --project=dive --no-silent
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: "dist/app-geomat/*"
+          target: "${{ secrets.DIVE_STAGING_DIRECTORY }}"
 
