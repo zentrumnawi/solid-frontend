@@ -80,6 +80,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           rm: true
-          source: "dist/app-geomat/*"
+          source: "dist/apps/geomat/*"
           target: "${{ secrets.DIVE_STAGING_DIRECTORY }}"
 
