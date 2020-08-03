@@ -32,13 +32,13 @@ jobs:
         run: yarn install
 
       - name: format
-        run: yarn nx format:check --base=origin/dev
+        run: yarn nx format:check --all
 
       - name: lint
-        run: yarn nx affected --target=lint --base=origin/dev --parallel
+        run: yarn nx run-many --target=lint --all --parallel
 
       - name: test
-        run: yarn nx affected --target=test --base=origin/dev --parallel
+        run: yarn nx run-many --target=test --all --parallel
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
@@ -46,7 +46,16 @@ jobs:
           file: ./coverage/**/clover.xml
           name: nx-jest
 
-
       - name: build - staging
-        run: yarn nx affected --target=build --base=origin/dev --parallel -c=staging
+        run: yarn nx run-many --target=build --all --parallel -c=staging
+
+      - name: Test deploy
+        uses: appleboy/scp-action@v0.0.10
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: "dist/apps/geomat"
+          target: "${{ secrets.GEOMAT_STAGING_DIRECTORY }}"
 
