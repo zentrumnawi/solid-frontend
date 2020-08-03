@@ -48,6 +48,8 @@ jobs:
 
       - name: build - staging
         run: yarn nx run-many --target=build --all --parallel -c=staging
+        
+      - run: ls dist/apps/
 
       - name: Test deploy
         uses: appleboy/scp-action@v0.0.10
