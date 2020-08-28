@@ -54,7 +54,7 @@
     "@ngxs/devtools-plugin": "^3.6.2",
     "@ngxs/router-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
-    "@sentry/browser": "5.15.5",
+    "@sentry/browser": "5.22.3",
     "core-js": "^3.6.5",
     "detect-browser": "^5.1.0",
     "hammerjs": "^2.0.8",
