@@ -32,7 +32,10 @@
     </button>
   </mat-toolbar>
   <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
-    <span [innerHTML]="SelectedProfile.name | profileTitle"></span>
+    <div class="title">
+      <span [innerHTML]="SelectedProfile.name | profileTitle"></span>
+      <span>{{ SelectedProfile.trivial_name }}</span>
+    </div>
     <div class="spacer"></div>
     <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
       <mat-icon>navigate_before</mat-icon>
@@ -59,11 +62,12 @@
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
       ></solid-profile-tree>
-      <!--      <solid-profile-list-->
-      <!--        *ngSwitchDefault-->
-      <!--        (select)="selectProfile($event)"-->
-      <!--        [profiles]="ProfilesFlatFiltered.asObservable()"-->
-      <!--      ></solid-profile-list>-->
+      <solid-profile-list
+        *ngSwitchDefault
+        (select)="selectProfile($event)"
+        [profiles]="ProfilesFlatFiltered.asObservable()"
+        [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+      ></solid-profile-list>
     </ng-container>
   </ng-container>
   <solid-profile-detail

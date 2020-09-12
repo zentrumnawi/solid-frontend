@@ -69,5 +69,5 @@ jobs:
           rm: true
           source: "dist/apps/dive"
           target: "${{ secrets.DIVE_STAGING_DIRECTORY }}"
-          strip_components: 3
+          strip_components: 3=
 

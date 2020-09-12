@@ -5,17 +5,24 @@
       *ngFor="let profile of profilesArr; trackBy: trackByFn"
     >
       <img
+        [alt]="profile.name"
         [src]="
           profile.images.length > 0
             ? profile.images[0].getRawImage('thumbnail')
             : 'assets/profile/no_image.svg'
         "
-        matListAvatar
+        class="thumbnail"
       />
-      <h3 [innerHTML]="profile.mineralName | profileTitle"></h3>
+      <div
+        class="profile-title"
+        [class.selected]="selectedProfileId === profile.id"
+      >
+        <span [innerHTML]="profile.name | profileTitle"></span>
+        <span>{{ profile.trivial_name }}</span>
+      </div>
     </mat-list-item>
     <mat-list-item *ngIf="profilesArr.length === 0"
-      >Keine Suchergebnisse vorhanden</mat-list-item
-    >
+      >Keine Suchergebnisse vorhanden
+    </mat-list-item>
   </ng-container>
 </mat-list>

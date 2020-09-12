@@ -16,16 +16,20 @@
       "
       class="thumbnail"
     />
-    <span
-      *ngIf="selectedProfileId === node.id"
-      solidProfileSelected
-      class="selected"
-      [innerHTML]="node.title | profileTitle"
-    ></span>
-    <span
-      *ngIf="selectedProfileId !== node.id"
-      [innerHTML]="node.title | profileTitle"
-    ></span>
+    <div class="profile-title">
+      <ng-container *ngIf="selectedProfileId === node.id">
+        <span
+          solidProfileSelected
+          class="selected"
+          [innerHTML]="node.title | profileTitle"
+        ></span>
+        <span class="selected">{{ node.subtitle }}</span>
+      </ng-container>
+      <ng-container *ngIf="selectedProfileId !== node.id">
+        <span [innerHTML]="node.title | profileTitle"></span>
+        <span>{{ node.subtitle }}</span>
+      </ng-container>
+    </div>
   </mat-tree-node>
 
   <mat-tree-node

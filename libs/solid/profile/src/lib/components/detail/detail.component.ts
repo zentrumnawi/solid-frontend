@@ -65,7 +65,9 @@ export class DetailComponent {
       return true;
     }
     const val =
-      profile_obj !== null && property.key in profile_obj
+      profile_obj !== null &&
+      profile_obj !== undefined &&
+      property.key in profile_obj
         ? profile_obj[property.key]
         : undefined;
     switch (property.type) {

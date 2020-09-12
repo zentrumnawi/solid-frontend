@@ -2,3 +2,19 @@ mat-list-item {
   margin-bottom: 0.5em;
   cursor: pointer;
 }
+
+div.profile-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.selected {
+  font-weight: bold;
+}
+
+.thumbnail {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  margin-right: 0.5em;
+}

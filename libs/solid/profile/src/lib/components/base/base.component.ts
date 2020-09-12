@@ -85,7 +85,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
               return true;
             }
             return !!p.trivial_name.match(regExp);
-            // TODO: Filter varierety for geomat
           });
 
           // no profile selected
