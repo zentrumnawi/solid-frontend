@@ -22,7 +22,7 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
-// import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile';
+import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile/di';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
 import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
@@ -82,10 +82,10 @@ function profileTitleFormatter(title: string): string {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,
     },
-    // {
-    //   provide: SOLID_PROFILE_TITLE_FORMATTER,
-    //   useValue: profileTitleFormatter
-    // }
+    {
+      provide: SOLID_PROFILE_TITLE_FORMATTER,
+      useValue: profileTitleFormatter,
+    },
   ],
   bootstrap: [AppComponent],
 })

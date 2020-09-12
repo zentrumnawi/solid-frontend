@@ -24,6 +24,7 @@
 
 <ng-template #cardContent let-profile="profile">
   <div class="title" [innerHTML]="profile.name | profileTitle"></div>
+  <div class="subtitle">{{ profile.trivial_name }}</div>
   <solid-core-image
     [image]="profile.images[0]"
     [attributionsDisabled]="true"

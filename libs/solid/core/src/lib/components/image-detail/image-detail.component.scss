@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
 img {
   // portrait
   max-height: 100%;
@@ -11,6 +17,7 @@ img {
     width: 100%;
     max-height: 100%;
     height: auto;
+    border-radius: inherit;
   }
 }
 

@@ -27,6 +27,7 @@ export type FlatTreeNode = EntryNode | CategoryNode;
 
 export interface EntryNode {
   title: string;
+  subtitle: string;
   type: 'entry';
   level: number;
   images: ImageModel[];
@@ -99,6 +100,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       return {
         // title: node.variety ? node.variety : node.mineralName,
         title: node.name,
+        subtitle: node.trivial_name,
         id: node.id,
         type: 'entry',
         level: level,

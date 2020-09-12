@@ -56,6 +56,11 @@ mat-tree-node {
   }
 }
 
+div.profile-title {
+  display: flex;
+  flex-direction: column;
+}
+
 .selected {
   font-weight: bold;
 }

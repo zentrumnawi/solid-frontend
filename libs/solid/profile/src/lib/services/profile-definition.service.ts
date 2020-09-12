@@ -8,7 +8,14 @@ import {
   ProfilePropertyType,
 } from '../state/profile-definition.model';
 
-const ignoredProperties = ['id', 'name', 'systematics', 'photographs'];
+const ignoredProperties = [
+  'id',
+  'name',
+  'trivial_name',
+  'facts_to_know',
+  'systematics',
+  'photographs',
+];
 
 @Injectable()
 export class ProfileDefinitionService {
@@ -83,7 +90,7 @@ export class ProfileDefinitionService {
     schema: Schema
   ): ProfileProperty | null {
     const { title, type } = schema;
-    const required = parent.required?.includes(key) || false;
+    const required = parent.required?.includes(key) ?? false;
     // tslint:disable:no-non-null-assertion
     switch (type) {
       case 'string':
@@ -91,7 +98,7 @@ export class ProfileDefinitionService {
           key: key,
           title: title!,
           required,
-          type: ProfilePropertyType.String, // TODO: asdf
+          type: ProfilePropertyType.String,
         };
       case 'array':
         if (Array.isArray(schema.items)) {

@@ -21,6 +21,17 @@ div.content-container {
   grid-template-rows: 64px 1fr;
   overflow: hidden;
 
+  mat-toolbar.detail-toolbar {
+    div.title {
+      display: flex;
+      flex-direction: column;
+      span:nth-child(2) {
+        font-size: 15px;
+        line-height: 27px;
+      }
+    }
+  }
+
   &.splitLayout {
     grid-template-areas: 'main-toolbar toolbar' 'view profile';
     grid-template-columns: 400px 1fr;

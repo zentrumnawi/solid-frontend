@@ -24,4 +24,5 @@ export interface ProfileApi {
   name: string;
   photographs: PhotographModel[];
   trivial_name: string;
+  facts_to_know?: string;
 }
