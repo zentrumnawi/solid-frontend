@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "markdown-it"
+            ],
             "outputPath": "dist/apps/geomat",
             "index": "apps/geomat/src/index.html",
             "main": "apps/geomat/src/main.ts",
@@ -493,6 +497,10 @@
             "polyfills": "apps/dive/src/polyfills.ts",
             "tsConfig": "apps/dive/tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "markdown-it"
+            ],
             "assets": [
               "apps/dive/src/favicon.ico",
               "apps/dive/src/assets",
