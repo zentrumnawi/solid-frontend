@@ -28,6 +28,10 @@
   </div>
 </ng-container>
 <ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
+  <ng-container *ngIf="profile.facts_to_know">
+    <div class="facts-title">Wissenswertes</div>
+    <div class="facts-body" markdown [data]="profile.facts_to_know"></div>
+  </ng-container>
   <mat-accordion [multi]="false" displayMode="flat" #expansion>
     <mat-expansion-panel>
       <mat-expansion-panel-header
