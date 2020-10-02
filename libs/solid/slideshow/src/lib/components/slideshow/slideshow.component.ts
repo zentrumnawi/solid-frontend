@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { Select } from '@ngxs/store';
-import { combineLatest, Observable, of, Subject } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
 import { map, takeUntil, tap } from 'rxjs/operators';

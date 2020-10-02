@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LandingBannerContentComponent } from './landing-banner-content.component';
 import { MatCardModule } from '@angular/material/card';
@@ -9,7 +9,7 @@ import { SOLID_SKELETON_HACKY_INJECTION } from '@zentrumnawi/solid-skeleton';
 describe('LandingBannerContentComponent', () => {
   let component: LandingBannerContentComponent;
   let fixture: ComponentFixture<LandingBannerContentComponent>;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LandingBannerContentComponent],
       imports: [MatCardModule, MatButtonModule, MatIconModule],

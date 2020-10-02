@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject} from '@angular/core';
 import * as version from '../../environments/version.json';
 import { Store } from '@ngxs/store';
 import {

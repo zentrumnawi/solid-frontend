@@ -1,8 +1,8 @@
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext} from '@ngxs/store';
 import { QuizQuestion, QuizQuestionInSession, QuizSession } from './quiz.model';
 import { QuizActions } from './quiz.actions';
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { tap } from 'rxjs/operators';
 

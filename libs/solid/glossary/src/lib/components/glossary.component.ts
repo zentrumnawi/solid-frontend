@@ -9,7 +9,7 @@ import { GlossaryActions } from '../glossary.actions';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { RefDirective } from './link.directive';
 import { FormControl } from '@angular/forms';
-import { debounceTime, map, startWith, takeUntil } from 'rxjs/operators';
+import { map, startWith, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'solid-glossary',

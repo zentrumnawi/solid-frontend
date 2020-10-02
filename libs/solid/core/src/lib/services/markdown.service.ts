@@ -1,4 +1,4 @@
-import { Inject, Injectable, Input, SecurityContext } from '@angular/core';
+import { Inject, Injectable, SecurityContext } from '@angular/core';
 import * as MarkdownIt from 'markdown-it';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../solid-core-config';

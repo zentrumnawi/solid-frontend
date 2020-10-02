@@ -3,7 +3,6 @@ import {
   applyTemplates,
   chain,
   externalSchematic,
-  MergeStrategy,
   mergeWith,
   move,
   Rule,
