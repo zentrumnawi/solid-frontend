@@ -1,8 +1,10 @@
 p {
   padding: 0 0.5em 0 0.5em;
+  margin-bottom: 0;
 
   &.heading {
     padding: 0.5em;
+    font-weight: 600;
     //padding: 24px;
   }
 }
@@ -37,4 +39,20 @@ div.img-toolbar {
       filter: saturate(0%);
     }
   }
+}
+//
+.facts-title {
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  div {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  font-weight: 700;
+}
+.facts-body {
+  padding-left: 31px;
+  padding-right: 31px;
 }

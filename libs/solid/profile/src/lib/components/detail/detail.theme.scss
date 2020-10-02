@@ -7,7 +7,10 @@
     background-color: mat-color($background, card);
 
     p.heading {
-      background-color: mat-color($background, app-bar);
+      &:not(:first-child) {
+        border-top: 1px solid mat-color($background, status-bar);
+      }
+      //background-color: mat-color($background, app-bar);
     }
 
     div.img-toolbar {

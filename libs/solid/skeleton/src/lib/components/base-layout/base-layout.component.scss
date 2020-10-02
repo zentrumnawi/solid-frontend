@@ -38,14 +38,16 @@
     .right-border {
       width: 300px - 16px;
       height: 64px;
-      padding-top: 32px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .left-border {
       width: 300px - 16px;
       height: 64px;
-      padding-top: 32px;
       text-align: right;
+      display: inline-flex;
+      align-items: center;
     }
   }
 
