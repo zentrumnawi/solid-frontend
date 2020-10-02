@@ -364,10 +364,7 @@
               "project": "libs/solid/skeleton/ng-package.json",
               "tsConfig": "libs/solid/skeleton/tsconfig.lib.json"
             },
-            "allowedCommonJsDependencies": [
-              "lodash",
-              "markdown-it"
-            ],
+            "allowedCommonJsDependencies": ["lodash", "markdown-it"],
             "schematicOptions": {
               "outputPath": "dist/libs/solid/skeleton",
               "tsConfig": "libs/solid/skeleton/tsconfig.schematics.json",

@@ -6,11 +6,13 @@ describe('InfoPageContentComponent', () => {
   let component: InfoPageContentComponent;
   let fixture: ComponentFixture<InfoPageContentComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [InfoPageContentComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [InfoPageContentComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InfoPageContentComponent);
