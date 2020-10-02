@@ -132,16 +132,14 @@
               "apps/geomat/tsconfig.app.json",
               "apps/geomat/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/geomat/**"]
+            "exclude": ["**/node_modules/**", "!apps/geomat/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/geomat/jest.config.js",
-            "tsConfig": "apps/geomat/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/geomat/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       }
@@ -168,7 +166,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**/*"]
           }
         }
       }
@@ -201,16 +199,14 @@
               "libs/solid/core/tsconfig.lib.json",
               "libs/solid/core/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/core/**"]
+            "exclude": ["**/node_modules/**", "!libs/solid/core/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/core/jest.config.js",
-            "tsConfig": "libs/solid/core/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/solid/core/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -248,16 +244,14 @@
               "libs/solid/quiz/tsconfig.lib.json",
               "libs/solid/quiz/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**"]
+            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/quiz/jest.config.js",
-            "tsConfig": "libs/solid/quiz/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/solid/quiz/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -295,16 +289,14 @@
               "libs/solid/slideshow/tsconfig.lib.json",
               "libs/solid/slideshow/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**"]
+            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/slideshow/jest.config.js",
-            "tsConfig": "libs/solid/slideshow/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/solid/slideshow/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -342,16 +334,14 @@
               "libs/solid/glossary/tsconfig.lib.json",
               "libs/solid/glossary/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**"]
+            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/glossary/jest.config.js",
-            "tsConfig": "libs/solid/glossary/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/solid/glossary/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -420,16 +410,14 @@
               "libs/solid/skeleton/tsconfig.lib.json",
               "libs/solid/skeleton/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**"]
+            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/skeleton/jest.config.js",
-            "tsConfig": "libs/solid/skeleton/tsconfig.spec.json",
-            "passWithNoTests": false,
-            "setupFile": "libs/solid/skeleton/src/test-setup.ts"
+            "passWithNoTests": false
           }
         }
       },
@@ -468,16 +456,14 @@
               "libs/solid/profile/tsconfig.lib.json",
               "libs/solid/profile/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/profile/**"]
+            "exclude": ["**/node_modules/**", "!libs/solid/profile/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/profile/jest.config.js",
-            "tsConfig": "libs/solid/profile/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/solid/profile/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -616,16 +602,14 @@
               "apps/dive/tsconfig.app.json",
               "apps/dive/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/dive/**"]
+            "exclude": ["**/node_modules/**", "!apps/dive/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/dive/jest.config.js",
-            "tsConfig": "apps/dive/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/dive/src/test-setup.ts"
+            "passWithNoTests": true
           }
         },
         "deploy": {
@@ -661,7 +645,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/dive-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/dive-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/dive-e2e/**/*"]
           }
         }
       }
@@ -679,14 +663,13 @@
               "libs/tools/tsconfig.lib.json",
               "libs/tools/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/tools/**"]
+            "exclude": ["**/node_modules/**", "!libs/tools/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/tools/jest.config.js",
-            "tsConfig": "libs/tools/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -714,7 +697,8 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
+            ],
+            "srcRootForCompilationRoot": "libs/tools"
           },
           "configurations": {
             "staging": {}
