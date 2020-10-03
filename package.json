@@ -12,7 +12,7 @@
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ts-node git.versions.ts && node ./decorate-angular-cli.js",
+    "postinstall": "ts-node git.versions.ts && node ./decorate-angular-cli.js && ngcc",
     "nx": "nx",
     "affected:apps": "nx affected:apps --base=origin/dev",
     "affected:libs": "nx affected:libs --base=origin/dev",
@@ -34,8 +34,7 @@
   },
   "pre-commit": [
     "format:write-uncommited",
-    "affected:lint",
-    "affected:test"
+    "affected:lint"
   ],
   "private": true,
   "dependencies": {
