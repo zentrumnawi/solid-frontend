@@ -6,7 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { Schema, Spec } from 'swagger-schema-official';
+import { Schema } from 'swagger-schema-official';
 import {
   ProfileProperty,
   ProfilePropertyGroup,

@@ -1,20 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SlideshowSelectComponent } from './slideshow-select.component';
-import { RouterModule } from '@angular/router';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
+import { waitForAsync } from '@angular/core/testing';
 
 describe('SlideshowSelecComponent', () => {
   // let component: SlideshowSelectComponent;
   // let fixture: ComponentFixture<SlideshowSelectComponent>;
 
-  beforeEach(async(() => {
-    // TestBed.configureTestingModule({
-    //   declarations: [ SlideshowSelectComponent ],
-    // })
-    // .compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      // TestBed.configureTestingModule({
+      //   declarations: [ SlideshowSelectComponent ],
+      // })
+      // .compileComponents();
+    })
+  );
 
   beforeEach(() => {
     // fixture = TestBed.createComponent(SlideshowSelectComponent);

@@ -4,7 +4,7 @@ import { fork } from 'child_process';
 import { copy, removeSync } from 'fs-extra';
 import * as glob from 'glob';
 import { basename, dirname, join, relative } from 'path';
-import { from, Observable, Subject, Subscriber } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { FileInputOutput, SchematicOptions } from './schema';
 
 interface NormalizedSchematicOptions extends SchematicOptions {

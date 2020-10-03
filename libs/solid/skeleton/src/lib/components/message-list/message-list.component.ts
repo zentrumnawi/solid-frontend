@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MessageModel } from '../../state/message.model';
 import { Observable, of } from 'rxjs';
 

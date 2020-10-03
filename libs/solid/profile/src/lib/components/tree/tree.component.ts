@@ -16,7 +16,7 @@ import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
 } from '@angular/material/tree';
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Profile, TreeNode } from '../../state/profile.model';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';

@@ -4,7 +4,7 @@ import { QuizSession } from '../../state/quiz.model';
 import { QuizActions } from '../../state/quiz.actions';
 import { QuizFeedback } from './end-feedback';
 import { takeUntil } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

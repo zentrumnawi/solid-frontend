@@ -9,7 +9,8 @@
     class="mat-elevation-z2"
     [routerLink]="menuItem.route"
   >
-    <mat-icon [svgIcon]="menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
+    <mat-icon *ngIf="menuItem.svgIcon" [svgIcon]="menuItem.svgIcon"></mat-icon>
+    <mat-icon *ngIf="!menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
     <span>{{ menuItem.title }}</span>
   </mat-grid-tile>
 </mat-grid-list>
