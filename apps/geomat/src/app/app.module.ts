@@ -23,7 +23,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { SentryErrorHandler } from './sentry.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
@@ -73,10 +72,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatListModule,
   ],
   providers: [
-    {
-      provide: ErrorHandler,
-      useClass: SentryErrorHandler,
-    },
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,

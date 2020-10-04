@@ -52,7 +52,7 @@ export class SlideshowState {
       return;
     }
     return this._http
-      .get<Slideshow[]>(`${this._config.newApiUrl}/api/slideshows`)
+      .get<Slideshow[]>(`${this._config.apiUrl}/slideshows`)
       .pipe(
         tap((res) => {
           ctx.setState([

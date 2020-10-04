@@ -32,7 +32,7 @@ export class QuizState {
   @Action(QuizActions.LoadQuestions)
   public set(ctx: StateContext<QuizStateModel>, {}: QuizActions.LoadQuestions) {
     return this._http
-      .get<QuizQuestion[]>(`${this._config.newApiUrl}/api/quizquestions`)
+      .get<QuizQuestion[]>(`${this._config.apiUrl}/quizquestions`)
       .pipe(
         tap((res) => {
           ctx.patchState({

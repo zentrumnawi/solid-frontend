@@ -26,3 +26,4 @@ if (p.version) {
 }
 
 writeFileSync('apps/geomat/src/environments/version.json', versionInfo);
+writeFileSync('apps/dive/src/environments/version.json', versionInfo);

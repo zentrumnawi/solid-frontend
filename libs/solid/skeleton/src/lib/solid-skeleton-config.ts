@@ -1,5 +1,6 @@
 import { InjectionToken, Type } from '@angular/core';
 import { LoadChildren } from '@angular/router';
+import { ErrorHandlerOptions } from '@sentry/angular';
 
 export interface RouteConfig {
   enabled: boolean;
@@ -28,6 +29,13 @@ export interface RoutingConfig {
   // custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
 }
 
+export interface SentryConfig {
+  errorHandlerOptions?: ErrorHandlerOptions;
+  dsn: string;
+  environment: string;
+  version: { default: { semver: { version: string } } };
+}
+
 export interface InternalSolidSkeletonConfig {
   feedbackEnabled: boolean;
   landingBannerContent: Type<any>;
@@ -38,6 +46,7 @@ export interface InternalSolidSkeletonConfig {
     matIcon?: string;
   };
   routingConfig: RoutingConfig;
+  sentry?: SentryConfig;
 }
 
 export interface RequiredExternalConfig {
@@ -48,6 +57,7 @@ export interface RequiredExternalConfig {
       component: Type<any>;
     };
   };
+  sentry?: SentryConfig;
 }
 
 type componentPropertyKeys =

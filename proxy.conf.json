@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://dive-backend-staging.physikelearning.de",
+    "target": "https://dive-backend-staging.physikelearning.de/api",
     "secure": true,
     "logLevel": "debug",
     "changeOrigin": true

@@ -25,7 +25,7 @@ describe('ProfileDefinitionService', () => {
         {
           provide: SOLID_CORE_CONFIG,
           useValue: {
-            newApiUrl: '',
+            apiUrl: '',
           },
         },
       ],

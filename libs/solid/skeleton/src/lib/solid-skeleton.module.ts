@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ErrorHandler, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SOLID_CORE_CONFIG, SolidCoreModule } from '@zentrumnawi/solid-core';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
@@ -23,6 +23,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {
   defaultSkeletonConfig,
   InternalSolidSkeletonConfig,
+  SentryConfig,
   SOLID_SKELETON_CONFIG,
   SolidSkeletonConfig,
 } from './solid-skeleton-config';
@@ -34,14 +35,13 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxsModule } from '@ngxs/store';
 import { MenuState } from './state/menu.state';
 import { generateRoutes } from './skeleton-routing';
+import { createErrorHandler } from '@sentry/angular';
 // TODO: Get rid of lodash. It increases the bundle size...
 import * as _ from 'lodash';
 import { InfoComponent } from './components/info/info.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MessageState } from './state/message.state';
 import { MessageListComponent } from './components/message-list/message-list.component';
-
-const hidden = Math.random() < 0.1;
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -96,12 +96,12 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
   providers: [UpdateService],
 })
 export class SolidSkeletonModule {
-  static isLandingHiddenEnabled = hidden;
   constructor() {}
 
   public static forRoot(
     cfg: SolidSkeletonConfig
   ): ModuleWithProviders<SolidSkeletonModule> {
+    const errHandler = createErrorHandler(cfg.sentry?.errorHandlerOptions);
     return {
       ngModule: SolidSkeletonModule,
       providers: [
@@ -124,6 +124,10 @@ export class SolidSkeletonModule {
           useFactory: routingFactory,
           deps: [SOLID_SKELETON_CONFIG],
           multi: true,
+        },
+        {
+          provide: ErrorHandler,
+          useValue: createErrorHandler(cfg.sentry?.errorHandlerOptions),
         },
       ],
     };

@@ -221,7 +221,7 @@
     universal-analytics "0.4.23"
     uuid "8.3.0"
 
-"@angular/common@10.1.4":
+"@angular/common@10.1.4", "@angular/common@^10.0.3":
   version "10.1.4"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-10.1.4.tgz#ca52c5ea3aca1533898c3363adc1089f18c94518"
   integrity sha512-TWVv2gdbMIHQhdPdCFvBmQKI640LFGnntAceba7MLm2jNrmVglYGY+rWYiKa/+802lroZ8674qVVDqa+QASkyQ==
@@ -254,7 +254,7 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/core@10.1.4":
+"@angular/core@10.1.4", "@angular/core@^10.0.3":
   version "10.1.4"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-10.1.4.tgz#1180370e335371a0c36f05c2e8142c926a362836"
   integrity sha512-GEJkwHG0TPylEkcPj55Ps7f9ryXAwxCDZlv+djSHnOOPjjW8jovgUSg88SRNOJ8pKSjMd8x9yeTQz5fCWaeniw==
@@ -294,7 +294,7 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/router@10.1.4":
+"@angular/router@10.1.4", "@angular/router@^10.0.3":
   version "10.1.4"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-10.1.4.tgz#66fd12c01353155c4f66be4972907bd2d0bd4829"
   integrity sha512-WuwMAkyCz84xQDxHtTwaZUbr749VsQ5DqIIBZOgodc1hkPpIv7LUg6M5meQriDsASLNkkJWV8cq0EKHIQiBuTA==
@@ -1857,6 +1857,20 @@
     pacote "9.5.12"
     semver "7.3.2"
     semver-intersect "1.4.0"
+
+"@sentry/angular@^5.24.2":
+  version "5.24.2"
+  resolved "https://registry.yarnpkg.com/@sentry/angular/-/angular-5.24.2.tgz#74c5996b006af82c9b70f8c054dd4dc3da32fb9e"
+  integrity sha512-ZRnaxYqa9cbsUd8JUv1Bj4DJI7YoHIDYPALWrrZ11JikXoJQsxJriRN59YM1T1AHWtFf7fBLJthg+rb/CY0GYA==
+  dependencies:
+    "@angular/common" "^10.0.3"
+    "@angular/core" "^10.0.3"
+    "@angular/router" "^10.0.3"
+    "@sentry/browser" "5.24.2"
+    "@sentry/types" "5.24.2"
+    "@sentry/utils" "5.24.2"
+    rxjs "^6.6.0"
+    tslib "^1.9.3"
 
 "@sentry/browser@5.24.2":
   version "5.24.2"

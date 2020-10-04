@@ -8,3 +8,4 @@ export {
   RouteConfigFromModule,
 } from './lib/solid-skeleton-config';
 export * from './lib/services/feedback.service';
+export { initSentry } from './lib/sentry-initializer';

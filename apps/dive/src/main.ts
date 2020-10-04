@@ -7,6 +7,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import { detect } from 'detect-browser';
+import { initSentry } from '@zentrumnawi/solid-skeleton';
 
 const browser = detect();
 
@@ -26,6 +27,8 @@ if (browser) {
       break;
   }
 }
+
+initSentry(environment.sentry);
 
 if (supportedBrowser) {
   if (environment.production) {
