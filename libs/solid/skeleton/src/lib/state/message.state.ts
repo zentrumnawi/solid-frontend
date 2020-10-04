@@ -55,7 +55,7 @@ export class MessageState {
       localMessages.push(...JSON.parse(localData));
     }
     return this._http
-      .get<MessageModel[]>(`${this._config.newApiUrl}/api/messages`)
+      .get<MessageModel[]>(`${this._config.apiUrl}/messages`)
       .pipe(
         map((res) => {
           return res

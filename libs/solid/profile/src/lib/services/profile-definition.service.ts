@@ -26,7 +26,7 @@ export class ProfileDefinitionService {
 
   public loadDefinitions() {
     return this.http
-      .get<Spec>(`${this._config.newApiUrl}/api/swagger/?format=openapi`)
+      .get<Spec>(`${this._config.apiUrl}/swagger/?format=openapi`)
       .pipe(
         map((swagger) => {
           const definitions = swagger.definitions || {};
