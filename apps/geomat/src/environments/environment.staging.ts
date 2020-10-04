@@ -1,12 +1,19 @@
+import * as version from './version.json';
+
 export const environment = {
-  preview: true,
-  staging: true,
+  preview: false,
   production: true,
-  apiUrl: 'https://geomat-staging.physikelearning.de',
-  newApiUrl: 'https://dive-backend-staging.physikelearning.de',
+  apiUrl: 'https://solid-backend.uni-frankfurt.de/geomat/staging',
   sentry: {
-    environment: 'geomat-staging',
     dsn:
-      'https://89c4241a9f9a4dd1a517a504b3a6560b@po-sentry.physikelearning.de/30',
+      'https://6772dbe6a4bb42e88711f20924eefa8e@po-sentry.physikelearning.de/34',
+    environment: 'geomat-staging',
+    version: version as any,
+    errorHandlerOptions: {
+      showDialog: true,
+      dialogOptions: {
+        lang: 'de-DE',
+      },
+    },
   },
 };
