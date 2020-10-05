@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://dive-backend-staging.physikelearning.de/api",
+    "target": "https://solid-backend.uni-frankfurt.de/dive/staging/",
     "secure": true,
     "logLevel": "debug",
     "changeOrigin": true

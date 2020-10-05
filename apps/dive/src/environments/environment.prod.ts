@@ -3,7 +3,7 @@ import * as version from './version.json';
 export const environment = {
   preview: false,
   production: true,
-  apiUrl: 'https://dive-backend-staging.physikelearning.de/api',
+  apiUrl: 'https://solid-backend.uni-frankfurt.de/dive/production/',
   sentry: {
     dsn:
       'https://6772dbe6a4bb42e88711f20924eefa8e@po-sentry.physikelearning.de/34',
