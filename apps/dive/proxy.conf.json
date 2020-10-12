@@ -5,7 +5,12 @@
     "logLevel": "debug",
     "changeOrigin": true,
     "pathRewrite": {
-      "^/api" : "/dive/staging"
+      "^/api": "/dive/staging"
     }
+  },
+  "/dive/staging/dzi": {
+    "target": "https://cdn.geomat.uni-frankfurt.de",
+    "secure": true,
+    "changeOrigin": true
   }
 }

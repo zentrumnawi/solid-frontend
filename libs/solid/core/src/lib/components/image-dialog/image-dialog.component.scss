@@ -13,6 +13,11 @@ div.mat-dialog-content {
   margin: 0;
   padding: 0;
   max-height: calc(100% - 60px);
+  div#dzi-container {
+    width: 100%;
+    height: 80vh;
+    margin-bottom: -40px;
+  }
 }
 
 solid-core-image-detail {
@@ -33,12 +38,6 @@ solid-core-image-detail {
   div.cdk-overlay-pane.solid-core-image-dialog {
     mat-dialog-container {
       padding: 0;
-      //      box-shadow: none;
-      //      background-color: unset;
     }
   }
-}
-
-solid-core-image-detail {
-  //margin: -24px;
 }

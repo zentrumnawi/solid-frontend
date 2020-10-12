@@ -4,35 +4,12 @@
     [alt]="image.alt"
     [class.landscape]="image.isLandscape"
   />
-  <div class="toolbar">
-    <button
-      *ngIf="!attributionsDisabled && image.attributions as attributions"
-      mat-mini-fab
-      color="accent"
-      cdkOverlayOrigin
-      #attributionsOverlayOrigin="cdkOverlayOrigin"
-      (click)="attributionsOpenClose()"
-    >
-      <mat-icon>copyright</mat-icon>
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayOrigin]="attributionsOverlayOrigin"
-        [cdkConnectedOverlayOpen]="attributionsIsOpen"
-        [cdkConnectedOverlayPositions]="attributionsPositions"
-        [cdkConnectedOverlayScrollStrategy]="attributionsScrollStrategy"
-      >
-        <div class="attributions-overlay">{{ attributions }}</div>
-      </ng-template>
-    </button>
-    <button
-      *ngIf="!dialogDisabled"
-      mat-mini-fab
-      color="accent"
-      (click)="openDialog()"
-    >
-      <mat-icon>zoom_in</mat-icon>
-    </button>
-  </div>
+  <solid-core-image-toolbar
+    [image]="image"
+    [hasAttributions]="hasAttributions"
+    [hasDialog]="hasDialog"
+    [hasDziTools]="false"
+  ></solid-core-image-toolbar>
 </ng-container>
 <ng-template #noImg>
   <img

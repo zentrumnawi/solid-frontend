@@ -37,5 +37,12 @@ export class ImageModel {
     return this._photograph.img[size];
   }
 
+  public get deepZoomLink(): string | false {
+    if (!this._photograph.dzi_file) {
+      return false;
+    }
+    return this._photograph.dzi_file;
+  }
+
   constructor(private _photograph: PhotographModel) {}
 }

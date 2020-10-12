@@ -14,6 +14,6 @@ import { ImageModel } from '../../models';
 })
 export class ImageComponent {
   @Input() image?: ImageModel;
-  @Input() dialogDisabled = false;
-  @Input() attributionsDisabled = false;
+  @Input() hasDialog = true;
+  @Input() hasAttributions = true;
 }

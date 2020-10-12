@@ -39,8 +39,7 @@
                 "libs/solid/glossary/src",
                 "libs/solid/skeleton/src",
                 "libs/solid/quiz/src",
-                "libs/solid/profile/src",
-                "libs/solid/core/src"
+                "libs/solid/profile/src"
               ]
             }
           },
@@ -505,12 +504,11 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "libs/soliid/core/src",
+                "libs/solid/core/src",
                 "libs/solid/glossary/src",
                 "libs/solid/skeleton/src",
                 "libs/solid/quiz/src",
-                "libs/solid/profile/src",
-                "libs/solid/core/src"
+                "libs/solid/profile/src"
               ]
             }
           },
