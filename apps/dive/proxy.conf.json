@@ -5,7 +5,7 @@
     "logLevel": "debug",
     "changeOrigin": true,
     "pathRewrite": {
-      "^/api" : "/dive/staging"
+      "^/api": "/dive/staging"
     }
   }
 }
