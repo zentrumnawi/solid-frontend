@@ -45,9 +45,9 @@ export class ImageDetailComponent {
 
   public openDialog() {
     this._dialog.open(ImageDialogComponent, {
-      minWidth: '90%',
-      maxWidth: '95%',
-      maxHeight: '95%',
+      width: '100%',
+      height: 'auto',
+      maxHeight: '100%',
       panelClass: 'solid-core-image-dialog',
       data: {
         image: this.image,

@@ -1,4 +1,11 @@
-<solid-core-image-detail
-  [image]="data.image"
-  [dialogDisabled]="true"
-></solid-core-image-detail>
+<div mat-dialog-title class="mat-dialog-title">
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <solid-core-image-detail
+    [image]="data.image"
+    [dialogDisabled]="true"
+  ></solid-core-image-detail>
+</div>
