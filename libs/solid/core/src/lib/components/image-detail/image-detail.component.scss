@@ -23,9 +23,10 @@ img {
 
 div.toolbar {
   position: relative;
-  bottom: 3.75em;
+  bottom: calc(40px + 0.5em);
+  display: flex;
   right: 0.5em;
-  float: right;
+  justify-content: flex-end;
 
   button:not(:last-child) {
     margin-right: 0.5em;
