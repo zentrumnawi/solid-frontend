@@ -29,7 +29,8 @@
       ],
       "@zentrumnawi/tools": ["libs/tools/src/index.ts"]
     },
-    "rootDir": "."
+    "rootDir": ".",
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "strictTemplates": true,

@@ -9,6 +9,10 @@ p {
   }
 }
 
+solid-core-image {
+  height: calc(100vh / 3);
+}
+
 mat-expansion-panel {
   mat-expansion-panel-header {
     mat-panel-title {

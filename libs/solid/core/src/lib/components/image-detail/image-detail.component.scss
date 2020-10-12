@@ -20,25 +20,3 @@ img {
     border-radius: inherit;
   }
 }
-
-div.toolbar {
-  position: relative;
-  bottom: 3.75em;
-  right: 0.5em;
-  float: right;
-
-  button:not(:last-child) {
-    margin-right: 0.5em;
-  }
-}
-
-::ng-deep {
-  div.cdk-overlay-container {
-    div.attributions-overlay {
-      font-size: 1em;
-      margin-right: 0.5em;
-      padding: 0.25em;
-      border-radius: 0.5em;
-    }
-  }
-}

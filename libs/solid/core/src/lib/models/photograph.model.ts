@@ -7,6 +7,7 @@ export interface PhotographModel {
     thumbnail: string;
     original: string;
   };
+  dzi_file: string | null;
   img_alt: string;
   img_original_width: number;
   img_original_height: number;

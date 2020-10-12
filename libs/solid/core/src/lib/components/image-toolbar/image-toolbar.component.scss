@@ -1,0 +1,24 @@
+div.toolbar {
+  position: relative;
+  display: flex;
+  right: 0.5em;
+  justify-content: flex-end;
+  bottom: calc(40px + 0.5em);
+  &.dzi {
+    bottom: 0.5em;
+  }
+  button:not(:last-child) {
+    margin-right: 0.5em;
+  }
+}
+
+::ng-deep {
+  div.cdk-overlay-container {
+    div.attributions-overlay {
+      font-size: 1em;
+      margin-right: 0.5em;
+      padding: 0.25em;
+      border-radius: 0.5em;
+    }
+  }
+}

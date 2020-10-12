@@ -1,5 +1,5 @@
-@import 'lib/components/image-detail/image-detail.theme';
+@import 'lib/components/image-toolbar/image-toolbar.theme';
 
 @mixin solid-core-theme($mat-theme) {
-  @include solid-core-image-detail-theme($mat-theme);
+  @include solid-core-image-toolbar-theme($mat-theme);
 }
