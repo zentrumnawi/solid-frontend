@@ -111,7 +111,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "geomat:build",
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "./apps/geomat/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -581,7 +581,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "dive:build",
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "./apps/dive/proxy.conf.json"
           },
           "configurations": {
             "production": {
