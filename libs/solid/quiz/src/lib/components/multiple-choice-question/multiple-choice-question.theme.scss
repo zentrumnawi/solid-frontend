@@ -1,0 +1,35 @@
+@import '~@angular/material/theming';
+
+@mixin solid-quiz-question-multiple-choice-theme(
+  $mat-theme,
+  $quiz-correct,
+  $quiz-incorrect
+) {
+  solid-quiz-multiple-choice-question {
+    mat-checkbox.mat-checkbox {
+      &.correctselected {
+        .mat-checkbox-background {
+          background-color: mat-color($quiz-correct);
+        }
+      }
+
+      &.correctunselected {
+        .mat-checkbox-background {
+          background-color: mat-color($quiz-correct, lighter);
+        }
+      }
+
+      &.incorrectselected {
+        .mat-checkbox-background {
+          background-color: mat-color($quiz-incorrect);
+        }
+      }
+
+      &.incorrectunselected {
+        .mat-checkbox-background {
+          background-color: mat-color($quiz-incorrect, lighter);
+        }
+      }
+    }
+  }
+}

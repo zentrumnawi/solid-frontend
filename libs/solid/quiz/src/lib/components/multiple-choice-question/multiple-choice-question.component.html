@@ -1,0 +1,34 @@
+<mat-checkbox
+  (change)="onSelectChange($event, answer)"
+  *ngFor="let answer of question.answers; trackBy: trackByFn"
+  [checked]="isAnswerCorrect(answer)"
+  [class.correctselected]="
+    isAnswerCorrect(answer) && selectedAnswers.includes(answer.id)
+  "
+  [class.incorrectselected]="
+    isAnswerIncorrect(answer) && selectedAnswers.includes(answer.id)
+  "
+  [class.correctunselected]="
+    isAnswerCorrect(answer) && !selectedAnswers.includes(answer.id)
+  "
+  [class.incorrectunselected]="
+    isAnswerIncorrect(answer) && !selectedAnswers.includes(answer.id)
+  "
+  [disabled]="showAnswers"
+  [indeterminate]="isAnswerIncorrect(answer)"
+  color="primary"
+>
+  <span
+    markdown
+    [data]="answer.text"
+    [class.selected]="showAnswers && selectedAnswers.includes(answer.id)"
+  ></span>
+  <span
+    *ngIf="showAnswers && selectedAnswers.includes(answer.id)"
+    [data]="
+      answer.correct ? answer.feedback_correct : answer.feedback_incorrect
+    "
+    markdown
+    class="feedback"
+  ></span>
+</mat-checkbox>

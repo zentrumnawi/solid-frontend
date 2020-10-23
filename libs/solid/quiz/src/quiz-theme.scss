@@ -1,7 +1,21 @@
 @import 'lib/components/question/question.theme';
+@import 'lib/components/drag-and-drop-choice-question/drag-and-drop-question.theme';
+@import 'lib/components/multiple-choice-question/multiple-choice-question.theme';
+@import 'lib/components/single-choice-question/single-choice-question.theme';
 
 @mixin solid-quiz-theme($mat-theme, $quiz-correct, $quiz-incorrect) {
-  @include solid-quiz-question-theme(
+  @include solid-quiz-question-theme($mat-theme);
+  @include solid-quiz-question-drag-and-drop-theme(
+    $mat-theme,
+    $quiz-correct,
+    $quiz-incorrect
+  );
+  @include solid-quiz-question-multiple-choice-theme(
+    $mat-theme,
+    $quiz-correct,
+    $quiz-incorrect
+  );
+  @include solid-quiz-question-single-choice-theme(
     $mat-theme,
     $quiz-correct,
     $quiz-incorrect

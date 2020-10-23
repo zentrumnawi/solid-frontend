@@ -1,13 +1,24 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import {
   QuizAnswer,
-  QuizQuestion,
+  QuizQuestions,
   QuizQuestionType,
 } from '../../state/quiz.model';
-import { MatRadioChange } from '@angular/material/radio';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Store } from '@ngxs/store';
 import { QuizActions } from '../../state/quiz.actions';
+
+export interface QuestionTypeComponent {
+  question: QuizQuestions;
+  showAnswers: boolean;
+  validateAnswers: () => boolean;
+}
 
 @Component({
   selector: 'solid-quiz-question',
@@ -15,77 +26,32 @@ import { QuizActions } from '../../state/quiz.actions';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnChanges {
-  @Input() public question?: QuizQuestion;
+  @ViewChild('questionComponent', { static: false })
+  questionComponent?: QuestionTypeComponent;
+  @Input() public question?: QuizQuestions;
   public QuestionTypes = QuizQuestionType;
-  public SelectedAnswers: number[] = [];
-  public ShowAnswers = false;
-  public Correct?: boolean;
+  public showAnswers = false;
+  public correct?: boolean;
 
   constructor(private _store: Store) {}
 
-  public onRadioChange(e: MatRadioChange) {
-    this.SelectedAnswers = [e.value];
-  }
-
   public onShowAnswersClick() {
-    this.ShowAnswers = true;
-    if (this.question) {
-      this.Correct = true;
-      let correctAnswers = 0;
-      this.question.answers.forEach((answer) => {
-        if (answer.correct) {
-          correctAnswers++;
-          if (!this.SelectedAnswers.includes(answer.id)) {
-            this.Correct = false;
-          }
-        }
-      });
-      if (this.SelectedAnswers.length !== correctAnswers) {
-        this.Correct = false;
-      }
-      console.log(this.ShowAnswers, this.Correct);
+    if (this.questionComponent) {
+      this.showAnswers = true;
+      this.correct = this.questionComponent.validateAnswers();
     }
   }
 
-  public trackByFn(index: number, item: QuizAnswer) {
-    return item.id;
-  }
-
   onNextQuestionClick() {
-    if (this.question && this.Correct !== undefined) {
-      this._store.dispatch(new QuizActions.QuestionAnswered(this.Correct));
+    if (this.question && this.correct !== undefined) {
+      this._store.dispatch(new QuizActions.QuestionAnswered(this.correct));
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.question.previousValue !== changes.question.currentValue) {
-      this.ShowAnswers = false;
-      this.SelectedAnswers = [];
-      this.Correct = undefined;
+      this.showAnswers = false;
+      this.correct = undefined;
     }
-  }
-
-  onSelectChange(e: MatCheckboxChange, answer: QuizAnswer) {
-    if (e.checked) {
-      this.SelectedAnswers.push(answer.id);
-    } else {
-      this.SelectedAnswers = this.SelectedAnswers.filter(
-        (id) => id !== answer.id
-      );
-    }
-  }
-
-  isAnswerCorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
-      return false;
-    }
-    return answer.correct; // && this.SelectedAnswers.includes(answer.id);
-  }
-
-  isAnswerIncorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
-      return false;
-    }
-    return !answer.correct; // && this.SelectedAnswers.includes(answer.id);
   }
 }

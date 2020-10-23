@@ -1,0 +1,28 @@
+@import '~@angular/material/theming';
+
+@mixin solid-quiz-question-single-choice-theme(
+  $mat-theme,
+  $quiz-correct,
+  $quiz-incorrect
+) {
+  solid-quiz-single-choice-question {
+    mat-radio-group {
+      display: flex;
+      flex-direction: column;
+
+      mat-radio-button {
+        &.correct {
+          .mat-radio-outer-circle {
+            border-color: mat-color($quiz-correct) !important;
+          }
+        }
+
+        &.incorrect {
+          .mat-radio-outer-circle {
+            border-color: mat-color($quiz-incorrect) !important;
+          }
+        }
+      }
+    }
+  }
+}

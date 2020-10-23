@@ -33,7 +33,7 @@
     "help": "nx help"
   },
   "pre-commit": [
-    "format:write-uncommited",
+    "format:check",
     "affected:lint"
   ],
   "private": true,

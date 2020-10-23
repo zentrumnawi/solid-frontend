@@ -1,0 +1,34 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-checkbox {
+  width: 100%;
+
+  ::ng-deep {
+    &.correctunselected,
+    &.correctselected {
+      span.mat-checkbox-label {
+        font-weight: bold;
+      }
+    }
+
+    span.mat-checkbox-label {
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 24px);
+      white-space: normal;
+    }
+
+    label.mat-checkbox-layout {
+      vertical-align: top;
+      width: 100%;
+    }
+
+    div.mat-checkbox-inner-container {
+      margin-top: 0;
+      margin-bottom: auto;
+    }
+  }
+}

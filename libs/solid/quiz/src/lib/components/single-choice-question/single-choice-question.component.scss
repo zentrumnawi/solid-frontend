@@ -1,0 +1,31 @@
+mat-radio-group {
+  display: flex;
+  flex-direction: column;
+
+  mat-radio-button {
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    ::ng-deep {
+      label.mat-radio-label {
+        vertical-align: top;
+
+        div.mat-radio-container {
+          margin-bottom: auto;
+        }
+
+        &.correct {
+          font-weight: bold;
+        }
+      }
+
+      div.mat-radio-label-content {
+        display: inline-flex;
+        flex-direction: column;
+        width: calc(100% - 28px);
+        white-space: normal;
+      }
+    }
+  }
+}

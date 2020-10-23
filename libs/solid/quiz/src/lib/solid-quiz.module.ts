@@ -15,6 +15,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { SingleChoiceQuestionComponent } from './components/single-choice-question/single-choice-question.component';
+import { MultipleChoiceQuestionComponent } from './components/multiple-choice-question/multiple-choice-question.component';
+import { DragAndDropQuestionComponent } from './components/drag-and-drop-choice-question/drag-and-drop-question.component';
 
 export const routes: Route[] = [
   { path: '', component: MainComponent, data: { title: 'Selbsttest' } },
@@ -31,6 +34,9 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MainComponent,
     QuestionComponent,
     EndComponent,
+    SingleChoiceQuestionComponent,
+    MultipleChoiceQuestionComponent,
+    DragAndDropQuestionComponent,
   ],
   imports: [
     SolidCoreModule,

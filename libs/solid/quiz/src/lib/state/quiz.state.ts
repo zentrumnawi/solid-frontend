@@ -1,5 +1,11 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { QuizQuestion, QuizQuestionInSession, QuizSession } from './quiz.model';
+import {
+  DragAndDropQuestion,
+  QuizQuestionInSession,
+  QuizQuestions,
+  QuizQuestionType,
+  QuizSession,
+} from './quiz.model';
 import { QuizActions } from './quiz.actions';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -7,9 +13,27 @@ import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { tap } from 'rxjs/operators';
 
 export interface QuizStateModel {
-  questions: QuizQuestion[];
+  questions: QuizQuestions[];
   session: QuizSession | null;
 }
+
+// TODO: Remove testing data for drag and drop questions
+const exampleDragAndDropQuestion: DragAndDropQuestion = {
+  answers: [
+    { text: '1', position: 1 },
+    { text: '2', position: 2 },
+    { text: '3', position: 3 },
+    { text: '4', position: 4 },
+    { text: '5', position: 5 },
+  ],
+  difficulty: 1,
+  feedback_correct: "You're a great mathematician",
+  feedback_incorrect: 'You should work on your math skills',
+  id: 0,
+  tags: [],
+  text: 'Order the following numbers',
+  type: QuizQuestionType.DragAndDrop,
+};
 
 @State<QuizStateModel>({
   name: 'quiz',
@@ -32,11 +56,16 @@ export class QuizState {
   @Action(QuizActions.LoadQuestions)
   public set(ctx: StateContext<QuizStateModel>, {}: QuizActions.LoadQuestions) {
     return this._http
-      .get<QuizQuestion[]>(`${this._config.apiUrl}/quizquestions`)
+      .get<QuizQuestions[]>(`${this._config.apiUrl}/quizquestions`)
       .pipe(
         tap((res) => {
           ctx.patchState({
-            questions: res,
+            // questions: res,
+            // TODO: Remove testing data for drag and drop questions
+            questions: res.reduce(
+              (arr, v) => [...arr, exampleDragAndDropQuestion, v],
+              [] as QuizQuestions[]
+            ),
           });
         })
       );

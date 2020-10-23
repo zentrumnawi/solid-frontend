@@ -1,12 +1,7 @@
-export interface QuizQuestion {
-  id: number;
-  type: QuizQuestionType;
-  difficulty: 1 | 2 | 3 | 4 | 5;
-  answers: QuizAnswer[];
-  img: string | null;
-  img_alt: string;
-  tags: string[];
-  text: string;
+export enum QuizQuestionType {
+  SingleChoice = 'SC',
+  MultipleChoice = 'MC',
+  DragAndDrop = 'DD',
 }
 
 export interface QuizAnswer {
@@ -17,12 +12,39 @@ export interface QuizAnswer {
   feedback_incorrect: string;
 }
 
-export enum QuizQuestionType {
-  SingleChoice = 'SC',
-  MultipleChoice = 'MC',
+export interface QuestionBase {
+  id: number;
+  difficulty: 1 | 2 | 3 | 4 | 5;
+  tags: string[];
+  text: string;
 }
 
-export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };
+export interface MultipleChoiceQuestion extends QuestionBase {
+  type: QuizQuestionType.MultipleChoice;
+  answers: QuizAnswer[];
+}
+
+export interface SingleChoiceQuestion extends QuestionBase {
+  type: QuizQuestionType.SingleChoice;
+  answers: QuizAnswer[];
+}
+
+export interface DragAndDropQuestion extends QuestionBase {
+  type: QuizQuestionType.DragAndDrop;
+  answers: {
+    text: string;
+    position: number;
+  }[];
+  feedback_correct: string;
+  feedback_incorrect: string;
+}
+
+export type QuizQuestions =
+  | MultipleChoiceQuestion
+  | SingleChoiceQuestion
+  | DragAndDropQuestion;
+
+export type QuizQuestionInSession = QuizQuestions & { answered: 0 | -1 | 1 };
 
 export interface QuizSession {
   progress: number;
