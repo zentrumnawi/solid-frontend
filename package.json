@@ -83,7 +83,7 @@
     "@nrwl/workspace": "10.2.1",
     "@types/fs-extra": "^9.0.0",
     "@types/hammerjs": "^2.0.36",
-    "@types/jasmine": "~3.5.10",
+    "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.8",
     "@types/jest": "26.0.14",
     "@types/lodash": "^4.14.161",
