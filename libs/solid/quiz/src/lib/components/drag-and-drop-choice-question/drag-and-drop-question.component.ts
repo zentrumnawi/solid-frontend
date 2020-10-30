@@ -18,7 +18,8 @@ export class DragAndDropQuestionComponent implements QuestionTypeComponent, OnIn
   @Input() public question!: DragAndDropQuestion;
   @Input() public showAnswers = false;
 
-  result?: Status[] = [];
+  status: Status = new Status('', '');
+  result: Status[] = [];
   movies = [
     ' I - The Phantom Menace',
     ' II - Attack of the Clones',
@@ -66,10 +67,12 @@ export class DragAndDropQuestionComponent implements QuestionTypeComponent, OnIn
     for (const propertyName in x) {
        if (x[propertyName] !== y[propertyName]) {
           const status = new Status('X', 'red');
-          this.result?.push(status);
+          this.status = status;
+          this.result.push(this.status);
        } else {
         const status = new Status('✓', 'green');
-        this.result?.push(status);
+        this.status = status;
+        this.result.push(this.status);
        }
     }
 
