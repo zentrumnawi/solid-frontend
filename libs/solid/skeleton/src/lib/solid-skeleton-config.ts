@@ -118,7 +118,7 @@ export const defaultSkeletonConfig: Omit<
         import('@zentrumnawi/solid-quiz').then((m) => m.SolidQuizModule),
     },
     drag: {
-      enabled: true,
+      enabled: false,
       showOnLandingPage: true,
       showInMenu: true,
       url: 'bac',
