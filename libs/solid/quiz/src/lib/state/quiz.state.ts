@@ -31,7 +31,7 @@ const exampleDragAndDropQuestion: DragAndDropQuestion = {
   feedback_incorrect: 'You should work on your math skills',
   id: 0,
   tags: [],
-  text: 'Order the Movie names according to Alphapbet',
+  text: 'Ordnen Sie die Filmnamen nach Alphabet',
   type: QuizQuestionType.DragAndDrop,
 };
 

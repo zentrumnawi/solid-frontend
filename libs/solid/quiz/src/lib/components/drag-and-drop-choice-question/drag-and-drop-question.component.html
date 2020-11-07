@@ -5,9 +5,9 @@
     </div>
     
   </div>
-  
-  <div *ngIf = "!isShow" class="example-list">
-  <div> <h2>The corrct order is:</h2> </div>
+   
+  <div *ngIf = "!isShow" class="example-list" style="padding-top: 50px;">
+      <div> <h2> Die richtige Reihenfolge ist:</h2> </div>
   <div class="example-box" *ngFor="let movie of duplicate; let i = index"> 
       {{movie}}
       
