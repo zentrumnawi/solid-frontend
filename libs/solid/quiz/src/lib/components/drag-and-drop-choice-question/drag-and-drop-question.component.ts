@@ -17,6 +17,7 @@ class Status {
 export class DragAndDropQuestionComponent implements QuestionTypeComponent, OnInit {
   @Input() public question!: DragAndDropQuestion;
   @Input() public showAnswers = false;
+  isShow: Boolean = true;
 
   status: Status = new Status('', '');
   result: Status[] = [];
@@ -37,6 +38,7 @@ export class DragAndDropQuestionComponent implements QuestionTypeComponent, OnIn
   ];
 
   ngOnInit(): void {
+    console.log(this.status);
     this.movies = this.shuffle(this.movies);
   }
 
@@ -83,6 +85,7 @@ export class DragAndDropQuestionComponent implements QuestionTypeComponent, OnIn
           break;
        }
     }
+    this.isShow = !this.isShow;
     return objectsAreSame;
  }
 
