@@ -20,7 +20,11 @@
             >
             <span
               markdown
-              [data]="answer.text"
+              [data]="
+                !ShowAnswers
+                ? answer.text
+                : answer.text + (answer.correct ? ' &#10004;' : ' &#10008;')
+              "
               [class.selected]="
                 ShowAnswers && SelectedAnswers.includes(answer.id)
               "
