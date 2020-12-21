@@ -16,4 +16,4 @@ $quiz-incorrect: mat-palette($mat-red, 700, 200, 600);
 $app-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
