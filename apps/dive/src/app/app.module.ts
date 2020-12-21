@@ -72,7 +72,10 @@ function profileTitleFormatter(title: string): string {
     }),
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot(skeletonConfig),
-    RouterModule.forRoot([], { onSameUrlNavigation: 'reload' }),
+    RouterModule.forRoot([], {
+      onSameUrlNavigation: 'reload',
+      relativeLinkResolution: 'legacy',
+    }),
     MatButtonModule,
     MatCardModule,
     MatIconModule,

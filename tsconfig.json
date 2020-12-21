@@ -26,8 +26,7 @@
       "@zentrumnawi/solid-profile": ["libs/solid/profile/src/index.ts"],
       "@zentrumnawi/solid-profile/di": [
         "libs/solid/profile/di/src/public_api.ts"
-      ],
-      "@zentrumnawi/tools": ["libs/tools/src/index.ts"]
+      ]
     },
     "rootDir": ".",
     "allowSyntheticDefaultImports": true
