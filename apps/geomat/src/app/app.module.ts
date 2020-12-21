@@ -64,7 +64,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     }),
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot(skeletonConfig),
-    RouterModule.forRoot([], { onSameUrlNavigation: 'reload' }),
+    RouterModule.forRoot([], {
+      onSameUrlNavigation: 'reload',
+      relativeLinkResolution: 'legacy',
+    }),
     MatButtonModule,
     MatCardModule,
     MatGridListModule,

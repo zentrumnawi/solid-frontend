@@ -1,10 +1,13 @@
 module.exports = {
-  testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest',
-  },
-  resolver: '@nrwl/jest/plugins/resolver',
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  // coverageReporters: ['html'],
-  collectCoverage: true,
+  projects: [
+    '<rootDir>/apps/geomat',
+    '<rootDir>/libs/solid/core',
+    '<rootDir>/libs/solid/quiz',
+    '<rootDir>/libs/solid/slideshow',
+    '<rootDir>/libs/solid/glossary',
+    '<rootDir>/libs/solid/skeleton',
+    '<rootDir>/libs/solid/profile',
+    '<rootDir>/apps/dive',
+    '<rootDir>/libs/tools',
+  ],
 };

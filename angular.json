@@ -54,7 +54,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -84,7 +83,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -104,7 +102,8 @@
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             }
-          }
+          },
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -138,8 +137,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/geomat/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "apps/geomat/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/apps/geomat"]
         }
       }
     },
@@ -180,7 +181,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/solid/core/tsconfig.lib.json",
-            "project": "libs/solid/core/ng-package.json"
+            "project": "libs/solid/core/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -205,8 +207,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/core/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "libs/solid/core/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/libs/solid/core"]
         }
       },
       "schematics": {
@@ -225,7 +229,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/solid/quiz/tsconfig.lib.json",
-            "project": "libs/solid/quiz/ng-package.json"
+            "project": "libs/solid/quiz/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -250,8 +255,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/quiz/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "libs/solid/quiz/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/libs/solid/quiz"]
         }
       },
       "schematics": {
@@ -270,7 +277,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/solid/slideshow/tsconfig.lib.json",
-            "project": "libs/solid/slideshow/ng-package.json"
+            "project": "libs/solid/slideshow/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -295,8 +303,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/slideshow/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "libs/solid/slideshow/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/libs/solid/slideshow"]
         }
       },
       "schematics": {
@@ -315,7 +325,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/solid/glossary/tsconfig.lib.json",
-            "project": "libs/solid/glossary/ng-package.json"
+            "project": "libs/solid/glossary/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -340,8 +351,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/glossary/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "libs/solid/glossary/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/libs/solid/glossary"]
         }
       },
       "schematics": {
@@ -357,48 +370,19 @@
       "prefix": "solid-skeleton",
       "architect": {
         "build": {
-          "builder": "./dist/libs/tools:package-with-schematics",
+          "builder": "@nrwl/angular:package",
           "options": {
-            "packageOptions": {
-              "project": "libs/solid/skeleton/ng-package.json",
-              "tsConfig": "libs/solid/skeleton/tsconfig.lib.json"
-            },
-            "schematicOptions": {
-              "outputPath": "dist/libs/solid/skeleton",
-              "tsConfig": "libs/solid/skeleton/tsconfig.schematics.json",
-              "packageJson": "libs/solid/skeleton/package.json",
-              "main": "libs/solid/skeleton/schematics/index.ts",
-              "assets": [
-                {
-                  "input": "./libs/solid/skeleton/schematics",
-                  "glob": "collection.json",
-                  "output": "./schematics"
-                },
-                {
-                  "input": "./libs/solid/skeleton/schematics",
-                  "glob": "**/schema.json",
-                  "output": "./schematics"
-                },
-                {
-                  "input": "./libs/solid/skeleton/schematics",
-                  "glob": "**/files/**",
-                  "output": "./schematics"
-                }
-              ]
-            }
+            "project": "libs/solid/skeleton/ng-package.json",
+            "tsConfig": "libs/solid/skeleton/tsconfig.lib.json"
           },
           "configurations": {
             "production": {
-              "packageOptions": {
-                "project": "libs/solid/skeleton/ng-package.json",
-                "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
-              }
+              "project": "libs/solid/skeleton/ng-package.json",
+              "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
             },
             "staging": {
-              "packageOptions": {
-                "project": "libs/solid/skeleton/ng-package.json",
-                "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
-              }
+              "project": "libs/solid/skeleton/ng-package.json",
+              "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
             }
           }
         },
@@ -416,8 +400,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/skeleton/jest.config.js",
-            "passWithNoTests": false
-          }
+            "passWithNoTests": false,
+            "tsConfig": "libs/solid/skeleton/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/libs/solid/skeleton"]
         }
       },
       "schematics": {
@@ -437,7 +423,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/solid/profile/tsconfig.lib.json",
-            "project": "libs/solid/profile/ng-package.json"
+            "project": "libs/solid/profile/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -462,8 +449,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/profile/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "libs/solid/profile/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/libs/solid/profile"]
         }
       },
       "schematics": {
@@ -523,7 +512,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -553,7 +541,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -573,7 +560,8 @@
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             }
-          }
+          },
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -607,8 +595,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/dive/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "apps/dive/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/apps/dive"]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -644,62 +634,6 @@
           "options": {
             "tsConfig": ["apps/dive-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/dive-e2e/**/*"]
-          }
-        }
-      }
-    },
-    "tools": {
-      "root": "libs/tools",
-      "sourceRoot": "libs/tools/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/tools/tsconfig.lib.json",
-              "libs/tools/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/tools/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/tools/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "builder": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/libs/tools",
-            "tsConfig": "libs/tools/tsconfig.lib.json",
-            "packageJson": "libs/tools/package.json",
-            "main": "libs/tools/src/index.ts",
-            "assets": [
-              "libs/tools/*.md",
-              {
-                "input": "./libs/tools/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./libs/tools",
-                "glob": "collection.json",
-                "output": "./"
-              },
-              {
-                "input": "./libs/tools",
-                "glob": "builders.json",
-                "output": "./"
-              }
-            ],
-            "srcRootForCompilationRoot": "libs/tools"
-          },
-          "configurations": {
-            "staging": {}
           }
         }
       }

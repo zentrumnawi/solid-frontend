@@ -5,7 +5,8 @@
     "package.json": "*",
     "tslint.json": "*",
     "nx.json": "*",
-    "tsconfig.base.json": "*"
+    "tsconfig.base.json": "*",
+    ".eslintrc.json": "*"
   },
   "projects": {
     "geomat": {
@@ -40,9 +41,6 @@
     "dive-e2e": {
       "tags": [],
       "implicitDependencies": ["dive"]
-    },
-    "tools": {
-      "tags": []
     }
   },
   "tasksRunnerOptions": {
