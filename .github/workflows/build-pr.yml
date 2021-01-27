@@ -47,5 +47,5 @@ jobs:
 
 
       - name: build - staging
-        run: yarn nx affected --target=build --base=origin/dev --parallel -c=staging
+        run: yarn nx affected --target=build --base=origin/dev --parallel -c=staging --with-deps
 
