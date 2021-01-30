@@ -8,6 +8,8 @@ module.exports = {
     '<rootDir>/libs/solid/skeleton',
     '<rootDir>/libs/solid/profile',
     '<rootDir>/apps/dive',
+    '<rootDir>/apps/ais',
     '<rootDir>/libs/tools',
+    
   ],
 };
