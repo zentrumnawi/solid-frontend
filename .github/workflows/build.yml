@@ -79,6 +79,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           rm: true
           source: "dist/apps/ais"
-          target: "${{ secrets.ais_STAGING_DIRECTORY }}"
+          target: "${{ secrets.AIS_STAGING_DIRECTORY }}"
           strip_components: 3
 
