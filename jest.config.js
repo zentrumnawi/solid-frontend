@@ -9,7 +9,6 @@ module.exports = {
     '<rootDir>/libs/solid/profile',
     '<rootDir>/apps/dive',
     '<rootDir>/apps/ais',
-    '<rootDir>/apps/planty',
     '<rootDir>/libs/tools',
     
   ],
