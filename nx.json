@@ -48,6 +48,13 @@
     "ais-e2e": {
       "tags": [],
       "implicitDependencies": ["ais"]
+    },
+    "planty": {
+      "tags": []
+    },
+    "planty-e2e": {
+      "tags": [],
+      "implicitDependencies": ["planty"]
     }
         
   },
