@@ -103,7 +103,9 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -130,7 +132,10 @@
               "apps/geomat/tsconfig.app.json",
               "apps/geomat/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/geomat/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/geomat/**/*"
+            ]
           }
         },
         "test": {
@@ -140,7 +145,9 @@
             "passWithNoTests": true,
             "tsConfig": "apps/geomat/tsconfig.spec.json"
           },
-          "outputs": ["coverage/apps/geomat"]
+          "outputs": [
+            "coverage/apps/geomat"
+          ]
         }
       }
     },
@@ -165,8 +172,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**/*"]
+            "tsConfig": [
+              "apps/geomat-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/geomat-e2e/**/*"
+            ]
           }
         }
       }
@@ -200,7 +212,10 @@
               "libs/solid/core/tsconfig.lib.json",
               "libs/solid/core/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/core/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/core/**/*"
+            ]
           }
         },
         "test": {
@@ -210,7 +225,9 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/core/tsconfig.spec.json"
           },
-          "outputs": ["coverage/libs/solid/core"]
+          "outputs": [
+            "coverage/libs/solid/core"
+          ]
         }
       },
       "schematics": {
@@ -248,7 +265,10 @@
               "libs/solid/quiz/tsconfig.lib.json",
               "libs/solid/quiz/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/quiz/**/*"
+            ]
           }
         },
         "test": {
@@ -258,7 +278,9 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/quiz/tsconfig.spec.json"
           },
-          "outputs": ["coverage/libs/solid/quiz"]
+          "outputs": [
+            "coverage/libs/solid/quiz"
+          ]
         }
       },
       "schematics": {
@@ -296,7 +318,10 @@
               "libs/solid/slideshow/tsconfig.lib.json",
               "libs/solid/slideshow/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/slideshow/**/*"
+            ]
           }
         },
         "test": {
@@ -306,7 +331,9 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/slideshow/tsconfig.spec.json"
           },
-          "outputs": ["coverage/libs/solid/slideshow"]
+          "outputs": [
+            "coverage/libs/solid/slideshow"
+          ]
         }
       },
       "schematics": {
@@ -344,7 +371,10 @@
               "libs/solid/glossary/tsconfig.lib.json",
               "libs/solid/glossary/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/glossary/**/*"
+            ]
           }
         },
         "test": {
@@ -354,7 +384,9 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/glossary/tsconfig.spec.json"
           },
-          "outputs": ["coverage/libs/solid/glossary"]
+          "outputs": [
+            "coverage/libs/solid/glossary"
+          ]
         }
       },
       "schematics": {
@@ -393,7 +425,10 @@
               "libs/solid/skeleton/tsconfig.lib.json",
               "libs/solid/skeleton/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/skeleton/**/*"
+            ]
           }
         },
         "test": {
@@ -403,7 +438,9 @@
             "passWithNoTests": false,
             "tsConfig": "libs/solid/skeleton/tsconfig.spec.json"
           },
-          "outputs": ["coverage/libs/solid/skeleton"]
+          "outputs": [
+            "coverage/libs/solid/skeleton"
+          ]
         }
       },
       "schematics": {
@@ -442,7 +479,10 @@
               "libs/solid/profile/tsconfig.lib.json",
               "libs/solid/profile/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/solid/profile/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/solid/profile/**/*"
+            ]
           }
         },
         "test": {
@@ -452,7 +492,9 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/profile/tsconfig.spec.json"
           },
-          "outputs": ["coverage/libs/solid/profile"]
+          "outputs": [
+            "coverage/libs/solid/profile"
+          ]
         }
       },
       "schematics": {
@@ -561,7 +603,9 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -588,7 +632,10 @@
               "apps/dive/tsconfig.app.json",
               "apps/dive/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/dive/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/dive/**/*"
+            ]
           }
         },
         "test": {
@@ -598,7 +645,9 @@
             "passWithNoTests": true,
             "tsConfig": "apps/dive/tsconfig.spec.json"
           },
-          "outputs": ["coverage/apps/dive"]
+          "outputs": [
+            "coverage/apps/dive"
+          ]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -632,8 +681,190 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/dive-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/dive-e2e/**/*"]
+            "tsConfig": [
+              "apps/dive-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/dive-e2e/**/*"
+            ]
+          }
+        }
+      }
+    },
+    "planty": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/planty",
+      "sourceRoot": "apps/planty/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/planty",
+            "index": "apps/planty/src/index.html",
+            "main": "apps/planty/src/main.ts",
+            "polyfills": "apps/planty/src/polyfills.ts",
+            "tsConfig": "apps/planty/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/planty/src/favicon.ico",
+              "apps/planty/src/assets",
+              "apps/planty/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "./node_modules/material-icons/iconfont/material-icons.scss",
+              "apps/planty/src/styles.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/core/src",
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/planty/src/environments/environment.ts",
+                  "with": "apps/planty/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/planty/ngsw-config.json"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/planty/src/environments/environment.ts",
+                  "with": "apps/planty/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "planty:build",
+            "proxyConfig": "./apps/planty/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "planty:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "planty:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/planty/tsconfig.app.json",
+              "apps/planty/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/planty/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/planty/jest.config.js",
+            "passWithNoTests": true,
+            "tsConfig": "apps/planty/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/apps/planty"]
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "configuration": "staging",
+            "baseHref": "/solid-frontend/",
+            "name": "Github Actions",
+            "email": "github@example.com"
+          }
+        }
+      }
+    },
+    "planty-e2e": {
+      "root": "apps/planty-e2e",
+      "sourceRoot": "apps/planty-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/planty-e2e/cypress.json",
+            "tsConfig": "apps/planty-e2e/tsconfig.e2e.json",
+            "devServerTarget": "planty:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "planty:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/planty-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/planty-e2e/**/*"]
           }
         }
       }
@@ -816,6 +1047,7 @@
       }
     }
   },
+  
   "defaultProject": "geomat",
   "cli": {
     "defaultCollection": "@nrwl/angular",
