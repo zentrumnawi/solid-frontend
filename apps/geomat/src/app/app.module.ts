@@ -17,7 +17,6 @@ import { RouterModule } from '@angular/router';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { LandingComponent } from './landing/landing.component';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -44,7 +43,6 @@ export class MyHammerConfig extends HammerGestureConfig {
   declarations: [
     AppComponent,
     PrivacyComponent,
-    LandingComponent,
     LandingBannerContentComponent,
     InfoPageContentComponent,
   ],
