@@ -11,3 +11,16 @@ $accent: map-get($app-theme, accent);
 .info-link:visited {
   color: mat-color($accent);
 }
+
+.address {
+  margin-left: 1em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}

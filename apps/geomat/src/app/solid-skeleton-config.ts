@@ -1,7 +1,8 @@
 import { SolidSkeletonConfig } from '@zentrumnawi/solid-skeleton';
-import { PrivacyComponent } from './privacy/privacy.component';
 import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
+import { environment } from '../environments/environment';
 
 export const skeletonConfig: SolidSkeletonConfig = {
   landingBannerContent: LandingBannerContentComponent,
@@ -16,9 +17,16 @@ export const skeletonConfig: SolidSkeletonConfig = {
     quiz: {
       svgIcon: 'quiz',
     },
+    slideshow: {
+      svgIcon: 'assistant',
+    },
+    info: {
+      svgIcon: 'info',
+    },
     privacy: {
       component: PrivacyComponent,
       svgIcon: 'privacy',
     },
   },
+  sentry: environment.sentry,
 };
