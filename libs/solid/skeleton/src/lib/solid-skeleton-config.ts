@@ -26,7 +26,7 @@ export interface RoutingConfig {
   profile: RouteConfigFromModule;
   quiz: RouteConfigFromModule;
   slideshow: RouteConfigFromModule;
-  // custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
+  custom?: (RouteConfigWithComponent | RouteConfigFromModule)[];
 }
 
 export interface SentryConfig {

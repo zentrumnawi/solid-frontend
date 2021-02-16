@@ -97,5 +97,6 @@ export class AppModule {
     addIcon('quiz');
     addIcon('info');
     addIcon('info2');
+    addIcon('feedback');
   }
 }

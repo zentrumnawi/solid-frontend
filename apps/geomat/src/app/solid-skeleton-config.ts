@@ -27,6 +27,21 @@ export const skeletonConfig: SolidSkeletonConfig = {
       component: PrivacyComponent,
       svgIcon: 'privacy',
     },
+    custom: [
+      {
+        enabled: false,
+        showOnLandingPage: true,
+        showInMenu: true,
+        url: 'crystalsystem',
+        title: 'Kristallsysteme',
+        order: 3,
+        svgIcon: 'crystalsystem',
+        moduleImport: () =>
+          import('./crystalsystem/crystalsystem.module').then(
+            (m) => m.CrystalsystemModule
+          ),
+      },
+    ],
   },
   sentry: environment.sentry,
 };
