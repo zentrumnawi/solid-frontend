@@ -13,8 +13,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 | `dev`    | staging    | ![build](https://github.com/zentrumnawi/solid-frontend/workflows/build/badge.svg?branch=dev)                                            | [Link](https://zentrumnawi.github.io/solid/frontend) |
 
 ## Projects
-* geomat
-* dive
+
+- geomat
+- dive
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
