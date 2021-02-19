@@ -829,6 +829,5 @@
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
     }
-   
   }
 }
