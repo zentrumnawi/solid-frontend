@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { SOLID_SKELETON_HACKY_INJECTION } from '@zentrumnawi/solid-skeleton';
 
 @Component({
-  selector: 'palnty-landing-banner-content',
+  selector: 'planty-landing-banner-content',
   templateUrl: './landing-banner-content.component.html',
   styleUrls: [],
 })
