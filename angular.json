@@ -103,9 +103,7 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ]
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -132,10 +130,7 @@
               "apps/geomat/tsconfig.app.json",
               "apps/geomat/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/geomat/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/geomat/**/*"]
           }
         },
         "test": {
@@ -145,9 +140,7 @@
             "passWithNoTests": true,
             "tsConfig": "apps/geomat/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/apps/geomat"
-          ]
+          "outputs": ["coverage/apps/geomat"]
         }
       }
     },
@@ -172,13 +165,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/geomat-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/geomat-e2e/**/*"
-            ]
+            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**/*"]
           }
         }
       }
@@ -212,10 +200,7 @@
               "libs/solid/core/tsconfig.lib.json",
               "libs/solid/core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/core/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/core/**/*"]
           }
         },
         "test": {
@@ -225,9 +210,7 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/core/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/libs/solid/core"
-          ]
+          "outputs": ["coverage/libs/solid/core"]
         }
       },
       "schematics": {
@@ -265,10 +248,7 @@
               "libs/solid/quiz/tsconfig.lib.json",
               "libs/solid/quiz/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/quiz/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**/*"]
           }
         },
         "test": {
@@ -278,9 +258,7 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/quiz/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/libs/solid/quiz"
-          ]
+          "outputs": ["coverage/libs/solid/quiz"]
         }
       },
       "schematics": {
@@ -318,10 +296,7 @@
               "libs/solid/slideshow/tsconfig.lib.json",
               "libs/solid/slideshow/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/slideshow/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**/*"]
           }
         },
         "test": {
@@ -331,9 +306,7 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/slideshow/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/libs/solid/slideshow"
-          ]
+          "outputs": ["coverage/libs/solid/slideshow"]
         }
       },
       "schematics": {
@@ -371,10 +344,7 @@
               "libs/solid/glossary/tsconfig.lib.json",
               "libs/solid/glossary/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/glossary/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**/*"]
           }
         },
         "test": {
@@ -384,9 +354,7 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/glossary/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/libs/solid/glossary"
-          ]
+          "outputs": ["coverage/libs/solid/glossary"]
         }
       },
       "schematics": {
@@ -425,10 +393,7 @@
               "libs/solid/skeleton/tsconfig.lib.json",
               "libs/solid/skeleton/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/skeleton/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**/*"]
           }
         },
         "test": {
@@ -438,9 +403,7 @@
             "passWithNoTests": false,
             "tsConfig": "libs/solid/skeleton/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/libs/solid/skeleton"
-          ]
+          "outputs": ["coverage/libs/solid/skeleton"]
         }
       },
       "schematics": {
@@ -479,10 +442,7 @@
               "libs/solid/profile/tsconfig.lib.json",
               "libs/solid/profile/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/solid/profile/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/solid/profile/**/*"]
           }
         },
         "test": {
@@ -492,9 +452,7 @@
             "passWithNoTests": true,
             "tsConfig": "libs/solid/profile/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/libs/solid/profile"
-          ]
+          "outputs": ["coverage/libs/solid/profile"]
         }
       },
       "schematics": {
@@ -603,9 +561,7 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ]
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -632,10 +588,7 @@
               "apps/dive/tsconfig.app.json",
               "apps/dive/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/dive/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/dive/**/*"]
           }
         },
         "test": {
@@ -645,9 +598,7 @@
             "passWithNoTests": true,
             "tsConfig": "apps/dive/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/apps/dive"
-          ]
+          "outputs": ["coverage/apps/dive"]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -681,13 +632,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/dive-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/dive-e2e/**/*"
-            ]
+            "tsConfig": ["apps/dive-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/dive-e2e/**/*"]
           }
         }
       }
@@ -1047,7 +993,7 @@
       }
     }
   },
-  
+
   "defaultProject": "geomat",
   "cli": {
     "defaultCollection": "@nrwl/angular",
