@@ -41,6 +41,13 @@
     "dive-e2e": {
       "tags": [],
       "implicitDependencies": ["dive"]
+    },
+    "ais": {
+      "tags": []
+    },
+    "ais-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ais"]
     }
   },
   "tasksRunnerOptions": {
