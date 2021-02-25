@@ -37,7 +37,7 @@ export class SlideshowState {
       state.map((s) => ({
         id: s.id,
         title: s.title,
-        img: s.img,
+        title_image: s.title_image,
         img_alt: s.img_alt,
       }));
     return fn();
