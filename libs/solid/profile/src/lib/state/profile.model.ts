@@ -2,15 +2,15 @@ import { ImageModel, PhotographModel } from '@zentrumnawi/solid-core';
 
 export interface TreeNode extends TreeNodeApi {
   type: 'category';
-  leaf_nodes: TreeNode[];
+  children: TreeNode[];
   profiles: Profile[];
 }
 
 export interface TreeNodeApi {
-  node_name: string;
-  leaf_nodes: TreeNodeApi[];
+  name: string;
+  children: TreeNodeApi[];
   profiles: ProfileApi[];
-  info_text: string;
+  info: string;
 }
 
 export interface Profile extends ProfileApi {

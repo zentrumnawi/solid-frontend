@@ -1,7 +1,7 @@
 export interface Slideshow {
   id: number;
   title: string;
-  img: string | null;
+  title_image: string | null;
   img_alt: string | null;
   pages: SlideshowPage[];
 }
