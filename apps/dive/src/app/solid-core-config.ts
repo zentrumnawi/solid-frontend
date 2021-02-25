@@ -6,3 +6,4 @@ export const coreConfig: SolidCoreConfig = {
   markdownPlugins: [],
   appName: 'DIVE',
 };
+
