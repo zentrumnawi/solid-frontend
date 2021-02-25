@@ -90,9 +90,9 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   static transformer(node: TreeNode | Profile, level: number): FlatTreeNode {
     if (node.type === 'category') {
       return {
-        title: node.node_name,
+        title: node.name,
         type: 'category',
-        info: node.info_text,
+        info: node.info,
         level: level,
         expandable: true,
       };
@@ -124,7 +124,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   /** Get the children for the node. */
   static getChildren(node: TreeNode | Profile) {
     if (node.type === 'category') {
-      return [...node.leaf_nodes, ...node.profiles];
+      return [...node.children, ...node.profiles];
     } else {
       return null;
     }

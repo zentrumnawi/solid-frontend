@@ -95,7 +95,7 @@ export class ProfileState {
         node,
       };
     }
-    for (const leafNode of node.leaf_nodes) {
+    for (const leafNode of node.children) {
       const childSearch = ProfileState.findProfileDeep(leafNode, profileId);
       if (childSearch !== null) {
         return childSearch;
@@ -120,9 +120,9 @@ export class ProfileState {
             return input.map((node) => {
               return {
                 type: 'category',
-                node_name: node.node_name,
-                info_text: node.info_text,
-                leaf_nodes: mapit(node.leaf_nodes),
+                name: node.name,
+                info: node.info,
+                children: mapit(node.children),
                 profiles: node.profiles.map((profile) => ({
                   ...profile,
                   type: 'profile',
@@ -136,7 +136,7 @@ export class ProfileState {
         tap((nodes) => {
           const mapIt = (result: Profile[], value: TreeNode[]) => {
             for (const v of value) {
-              result.push(...mapIt([], v.leaf_nodes));
+              result.push(...mapIt([], v.children));
               result.push(...v.profiles);
             }
             return result;
