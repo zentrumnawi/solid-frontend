@@ -10,6 +10,5 @@ module.exports = {
     '<rootDir>/apps/dive',
     '<rootDir>/apps/ais',
     '<rootDir>/libs/tools',
-    
   ],
 };
