@@ -4,7 +4,7 @@
     class="mat-elevation-z2"
     [routerLink]="[slideshow.id]"
   >
-    <img [src]="slideshow.img" [alt]="slideshow.img_alt" />
+    <img [src]="slideshow.title_image.img.thumbnail" [alt]="slideshow.title_image.img_alt" />
     <span>{{ slideshow.title }}</span>
   </mat-grid-tile>
 </mat-grid-list>

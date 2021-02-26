@@ -1,8 +1,10 @@
+import { PhotographModel } from "@zentrumnawi/solid-core";
+
 export interface Slideshow {
   id: number;
   title: string;
-  img: string | null;
-  img_alt: string | null;
+  title_image: PhotographModel;
+  position: number;
   pages: SlideshowPage[];
 }
 
@@ -11,12 +13,13 @@ export interface SlideshowPage {
   position: number;
   title: string;
   text: string;
-  // images: SlideshowImage[];
+  images: SlideshowImage[] | null;
 }
 
 export interface SlideshowImage {
+  id: number;
   title: string;
-  description: string;
-  url: string;
-  text: string;
+  position: number;
+  caption: string;
+  image: PhotographModel;
 }
