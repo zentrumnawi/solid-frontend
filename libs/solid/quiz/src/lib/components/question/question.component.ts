@@ -43,7 +43,6 @@ export class QuestionComponent implements OnChanges {
       if (this.SelectedAnswers.length !== correctAnswers) {
         this.Correct = false;
       }
-      console.log(this.ShowAnswers, this.Correct);
     }
   }
 

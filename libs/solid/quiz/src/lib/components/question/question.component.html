@@ -6,6 +6,10 @@
     </mat-card-header>
     <ng-container [ngSwitch]="question.type">
       <mat-card-content *ngSwitchCase="QuestionTypes.SingleChoice">
+        <ng-container *ngFor="let images of question.img">
+          <img [alt]="images.img_alt" [src]="images.img.medium" />
+          {{images.id}}
+        </ng-container>
         <mat-radio-group
           (change)="onRadioChange($event)"
           [disabled]="ShowAnswers"
@@ -46,6 +50,11 @@
         *ngSwitchCase="QuestionTypes.MultipleChoice"
         class="multiple-choice"
       >
+        <ng-container *ngFor="let images of question.img">
+          <img [alt]="images.img_alt" [src]="images.img.medium" />
+          {{images.id}}
+        </ng-container>
+
         <mat-checkbox
           (change)="onSelectChange($event, answer)"
           *ngFor="let answer of question.answers; trackBy: trackByFn"
