@@ -79,7 +79,7 @@
     "@nrwl/tao": "11.2.10",
     "@nrwl/workspace": "11.2.10",
     "@types/fs-extra": "^9.0.0",
-    "@types/hammerjs": "^2.0.36",
+    "@types/hammerjs": "^2.0.39",
     "@types/jasmine": "3.6.4",
     "@types/jasminewd2": "~2.0.8",
     "@types/jest": "26.0.20",
