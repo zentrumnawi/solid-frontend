@@ -89,7 +89,7 @@
     "@types/openseadragon": "^2.4.5",
     "@types/punycode": "^2.1.0",
     "@types/swagger-schema-official": "^2.0.21",
-    "canvas": "^2.6.1",
+    "canvas": "^2.7.0",
     "codelyzer": "6.0.1",
     "cypress": "^6.5.0",
     "fs-extra": "^9.0.0",
