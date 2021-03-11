@@ -8,7 +8,6 @@
       <mat-card-content *ngSwitchCase="QuestionTypes.SingleChoice">
         <ng-container *ngFor="let images of question.img">
           <img [alt]="images.img_alt" [src]="images.img.medium" />
-          {{images.id}}
         </ng-container>
         <mat-radio-group
           (change)="onRadioChange($event)"
@@ -52,7 +51,6 @@
       >
         <ng-container *ngFor="let images of question.img">
           <img [alt]="images.img_alt" [src]="images.img.medium" />
-          {{images.id}}
         </ng-container>
 
         <mat-checkbox

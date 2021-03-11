@@ -1,4 +1,4 @@
-import { PhotographModel } from "@zentrumnawi/solid-core";
+import { PhotographModel } from '@zentrumnawi/solid-core';
 
 export interface QuizQuestion {
   id: number;
