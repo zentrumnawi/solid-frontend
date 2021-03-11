@@ -105,7 +105,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         type: 'entry',
         level: level,
         expandable: false,
-        //images: [],
+        // images: [],
         images: node.images,
       };
     }
