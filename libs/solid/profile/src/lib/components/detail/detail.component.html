@@ -1,9 +1,9 @@
 <ng-container>
-  <div *ngIf="profile.facts_to_know">
+  <div *ngIf="profile.short_description">
     <div class="facts-title">
       <div>Wissenswertes</div>
     </div>
-    <p class="facts-body" markdown [data]="profile.facts_to_know"></p>
+    <p class="facts-body" markdown [data]="profile.short_description"></p>
   </div>
   <solid-core-image [image]="profile.images[ImageSelected]"></solid-core-image>
   <div class="img-toolbar">
