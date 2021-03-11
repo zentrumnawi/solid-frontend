@@ -38,7 +38,7 @@ export class SlideshowState {
         id: s.id,
         title: s.title,
         title_image: s.title_image,
-        img_alt: s.img_alt,
+        position: s.position,
       }));
     return fn();
   }

@@ -33,16 +33,18 @@
       </button>
     </div>
     <div [data]="page.text" markdown></div>
-    <!--    <div class="page-images">-->
-    <!--      <mat-card *ngFor="let img of page.images">-->
-    <!--        <mat-card-header>-->
-    <!--          <mat-card-title>{{ img.title }}</mat-card-title>-->
-    <!--        </mat-card-header>-->
-    <!--        <mat-card-content>-->
-    <!--          <img [alt]="img.description" [src]="img.url" />-->
-    <!--          <p>{{ img.text }}</p>-->
-    <!--        </mat-card-content>-->
-    <!--      </mat-card>-->
-    <!--    </div>-->
+    <div class="page-images">
+      <ng-container *ngFor="let img of page.images">
+        <mat-card *ngIf="img.image">
+          <mat-card-header>
+            <mat-card-title>{{ img.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <img [alt]="img.image.img_alt" [src]="img.image.img.large" />
+            <p>{{ img.caption }}</p>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </div>
   </mat-step>
 </mat-horizontal-stepper>
