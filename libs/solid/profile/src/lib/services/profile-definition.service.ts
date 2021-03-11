@@ -12,8 +12,8 @@ const ignoredProperties = [
   'id',
   'name',
   'trivial_name',
-  'facts_to_know',
-  'systematics',
+  'short_description',
+  'tree_node',
   'photographs',
 ];
 

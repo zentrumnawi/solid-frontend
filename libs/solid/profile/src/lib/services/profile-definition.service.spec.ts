@@ -244,7 +244,7 @@ const testSwagger = {
       },
     },
     TreeNode: {
-      required: ['node_name', 'profiles'],
+      required: ['name', 'profiles'],
       type: 'object',
       properties: {
         profiles: {
