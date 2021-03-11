@@ -1,10 +1,11 @@
+import { PhotographModel } from '@zentrumnawi/solid-core';
+
 export interface QuizQuestion {
   id: number;
   type: QuizQuestionType;
   difficulty: 1 | 2 | 3 | 4 | 5;
   answers: QuizAnswer[];
-  img: string | null;
-  img_alt: string;
+  img: PhotographModel[];
   tags: string[];
   text: string;
 }

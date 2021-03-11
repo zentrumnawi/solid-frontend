@@ -5,7 +5,13 @@
       <mat-card-subtitle markdown [data]="question.text"></mat-card-subtitle>
     </mat-card-header>
     <ng-container [ngSwitch]="question.type">
-      <mat-card-content *ngSwitchCase="QuestionTypes.SingleChoice">
+      <mat-card-content
+        *ngSwitchCase="QuestionTypes.SingleChoice"
+        class="single-choice"
+      >
+        <ng-container *ngFor="let images of question.img">
+          <img [alt]="images.img_alt" [src]="images.img.large" />
+        </ng-container>
         <mat-radio-group
           (change)="onRadioChange($event)"
           [disabled]="ShowAnswers"
@@ -46,6 +52,10 @@
         *ngSwitchCase="QuestionTypes.MultipleChoice"
         class="multiple-choice"
       >
+        <ng-container *ngFor="let images of question.img">
+          <img [alt]="images.img_alt" [src]="images.img.large" />
+        </ng-container>
+
         <mat-checkbox
           (change)="onSelectChange($event, answer)"
           *ngFor="let answer of question.answers; trackBy: trackByFn"

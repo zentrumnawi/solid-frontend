@@ -8,6 +8,7 @@ import { MatRadioChange } from '@angular/material/radio';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Store } from '@ngxs/store';
 import { QuizActions } from '../../state/quiz.actions';
+// import { ImageModel } from '@zentrumnawi/solid-core';
 
 @Component({
   selector: 'solid-quiz-question',
@@ -15,6 +16,7 @@ import { QuizActions } from '../../state/quiz.actions';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnChanges {
+  // @Input() image?: ImageModel;
   @Input() public question?: QuizQuestion;
   public QuestionTypes = QuizQuestionType;
   public SelectedAnswers: number[] = [];
@@ -43,7 +45,6 @@ export class QuestionComponent implements OnChanges {
       if (this.SelectedAnswers.length !== correctAnswers) {
         this.Correct = false;
       }
-      console.log(this.ShowAnswers, this.Correct);
     }
   }
 
