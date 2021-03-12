@@ -143,7 +143,7 @@ export const defaultSkeletonConfig: Omit<
       showOnLandingPage: true,
       showInMenu: true,
       url: 'privacy',
-      title: 'Datenschutzerklärung',
+      title: 'Datenschutz',
       order: 5,
       matIcon: 'info',
     },
