@@ -102,9 +102,10 @@ export class AppModule {
     addIcon('quiz');
     addIcon('profile');
     addIcon('icon');
+    addIcon('info');
     addIcon('glossary');
     addIcon('privacy');
     addIcon('feedback');
-    addIcon('assistant');
+    addIcon('slideshow');
   }
 }

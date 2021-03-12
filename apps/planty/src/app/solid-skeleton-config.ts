@@ -16,6 +16,12 @@ export const skeletonConfig: SolidSkeletonConfig = {
     quiz: {
       svgIcon: 'quiz',
     },
+    info: {
+      svgIcon: 'info',
+    },
+    slideshow: {
+      svgIcon: 'slideshow',
+    },
     privacy: {
       component: PrivacyComponent,
       svgIcon: 'privacy',
