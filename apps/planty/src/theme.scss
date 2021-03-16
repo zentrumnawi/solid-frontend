@@ -5,8 +5,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$app-primary: mat-palette($mat-green);
-$app-accent: mat-palette($mat-purple);
+$app-primary: mat-palette($mat-lime);
+$app-accent: mat-palette($mat-grey, 300);
 //$app-accent: mat-palette($mat-light-blue, A200, A100, A400);
 
 $quiz-correct: mat-palette($mat-light-green, 600, 200, 600);
