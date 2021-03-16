@@ -6,7 +6,7 @@
   solid-profile-base {
     background-color: mat-color($background);
     mat-toolbar.mat-toolbar.main-toolbar {
-      background-color: mat-color($accent, darker);
+      background-color: mat-color($accent);
     }
   }
 }
