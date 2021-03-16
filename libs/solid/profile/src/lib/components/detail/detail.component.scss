@@ -4,7 +4,10 @@ p {
 
   &.heading {
     padding: 0.5em;
-    font-weight: 600;
+    font-weight: 500;
+    background-color: #e5e6e6;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
     //padding: 24px;
   }
 }
@@ -16,7 +19,7 @@ solid-core-image {
 mat-expansion-panel {
   mat-expansion-panel-header {
     mat-panel-title {
-      font-weight: bold;
+      font-weight: 500;
     }
     //padding: 0 24px 0 0;
   }
