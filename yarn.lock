@@ -108,7 +108,7 @@
     "@angular-devkit/core" "11.2.2"
     rxjs "6.6.3"
 
-"@angular-devkit/core@11.2.2", "@angular-devkit/core@~11.2.0":
+"@angular-devkit/core@11.2.2":
   version "11.2.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-11.2.2.tgz#c6b40f941b24d2af447831fc958b744316cd7d87"
   integrity sha512-LUDO1AdIjereiMh0j5p9xJcdr9ifhbWCPxlZqfu5wHzUfhCx9gO2Lvjp6rZXQ3OedXg5IZUnyxHlzkszQOsgiw==
@@ -119,25 +119,45 @@
     rxjs "6.6.3"
     source-map "0.7.3"
 
-"@angular-devkit/schematics-cli@^0.1102.2":
-  version "0.1102.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics-cli/-/schematics-cli-0.1102.2.tgz#7f93bf0e1639bdb24aa49ab40de02f60719672ba"
-  integrity sha512-rObxusnYMgpT/BpEeAXjKb1B0iei+A75aDMZsVOwncGMMigGBk4Ayn9GO//P9YjWs4vE2bAwhyJvAEGdVm0LGA==
+"@angular-devkit/core@11.2.5", "@angular-devkit/core@~11.2.0":
+  version "11.2.5"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-11.2.5.tgz#f9ba8288a6cc388808ee639c383dada50d64d06a"
+  integrity sha512-DRFvEHRKoC+hTwcOAJqLe6UQa+bpXc/1IGCMHWEbuply0KIFIGQOlmaYwFZKixz3HdFZlmoCMcAVkAXvyaWVsQ==
   dependencies:
-    "@angular-devkit/core" "11.2.2"
-    "@angular-devkit/schematics" "11.2.2"
-    "@schematics/schematics" "0.1102.2"
+    ajv "6.12.6"
+    fast-json-stable-stringify "2.1.0"
+    magic-string "0.25.7"
+    rxjs "6.6.3"
+    source-map "0.7.3"
+
+"@angular-devkit/schematics-cli@^0.1102.5":
+  version "0.1102.5"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics-cli/-/schematics-cli-0.1102.5.tgz#2368553b6c0fdd28695253dd769f129d1f289f29"
+  integrity sha512-WKXYxZJH0b/tGr06Tbaj5/WcRvz3DARQW8EZP5t/URq9mHEgfIpIBL6aC/erpRJ5Ere+GlbEfhbA2pFKLvL0tw==
+  dependencies:
+    "@angular-devkit/core" "11.2.5"
+    "@angular-devkit/schematics" "11.2.5"
+    "@schematics/schematics" "0.1102.5"
     ansi-colors "4.1.1"
     inquirer "7.3.3"
     minimist "1.2.5"
     symbol-observable "3.0.0"
 
-"@angular-devkit/schematics@11.2.2", "@angular-devkit/schematics@~11.2.0":
+"@angular-devkit/schematics@11.2.2":
   version "11.2.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-11.2.2.tgz#0c8c4b98a30f00649dcbb7794d3783b9a067209f"
   integrity sha512-6bIxMwafz/+lwdtcshwOuFfhxTMU4RLma1uxBS34DXupMauPGl0IIXAy5cK9dXPlHLxuGsjeBiOM6eq033RLgw==
   dependencies:
     "@angular-devkit/core" "11.2.2"
+    ora "5.3.0"
+    rxjs "6.6.3"
+
+"@angular-devkit/schematics@11.2.5", "@angular-devkit/schematics@~11.2.0":
+  version "11.2.5"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-11.2.5.tgz#ddcb966f3f1dc910e55f03067036f1f6a01b8222"
+  integrity sha512-7RoWgpMvhljPhW9CMz1EtqkwNnGpnsPyy0N29ClHPUq+o8wLR0hvbLBDz1fKSF7j1AwRccaQSNTj8KWsjzQJLQ==
+  dependencies:
+    "@angular-devkit/core" "11.2.5"
     ora "5.3.0"
     rxjs "6.6.3"
 
@@ -1890,13 +1910,13 @@
     "@angular-devkit/schematics" "11.2.2"
     jsonc-parser "3.0.0"
 
-"@schematics/schematics@0.1102.2":
-  version "0.1102.2"
-  resolved "https://registry.yarnpkg.com/@schematics/schematics/-/schematics-0.1102.2.tgz#45c47930fc9c223adc269baee8857c15977f4c77"
-  integrity sha512-4AJ7MAe6+9uz3mJY0KN+h3GUwehrzPqjlXrRmWemlaYd3zqUkn4m/Uji3W1Jbe0c3dtHvBGc0eY2l011SnxIdQ==
+"@schematics/schematics@0.1102.5":
+  version "0.1102.5"
+  resolved "https://registry.yarnpkg.com/@schematics/schematics/-/schematics-0.1102.5.tgz#a9ee202e8f8668a931ea87be3b1704213517c096"
+  integrity sha512-y1vncqiIi7zT9FOiPif3bBE4LSa22hLTK2oPXc2pJYgguoduLT3tuIxfXcQMiVxhed43iZh/GxZXjOk2rsWATw==
   dependencies:
-    "@angular-devkit/core" "11.2.2"
-    "@angular-devkit/schematics" "11.2.2"
+    "@angular-devkit/core" "11.2.5"
+    "@angular-devkit/schematics" "11.2.5"
 
 "@schematics/update@0.1102.2":
   version "0.1102.2"
