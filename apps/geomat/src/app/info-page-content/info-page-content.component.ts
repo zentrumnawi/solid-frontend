@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import * as version from '../../environments/version.json';
-import { Store } from '@ngxs/store';
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -18,7 +17,6 @@ export class InfoPageContentComponent {
       : 'Version unbekannt';
 
   constructor(
-    private _store: Store,
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService
   ) {}
 }
