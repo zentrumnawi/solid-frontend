@@ -2,12 +2,79 @@
 @import 'glossary-theme';
 @import 'skeleton-theme';
 
+$planty-primary: (
+  50: #f5f8e2,
+  100: #e7edb6,
+  200: #d7e185,
+  300: #c6d554,
+  400: #bacc30,
+  500: #aec30b,
+  600: #a7bd0a,
+  700: #9db508,
+  800: #94ae06,
+  900: #84a103,
+  A100: #f4ffcb,
+  A200: #eaff98,
+  A400: #dfff65,
+  A700: #daff4c,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$planty-accent: (
+  50: #f8f8f8,
+  100: #eeeeee,
+  200: #e2e3e3,
+  300: #d6d7d7,
+  400: #cecfcf,
+  500: #c5c6c6,
+  600: #bfc0c0,
+  700: #b8b9b9,
+  800: #b0b1b1,
+  900: #a3a4a4,
+  A100: #ffffff,
+  A200: #dddddd,
+  A400: #bbbbbb,
+  A700: #999999,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$app-primary: mat-palette($mat-lime, 600);
-$app-accent: mat-palette($mat-grey, 300);
-//$app-accent: mat-palette($mat-light-blue, A200, A100, A400);
+// convenient Tool: http://mcg.mbitson.com/ (use Angular JS (Material 2) output format)
+
+$app-primary: mat-palette($planty-primary, 600);
+$app-accent: mat-palette($planty-accent, 300);
 
 $quiz-correct: mat-palette($mat-light-green, 600, 200, 600);
 $quiz-incorrect: mat-palette($mat-red, 700, 200, 600);
