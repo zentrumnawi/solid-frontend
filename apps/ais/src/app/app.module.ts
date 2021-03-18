@@ -100,11 +100,15 @@ export class AppModule {
         url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`)
       );
     addIcon('quiz');
+    addIcon('quiz2');
     addIcon('profile');
+    addIcon('properties');
+    addIcon('slideshow');
     addIcon('icon');
     addIcon('glossary');
     addIcon('privacy');
     addIcon('feedback');
     addIcon('assistant');
+    addIcon('info');
   }
 }

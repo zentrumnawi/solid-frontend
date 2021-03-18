@@ -4,5 +4,5 @@ import { environment } from '../environments/environment';
 export const coreConfig: SolidCoreConfig = {
   ...environment,
   markdownPlugins: [],
-  appName: 'DIVE',
+  appName: 'Div-e',
 };

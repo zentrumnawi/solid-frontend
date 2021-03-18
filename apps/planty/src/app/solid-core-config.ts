@@ -4,5 +4,5 @@ import { environment } from '../environments/environment';
 export const coreConfig: SolidCoreConfig = {
   ...environment,
   markdownPlugins: [],
-  appName: 'Planty',
+  appName: 'PLANTY2Learn',
 };
