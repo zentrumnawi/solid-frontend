@@ -5,7 +5,10 @@
     </div>
     <p class="facts-body" markdown [data]="profile.short_description"></p>
   </div>
-  <solid-core-image [image]="profile.images[ImageSelected]"></solid-core-image>
+  <solid-core-image
+    [image]="profile.images[ImageSelected]"
+    [name]="profile.name"
+  ></solid-core-image>
   <div class="img-toolbar">
     <button
       *ngIf="profile.images.length > 0"

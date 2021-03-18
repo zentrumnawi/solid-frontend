@@ -21,6 +21,7 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
   constructor(
     private _dialogRef: MatDialogRef<ImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public name: string,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
   ) {}
 
