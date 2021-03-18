@@ -1,8 +1,10 @@
 <div mat-dialog-title class="mat-dialog-title">
+  {{ data.name }}
   <button mat-icon-button mat-dialog-close>
     <mat-icon>close</mat-icon>
   </button>
 </div>
+
 <ng-container
   *ngIf="data.image.deepZoomLink as dziFile; then deepZoom; else noZoom"
 ></ng-container>
