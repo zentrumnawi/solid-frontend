@@ -6,12 +6,12 @@
   solid-profile-detail {
     background-color: mat-color($background, card);
 
-    p.heading {
+    /* p.heading {
       &:not(:first-child) {
-        border-top: 1px solid mat-color($background, status-bar);
+        // border-top: 1px solid mat-color($background, status-bar);
       }
       //background-color: mat-color($background, app-bar);
-    }
+    }*/
 
     div.img-toolbar {
       img {
