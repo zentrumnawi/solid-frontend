@@ -8123,10 +8123,10 @@ markdown-it@^12.0.4:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-material-icons@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-0.5.3.tgz#081a91d407696a3b19e92dad65abdf93e9a5fd39"
-  integrity sha512-LL4pqS7/wX/LmeVkqpmEQX2LFIC8BBoQO6NDZKmItg/MgsW1BpzHJX+YR1S0tmgGh5WnhIn7ZJCKvj8MT3Liew==
+material-icons@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-0.6.0.tgz#fba2ce9aafc9524804c681e8ebae0dfd9ab22658"
+  integrity sha512-9ScKpchDmH8i80Oq+k8eiBvmxNaFfgaLErFuyu66wS/tHVuJiLj4awtgSd0Q0hrCKlbjZj4DKtobUyy5q1MbJg==
 
 md5.js@^1.3.4:
   version "1.3.5"
