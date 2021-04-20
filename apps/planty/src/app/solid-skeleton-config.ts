@@ -21,7 +21,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
     },
     slideshow: {
       svgIcon: 'slideshow',
-      title: 'Slideshow',
+      title: 'Wissensgalerie',
     },
     privacy: {
       component: PrivacyComponent,
