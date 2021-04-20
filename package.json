@@ -4,7 +4,6 @@
   "scripts": {
     "ng": "nx",
     "start": "node web-server.js",
-    "start:dev": "nx serve dive",
     "build": "ng build",
     "build:staging": "ts-node git.versions.ts && ng build -c staging",
     "build:prod": "ts-node git.versions.ts && ng build --prod",
