@@ -4,39 +4,48 @@ p {
 
   &.heading {
     padding: 0.5em;
-    font-weight: 600;
+    font-weight: 500;
+    background-color: #f9f9f9;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
     //padding: 24px;
   }
 }
 
 solid-core-image {
-  height: calc(100vh / 3);
+  margin-top: 2px;
+  height: calc(100vh / 2.5);
 }
 
 mat-expansion-panel {
   mat-expansion-panel-header {
     mat-panel-title {
-      font-weight: bold;
+      font-weight: 500;
     }
-    //padding: 0 24px 0 0;
+  }
+  mat-expansion-panel-header.mat-expanded {
+    background-color: #f5f5f5;
   }
 }
 
 div.img-toolbar {
-  //margin-top: -6px;
-  overflow-y: scroll;
-  //height: 5rem;
-  //width: 100%;
-  //background-color: green;
+  margin: 10px 0 10px 0;
+  overflow-y: hidden;
+  overflow-x: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  //this is not yet the desired behaviour
+  //'center' does not allow scrolling to the left
+  //'left' does not center the thumbnails
+  //perhaps we need to make it dependent on actual screen width
 
   img {
     height: 4rem;
     transition-property: filter;
     transition-duration: 500ms;
+    margin: 0 4px;
 
     &.not-selected {
       cursor: pointer;

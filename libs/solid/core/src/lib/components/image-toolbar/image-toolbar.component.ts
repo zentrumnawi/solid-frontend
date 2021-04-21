@@ -16,6 +16,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 })
 export class ImageToolbarComponent {
   @Input() public image!: ImageModel;
+  @Input() public name!: string;
   @Input() hasAttributions!: boolean;
   @Input() hasDialog!: boolean;
   @Input() hasDziTools = false;
@@ -52,6 +53,7 @@ export class ImageToolbarComponent {
       panelClass: 'solid-core-image-dialog',
       data: {
         image: this.image,
+        name: this.name,
       },
     });
   }
