@@ -5,9 +5,17 @@
     [routerLink]="[slideshow.id]"
   >
     <img
+      *ngIf="slideshow.title_image !== null; else NoImg"
       [src]="slideshow.title_image.img.thumbnail"
       [alt]="slideshow.title_image.img_alt"
     />
+    <ng-template #NoImg>
+      <img
+        src="assets/icons/icon.svg"
+        alt="No image available"
+        style="width: 6rem; height: 6rem"
+      />
+    </ng-template>
     <span class="slideshowTitle">{{ slideshow.title }}</span>
   </mat-grid-tile>
 </mat-grid-list>
