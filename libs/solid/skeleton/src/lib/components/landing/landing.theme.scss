@@ -2,9 +2,19 @@
 
 @mixin solid-skeleton-landing-component-theme($theme) {
   $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
   solid-skeleton-landing {
     mat-grid-tile:hover {
       background-color: mat-color($accent, lighter);
+    }
+    mat-list {
+      border: 1px solid mat-color($app-primary);
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    mat-list-item:not(:last-child) {
+      border-bottom: 1px solid mat-color($background, status-bar);
+      padding-bottom: -1rem;
     }
   }
 }
