@@ -73,6 +73,7 @@ export class LandingComponent {
     this.Notices.subscribe((message) => {
       this.limitedMessages = message.slice(0, 2);
       return this.limitedMessages;
+      //console.log(limitedMessages);
     });
   }
 }
