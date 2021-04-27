@@ -3,6 +3,20 @@
     *ngComponentOutlet="BannerComponent; injector: BannerInjector"
   ></ng-container>
 </mat-card>
+
+<h2>Neuigkeiten</h2>
+<mat-list>
+  <mat-list-item *ngFor="let msg of limitedMessages">
+    <h3 matLine>
+      {{ msg.title }}
+      <span *ngIf="msg.valid_from"
+        >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
+      >
+    </h3>
+    <div [data]="msg.text" markdown matLine></div>
+  </mat-list-item>
+</mat-list>
+
 <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
   <mat-grid-tile
     *ngFor="let menuItem of MenuItems | async"
