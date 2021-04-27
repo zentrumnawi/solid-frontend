@@ -72,7 +72,6 @@ export class LandingComponent {
   public limitMessages() {
     this.Notices.subscribe((message) => {
       this.limitedMessages = message.slice(0, 2);
-      //console.log(limitedMessages);
       return this.limitedMessages;
     });
   }
