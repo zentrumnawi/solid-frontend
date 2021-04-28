@@ -18,11 +18,8 @@ export class InfoComponent {
   @Select(MessageState.getChangelog)
   public Changelog!: Observable<MessageModel[]>;
 
-  @Select(MessageState.getNotices)
+  @Select(MessageState.getNoticesAndSeries)
   public Notices!: Observable<MessageModel[]>;
-
-  @Select(MessageState.getSeries)
-  public Series!: Observable<MessageModel[]>;
 
   constructor(@Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig) {
     this.ContentComponent = cfg.infoPageContent;
