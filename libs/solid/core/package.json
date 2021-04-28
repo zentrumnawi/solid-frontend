@@ -1,0 +1,22 @@
+{
+  "name": "@zentrumnawi/solid-core",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/zentrumnawi/solid-frontend.git",
+    "directory": "libs/solid/core"
+  },
+  "dependencies": {
+    "tslib": "^2.0.1"
+  },
+  "peerDependencies": {
+    "@angular/common": "^10.1.4",
+    "@angular/core": "^10.1.4",
+    "@angular/router": "^10.1.4",
+    "@ngxs/router-plugin": "^3.6.2",
+    "@ngxs/store": "^3.6.2"
+  }
+}

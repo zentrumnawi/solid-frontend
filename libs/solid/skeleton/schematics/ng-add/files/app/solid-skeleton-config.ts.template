@@ -1,0 +1,12 @@
+import { SolidSkeletonConfig } from '@zentrumnawi/solid-skeleton';
+import { LandingBannerContentComponent } from './app/components/landing-banner-content/landing-banner-content.component';
+import { PrivacyComponent } from './app/components/privacy/privacy.component';
+
+export const skeletonConfig: SolidSkeletonConfig = {
+  landingBannerContent: LandingBannerContentComponent,
+  routingConfig: {
+    privacy: {
+      component: PrivacyComponent
+    },
+  }
+};

@@ -1,0 +1,53 @@
+<!--suppress AngularInvalidExpressionResultType -->
+<mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
+  <mat-tree-node
+    (click)="select.emit(node.id)"
+    *matTreeNodeDef="let node; when: hasNoChild"
+    class="profile-link"
+    matTreeNodePadding
+    matTreeNodeToggle
+  >
+    <img
+      [alt]="node.title"
+      [src]="
+        node.images.length > 0
+          ? node.images[0].getRawImage('thumbnail')
+          : 'assets/profile/no_thumbnail.svg'
+      "
+      class="thumbnail"
+    />
+    <div class="profile-title">
+      <ng-container *ngIf="selectedProfileId === node.id">
+        <span
+          solidProfileSelected
+          class="selected"
+          [innerHTML]="node.title | profileTitle"
+        ></span>
+        <span class="selected">{{ node.subtitle }}</span>
+      </ng-container>
+      <ng-container *ngIf="selectedProfileId !== node.id">
+        <span [innerHTML]="node.title | profileTitle"></span>
+        <span>{{ node.subtitle }}</span>
+      </ng-container>
+    </div>
+  </mat-tree-node>
+
+  <mat-tree-node
+    (click)="onNodeClick(node)"
+    *matTreeNodeDef="let node; when: hasChild"
+    matTreeNodePadding
+  >
+    <button [attr.aria-label]="'toggle ' + node.title" mat-icon-button>
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{ TreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+      </mat-icon>
+    </button>
+    <div>
+      <span class="category">{{ node.title }}</span
+      ><br />
+      <span *ngIf="TreeControl.isExpanded(node) && node.info" class="info">{{
+        node.info
+      }}</span>
+    </div>
+  </mat-tree-node>
+</mat-tree>

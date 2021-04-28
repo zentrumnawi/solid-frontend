@@ -9,7 +9,7 @@ if (p.version) {
   const version = {
     semver: {
       version: p.version,
-    }
+    },
   };
   versionInfo = JSON.stringify(version, null, 2);
 } else if (existsSync('.git')) {
@@ -20,10 +20,12 @@ if (p.version) {
     hash: process.env.GIT_REV,
     semver: {
       version: process.env.TRAVIS_TAG,
-    }
+    },
   };
   versionInfo = JSON.stringify(version, null, 2);
 }
 
-
-writeFileSync('src/environments/version.json', versionInfo);
+writeFileSync('apps/geomat/src/environments/version.json', versionInfo);
+writeFileSync('apps/dive/src/environments/version.json', versionInfo);
+writeFileSync('apps/ais/src/environments/version.json', versionInfo);
+writeFileSync('apps/planty/src/environments/version.json', versionInfo);

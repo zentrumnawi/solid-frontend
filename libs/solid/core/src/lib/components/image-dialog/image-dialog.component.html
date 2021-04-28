@@ -1,0 +1,31 @@
+<div mat-dialog-title class="mat-dialog-title">
+  {{ data.name }}
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<ng-container
+  *ngIf="data.image.deepZoomLink as dziFile; then deepZoom; else noZoom"
+></ng-container>
+<ng-template #deepZoom>
+  <div mat-dialog-content>
+    <div id="dzi-container"></div>
+    <solid-core-image-toolbar
+      [image]="data.image"
+      [hasAttributions]="true"
+      [hasDialog]="false"
+      [hasDziTools]="true"
+    ></solid-core-image-toolbar>
+  </div>
+</ng-template>
+<ng-template #noZoom>
+  <div mat-dialog-content>
+    <solid-core-image-detail
+      [image]="data.image"
+      [hasDialog]="false"
+      [hasAttributions]="true"
+    ></solid-core-image-detail>
+  </div>
+</ng-template>
+<div mat-dialog-content></div>

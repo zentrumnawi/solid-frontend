@@ -1,0 +1,8 @@
+import { SolidCoreConfig } from '@zentrumnawi/solid-core';
+import { <%= environment.name %> } from '<%= environment.path %>';
+
+export const coreConfig: SolidCoreConfig = {
+  ...environment,
+  markdownPlugins: [],
+  appName: '<%= project %>'
+};

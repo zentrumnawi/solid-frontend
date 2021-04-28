@@ -1,53 +1,60 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
-    "app-geomat": {
-      "root": "",
-      "sourceRoot": "src",
+    "geomat": {
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       },
+      "root": "apps/geomat",
+      "sourceRoot": "apps/geomat/src",
+      "prefix": "geomat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/app-geomat",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/apps/geomat",
+            "index": "apps/geomat/src/index.html",
+            "main": "apps/geomat/src/main.ts",
+            "polyfills": "apps/geomat/src/polyfills.ts",
+            "tsConfig": "apps/geomat/tsconfig.app.json",
+            "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/_redirects",
-              "src/manifest.webmanifest"
+              "apps/geomat/src/favicon.ico",
+              "apps/geomat/src/assets",
+              "apps/geomat/src/manifest.webmanifest"
             ],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
-              "src/styles.scss"
+              "apps/geomat/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/core/src",
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            }
           },
           "configurations": {
-            "staging": {
+            "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.staging.ts"
+                  "replace": "apps/geomat/src/environments/environment.ts",
+                  "with": "apps/geomat/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -56,24 +63,27 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             },
-            "production": {
+            "staging": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/geomat/src/environments/environment.ts",
+                  "with": "apps/geomat/src/environments/environment.staging.ts"
                 }
               ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -82,91 +92,913 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             }
-          }
+          },
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "app-geomat:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "geomat:build",
+            "proxyConfig": "./apps/geomat/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app-geomat:build:production"
+              "browserTarget": "geomat:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app-geomat:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
-            ]
+            "browserTarget": "geomat:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "apps/geomat/tsconfig.app.json",
+              "apps/geomat/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/geomat/**/*"]
           }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/geomat/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/apps/geomat"]
         }
       }
     },
-    "app-geomat-e2e": {
-      "root": "e2e/",
+    "geomat-e2e": {
+      "root": "apps/geomat-e2e",
+      "sourceRoot": "apps/geomat-e2e/src",
       "projectType": "application",
-      "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "app-geomat:serve"
+            "cypressConfig": "apps/geomat-e2e/cypress.json",
+            "tsConfig": "apps/geomat-e2e/tsconfig.e2e.json",
+            "devServerTarget": "geomat:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "app-geomat:serve:production"
+              "devServerTarget": "geomat:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "solid-core": {
+      "projectType": "library",
+      "root": "libs/solid/core",
+      "sourceRoot": "libs/solid/core/src",
+      "prefix": "solid-core",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/solid/core/tsconfig.lib.json",
+            "project": "libs/solid/core/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/solid/core/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/core/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/core/tsconfig.lib.json",
+              "libs/solid/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/core/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/core/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/core"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-quiz": {
+      "projectType": "library",
+      "root": "libs/solid/quiz",
+      "sourceRoot": "libs/solid/quiz/src",
+      "prefix": "solid-quiz",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/solid/quiz/tsconfig.lib.json",
+            "project": "libs/solid/quiz/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/solid/quiz/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/quiz/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/quiz/tsconfig.lib.json",
+              "libs/solid/quiz/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/quiz/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/quiz"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-slideshow": {
+      "projectType": "library",
+      "root": "libs/solid/slideshow",
+      "sourceRoot": "libs/solid/slideshow/src",
+      "prefix": "solid-slideshow",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/solid/slideshow/tsconfig.lib.json",
+            "project": "libs/solid/slideshow/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/slideshow/tsconfig.lib.json",
+              "libs/solid/slideshow/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/slideshow/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/slideshow"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-glossary": {
+      "projectType": "library",
+      "root": "libs/solid/glossary",
+      "sourceRoot": "libs/solid/glossary/src",
+      "prefix": "solid-glossary",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/solid/glossary/tsconfig.lib.json",
+            "project": "libs/solid/glossary/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/solid/glossary/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/glossary/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/glossary/tsconfig.lib.json",
+              "libs/solid/glossary/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/glossary/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/glossary"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "solid-skeleton": {
+      "projectType": "library",
+      "root": "libs/solid/skeleton",
+      "sourceRoot": "libs/solid/skeleton/src",
+      "prefix": "solid-skeleton",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "project": "libs/solid/skeleton/ng-package.json",
+            "tsConfig": "libs/solid/skeleton/tsconfig.lib.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/solid/skeleton/ng-package.json",
+              "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "project": "libs/solid/skeleton/ng-package.json",
+              "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/skeleton/tsconfig.lib.json",
+              "libs/solid/skeleton/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/skeleton/jest.config.js",
+            "passWithNoTests": false
+          },
+          "outputs": ["coverage/libs/solid/skeleton"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss",
+          "style": "scss"
+        }
+      }
+    },
+    "solid-profile": {
+      "projectType": "library",
+      "root": "libs/solid/profile",
+      "sourceRoot": "libs/solid/profile/src",
+      "prefix": "solid-profile",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/solid/profile/tsconfig.lib.json",
+            "project": "libs/solid/profile/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/profile/tsconfig.lib.json",
+              "libs/solid/profile/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/profile/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/profile/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/profile"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "dive": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/dive",
+      "sourceRoot": "apps/dive/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/dive",
+            "index": "apps/dive/src/index.html",
+            "main": "apps/dive/src/main.ts",
+            "polyfills": "apps/dive/src/polyfills.ts",
+            "tsConfig": "apps/dive/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/dive/src/favicon.ico",
+              "apps/dive/src/assets",
+              "apps/dive/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "./node_modules/material-icons/iconfont/material-icons.scss",
+              "apps/dive/src/styles.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/core/src",
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dive/src/environments/environment.ts",
+                  "with": "apps/dive/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/dive/ngsw-config.json"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dive/src/environments/environment.ts",
+                  "with": "apps/dive/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "dive:build",
+            "proxyConfig": "./apps/dive/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dive:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dive:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/dive/tsconfig.app.json",
+              "apps/dive/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/dive/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/dive/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/apps/dive"]
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "configuration": "staging",
+            "baseHref": "/solid-frontend/",
+            "name": "Github Actions",
+            "email": "github@example.com"
+          }
+        }
+      }
+    },
+    "dive-e2e": {
+      "root": "apps/dive-e2e",
+      "sourceRoot": "apps/dive-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/dive-e2e/cypress.json",
+            "tsConfig": "apps/dive-e2e/tsconfig.e2e.json",
+            "devServerTarget": "dive:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dive:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/dive-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/dive-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "planty": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/planty",
+      "sourceRoot": "apps/planty/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/planty",
+            "index": "apps/planty/src/index.html",
+            "main": "apps/planty/src/main.ts",
+            "polyfills": "apps/planty/src/polyfills.ts",
+            "tsConfig": "apps/planty/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/planty/src/favicon.ico",
+              "apps/planty/src/assets",
+              "apps/planty/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "./node_modules/material-icons/iconfont/material-icons.scss",
+              "apps/planty/src/styles.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/core/src",
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/planty/src/environments/environment.ts",
+                  "with": "apps/planty/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/planty/ngsw-config.json"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/planty/src/environments/environment.ts",
+                  "with": "apps/planty/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "planty:build",
+            "proxyConfig": "./apps/planty/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "planty:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "planty:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/planty/tsconfig.app.json",
+              "apps/planty/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/planty/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/planty/jest.config.js",
+            "passWithNoTests": true,
+            "tsConfig": "apps/planty/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/apps/planty"]
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "configuration": "staging",
+            "baseHref": "/solid-frontend/",
+            "name": "Github Actions",
+            "email": "github@example.com"
+          }
+        }
+      }
+    },
+    "planty-e2e": {
+      "root": "apps/planty-e2e",
+      "sourceRoot": "apps/planty-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/planty-e2e/cypress.json",
+            "tsConfig": "apps/planty-e2e/tsconfig.e2e.json",
+            "devServerTarget": "planty:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "planty:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/planty-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/planty-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "ais": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/ais",
+      "sourceRoot": "apps/ais/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ais",
+            "index": "apps/ais/src/index.html",
+            "main": "apps/ais/src/main.ts",
+            "polyfills": "apps/ais/src/polyfills.ts",
+            "tsConfig": "apps/ais/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/ais/src/favicon.ico",
+              "apps/ais/src/assets",
+              "apps/ais/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "./node_modules/material-icons/iconfont/material-icons.scss",
+              "apps/ais/src/styles.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/core/src",
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ais/src/environments/environment.ts",
+                  "with": "apps/ais/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/ais/ngsw-config.json"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ais/src/environments/environment.ts",
+                  "with": "apps/ais/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ais:build",
+            "proxyConfig": "./apps/ais/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ais:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ais:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ais/tsconfig.app.json",
+              "apps/ais/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ais/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ais/jest.config.js",
+            "passWithNoTests": true,
+            "tsConfig": "apps/ais/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/apps/ais"]
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "configuration": "staging",
+            "baseHref": "/solid-frontend/",
+            "name": "Github Actions",
+            "email": "github@example.com"
+          }
+        }
+      }
+    },
+    "ais-e2e": {
+      "root": "apps/ais-e2e",
+      "sourceRoot": "apps/ais-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ais-e2e/cypress.json",
+            "tsConfig": "apps/ais-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ais:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ais:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ais-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ais-e2e/**/*"]
           }
         }
       }
     }
   },
-  "defaultProject": "app-geomat"
+
+  "defaultProject": "geomat",
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  }
 }

@@ -1,0 +1,26 @@
+@import 'lib/components/base-layout/base-layout.theme';
+@import 'lib/components/main-menu/main-menu.theme';
+@import 'lib/components/landing/landing.theme';
+@import 'lib/components/message-list/message-list.theme';
+
+@mixin solid-skeleton-theme($mat-theme) {
+  html,
+  body {
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  div.spacer {
+    flex: 1 0 auto;
+  }
+
+  @include base-layout-component($mat-theme);
+  @include main-menu-component($mat-theme);
+  @include solid-skeleton-landing-component-theme($mat-theme);
+  @include solid-skeleton-message-list-theme($mat-theme);
+}

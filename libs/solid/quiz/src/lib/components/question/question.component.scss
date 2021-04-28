@@ -1,0 +1,87 @@
+mat-card-content.single-choice {
+  display: flex;
+  flex-direction: column;
+
+  // clean up duplicates
+  // TODO: differentiate between landscape and portrait like in profile-detail
+  img {
+    max-width: 750px;
+    padding-bottom: 10px;
+  }
+
+  mat-radio-group {
+    display: flex;
+    flex-direction: column;
+
+    mat-radio-button {
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+
+      ::ng-deep {
+        label.mat-radio-label {
+          vertical-align: top;
+
+          div.mat-radio-container {
+            margin-bottom: auto;
+          }
+
+          &.correct {
+            font-weight: bold;
+          }
+        }
+
+        div.mat-radio-label-content {
+          display: inline-flex;
+          flex-direction: column;
+          width: calc(100% - 28px);
+          white-space: normal;
+        }
+      }
+    }
+  }
+}
+
+mat-card-content.multiple-choice {
+  display: flex;
+  flex-direction: column;
+
+  // TODO: differentiate between landscape and portrait like in profile-detail
+  img {
+    max-width: 750px;
+    padding-bottom: 10px;
+  }
+
+  mat-checkbox {
+    width: 100%;
+
+    ::ng-deep {
+      &.correctunselected,
+      &.correctselected {
+        span.mat-checkbox-label {
+          font-weight: bold;
+        }
+      }
+      span.mat-checkbox-label {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 24px);
+        white-space: normal;
+      }
+
+      label.mat-checkbox-layout {
+        vertical-align: top;
+        width: 100%;
+      }
+
+      div.mat-checkbox-inner-container {
+        margin-top: 0;
+        margin-bottom: auto;
+      }
+    }
+  }
+}
+
+span.feedback {
+  font-weight: normal;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@zentrumnawi/solid-skeleton",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/zentrumnawi/solid-frontend.git",
+    "directory": "libs/solid/skeleton"
+  },
+  "dependencies": {
+    "tslib": "^2.0.1"
+  },
+  "peerDependencies": {
+    "@angular/common": "^10.1.4",
+    "@angular/core": "^10.1.4",
+    "@angular/forms": "^10.1.4",
+    "@angular/material": "^10.1.4",
+    "@ngxs-labs/dispatch-decorator": "^2.1.0",
+    "@ngxs/devtools-plugin": "^3.6.2",
+    "@ngxs/router-plugin": "^3.6.2",
+    "@ngxs/store": "^3.6.2"
+  },
+  "schematics": "./schematics/collection.json"
+}

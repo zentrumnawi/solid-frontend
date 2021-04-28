@@ -2,15 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
+[![codecov](https://codecov.io/gh/zentrumnawi/solid-frontend/branch/dev/graph/badge.svg)](https://codecov.io/gh/zentrumnawi/solid-frontend)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=zentrumnawi/solid-frontend)](https://dependabot.com)
+
 ## CI-Status
 
-| Branch | Version | Status |
-| ------ | ------- | ------ |
-| `master` | production | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=master)](https://travis-ci.org/GeoMatDigital/web-geomat) |
-| `dev` | staging | [![Build Status](https://travis-ci.org/GeoMatDigital/web-geomat.svg?branch=dev)](https://travis-ci.org/GeoMatDigital/web-geomat) | 
-
-## Dependabot-Status
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=GeoMatDigital/web-geomat)](https://dependabot.com)
+| Branch   | Version    | Status                                                                                                                                  | URL                                                  |
+| -------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `master` | production | [![Build Status](https://travis-ci.org/zentrumnawi/solid-frontend.svg?branch=master)](https://travis-ci.org/zentrumnawi/solid-frontend) | [Link](https://app.geomat.uni-frankfurt.de/)         |
+| `dev`    | staging    | ![build](https://github.com/zentrumnawi/solid-frontend/workflows/build/badge.svg?branch=dev)                                            | [Link](https://zentrumnawi.github.io/solid/frontend) |
 
 ## Development server
 

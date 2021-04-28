@@ -1,0 +1,98 @@
+<ng-container>
+  <div *ngIf="profile.short_description">
+    <div class="facts-title">
+      <div>Wissenswertes</div>
+    </div>
+    <p class="facts-body" markdown [data]="profile.short_description"></p>
+  </div>
+  <solid-core-image
+    [image]="profile.images[ImageSelected]"
+    [name]="profile.name"
+  ></solid-core-image>
+  <div class="img-toolbar">
+    <button
+      *ngIf="profile.images.length > 0"
+      (click)="onImageSelect(ImageSelected - 1)"
+      [disabled]="ImageSelected === 0"
+      mat-icon-button
+    >
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <ng-container *ngFor="let img of profile.images; let i = index">
+      <img
+        (click)="onImageSelect(i)"
+        *ngIf="ImageStartIndex <= i && ImageEndIndex >= i"
+        [class.not-selected]="ImageSelected !== i"
+        [src]="img.getRawImage('thumbnail')"
+      />
+    </ng-container>
+    <button
+      *ngIf="profile.images.length > 0"
+      (click)="onImageSelect(ImageSelected + 1)"
+      [disabled]="ImageSelected === profile.images.length - 1"
+      mat-icon-button
+    >
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
+</ng-container>
+<ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
+  <mat-accordion [multi]="false" displayMode="flat" #expansion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Allgemein </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-container *ngFor="let property of profileDefinitions">
+        <ng-container *ngIf="property.type !== PropertyTypes.Group">
+          <ng-container
+            *ngTemplateOutlet="
+              propertyTemplate;
+              context: { profile_obj: profile, property: property }
+            "
+          ></ng-container>
+        </ng-container>
+      </ng-container>
+    </mat-expansion-panel>
+    <ng-container *ngFor="let property of profileDefinitions">
+      <mat-expansion-panel
+        *ngIf="
+          property.type === PropertyTypes.Group &&
+          (property.required || profile[property.key])
+        "
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ property.title }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let childProperty of property.properties">
+          <ng-container
+            *ngTemplateOutlet="
+              propertyTemplate;
+              context: {
+                profile_obj: profile[property.key],
+                property: childProperty
+              }
+            "
+          ></ng-container>
+        </ng-container>
+      </mat-expansion-panel>
+    </ng-container>
+  </mat-accordion>
+</ng-container>
+<ng-template
+  #propertyTemplate
+  let-profile_obj="profile_obj"
+  let-property="property"
+>
+  <ng-container
+    *ngIf="shouldDisplayProperty(property, profile_obj)"
+    [ngSwitch]="property.type"
+  >
+    <p class="heading">{{ property.title }}</p>
+    <p *ngSwitchCase="PropertyTypes.String">{{ profile_obj[property.key] }}</p>
+    <p *ngSwitchCase="PropertyTypes.Integer">{{ profile_obj[property.key] }}</p>
+    <p *ngSwitchCase="PropertyTypes.Boolean">{{ profile_obj[property.key] }}</p>
+    <ng-container *ngSwitchCase="PropertyTypes.List">
+      <p *ngFor="let val of profile_obj[property.key]">{{ val }}</p>
+    </ng-container>
+  </ng-container>
+</ng-template>

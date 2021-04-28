@@ -1,0 +1,26 @@
+@mixin glossary-component-theme($mat-theme) {
+  $background: map-get($mat-theme, background);
+  $foreground: map-get($mat-theme, foreground);
+  $accent: map-get($mat-theme, accent);
+  solid-glossary {
+    h3 {
+      background-color: mat-color($background, status-bar);
+    }
+
+    mat-list-item {
+      border-bottom: 1px solid mat-color($background, app-bar);
+      span.links {
+        font-style: italic;
+        a {
+          color: mat-color($foreground);
+          &:hover {
+            color: mat-color($accent);
+          }
+        }
+      }
+      &.flash {
+        background-color: mat-color($accent);
+      }
+    }
+  }
+}

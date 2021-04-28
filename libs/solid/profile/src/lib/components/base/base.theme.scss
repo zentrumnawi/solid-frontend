@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+@mixin solid-profile-base($mat-theme) {
+  $background: map-get($mat-theme, background);
+  $accent: map-get($mat-theme, accent);
+  solid-profile-base {
+    background-color: mat-color($background);
+    mat-toolbar.mat-toolbar.main-toolbar {
+      background-color: mat-color($accent);
+    }
+  }
+}

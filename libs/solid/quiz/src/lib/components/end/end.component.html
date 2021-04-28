@@ -1,0 +1,35 @@
+<mat-card *ngIf="QuizSession">
+  <mat-card-header>
+    <mat-card-title>Selbsttest - Auswertung</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Du hast {{ correctQuestions }} von {{ oldCount }} Fragen richtig
+      beantwortet.
+    </p>
+    <p [data]="FeedbackText" markdown></p>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-form-field>
+      <input
+        [formControl]="questionCount"
+        matInput
+        placeholder="Anzahl an Fragen"
+        type="number"
+      />
+    </mat-form-field>
+    <button
+      (click)="onStartClick()"
+      mat-raised-button
+      [disabled]="!questionCount.valid"
+    >
+      Start
+    </button>
+  </mat-card-actions>
+  <mat-card-footer>
+    <p class="footnote">
+      Als richtig wurde eine Frage nur dann gezählt, wenn alle richtigen
+      Antworten und keine falschen ausgewählt wurden.
+    </p>
+  </mat-card-footer>
+</mat-card>

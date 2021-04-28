@@ -1,0 +1,21 @@
+<ng-container *ngIf="image; else noImg">
+  <img
+    [src]="image.getRawImage('large')"
+    [alt]="image.alt"
+    [class.landscape]="image.isLandscape"
+  />
+  <solid-core-image-toolbar
+    [image]="image"
+    [name]="name"
+    [hasAttributions]="hasAttributions"
+    [hasDialog]="hasDialog"
+    [hasDziTools]="false"
+  ></solid-core-image-toolbar>
+</ng-container>
+<ng-template #noImg>
+  <img
+    class="landscape"
+    src="assets/profile/no_image.svg"
+    alt="Leider haben wir kein Bild in der Datenbank"
+  />
+</ng-template>

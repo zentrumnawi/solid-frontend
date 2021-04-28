@@ -1,0 +1,21 @@
+{
+  "name": "@zentrumnawi/solid-glossary",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/zentrumnawi/solid-frontend.git",
+    "directory": "libs/solid/glossary"
+  },
+  "dependencies": {
+    "tslib": "^2.0.1"
+  },
+  "peerDependencies": {
+    "@angular/common": "^10.1.4",
+    "@angular/core": "^10.1.4",
+    "@angular/material": "^10.1.4",
+    "@ngxs/store": "^3.6.2"
+  }
+}

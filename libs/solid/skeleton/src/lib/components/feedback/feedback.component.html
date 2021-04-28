@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Gib uns dein Feedback zur App</h1>
+<div mat-dialog-content>
+  <form [formGroup]="Form">
+    <mat-form-field>
+      <input formControlName="name" matInput placeholder="Name" type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        formControlName="email"
+        matInput
+        placeholder="Email"
+        type="email"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="subject" placeholder="Betreff" />
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        cdkAutosizeMinRows="8"
+        cdkTextareaAutosize
+        formControlName="message"
+        matInput
+        placeholder="Nachricht"
+      ></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <div class="spacer"></div>
+  <button (click)="onCancelClick()" mat-button>Abbrechen</button>
+  <button (click)="onOkClick()" mat-button>Abschicken</button>
+</div>

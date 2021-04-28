@@ -1,0 +1,33 @@
+<ng-container
+  *ngFor="let profile of profiles | async; let i = index; trackBy: trackByFn"
+>
+  <div
+    *ngIf="selectedProfileId === profile.id"
+    (click)="select.emit(profile.id)"
+    class="card mat-elevation-z2 selected"
+    solidProfileSelected
+  >
+    <ng-container
+      *ngTemplateOutlet="cardContent; context: { profile: profile }"
+    ></ng-container>
+  </div>
+  <div
+    *ngIf="selectedProfileId !== profile.id"
+    (click)="select.emit(profile.id)"
+    class="card mat-elevation-z2"
+  >
+    <ng-container
+      *ngTemplateOutlet="cardContent; context: { profile: profile }"
+    ></ng-container>
+  </div>
+</ng-container>
+
+<ng-template #cardContent let-profile="profile">
+  <div class="title" [innerHTML]="profile.name | profileTitle"></div>
+  <div class="subtitle">{{ profile.trivial_name }}</div>
+  <solid-core-image
+    [image]="profile.images[0]"
+    [hasAttributions]="false"
+    [hasDialog]="false"
+  ></solid-core-image>
+</ng-template>

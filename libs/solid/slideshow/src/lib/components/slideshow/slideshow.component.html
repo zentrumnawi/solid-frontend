@@ -1,0 +1,50 @@
+<mat-horizontal-stepper
+  #stepper
+  (panend)="onPanEnd($event)"
+  *ngIf="Slideshow | async as slideshow"
+  labelPosition="bottom"
+  linear="false"
+>
+  <mat-step
+    *ngFor="let page of slideshow.pages"
+    [label]="page.title"
+    [state]="MaxStep >= page.id ? 'done' : ''"
+  >
+    <div class="step-actions">
+      <button
+        *ngIf="page.id > 1"
+        color="primary"
+        mat-icon-button
+        matStepperPrevious
+        class="button-left"
+      >
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <h1>{{ page.title }}</h1>
+      <button
+        (click)="onNextStepClick(page.id + 1)"
+        *ngIf="slideshow.pages[slideshow.pages.length - 1].id !== page.id"
+        class="float-right"
+        color="primary"
+        mat-icon-button
+        matStepperNext
+      >
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
+    </div>
+    <div [data]="page.text" markdown></div>
+    <div class="page-images">
+      <ng-container *ngFor="let img of page.images">
+        <mat-card *ngIf="img.image">
+          <mat-card-header>
+            <mat-card-title>{{ img.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <img [alt]="img.image.img_alt" [src]="img.image.img.large" />
+            <p>{{ img.caption }}</p>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
