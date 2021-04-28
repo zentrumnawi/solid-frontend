@@ -8,11 +8,11 @@
   <mat-step
     *ngFor="let page of slideshow.pages"
     [label]="page.title"
-    [state]="MaxStep >= page.id ? 'done' : ''"
+    [state]="MaxStep >= page.position ? 'done' : ''"
   >
     <div class="step-actions">
       <button
-        *ngIf="page.id > 1"
+        *ngIf="page.position > 1"
         color="primary"
         mat-icon-button
         matStepperPrevious
@@ -20,16 +20,20 @@
       >
         <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
       </button>
+
       <h1>{{ page.title }}</h1>
+
       <button
-        (click)="onNextStepClick(page.id + 1)"
-        *ngIf="slideshow.pages[slideshow.pages.length - 1].id !== page.id"
+        (click)="onNextStepClick(page.position + 1)"
+        *ngIf="
+          slideshow.pages[slideshow.pages.length - 1].position !== page.position
+        "
         class="float-right"
         color="primary"
         mat-icon-button
         matStepperNext
       >
-        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+        <mat-icon aria-label="Nächster Schritt">home</mat-icon>
       </button>
     </div>
     <div [data]="page.text" markdown></div>
