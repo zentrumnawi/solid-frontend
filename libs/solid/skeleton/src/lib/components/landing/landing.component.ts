@@ -16,6 +16,10 @@ import { MenuItem } from '../../state/menu.model';
 import { Select } from '@ngxs/store';
 import { MessageState } from '../../state/message.state';
 import { MessageModel } from '../../state/message.model';
+import {
+  FeedbackService,
+  SOLID_SKELETON_FEEDBACK_SERVICE,
+} from '../../services/feedback.service';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   'solid-skeleton-hacky-injection'
@@ -38,6 +42,7 @@ export class LandingComponent {
 
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
+    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
     injector: Injector,
     breakpointObserver: BreakpointObserver
   ) {
