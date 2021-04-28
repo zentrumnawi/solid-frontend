@@ -1,7 +1,9 @@
 name: release
 
 on:
-  push: 
+  push:
+    branches:
+      - master
     tags:
       - '*'
 
@@ -52,4 +54,4 @@ jobs:
 
       - name: Deploy dive production
         run: echo "Hello release, you should only run on dive release tags"
-        if: ${{ startsWith(github.ref, 'refs/tags/dive-v') }}
+        if: startsWith(github.ref, 'refs/tags/releases/dive-v')
