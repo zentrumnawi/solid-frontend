@@ -1,4 +1,4 @@
-name: build
+name: release
 
 on:
   push:
@@ -46,7 +46,7 @@ jobs:
           file: ./coverage/**/clover.xml
           name: nx-jest
 
-      - name: build - staging
+      - name: build - production
         run: yarn nx run-many --target=build --all --parallel -c=production
 
       - name: Deploy dive production
