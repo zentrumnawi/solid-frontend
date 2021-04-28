@@ -35,6 +35,14 @@ export class MessageState {
     return state.items.filter(filter);
   }
 
+  @Selector()
+  public static getSeries(state: MessageStateModel): MessageModel[] {
+    const filter = function (msg: MessageModel) {
+      return msg.type === MessageType.Series;
+    };
+    return state.items.filter(filter);
+  }
+
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
     private _http: HttpClient,

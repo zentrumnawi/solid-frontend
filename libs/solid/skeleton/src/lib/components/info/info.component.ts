@@ -21,6 +21,9 @@ export class InfoComponent {
   @Select(MessageState.getNotices)
   public Notices!: Observable<MessageModel[]>;
 
+  @Select(MessageState.getSeries)
+  public Series!: Observable<MessageModel[]>;
+
   constructor(@Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig) {
     this.ContentComponent = cfg.infoPageContent;
   }
