@@ -57,8 +57,14 @@ export class LandingComponent {
       parent: injector,
     });
     breakpointObserver
-      .observe([Breakpoints.XLarge, Breakpoints.Large, Breakpoints.Medium])
+      .observe([
+        Breakpoints.XLarge,
+        Breakpoints.Large,
+        Breakpoints.Medium,
+        Breakpoints.XSmall,
+      ])
       .subscribe((result) => {
+        console.log('Breakpoint:', result);
         if (
           result.matches &&
           sessionStorage.getItem('hide_landing') !== 'true'
@@ -67,6 +73,7 @@ export class LandingComponent {
         }
       });
     this.limitMessages();
+    console.log('ShowLanding: ', this.ShowLanding);
   }
 
   private onCloseClick() {
