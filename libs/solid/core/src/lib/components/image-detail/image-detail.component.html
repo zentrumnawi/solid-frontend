@@ -1,21 +1,34 @@
 <ng-container *ngIf="image; else noImg">
   <img
+    *ngIf="view != 'grid'; else grid"
     [src]="image.getRawImage('large')"
     [alt]="image.alt"
     [class.landscape]="image.isLandscape"
   />
   <solid-core-image-toolbar
+    *ngIf="view != 'grid'"
     [image]="image"
     [name]="name"
     [hasAttributions]="hasAttributions"
     [hasDialog]="hasDialog"
     [hasDziTools]="false"
   ></solid-core-image-toolbar>
+  <ng-template #grid>
+    <img
+      [src]="image.getRawImage('thumbnail')"
+      [alt]="image.alt"
+      [class.landscape]="image.isLandscape"
+    />
+  </ng-template>
 </ng-container>
 <ng-template #noImg>
   <img
     class="landscape"
-    src="assets/profile/no_image.svg"
+    [src]="
+      view != 'grid'
+        ? 'assets/profile/no_image.svg'
+        : 'assets/profile/no_thumbnail.svg'
+    "
     alt="Leider haben wir kein Bild in der Datenbank"
   />
 </ng-template>
