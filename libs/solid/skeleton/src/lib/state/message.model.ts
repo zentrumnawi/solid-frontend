@@ -11,5 +11,5 @@ export interface MessageModel {
 export enum MessageType {
   Changelog = 'CL',
   Series = 'SE',
-  Notice = 'SE',
+  Notice = 'NO',
 }

@@ -34,9 +34,11 @@ export class LandingComponent {
   public BannerComponent?: Type<any>;
   public BannerInjector: Injector;
   public ShowLanding = false;
+
   @Select(MenuState.getLandingItems)
   public MenuItems!: Observable<MenuItem[]>;
-  @Select(MessageState.getNotices)
+
+  @Select(MessageState.getNoticesAndSeries)
   public Notices!: Observable<MessageModel[]>;
   limitedMessages!: MessageModel[];
 
