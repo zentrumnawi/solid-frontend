@@ -27,4 +27,8 @@
     <mat-icon *ngIf="!menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
     <span class="navTitle">{{ menuItem.title }}</span>
   </mat-grid-tile>
+  <mat-grid-tile (click)="feedback.showDialog()" class="mat-elevation-z2"
+    ><mat-icon matListIcon svgIcon="feedback"></mat-icon>
+    <span class="navTitle">Kontakt</span>
+  </mat-grid-tile>
 </mat-grid-list>

@@ -11,4 +11,5 @@ export class ImageDetailComponent {
   @Input() hasDialog!: boolean;
   @Input() hasAttributions!: boolean;
   @Input() name!: string;
+  @Input() view?: string;
 }
