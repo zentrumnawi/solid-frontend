@@ -52,6 +52,13 @@ jobs:
         run: yarn nx run-many --target=build --all --parallel -c=production
 
       - name: Deploy dive-staging
-        run: echo "Hello release, you should only run on dive release tags"
+        uses: appleboy/scp-action@v0.0.10
         if: startsWith(github.ref, 'refs/tags/dive-v')
-
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: "dist/apps/dive"
+          target: "${{ secrets.DIVE_PRODUCTION_DIRECTORY }}"
+          strip_components: 3
