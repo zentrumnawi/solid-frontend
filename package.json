@@ -49,7 +49,7 @@
     "@ngxs/router-plugin": "^3.7.1",
     "@ngxs/store": "^3.7.1",
     "@sentry/angular": "^6.3.3",
-    "core-js": "^3.9.1",
+    "core-js": "^3.11.2",
     "detect-browser": "^5.1.0",
     "hammerjs": "^2.0.8",
     "markdown-it": "^12.0.4",
