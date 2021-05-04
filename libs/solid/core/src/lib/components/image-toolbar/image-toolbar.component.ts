@@ -17,6 +17,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 export class ImageToolbarComponent {
   @Input() public image!: ImageModel;
   @Input() hasAttributions!: boolean;
+  @Input() hasAudio!: boolean;
   @Input() hasDialog!: boolean;
   @Input() hasDziTools = false;
 
@@ -48,7 +49,7 @@ export class ImageToolbarComponent {
     this._dialog.open(ImageDialogComponent, {
       width: '100%',
       height: 'auto',
-      maxHeight: '100%',
+      maxHeight: '80%',
       panelClass: 'solid-core-image-dialog',
       data: {
         image: this.image,

@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   Inject,
+  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -17,6 +18,7 @@ import OpenSeadragon from 'openseadragon';
 })
 export class ImageDialogComponent implements AfterViewInit, OnDestroy {
   private _viewer: Viewer | null = null;
+  public hasAudio = false;
 
   constructor(
     private _dialogRef: MatDialogRef<ImageDialogComponent>,
@@ -26,7 +28,9 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     let dzi = this.data.image.deepZoomLink;
+    let audio = this.data.image.audiosrc;
     console.log(dzi);
+    console.log(audio);
     if (dzi) {
       if (!this.coreConfig.production) {
         // TODO: This workaround is required for deepzoom in dev environments. It will not work with other cdn domains.
@@ -41,6 +45,10 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
         homeButton: 'home-button',
         showFullPageControl: false,
       });
+    }
+    if (audio) {
+      this.hasAudio = true;
+      console.log(audio);
     }
   }
 
