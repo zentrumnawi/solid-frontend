@@ -24,9 +24,14 @@ mat-list-item {
       padding: 0.7rem !important;
     }
     div.mat-line.md-rendered {
-      margin-bottom: -1em;
+      //margin-bottom: -1em;
       padding-left: 0.22rem !important;
-      line-height: 1.4;
+      white-space: normal !important;
+      h2,
+      ul {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
     }
   }
 }
