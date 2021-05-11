@@ -7,6 +7,10 @@ mat-card {
   margin-bottom: 1.5rem;
 }
 
+mat-list {
+  padding-top: 0 !important;
+}
+
 mat-list-item {
   margin-top: 0;
   ::ng-deep {
@@ -22,6 +26,7 @@ mat-list-item {
     div.mat-line.md-rendered {
       margin-bottom: -1em;
       padding-left: 0.22rem !important;
+      line-height: 1.4;
     }
   }
 }

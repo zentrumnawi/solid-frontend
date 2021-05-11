@@ -81,7 +81,7 @@ export class LandingComponent {
     sessionStorage.setItem('hide_landing', 'true');
   }
 
-  public limitMessages() {
+  private limitMessages() {
     this.Notices.subscribe((message) => {
       this.limitedMessages = message.slice(0, 2);
       return this.limitedMessages;
