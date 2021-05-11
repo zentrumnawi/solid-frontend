@@ -158,20 +158,29 @@
     rxjs "6.6.3"
     source-map "0.7.3"
 
-"@angular-devkit/schematics-cli@^0.1102.9":
-  version "0.1102.9"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics-cli/-/schematics-cli-0.1102.9.tgz#633ec42239226959dfec88dc72d3baf478d916ee"
-  integrity sha512-Gb0434PZS5anb3oRInBKTyJ8ogioOwJ8Fz3YANvjukCXFYwmZ8dLeikiZs8IMh0YtMIKFSIAuxq//DVYqFdRCA==
+"@angular-devkit/schematics-cli@^0.1102.12":
+  version "0.1102.12"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics-cli/-/schematics-cli-0.1102.12.tgz#6ff2ee30c95b165214d294e123d7f86c473e6daa"
+  integrity sha512-0OjWe/9SAWBOIL3cruwQWSDz/wMuOsO4fHmaUcKjz7e31N0qkT8EcusyGThYGsAHs7S8V9ie7p38r/AYceKbKQ==
   dependencies:
-    "@angular-devkit/core" "11.2.9"
-    "@angular-devkit/schematics" "11.2.9"
-    "@schematics/schematics" "0.1102.9"
+    "@angular-devkit/core" "11.2.12"
+    "@angular-devkit/schematics" "11.2.12"
+    "@schematics/schematics" "0.1102.12"
     ansi-colors "4.1.1"
     inquirer "7.3.3"
     minimist "1.2.5"
     symbol-observable "3.0.0"
 
-"@angular-devkit/schematics@11.2.9", "@angular-devkit/schematics@~11.2.0":
+"@angular-devkit/schematics@11.2.12", "@angular-devkit/schematics@~11.2.0":
+  version "11.2.12"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-11.2.12.tgz#a2b7b02f6677a2fa9f4f6716f0aaa87347d41509"
+  integrity sha512-d1fxxkLPtP87iwAFZ0iUNWMlqULm05bbnRc5g5vrFxdtpwwybC15+NS64d3gzX0vAvnCa+cDQkjeD92bJJNjLw==
+  dependencies:
+    "@angular-devkit/core" "11.2.12"
+    ora "5.3.0"
+    rxjs "6.6.3"
+
+"@angular-devkit/schematics@11.2.9":
   version "11.2.9"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-11.2.9.tgz#1b580cf6f3933fec676c201d2723eb4b9b92b11f"
   integrity sha512-NqcBMK9ZbfXykj+2/cSlZcLVmbep/N+yYb+dUSfvRup3rW3uYSpMMJAnys3ro0m7TnUrI7h7t0UTgX8oxjlCow==
@@ -2021,13 +2030,13 @@
     "@angular-devkit/schematics" "11.2.9"
     jsonc-parser "3.0.0"
 
-"@schematics/schematics@0.1102.9":
-  version "0.1102.9"
-  resolved "https://registry.yarnpkg.com/@schematics/schematics/-/schematics-0.1102.9.tgz#5f85b846a1d471974470c3a5e594c9d79dc325ed"
-  integrity sha512-yESQCRgRpV4hq91TOwl9j9jaAf8jYbDDiQUyhWiXaVsEhgdgQXZd6LsLa3gkkGIsmjKLbk/HQ1XFz1CxWh4TpQ==
+"@schematics/schematics@0.1102.12":
+  version "0.1102.12"
+  resolved "https://registry.yarnpkg.com/@schematics/schematics/-/schematics-0.1102.12.tgz#0190bd6430bb22dbe83ba16a6e400ed429e3f286"
+  integrity sha512-o4SJfwqzHWOzk/NUDokCdiGqoUF3yccQjjaOmB3YdolzhI8/9K9kHHtW8aCZAwjGn95+HTa5fioDjUGiMqAqMw==
   dependencies:
-    "@angular-devkit/core" "11.2.9"
-    "@angular-devkit/schematics" "11.2.9"
+    "@angular-devkit/core" "11.2.12"
+    "@angular-devkit/schematics" "11.2.12"
 
 "@schematics/update@0.1102.9":
   version "0.1102.9"
