@@ -1760,6 +1760,23 @@
     webpack-node-externals "1.7.2"
     yargs-parser "20.0.0"
 
+"@nrwl/cypress@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-12.2.0.tgz#29a1e9996ba46801b7e54ed3edee8f77d5ed6804"
+  integrity sha512-ts6QWVsjiL06HurOAhYnI5dHN4Y4EMCdJSyLW0GcTAL6onT8CSmWpjUfJUgojce2IYzEL4Ormhso/1TQX4W8bQ==
+  dependencies:
+    "@cypress/webpack-preprocessor" "~4.1.2"
+    "@nrwl/devkit" "12.2.0"
+    "@nrwl/linter" "12.2.0"
+    "@nrwl/workspace" "12.2.0"
+    fork-ts-checker-webpack-plugin "^3.1.1"
+    rxjs "^6.5.4"
+    ts-loader "5.4.5"
+    tsconfig-paths-webpack-plugin "3.2.0"
+    tslib "^2.0.0"
+    webpack-node-externals "1.7.2"
+    yargs-parser "20.0.0"
+
 "@nrwl/devkit@11.4.0":
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-11.4.0.tgz#acd0d1af9bf31e71afe9d6330e2bc1fef7a618fe"
@@ -1903,21 +1920,19 @@
     tslib "^2.0.0"
     yargs "15.4.1"
 
-"@nrwl/storybook@11.4.0":
-  version "11.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-11.4.0.tgz#ad21213a7abd7c3a3bde7b9d81fde4f0655dfd29"
-  integrity sha512-y0SirpHBtdGNqYN6ub4wKsn4b7gS6kLmKQ8Gvztksnxsmx+Vv5moIeWF+XEtOKAs9VJ2kr1SOvZzAeqJvM0sCQ==
+"@nrwl/storybook@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-12.2.0.tgz#8f1dfb89c4da00c9eef4b4eea2533f22c4c4d585"
+  integrity sha512-aVl7BHl6Zg2eKGf+et66f16q1wtbsm2dNjcPG6f1QzmaK9Ua6KnhdRP72zG8zTEQsOpCB8LCeXv6nR3s4H+9Dg==
   dependencies:
-    "@nrwl/cypress" "11.4.0"
-    "@nrwl/devkit" "11.4.0"
-    "@nrwl/linter" "11.4.0"
-    "@nrwl/workspace" "11.4.0"
+    "@nrwl/cypress" "12.2.0"
+    "@nrwl/devkit" "12.2.0"
+    "@nrwl/linter" "12.2.0"
+    "@nrwl/workspace" "12.2.0"
     core-js "^3.6.5"
-    semver "6.3.0"
-    tree-kill "1.2.2"
+    semver "7.3.4"
     ts-loader "5.4.5"
     tsconfig-paths-webpack-plugin "3.2.0"
-    webpack-node-externals "1.7.2"
 
 "@nrwl/tao@11.4.0":
   version "11.4.0"
