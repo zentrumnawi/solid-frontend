@@ -17,11 +17,13 @@ import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dia
 })
 export class AudioToolbarComponent implements AfterViewInit, OnDestroy {
   @Input() public audiosrc!: string;
+  @Input() public description!: string;
   @ViewChild('audioplayer') player?: { nativeElement: HTMLAudioElement };
   public Playing = false;
   public PlayingStarted = false;
   public PlayPosition = '';
   private loadError = false;
+  public descriptionToggle = false;
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
@@ -104,6 +106,10 @@ export class AudioToolbarComponent implements AfterViewInit, OnDestroy {
       this.Playing = false;
       this.player.nativeElement.currentTime = 0;
     }
+  }
+
+  public toggleDescription() {
+    this.descriptionToggle = this.descriptionToggle ? false : true;
   }
 
   ngOnDestroy(): void {

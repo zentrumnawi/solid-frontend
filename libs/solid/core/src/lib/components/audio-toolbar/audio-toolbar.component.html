@@ -1,5 +1,5 @@
 <div class="audiotoolbar">
-  <button mat-icon-button>
+  <button mat-icon-button (click)="toggleDescription()">
     <mat-icon>description</mat-icon>
   </button>
   <button mat-icon-button (click)="onPlayPauseClick()">
@@ -9,6 +9,9 @@
     <mat-icon matTooltip="Audiowiedergabe neu starten">replay</mat-icon>
   </button>
   <span class="PlayPosition">{{ PlayPosition }}</span>
+</div>
+<div *ngIf="descriptionToggle" class="description">
+  <span markdown [data]="description"></span>
 </div>
 <audio
   #audioplayer

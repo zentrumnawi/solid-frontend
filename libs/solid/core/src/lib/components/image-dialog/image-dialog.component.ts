@@ -20,6 +20,7 @@ import OpenSeadragon from 'openseadragon';
 export class ImageDialogComponent implements AfterViewInit, OnDestroy {
   private _viewer: Viewer | null = null;
   public hasAudio = false;
+  public hasDescription = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -47,6 +48,9 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
     }
     if (this.data.image.audiosrc) {
       this.hasAudio = true;
+    }
+    if (this.data.image.description) {
+      this.hasDescription = true;
     }
   }
 
