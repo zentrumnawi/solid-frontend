@@ -81,7 +81,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
           // filter profiles
           const regExp = new RegExp(filterStr, 'i');
           const profilesFlatFiltered = flat.filter((p) => {
-            if (p.minerals.match(regExp)) {
+            if (p.name.match(regExp)) {
               return true;
             }
             return !!p.trivial_name.match(regExp);
