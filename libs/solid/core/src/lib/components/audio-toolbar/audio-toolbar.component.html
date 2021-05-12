@@ -15,10 +15,5 @@
   (timeupdate)="onPlayerTimeUpdate()"
   (ended)="onPlayerEnded()"
 >
-  <!--source (error)="onPlayerMediaError()" [src]="audiosrc" type="audio/mpeg" /-->
-  <source
-    (error)="onPlayerMediaError()"
-    src="assets/audio/audiotest.mp3"
-    type="audio/mpeg"
-  />
+  <source (error)="onPlayerMediaError()" [src]="audiosrc" type="audio/mpeg" />
 </audio>
