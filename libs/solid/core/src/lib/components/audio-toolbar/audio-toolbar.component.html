@@ -1,5 +1,5 @@
 <div class="audiotoolbar">
-  <button mat-icon-button (click)="toggleDescription()">
+  <button *ngIf="description" mat-icon-button (click)="toggleDescription()">
     <mat-icon>description</mat-icon>
   </button>
   <button mat-icon-button (click)="onPlayPauseClick()">
