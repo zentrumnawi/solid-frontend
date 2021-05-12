@@ -5,8 +5,9 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  ViewChild,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { Viewer } from 'openseadragon';
 import OpenSeadragon from 'openseadragon';
@@ -18,25 +19,25 @@ import OpenSeadragon from 'openseadragon';
 })
 export class ImageDialogComponent implements AfterViewInit, OnDestroy {
   private _viewer: Viewer | null = null;
+  @ViewChild('audioplayer') player?: { nativeElement: HTMLAudioElement };
   public hasAudio = false;
 
   constructor(
-    private _dialogRef: MatDialogRef<ImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public name: string,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
   ) {}
 
   ngAfterViewInit(): void {
     let dzi = this.data.image.deepZoomLink;
     let audio = this.data.image.audiosrc;
-    console.log(dzi);
-    console.log(audio);
+    console.log('dzi: ', dzi);
     if (dzi) {
       if (!this.coreConfig.production) {
         // TODO: This workaround is required for deepzoom in dev environments. It will not work with other cdn domains.
         dzi = dzi.replace('https://cdn.geomat.uni-frankfurt.de', '');
       }
-      console.log(dzi);
+      console.log('dzi: ', dzi);
       this._viewer = OpenSeadragon({
         id: 'dzi-container',
         tileSources: dzi,
@@ -48,7 +49,6 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
     }
     if (audio) {
       this.hasAudio = true;
-      console.log(audio);
     }
   }
 

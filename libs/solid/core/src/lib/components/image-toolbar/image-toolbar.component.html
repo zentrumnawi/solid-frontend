@@ -29,11 +29,6 @@
       <mat-icon>home</mat-icon>
     </button>
   </ng-container>
-  <ng-container *ngIf="hasAudio">
-    <button id="PlayAudio" mat-mini-fab color="accent">
-      <mat-icon>play_arrow</mat-icon>
-    </button>
-  </ng-container>
   <button *ngIf="hasDialog" mat-mini-fab color="accent" (click)="openDialog()">
     <mat-icon>zoom_in</mat-icon>
   </button>

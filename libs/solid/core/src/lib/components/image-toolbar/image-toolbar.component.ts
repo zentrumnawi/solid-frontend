@@ -17,7 +17,6 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 export class ImageToolbarComponent {
   @Input() public image!: ImageModel;
   @Input() hasAttributions!: boolean;
-  @Input() hasAudio!: boolean;
   @Input() hasDialog!: boolean;
   @Input() hasDziTools = false;
 
