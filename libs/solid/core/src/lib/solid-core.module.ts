@@ -18,6 +18,7 @@ import { ImageDetailComponent } from './components/image-detail/image-detail.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ImageToolbarComponent } from './components/image-toolbar/image-toolbar.component';
+import { AudioToolbarComponent } from './components/audio-toolbar/audio-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ImageToolbarComponent } from './components/image-toolbar/image-toolbar.
     ImageDialogComponent,
     ImageDetailComponent,
     ImageToolbarComponent,
+    AudioToolbarComponent,
   ],
   imports: [
     CommonModule,
