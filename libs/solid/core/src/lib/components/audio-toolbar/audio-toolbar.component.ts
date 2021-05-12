@@ -22,36 +22,29 @@ export class AudioToolbarComponent implements AfterViewInit, OnDestroy {
   public PlayingStarted = false;
   public PlayPosition = '';
   private loadError = false;
-  public hasAudio = false;
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     private _dialog: MatDialog
   ) {}
-  public audio = this.audiosrc;
 
   ngAfterViewInit(): void {
-    console.log('audio', this.audio);
-    if (this.audio) {
-      if (!this.coreConfig.production) {
-        // TODO: This workaround is required for deepzoom in dev environments. It will not work with other cdn domains.
-        this.audio = this.audio.replace(
-          'https://cdn.geomat.uni-frankfurt.de',
-          ''
+    let audio = this.audiosrc;
+    console.log('pre-init: audio', audio);
+    console.log('coreConfig', this.coreConfig);
+    // TODO: This workaround is only needed until we have date in the proper backend
+    if (audio) {
+      if (this.coreConfig.apiUrl.search('localhost')) {
+        audio = audio.replace(
+          'https://cdn.geomat.uni-frankfurt.de/staging',
+          'https://cdn.geomat.uni-frankfurt.de/production'
         );
+        this.audiosrc = audio;
       }
-      console.log('audio (CDN): ', this.audio);
-      this.audio = 'assets/audio/audiotest.mp3';
-      console.log('audio (Local): ', this.audio);
     }
   }
 
   public onPlayPauseClick() {
-    console.log('Audio started');
-    console.log('player', this.player);
-    console.log('Playing', this.Playing);
-    console.log('PlayingStarted', this.PlayingStarted);
-    console.log('AudioSrc', this.audiosrc);
     if (this.loadError) {
       this._dialog.open(MediaErrorDialogComponent, {
         data: {
@@ -114,7 +107,7 @@ export class AudioToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.PlayingStarted && this.hasAudio && this.player) {
+    if (this.PlayingStarted && this.player) {
       this.player.nativeElement.pause();
     }
   }
