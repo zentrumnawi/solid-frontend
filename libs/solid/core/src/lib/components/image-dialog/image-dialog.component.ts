@@ -19,7 +19,6 @@ import OpenSeadragon from 'openseadragon';
 })
 export class ImageDialogComponent implements AfterViewInit, OnDestroy {
   private _viewer: Viewer | null = null;
-  @ViewChild('audioplayer') player?: { nativeElement: HTMLAudioElement };
   public hasAudio = false;
 
   constructor(
@@ -30,7 +29,6 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     let dzi = this.data.image.deepZoomLink;
-    let audio = this.data.image.audiosrc;
     console.log('dzi: ', dzi);
     if (dzi) {
       if (!this.coreConfig.production) {
@@ -47,7 +45,7 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
         showFullPageControl: false,
       });
     }
-    if (audio) {
+    if (this.data.image.audiosrc) {
       this.hasAudio = true;
     }
   }
