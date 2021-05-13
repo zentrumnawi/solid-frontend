@@ -109,7 +109,7 @@ export class AudioToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   public toggleDescription() {
-    this.descriptionToggle = this.descriptionToggle ? false : true;
+    this.descriptionToggle = !this.descriptionToggle;
   }
 
   ngOnDestroy(): void {
