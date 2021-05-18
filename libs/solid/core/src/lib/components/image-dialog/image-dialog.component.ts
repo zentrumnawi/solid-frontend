@@ -44,6 +44,8 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
         zoomOutButton: 'zoom-out-button',
         homeButton: 'home-button',
         showFullPageControl: false,
+        visibilityRatio: 1.0,
+        constrainDuringPan: true,
       });
     }
     if (this.data.image.audiosrc) {
