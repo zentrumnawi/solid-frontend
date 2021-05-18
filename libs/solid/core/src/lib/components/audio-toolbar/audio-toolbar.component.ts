@@ -34,16 +34,6 @@ export class AudioToolbarComponent implements AfterViewInit, OnDestroy {
     let audio = this.audiosrc;
     console.log('pre-init: audio', audio);
     console.log('coreConfig', this.coreConfig);
-    // TODO: This workaround is only needed until we have date in the proper backend
-    if (audio) {
-      if (this.coreConfig.apiUrl.search('localhost')) {
-        audio = audio.replace(
-          'https://cdn.geomat.uni-frankfurt.de/staging',
-          'https://cdn.geomat.uni-frankfurt.de/production'
-        );
-        this.audiosrc = audio;
-      }
-    }
   }
 
   public onPlayPauseClick() {
