@@ -99,7 +99,7 @@
     <p
       id="normal_color"
       *ngSwitchCase="PropertyTypes.colstring"
-      [style.background-color]="'{{ profile_obj[property.key] }}'"
+      [style.background-color]="profile_obj[property.key]"
     ></p>
     <ng-container *ngSwitchCase="PropertyTypes.List">
       <p *ngFor="let val of profile_obj[property.key]">{{ val }}</p>
