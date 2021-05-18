@@ -30,12 +30,6 @@ export class AudioToolbarComponent implements AfterViewInit, OnDestroy {
     private _dialog: MatDialog
   ) {}
 
-  ngAfterViewInit(): void {
-    let audio = this.audiosrc;
-    console.log('pre-init: audio', audio);
-    console.log('coreConfig', this.coreConfig);
-  }
-
   public onPlayPauseClick() {
     if (this.loadError) {
       this._dialog.open(MediaErrorDialogComponent, {
