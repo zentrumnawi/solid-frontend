@@ -92,7 +92,7 @@ export class ProfileDefinitionService {
     const { title, type } = schema;
     const required = parent.required?.includes(key) ?? false;
     // tslint:disable:no-non-null-assertion
-    switch (type) {
+    switch (type as any) {
       case 'string':
         return {
           key: key,
@@ -122,6 +122,20 @@ export class ProfileDefinitionService {
           key,
           required,
           type: ProfilePropertyType.Boolean,
+          title: title!,
+        };
+      case 'mdstring':
+        return {
+          key,
+          required,
+          type: ProfilePropertyType.mdstring,
+          title: title!,
+        };
+      case 'colstring':
+        return {
+          key,
+          required,
+          type: ProfilePropertyType.colstring,
           title: title!,
         };
       case 'object':
