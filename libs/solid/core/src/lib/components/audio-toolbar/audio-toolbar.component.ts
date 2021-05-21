@@ -15,10 +15,12 @@ import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dia
   templateUrl: './audio-toolbar.component.html',
   styleUrls: ['./audio-toolbar.component.scss'],
 })
-export class AudioToolbarComponent implements AfterViewInit, OnDestroy {
+export class AudioToolbarComponent implements OnDestroy {
   @Input() public audiosrc!: string;
   @Input() public description!: string;
-  @ViewChild('audioplayer') player?: { nativeElement: HTMLAudioElement };
+  @ViewChild('audioplayer', { static: false }) player?: {
+    nativeElement: HTMLAudioElement;
+  };
   public Playing = false;
   public PlayingStarted = false;
   public PlayPosition = '';
