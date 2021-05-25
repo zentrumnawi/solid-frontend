@@ -8,6 +8,12 @@
 <ng-container
   *ngIf="data.image.deepZoomLink as dziFile; then deepZoom; else noZoom"
 ></ng-container>
+<solid-core-audio-toolbar
+  *ngIf="hasAudio || hasDescription"
+  [audiosrc]="data.image.audiosrc"
+  [description]="data.image.description"
+>
+</solid-core-audio-toolbar>
 <ng-template #deepZoom>
   <div mat-dialog-content>
     <div id="dzi-container"></div>
@@ -24,7 +30,6 @@
     <solid-core-image-detail
       [image]="data.image"
       [hasDialog]="false"
-      [hasAttributions]="true"
     ></solid-core-image-detail>
   </div>
 </ng-template>

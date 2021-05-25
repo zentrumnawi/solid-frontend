@@ -21,6 +21,18 @@ export class ImageModel {
     return undefined;
   }
 
+  public get description(): string | undefined {
+    return this._photograph.description;
+  }
+
+  public get audiosrc(): string | undefined {
+    return this._photograph.audio;
+  }
+
+  public get audioduration(): string | undefined {
+    return this._photograph.audio_duration;
+  }
+
   public get alt(): string {
     return this._photograph.img_alt;
   }

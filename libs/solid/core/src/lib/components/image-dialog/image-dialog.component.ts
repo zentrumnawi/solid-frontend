@@ -2,10 +2,12 @@ import {
   AfterViewInit,
   Component,
   Inject,
+  Input,
   OnDestroy,
   OnInit,
+  ViewChild,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { Viewer } from 'openseadragon';
 import OpenSeadragon from 'openseadragon';
@@ -17,9 +19,10 @@ import OpenSeadragon from 'openseadragon';
 })
 export class ImageDialogComponent implements AfterViewInit, OnDestroy {
   private _viewer: Viewer | null = null;
+  public hasAudio = false;
+  public hasDescription = false;
 
   constructor(
-    private _dialogRef: MatDialogRef<ImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(MAT_DIALOG_DATA) public name: string,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
@@ -27,13 +30,13 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     let dzi = this.data.image.deepZoomLink;
-    console.log(dzi);
+    console.log('dzi: ', dzi);
     if (dzi) {
       if (!this.coreConfig.production) {
         // TODO: This workaround is required for deepzoom in dev environments. It will not work with other cdn domains.
         dzi = dzi.replace('https://cdn.geomat.uni-frankfurt.de', '');
       }
-      console.log(dzi);
+      console.log('dzi: ', dzi);
       this._viewer = OpenSeadragon({
         id: 'dzi-container',
         tileSources: dzi,
@@ -41,7 +44,15 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
         zoomOutButton: 'zoom-out-button',
         homeButton: 'home-button',
         showFullPageControl: false,
+        visibilityRatio: 1.0,
+        constrainDuringPan: true,
       });
+    }
+    if (this.data.image.audiosrc) {
+      this.hasAudio = true;
+    }
+    if (this.data.image.description) {
+      this.hasDescription = true;
     }
   }
 

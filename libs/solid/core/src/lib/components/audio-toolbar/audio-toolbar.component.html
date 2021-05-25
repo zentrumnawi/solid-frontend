@@ -1,0 +1,24 @@
+<div class="audiotoolbar">
+  <button *ngIf="description" mat-icon-button (click)="toggleDescription()">
+    <mat-icon>description</mat-icon>
+  </button>
+  <button mat-icon-button (click)="onPlayPauseClick()">
+    <mat-icon>{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
+  </button>
+  <button *ngIf="PlayingStarted" mat-icon-button (click)="onReplayClick()">
+    <mat-icon matTooltip="Audiowiedergabe neu starten">replay</mat-icon>
+  </button>
+  <span class="PlayPosition">{{ PlayPosition }}</span>
+</div>
+<div *ngIf="descriptionToggle" class="description">
+  <div id="descriptionContainer">
+    <span markdown [data]="description"></span>
+  </div>
+</div>
+<audio
+  #audioplayer
+  (timeupdate)="onPlayerTimeUpdate()"
+  (ended)="onPlayerEnded()"
+>
+  <source (error)="onPlayerMediaError()" [src]="audiosrc" type="audio/mpeg" />
+</audio>
