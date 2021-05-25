@@ -9,16 +9,15 @@
     class="main-toolbar"
     color="accent"
   >
-    <mat-form-field color="accent" floatLabel="never">
+    <mat-form-field appearance="fill" floatLabel="auto">
+      <mat-label>Suche</mat-label>
       <input [formControl]="Filter" matInput placeholder="Suche" type="text" />
-      <mat-icon *ngIf="Filter.value == ''" matSuffix>search</mat-icon>
-      <mat-icon
-        (click)="Filter.setValue('')"
-        *ngIf="Filter.value != ''"
-        class="clear-filter"
-        matSuffix
-        >clear
-      </mat-icon>
+      <button mat-icon-button matSuffix (click)="Filter.setValue('')">
+        <!--mat-icon *ngIf="Filter.value == ''" matSuffix>search</mat-icon-->
+        <mat-icon>
+          {{ Filter.value === '' ? 'search' : 'close' }}
+        </mat-icon>
+      </button>
     </mat-form-field>
     <div class="spacer"></div>
     <button (click)="toggleGridTree()" mat-icon-button>

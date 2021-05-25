@@ -4,16 +4,9 @@
     *ngFor="let item of MenuItems | async"
     [class.active]="item.active"
   >
-    <mat-icon
-      *ngIf="item.svgIcon"
-      [svgIcon]="item.svgIcon"
-      matListIcon
-    ></mat-icon>
-    <mat-icon *ngIf="!item.svgIcon" matListIcon>{{ item.icon }}</mat-icon>
     <h3 matLine>{{ item.title }}</h3>
   </mat-list-item>
   <mat-list-item (click)="feedback.showDialog()" *ngIf="feedback">
-    <mat-icon matListIcon svgIcon="feedback"></mat-icon>
     <h3 matLine>Kontakt</h3>
   </mat-list-item>
 </mat-nav-list>

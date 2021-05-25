@@ -9,7 +9,9 @@ export interface ProfilePropertySimple extends ProfilePropertyBase {
     | ProfilePropertyType.String
     | ProfilePropertyType.Integer
     | ProfilePropertyType.Boolean
-    | ProfilePropertyType.List;
+    | ProfilePropertyType.List
+    | ProfilePropertyType.mdstring
+    | ProfilePropertyType.colstring;
 }
 
 export interface ProfilePropertyGroup extends ProfilePropertyBase {
@@ -22,6 +24,8 @@ export enum ProfilePropertyType {
   Integer,
   Boolean,
   List,
+  mdstring,
+  colstring,
   Group,
 }
 

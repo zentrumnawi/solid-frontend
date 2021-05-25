@@ -2,11 +2,81 @@
 @import 'glossary-theme';
 @import 'skeleton-theme';
 
+//use #5461AF (primary) and #FFBA54 or #FFBB56 (secondary)
+
+$geomat-primary: (
+  50: #eaecf5,
+  100: #ccd0e7,
+  200: #aab0d7,
+  300: #8790c7,
+  400: #6e79bb,
+  500: #5461af,
+  600: #4d59a8,
+  700: #434f9f,
+  800: #3a4596,
+  900: #293386,
+  A100: #c9cfff,
+  A200: #96a1ff,
+  A400: #6373ff,
+  A700: #4a5bff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$geomat-secondary: (
+  50: #fff7ea,
+  100: #ffeacc,
+  200: #ffddaa,
+  300: #ffcf87,
+  400: #ffc46e,
+  500: #ffba54,
+  600: #ffb34d,
+  700: #ffab43,
+  800: #ffa33a,
+  900: #ff9429,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #ffead6,
+  A700: #ffdcbd,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$app-primary: mat-palette($mat-orange);
-$app-accent: mat-palette($mat-light-blue);
+// convenient Tool: http://mcg.mbitson.com/ (use Angular JS (Material 2) output format)
+
+$app-primary: mat-palette($geomat-primary, 600);
+$app-accent: mat-palette($geomat-secondary, 400);
 //$app-accent: mat-palette($mat-light-blue, A200, A100, A400);
 
 $quiz-correct: mat-palette($mat-light-green, 600, 200, 600);

@@ -1,11 +1,13 @@
-name: build
+name: release
 
 on:
   push:
-    branches: [ dev ]
+    tags:
+      - '*'
 
 jobs:
   build:
+    if: github.event.base_ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
     steps:
@@ -46,50 +48,17 @@ jobs:
           file: ./coverage/**/clover.xml
           name: nx-jest
 
-      - name: build - staging
-        run: yarn nx run-many --target=build --all --parallel -c=staging
-
-      - name: Deploy geomat-staging
-        uses: appleboy/scp-action@v0.0.10
-        with:
-          host: ${{ secrets.SERVER }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          rm: true
-          source: "dist/apps/geomat"
-          target: "${{ secrets.GEOMAT_STAGING_DIRECTORY }}"
-          strip_components: 3
+      - name: build - production
+        run: yarn nx run-many --target=build --all --parallel -c=production
 
       - name: Deploy dive-staging
         uses: appleboy/scp-action@v0.0.10
+        if: startsWith(github.ref, 'refs/tags/dive-v')
         with:
           host: ${{ secrets.SERVER }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           rm: true
           source: "dist/apps/dive"
-          target: "${{ secrets.DIVE_STAGING_DIRECTORY }}"
+          target: "${{ secrets.DIVE_PRODUCTION_DIRECTORY }}"
           strip_components: 3
-
-      - name: Deploy planty-staging
-        uses: appleboy/scp-action@v0.0.10
-        with:
-          host: ${{ secrets.SERVER }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          rm: true
-          source: "dist/apps/planty"
-          target: "${{ secrets.PLANTY_STAGING_DIRECTORY }}"
-          strip_components: 3
-
-      - name: Deploy ais-staging
-        uses: appleboy/scp-action@v0.0.10
-        with:
-          host: ${{ secrets.SERVER }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          rm: true
-          source: "dist/apps/ais"
-          target: "${{ secrets.AIS_STAGING_DIRECTORY }}"
-          strip_components: 3
-
