@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-media-error-dialog',
+  selector: 'solid-core-media-error-dialog',
   templateUrl: './media-error-dialog.component.html',
   styleUrls: ['./media-error-dialog.component.scss'],
 })
