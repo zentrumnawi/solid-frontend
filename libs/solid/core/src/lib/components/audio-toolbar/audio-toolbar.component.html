@@ -11,7 +11,9 @@
   <span class="PlayPosition">{{ PlayPosition }}</span>
 </div>
 <div *ngIf="descriptionToggle" class="description">
-  <span markdown [data]="description"></span>
+  <div id="descriptionContainer">
+    <span markdown [data]="description"></span>
+  </div>
 </div>
 <audio
   #audioplayer

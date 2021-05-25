@@ -48,7 +48,7 @@ export class ImageToolbarComponent {
     this._dialog.open(ImageDialogComponent, {
       width: '100%',
       height: 'auto',
-      maxHeight: '80%',
+      maxHeight: '100%',
       panelClass: 'solid-core-image-dialog',
       data: {
         image: this.image,
