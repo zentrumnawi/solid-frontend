@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class MediaErrorDialogComponent {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { title: string; content: string }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public name: string
   ) {}
 }
