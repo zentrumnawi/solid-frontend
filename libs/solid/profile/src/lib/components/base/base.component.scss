@@ -4,11 +4,46 @@
   //background-color: white;
 }
 
-mat-form-field {
+/* mat-form-field {
   //padding: 0.5em;
   //grid-area: search;
   //grid-row: 1 / 1;
   max-width: 20em;
+}*/
+
+mat-form-field {
+  max-width: 20em;
+  padding: 0.5em;
+  ::ng-deep {
+    div.mat-form-field-wrapper {
+      padding: 0;
+      div.mat-form-field-flex {
+        //we should try to avoid this in the future
+        //but "appearance: fill" simply doesn't cut it
+        background-color: rgba(0, 0, 0, 0);
+        padding-bottom: 2.5px;
+      }
+    }
+
+    div.mat-form-field-underline {
+      display: none;
+    }
+  }
+}
+
+mat-form-field flex {
+  max-width: 20em;
+  padding-top: 0;
+
+  ::ng-deep {
+    div.mat-form-field-wrapper {
+      padding: 0;
+    }
+
+    div.mat-form-field-underline {
+      display: none;
+    }
+  }
 }
 
 mat-icon.clear-filter {

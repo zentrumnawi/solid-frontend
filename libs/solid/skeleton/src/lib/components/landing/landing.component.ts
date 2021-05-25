@@ -14,6 +14,12 @@ import { MenuState } from '../../state/menu.state';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../../state/menu.model';
 import { Select } from '@ngxs/store';
+import { MessageState } from '../../state/message.state';
+import { MessageModel } from '../../state/message.model';
+import {
+  FeedbackService,
+  SOLID_SKELETON_FEEDBACK_SERVICE,
+} from '../../services/feedback.service';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   'solid-skeleton-hacky-injection'
@@ -28,11 +34,17 @@ export class LandingComponent {
   public BannerComponent?: Type<any>;
   public BannerInjector: Injector;
   public ShowLanding = false;
+
   @Select(MenuState.getLandingItems)
   public MenuItems!: Observable<MenuItem[]>;
 
+  @Select(MessageState.getNoticesAndSeries)
+  public Notices!: Observable<MessageModel[]>;
+  limitedMessages!: MessageModel[];
+
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
+    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
     injector: Injector,
     breakpointObserver: BreakpointObserver
   ) {
@@ -47,7 +59,12 @@ export class LandingComponent {
       parent: injector,
     });
     breakpointObserver
-      .observe([Breakpoints.XLarge, Breakpoints.Large, Breakpoints.Medium])
+      .observe([
+        Breakpoints.XLarge,
+        Breakpoints.Large,
+        Breakpoints.Medium,
+        Breakpoints.XSmall,
+      ])
       .subscribe((result) => {
         if (
           result.matches &&
@@ -56,10 +73,18 @@ export class LandingComponent {
           this.ShowLanding = true;
         }
       });
+    this.limitMessages();
   }
 
   private onCloseClick() {
     this.ShowLanding = false;
     sessionStorage.setItem('hide_landing', 'true');
+  }
+
+  private limitMessages() {
+    this.Notices.subscribe((message) => {
+      this.limitedMessages = message.slice(0, 2);
+      return this.limitedMessages;
+    });
   }
 }

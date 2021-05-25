@@ -3,6 +3,22 @@
     *ngComponentOutlet="BannerComponent; injector: BannerInjector"
   ></ng-container>
 </mat-card>
+
+<div *ngIf="limitedMessages.length">
+  <h2>Neuigkeiten</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let msg of limitedMessages">
+      <h3 matLine>
+        {{ msg.title
+        }}<span *ngIf="msg.valid_from"
+          >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
+        >
+      </h3>
+      <div [data]="msg.text" markdown matLine></div>
+    </mat-list-item>
+  </mat-list>
+</div>
+
 <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
   <mat-grid-tile
     *ngFor="let menuItem of MenuItems | async"
@@ -12,5 +28,9 @@
     <mat-icon *ngIf="menuItem.svgIcon" [svgIcon]="menuItem.svgIcon"></mat-icon>
     <mat-icon *ngIf="!menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
     <span class="navTitle">{{ menuItem.title }}</span>
+  </mat-grid-tile>
+  <mat-grid-tile (click)="feedback.showDialog()" class="mat-elevation-z2"
+    ><mat-icon matListIcon svgIcon="feedback"></mat-icon>
+    <span class="navTitle">Kontakt</span>
   </mat-grid-tile>
 </mat-grid-list>

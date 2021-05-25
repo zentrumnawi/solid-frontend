@@ -5,8 +5,7 @@ export const environment = {
   production: true,
   apiUrl: 'https://solid-backend.uni-frankfurt.de/geomat/staging',
   sentry: {
-    dsn:
-      'https://6772dbe6a4bb42e88711f20924eefa8e@po-sentry.physikelearning.de/34',
+    dsn: 'https://6772dbe6a4bb42e88711f20924eefa8e@sentry.solidelearning.de/34',
     environment: 'geomat-staging',
     version: version as any,
     errorHandlerOptions: {
