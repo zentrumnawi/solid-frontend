@@ -8,9 +8,8 @@ describe('MediaErrorDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MediaErrorDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [MediaErrorDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
