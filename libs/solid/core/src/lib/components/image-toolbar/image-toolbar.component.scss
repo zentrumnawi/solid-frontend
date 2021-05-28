@@ -4,7 +4,7 @@ div.toolbar {
   justify-content: flex-end;
   bottom: calc(40px + 0.5em);
   &.dzi {
-    bottom: 0.5rem;
+    bottom: 0.9em;
   }
   solid-core-audio-toolbar {
     position: absolute;
@@ -14,7 +14,7 @@ div.toolbar {
 
 div.dziToolbar {
   display: flex;
-  margin-right: 0.5em;
+  margin-right: 0.9em;
   justify-content: flex-end;
   button:not(:last-child) {
     margin-right: 0.5em;

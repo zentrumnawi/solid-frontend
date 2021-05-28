@@ -1,20 +1,7 @@
-import {
-  Component,
-  Input,
-  Inject,
-  ViewChild,
-  OnDestroy,
-  NgZone,
-} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Component, Input, Inject, ViewChild, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dialog.component';
-import {
-  CloseScrollStrategy,
-  ConnectedPosition,
-  ScrollDispatcher,
-  ViewportRuler,
-} from '@angular/cdk/overlay';
 
 @Component({
   selector: 'solid-core-audio-toolbar',
@@ -33,30 +20,10 @@ export class AudioToolbarComponent implements OnDestroy {
   private loadError = false;
   public descriptionToggle = false;
 
-  attributionsPositions: ConnectedPosition[] = [
-    {
-      originX: 'start',
-      originY: 'center',
-      overlayX: 'end',
-      overlayY: 'center',
-    },
-  ];
-  attributionsScrollStrategy: CloseScrollStrategy;
-  attributionsIsOpen = false;
-
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
-    private _dialog: MatDialog,
-    scrollDispatcher: ScrollDispatcher,
-    viewportRuler: ViewportRuler,
-    zone: NgZone
-  ) {
-    this.attributionsScrollStrategy = new CloseScrollStrategy(
-      scrollDispatcher,
-      zone,
-      viewportRuler
-    );
-  }
+    private _dialog: MatDialog
+  ) {}
 
   public onPlayPauseClick() {
     if (this.loadError) {
@@ -123,14 +90,6 @@ export class AudioToolbarComponent implements OnDestroy {
   public toggleDescription() {
     this.descriptionToggle = !this.descriptionToggle;
   }
-
-  // attributionsOpenClose() {
-  //   if (this.player) {
-  //     if (this.player.nativeElement.currentTime === 0) {
-  //       this.attributionsIsOpen = !this.attributionsIsOpen;
-  //     }
-  //   }
-  // }
 
   ngOnDestroy(): void {
     if (this.PlayingStarted && this.player) {
