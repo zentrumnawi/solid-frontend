@@ -1,8 +1,8 @@
-div.audiotoolbar {
-  padding: 0 0.55em;
-  margin-top: -40px;
+div.audioToolbar {
+  button:last-child {
+    margin-left: 0.95em;
+  }
 }
-
 div.description {
   margin: 0 0 0 1em;
   #descriptionContainer {

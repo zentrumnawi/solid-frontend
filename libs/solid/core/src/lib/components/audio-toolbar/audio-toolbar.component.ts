@@ -1,12 +1,5 @@
-import {
-  Component,
-  Input,
-  Inject,
-  ViewChild,
-  AfterViewInit,
-  OnDestroy,
-} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Component, Input, Inject, ViewChild, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dialog.component';
 
