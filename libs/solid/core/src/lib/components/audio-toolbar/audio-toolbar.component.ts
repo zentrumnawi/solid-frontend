@@ -118,7 +118,6 @@ export class AudioToolbarComponent implements OnDestroy {
       this.Playing = false;
       this.player.nativeElement.currentTime = 0;
     }
-    //this.attributionsIsOpen = !this.attributionsIsOpen;
   }
 
   public toggleDescription() {
