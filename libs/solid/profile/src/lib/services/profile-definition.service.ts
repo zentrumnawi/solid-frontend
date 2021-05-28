@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
-import { Schema, Spec } from 'swagger-schema-official';
+import { ParameterType, Schema, Spec } from 'swagger-schema-official';
 import { map } from 'rxjs/operators';
 import {
   ProfileProperty,
@@ -92,7 +92,7 @@ export class ProfileDefinitionService {
     const { title, type } = schema;
     const required = parent.required?.includes(key) ?? false;
     // tslint:disable:no-non-null-assertion
-    switch (type as any) {
+    switch (type as ParameterType | 'colstring' | 'mdstring') {
       case 'string':
         return {
           key: key,
@@ -128,14 +128,14 @@ export class ProfileDefinitionService {
         return {
           key,
           required,
-          type: ProfilePropertyType.mdstring,
+          type: ProfilePropertyType.Mdstring,
           title: title!,
         };
       case 'colstring':
         return {
           key,
           required,
-          type: ProfilePropertyType.colstring,
+          type: ProfilePropertyType.Colstring,
           title: title!,
         };
       case 'object':

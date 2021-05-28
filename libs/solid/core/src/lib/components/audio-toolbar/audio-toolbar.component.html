@@ -1,19 +1,32 @@
-<div class="audiotoolbar">
-  <button *ngIf="description" mat-icon-button (click)="toggleDescription()">
-    <mat-icon>description</mat-icon>
-  </button>
-  <button mat-icon-button (click)="onPlayPauseClick()">
+<div class="audioToolbar">
+  <button (click)="onPlayPauseClick()" mat-mini-fab color="accent">
     <mat-icon>{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
+    <!-- <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="attributionsOverlayOrigin"
+      [cdkConnectedOverlayOpen]="attributionsIsOpen"
+      [cdkConnectedOverlayPositions]="attributionsPositions"
+      [cdkConnectedOverlayScrollStrategy]="attributionsScrollStrategy"
+    >
+      <div class="attributions-overlay">{{ PlayPosition }}</div>
+    </ng-template> -->
   </button>
-  <button *ngIf="PlayingStarted" mat-icon-button (click)="onReplayClick()">
+  <!-- <button
+    id="replayBtn"
+    *ngIf="PlayingStarted"
+    mat-mini-fab
+    color="accent"
+    mat-icon-button
+    (click)="onReplayClick()"
+  >
     <mat-icon matTooltip="Audiowiedergabe neu starten">replay</mat-icon>
-  </button>
-  <span class="PlayPosition">{{ PlayPosition }}</span>
-</div>
-<div *ngIf="descriptionToggle" class="description">
-  <div id="descriptionContainer">
-    <span markdown [data]="description"></span>
-  </div>
+  </button> -->
+  <!-- <div *ngIf="descriptionToggle" class="description">
+    <div id="descriptionContainer">
+      <span markdown [data]="description"></span>
+    </div>
+  </div> -->
+  <!-- <span class="PlayPosition">{{ PlayPosition }}</span> -->
 </div>
 <audio
   #audioplayer

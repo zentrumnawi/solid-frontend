@@ -20,6 +20,9 @@ export class ImageToolbarComponent {
   @Input() hasAttributions!: boolean;
   @Input() hasDialog!: boolean;
   @Input() hasDziTools = false;
+  @Input() hasAudio!: boolean;
+  @Input() hasDescription!: boolean;
+  @Input() data!: any;
 
   attributionsPositions: ConnectedPosition[] = [
     {

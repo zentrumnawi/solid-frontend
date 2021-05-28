@@ -1,12 +1,21 @@
 div.toolbar {
   position: relative;
   display: flex;
-  right: 0.5em;
   justify-content: flex-end;
   bottom: calc(40px + 0.5em);
   &.dzi {
-    bottom: 0.5em;
+    bottom: 0.5rem;
   }
+  solid-core-audio-toolbar {
+    position: absolute;
+    left: 0px;
+  }
+}
+
+div.dziToolbar {
+  display: flex;
+  margin-right: 0.5em;
+  justify-content: flex-end;
   button:not(:last-child) {
     margin-right: 0.5em;
   }

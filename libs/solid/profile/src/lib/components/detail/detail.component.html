@@ -92,13 +92,13 @@
     <p *ngSwitchCase="PropertyTypes.Integer">{{ profile_obj[property.key] }}</p>
     <p *ngSwitchCase="PropertyTypes.Boolean">{{ profile_obj[property.key] }}</p>
     <p
-      *ngSwitchCase="PropertyTypes.mdstring"
+      *ngSwitchCase="PropertyTypes.Mdstring"
       markdown
       [data]="profile_obj[property.key]"
     ></p>
     <p
       id="normal_color"
-      *ngSwitchCase="PropertyTypes.colstring"
+      *ngSwitchCase="PropertyTypes.Colstring"
       [style.background-color]="profile_obj[property.key]"
     ></p>
     <ng-container *ngSwitchCase="PropertyTypes.List">
