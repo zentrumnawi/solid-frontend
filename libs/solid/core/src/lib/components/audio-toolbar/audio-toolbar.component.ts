@@ -56,7 +56,6 @@ export class AudioToolbarComponent implements OnDestroy {
       zone,
       viewportRuler
     );
-    console.log('Player init:' + this.player);
   }
 
   public onPlayPauseClick() {
@@ -119,20 +118,20 @@ export class AudioToolbarComponent implements OnDestroy {
       this.Playing = false;
       this.player.nativeElement.currentTime = 0;
     }
-    this.attributionsIsOpen = !this.attributionsIsOpen;
+    //this.attributionsIsOpen = !this.attributionsIsOpen;
   }
 
   public toggleDescription() {
     this.descriptionToggle = !this.descriptionToggle;
   }
 
-  attributionsOpenClose() {
-    if (this.player) {
-      if (this.player.nativeElement.currentTime == 0) {
-        this.attributionsIsOpen = !this.attributionsIsOpen;
-      }
-    }
-  }
+  // attributionsOpenClose() {
+  //   if (this.player) {
+  //     if (this.player.nativeElement.currentTime === 0) {
+  //       this.attributionsIsOpen = !this.attributionsIsOpen;
+  //     }
+  //   }
+  // }
 
   ngOnDestroy(): void {
     if (this.PlayingStarted && this.player) {
