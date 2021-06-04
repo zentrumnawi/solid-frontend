@@ -28,6 +28,25 @@ mat-expansion-panel {
   }
 }
 
+.scroll-container-profile {
+  //margin: auto;
+  max-width: 100%;
+  height: 100px;
+  overflow: auto;
+}
+div.img-toolbar-profile {
+  margin: 10px 0 10px 0;
+  overflow-y: hidden;
+  overflow-x: auto;
+  display: flex;
+}
+
+.scroll-container {
+  width: 100%;
+  //margin: auto;
+  max-width: 100%;
+  overflow: auto;
+}
 div.img-toolbar {
   margin: 10px 0 10px 0;
   overflow-y: hidden;
@@ -36,11 +55,20 @@ div.img-toolbar {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  min-width: min-content;
+  min-width: -moz-min-content;
+  min-width: -webkit-min-content;
+
+  -webkit-overflow-scrolling: touch; /* [4] */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */
   //this is not yet the desired behaviour
   //'center' does not allow scrolling to the left
   //'left' does not center the thumbnails
   //perhaps we need to make it dependent on actual screen width
 
+  img:first-child {
+    margin-left: 10px;
+  }
   img {
     height: 4rem;
     transition-property: filter;
@@ -51,6 +79,9 @@ div.img-toolbar {
       cursor: pointer;
       filter: saturate(0%);
     }
+  }
+  img:last-child {
+    margin-right: 10px;
   }
 }
 //

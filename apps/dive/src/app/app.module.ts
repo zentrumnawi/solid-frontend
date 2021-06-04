@@ -3,6 +3,7 @@ import {
   DomSanitizer,
   HAMMER_GESTURE_CONFIG,
   HammerGestureConfig,
+  HammerModule,
 } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
 
@@ -35,6 +36,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     },
     pinch: { enable: false },
     rotate: { enable: false },
+    swipe: { enable: true, direction: Hammer.DIRECTION_HORIZONTAL },
   };
 }
 
@@ -79,6 +81,7 @@ function profileTitleFormatter(title: string): string {
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    HammerModule,
   ],
   providers: [
     {

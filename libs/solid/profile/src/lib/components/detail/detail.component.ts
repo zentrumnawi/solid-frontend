@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
 import { ProfileState } from '../../state/profile.state';
 import { Observable } from 'rxjs';
@@ -17,6 +17,7 @@ import { MatAccordion } from '@angular/material/expansion';
 export class DetailComponent {
   @ViewChild('expansion', { static: false, read: MatAccordion })
   expansion?: MatAccordion;
+  @ViewChild('thumbnails') thumbnails: ElementRef | undefined;
   public PropertyTypes = ProfilePropertyType;
   @Select(ProfileState.selectDefinition) $ProfileDefinition!: Observable<
     ProfileProperty[]
@@ -26,6 +27,7 @@ export class DetailComponent {
   public ImageSelected = 0;
   public ImageStartIndex = 0;
   public ImageEndIndex = 0;
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   private _profile!: Profile;
 
@@ -79,5 +81,25 @@ export class DetailComponent {
       case ProfilePropertyType.Boolean:
         return val !== undefined && val !== '';
     }
+  }
+
+  public swipe(currentIndex: number, action: string = this.SWIPE_ACTION.RIGHT) {
+    if (currentIndex > this.profile.images.length || currentIndex < 0) {
+      return;
+    }
+    if (action === this.SWIPE_ACTION.LEFT) {
+      const isLast = currentIndex === this.profile.images.length - 1;
+      this.ImageSelected = isLast ? 0 : currentIndex + 1;
+    }
+    if (action === this.SWIPE_ACTION.RIGHT) {
+      const isFirst = currentIndex === 0;
+      this.ImageSelected = isFirst
+        ? this.profile.images.length - 1
+        : currentIndex - 1;
+    }
+    this.thumbnails?.nativeElement.children[this.ImageSelected].scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    });
   }
 }
