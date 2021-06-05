@@ -31,7 +31,7 @@ export class BaseLayoutComponent implements OnInit {
             this.MainMenu.open();
           }
           if (this.Glossary) {
-            this.Glossary.open();
+            this.Glossary.close();
           }
         } else {
           if (this.MainMenu) {

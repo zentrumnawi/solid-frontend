@@ -9,7 +9,6 @@ import {
   SOLID_SKELETON_CONFIG,
   InternalSolidSkeletonConfig,
 } from '../../solid-skeleton-config';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MenuState } from '../../state/menu.state';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../../state/menu.model';
@@ -45,8 +44,7 @@ export class LandingComponent {
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
-    injector: Injector,
-    breakpointObserver: BreakpointObserver
+    injector: Injector
   ) {
     this.BannerComponent = cfg.landingBannerContent;
     this.BannerInjector = Injector.create({
@@ -58,27 +56,15 @@ export class LandingComponent {
       ],
       parent: injector,
     });
-    breakpointObserver
-      .observe([
-        Breakpoints.XLarge,
-        Breakpoints.Large,
-        Breakpoints.Medium,
-        Breakpoints.XSmall,
-      ])
-      .subscribe((result) => {
-        if (
-          result.matches &&
-          sessionStorage.getItem('hide_landing') !== 'true'
-        ) {
-          this.ShowLanding = true;
-        }
-      });
+    if (localStorage.getItem('hide_landing') !== 'true') {
+      this.ShowLanding = true;
+    }
     this.limitMessages();
   }
 
   private onCloseClick() {
     this.ShowLanding = false;
-    sessionStorage.setItem('hide_landing', 'true');
+    localStorage.setItem('hide_landing', 'true');
   }
 
   private limitMessages() {
