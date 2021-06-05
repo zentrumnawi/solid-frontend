@@ -61,10 +61,6 @@ div.img-toolbar {
 
   -webkit-overflow-scrolling: touch; /* [4] */
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */
-  //this is not yet the desired behaviour
-  //'center' does not allow scrolling to the left
-  //'left' does not center the thumbnails
-  //perhaps we need to make it dependent on actual screen width
 
   img:first-child {
     margin-left: 10px;
