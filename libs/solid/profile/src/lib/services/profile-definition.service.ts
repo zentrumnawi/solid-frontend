@@ -15,6 +15,7 @@ const ignoredProperties = [
   'short_description',
   'tree_node',
   'photographs',
+  'media_objects',
 ];
 
 @Injectable()
