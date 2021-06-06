@@ -1,0 +1,12 @@
+<div class="audioToolbar">
+  <button (click)="onPlayPauseClick()" mat-mini-fab color="accent">
+    <mat-icon>{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
+  </button>
+</div>
+<audio
+  #audioplayer
+  (timeupdate)="onPlayerTimeUpdate()"
+  (ended)="onPlayerEnded()"
+>
+  <source (error)="onPlayerMediaError()" [src]="audiosrc" type="audio/mpeg" />
+</audio>

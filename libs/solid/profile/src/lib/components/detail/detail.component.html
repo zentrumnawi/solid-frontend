@@ -6,34 +6,21 @@
     <p class="facts-body" markdown [data]="profile.short_description"></p>
   </div>
   <solid-core-image
+    (swipeleft)="swipe(ImageSelected, $event.type)"
+    (swiperight)="swipe(ImageSelected, $event.type)"
     [image]="profile.images[ImageSelected]"
     [name]="profile.name"
   ></solid-core-image>
-  <div class="img-toolbar">
-    <button
-      *ngIf="profile.images.length > 0"
-      (click)="onImageSelect(ImageSelected - 1)"
-      [disabled]="ImageSelected === 0"
-      mat-icon-button
-    >
-      <mat-icon>navigate_before</mat-icon>
-    </button>
-    <ng-container *ngFor="let img of profile.images; let i = index">
-      <img
-        (click)="onImageSelect(i)"
-        *ngIf="ImageStartIndex <= i && ImageEndIndex >= i"
-        [class.not-selected]="ImageSelected !== i"
-        [src]="img.getRawImage('thumbnail')"
-      />
-    </ng-container>
-    <button
-      *ngIf="profile.images.length > 0"
-      (click)="onImageSelect(ImageSelected + 1)"
-      [disabled]="ImageSelected === profile.images.length - 1"
-      mat-icon-button
-    >
-      <mat-icon>navigate_next</mat-icon>
-    </button>
+  <div class="scroll-container">
+    <div class="img-toolbar" #thumbnails>
+      <ng-container *ngFor="let img of profile.images; let i = index">
+        <img
+          (click)="onImageSelect(i)"
+          [class.not-selected]="ImageSelected !== i"
+          [src]="img.getRawImage('thumbnail')"
+        />
+      </ng-container>
+    </div>
   </div>
 </ng-container>
 <ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
@@ -91,6 +78,16 @@
     <p *ngSwitchCase="PropertyTypes.String">{{ profile_obj[property.key] }}</p>
     <p *ngSwitchCase="PropertyTypes.Integer">{{ profile_obj[property.key] }}</p>
     <p *ngSwitchCase="PropertyTypes.Boolean">{{ profile_obj[property.key] }}</p>
+    <p
+      *ngSwitchCase="PropertyTypes.Mdstring"
+      markdown
+      [data]="profile_obj[property.key]"
+    ></p>
+    <p
+      id="normal_color"
+      *ngSwitchCase="PropertyTypes.Colstring"
+      [style.background-color]="profile_obj[property.key]"
+    ></p>
     <ng-container *ngSwitchCase="PropertyTypes.List">
       <p *ngFor="let val of profile_obj[property.key]">{{ val }}</p>
     </ng-container>

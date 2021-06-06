@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
-import { Schema, Spec } from 'swagger-schema-official';
+import { ParameterType, Schema, Spec } from 'swagger-schema-official';
 import { map } from 'rxjs/operators';
 import {
   ProfileProperty,
@@ -15,6 +15,7 @@ const ignoredProperties = [
   'short_description',
   'tree_node',
   'photographs',
+  'media_objects',
 ];
 
 @Injectable()
@@ -92,7 +93,7 @@ export class ProfileDefinitionService {
     const { title, type } = schema;
     const required = parent.required?.includes(key) ?? false;
     // tslint:disable:no-non-null-assertion
-    switch (type) {
+    switch (type as ParameterType | 'colstring' | 'mdstring') {
       case 'string':
         return {
           key: key,
@@ -122,6 +123,20 @@ export class ProfileDefinitionService {
           key,
           required,
           type: ProfilePropertyType.Boolean,
+          title: title!,
+        };
+      case 'mdstring':
+        return {
+          key,
+          required,
+          type: ProfilePropertyType.Mdstring,
+          title: title!,
+        };
+      case 'colstring':
+        return {
+          key,
+          required,
+          type: ProfilePropertyType.Colstring,
           title: title!,
         };
       case 'object':

@@ -1,8 +1,8 @@
 <mat-list>
   <mat-list-item *ngFor="let msg of messages | async; trackBy: trackByFn">
     <h3 matLine>
-      {{ msg.title }}
-      <span *ngIf="msg.valid_from"
+      {{ msg.title
+      }}<span *ngIf="msg.valid_from"
         >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
       >
       <span *ngIf="msg.valid_to"

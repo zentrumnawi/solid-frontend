@@ -1,0 +1,19 @@
+div.audioToolbar {
+  button:last-child {
+    margin-left: 0.95em;
+  }
+}
+div.description {
+  margin: 0 0 0 1em;
+  #descriptionContainer {
+    max-height: 93px;
+    width: 100%;
+    overflow: auto;
+    padding: 0 0.2em 0 0;
+  }
+}
+
+span.PlayPosition {
+  vertical-align: middle;
+  padding-left: 0.5em;
+}
