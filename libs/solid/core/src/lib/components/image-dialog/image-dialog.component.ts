@@ -30,13 +30,11 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     let dzi = this.data.image.deepZoomLink;
-    console.log('dzi: ', dzi);
     if (dzi) {
       if (!this.coreConfig.production) {
         // TODO: This workaround is required for deepzoom in dev environments. It will not work with other cdn domains.
         dzi = dzi.replace('https://cdn.geomat.uni-frankfurt.de', '');
       }
-      console.log('dzi: ', dzi);
       this._viewer = OpenSeadragon({
         id: 'dzi-container',
         tileSources: dzi,
