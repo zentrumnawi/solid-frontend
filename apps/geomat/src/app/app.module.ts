@@ -96,6 +96,7 @@ export class AppModule {
     addIcon('crystalsystem');
     addIcon('profile');
     addIcon('quiz');
+    addIcon('glossary');
     addIcon('info');
     addIcon('info2');
     addIcon('feedback');

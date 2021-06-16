@@ -10,7 +10,7 @@
         class="single-choice"
       >
         <ng-container *ngFor="let images of question.img">
-          <img [alt]="images.img_alt" [src]="images.img.large" />
+          <img [alt]="images.img_alt" [src]="images.img.medium" />
         </ng-container>
         <mat-radio-group
           (change)="onRadioChange($event)"
