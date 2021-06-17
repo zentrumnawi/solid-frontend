@@ -1,6 +1,10 @@
-import { PhotographModel } from '@zentrumnawi/solid-core';
+import { ImageModel, PhotographModel } from '@zentrumnawi/solid-core';
 
-export interface QuizQuestion {
+export interface QuizQuestion extends QuizQuestionApi {
+  images: ImageModel[];
+}
+
+export interface QuizQuestionApi {
   id: number;
   type: QuizQuestionType;
   difficulty: 1 | 2 | 3 | 4 | 5;

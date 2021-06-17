@@ -1,12 +1,16 @@
+solid-core-image {
+  margin-top: 2px;
+  height: calc(100vh / 2.5);
+  margin-left: 16px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-flow: row wrap;
+}
+
 mat-card-content.single-choice {
   display: flex;
   flex-direction: column;
-
-  // clean up duplicates
-  // TODO: differentiate between landscape and portrait like in profile-detail
-  img {
-    padding-bottom: 10px;
-  }
+  margin-left: 16px;
 
   mat-radio-group {
     display: flex;
@@ -44,11 +48,7 @@ mat-card-content.single-choice {
 mat-card-content.multiple-choice {
   display: flex;
   flex-direction: column;
-
-  // TODO: differentiate between landscape and portrait like in profile-detail
-  img {
-    padding-bottom: 10px;
-  }
+  margin-left: 16px;
 
   mat-checkbox {
     width: 100%;
@@ -78,6 +78,11 @@ mat-card-content.multiple-choice {
       }
     }
   }
+}
+
+mat-card-actions {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 span.feedback {
