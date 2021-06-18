@@ -1,22 +1,32 @@
 <ng-container *ngIf="image; else noImg">
-  <div class="container" *ngIf="image.mediaType == 'image'">
-    <img
-      *ngIf="view != 'grid'; else grid"
-      [src]="image.getRawImage('large')"
-      [alt]="image.alt"
-      [class.landscape]="image.isLandscape"
-    />
-  </div>
-  <div class="container" *ngIf="image.mediaType == 'video'">
-    <video *ngIf="hasControlPanel" id="video" preload="metadata" controls>
-      *ngIf="view != 'grid' ; else grid"
-      <source [src]="image.getVideoSrc()" />
-    </video>
-    <video *ngIf="!hasControlPanel" id="video" preload="metadata">
-      *ngIf="view != 'grid' ; else grid"
-      <source [src]="image.getVideoSrc()" />
-    </video>
-  </div>
+  <ng-container [ngSwitch]="image.mediaType">
+    <div class="container" *ngSwitchCase="'image'">
+      <img
+        *ngIf="view != 'grid'; else grid"
+        [src]="image.getRawImage('large')"
+        [alt]="image.alt"
+        [class.landscape]="image.isLandscape"
+      />
+    </div>
+    <div class="container" *ngSwitchCase="'audio'">
+      <img
+        *ngIf="view != 'grid'; else grid"
+        [src]="'assets/profile/planty_audio.svg'"
+        [alt]="image.alt"
+        [class.landscape]="image.isLandscape"
+      />
+    </div>
+    <div class="container" *ngSwitchCase="'video'">
+      <video *ngIf="hasControlPanel" id="video" preload="metadata" controls>
+        *ngIf="view != 'grid' ; else grid"
+        <source [src]="image.getVideoSrc()" />
+      </video>
+      <video *ngIf="!hasControlPanel" id="video" preload="metadata">
+        *ngIf="view != 'grid' ; else grid"
+        <source [src]="image.getVideoSrc()" />
+      </video>
+    </div>
+  </ng-container>
 
   <solid-core-image-toolbar
     *ngIf="view != 'grid'"

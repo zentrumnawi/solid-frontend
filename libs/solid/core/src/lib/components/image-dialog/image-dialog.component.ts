@@ -48,6 +48,8 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
         constrainDuringPan: true,
       });
     }
+    console.log(this.data.image.audiosrc);
+
     if (this.data.image.audiosrc) {
       this.hasAudio = true;
     }
