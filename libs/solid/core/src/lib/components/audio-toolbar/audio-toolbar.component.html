@@ -1,8 +1,6 @@
-<div class="audioToolbar">
-  <button (click)="onPlayPauseClick()" mat-mini-fab color="accent">
-    <mat-icon>{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
-  </button>
-</div>
+<button (click)="onPlayPauseClick()" mat-mini-fab color="accent">
+  <mat-icon>{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
+</button>
 <audio
   #audioplayer
   (timeupdate)="onPlayerTimeUpdate()"

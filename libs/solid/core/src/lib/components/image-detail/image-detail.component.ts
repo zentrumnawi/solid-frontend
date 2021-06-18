@@ -1,5 +1,5 @@
 import { Component, Input, NgZone } from '@angular/core';
-import { ImageModel } from '../../models';
+import { ImageModel, MediaModel } from '../../models';
 
 @Component({
   selector: 'solid-core-image-detail',
@@ -7,9 +7,11 @@ import { ImageModel } from '../../models';
   styleUrls: ['./image-detail.component.scss'],
 })
 export class ImageDetailComponent {
-  @Input() image?: ImageModel;
+  @Input() image?: MediaModel;
   @Input() hasDialog!: boolean;
   @Input() hasAttributions!: boolean;
   @Input() name!: string;
   @Input() view?: string;
+  @Input()
+  hasControlPanel!: boolean | 'false';
 }

@@ -4,7 +4,7 @@
       (click)="select.emit(profile.id)"
       *ngFor="let profile of profilesArr; trackBy: trackByFn"
     >
-      <img
+      <!-- <img
         [alt]="profile.name"
         [src]="
           profile.images.length > 0
@@ -12,7 +12,7 @@
             : 'assets/profile/no_thumbnail.svg'
         "
         class="thumbnail"
-      />
+      /> -->
       <div
         class="profile-title"
         [class.selected]="selectedProfileId === profile.id"

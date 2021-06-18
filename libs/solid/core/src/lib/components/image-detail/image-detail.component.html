@@ -1,10 +1,23 @@
 <ng-container *ngIf="image; else noImg">
-  <img
-    *ngIf="view != 'grid'; else grid"
-    [src]="image.getRawImage('large')"
-    [alt]="image.alt"
-    [class.landscape]="image.isLandscape"
-  />
+  <div class="container" *ngIf="image.mediaType == 'image'">
+    <img
+      *ngIf="view != 'grid'; else grid"
+      [src]="image.getRawImage('large')"
+      [alt]="image.alt"
+      [class.landscape]="image.isLandscape"
+    />
+  </div>
+  <div class="container" *ngIf="image.mediaType == 'video'">
+    <video *ngIf="hasControlPanel" id="video" preload="metadata" controls>
+      *ngIf="view != 'grid' ; else grid"
+      <source [src]="image.getVideoSrc()" />
+    </video>
+    <video *ngIf="!hasControlPanel" id="video" preload="metadata">
+      *ngIf="view != 'grid' ; else grid"
+      <source [src]="image.getVideoSrc()" />
+    </video>
+  </div>
+
   <solid-core-image-toolbar
     *ngIf="view != 'grid'"
     [image]="image"

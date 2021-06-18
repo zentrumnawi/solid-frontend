@@ -37,6 +37,7 @@ export class DetailComponent {
 
   @Input()
   public set profile(profile: Profile) {
+    console.log(profile);
     this._profile = profile;
     this.ImageLoaded = profile.images.map((_) => false);
     this.onImageSelect(0);

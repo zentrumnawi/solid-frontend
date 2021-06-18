@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ImageModel } from '../../models';
+import { ImageModel, MediaModel } from '../../models';
 
 @Component({
   selector: 'solid-core-image',
@@ -13,7 +13,7 @@ import { ImageModel } from '../../models';
   ],
 })
 export class ImageComponent {
-  @Input() image?: ImageModel;
+  @Input() image?: MediaModel;
   @Input() hasDialog = true;
   @Input() hasAttributions = true;
   @Input() name!: string;

@@ -1,5 +1,5 @@
 import { Component, Input, NgZone } from '@angular/core';
-import { ImageModel } from '../../models';
+import { ImageModel, MediaModel } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import {
   CloseScrollStrategy,
@@ -15,7 +15,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
   styleUrls: ['./image-toolbar.component.scss'],
 })
 export class ImageToolbarComponent {
-  @Input() public image!: ImageModel;
+  @Input() public image!: MediaModel;
   @Input() public name!: string;
   @Input() hasAttributions!: boolean;
   @Input() hasDialog!: boolean;
