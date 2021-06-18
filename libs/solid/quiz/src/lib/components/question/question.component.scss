@@ -1,16 +1,26 @@
-solid-core-image {
-  margin-top: 2px;
+.image-container {
+  // This does not work as it should - I have no idea how to get the best results
+  // Should we switch images via swipe? Or Scroll? Or just stack them?
+  // perhaps the image-container div is not helpful in the end.
   height: calc(100vh / 2.5);
-  margin-left: 16px;
-  margin-bottom: 1.5rem;
   display: flex;
-  flex-flow: row wrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-left: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+solid-core-image {
+  width: 100%;
+  margin-right: 0.5rem;
 }
 
 mat-card-content.single-choice {
   display: flex;
   flex-direction: column;
-  margin-left: 16px;
+  margin-left: 0.5rem;
 
   mat-radio-group {
     display: flex;
@@ -48,7 +58,7 @@ mat-card-content.single-choice {
 mat-card-content.multiple-choice {
   display: flex;
   flex-direction: column;
-  margin-left: 16px;
+  margin-left: 0.5rem;
 
   mat-checkbox {
     width: 100%;
@@ -81,8 +91,8 @@ mat-card-content.multiple-choice {
 }
 
 mat-card-actions {
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 span.feedback {
