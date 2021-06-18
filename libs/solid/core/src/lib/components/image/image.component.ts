@@ -4,13 +4,7 @@ import { ImageModel } from '../../models';
 @Component({
   selector: 'solid-core-image',
   templateUrl: './image.component.html',
-  styles: [
-    `
-      :host {
-        display: block;
-      }
-    `,
-  ],
+  styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent {
   @Input() image?: ImageModel;

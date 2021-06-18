@@ -20,6 +20,8 @@ export class QuestionComponent implements OnChanges {
   public SelectedAnswers: number[] = [];
   public ShowAnswers = false;
   public Correct?: boolean;
+  public ImageIndex = 0;
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   constructor(private _store: Store) {}
 
@@ -54,6 +56,7 @@ export class QuestionComponent implements OnChanges {
     if (this.question && this.Correct !== undefined) {
       this._store.dispatch(new QuizActions.QuestionAnswered(this.Correct));
     }
+    this.ImageIndex = 0;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -86,5 +89,23 @@ export class QuestionComponent implements OnChanges {
       return false;
     }
     return !answer.correct; // && this.SelectedAnswers.includes(answer.id);
+  }
+
+  swipe(
+    currentIndex: number,
+    imageLength: number,
+    action: string = this.SWIPE_ACTION.RIGHT
+  ) {
+    if (currentIndex > imageLength || currentIndex < 0) {
+      return;
+    }
+    if (action === this.SWIPE_ACTION.LEFT) {
+      const isLast = currentIndex === imageLength - 1;
+      this.ImageIndex = isLast ? 0 : currentIndex + 1;
+    }
+    if (action === this.SWIPE_ACTION.RIGHT) {
+      const isFirst = currentIndex === 0;
+      this.ImageIndex = isFirst ? imageLength - 1 : currentIndex - 1;
+    }
   }
 }
