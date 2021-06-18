@@ -1,7 +1,4 @@
 .image-container {
-  // This does not work as it should - I have no idea how to get the best results
-  // Should we switch images via swipe? Or Scroll? Or just stack them?
-  // perhaps the image-container div is not helpful in the end.
   height: calc(100vh / 2.5);
   display: flex;
   overflow-x: auto;
