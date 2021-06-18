@@ -21,7 +21,8 @@
           (swiperight)="swipe(ImageIndex, question.images.length, $event.type)"
           (swipeleft)="swipe(ImageIndex, question.images.length, $event.type)"
           [image]="question.images[ImageIndex]"
-          [hasDialog]="false"
+          [hasDialog]="true"
+          [hasAudio]="false"
           [hasAttributions]="true"
         ></solid-core-image>
         <button

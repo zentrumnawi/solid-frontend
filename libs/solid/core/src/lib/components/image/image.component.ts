@@ -12,4 +12,5 @@ export class ImageComponent {
   @Input() hasAttributions = true;
   @Input() name!: string;
   @Input() view?: string;
+  @Input() hasAudio!: boolean;
 }
