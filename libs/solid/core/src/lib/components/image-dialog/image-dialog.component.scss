@@ -28,15 +28,10 @@ solid-core-image-detail {
   position: relative;
   ::ng-deep {
     img {
-      // border-radius: 4px;
-      // margin-bottom: -40px;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translateY(-50%) translateX(-50%);
-    }
-    div.toolbar {
-      bottom: 0.5em;
     }
   }
 }
@@ -58,7 +53,6 @@ div.audiobar {
   position: relative;
   display: flex;
   justify-content: flex-start;
-  // bottom: calc(40px + 0.5em);
   bottom: 3.4em;
   margin-bottom: -2.5em;
   margin-left: 0.2em;

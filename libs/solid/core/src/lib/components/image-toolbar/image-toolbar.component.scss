@@ -2,7 +2,6 @@ div.toolbar {
   position: relative;
   display: flex;
   justify-content: flex-end;
-  bottom: calc(40px + 0.5em);
   &.dzi {
     bottom: 0.9em;
   }
