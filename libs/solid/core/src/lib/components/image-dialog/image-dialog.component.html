@@ -5,16 +5,16 @@
   </button>
 </div>
 <ng-container
-  *ngIf="data.image.deepZoomLink as dziFile; then deepZoom; else noZoom"
+  *ngIf="data.mediaObject.deepZoomLink as dziFile; then deepZoom; else noZoom"
 ></ng-container>
 <div id="description-container" *ngIf="hasDescription">
-  <span markdown [data]="data.image.description"></span>
+  <span markdown [data]="data.mediaObject.description"></span>
 </div>
 <ng-template #deepZoom>
   <div mat-dialog-content>
     <div id="dzi-container"></div>
     <solid-core-image-toolbar
-      [image]="data.image"
+      [mediaObject]="data.mediaObject"
       [hasAttributions]="true"
       [hasDialog]="false"
       [hasDziTools]="true"
@@ -26,7 +26,7 @@
 <ng-template #noZoom>
   <div mat-dialog-content>
     <solid-core-image-detail
-      [image]="data.image"
+      [mediaObject]="data.mediaObject"
       [hasDialog]="false"
       [hasControlPanel]="true"
     ></solid-core-image-detail>
@@ -34,7 +34,7 @@
       <solid-core-audio-toolbar
         class="audiobar"
         *ngIf="hasAudio"
-        [audiosrc]="data.image.audiosrc"
+        [audiosrc]="data.mediaObject.audiosrc"
       >
       </solid-core-audio-toolbar>
     </div>

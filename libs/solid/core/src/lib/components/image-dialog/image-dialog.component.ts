@@ -29,7 +29,7 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit(): void {
-    let dzi = this.data.image.deepZoomLink;
+    let dzi = this.data.mediaObject.deepZoomLink;
     console.log('dzi: ', dzi);
     if (dzi) {
       if (!this.coreConfig.production) {
@@ -48,12 +48,10 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
         constrainDuringPan: true,
       });
     }
-    console.log(this.data.image.audiosrc);
-
-    if (this.data.image.audiosrc) {
+    if (this.data.mediaObject.audiosrc) {
       this.hasAudio = true;
     }
-    if (this.data.image.description) {
+    if (this.data.mediaObject.description) {
       this.hasDescription = true;
     }
   }

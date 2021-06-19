@@ -1,36 +1,41 @@
-<ng-container *ngIf="image; else noImg">
-  <ng-container [ngSwitch]="image.mediaType">
+<ng-container *ngIf="mediaObject; else noImg">
+  <ng-container [ngSwitch]="mediaObject.mediaType">
     <div class="container" *ngSwitchCase="'image'">
       <img
         *ngIf="view != 'grid'; else grid"
-        [src]="image.getRawImage('large')"
-        [alt]="image.alt"
-        [class.landscape]="image.isLandscape"
+        [src]="mediaObject.getRawImage('large')"
+        [alt]="mediaObject.alt"
+        [class.landscape]="mediaObject.isLandscape"
       />
     </div>
     <div class="container" *ngSwitchCase="'audio'">
       <img
         *ngIf="view != 'grid'; else grid"
         [src]="'assets/profile/planty_audio.svg'"
-        [alt]="image.alt"
-        [class.landscape]="image.isLandscape"
+        [alt]="mediaObject.alt"
+        [class.landscape]="mediaObject.isLandscape"
       />
+      <audio *ngIf="hasControlPanel" id="audio" controls>
+        <source [src]="mediaObject.getSrc()" type="audio/ogg" />
+        <source [src]="mediaObject.getSrc()" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
     </div>
     <div class="container" *ngSwitchCase="'video'">
       <video *ngIf="hasControlPanel" id="video" preload="metadata" controls>
-        *ngIf="view != 'grid' ; else grid"
-        <source [src]="image.getVideoSrc()" />
+        <source [src]="mediaObject.getSrc()" />
+        Your browser does not support the video tag.
       </video>
       <video *ngIf="!hasControlPanel" id="video" preload="metadata">
-        *ngIf="view != 'grid' ; else grid"
-        <source [src]="image.getVideoSrc()" />
+        <source [src]="mediaObject.getSrc()" />
+        Your browser does not support the video tag.
       </video>
     </div>
   </ng-container>
 
   <solid-core-image-toolbar
     *ngIf="view != 'grid'"
-    [image]="image"
+    [mediaObject]="mediaObject"
     [name]="name"
     [hasAttributions]="hasAttributions"
     [hasDialog]="hasDialog"
@@ -38,9 +43,15 @@
   ></solid-core-image-toolbar>
   <ng-template #grid>
     <img
-      [src]="image.getRawImage('thumbnail')"
-      [alt]="image.alt"
-      [class.landscape]="image.isLandscape"
+      *ngIf="mediaObject.mediaType === 'image'"
+      [src]="mediaObject.getRawImage('thumbnail')"
+      [alt]="mediaObject.alt"
+      [class.landscape]="mediaObject.isLandscape"
+    />
+    <img
+      *ngIf="mediaObject.mediaType === 'audio'"
+      [src]="'assets/profile/planty_audio.svg'"
+      [alt]="mediaObject.alt"
     />
   </ng-template>
 </ng-container>

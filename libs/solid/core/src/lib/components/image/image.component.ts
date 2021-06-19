@@ -13,7 +13,7 @@ import { ImageModel, MediaModel } from '../../models';
   ],
 })
 export class ImageComponent {
-  @Input() image?: MediaModel;
+  @Input() mediaObject?: MediaModel;
   @Input() hasDialog = true;
   @Input() hasAttributions = true;
   @Input() name!: string;

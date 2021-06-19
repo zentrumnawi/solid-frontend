@@ -128,7 +128,9 @@ export class ProfileState {
                   ...profile,
                   type: 'profile',
                   // images: profile.photographs.map((p) => new ImageModel(p)),
-                  images: profile.media_objects.map((m) => new MediaModel(m)),
+                  mediaObjects: profile.media_objects.map(
+                    (m) => new MediaModel(m)
+                  ),
                 })),
               };
             });

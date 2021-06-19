@@ -7,7 +7,7 @@ import { ImageModel, MediaModel } from '../../models';
   styleUrls: ['./image-detail.component.scss'],
 })
 export class ImageDetailComponent {
-  @Input() image?: MediaModel;
+  @Input() mediaObject?: MediaModel;
   @Input() hasDialog!: boolean;
   @Input() hasAttributions!: boolean;
   @Input() name!: string;

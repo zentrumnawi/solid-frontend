@@ -2,14 +2,14 @@
   <ng-container *ngIf="hasAudio">
     <solid-core-audio-toolbar
       *ngIf="hasAudio"
-      [audiosrc]="data.image.audiosrc"
-      [description]="data.image.description"
+      [audiosrc]="data.mediaObject.audiosrc"
+      [description]="data.mediaObject.description"
     >
     </solid-core-audio-toolbar>
   </ng-container>
   <div class="dziToolbar">
     <button
-      *ngIf="hasAttributions && image.attributions as attributions"
+      *ngIf="hasAttributions && mediaObject.attributions as attributions"
       mat-mini-fab
       color="accent"
       cdkOverlayOrigin

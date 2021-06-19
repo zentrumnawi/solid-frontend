@@ -8,20 +8,34 @@
   <solid-core-image
     (swipeleft)="swipe(ImageSelected, $event.type)"
     (swiperight)="swipe(ImageSelected, $event.type)"
-    [image]="profile.images[ImageSelected]"
+    [mediaObject]="profile.mediaObjects[ImageSelected]"
     [name]="profile.name"
   ></solid-core-image>
   <div class="scroll-container">
     <div class="img-toolbar" #thumbnails>
-      <ng-container *ngFor="let img of profile.images; let i = index">
+      <ng-container
+        *ngFor="let mediaObject of profile.mediaObjects; let i = index"
+      >
         <img
+          *ngIf="mediaObject.mediaType === 'image'"
           (click)="onImageSelect(i)"
           [class.not-selected]="ImageSelected !== i"
-          [src]="
-            img.getRawImage('thumbnail') !== null
-              ? img.getRawImage('thumbnail')
-              : 'assets/profile/planty_video.svg'
-          "
+          [src]="mediaObject.getRawImage('thumbnail')"
+          [alt]="mediaObject.alt"
+        />
+        <img
+          *ngIf="mediaObject.mediaType === 'video'"
+          (click)="onImageSelect(i)"
+          [class.not-selected]="ImageSelected !== i"
+          [src]="'assets/profile/planty_video.svg'"
+          [alt]="mediaObject.alt"
+        />
+        <img
+          *ngIf="mediaObject.mediaType === 'audio'"
+          (click)="onImageSelect(i)"
+          [class.not-selected]="ImageSelected !== i"
+          [src]="'assets/profile/planty_audio.svg'"
+          [alt]="mediaObject.alt"
         />
       </ng-container>
     </div>

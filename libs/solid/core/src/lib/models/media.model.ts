@@ -57,10 +57,16 @@ export class MediaModel {
     if (this.mediaType === 'image') {
       return this._mediaObject.file;
     }
-    return null;
+    if (this.mediaType === 'audio') {
+      return 'assets/profile/planty_audio.svg';
+    }
+    return 'assets/profile/no_thumbnail.svg';
   }
-  public getVideoSrc() {
-    return this._mediaObject.file;
+  public getSrc() {
+    if (this.mediaType === 'video' || this.mediaType === 'audio') {
+      return this._mediaObject.file;
+    }
+    return null;
   }
 
   public get deepZoomLink(): string | false {

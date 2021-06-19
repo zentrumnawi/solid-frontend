@@ -21,7 +21,7 @@ export interface TreeNodeApi {
 export interface Profile extends ProfileApi {
   type: 'profile';
   // images: ImageModel[];
-  images: MediaModel[];
+  mediaObjects: MediaModel[];
   [key: string]: any;
 }
 

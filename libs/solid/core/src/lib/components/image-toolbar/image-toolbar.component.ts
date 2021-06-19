@@ -15,7 +15,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
   styleUrls: ['./image-toolbar.component.scss'],
 })
 export class ImageToolbarComponent {
-  @Input() public image!: MediaModel;
+  @Input() public mediaObject!: MediaModel;
   @Input() public name!: string;
   @Input() hasAttributions!: boolean;
   @Input() hasDialog!: boolean;
@@ -55,7 +55,7 @@ export class ImageToolbarComponent {
       maxHeight: '100%',
       panelClass: 'solid-core-image-dialog',
       data: {
-        image: this.image,
+        mediaObject: this.mediaObject,
         name: this.name,
       },
     });

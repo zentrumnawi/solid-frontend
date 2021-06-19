@@ -39,7 +39,7 @@ export class DetailComponent {
   public set profile(profile: Profile) {
     console.log(profile);
     this._profile = profile;
-    this.ImageLoaded = profile.images.map((_) => false);
+    this.ImageLoaded = profile.mediaObjects.map((_) => false);
     this.onImageSelect(0);
     this.expansion?._headers.forEach((panel) => panel?.panel.close());
   }

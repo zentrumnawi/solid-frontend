@@ -64,9 +64,11 @@ div.img-toolbar {
   }
   img {
     height: 4rem;
+    width: 4rem;
     transition-property: filter;
     transition-duration: 500ms;
     margin: 0 4px;
+    object-fit: cover;
 
     &.not-selected {
       cursor: pointer;
