@@ -4,13 +4,7 @@ import { ImageModel } from '../../models';
 @Component({
   selector: 'solid-core-image',
   templateUrl: './image.component.html',
-  styles: [
-    `
-      :host {
-        display: block;
-      }
-    `,
-  ],
+  styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent {
   @Input() image?: ImageModel;
@@ -18,4 +12,5 @@ export class ImageComponent {
   @Input() hasAttributions = true;
   @Input() name!: string;
   @Input() view?: string;
+  @Input() hasAudio!: boolean;
 }

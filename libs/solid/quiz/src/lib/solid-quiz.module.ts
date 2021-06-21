@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 export const routes: Route[] = [
   { path: '', component: MainComponent, data: { title: 'Selbsttest' } },
@@ -44,6 +45,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MatProgressBarModule,
     MatRadioModule,
     MatProgressSpinnerModule,
+    MatIconModule,
   ],
 })
 export class SolidQuizModule {}
