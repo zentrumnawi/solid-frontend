@@ -1,4 +1,17 @@
-<ng-container *ngIf="mediaObject; else noImg">
+<!-- For quiz image because the quiz question doesn't 
+contain any media object now. It is just a temporary solution.
+It is not possible to use a image toolbar here, because quiz image
+use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
+<ng-container *ngIf="image">
+  <img
+    [src]="image.getRawImage('large')"
+    [alt]="image.alt"
+    [class.landscape]="image.isLandscape"
+  />
+</ng-container>
+
+<!-- For media object in Profile -->
+<ng-container *ngIf="mediaObject">
   <ng-container [ngSwitch]="mediaObject.mediaType">
     <div class="container" *ngSwitchCase="'image'">
       <img
@@ -40,6 +53,7 @@
     [hasAttributions]="hasAttributions"
     [hasDialog]="hasDialog"
     [hasDziTools]="false"
+    [hasAudio]="hasAudio"
   ></solid-core-image-toolbar>
   <ng-template #grid>
     <img
@@ -55,7 +69,7 @@
     />
   </ng-template>
 </ng-container>
-<ng-template #noImg>
+<!-- <ng-template #noMediaObject>
   <img
     class="landscape"
     [src]="
@@ -65,4 +79,4 @@
     "
     alt="Leider haben wir kein Bild in der Datenbank"
   />
-</ng-template>
+</ng-template> -->

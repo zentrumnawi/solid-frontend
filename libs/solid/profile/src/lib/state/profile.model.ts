@@ -28,7 +28,7 @@ export interface Profile extends ProfileApi {
 export interface ProfileApi {
   id: number;
   name: string;
-  photographs: PhotographModel[];
+  // photographs: PhotographModel[];
   media_objects: MediaObjectModel[];
   trivial_name: string;
   short_description?: string;

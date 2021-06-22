@@ -7,11 +7,12 @@ import { ImageModel, MediaModel } from '../../models';
   styleUrls: ['./image-detail.component.scss'],
 })
 export class ImageDetailComponent {
+  @Input() image?: ImageModel;
   @Input() mediaObject?: MediaModel;
   @Input() hasDialog!: boolean;
   @Input() hasAttributions!: boolean;
   @Input() name!: string;
   @Input() view?: string;
-  @Input()
-  hasControlPanel!: boolean | 'false';
+  @Input() hasControlPanel!: boolean | 'false';
+  @Input() hasAudio!: boolean;
 }

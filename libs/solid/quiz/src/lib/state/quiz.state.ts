@@ -1,10 +1,19 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { QuizQuestion, QuizQuestionInSession, QuizSession } from './quiz.model';
+import {
+  QuizQuestion,
+  QuizQuestionApi,
+  QuizQuestionInSession,
+  QuizSession,
+} from './quiz.model';
 import { QuizActions } from './quiz.actions';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
-import { tap } from 'rxjs/operators';
+import {
+  SOLID_CORE_CONFIG,
+  SolidCoreConfig,
+  ImageModel,
+} from '@zentrumnawi/solid-core';
+import { map, tap } from 'rxjs/operators';
 
 export interface QuizStateModel {
   questions: QuizQuestion[];
@@ -34,6 +43,17 @@ export class QuizState {
     return this._http
       .get<QuizQuestion[]>(`${this._config.apiUrl}/quizquestions`)
       .pipe(
+        map((response) => {
+          const mapit = (input: QuizQuestionApi[]): QuizQuestion[] => {
+            return input.map((question) => {
+              return {
+                ...question,
+                images: question.img.map((p) => new ImageModel(p)),
+              };
+            });
+          };
+          return mapit(response);
+        }),
         tap((res) => {
           ctx.patchState({
             questions: res,
