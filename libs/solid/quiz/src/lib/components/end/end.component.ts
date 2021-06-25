@@ -36,7 +36,9 @@ export class EndComponent implements OnDestroy {
             .reduce((curr, val) => (val === 1 ? curr + 1 : curr), 0 as number);
           this.correctPercentage = this.correctQuestions / this.oldCount;
           let feedbacks: string[] = [];
-          if (this.correctPercentage < 0.25) {
+          if (this.correctPercentage === 0) {
+            feedbacks = QuizFeedback.e0;
+          } else if (this.correctPercentage < 0.25) {
             feedbacks = QuizFeedback.lt25;
           } else if (this.correctPercentage < 0.5) {
             feedbacks = QuizFeedback.lt50;
