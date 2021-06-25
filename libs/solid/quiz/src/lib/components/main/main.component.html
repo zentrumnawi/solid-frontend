@@ -1,7 +1,8 @@
 <ng-container *ngIf="QuizSession | async as quizSession; else quizStart">
-  <div *ngIf="quizSession.progress !== 100; else quizEnd">
+  <div *ngIf="quizSession.progress !== 100 && !stopQuiz; else quizEnd">
     <solid-quiz-question
       [question]="quizSession.questions[quizSession.currentQuestion]"
+      (stopQuiz)="setStopQuiz($event)"
     ></solid-quiz-question>
     <mat-card>
       <mat-card-content>
@@ -17,5 +18,5 @@
   <solid-quiz-start></solid-quiz-start>
 </ng-template>
 <ng-template #quizEnd>
-  <solid-quiz-end></solid-quiz-end>
+  <solid-quiz-end (stopQuiz)="setStopQuiz($event)"></solid-quiz-end>
 </ng-template>

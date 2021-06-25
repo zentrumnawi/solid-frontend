@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { QuizSession } from '../../state/quiz.model';
 import { QuizActions } from '../../state/quiz.actions';
@@ -20,6 +20,7 @@ export class EndComponent implements OnDestroy {
   correctQuestions = 0;
   correctPercentage = 0;
   oldCount = 0;
+  @Output() stopQuiz = new EventEmitter<boolean>();
 
   constructor(private _store: Store) {
     this._store
@@ -64,6 +65,7 @@ export class EndComponent implements OnDestroy {
     this._store.dispatch(
       new QuizActions.StartSession(this.questionCount.value)
     );
+    this.stopQuiz.emit(false);
   }
 
   ngOnDestroy(): void {
