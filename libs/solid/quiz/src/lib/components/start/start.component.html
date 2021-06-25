@@ -4,17 +4,17 @@
   </mat-card-header>
   <mat-card-content *ngIf="QuizLoaded | async; else quizLoading">
     <p>
-      Mit diesen Quizfragen kannst Du Deinen Wissensstand in verschiedenen
-      Teilbereichen überprüfen.
+      Mit diesen Fragen kann der persönliche Wissensstand in verschiedenen
+      Teilbereichen überprüft werden.
     </p>
     <p>
-      Das Feedback gibt Dir genauere Hinweise darüber, warum Deine Antworten
-      falsch (oder richtig) waren. So erfährst Du auch zusätzliche Hintergründe
-      und kannst Dein Wissen erweitern.
+      Das Feedback gibt genauere Hinweise darüber, warum die gegebenen Antworten
+      falsch (oder richtig) waren und zeigt weitere Hintergrundinformationen
+      auf.
     </p>
     <p>
-      Du kannst eine Fragenanzahl vorgeben - die Fragen werden zufällig aus
-      unserem Fragenpool ausgewählt.
+      Die Fragen werden zufällig aus unserem Fragenpool ausgewählt - die
+      Fragenanzahl kann hier festgelegt werden:
     </p>
   </mat-card-content>
   <mat-card-actions *ngIf="QuizLoaded | async">
