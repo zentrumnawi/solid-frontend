@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { QuizSession } from '../../state/quiz.model';
 import { QuizActions } from '../../state/quiz.actions';
@@ -19,7 +19,8 @@ export class EndComponent implements OnDestroy {
   FeedbackText = '';
   correctQuestions = 0;
   correctPercentage = 0;
-  oldCount = 0;
+  answeredQuestions = 0;
+  @Output() stopQuiz = new EventEmitter<boolean>();
 
   constructor(private _store: Store) {
     this._store
@@ -29,13 +30,18 @@ export class EndComponent implements OnDestroy {
         if (session) {
           this.QuizSession = session;
           this.questionCount.setValue(session.questions.length);
-          this.oldCount = session.questions.length;
           this.correctQuestions = session.questions
             .map((q) => q.answered)
             .reduce((curr, val) => (val === 1 ? curr + 1 : curr), 0 as number);
-          this.correctPercentage = this.correctQuestions / this.oldCount;
+          this.answeredQuestions = session.questions
+            .map((q) => q.answered)
+            .reduce((curr, val) => (val !== 0 ? curr + 1 : curr), 0 as number);
+          this.correctPercentage =
+            this.correctQuestions / this.answeredQuestions;
           let feedbacks: string[] = [];
-          if (this.correctPercentage < 0.25) {
+          if (this.correctPercentage === 0) {
+            feedbacks = QuizFeedback.e0;
+          } else if (this.correctPercentage < 0.25) {
             feedbacks = QuizFeedback.lt25;
           } else if (this.correctPercentage < 0.5) {
             feedbacks = QuizFeedback.lt50;
@@ -52,10 +58,6 @@ export class EndComponent implements OnDestroy {
             '{{correctPercentage}}',
             Math.round(100 * this.correctPercentage).toString(10)
           );
-          this.FeedbackText = this.FeedbackText.replace(
-            '{{Count}}',
-            this.oldCount.toString(10)
-          );
         }
       });
   }
@@ -64,6 +66,7 @@ export class EndComponent implements OnDestroy {
     this._store.dispatch(
       new QuizActions.StartSession(this.questionCount.value)
     );
+    this.stopQuiz.emit(false);
   }
 
   ngOnDestroy(): void {
