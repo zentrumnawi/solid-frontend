@@ -19,7 +19,8 @@ export class EndComponent implements OnDestroy {
   FeedbackText = '';
   correctQuestions = 0;
   correctPercentage = 0;
-  oldCount = 0;
+  answeredQuestions = 0;
+  // oldCount = 0;
   @Output() stopQuiz = new EventEmitter<boolean>();
 
   constructor(private _store: Store) {
@@ -30,11 +31,15 @@ export class EndComponent implements OnDestroy {
         if (session) {
           this.QuizSession = session;
           this.questionCount.setValue(session.questions.length);
-          this.oldCount = session.questions.length;
+          // this.oldCount = session.questions.length;
           this.correctQuestions = session.questions
             .map((q) => q.answered)
             .reduce((curr, val) => (val === 1 ? curr + 1 : curr), 0 as number);
-          this.correctPercentage = this.correctQuestions / this.oldCount;
+          this.answeredQuestions = session.questions
+            .map((q) => q.answered)
+            .reduce((curr, val) => (val !== 0 ? curr + 1 : curr), 0 as number);
+          this.correctPercentage =
+            this.correctQuestions / this.answeredQuestions;
           let feedbacks: string[] = [];
           if (this.correctPercentage < 0.25) {
             feedbacks = QuizFeedback.lt25;
@@ -53,10 +58,10 @@ export class EndComponent implements OnDestroy {
             '{{correctPercentage}}',
             Math.round(100 * this.correctPercentage).toString(10)
           );
-          this.FeedbackText = this.FeedbackText.replace(
-            '{{Count}}',
-            this.oldCount.toString(10)
-          );
+          // this.FeedbackText = this.FeedbackText.replace(
+          //   '{{Count}}',
+          //   this.oldCount.toString(10)
+          // );
         }
       });
   }
