@@ -1,4 +1,4 @@
-import { Component, Input, NgZone } from '@angular/core';
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { ImageModel } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import {
@@ -14,7 +14,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
   templateUrl: './image-toolbar.component.html',
   styleUrls: ['./image-toolbar.component.scss'],
 })
-export class ImageToolbarComponent {
+export class ImageToolbarComponent implements OnInit {
   @Input() public image!: ImageModel;
   @Input() public name!: string;
   @Input() hasAttributions!: boolean;
@@ -23,15 +23,8 @@ export class ImageToolbarComponent {
   @Input() hasAudio!: boolean;
   @Input() hasDescription!: boolean;
   @Input() data!: any;
-
-  attributionsPositions: ConnectedPosition[] = [
-    {
-      originX: 'start',
-      originY: 'center',
-      overlayX: 'end',
-      overlayY: 'center',
-    },
-  ];
+  @Input() isAttributionsOverlayAbove!: boolean;
+  attributionsPositions: ConnectedPosition[] = [];
   attributionsScrollStrategy: CloseScrollStrategy;
   attributionsIsOpen = false;
 
@@ -46,6 +39,28 @@ export class ImageToolbarComponent {
       zone,
       viewportRuler
     );
+  }
+  ngOnInit(): void {
+    if (this.isAttributionsOverlayAbove) {
+      this.attributionsPositions = [
+        {
+          originX: 'end',
+          originY: 'top',
+          overlayX: 'center',
+          overlayY: 'bottom',
+          offsetX: 10,
+        },
+      ];
+    } else {
+      this.attributionsPositions = [
+        {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'end',
+          overlayY: 'center',
+        },
+      ];
+    }
   }
 
   public openDialog() {
