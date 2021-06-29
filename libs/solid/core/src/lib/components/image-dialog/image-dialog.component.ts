@@ -22,7 +22,7 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   private _viewer: Viewer | null = null;
   public hasAudio = false;
   public hasDescription = false;
-  isAttributionsOverlayAbove: boolean = false;
+  isAttributionsOverlayAbove = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
