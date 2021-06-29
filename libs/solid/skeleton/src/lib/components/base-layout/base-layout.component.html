@@ -9,6 +9,11 @@
       <!-- <div class="left-border">
         <span>Glossar</span>
       </div> -->
+      <img
+        id="largeLogo"
+        [src]="config.appLogoLarge"
+        onerror='this.style.display = "none"'
+      />
       <div>
         <button (click)="Glossary?.toggle()" mat-icon-button>
           <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
@@ -23,6 +28,11 @@
       </div>
       <span [class.app-title-fixed]="FixedLayout">{{ config.appName }}</span>
       <div class="spacer"></div>
+      <img
+        id="smallLogo"
+        [src]="config.appLogoSmall"
+        onerror='this.style.display = "none"'
+      />
       <button (click)="Glossary?.toggle()" mat-icon-button>
         <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
       </button>
