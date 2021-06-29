@@ -11,22 +11,35 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { Viewer } from 'openseadragon';
 import OpenSeadragon from 'openseadragon';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'solid-core-image-dialog',
   templateUrl: './image-dialog.component.html',
   styleUrls: ['./image-dialog.component.scss'],
 })
-export class ImageDialogComponent implements AfterViewInit, OnDestroy {
+export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   private _viewer: Viewer | null = null;
   public hasAudio = false;
   public hasDescription = false;
+  isAttributionsOverlayAbove: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(MAT_DIALOG_DATA) public name: string,
-    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
+    private _breakpointObserver: BreakpointObserver
   ) {}
+
+  public ngOnInit() {
+    this._breakpointObserver
+      .observe(['(max-width: 380px)'])
+      .subscribe((isMobile) => {
+        if (isMobile.matches) {
+          this.isAttributionsOverlayAbove = true;
+        }
+      });
+  }
 
   ngAfterViewInit(): void {
     let dzi = this.data.image.deepZoomLink;

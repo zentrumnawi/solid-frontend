@@ -6,6 +6,7 @@
   div.cdk-overlay-container {
     div.attributions-overlay {
       background-color: mat-color($background, card);
+      box-shadow: 0 0px 6px 0 mat-color($accent), 0 0px 3px 0 mat-color($accent);
     }
   }
 }
