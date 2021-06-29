@@ -9,6 +9,12 @@
       <!-- <div class="left-border">
         <span>Glossar</span>
       </div> -->
+      <div class="logo">
+        <img
+          src="assets/info/Hochschule_Logo.svg"
+          onerror='this.style.display = "none"'
+        />
+      </div>
       <div>
         <button (click)="Glossary?.toggle()" mat-icon-button>
           <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
@@ -23,6 +29,12 @@
       </div>
       <span [class.app-title-fixed]="FixedLayout">{{ config.appName }}</span>
       <div class="spacer"></div>
+      <div class="logo">
+        <img
+          src="assets/info/Hochschule_Logo.svg"
+          onerror='this.style.display = "none"'
+        />
+      </div>
       <button (click)="Glossary?.toggle()" mat-icon-button>
         <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
       </button>
