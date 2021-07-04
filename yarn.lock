@@ -1796,6 +1796,17 @@
     strip-json-comments "^3.1.1"
     tslib "^2.0.0"
 
+"@nrwl/devkit@12.5.4":
+  version "12.5.4"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.5.4.tgz#50dd022c06e08393d104cc9feb62d1bf8d33e25b"
+  integrity sha512-TcM0okbmZf2YuINC2Am6B2WJe7Ki/qN8VXT7x9Cw9xdv/7nIkWB0ksZHdKZINXgL3Kw+mB9qnRKI+q3VDp6VCQ==
+  dependencies:
+    "@nrwl/tao" "12.5.4"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    semver "7.3.4"
+    tslib "^2.0.0"
+
 "@nrwl/jest@11.4.0":
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-11.4.0.tgz#1bae17e86982ba73564c78468488d75cef2ff87e"
@@ -1827,6 +1838,16 @@
     jest-resolve "^26.6.2"
     rxjs "^6.5.4"
     strip-json-comments "^3.1.1"
+    tslib "^2.0.0"
+
+"@nrwl/jest@12.5.4":
+  version "12.5.4"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-12.5.4.tgz#bb77163d8986ddc302de55d64a7956824acdd8d4"
+  integrity sha512-GOnsiuenOFB3bBiC+DZ8+ZIeEqjzZ2UURtiuXKRVPQ6DF879BcCr78bjJzDG4Eizzt7LfGmIikOSMGuh4jXBVw==
+  dependencies:
+    "@nrwl/devkit" "12.5.4"
+    jest-resolve "^26.6.2"
+    rxjs "^6.5.4"
     tslib "^2.0.0"
 
 "@nrwl/linter@11.4.0":
@@ -1965,6 +1986,22 @@
     rxjs-for-await "0.0.2"
     semver "7.3.4"
     strip-json-comments "^3.1.1"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@12.5.4":
+  version "12.5.4"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.5.4.tgz#07ad019849338e391ed70e3e0db8d6546e85ba47"
+  integrity sha512-JHzF8cMUcXC+7vNfXqwdo7aIqTqd5gDS8rRCpl8aZaAPmKUjNs2or9ADlJK5hFho+UXUY2XcthZJFPJSMI0dzg==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    jsonc-parser "3.0.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
     tmp "~0.2.1"
     tslib "^2.0.0"
     yargs-parser "20.0.0"
