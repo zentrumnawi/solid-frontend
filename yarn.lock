@@ -1969,6 +1969,22 @@
     tslib "^2.0.0"
     yargs-parser "20.0.0"
 
+"@nrwl/tao@12.5.3":
+  version "12.5.3"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.5.3.tgz#2a93d6fb3341e17e4f083af72b1a01f4427ea3d2"
+  integrity sha512-m7EJq6LnJA1H4AGgC0xRA/0QF8bLQeYFE20r+F5CHL7KV4N7YyJOyYRuoG4SEYHM69ca7197OYFI9ettgAYrvw==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    jsonc-parser "3.0.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
 "@nrwl/workspace@11.4.0":
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-11.4.0.tgz#4cfc4d5338977415341cc922a8f64d721382962e"
