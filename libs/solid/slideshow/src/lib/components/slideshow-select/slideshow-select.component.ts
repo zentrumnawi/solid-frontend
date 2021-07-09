@@ -7,6 +7,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { takeUntil } from 'rxjs/operators';
+// tslint:disable-next-line: nx-enforce-module-boundaries
 import {
   SOLID_SKELETON_CONFIG,
   SolidSkeletonConfig,

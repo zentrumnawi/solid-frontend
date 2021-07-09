@@ -16,6 +16,7 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { ProfileActions } from '../../state/profile.actions';
+// tslint:disable-next-line: nx-enforce-module-boundaries
 import {
   SOLID_SKELETON_CONFIG,
   SolidSkeletonConfig,
