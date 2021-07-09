@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Inject,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -15,6 +16,10 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { ProfileActions } from '../../state/profile.actions';
+import {
+  SOLID_SKELETON_CONFIG,
+  SolidSkeletonConfig,
+} from '@zentrumnawi/solid-skeleton';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -48,7 +53,10 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public SwipeRight = -1;
   public View = 'tree';
 
-  constructor(private _store: Store) {
+  constructor(
+    private _store: Store,
+    @Inject(SOLID_SKELETON_CONFIG) public config: SolidSkeletonConfig
+  ) {
     this._store.dispatch([
       new ProfileActions.LoadDefinition(),
       new ProfileActions.LoadProfiles(),
@@ -165,7 +173,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     if (this.SelectedProfile) {
       return new Navigate(
         [
-          '/profile',
+          `${this.config.routingConfig.profile?.url}`,
           this.View === 'tree' ? 'grid' : 'tree',
           this.SelectedProfile.id,
         ],
@@ -174,7 +182,10 @@ export class BaseComponent implements OnInit, AfterViewInit {
       );
     }
     return new Navigate(
-      ['/profile', this.View === 'tree' ? 'grid' : 'tree'],
+      [
+        `${this.config.routingConfig.profile?.url}`,
+        this.View === 'tree' ? 'grid' : 'tree',
+      ],
       undefined,
       { replaceUrl: true }
     );
@@ -183,9 +194,16 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @Dispatch()
   public selectProfile(profileId?: number) {
     if (profileId) {
-      return new Navigate(['/profile', this.View, profileId]);
+      return new Navigate([
+        `${this.config.routingConfig.profile?.url}`,
+        this.View,
+        profileId,
+      ]);
     }
-    return new Navigate(['/profile', this.View]);
+    return new Navigate([
+      `${this.config.routingConfig.profile?.url}`,
+      this.View,
+    ]);
   }
 
   public swipeLeft() {

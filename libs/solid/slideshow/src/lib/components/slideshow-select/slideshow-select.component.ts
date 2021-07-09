@@ -7,6 +7,11 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { takeUntil } from 'rxjs/operators';
+import {
+  SOLID_SKELETON_CONFIG,
+  SolidSkeletonConfig,
+} from '@zentrumnawi/solid-skeleton';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'solid-slideshow-slideshow-select',
@@ -18,6 +23,10 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   @Select(SlideshowState.getSlideshowOverview)
   public Slideshows!: Observable<Slideshow[]>;
 
+  constructor(
+    @Inject(SOLID_SKELETON_CONFIG) public config: SolidSkeletonConfig
+  ) {}
+
   @Dispatch()
   private load() {
     return new SlideshowActions.Load();
@@ -25,7 +34,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   private openSlideshow(id: number) {
-    return new Navigate([`/slideshow/${id}`]);
+    return new Navigate([`${this.config.routingConfig.slideshow?.url}/${id}`]);
   }
 
   ngOnInit(): void {
