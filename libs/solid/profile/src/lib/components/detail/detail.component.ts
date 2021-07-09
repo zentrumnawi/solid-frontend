@@ -46,6 +46,7 @@ export class DetailComponent {
 
   public onImageLoaded(index: number) {
     this.ImageLoaded[index] = true;
+    console.log(this.profile);
   }
 
   public onImageSelect(index: number) {

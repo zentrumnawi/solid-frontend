@@ -114,7 +114,7 @@ export class ProfileState {
       return;
     }
     return this.http
-      .get<TreeNodeApi[]>(`${this._config.apiUrlMediaObject}/profiles/`)
+      .get<TreeNodeApi[]>(`${this._config.apiUrl}/profiles/`)
       .pipe(
         map((response) => {
           const mapit = (input: TreeNodeApi[]): TreeNode[] => {

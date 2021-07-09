@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:4200/api',
-  apiUrlMediaObject: 'http://localhost:8000/',
   preview: false,
   sentry: undefined,
 };
