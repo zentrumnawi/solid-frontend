@@ -16,11 +16,7 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { ProfileActions } from '../../state/profile.actions';
-// tslint:disable-next-line: nx-enforce-module-boundaries
-import {
-  SOLID_SKELETON_CONFIG,
-  SolidSkeletonConfig,
-} from '@zentrumnawi/solid-skeleton';
+import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -56,7 +52,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _store: Store,
-    @Inject(SOLID_SKELETON_CONFIG) public config: SolidSkeletonConfig
+    @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string
   ) {
     this._store.dispatch([
       new ProfileActions.LoadDefinition(),
@@ -174,7 +170,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     if (this.SelectedProfile) {
       return new Navigate(
         [
-          `${this.config.routingConfig.profile?.url}`,
+          `${this.baseUrl}`,
           this.View === 'tree' ? 'grid' : 'tree',
           this.SelectedProfile.id,
         ],
@@ -183,10 +179,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
       );
     }
     return new Navigate(
-      [
-        `${this.config.routingConfig.profile?.url}`,
-        this.View === 'tree' ? 'grid' : 'tree',
-      ],
+      [`${this.baseUrl}`, this.View === 'tree' ? 'grid' : 'tree'],
       undefined,
       { replaceUrl: true }
     );
@@ -195,16 +188,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @Dispatch()
   public selectProfile(profileId?: number) {
     if (profileId) {
-      return new Navigate([
-        `${this.config.routingConfig.profile?.url}`,
-        this.View,
-        profileId,
-      ]);
+      return new Navigate([`${this.baseUrl}`, this.View, profileId]);
     }
-    return new Navigate([
-      `${this.config.routingConfig.profile?.url}`,
-      this.View,
-    ]);
+    return new Navigate([`${this.baseUrl}`, this.View]);
   }
 
   public swipeLeft() {
