@@ -40,15 +40,50 @@ img {
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
 }
+.play-button-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  #play-button-circle {
+    cursor: pointer;
+    pointer-events: auto;
 
+    svg {
+      width: 60px;
+      height: 60px;
+      fill: #fff;
+      stroke: #fff;
+      cursor: pointer;
+      background-color: rgba(black, 0.2);
+      border-radius: 50%;
+      opacity: 0.9;
+    }
+  }
+}
 #audio {
-  max-width: 95%;
-  min-width: 30%;
+  max-width: 90%;
+  min-width: 40%;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
   border-radius: 90px;
   transform: scale(1.05);
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 22%;
+  bottom: 35%;
+}
+
+video::-webkit-media-controls {
+  visibility: hidden;
+}
+
+video::-webkit-media-controls-enclosure {
+  visibility: visible;
 }

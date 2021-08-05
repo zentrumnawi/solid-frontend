@@ -7,9 +7,9 @@
 <ng-container
   *ngIf="data.mediaObject.deepZoomLink as dziFile; then deepZoom; else noZoom"
 ></ng-container>
-<div id="description-container" *ngIf="hasDescription">
+<!-- <div id="description-container" *ngIf="hasDescription">
   <span markdown [data]="data.mediaObject.description"></span>
-</div>
+</div> -->
 <ng-template #deepZoom>
   <div mat-dialog-content>
     <div id="dzi-container"></div>
@@ -20,6 +20,7 @@
       [hasDziTools]="true"
       [hasAudio]="hasAudio"
       [data]="data"
+      [hasDescription]="hasDescription"
     ></solid-core-image-toolbar>
   </div>
 </ng-template>
@@ -29,6 +30,7 @@
       [mediaObject]="data.mediaObject"
       [hasDialog]="false"
       [hasControlPanel]="true"
+      [hasDescription]="hasDescription"
     ></solid-core-image-detail>
     <div class="audiobar">
       <solid-core-audio-toolbar
@@ -40,4 +42,3 @@
     </div>
   </div>
 </ng-template>
-<div mat-dialog-content></div>

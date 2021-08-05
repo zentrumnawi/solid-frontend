@@ -54,6 +54,8 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy {
     if (this.data.mediaObject.description) {
       this.hasDescription = true;
     }
+    console.log(this.hasDescription);
+    console.log(this.data.mediaObject.description);
   }
 
   ngOnDestroy(): void {

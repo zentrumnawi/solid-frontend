@@ -14,4 +14,6 @@ export class ImageComponent {
   @Input() name!: string;
   @Input() view?: string;
   @Input() hasAudio!: boolean;
+  @Input() hasControlPanel = true;
+  @Input() hasDescription!: boolean;
 }

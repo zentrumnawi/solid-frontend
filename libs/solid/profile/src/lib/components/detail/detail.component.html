@@ -10,6 +10,8 @@
     (swiperight)="swipe(ImageSelected, $event.type)"
     [mediaObject]="profile.mediaObjects[ImageSelected]"
     [name]="profile.name"
+    [hasDialog]="hasDialog"
+    [hasDescription]="hasDescription"
   ></solid-core-image>
   <div class="scroll-container">
     <div class="img-toolbar" #thumbnails>

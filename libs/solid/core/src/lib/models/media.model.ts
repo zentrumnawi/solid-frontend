@@ -53,9 +53,8 @@ export class MediaModel {
   }
 
   public getRawImage(size: 'thumbnail' | 'small' | 'medium' | 'large') {
-    // return this._mediaObject.img[size];
     if (this.mediaType === 'image') {
-      return this._mediaObject.file;
+      return this._mediaObject.file[size];
     }
     if (this.mediaType === 'audio') {
       return 'assets/profile/planty_audio.svg';
@@ -64,7 +63,7 @@ export class MediaModel {
   }
   public getSrc() {
     if (this.mediaType === 'video' || this.mediaType === 'audio') {
-      return this._mediaObject.file;
+      return this._mediaObject.file['original'];
     }
     return null;
   }

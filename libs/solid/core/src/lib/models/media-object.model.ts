@@ -1,6 +1,12 @@
 export interface MediaObjectModel {
   id: number;
-  file: string;
+  file: {
+    large: string;
+    medium: string;
+    small: string;
+    thumbnail: string;
+    original: string;
+  };
   dzi_file: string | null;
   profile_position: number;
   media_format: 'image' | 'audio' | 'video';
