@@ -88,6 +88,28 @@ export class ImageToolbarComponent implements OnInit {
       ];
     }
   }
+  ngOnInit(): void {
+    if (this.isAttributionsOverlayAbove) {
+      this.attributionsPositions = [
+        {
+          originX: 'end',
+          originY: 'top',
+          overlayX: 'center',
+          overlayY: 'bottom',
+          offsetX: 10,
+        },
+      ];
+    } else {
+      this.attributionsPositions = [
+        {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'end',
+          overlayY: 'center',
+        },
+      ];
+    }
+  }
 
   public openDialog() {
     this._dialog.open(ImageDialogComponent, {

@@ -22,7 +22,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
     },
     slideshow: {
       svgIcon: 'properties',
-      title: 'Grundwissen',
+      title: 'Keramikwissen',
     },
     info: {
       svgIcon: 'info',
