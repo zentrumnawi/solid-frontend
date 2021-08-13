@@ -76,4 +76,8 @@ export class MediaModel {
     }
     return this._mediaObject.dzi_file;
   }
+
+  public get getTitle() {
+    return this._mediaObject.title;
+  }
 }

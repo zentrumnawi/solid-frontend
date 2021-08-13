@@ -39,6 +39,7 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
           this.isAttributionsOverlayAbove = true;
         }
       });
+    console.log(this.data);
   }
 
   ngAfterViewInit(): void {

@@ -5,9 +5,6 @@ div.toolbar {
   &.dzi {
     bottom: 0.9em;
   }
-  &.abc {
-    bottom: 0.9em;
-  }
   solid-core-audio-toolbar {
     position: absolute;
     left: 0px;
@@ -33,7 +30,6 @@ div.dziToolbar {
       margin-left: 1.6em;
       margin-bottom: 0.5em;
     }
-    
     div.description-overlay {
       font-size: 1em;
       margin-right: 0.5em;
@@ -41,7 +37,6 @@ div.dziToolbar {
       border-radius: 0.5em;
       margin-left: 1em;
       margin-bottom: 0.5em;
-      // overflow: auto;
       max-width: 700px;
       max-height: 110px;
       div.description-container {
