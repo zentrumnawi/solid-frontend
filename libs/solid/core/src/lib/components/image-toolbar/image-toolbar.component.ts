@@ -26,14 +26,8 @@ export class ImageToolbarComponent implements OnInit {
   @Input() data!: any;
   private length = 90;
 
-  attributionsPositions: ConnectedPosition[] = [
-    {
-      originX: 'start',
-      originY: 'center',
-      overlayX: 'end',
-      overlayY: 'center',
-    },
-  ];
+  @Input() isAttributionsOverlayAbove!: boolean;
+  attributionsPositions: ConnectedPosition[] = [];
   attributionsScrollStrategy: CloseScrollStrategy;
   descriptionScrollStrategy: CloseScrollStrategy;
   attributionsIsOpen = false;
@@ -57,6 +51,7 @@ export class ImageToolbarComponent implements OnInit {
       viewportRuler
     );
   }
+
   ngOnInit(): void {
     this._breakpointObserver
       .observe(['(max-width: 400px)'])
@@ -72,7 +67,26 @@ export class ImageToolbarComponent implements OnInit {
           this.length = 90;
         }
       });
-    console.log(this.hasDialog);
+    if (this.isAttributionsOverlayAbove) {
+      this.attributionsPositions = [
+        {
+          originX: 'center',
+          originY: 'top',
+          overlayX: 'center',
+          overlayY: 'bottom',
+          offsetX: 10,
+        },
+      ];
+    } else {
+      this.attributionsPositions = [
+        {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'end',
+          overlayY: 'center',
+        },
+      ];
+    }
   }
 
   public openDialog() {

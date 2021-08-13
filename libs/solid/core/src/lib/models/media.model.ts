@@ -52,7 +52,9 @@ export class MediaModel {
     return this._mediaObject.license;
   }
 
-  public getRawImage(size: 'thumbnail' | 'small' | 'medium' | 'large') {
+  public getRawImage(
+    size: 'thumbnail' | 'small' | 'medium' | 'large' | 'original'
+  ) {
     if (this.mediaType === 'image') {
       return this._mediaObject.file[size];
     }

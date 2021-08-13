@@ -22,12 +22,12 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
       />
     </div>
     <div class="container" *ngSwitchCase="'audio'">
-      <img
+      <!-- <img
         *ngIf="view != 'grid'; else grid"
         [src]="'assets/profile/planty_audio.svg'"
         [alt]="mediaObject.alt"
         [class.landscape]="mediaObject.isLandscape"
-      />
+      /> -->
       <audio
         *ngIf="hasControlPanel"
         id="audio"
