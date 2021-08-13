@@ -43,7 +43,6 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
 
   ngAfterViewInit(): void {
     let dzi = this.data.mediaObject.deepZoomLink;
-    console.log('dzi: ', dzi);
     if (dzi) {
       if (!this.coreConfig.production) {
         // TODO: This workaround is required for deepzoom in dev environments. It will not work with other cdn domains.
@@ -66,8 +65,6 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
     if (this.data.mediaObject.description) {
       this.hasDescription = true;
     }
-    console.log(this.hasDescription);
-    console.log(this.data.mediaObject.description);
   }
 
   ngOnDestroy(): void {
