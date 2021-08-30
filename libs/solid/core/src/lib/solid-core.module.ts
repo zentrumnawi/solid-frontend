@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ImageToolbarComponent } from './components/image-toolbar/image-toolbar.component';
 import { AudioToolbarComponent } from './components/audio-toolbar/audio-toolbar.component';
+import { AudioIconComponent } from './components/audio-icon/audio-icon.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AudioToolbarComponent } from './components/audio-toolbar/audio-toolbar.
     ImageDetailComponent,
     ImageToolbarComponent,
     AudioToolbarComponent,
+    AudioIconComponent,
   ],
   imports: [
     CommonModule,
