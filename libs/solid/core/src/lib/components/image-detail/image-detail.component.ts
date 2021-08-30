@@ -26,6 +26,8 @@ export class ImageDetailComponent {
   private loadError = false;
   public isShown!: number;
 
+  public descriptionShow = false;
+
   constructor(private _dialog: MatDialog) {}
 
   public togglePlay() {

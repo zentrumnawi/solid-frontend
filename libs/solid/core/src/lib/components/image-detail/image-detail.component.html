@@ -28,12 +28,21 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
         [alt]="mediaObject.alt"
         [class.landscape]="mediaObject.isLandscape"
       /> -->
-      <audio
-        *ngIf="hasControlPanel"
-        id="audio"
-        [src]="mediaObject.getSrc()"
-        controls
-      ></audio>
+      <div>
+        <audio
+          *ngIf="hasControlPanel"
+          id="audio"
+          [src]="mediaObject.getSrc()"
+          controls
+        ></audio>
+      </div>
+      <solid-audio-icon
+        *ngIf="!descriptionShow"
+        [title]="mediaObject.getTitle"
+      ></solid-audio-icon>
+      <div *ngIf="descriptionShow">
+        <p markdown [data]="mediaObject.description!"></p>
+      </div>
     </div>
     <div class="container" *ngSwitchCase="'video'">
       <video
