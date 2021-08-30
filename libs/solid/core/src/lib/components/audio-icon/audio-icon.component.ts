@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'solid-audio-icon',
+  selector: 'solid-core-audio-icon',
   templateUrl: './audio-icon.component.svg',
   styleUrls: ['./audio-icon.component.scss'],
 })

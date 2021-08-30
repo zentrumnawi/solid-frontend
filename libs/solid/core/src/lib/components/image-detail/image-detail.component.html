@@ -36,10 +36,10 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
           controls
         ></audio>
       </div>
-      <solid-audio-icon
+      <solid-core-audio-icon
         *ngIf="!descriptionShow"
         [title]="mediaObject.getTitle"
-      ></solid-audio-icon>
+      ></solid-core-audio-icon>
       <div *ngIf="descriptionShow">
         <p markdown [data]="mediaObject.description!"></p>
       </div>
