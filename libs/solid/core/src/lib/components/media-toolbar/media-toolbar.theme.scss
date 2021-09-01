@@ -1,6 +1,6 @@
 @import '../../../../../../../node_modules/@angular/material/theming';
 
-@mixin solid-core-image-toolbar-theme($mat-theme) {
+@mixin solid-core-media-toolbar-theme($mat-theme) {
   $background: map-get($mat-theme, background);
   $accent: map-get($mat-theme, accent);
   div.cdk-overlay-container {

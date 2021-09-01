@@ -22,12 +22,6 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
       />
     </div>
     <div class="container" *ngSwitchCase="'audio'">
-      <!-- <img
-        *ngIf="view != 'grid'; else grid"
-        [src]="'assets/profile/planty_audio.svg'"
-        [alt]="mediaObject.alt"
-        [class.landscape]="mediaObject.isLandscape"
-      /> -->
       <div id="audio-container">
         <audio
           *ngIf="hasControlPanel"
@@ -74,7 +68,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     </div>
   </ng-container>
 
-  <solid-core-image-toolbar
+  <solid-core-media-toolbar
     *ngIf="view != 'grid'"
     [mediaObject]="mediaObject"
     [name]="name"
@@ -85,7 +79,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDescription]="hasDescription"
     [hasDescriptionToggle]="hasDescriptionToggle"
     (descriptionToggle)="toggleDescription($event)"
-  ></solid-core-image-toolbar>
+  ></solid-core-media-toolbar>
   <ng-template #grid>
     <img
       *ngIf="mediaObject.mediaType === 'image'"
@@ -100,14 +94,3 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     />
   </ng-template>
 </ng-container>
-<!-- <ng-template #noMediaObject>
-  <img
-    class="landscape"
-    [src]="
-      view != 'grid'
-        ? 'assets/profile/no_image.svg'
-        : 'assets/profile/no_thumbnail.svg'
-    "
-    alt="Leider haben wir kein Bild in der Datenbank"
-  />
-</ng-template> -->

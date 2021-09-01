@@ -15,15 +15,15 @@ import {
   ScrollDispatcher,
   ViewportRuler,
 } from '@angular/cdk/overlay';
-import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
+import { MediaDialogComponent } from '../media-dialog/media-dialog.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
-  selector: 'solid-core-image-toolbar',
-  templateUrl: './image-toolbar.component.html',
-  styleUrls: ['./image-toolbar.component.scss'],
+  selector: 'solid-core-media-toolbar',
+  templateUrl: './media-toolbar.component.html',
+  styleUrls: ['./media-toolbar.component.scss'],
 })
-export class ImageToolbarComponent implements OnInit, OnChanges {
+export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() public mediaObject!: MediaModel;
   @Input() public name!: string;
   @Input() hasAttributions!: boolean;
@@ -106,12 +106,12 @@ export class ImageToolbarComponent implements OnInit, OnChanges {
   }
 
   public openDialog() {
-    this._dialog.open(ImageDialogComponent, {
+    this._dialog.open(MediaDialogComponent, {
       maxWidth: this.length + 'vw',
       width: '100%',
       height: '100%',
       maxHeight: this.length + 'vh',
-      panelClass: 'solid-core-image-dialog',
+      panelClass: 'solid-core-media-dialog',
       data: {
         mediaObject: this.mediaObject,
         name: this.name,

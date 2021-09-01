@@ -1,1 +1,1 @@
-export { MarkdownComponent, ImageComponent } from './components/index';
+export { MarkdownComponent, MediaComponent } from './components/index';

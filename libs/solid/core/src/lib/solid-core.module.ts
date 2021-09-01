@@ -9,25 +9,25 @@ import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
 import { RouterStateSerializer } from '@ngxs/router-plugin';
 import { CustomRouterStateSerializer } from './custom-router-state-serializer';
 import { TitleService } from './services/title.service';
-import { MarkdownComponent, ImageComponent } from './components';
+import { MarkdownComponent, MediaComponent } from './components';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
-import { ImageDetailComponent } from './components/image-detail/image-detail.component';
+import { MediaDialogComponent } from './components/media-dialog/media-dialog.component';
+import { MediaDetailComponent } from './components/media-detail/media-detail.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ImageToolbarComponent } from './components/image-toolbar/image-toolbar.component';
+import { MediaToolbarComponent } from './components/media-toolbar/media-toolbar.component';
 import { AudioToolbarComponent } from './components/audio-toolbar/audio-toolbar.component';
 import { AudioIconComponent } from './components/audio-icon/audio-icon.component';
 
 @NgModule({
   declarations: [
     MarkdownComponent,
-    ImageComponent,
-    ImageDialogComponent,
-    ImageDetailComponent,
-    ImageToolbarComponent,
+    MediaComponent,
+    MediaDialogComponent,
+    MediaDetailComponent,
+    MediaToolbarComponent,
     AudioToolbarComponent,
     AudioIconComponent,
   ],
@@ -48,7 +48,7 @@ import { AudioIconComponent } from './components/audio-icon/audio-icon.component
     HttpClientModule,
     ReactiveFormsModule,
     MarkdownComponent,
-    ImageComponent,
+    MediaComponent,
     ScrollingModule,
   ],
   providers: [MarkdownService, TitleService],

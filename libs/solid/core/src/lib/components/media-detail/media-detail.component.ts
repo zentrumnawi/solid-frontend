@@ -1,20 +1,14 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { ImageModel, MediaModel } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dialog.component';
 
 @Component({
-  selector: 'solid-core-image-detail',
-  templateUrl: './image-detail.component.html',
-  styleUrls: ['./image-detail.component.scss'],
+  selector: 'solid-core-media-detail',
+  templateUrl: './media-detail.component.html',
+  styleUrls: ['./media-detail.component.scss'],
 })
-export class ImageDetailComponent implements OnChanges {
+export class MediaDetailComponent implements OnChanges {
   @Input() image?: ImageModel;
   @Input() mediaObject?: MediaModel;
   @Input() hasDialog!: boolean;

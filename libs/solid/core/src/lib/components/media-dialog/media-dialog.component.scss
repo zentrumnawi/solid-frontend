@@ -24,7 +24,7 @@ div.mat-dialog-content {
   }
 }
 
-solid-core-image-detail {
+solid-core-media-detail {
   max-height: 100%;
   width: 100%;
   height: 99%;
@@ -48,7 +48,6 @@ solid-core-image-detail {
 }
 
 #description-container {
-  // height: 10%;
   max-height: 10%;
   overflow: auto;
   padding: 0 0.5em 0 0.8em;
@@ -68,6 +67,7 @@ div.audiobar {
   div.cdk-overlay-container {
     mat-dialog-container {
       overflow: hidden;
+      padding: 0;
     }
   }
 }

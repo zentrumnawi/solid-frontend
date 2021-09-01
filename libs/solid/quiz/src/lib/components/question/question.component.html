@@ -23,14 +23,14 @@
         >
           <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
         </button>
-        <solid-core-image
+        <solid-core-media
           (swiperight)="swipe(ImageIndex, question.images.length, $event.type)"
           (swipeleft)="swipe(ImageIndex, question.images.length, $event.type)"
           [image]="question.images[ImageIndex]"
           [hasDialog]="true"
           [hasAudio]="false"
           [hasAttributions]="true"
-        ></solid-core-image>
+        ></solid-core-media>
         <button
           class="button-next"
           color="accent"

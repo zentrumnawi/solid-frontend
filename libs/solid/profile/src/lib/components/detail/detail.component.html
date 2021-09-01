@@ -5,7 +5,7 @@
     </div>
     <p class="facts-body" markdown [data]="profile.short_description"></p>
   </div>
-  <solid-core-image
+  <solid-core-media
     (swipeleft)="swipe(ImageSelected, $event.type)"
     (swiperight)="swipe(ImageSelected, $event.type)"
     [mediaObject]="profile.mediaObjects[ImageSelected]"
@@ -13,7 +13,7 @@
     [hasDialog]="hasDialog"
     [hasDescription]="hasDescription"
     [hasDescriptionToggle]="hasDescriptionToggle"
-  ></solid-core-image>
+  ></solid-core-media>
   <div class="scroll-container">
     <div class="img-toolbar" #thumbnails>
       <ng-container

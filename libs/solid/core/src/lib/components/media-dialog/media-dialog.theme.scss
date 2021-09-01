@@ -1,9 +1,9 @@
 @import '~@angular/material/theming';
 
-@mixin solid-core-image-dialog($mat-theme) {
+@mixin solid-core-media-dialog($mat-theme) {
   $background: map-get($mat-theme, background);
   $accent: map-get($mat-theme, accent);
-  solid-core-image-dialog {
+  solid-core-media-dialog {
     div.mat-dialog-title {
       background-color: mat-color($accent);
     }

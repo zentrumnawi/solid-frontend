@@ -2,10 +2,8 @@ import {
   AfterViewInit,
   Component,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
@@ -14,11 +12,11 @@ import OpenSeadragon from 'openseadragon';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
-  selector: 'solid-core-image-dialog',
-  templateUrl: './image-dialog.component.html',
-  styleUrls: ['./image-dialog.component.scss'],
+  selector: 'solid-core-media-dialog',
+  templateUrl: './media-dialog.component.html',
+  styleUrls: ['./media-dialog.component.scss'],
 })
-export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
+export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   private _viewer: Viewer | null = null;
   public hasAudio = false;
   public hasDescription = false;
