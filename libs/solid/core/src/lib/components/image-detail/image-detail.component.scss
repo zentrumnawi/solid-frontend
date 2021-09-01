@@ -26,6 +26,7 @@ img {
   border-radius: inherit;
   position: relative;
   margin-bottom: -48px;
+  box-sizing: border-box;
 }
 #video {
   max-height: 100%;
@@ -69,16 +70,47 @@ img {
     }
   }
 }
+
+#audio-container {
+  text-align: center;
+  padding-top: 1.5em;
+}
+
 #audio {
   max-width: 90%;
   min-width: 40%;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
   border-radius: 90px;
   transform: scale(1.05);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 35%;
+  // position: absolute;
+  // left: 50%;
+  // transform: translateX(-50%);
+  // top: 5%;
+  z-index: 999;
+}
+
+#svg-description-container {
+  text-align: center;
+  margin-top: 0em;
+  height: 75%;
+
+  #description-container {
+    padding: 1em 0em 1em 1em;
+    text-align: justify;
+    height: 100%;
+    #description {
+      height: 100%;
+      overflow: auto;
+      padding-right: 1.3em;
+    }
+  }
+}
+
+#audio-svg {
+  // position: absolute;
+  // left: 50%;
+  // top: 15%;
+  // transform: translateX(-50%);
 }
 
 video::-webkit-media-controls {

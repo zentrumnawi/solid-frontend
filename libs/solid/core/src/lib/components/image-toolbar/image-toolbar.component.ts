@@ -1,4 +1,12 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MediaModel } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import {
@@ -15,7 +23,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
   templateUrl: './image-toolbar.component.html',
   styleUrls: ['./image-toolbar.component.scss'],
 })
-export class ImageToolbarComponent implements OnInit {
+export class ImageToolbarComponent implements OnInit, OnChanges {
   @Input() public mediaObject!: MediaModel;
   @Input() public name!: string;
   @Input() hasAttributions!: boolean;
@@ -23,6 +31,7 @@ export class ImageToolbarComponent implements OnInit {
   @Input() hasDziTools = false;
   @Input() hasAudio!: boolean;
   @Input() hasDescription!: boolean;
+  @Input() hasDescriptionToggle!: boolean;
   @Input() data!: any;
   private length = 90;
 
@@ -32,6 +41,9 @@ export class ImageToolbarComponent implements OnInit {
   descriptionScrollStrategy: CloseScrollStrategy;
   attributionsIsOpen = false;
   descriptionIsOpen = false;
+
+  @Output() descriptionToggle = new EventEmitter<boolean>();
+  descriptionToggled = false;
 
   constructor(
     private _dialog: MatDialog,
@@ -50,6 +62,10 @@ export class ImageToolbarComponent implements OnInit {
       zone,
       viewportRuler
     );
+  }
+
+  ngOnChanges(): void {
+    this.descriptionToggled = false;
   }
 
   ngOnInit(): void {
@@ -109,5 +125,10 @@ export class ImageToolbarComponent implements OnInit {
 
   descriptionOpenClose() {
     this.descriptionIsOpen = !this.descriptionIsOpen;
+  }
+
+  toggleDescription() {
+    this.descriptionToggled = !this.descriptionToggled;
+    this.descriptionToggle.emit(this.descriptionToggled);
   }
 }

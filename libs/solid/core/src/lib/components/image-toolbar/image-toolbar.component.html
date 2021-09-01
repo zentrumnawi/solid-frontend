@@ -52,6 +52,15 @@
         </div>
       </ng-template>
     </button>
+    <button
+      *ngIf="hasDescriptionToggle"
+      id=""
+      mat-mini-fab
+      color="accent"
+      (click)="toggleDescription()"
+    >
+      <mat-icon>description</mat-icon>
+    </button>
     <ng-container *ngIf="hasDziTools">
       <button id="zoom-in-button" mat-mini-fab color="accent">
         <mat-icon>zoom_in</mat-icon>

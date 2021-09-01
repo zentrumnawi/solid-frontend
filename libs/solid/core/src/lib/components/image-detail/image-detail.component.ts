@@ -1,4 +1,10 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { ImageModel, MediaModel } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dialog.component';
@@ -8,7 +14,7 @@ import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dia
   templateUrl: './image-detail.component.html',
   styleUrls: ['./image-detail.component.scss'],
 })
-export class ImageDetailComponent {
+export class ImageDetailComponent implements OnChanges {
   @Input() image?: ImageModel;
   @Input() mediaObject?: MediaModel;
   @Input() hasDialog!: boolean;
@@ -18,17 +24,21 @@ export class ImageDetailComponent {
   @Input() hasControlPanel!: boolean;
   @Input() hasAudio!: boolean;
   @Input() hasDescription!: boolean;
-  @Input() isAudioAndVideo!: boolean;
+  @Input() hasDescriptionToggle!: boolean;
 
   @ViewChild('videoplayer', { static: false }) videoplayer!: {
     nativeElement: HTMLVideoElement;
   };
   private loadError = false;
-  public isShown!: number;
+  public playButtonIsShown!: number;
 
   public descriptionShow = false;
 
   constructor(private _dialog: MatDialog) {}
+
+  ngOnChanges(): void {
+    this.descriptionShow = false;
+  }
 
   public togglePlay() {
     if (this.loadError) {
@@ -53,15 +63,21 @@ export class ImageDetailComponent {
   }
 
   public setInvisible() {
-    this.isShown = 0;
+    this.playButtonIsShown = 0;
   }
   public setVisible() {
-    this.isShown = 1;
+    this.playButtonIsShown = 1;
   }
   public onPlayerEnded() {
     if (this.videoplayer) {
-      this.isShown = 1;
+      this.playButtonIsShown = 1;
       this.videoplayer.nativeElement.currentTime = 0;
     }
+  }
+
+  public toggleDescription(descriptionToggle: boolean) {
+    descriptionToggle
+      ? (this.descriptionShow = true)
+      : (this.descriptionShow = false);
   }
 }

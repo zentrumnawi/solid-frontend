@@ -28,7 +28,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
         [alt]="mediaObject.alt"
         [class.landscape]="mediaObject.isLandscape"
       /> -->
-      <div>
+      <div id="audio-container">
         <audio
           *ngIf="hasControlPanel"
           id="audio"
@@ -36,12 +36,17 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
           controls
         ></audio>
       </div>
-      <solid-core-audio-icon
-        *ngIf="!descriptionShow"
-        [title]="mediaObject.getTitle"
-      ></solid-core-audio-icon>
-      <div *ngIf="descriptionShow">
-        <p markdown [data]="mediaObject.description!"></p>
+      <div id="svg-description-container">
+        <solid-core-audio-icon
+          id="audio-svg"
+          *ngIf="!descriptionShow"
+          [title]="mediaObject.getTitle"
+        ></solid-core-audio-icon>
+        <div *ngIf="descriptionShow" id="description-container">
+          <div id="description">
+            <p markdown [data]="mediaObject.description!"></p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="container" *ngSwitchCase="'video'">
@@ -58,7 +63,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
         Your browser does not support the video tag.
       </video>
       <div class="play-button-wrapper" (click)="togglePlay()">
-        <div id="play-button-circle" [style.opacity]="isShown">
+        <div id="play-button-circle" [style.opacity]="playButtonIsShown">
           <!-- SVG Play Button -->
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
             <path
@@ -79,6 +84,8 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDziTools]="false"
     [hasAudio]="hasAudio"
     [hasDescription]="hasDescription"
+    [hasDescriptionToggle]="hasDescriptionToggle"
+    (descriptionToggle)="toggleDescription($event)"
   ></solid-core-image-toolbar>
   <ng-template #grid>
     <img
