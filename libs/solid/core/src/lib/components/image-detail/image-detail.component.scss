@@ -35,8 +35,6 @@ img {
   margin-left: auto;
   margin-right: auto;
   height: auto;
-}
-#video {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -82,11 +80,8 @@ img {
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
   border-radius: 90px;
   transform: scale(1.05);
-  // position: absolute;
-  // left: 50%;
-  // transform: translateX(-50%);
-  // top: 5%;
   z-index: 999;
+  height: 40px;
 }
 
 #svg-description-container {
@@ -95,22 +90,15 @@ img {
   height: 75%;
 
   #description-container {
-    padding: 1em 0em 1em 1em;
+    padding: 2em 0em 2em 2em;
     text-align: justify;
     height: 100%;
     #description {
       height: 100%;
       overflow: auto;
-      padding-right: 1.3em;
+      padding-right: 2em;
     }
   }
-}
-
-#audio-svg {
-  // position: absolute;
-  // left: 50%;
-  // top: 15%;
-  // transform: translateX(-50%);
 }
 
 video::-webkit-media-controls {
