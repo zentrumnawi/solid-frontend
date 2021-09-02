@@ -1585,10 +1585,10 @@
     enhanced-resolve "5.7.0"
     webpack-sources "2.2.0"
 
-"@ngxs-labs/dispatch-decorator@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@ngxs-labs/dispatch-decorator/-/dispatch-decorator-2.1.0.tgz#d35a21566b9786ccff094c3227935f9d7bf45444"
-  integrity sha512-0O+1b2ILLs9enA0PmRzlA6IJTP9mMdeB/GRdH56lhXk5eSNpFM5TGtEVvAgOnUn17Lo99JfuBMOsfgFZUU4ecw==
+"@ngxs-labs/dispatch-decorator@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@ngxs-labs/dispatch-decorator/-/dispatch-decorator-2.1.1.tgz#651a081f1216c9c474e68ea33ac6b6e1066eebfd"
+  integrity sha512-9HaY/2M74e0s7eefAaKwlvB3NyQOtJpVvP+hGE9pamQ9O3PnIm200KoXanhvOLl+BhvW6hTASlgNjrY9xKjCXw==
   dependencies:
     tslib "^1.9.0"
 
@@ -7298,10 +7298,15 @@ jake@^10.6.1:
     filelist "^1.0.1"
     minimatch "^3.0.4"
 
-jasmine-core@3.6.0, jasmine-core@^3.6.0, jasmine-core@~3.6.0:
+jasmine-core@3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-3.6.0.tgz#491f3bb23941799c353ceb7a45b38a950ebc5a20"
   integrity sha512-8uQYa7zJN8hq9z+g8z1bqCfdC8eoDAeVnM5sfqs7KHv9/ifoJ500m018fpFc7RDaO6SWCLCXwo/wPSNcdYTgcw==
+
+jasmine-core@^3.6.0, jasmine-core@~3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-3.9.0.tgz#09a3c8169fe98ec69440476d04a0e4cb4d59e452"
+  integrity sha512-Tv3kVbPCGVrjsnHBZ38NsPU3sDOtNa0XmbG2baiyJqdb5/SPpDO6GVwJYtUryl6KB4q1Ssckwg612ES9Z0dreQ==
 
 jasmine-core@~2.8.0:
   version "2.8.0"
@@ -7331,13 +7336,13 @@ jasmine@2.8.0:
     glob "^7.0.6"
     jasmine-core "~2.8.0"
 
-jasmine@^3.5.0:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-3.6.4.tgz#1f8e4a0d5028a2dc66942b73b9fef4c32be97ad5"
-  integrity sha512-hIeOou6y0BgCOKYgXYveQvlY+PTHgDPajFf+vLCYbMTQ+VjAP9+EQv0nuC9+gyCAAWISRFauB1XUb9kFuOKtcQ==
+jasmine@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-3.9.0.tgz#286c4f9f88b69defc24acf3989af5533d5c6a0e6"
+  integrity sha512-JgtzteG7xnqZZ51fg7N2/wiQmXon09szkALcRMTgCMX4u/m17gVJFjObnvw5FXkZOWuweHPaPRVB6DI2uN0wVA==
   dependencies:
     glob "^7.1.6"
-    jasmine-core "~3.6.0"
+    jasmine-core "~3.9.0"
 
 jasminewd2@^2.1.0:
   version "2.2.0"
