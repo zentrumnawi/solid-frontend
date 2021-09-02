@@ -30,14 +30,14 @@
           *ngIf="mediaObject.mediaType === 'video'"
           (click)="onImageSelect(i)"
           [class.not-selected]="ImageSelected !== i"
-          [src]="'assets/profile/planty_video.svg'"
+          [src]="'assets/profile/video.svg'"
           [alt]="mediaObject.alt"
         />
         <img
           *ngIf="mediaObject.mediaType === 'audio'"
           (click)="onImageSelect(i)"
           [class.not-selected]="ImageSelected !== i"
-          [src]="'assets/profile/planty_audio.svg'"
+          [src]="'assets/profile/audio.svg'"
           [alt]="mediaObject.alt"
         />
       </ng-container>
