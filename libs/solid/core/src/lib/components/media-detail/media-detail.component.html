@@ -1,0 +1,96 @@
+<!-- For quiz image because the quiz question doesn't 
+contain any media object now. It is just a temporary solution.
+It is not possible to use a image toolbar here, because quiz image
+use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
+<ng-container *ngIf="image">
+  <img
+    [src]="image.getRawImage('large')"
+    [alt]="image.alt"
+    [class.landscape]="image.isLandscape"
+  />
+</ng-container>
+
+<!-- For media object in Profile -->
+<ng-container *ngIf="mediaObject">
+  <ng-container [ngSwitch]="mediaObject.mediaType">
+    <div class="container" *ngSwitchCase="'image'">
+      <img
+        *ngIf="view != 'grid'; else grid"
+        [src]="mediaObject.getRawImage('large')"
+        [alt]="mediaObject.alt"
+        [class.landscape]="mediaObject.isLandscape"
+      />
+    </div>
+    <div class="container" *ngSwitchCase="'audio'">
+      <div id="audio-container">
+        <audio
+          *ngIf="hasControlPanel"
+          id="audio"
+          [src]="mediaObject.getSrc()"
+          controls
+        ></audio>
+      </div>
+      <div id="svg-description-container">
+        <solid-core-audio-icon
+          *ngIf="!descriptionShow"
+          [title]="mediaObject.getTitle"
+        ></solid-core-audio-icon>
+        <div *ngIf="descriptionShow" id="description-container">
+          <div id="description">
+            <p markdown [data]="mediaObject.description!"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" *ngSwitchCase="'video'">
+      <video
+        #videoplayer
+        id="video"
+        preload="metadata"
+        [src]="mediaObject.getSrc()"
+        controls
+        (ended)="onPlayerEnded()"
+        (playing)="setInvisible()"
+        (pause)="setVisible()"
+      >
+        Your browser does not support the video tag.
+      </video>
+      <div class="play-button-wrapper" (click)="togglePlay()">
+        <div id="play-button-circle" [style.opacity]="playButtonIsShown">
+          <!-- SVG Play Button -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+            <path
+              d="M40 0a40 40 0 1040 40A40 40 0 0040 0zM26 61.56V18.44L64 40z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <solid-core-media-toolbar
+    *ngIf="view != 'grid'"
+    [mediaObject]="mediaObject"
+    [name]="name"
+    [hasAttributions]="hasAttributions"
+    [hasDialog]="hasDialog"
+    [hasDziTools]="false"
+    [hasAudio]="hasAudio"
+    [hasDescription]="hasDescription"
+    [hasDescriptionToggle]="hasDescriptionToggle"
+    (descriptionToggle)="toggleDescription($event)"
+  ></solid-core-media-toolbar>
+  <ng-template #grid>
+    <img
+      *ngIf="mediaObject.mediaType === 'image'"
+      [src]="mediaObject.getRawImage('thumbnail')"
+      [alt]="mediaObject.alt"
+      [class.landscape]="mediaObject.isLandscape"
+    />
+    <img
+      *ngIf="mediaObject.mediaType === 'audio'"
+      [src]="'assets/profile/planty_audio.svg'"
+      [alt]="mediaObject.alt"
+    />
+  </ng-template>
+</ng-container>

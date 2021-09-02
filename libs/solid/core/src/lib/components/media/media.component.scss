@@ -2,7 +2,7 @@
   display: block;
 }
 
-solid-core-image-detail {
+solid-core-media-detail {
   height: 100%;
   width: 100%;
   position: relative;
@@ -13,7 +13,7 @@ solid-core-image-detail {
       left: 50%;
       transform: translateY(-50%) translateX(-50%);
     }
-    solid-core-image-toolbar {
+    solid-core-media-toolbar {
       position: absolute;
       bottom: 0.5em;
       right: 0;

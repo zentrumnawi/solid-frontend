@@ -1,0 +1,51 @@
+<div mat-dialog-title class="mat-dialog-title">
+  <div>
+    {{ data.name }}
+    <span *ngIf="data.mediaObject.getTitle" class="media-object-title">
+      - {{ data.mediaObject.getTitle }}</span
+    >
+  </div>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<ng-container
+  *ngIf="data.mediaObject.deepZoomLink as dziFile; then deepZoom; else noZoom"
+></ng-container>
+<!-- I decide to keep it bcs we maybe need it in the future -->
+<!-- <div id="description-container" *ngIf="hasDescription">
+  <span markdown [data]="data.mediaObject.description"></span>
+</div> -->
+<ng-template #deepZoom>
+  <div mat-dialog-content>
+    <div id="dzi-container"></div>
+    <solid-core-media-toolbar
+      [mediaObject]="data.mediaObject"
+      [hasAttributions]="true"
+      [hasDialog]="false"
+      [hasDziTools]="true"
+      [hasAudio]="hasAudio"
+      [data]="data"
+      [isAttributionsOverlayAbove]="isAttributionsOverlayAbove"
+      [hasDescription]="hasDescription"
+    ></solid-core-media-toolbar>
+  </div>
+</ng-template>
+<ng-template #noZoom>
+  <div mat-dialog-content>
+    <solid-core-media-detail
+      [mediaObject]="data.mediaObject"
+      [hasDialog]="false"
+      [hasControlPanel]="true"
+      [hasDescription]="hasDescription"
+    ></solid-core-media-detail>
+    <div class="audiobar">
+      <solid-core-audio-toolbar
+        class="audiobar"
+        *ngIf="hasAudio"
+        [audiosrc]="data.mediaObject.audiosrc"
+      >
+      </solid-core-audio-toolbar>
+    </div>
+  </div>
+</ng-template>

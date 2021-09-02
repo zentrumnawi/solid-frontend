@@ -1,5 +1,7 @@
-@import 'lib/components/image-toolbar/image-toolbar.theme';
+@import 'lib/components/media-toolbar/media-toolbar.theme';
+@import 'lib/components/audio-icon/audio-icon.theme.scss';
 
 @mixin solid-core-theme($mat-theme) {
-  @include solid-core-image-toolbar-theme($mat-theme);
+  @include solid-core-media-toolbar-theme($mat-theme);
+  @include solid-core-audio-icon-theme($mat-theme);
 }

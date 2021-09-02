@@ -25,10 +25,11 @@
 <ng-template #cardContent let-profile="profile">
   <div class="title" [innerHTML]="profile.name | profileTitle"></div>
   <div class="subtitle">{{ profile.trivial_name }}</div>
-  <solid-core-image
-    [image]="profile.images[0]"
+  <solid-core-media
+    [mediaObject]="profile.mediaObjects[0]"
     [hasAttributions]="false"
     [hasDialog]="false"
     [view]="'grid'"
-  ></solid-core-image>
+    [hasControlPanel]="false"
+  ></solid-core-media>
 </ng-template>

@@ -29,6 +29,7 @@ export class QuestionComponent implements OnChanges {
   public Correct?: boolean;
   public ImageIndex = 0;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+
   @Output() stopQuiz = new EventEmitter<boolean>();
 
   constructor(private _store: Store) {}
@@ -54,6 +55,7 @@ export class QuestionComponent implements OnChanges {
         this.Correct = false;
       }
     }
+    console.log(this.question?.images[0]);
   }
 
   public trackByFn(index: number, item: QuizAnswer) {

@@ -2,10 +2,8 @@ import {
   AfterViewInit,
   Component,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
@@ -14,11 +12,11 @@ import OpenSeadragon from 'openseadragon';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
-  selector: 'solid-core-image-dialog',
-  templateUrl: './image-dialog.component.html',
-  styleUrls: ['./image-dialog.component.scss'],
+  selector: 'solid-core-media-dialog',
+  templateUrl: './media-dialog.component.html',
+  styleUrls: ['./media-dialog.component.scss'],
 })
-export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
+export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   private _viewer: Viewer | null = null;
   public hasAudio = false;
   public hasDescription = false;
@@ -33,16 +31,17 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
 
   public ngOnInit() {
     this._breakpointObserver
-      .observe(['(max-width: 380px)'])
+      .observe(['(max-width: 415px)'])
       .subscribe((isMobile) => {
         if (isMobile.matches) {
           this.isAttributionsOverlayAbove = true;
         }
       });
+    console.log(this.data);
   }
 
   ngAfterViewInit(): void {
-    let dzi = this.data.image.deepZoomLink;
+    let dzi = this.data.mediaObject.deepZoomLink;
     if (dzi) {
       if (!this.coreConfig.production) {
         // TODO: This workaround is required for deepzoom in dev environments. It will not work with other cdn domains.
@@ -59,10 +58,10 @@ export class ImageDialogComponent implements AfterViewInit, OnDestroy, OnInit {
         constrainDuringPan: true,
       });
     }
-    if (this.data.image.audiosrc) {
+    if (this.data.mediaObject.audiosrc) {
       this.hasAudio = true;
     }
-    if (this.data.image.description) {
+    if (this.data.mediaObject.description) {
       this.hasDescription = true;
     }
   }

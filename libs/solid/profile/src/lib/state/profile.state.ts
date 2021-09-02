@@ -6,6 +6,7 @@ import {
   ImageModel,
   SOLID_CORE_CONFIG,
   SolidCoreConfig,
+  MediaModel,
 } from '@zentrumnawi/solid-core';
 import { ProfileActions } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
@@ -126,7 +127,10 @@ export class ProfileState {
                 profiles: node.profiles.map((profile) => ({
                   ...profile,
                   type: 'profile',
-                  images: profile.photographs.map((p) => new ImageModel(p)),
+                  // images: profile.photographs.map((p) => new ImageModel(p)),
+                  mediaObjects: profile.media_objects.map(
+                    (m) => new MediaModel(m)
+                  ),
                 })),
               };
             });
