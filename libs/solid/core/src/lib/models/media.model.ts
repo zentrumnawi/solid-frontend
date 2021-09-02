@@ -59,7 +59,10 @@ export class MediaModel {
       return this._mediaObject.file[size];
     }
     if (this.mediaType === 'audio') {
-      return 'assets/profile/planty_audio.svg';
+      return 'assets/profile/audio.svg';
+    }
+    if (this.mediaType === 'video') {
+      return 'assets/profile/video.svg';
     }
     return 'assets/profile/no_thumbnail.svg';
   }
