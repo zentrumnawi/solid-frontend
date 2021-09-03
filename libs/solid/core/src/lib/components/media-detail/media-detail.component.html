@@ -8,6 +8,16 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [alt]="image.alt"
     [class.landscape]="image.isLandscape"
   />
+  <solid-core-media-toolbar
+    *ngIf="view != 'grid'"
+    [image]="image"
+    [name]="name"
+    [hasAttributions]="hasAttributions"
+    [hasDialog]="hasDialog"
+    [hasDziTools]="false"
+    [hasAudio]="hasAudio"
+    [hasDescription]="hasDescription"
+  ></solid-core-media-toolbar>
 </ng-container>
 
 <!-- For media object in Profile -->

@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { MediaModel } from '../../models';
+import { ImageModel, MediaModel } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import {
   CloseScrollStrategy,
@@ -25,6 +25,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() public mediaObject!: MediaModel;
+  @Input() public image!: ImageModel;
   @Input() public name!: string;
   @Input() hasAttributions!: boolean;
   @Input() hasDialog!: boolean;
@@ -114,6 +115,20 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
       panelClass: 'solid-core-media-dialog',
       data: {
         mediaObject: this.mediaObject,
+        name: this.name,
+      },
+    });
+  }
+
+  public openDialogImage() {
+    this._dialog.open(MediaDialogComponent, {
+      maxWidth: this.length + 'vw',
+      width: '100%',
+      height: '100%',
+      maxHeight: this.length + 'vh',
+      panelClass: 'solid-core-media-dialog',
+      data: {
+        mediaObject: this.image,
         name: this.name,
       },
     });
