@@ -42,6 +42,7 @@
     <div class="audiobar">
       <solid-core-audio-toolbar
         class="audiobar"
+        [toolbar]="false"
         *ngIf="hasAudio"
         [audiosrc]="data.mediaObject.audiosrc"
       >

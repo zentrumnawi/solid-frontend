@@ -22,14 +22,25 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
       />
     </div>
     <div class="container" *ngSwitchCase="'audio'">
-      <div id="audio-container">
+      <!-- <img
+        *ngIf="view != 'grid'; else grid"
+        [src]="'assets/profile/planty_audio.svg'"
+        [alt]="mediaObject.alt"
+        [class.landscape]="mediaObject.isLandscape"
+      /> -->
+      <solid-core-audio-toolbar
+        *ngIf="view != 'grid'"
+        [audiosrc]="mediaObject.getSrc()!"
+        [toolbar]="true"
+      ></solid-core-audio-toolbar>
+      <!--div id="audio-container">
         <audio
           *ngIf="hasControlPanel"
           id="audio"
           [src]="mediaObject.getSrc()"
           controls
         ></audio>
-      </div>
+      </div-->
       <div id="svg-description-container">
         <solid-core-audio-icon
           *ngIf="!descriptionShow"
@@ -89,7 +100,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     />
     <img
       *ngIf="mediaObject.mediaType === 'audio'"
-      [src]="'assets/profile/planty_audio.svg'"
+      [src]="'assets/profile/audio.svg'"
       [alt]="mediaObject.alt"
     />
   </ng-template>

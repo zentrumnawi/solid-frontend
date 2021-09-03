@@ -11,13 +11,17 @@ import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dia
 export class AudioToolbarComponent implements OnDestroy {
   @Input() public audiosrc!: string;
   @Input() public description!: string;
+  @Input() public toolbar!: boolean;
   @ViewChild('audioplayer', { static: false }) player?: {
     nativeElement: HTMLAudioElement;
   };
-  public Playing = false;
-  public PlayingStarted = false;
-  public PlayPosition = '';
-  private loadError = false;
+  public audioLoaded = false;
+  public playing = false;
+  public playingStarted = false;
+  public playPositionString = '0:00/-:--';
+  public playPosition = 0;
+  public duration = 0;
+  public volume = 0.75;
   public descriptionToggle = false;
 
   constructor(
@@ -25,25 +29,27 @@ export class AudioToolbarComponent implements OnDestroy {
     private _dialog: MatDialog
   ) {}
 
-  public onPlayPauseClick() {
-    if (this.loadError) {
-      this._dialog.open(MediaErrorDialogComponent, {
-        data: {
-          title: 'Fehler',
-          content: 'Audiodatei konnte nicht geladen werden.',
-        },
-      });
-      return;
-    }
+  onPlayerReady(): void {
+    console.log('playerReady');
     if (this.player) {
-      if (this.Playing) {
+      this.audioLoaded = true;
+      this.duration = this.player.nativeElement.duration;
+      this.playPosition = 0;
+      this.displayPlayPosition(0);
+    }
+  }
+
+  public onPlayPauseClick() {
+    //where does this belong? This should be done somewhere else.
+    if (this.player) {
+      if (this.playing) {
         this.player.nativeElement.pause();
       } else {
-        this.PlayingStarted = true;
+        this.playingStarted = true;
         this.player.nativeElement.play();
       }
     }
-    this.Playing = !this.Playing;
+    this.playing = !this.playing;
   }
 
   public onReplayClick() {
@@ -51,38 +57,60 @@ export class AudioToolbarComponent implements OnDestroy {
       this.player.nativeElement.pause();
       this.player.nativeElement.currentTime = 0;
       this.player.nativeElement.play();
-      this.Playing = true;
+      this.playing = true;
     }
   }
 
   public onPlayerTimeUpdate() {
     if (this.player) {
-      const duration = this.player.nativeElement.duration;
-      const currentTime = this.player.nativeElement.currentTime;
-      const durationSeconds = Math.floor(duration % 60);
-      const currentTimeSeconds = Math.floor(currentTime % 60);
-      if (currentTime > 0) {
-        this.PlayPosition = `${Math.floor(currentTime / 60)}:${
-          currentTimeSeconds < 10
-            ? '0' + currentTimeSeconds
-            : currentTimeSeconds
-        }/${Math.floor(duration / 60)}:${
-          durationSeconds < 10 ? '0' + durationSeconds : durationSeconds
-        }`;
-        return;
-      }
+      this.displayPlayPosition(this.player.nativeElement.currentTime);
     }
-    this.PlayPosition = '';
+  }
+
+  public displayPlayPosition(currentTime: number) {
+    if (this.player) {
+      const durationSeconds = Math.floor(this.duration % 60);
+      const currentTimeSeconds = Math.floor(currentTime % 60);
+      this.playPositionString = `${Math.floor(currentTime / 60)}:${
+        currentTimeSeconds < 10 ? '0' + currentTimeSeconds : currentTimeSeconds
+      }/${Math.floor(this.duration / 60)}:${
+        durationSeconds < 10 ? '0' + durationSeconds : durationSeconds
+      }`;
+      this.playPosition = currentTime;
+      return;
+    }
+    this.playPosition = 0;
+  }
+
+  //shouldn't we work with EventEmitter<> somehow? It works, though.
+  onPositionChangeEnd(change: any) {
+    if (this.player) {
+      this.player.nativeElement.currentTime = change.value;
+    }
+  }
+  //same here
+  public onVolumeChangeEnd(change: any) {
+    if (this.player) {
+      this.player.nativeElement.volume = change.value;
+      this.volume = change.value;
+    }
   }
 
   public onPlayerMediaError() {
-    this.loadError = true;
+    this.audioLoaded = false;
+    this._dialog.open(MediaErrorDialogComponent, {
+      data: {
+        title: 'Fehler',
+        content: 'Audiodatei konnte nicht geladen werden.',
+      },
+    });
+    return;
   }
 
   public onPlayerEnded() {
     if (this.player) {
-      this.PlayingStarted = false;
-      this.Playing = false;
+      this.playingStarted = false;
+      this.playing = false;
       this.player.nativeElement.currentTime = 0;
     }
   }
@@ -92,7 +120,7 @@ export class AudioToolbarComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.PlayingStarted && this.player) {
+    if (this.playingStarted && this.player) {
       this.player.nativeElement.pause();
     }
   }

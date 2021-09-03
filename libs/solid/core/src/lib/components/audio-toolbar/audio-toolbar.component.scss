@@ -17,3 +17,16 @@ span.PlayPosition {
   vertical-align: middle;
   padding-left: 0.5em;
 }
+
+.toolbar {
+  width: 100%;
+  height: 48px;
+  vertical-align: middle;
+  background-color: lightcyan;
+  ::ng-deep {
+    .mat-slider-thumb {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
