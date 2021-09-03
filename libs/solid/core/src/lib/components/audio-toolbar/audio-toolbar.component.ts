@@ -40,7 +40,7 @@ export class AudioToolbarComponent implements OnDestroy {
   }
 
   public onPlayPauseClick() {
-    //where does this belong? This should be done somewhere else.
+    // where does this belong? This should be done somewhere else.
     if (this.player) {
       if (this.playing) {
         this.player.nativeElement.pause();
@@ -82,13 +82,13 @@ export class AudioToolbarComponent implements OnDestroy {
     this.playPosition = 0;
   }
 
-  //shouldn't we work with EventEmitter<> somehow? It works, though.
+  // shouldn't we work with EventEmitter<> somehow? It works, though.
   onPositionChangeEnd(change: any) {
     if (this.player) {
       this.player.nativeElement.currentTime = change.value;
     }
   }
-  //same here
+  // same here
   public onVolumeChangeEnd(change: any) {
     if (this.player) {
       this.player.nativeElement.volume = change.value;
