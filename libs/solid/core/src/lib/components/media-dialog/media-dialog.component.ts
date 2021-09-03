@@ -37,11 +37,11 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
           this.isAttributionsOverlayAbove = true;
         }
       });
-    console.log(this.data);
   }
 
   ngAfterViewInit(): void {
     let dzi = this.data.mediaObject.deepZoomLink;
+
     if (dzi) {
       if (!this.coreConfig.production) {
         // TODO: This workaround is required for deepzoom in dev environments. It will not work with other cdn domains.

@@ -7,7 +7,7 @@
     >
     </solid-core-audio-toolbar>
   </ng-container>
-  <div class="dziToolbar">
+  <div class="dziToolbar" *ngIf="mediaObject">
     <button
       *ngIf="hasAttributions && mediaObject.attributions as attributions"
       mat-mini-fab
@@ -77,6 +77,48 @@
       mat-mini-fab
       color="accent"
       (click)="openDialog()"
+    >
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+  </div>
+
+  <!-- For Image in quiz -->
+  <div class="dziToolbar" *ngIf="image">
+    <button
+      *ngIf="hasAttributions && image.attributions as attributions"
+      mat-mini-fab
+      color="accent"
+      cdkOverlayOrigin
+      #attributionsOverlayOrigin="cdkOverlayOrigin"
+      (click)="attributionsOpenClose()"
+    >
+      <mat-icon>copyright</mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="attributionsOverlayOrigin"
+        [cdkConnectedOverlayOpen]="attributionsIsOpen"
+        [cdkConnectedOverlayPositions]="attributionsPositions"
+        [cdkConnectedOverlayScrollStrategy]="attributionsScrollStrategy"
+      >
+        <div class="attributions-overlay">{{ attributions }}</div>
+      </ng-template>
+    </button>
+    <ng-container *ngIf="hasDziTools">
+      <button id="zoom-in-button" mat-mini-fab color="accent">
+        <mat-icon>zoom_in</mat-icon>
+      </button>
+      <button id="zoom-out-button" mat-mini-fab color="accent">
+        <mat-icon>zoom_out</mat-icon>
+      </button>
+      <button id="home-button" mat-mini-fab color="accent">
+        <mat-icon>home</mat-icon>
+      </button>
+    </ng-container>
+    <button
+      *ngIf="hasDialog"
+      mat-mini-fab
+      color="accent"
+      (click)="openDialogImage()"
     >
       <mat-icon>more_horiz</mat-icon>
     </button>
