@@ -44,7 +44,7 @@
     "@angular/platform-browser-dynamic": "11.2.3",
     "@angular/router": "11.2.3",
     "@angular/service-worker": "11.2.3",
-    "@ngxs-labs/dispatch-decorator": "^2.1.0",
+    "@ngxs-labs/dispatch-decorator": "^3.1.0",
     "@ngxs/devtools-plugin": "^3.7.1",
     "@ngxs/router-plugin": "^3.7.1",
     "@ngxs/store": "^3.7.2",
