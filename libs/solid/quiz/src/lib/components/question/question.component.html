@@ -3,6 +3,12 @@
     <mat-card-header>
       <mat-card-title>{{ question.tags.join(' ') }}</mat-card-title>
       <mat-card-subtitle markdown [data]="question.text"></mat-card-subtitle>
+      <div class="spacer"></div>
+      <div class="close-btn">
+        <button mat-icon-button (click)="onCloseClick()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
     </mat-card-header>
     <mat-card-content>
       <div *ngIf="question.images.length > 0" class="image-container">
@@ -17,14 +23,14 @@
         >
           <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
         </button>
-        <solid-core-image
+        <solid-core-media
           (swiperight)="swipe(ImageIndex, question.images.length, $event.type)"
           (swipeleft)="swipe(ImageIndex, question.images.length, $event.type)"
           [image]="question.images[ImageIndex]"
           [hasDialog]="true"
           [hasAudio]="false"
           [hasAttributions]="true"
-        ></solid-core-image>
+        ></solid-core-media>
         <button
           class="button-next"
           color="accent"

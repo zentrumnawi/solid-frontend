@@ -1,0 +1,84 @@
+<div class="toolbar" [class.dzi]="hasDziTools">
+  <ng-container *ngIf="hasAudio">
+    <solid-core-audio-toolbar
+      *ngIf="hasAudio"
+      [audiosrc]="data.mediaObject.audiosrc"
+      [description]="data.mediaObject.description"
+    >
+    </solid-core-audio-toolbar>
+  </ng-container>
+  <div class="dziToolbar">
+    <button
+      *ngIf="hasAttributions && mediaObject.attributions as attributions"
+      mat-mini-fab
+      color="accent"
+      cdkOverlayOrigin
+      #attributionsOverlayOrigin="cdkOverlayOrigin"
+      (click)="attributionsOpenClose()"
+    >
+      <mat-icon>copyright</mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="attributionsOverlayOrigin"
+        [cdkConnectedOverlayOpen]="attributionsIsOpen"
+        [cdkConnectedOverlayPositions]="attributionsPositions"
+        [cdkConnectedOverlayScrollStrategy]="attributionsScrollStrategy"
+      >
+        <div class="attributions-overlay">{{ attributions }}</div>
+      </ng-template>
+    </button>
+    <button
+      *ngIf="hasDescription && mediaObject.description"
+      mat-mini-fab
+      color="accent"
+      cdkOverlayOrigin
+      #attributionsOverlayOrigin="cdkOverlayOrigin"
+      (click)="descriptionOpenClose()"
+    >
+      <mat-icon>description</mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="attributionsOverlayOrigin"
+        [cdkConnectedOverlayOpen]="descriptionIsOpen"
+        [cdkConnectedOverlayPositions]="attributionsPositions"
+        [cdkConnectedOverlayScrollStrategy]="descriptionScrollStrategy"
+      >
+        <div class="description-overlay">
+          <div
+            class="description-container"
+            markdown
+            [data]="mediaObject.description"
+          ></div>
+        </div>
+      </ng-template>
+    </button>
+    <button
+      *ngIf="hasDescriptionToggle"
+      id=""
+      mat-mini-fab
+      color="accent"
+      (click)="toggleDescription()"
+    >
+      <mat-icon>description</mat-icon>
+    </button>
+    <ng-container *ngIf="hasDziTools">
+      <button id="zoom-in-button" mat-mini-fab color="accent">
+        <mat-icon>zoom_in</mat-icon>
+      </button>
+      <button id="zoom-out-button" mat-mini-fab color="accent">
+        <mat-icon>zoom_out</mat-icon>
+      </button>
+      <button id="home-button" mat-mini-fab color="accent">
+        <mat-icon>home</mat-icon>
+      </button>
+    </ng-container>
+    <button
+      *ngIf="hasDialog"
+      mat-mini-fab
+      color="accent"
+      (click)="openDialog()"
+    >
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+  </div>
+</div>

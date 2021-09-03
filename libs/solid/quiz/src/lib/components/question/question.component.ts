@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   QuizAnswer,
   QuizQuestion,
@@ -23,6 +30,8 @@ export class QuestionComponent implements OnChanges {
   public ImageIndex = 0;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
+  @Output() stopQuiz = new EventEmitter<boolean>();
+
   constructor(private _store: Store) {}
 
   public onRadioChange(e: MatRadioChange) {
@@ -46,6 +55,7 @@ export class QuestionComponent implements OnChanges {
         this.Correct = false;
       }
     }
+    console.log(this.question?.images[0]);
   }
 
   public trackByFn(index: number, item: QuizAnswer) {
@@ -107,5 +117,9 @@ export class QuestionComponent implements OnChanges {
       const isFirst = currentIndex === 0;
       this.ImageIndex = isFirst ? imageLength - 1 : currentIndex - 1;
     }
+  }
+
+  onCloseClick() {
+    this.stopQuiz.emit(true);
   }
 }

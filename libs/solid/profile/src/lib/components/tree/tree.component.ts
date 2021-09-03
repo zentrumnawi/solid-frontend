@@ -21,7 +21,7 @@ import { Profile, TreeNode } from '../../state/profile.model';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 import { SelectedDirective } from '../selected.directive';
-import { ImageModel } from '@zentrumnawi/solid-core';
+import { ImageModel, MediaModel } from '@zentrumnawi/solid-core';
 
 export type FlatTreeNode = EntryNode | CategoryNode;
 
@@ -30,7 +30,8 @@ export interface EntryNode {
   subtitle: string;
   type: 'entry';
   level: number;
-  images: ImageModel[];
+  // images: ImageModel[];
+  mediaObjects: MediaModel[];
   expandable: false;
   id: number;
 }
@@ -106,7 +107,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         level: level,
         expandable: false,
         // images: [],
-        images: node.images,
+        mediaObjects: node.mediaObjects,
       };
     }
   }

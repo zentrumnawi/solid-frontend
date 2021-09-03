@@ -1,2 +1,2 @@
 export { MarkdownComponent } from './markdown/markdown.component';
-export { ImageComponent } from './image/image.component';
+export { MediaComponent } from './media/media.component';

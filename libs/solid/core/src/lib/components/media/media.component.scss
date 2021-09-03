@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+solid-core-media-detail {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  ::ng-deep {
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+    }
+    solid-core-media-toolbar {
+      position: absolute;
+      bottom: 0.5em;
+      right: 0;
+    }
+  }
+}

@@ -11,7 +11,7 @@ p {
   }
 }
 
-solid-core-image {
+solid-core-media {
   margin-top: 2px;
   height: calc(100vh / 2.5);
 }
@@ -61,9 +61,11 @@ div.img-toolbar {
   }
   img {
     height: 4rem;
+    width: 4rem;
     transition-property: filter;
     transition-duration: 500ms;
     margin: 0 4px;
+    object-fit: cover;
 
     &.not-selected {
       cursor: pointer;

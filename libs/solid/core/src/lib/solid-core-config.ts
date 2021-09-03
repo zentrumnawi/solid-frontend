@@ -5,6 +5,8 @@ export interface SolidCoreConfig {
   apiUrl: string;
   markdownPlugins?: ((md: MarkdownIt, ...params: any[]) => void)[];
   appName: string;
+  appLogoLarge?: string;
+  appLogoSmall?: string;
   production: boolean;
 }
 

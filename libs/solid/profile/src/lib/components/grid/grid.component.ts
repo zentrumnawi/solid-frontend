@@ -23,6 +23,7 @@ export class GridComponent implements AfterViewInit {
   @Input() profiles!: Observable<Profile[]>;
   @Input() selectedProfileId?: number;
   @Output() select = new EventEmitter<number>();
+  public hasControlPanel!: boolean;
   public trackByFn(index: number, profile: Profile) {
     return profile.id;
   }

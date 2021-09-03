@@ -5,19 +5,40 @@
     </div>
     <p class="facts-body" markdown [data]="profile.short_description"></p>
   </div>
-  <solid-core-image
+  <solid-core-media
     (swipeleft)="swipe(ImageSelected, $event.type)"
     (swiperight)="swipe(ImageSelected, $event.type)"
-    [image]="profile.images[ImageSelected]"
+    [mediaObject]="profile.mediaObjects[ImageSelected]"
     [name]="profile.name"
-  ></solid-core-image>
+    [hasDialog]="hasDialog"
+    [hasDescription]="hasDescription"
+    [hasDescriptionToggle]="hasDescriptionToggle"
+  ></solid-core-media>
   <div class="scroll-container">
     <div class="img-toolbar" #thumbnails>
-      <ng-container *ngFor="let img of profile.images; let i = index">
+      <ng-container
+        *ngFor="let mediaObject of profile.mediaObjects; let i = index"
+      >
         <img
+          *ngIf="mediaObject.mediaType === 'image'"
           (click)="onImageSelect(i)"
           [class.not-selected]="ImageSelected !== i"
-          [src]="img.getRawImage('thumbnail')"
+          [src]="mediaObject.getRawImage('thumbnail')"
+          [alt]="mediaObject.alt"
+        />
+        <img
+          *ngIf="mediaObject.mediaType === 'video'"
+          (click)="onImageSelect(i)"
+          [class.not-selected]="ImageSelected !== i"
+          [src]="'assets/profile/video.svg'"
+          [alt]="mediaObject.alt"
+        />
+        <img
+          *ngIf="mediaObject.mediaType === 'audio'"
+          (click)="onImageSelect(i)"
+          [class.not-selected]="ImageSelected !== i"
+          [src]="'assets/profile/audio.svg'"
+          [alt]="mediaObject.alt"
         />
       </ng-container>
     </div>

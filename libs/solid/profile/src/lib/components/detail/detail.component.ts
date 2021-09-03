@@ -28,8 +28,10 @@ export class DetailComponent {
   public ImageStartIndex = 0;
   public ImageEndIndex = 0;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
-
+  public hasDialog!: boolean;
   private _profile!: Profile;
+  public hasDescription!: boolean;
+  public hasDescriptionToggle = false;
 
   public get profile() {
     return this._profile;
@@ -38,7 +40,7 @@ export class DetailComponent {
   @Input()
   public set profile(profile: Profile) {
     this._profile = profile;
-    this.ImageLoaded = profile.images.map((_) => false);
+    this.ImageLoaded = profile.mediaObjects.map((_) => false);
     this.onImageSelect(0);
     this.expansion?._headers.forEach((panel) => panel?.panel.close());
   }
@@ -52,13 +54,26 @@ export class DetailComponent {
     if (index < 3) {
       this.ImageStartIndex = 0;
       this.ImageEndIndex = index + 3 + (3 - index);
-    } else if (index > this.profile.images.length - 4) {
-      this.ImageEndIndex = this.profile.images.length - 1;
+    } else if (index > this.profile.mediaObjects.length - 4) {
+      this.ImageEndIndex = this.profile.mediaObjects.length - 1;
       this.ImageStartIndex =
-        index - 3 - (3 - (this.profile.images.length - index - 1));
+        index - 3 - (3 - (this.profile.mediaObjects.length - index - 1));
     } else {
       this.ImageStartIndex = index - 3;
       this.ImageEndIndex = index + 3;
+    }
+    if (this.profile.mediaObjects[index].mediaType === 'audio') {
+      this.hasDialog = false;
+      this.hasDescription = false;
+      this.hasDescriptionToggle = true;
+    } else if (this.profile.mediaObjects[index].mediaType === 'video') {
+      this.hasDialog = false;
+      this.hasDescription = true;
+      this.hasDescriptionToggle = false;
+    } else {
+      this.hasDialog = true;
+      this.hasDescriptionToggle = false;
+      this.hasDescription = false;
     }
   }
 
@@ -84,17 +99,19 @@ export class DetailComponent {
   }
 
   public swipe(currentIndex: number, action: string = this.SWIPE_ACTION.RIGHT) {
-    if (currentIndex > this.profile.images.length || currentIndex < 0) {
+    console.log('hello');
+
+    if (currentIndex > this.profile.mediaObjects.length || currentIndex < 0) {
       return;
     }
     if (action === this.SWIPE_ACTION.LEFT) {
-      const isLast = currentIndex === this.profile.images.length - 1;
+      const isLast = currentIndex === this.profile.mediaObjects.length - 1;
       this.ImageSelected = isLast ? 0 : currentIndex + 1;
     }
     if (action === this.SWIPE_ACTION.RIGHT) {
       const isFirst = currentIndex === 0;
       this.ImageSelected = isFirst
-        ? this.profile.images.length - 1
+        ? this.profile.mediaObjects.length - 1
         : currentIndex - 1;
     }
     this.thumbnails?.nativeElement.children[this.ImageSelected].scrollIntoView({
