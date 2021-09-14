@@ -13,7 +13,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
 <!-- For media object in Profile -->
 <ng-container *ngIf="mediaObject">
   <ng-container [ngSwitch]="mediaObject.mediaType">
-    <div class="container" *ngSwitchCase="'image'">
+    <div class="media-container" *ngSwitchCase="'image'">
       <img
         *ngIf="view != 'grid'; else grid"
         [src]="mediaObject.getRawImage('large')"
@@ -21,26 +21,20 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
         [class.landscape]="mediaObject.isLandscape"
       />
     </div>
-    <div class="container" *ngSwitchCase="'audio'">
+    <div class="media-container" *ngSwitchCase="'audio'">
       <!-- <img
         *ngIf="view != 'grid'; else grid"
         [src]="'assets/profile/planty_audio.svg'"
         [alt]="mediaObject.alt"
         [class.landscape]="mediaObject.isLandscape"
       /> -->
-      <solid-core-audio-toolbar
-        *ngIf="view != 'grid'"
-        [audiosrc]="mediaObject.getSrc()!"
-        [toolbar]="true"
-      ></solid-core-audio-toolbar>
-      <!--div id="audio-container">
-        <audio
-          *ngIf="hasControlPanel"
-          id="audio"
-          [src]="mediaObject.getSrc()"
-          controls
-        ></audio>
-      </div-->
+      <div class="audio-container">
+        <solid-core-audio-toolbar
+          *ngIf="view != 'grid'"
+          [audiosrc]="mediaObject.getSrc()!"
+          [toolbar]="true"
+        ></solid-core-audio-toolbar>
+      </div>
       <div id="svg-description-container">
         <solid-core-audio-icon
           *ngIf="!descriptionShow"
@@ -53,7 +47,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
         </div>
       </div>
     </div>
-    <div class="container" *ngSwitchCase="'video'">
+    <div class="media-container" *ngSwitchCase="'video'">
       <video
         #videoplayer
         id="video"

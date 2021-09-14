@@ -1,4 +1,13 @@
-import { Component, Input, Inject, ViewChild, OnDestroy } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import {
+  Component,
+  Input,
+  Inject,
+  ViewChild,
+  OnDestroy,
+  OnChanges,
+  OnInit,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dialog.component';
@@ -8,7 +17,7 @@ import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dia
   templateUrl: './audio-toolbar.component.html',
   styleUrls: ['./audio-toolbar.component.scss'],
 })
-export class AudioToolbarComponent implements OnDestroy {
+export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   @Input() public audiosrc!: string;
   @Input() public description!: string;
   @Input() public toolbar!: boolean;
@@ -22,15 +31,29 @@ export class AudioToolbarComponent implements OnDestroy {
   public playPosition = 0;
   public duration = 0;
   public volume = 0.75;
+  public previousVolume = 0;
   public descriptionToggle = false;
+  public isMuted = false;
+  public isMobile = false;
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _breakpointObsever: BreakpointObserver
   ) {}
 
+  ngOnInit(): void {
+    this._breakpointObsever
+      .observe(['(max-width: 470px)'])
+      .subscribe((isMobile) => {
+        if (isMobile.matches) {
+          this.isMobile = true;
+          this.volume = 1;
+        }
+      });
+  }
+
   onPlayerReady(): void {
-    console.log('playerReady');
     if (this.player) {
       this.audioLoaded = true;
       this.duration = this.player.nativeElement.duration;
@@ -91,8 +114,23 @@ export class AudioToolbarComponent implements OnDestroy {
   // same here
   public onVolumeChangeEnd(change: any) {
     if (this.player) {
+      this.isMuted = false;
       this.player.nativeElement.volume = change.value;
       this.volume = change.value;
+    }
+  }
+
+  public onVolumeMuteToggle() {
+    if (this.player) {
+      this.isMuted = !this.isMuted;
+      if (this.isMuted) {
+        this.player.nativeElement.volume = 0;
+        this.previousVolume = this.volume;
+        this.volume = 0;
+      } else {
+        this.player.nativeElement.volume = this.previousVolume;
+        this.volume = this.previousVolume;
+      }
     }
   }
 
@@ -117,6 +155,12 @@ export class AudioToolbarComponent implements OnDestroy {
 
   public toggleDescription() {
     this.descriptionToggle = !this.descriptionToggle;
+  }
+
+  ngOnChanges(): void {
+    if (this.playingStarted && this.player) {
+      this.playing = false;
+    }
   }
 
   ngOnDestroy(): void {

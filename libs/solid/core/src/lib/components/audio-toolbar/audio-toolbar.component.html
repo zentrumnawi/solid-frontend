@@ -25,8 +25,11 @@
       [disabled]="!audioLoaded"
       (input)="onPositionChangeEnd($event)"
     ></mat-slider>
-    <mat-icon>volume_up</mat-icon>
+    <button mat-icon-button (click)="onVolumeMuteToggle()">
+      <mat-icon>{{ isMuted ? 'volume_off' : 'volume_up' }}</mat-icon>
+    </button>
     <mat-slider
+      *ngIf="!isMobile"
       min="0"
       max="1"
       step="0.1"
@@ -36,13 +39,12 @@
     </mat-slider>
   </div>
 </ng-container>
-
 <audio
   #audioplayer
   (timeupdate)="onPlayerTimeUpdate()"
   (ended)="onPlayerEnded()"
   (loadeddata)="onPlayerReady()"
   [volume]="volume"
->
-  <source (error)="onPlayerMediaError()" [src]="audiosrc" type="audio/mpeg" />
-</audio>
+  (error)="onPlayerMediaError()"
+  [src]="audiosrc"
+></audio>
