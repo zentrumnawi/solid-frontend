@@ -99,8 +99,6 @@ export class DetailComponent {
   }
 
   public swipe(currentIndex: number, action: string = this.SWIPE_ACTION.RIGHT) {
-    console.log('hello');
-
     if (currentIndex > this.profile.mediaObjects.length || currentIndex < 0) {
       return;
     }

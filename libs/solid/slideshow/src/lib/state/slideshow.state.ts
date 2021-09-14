@@ -1,10 +1,14 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Slideshow } from './slideshow.model';
+import { Slideshow, SlideshowApi } from './slideshow.model';
 import { HttpClient } from '@angular/common/http';
 import { SlideshowActions } from './slideshow.actions';
 import { Inject, Injectable } from '@angular/core';
-import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
-import { tap } from 'rxjs/operators';
+import {
+  SOLID_CORE_CONFIG,
+  SolidCoreConfig,
+  ImageModel,
+} from '@zentrumnawi/solid-core';
+import { tap, map } from 'rxjs/operators';
 
 export type SlideshowStateModel = Slideshow[];
 
@@ -54,6 +58,23 @@ export class SlideshowState {
     return this._http
       .get<Slideshow[]>(`${this._config.apiUrl}/slideshows`)
       .pipe(
+        map((response) => {
+          const mapit = (input: SlideshowApi[]): Slideshow[] => {
+            return input.map((slideshow) => {
+              return {
+                ...slideshow,
+                pages: slideshow.pages.map((page) => ({
+                  ...page,
+                  images: page.images?.map((slideshowImg) => ({
+                    ...slideshowImg,
+                    img: new ImageModel(slideshowImg.image),
+                  })),
+                })),
+              };
+            });
+          };
+          return mapit(response);
+        }),
         tap((res) => {
           ctx.setState([
             ...res.map((slideshow) => {

@@ -10,11 +10,24 @@
 }
 
 .step-actions {
-  margin-top: 1em;
+  padding-top: 1em;
   display: grid;
   grid-template-areas: 'previous header next';
   grid-template-columns: 40px auto 40px;
   width: 100%;
+  //   position: -webkit-sticky;
+  //   position: fixed;
+  //   background-color: #cae8ca;
+  //   border: 2px solid #4caf50;
+  //   z-index: 9999;
+  //   top: 56px;
+  //   left: 0;
+  // }
+
+  // .sticky {
+  //   position: fixed;
+  //   top: 0;
+  //   width: 100%;
 }
 
 h1 {
@@ -44,18 +57,43 @@ h1 {
 }
 
 div.page-images {
-  display: grid;
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
+  div.moreThan3Images {
+    display: grid;
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1000px) and (max-width: 1399px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1400px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    grid-template-columns: 1fr 1fr;
   }
 
-  @media (min-width: 1000px) and (max-width: 1400px) {
-    grid-template-columns: 1fr;
+  div.lessThan3Images {
+    display: grid;
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1000px) and (max-width: 1399px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1400px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    grid-template-columns: 1fr 1fr;
   }
-  grid-template-columns: 1fr 1fr;
 
   mat-card {
     min-width: 200px;
+    // align-self: start;
 
     mat-card-header {
       ::ng-deep {
@@ -69,11 +107,38 @@ div.page-images {
       }
     }
 
-    img {
-      width: 100%;
-      height: 100%;
+    solid-core-media {
+      ::ng-deep {
+        solid-core-media-toolbar {
+          position: absolute !important;
+          bottom: -0.7em !important;
+          right: -1.5em !important;
+        }
+      }
     }
 
     margin: 1em;
   }
 }
+
+// .scroll-to-top {
+//   position: fixed;
+//   bottom: 15px;
+//   right: 15px;
+//   opacity: 0;
+//   transition: all 0.2s ease-in-out;
+// }
+// .show-scrollTop {
+//   opacity: 1;
+//   transition: all 0.2s ease-in-out;
+// }
+
+// .button {
+//   position: fixed;
+//   bottom: 5px;
+//   right: 5px;
+//   font-size: 20px;
+//   text-align: center;
+//   border-radius: 5px;
+//   outline: none;
+// }

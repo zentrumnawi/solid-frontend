@@ -10,45 +10,75 @@
     [label]="page.title"
     [state]="MaxStep >= page.position ? 'done' : ''"
   >
-    <div class="step-actions">
-      <button
-        *ngIf="page.position > 1"
-        color="primary"
-        mat-icon-button
-        matStepperPrevious
-        class="button-left"
-      >
-        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
-      </button>
+    <div class="stick-container">
+      <div class="step-actions">
+        <button
+          *ngIf="page.position > 1"
+          color="primary"
+          mat-icon-button
+          matStepperPrevious
+          class="button-left"
+        >
+          <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+        </button>
 
-      <h1>{{ page.title }}</h1>
+        <h1>{{ page.title }}</h1>
 
-      <button
-        (click)="onNextStepClick(page.position + 1)"
-        *ngIf="
-          slideshow.pages[slideshow.pages.length - 1].position !== page.position
-        "
-        class="float-right"
-        color="primary"
-        mat-icon-button
-        matStepperNext
-      >
-        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
-      </button>
-    </div>
-    <div [data]="page.text" markdown></div>
-    <div class="page-images">
-      <ng-container *ngFor="let img of page.images">
-        <mat-card *ngIf="img.image">
-          <mat-card-header>
-            <mat-card-title>{{ img.title }}</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <img [alt]="img.image.img_alt" [src]="img.image.img.large" />
-            <p>{{ img.caption }}</p>
-          </mat-card-content>
-        </mat-card>
-      </ng-container>
+        <button
+          (click)="onNextStepClick(page.position + 1)"
+          *ngIf="
+            slideshow.pages[slideshow.pages.length - 1].position !==
+            page.position
+          "
+          class="float-right"
+          color="primary"
+          mat-icon-button
+          matStepperNext
+        >
+          <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+        </button>
+      </div>
+      <div [data]="page.text" markdown></div>
+      <div class="page-images">
+        <div *ngIf="page.images.length < 3" class="lessThan3Images">
+          <ng-container *ngFor="let img of page.images; let i = index">
+            <mat-card *ngIf="img.image">
+              <mat-card-header>
+                <mat-card-title>{{ img.title }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <solid-core-media
+                  [image]="img.img"
+                  [hasDialog]="false"
+                  [hasAttributions]="true"
+                ></solid-core-media>
+                <p>{{ img.caption }}</p>
+              </mat-card-content>
+            </mat-card>
+          </ng-container>
+        </div>
+
+        <div *ngIf="page.images.length >= 3" class="moreThan3Images">
+          <ng-container *ngFor="let img of page.images; let i = index">
+            <mat-card *ngIf="img.image">
+              <mat-card-header>
+                <mat-card-title>{{ img.title }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <solid-core-media
+                  [image]="img.img"
+                  [hasDialog]="true"
+                  [hasAttributions]="true"
+                ></solid-core-media>
+                <p>{{ img.caption }}</p>
+              </mat-card-content>
+            </mat-card>
+          </ng-container>
+        </div>
+      </div>
+      <!-- <button class="button" *ngIf="isShow" (click)="gotoTop()">
+        <mat-icon>arrow_upward</mat-icon>
+      </button> -->
     </div>
   </mat-step>
 </mat-horizontal-stepper>

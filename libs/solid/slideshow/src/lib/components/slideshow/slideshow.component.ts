@@ -8,11 +8,12 @@ import {
 import { MatStepper } from '@angular/material/stepper';
 import { Select } from '@ngxs/store';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { Slideshow } from '../../state/slideshow.model';
+import { Slideshow, SlideshowPage } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
+// import { DOCUMENT } from '@angular/common';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
@@ -86,5 +87,65 @@ export class SlideshowComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.load();
+
+    this.Slideshow.subscribe((slideshow) => console.log(slideshow));
+    // console.log(window);
+  }
+
+  // @HostListener('window:scroll')
+  // onWindowScroll() {
+  //   if (
+  //     window.pageYOffset ||
+  //     document.documentElement.scrollTop ||
+  //     document.body.scrollTop > 100
+  //   ) {
+  //     this.windowScrolled = true;
+  //   } else if (
+  //     (this.windowScrolled && window.pageYOffset) ||
+  //     document.documentElement.scrollTop ||
+  //     document.body.scrollTop < 10
+  //   ) {
+  //     this.windowScrolled = false;
+  //   }
+  //   console.log(this.windowScrolled);
+  // }
+
+  // scrollToTop() {
+  //   (function smoothscroll() {
+  //     const currentScroll =
+  //       document.documentElement.scrollTop || document.body.scrollTop;
+  //     if (currentScroll > 0) {
+  //       window.requestAnimationFrame(smoothscroll);
+  //       window.scrollTo(0, currentScroll - currentScroll / 8);
+  //     }
+  //   })();
+  // }
+
+  // isShow = true;
+  // topPosToStartShowing = 100;
+
+  // @HostListener('window:scroll', ['$event'])
+  checkScroll(event: any) {
+    console.log('scrolling: ');
+    // const scrollPosition =
+    //   window.pageYOffset ||
+    //   document.documentElement.scrollTop ||
+    //   document.body.scrollTop ||
+    //   0;
+
+    // console.log('[scroll]', scrollPosition);
+    // if (scrollPosition >= this.topPosToStartShowing) {
+    //   this.isShow = true;
+    // } else {
+    //   this.isShow = false;
+    // }
+  }
+
+  gotoTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 }
