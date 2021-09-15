@@ -30,7 +30,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   public playPositionString = '0:00/-:--';
   public playPosition = 0;
   public duration = 0;
-  public volume = 0.75;
+  public volume = 1;
   public previousVolume = 0;
   public descriptionToggle = false;
   public isMuted = false;
@@ -48,7 +48,8 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
       .subscribe((isMobile) => {
         if (isMobile.matches) {
           this.isMobile = true;
-          this.volume = 1;
+        } else {
+          this.isMobile = false;
         }
       });
   }

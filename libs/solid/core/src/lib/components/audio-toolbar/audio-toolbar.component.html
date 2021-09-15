@@ -5,7 +5,7 @@
 </ng-container>
 
 <ng-container *ngIf="toolbar">
-  <div class="toolbar">
+  <div class="toolbar" [class.mobile]="isMobile">
     <button
       mat-icon-button
       [disabled]="!audioLoaded"
@@ -13,7 +13,12 @@
     >
       <mat-icon>{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
     </button>
-    <button mat-icon-button [disabled]="!audioLoaded" (click)="onReplayClick()">
+    <button
+      mat-icon-button
+      [disabled]="!audioLoaded"
+      (click)="onReplayClick()"
+      class="replay-btn"
+    >
       <mat-icon>replay</mat-icon>
     </button>
     {{ playPositionString }}
@@ -24,8 +29,9 @@
       [value]="playPosition"
       [disabled]="!audioLoaded"
       (input)="onPositionChangeEnd($event)"
+      class="playingSlider"
     ></mat-slider>
-    <button mat-icon-button (click)="onVolumeMuteToggle()">
+    <button mat-icon-button (click)="onVolumeMuteToggle()" class="volume-btn">
       <mat-icon>{{ isMuted ? 'volume_off' : 'volume_up' }}</mat-icon>
     </button>
     <mat-slider
@@ -35,6 +41,7 @@
       step="0.1"
       [value]="volume"
       (input)="onVolumeChangeEnd($event)"
+      class="volumeSlider"
     >
     </mat-slider>
   </div>
