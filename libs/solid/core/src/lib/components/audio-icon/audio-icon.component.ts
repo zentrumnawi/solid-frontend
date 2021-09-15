@@ -13,8 +13,8 @@ export class AudioIconComponent implements OnChanges {
   }
 
   shortenTitle() {
-    if (this.title.length > 15) {
-      this.title = this.title.slice(0, 18) + '...';
+    if (this.title.length > 14) {
+      this.title = this.title.slice(0, 14) + '...';
     }
   }
 }

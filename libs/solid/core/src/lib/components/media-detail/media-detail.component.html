@@ -51,8 +51,11 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
           [title]="mediaObject.getTitle"
         ></solid-core-audio-icon>
         <div *ngIf="descriptionShow" id="description-container">
-          <div id="description">
+          <div *ngIf="mediaObject.description" id="description">
             <p markdown [data]="mediaObject.description!"></p>
+          </div>
+          <div *ngIf="!mediaObject.description" id="description">
+            <p>Leider haben wir keine Beschreibung</p>
           </div>
         </div>
       </div>
