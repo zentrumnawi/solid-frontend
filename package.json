@@ -58,7 +58,7 @@
     "material-icons": "^0.6.1",
     "openseadragon": "^2.4.2",
     "rxjs": "6.6.7",
-    "tslib": "^2.2.0",
+    "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -87,7 +87,7 @@
     "@types/node": "16.7.10",
     "@types/openseadragon": "^2.4.7",
     "@types/punycode": "^2.1.0",
-    "@types/swagger-schema-official": "^2.0.21",
+    "@types/swagger-schema-official": "^2.0.22",
     "canvas": "^2.6.1",
     "codelyzer": "6.0.2",
     "cypress": "^6.9.1",
