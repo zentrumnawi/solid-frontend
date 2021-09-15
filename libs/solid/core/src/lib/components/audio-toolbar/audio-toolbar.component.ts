@@ -121,7 +121,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  public onVolumeMuteToggle() {
+  public onVolumeMutingToggle() {
     if (this.player) {
       this.isMuted = !this.isMuted;
       if (this.isMuted) {
