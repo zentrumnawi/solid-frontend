@@ -1,10 +1,60 @@
-<button (click)="onPlayPauseClick()" mat-mini-fab color="accent">
-  <mat-icon>{{ Playing ? 'pause' : 'play_arrow' }}</mat-icon>
-</button>
+<ng-container *ngIf="!toolbar">
+  <button (click)="onPlayPauseClick()" mat-mini-fab color="accent">
+    <mat-icon>{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
+  </button>
+</ng-container>
+
+<ng-container *ngIf="toolbar">
+  <div class="toolbar" [class.mobile]="isMobile">
+    <button mat-icon-button (click)="onPlayPauseClick()">
+      <mat-icon>{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      [disabled]="!audioLoaded"
+      (click)="onReplayClick()"
+      class="replay-btn"
+    >
+      <mat-icon>replay</mat-icon>
+    </button>
+    {{ playPositionString }}
+    <mat-slider
+      min="0"
+      [max]="duration"
+      step="1"
+      [value]="playPosition"
+      [disabled]="!audioLoaded"
+      (input)="onPositionChangeEnd($event)"
+      class="playingSlider"
+    ></mat-slider>
+    <button
+      mat-icon-button
+      [disabled]="!audioLoaded"
+      (click)="onVolumeMutingToggle()"
+      class="volume-btn"
+    >
+      <mat-icon>{{ isMuted ? 'volume_off' : 'volume_up' }}</mat-icon>
+    </button>
+    <mat-slider
+      min="0"
+      max="1"
+      step="0.1"
+      [value]="volume"
+      [disabled]="!audioLoaded"
+      (input)="onVolumeChangeEnd($event)"
+      class="volumeSlider"
+      [class.disappear]="isIOS() || isMobile"
+    >
+    </mat-slider>
+  </div>
+</ng-container>
+
 <audio
   #audioplayer
   (timeupdate)="onPlayerTimeUpdate()"
   (ended)="onPlayerEnded()"
->
-  <source (error)="onPlayerMediaError()" [src]="audiosrc" type="audio/mpeg" />
-</audio>
+  (loadeddata)="onPlayerReady()"
+  [volume]="volume"
+  (error)="onPlayerMediaError()"
+  [src]="audiosrc"
+></audio>
