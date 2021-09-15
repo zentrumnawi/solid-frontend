@@ -32,7 +32,6 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   public duration = 0;
   public volume = 1;
   public previousVolume = 0;
-  public descriptionToggle = false;
   public isMuted = false;
   public isMobile = false;
 
@@ -54,6 +53,24 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
       });
   }
 
+  isIOS(): boolean {
+    return (
+      [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod',
+        // tslint:disable-next-line: deprecation
+      ].includes(navigator.platform) ||
+      navigator.userAgent.includes('iPad') ||
+      navigator.userAgent.includes('iPhone') ||
+      // iPad on iOS 13 detection
+      (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
+    );
+  }
+
   onPlayerReady(): void {
     if (this.player) {
       this.audioLoaded = true;
@@ -64,7 +81,6 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public onPlayPauseClick() {
-    // where does this belong? This should be done somewhere else.
     if (this.player) {
       if (this.playing) {
         this.player.nativeElement.pause();
@@ -106,13 +122,12 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
     this.playPosition = 0;
   }
 
-  // shouldn't we work with EventEmitter<> somehow? It works, though.
-  onPositionChangeEnd(change: any) {
+  public onPositionChangeEnd(change: any) {
     if (this.player) {
       this.player.nativeElement.currentTime = change.value;
     }
   }
-  // same here
+
   public onVolumeChangeEnd(change: any) {
     if (this.player) {
       this.isMuted = false;
@@ -125,11 +140,11 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
     if (this.player) {
       this.isMuted = !this.isMuted;
       if (this.isMuted) {
-        this.player.nativeElement.volume = 0;
+        this.player.nativeElement.muted = true;
         this.previousVolume = this.volume;
         this.volume = 0;
       } else {
-        this.player.nativeElement.volume = this.previousVolume;
+        this.player.nativeElement.muted = false;
         this.volume = this.previousVolume;
       }
     }
@@ -154,13 +169,12 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  public toggleDescription() {
-    this.descriptionToggle = !this.descriptionToggle;
-  }
-
   ngOnChanges(): void {
     if (this.playingStarted && this.player) {
       this.playing = false;
+      this.audioLoaded = false;
+      this.playPositionString = '0:00/-:--';
+      this.playPosition = 0;
     }
   }
 
