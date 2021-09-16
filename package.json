@@ -62,7 +62,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1102.12",
+    "@angular-devkit/architect": "0.1202.6",
     "@angular-devkit/build-angular": "0.1102.10",
     "@angular-devkit/schematics-cli": "^0.1102.12",
     "@angular/cli": "11.2.9",
