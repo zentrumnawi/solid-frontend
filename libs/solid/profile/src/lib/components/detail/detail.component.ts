@@ -40,7 +40,7 @@ export class DetailComponent {
   @Input()
   public set profile(profile: Profile) {
     this._profile = profile;
-    this.ImageLoaded = profile.mediaObjects.map((_) => false);
+    this.ImageLoaded = profile.images.map((_) => false);
     this.onImageSelect(0);
     this.expansion?._headers.forEach((panel) => panel?.panel.close());
   }
@@ -99,8 +99,6 @@ export class DetailComponent {
   }
 
   public swipe(currentIndex: number, action: string = this.SWIPE_ACTION.RIGHT) {
-    console.log('hello');
-
     if (currentIndex > this.profile.mediaObjects.length || currentIndex < 0) {
       return;
     }

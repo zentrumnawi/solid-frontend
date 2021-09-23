@@ -127,8 +127,8 @@ export class ProfileState {
                 profiles: node.profiles.map((profile) => ({
                   ...profile,
                   type: 'profile',
-                  // images: profile.photographs.map((p) => new ImageModel(p)),
-                  mediaObjects: profile.media_objects.map(
+                  images: profile.photographs.map((p) => new ImageModel(p)),
+                  mediaObjects: profile.media_objects?.map(
                     (m) => new MediaModel(m)
                   ),
                 })),

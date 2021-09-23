@@ -30,7 +30,7 @@ export interface EntryNode {
   subtitle: string;
   type: 'entry';
   level: number;
-  // images: ImageModel[];
+  images: ImageModel[];
   mediaObjects: MediaModel[];
   expandable: false;
   id: number;
@@ -106,7 +106,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         type: 'entry',
         level: level,
         expandable: false,
-        // images: [],
+        images: [],
         mediaObjects: node.mediaObjects,
       };
     }

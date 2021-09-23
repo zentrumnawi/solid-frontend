@@ -10,8 +10,8 @@
     <img
       [alt]="node.title"
       [src]="
-        node.mediaObjects.length > 0
-          ? node.mediaObjects[0].getRawImage('thumbnail')
+        node.images.length > 0
+          ? node.s[0].getRaws('thumbnail')
           : 'assets/profile/no_thumbnail.svg'
       "
       class="thumbnail"

@@ -65,20 +65,46 @@ export class ProfileDefinitionService {
       if (ignoredProperties.includes(key)) {
         continue;
       }
-      if (value.$ref) {
-        const schema = this.resolveRef(swagger, value.$ref);
-        properties.push({
-          key,
-          required: groupSchema.required?.includes(key) || false,
-          type: ProfilePropertyType.Group,
-          // tslint:disable-next-line:no-non-null-assertion
-          title: schema.title!,
-          properties: this.definitionToGroup(swagger, value.$ref),
-        });
+
+      // for the case of Crystal System and Cleavage in GeoMat with Array type
+      if (value.type === 'array' && value.items?.hasOwnProperty('$ref')) {
+        // value.items?.$ref doesn't work because value.items has the type Schema | Schema[],
+        // so that i have to cast into object with type `any` in order to access the property `$ref`
+        const items: any = value.items;
+        const ref = items['$ref'];
+        if (ref) {
+          const schema = this.resolveRef(swagger, ref);
+          console.log(schema);
+          properties.push({
+            key,
+            required: groupSchema.required?.includes(key) || false,
+            type: ProfilePropertyType.Group,
+            // tslint:disable-next-line:no-non-null-assertion
+            // Because there are no title in Definitions of crystal_system
+            // and cleavage, i have to hardcode it in here
+            // (gewünscht ist:) title: schema.title!,
+            title: key === 'crystal_system' ? 'Crystal System' : 'Cleavage',
+            properties: this.definitionToGroup(swagger, ref),
+          });
+        }
+
+        // Normal case without Array
       } else {
-        const pp = this.schemaToProperty(groupSchema, key, value);
-        if (pp) {
-          properties.push(pp);
+        if (value.$ref) {
+          const schema = this.resolveRef(swagger, value.$ref);
+          properties.push({
+            key,
+            required: groupSchema.required?.includes(key) || false,
+            type: ProfilePropertyType.Group,
+            // tslint:disable-next-line:no-non-null-assertion
+            title: schema.title!,
+            properties: this.definitionToGroup(swagger, value.$ref),
+          });
+        } else {
+          const pp = this.schemaToProperty(groupSchema, key, value);
+          if (pp) {
+            properties.push(pp);
+          }
         }
       }
     }
