@@ -1,6 +1,8 @@
 import {
   Component,
+  ElementRef,
   HostListener,
+  Inject,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -8,12 +10,13 @@ import {
 import { MatStepper } from '@angular/material/stepper';
 import { Select } from '@ngxs/store';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { Slideshow, SlideshowPage } from '../../state/slideshow.model';
+import { Slideshow } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
-// import { DOCUMENT } from '@angular/common';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
@@ -31,16 +34,21 @@ export function __internal__selectRouterParamSlideshowId(s: any) {
 })
 export class SlideshowComponent implements OnInit, OnDestroy {
   private $destroyed = new Subject();
-  public MaxStep = 0;
   @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
+  @ViewChild('toolbar') public Toolbar?: ElementRef;
   public Slideshow: Observable<Slideshow | undefined>;
   @Select(__internal__selectRouterParamSlideshowId)
   slideshowId!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<
     (id: number) => Slideshow | undefined
   >;
+  public page_index = 1;
+  public isLargeScreen = false;
 
-  constructor() {
+  constructor(
+    private _breakpointObserver: BreakpointObserver,
+    @Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string
+  ) {
     this.Slideshow = combineLatest([
       this.slideshowId,
       this.slideshowSelector,
@@ -48,7 +56,6 @@ export class SlideshowComponent implements OnInit, OnDestroy {
       map((val) => {
         return val[1](Number.parseInt(val[0], 10));
       }),
-      tap(() => (this.MaxStep = 0)),
       takeUntil(this.$destroyed)
     );
   }
@@ -67,17 +74,25 @@ export class SlideshowComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onNextStepClick(stepId: number) {
-    if (this.MaxStep < stepId) {
-      this.MaxStep = stepId;
+  public onPrevStepClick() {
+    if (this.page_index > 1) {
+      this.page_index--;
+      this.Stepper.previous();
     }
   }
 
-  public onPanEnd($event: any) {
-    if ($event.deltaX > 100) {
-      this.Stepper.previous();
-    } else if ($event.deltaX < -100) {
+  public onNextStepClick(maxStep: number) {
+    if (this.page_index < maxStep) {
+      this.page_index++;
       this.Stepper.next();
+    }
+  }
+
+  public onPanEnd($event: any, maxStep: number) {
+    if ($event.deltaX > 100) {
+      this.onPrevStepClick();
+    } else if ($event.deltaX < -100) {
+      this.onNextStepClick(maxStep);
     }
   }
 
@@ -87,65 +102,18 @@ export class SlideshowComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.load();
-
-    this.Slideshow.subscribe((slideshow) => console.log(slideshow));
-    // console.log(window);
-  }
-
-  // @HostListener('window:scroll')
-  // onWindowScroll() {
-  //   if (
-  //     window.pageYOffset ||
-  //     document.documentElement.scrollTop ||
-  //     document.body.scrollTop > 100
-  //   ) {
-  //     this.windowScrolled = true;
-  //   } else if (
-  //     (this.windowScrolled && window.pageYOffset) ||
-  //     document.documentElement.scrollTop ||
-  //     document.body.scrollTop < 10
-  //   ) {
-  //     this.windowScrolled = false;
-  //   }
-  //   console.log(this.windowScrolled);
-  // }
-
-  // scrollToTop() {
-  //   (function smoothscroll() {
-  //     const currentScroll =
-  //       document.documentElement.scrollTop || document.body.scrollTop;
-  //     if (currentScroll > 0) {
-  //       window.requestAnimationFrame(smoothscroll);
-  //       window.scrollTo(0, currentScroll - currentScroll / 8);
-  //     }
-  //   })();
-  // }
-
-  // isShow = true;
-  // topPosToStartShowing = 100;
-
-  // @HostListener('window:scroll', ['$event'])
-  checkScroll(event: any) {
-    console.log('scrolling: ');
-    // const scrollPosition =
-    //   window.pageYOffset ||
-    //   document.documentElement.scrollTop ||
-    //   document.body.scrollTop ||
-    //   0;
-
-    // console.log('[scroll]', scrollPosition);
-    // if (scrollPosition >= this.topPosToStartShowing) {
-    //   this.isShow = true;
-    // } else {
-    //   this.isShow = false;
-    // }
-  }
-
-  gotoTop() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
+    this.Slideshow.subscribe((slideshow) => {
+      console.log(slideshow);
     });
+
+    this._breakpointObserver
+      .observe(['(min-width: 1000px)'])
+      .subscribe((isLargeScreen) => {
+        if (isLargeScreen.matches) {
+          this.isLargeScreen = true;
+        } else {
+          this.isLargeScreen = false;
+        }
+      });
   }
 }

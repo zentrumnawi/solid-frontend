@@ -43,6 +43,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MessageState } from './state/message.state';
 import { MessageListComponent } from './components/message-list/message-list.component';
 import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
+import { SOLID_SLIDESHOW_BASE_URL } from '@zentrumnawi/solid-slideshow';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -133,6 +134,10 @@ export class SolidSkeletonModule {
         {
           provide: SOLID_PROFILE_BASE_URL,
           useValue: cfg.routingConfig.profile?.url ?? 'profile',
+        },
+        {
+          provide: SOLID_SLIDESHOW_BASE_URL,
+          useValue: cfg.routingConfig.slideshow?.url ?? 'slideshow',
         },
       ],
     };
