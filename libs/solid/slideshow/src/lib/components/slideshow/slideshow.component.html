@@ -1,16 +1,70 @@
-<!-- New Toolbar, that is fixed on the top of the slideshow and including progress bar and the back-button
+<div class="slideshow-container" (scroll)="scrolling()" #slideshow_container>
+  <!-- New Toolbar, that is fixed on the top of the slideshow and including progress bar and the back-button
   to get back to the slideshow-select. Here i also decided to use page_index instead of using 
   the position attribute in pages from the backend because we already had the slideshow.pages.length, 
   by that we can use it to move from the first page to the last page. The position attribut plays 
   in here no roll. Beside that, the position attribute from the backend is not so correct 
   (look at planty-staging, it is counted from 1,2,3,4,5 and then 7,8,9,10 the position 6 is missing) -->
-<div
-  class="toolbar-large-screen"
-  [class.toolbar-small-screen]="!isLargeScreen"
-  *ngIf="Slideshow | async as slideshow"
->
-  <div #toolbar class="step-actions">
-    <div class="back-left-buttons">
+  <div
+    class="toolbar-large-screen"
+    [class.toolbar-small-screen]="!isLargeScreen"
+    [class.nav-up]="toolbar_up"
+    [class.nav-down]="toolbar_down"
+    *ngIf="!isMobile && (Slideshow | async) as slideshow"
+    #toolbar
+  >
+    <div class="step-actions">
+      <div class="back-left-buttons">
+        <button
+          color="primary"
+          mat-icon-button
+          class="button-back"
+          [routerLink]="['/' + baseUrl]"
+        >
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button
+          [disabled]="page_index === 1"
+          color="primary"
+          mat-icon-button
+          class="button-left"
+          (click)="onPrevStepClick()"
+        >
+          <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+        </button>
+      </div>
+      <div class="title">
+        <h2>{{ slideshow.title }}</h2>
+        <span>
+          {{ slideshow.pages[page_index - 1].title }} ({{ page_index }}/{{
+            slideshow.pages.length
+          }})
+        </span>
+      </div>
+      <button
+        [disabled]="page_index === slideshow.pages.length"
+        (click)="onNextStepClick(slideshow.pages.length)"
+        class="button-right"
+        color="primary"
+        mat-icon-button
+      >
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ (page_index / slideshow.pages.length) * 100 }}"
+    ></mat-progress-bar>
+  </div>
+
+  <div
+    class="toolbar-top"
+    *ngIf="isMobile && (Slideshow | async) as slideshow"
+    [class.nav-up]="toolbar_up"
+    [class.nav-down]="toolbar_down"
+    #toolbar
+  >
+    <div class="toolbar">
       <button
         color="primary"
         mat-icon-button
@@ -19,55 +73,26 @@
       >
         <mat-icon>arrow_back</mat-icon>
       </button>
-      <button
-        [disabled]="page_index === 1"
-        color="primary"
-        mat-icon-button
-        class="button-left"
-        (click)="onPrevStepClick()"
-      >
-        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
-      </button>
+      <h2 class="category">{{ slideshow.title }}</h2>
     </div>
-    <div class="title">
-      <h2 class="category">Category</h2>
-      <span>
-        {{ slideshow.pages[page_index - 1].title }} ({{ page_index }}/{{
-          slideshow.pages.length
-        }})
-      </span>
-    </div>
-    <button
-      [disabled]="page_index === slideshow.pages.length"
-      (click)="onNextStepClick(slideshow.pages.length)"
-      class="float-right"
-      color="primary"
-      mat-icon-button
-    >
-      <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
-    </button>
   </div>
-  <mat-progress-bar
-    mode="determinate"
-    value="{{ (page_index / slideshow.pages.length) * 100 }}"
-  ></mat-progress-bar>
-</div>
 
-<mat-horizontal-stepper
-  #stepper
-  (panend)="onPanEnd($event, slideshow.pages.length)"
-  *ngIf="Slideshow | async as slideshow"
-  labelPosition="bottom"
-  linear="false"
->
-  <mat-step
-    *ngFor="let page of slideshow.pages"
-    [label]="page.title"
-    [state]="slideshow.pages.length >= page_index ? 'done' : ''"
-  >
-    <!-- Old Toolbar, that will be skipped and swiped everytime mat-step ist skipped. 
+  <div class="content-container" (scroll)="scrolling()" #content_container>
+    <mat-horizontal-stepper
+      #stepper
+      (panend)="onPanEnd($event, slideshow.pages.length)"
+      *ngIf="Slideshow | async as slideshow"
+      labelPosition="bottom"
+      linear="false"
+    >
+      <mat-step
+        *ngFor="let page of slideshow.pages"
+        [label]="page.title"
+        [state]="slideshow.pages.length >= page_index ? 'done' : ''"
+      >
+        <!-- Old Toolbar, that will be skipped and swiped everytime mat-step ist skipped. 
     For this reason i decided to move the toolbar out of the mat-step and make it fixed in the slideshow -->
-    <!-- <div class="toolbar">
+        <!-- <div class="toolbar">
         <div class="step-actions">
           <button
             *ngIf="page.position > 1"
@@ -101,36 +126,98 @@
         ></mat-progress-bar>
       </div> -->
 
-    <div
-      [class.very-big-spacer]="Toolbar?.nativeElement.offsetHeight > 100"
-      [class.big-spacer]="
-        Toolbar?.nativeElement.offsetHeight > 80 &&
-        Toolbar?.nativeElement.offsetHeight <= 100
-      "
-      [class.small-spacer]="Toolbar?.nativeElement.offsetHeight <= 80"
-    ></div>
-    <div [data]="page.text" markdown></div>
-    <div class="page-images">
-      <div
-        [class.lessThan3Images]="page.images.length < 3"
-        [class.greaterEqual3Images]="page.images.length >= 3"
+        <div
+          *ngIf="!isMobile"
+          class="spacer"
+          [class.small-spacer]="Toolbar?.nativeElement.offsetHeight <= 80"
+          [class.big-spacer]="
+            Toolbar?.nativeElement.offsetHeight > 80 &&
+            Toolbar?.nativeElement.offsetHeight <= 95
+          "
+          [class.very-big-spacer]="
+            Toolbar?.nativeElement.offsetHeight > 95 &&
+            Toolbar?.nativeElement.offsetHeight <= 110
+          "
+          [class.giant-spacer]="Toolbar?.nativeElement.offsetHeight > 115"
+        ></div>
+
+        <div
+          *ngIf="isMobile"
+          [class.small-spacer-mobile-top]="
+            Toolbar?.nativeElement.offsetHeight <= 50
+          "
+          [class.big-spacer-mobile-top]="
+            Toolbar?.nativeElement.offsetHeight > 50
+          "
+        ></div>
+        <div [data]="page.text" markdown></div>
+        <div class="page-images">
+          <div
+            [class.lessThan3Images]="page.images.length < 3"
+            [class.greaterEqual3Images]="page.images.length >= 3"
+          >
+            <ng-container *ngFor="let img of page.images">
+              <mat-card *ngIf="img.image">
+                <mat-card-header>
+                  <mat-card-title>{{ img.title }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <solid-core-media
+                    [image]="img.img"
+                    [hasDialog]="true"
+                    [hasAttributions]="true"
+                  ></solid-core-media>
+                  <p>{{ img.caption }}</p>
+                </mat-card-content>
+              </mat-card>
+            </ng-container>
+          </div>
+        </div>
+        <div
+          *ngIf="isMobile"
+          [class.small-spacer-mobile-bottom]="
+            Navigation?.nativeElement.offsetHeight <= 60
+          "
+          [class.big-spacer-mobile-bottom]="
+            Navigation?.nativeElement.offsetHeight > 60
+          "
+        ></div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+  <div
+    class="navigation-bottom"
+    *ngIf="isMobile && (Slideshow | async) as slideshow"
+    #navigation
+  >
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ (page_index / slideshow.pages.length) * 100 }}"
+    ></mat-progress-bar>
+    <div #toolbar class="step-actions">
+      <button
+        [disabled]="page_index === 1"
+        color="primary"
+        mat-icon-button
+        class="button-left"
+        (click)="onPrevStepClick()"
       >
-        <ng-container *ngFor="let img of page.images">
-          <mat-card *ngIf="img.image">
-            <mat-card-header>
-              <mat-card-title>{{ img.title }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <solid-core-media
-                [image]="img.img"
-                [hasDialog]="true"
-                [hasAttributions]="true"
-              ></solid-core-media>
-              <p>{{ img.caption }}</p>
-            </mat-card-content>
-          </mat-card>
-        </ng-container>
-      </div>
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <span>
+        {{ slideshow.pages[page_index - 1].title }} ({{ page_index }}/{{
+          slideshow.pages.length
+        }})
+      </span>
+      <button
+        [disabled]="page_index === slideshow.pages.length"
+        (click)="onNextStepClick(slideshow.pages.length)"
+        class="float-right"
+        color="primary"
+        mat-icon-button
+      >
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
-  </mat-step>
-</mat-horizontal-stepper>
+  </div>
+</div>

@@ -12,11 +12,11 @@
     max-height: 100%;
   }
 
-  @media ($mat-xsmall) {
-    mat-sidenav-container {
-      top: 64px;
-    }
-  }
+  // @media ($mat-xsmall) {
+  //   mat-sidenav-container {
+  //     top: 64px;
+  //   }
+  // }
 
   mat-sidenav-container {
     position: absolute;
@@ -27,6 +27,9 @@
   }
 
   mat-toolbar {
+    height: 56px;
+    position: relative;
+    z-index: 3;
     span {
       padding-left: 16px;
     }
@@ -37,14 +40,14 @@
 
     .right-border {
       width: 300px - 16px;
-      height: 64px;
+      height: 56px;
       display: inline-flex;
       align-items: center;
     }
 
     .left-border {
       width: 300px - 16px;
-      height: 64px;
+      height: 56px;
       text-align: right;
       display: inline-flex;
       align-items: center;

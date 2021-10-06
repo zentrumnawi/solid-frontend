@@ -36,6 +36,8 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   private $destroyed = new Subject();
   @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
   @ViewChild('toolbar') public Toolbar?: ElementRef;
+  @ViewChild('navigation') public Navigation?: ElementRef;
+  @ViewChild('slideshow_container') public slideshow_container?: ElementRef;
   public Slideshow: Observable<Slideshow | undefined>;
   @Select(__internal__selectRouterParamSlideshowId)
   slideshowId!: Observable<string>;
@@ -44,6 +46,10 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   >;
   public page_index = 1;
   public isLargeScreen = false;
+  public isMobile = false;
+  public lastScrollTop = 0;
+  public toolbar_up = false;
+  public toolbar_down = false;
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
@@ -115,5 +121,34 @@ export class SlideshowComponent implements OnInit, OnDestroy {
           this.isLargeScreen = false;
         }
       });
+    this._breakpointObserver
+      .observe(['(max-width: 450px)'])
+      .subscribe((isMobile) => {
+        if (isMobile.matches) {
+          this.isMobile = true;
+        } else {
+          this.isMobile = false;
+        }
+      });
+  }
+
+  public scrolling() {
+    const delta = 5;
+    const scrollTop = this.slideshow_container?.nativeElement.scrollTop;
+    const toolbarHeight = this.Toolbar?.nativeElement.offsetHeight;
+    if (Math.abs(this.lastScrollTop - scrollTop) <= delta) {
+      return;
+    }
+
+    if (scrollTop > this.lastScrollTop && scrollTop > toolbarHeight) {
+      // Scroll Down
+      this.toolbar_down = false;
+      this.toolbar_up = true;
+    } else {
+      // Scroll Up
+      this.toolbar_up = false;
+      this.toolbar_down = true;
+    }
+    this.lastScrollTop = scrollTop;
   }
 }
