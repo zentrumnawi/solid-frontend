@@ -12,12 +12,6 @@
     max-height: 100%;
   }
 
-  // @media ($mat-xsmall) {
-  //   mat-sidenav-container {
-  //     top: 64px;
-  //   }
-  // }
-
   mat-sidenav-container {
     position: absolute;
     left: 0;
@@ -29,7 +23,7 @@
   mat-toolbar {
     height: 56px;
     position: relative;
-    z-index: 3;
+    z-index: 999;
     span {
       padding-left: 16px;
     }

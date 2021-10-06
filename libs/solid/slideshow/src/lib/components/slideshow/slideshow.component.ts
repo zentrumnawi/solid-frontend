@@ -45,7 +45,6 @@ export class SlideshowComponent implements OnInit, OnDestroy {
     (id: number) => Slideshow | undefined
   >;
   public page_index = 1;
-  public isLargeScreen = false;
   public isMobile = false;
   public lastScrollTop = 0;
   public toolbar_up = false;
@@ -108,19 +107,9 @@ export class SlideshowComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.load();
-    this.Slideshow.subscribe((slideshow) => {
-      console.log(slideshow);
-    });
-
-    this._breakpointObserver
-      .observe(['(min-width: 1000px)'])
-      .subscribe((isLargeScreen) => {
-        if (isLargeScreen.matches) {
-          this.isLargeScreen = true;
-        } else {
-          this.isLargeScreen = false;
-        }
-      });
+    // this.Slideshow.subscribe((slideshow) => {
+    //   console.log(slideshow);
+    // });
     this._breakpointObserver
       .observe(['(max-width: 450px)'])
       .subscribe((isMobile) => {
@@ -132,7 +121,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
       });
   }
 
-  public scrolling() {
+  public hideAndShowToolbar() {
     const delta = 5;
     const scrollTop = this.slideshow_container?.nativeElement.scrollTop;
     const toolbarHeight = this.Toolbar?.nativeElement.offsetHeight;
