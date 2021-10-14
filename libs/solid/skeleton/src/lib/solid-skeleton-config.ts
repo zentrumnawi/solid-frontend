@@ -11,6 +11,7 @@ export interface RouteConfig {
   order: number;
   matIcon?: string;
   svgIcon?: string;
+  name?: string;
 }
 
 export type RouteConfigWithComponent = RouteConfig & { component: Type<any> };

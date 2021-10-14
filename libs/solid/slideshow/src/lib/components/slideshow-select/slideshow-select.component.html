@@ -1,4 +1,4 @@
-<mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
+<!-- <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
   <mat-grid-tile
     *ngFor="let slideshow of Slideshows | async"
     class="mat-elevation-z2"
@@ -18,4 +18,135 @@
     />
     <span class="slideshowTitle">{{ slideshow.title }}</span>
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+
+<!-- <mat-vertical-stepper #stepper>
+  <mat-step *ngFor="let category of Categories | async">
+    <ng-template matStepLabel>{{ category.name }}</ng-template>
+    <div *ngFor="let slideshow of Slideshows | async">
+      <mat-card
+        *ngIf="category.name === slideshow.categories"
+        [routerLink]="[slideshow.id]"
+      >
+        <div class="mat-card-child">
+          <img
+            [src]="
+              slideshow.title_image
+                ? slideshow.title_image.img.thumbnail
+                : 'assets/icons/icon.svg'
+            "
+            [alt]="
+              slideshow.title_image
+                ? slideshow.title_image.img_alt
+                : 'Kein Bild vorhanden'
+            "
+          />
+          <span class="slideshowTitle">{{ slideshow.title }}</span>
+        </div>
+      </mat-card>
+    </div>
+  </mat-step>
+  <mat-step *ngIf="hasNoCategories">
+    <ng-template matStepLabel>Sonstiges</ng-template>
+    <div *ngFor="let slideshow of Slideshows | async">
+      <mat-card
+        *ngIf="slideshow.categories === undefined"
+        [routerLink]="[slideshow.id]"
+      >
+        <div class="mat-card-child">
+          <img
+            [src]="
+              slideshow.title_image
+                ? slideshow.title_image.img.thumbnail
+                : 'assets/icons/icon.svg'
+            "
+            [alt]="
+              slideshow.title_image
+                ? slideshow.title_image.img_alt
+                : 'Kein Bild vorhanden'
+            "
+          />
+          <span class="slideshowTitle">{{ slideshow.title }}</span>
+        </div>
+      </mat-card>
+    </div>
+  </mat-step>
+</mat-vertical-stepper> -->
+
+<!-- <mat-accordion multi>
+  <mat-expansion-panel *ngFor="let category of Categories | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ category.name }} </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div
+      *ngFor="let slideshow of Slideshows | async"
+      class="mat-card-container"
+    >
+      <mat-card
+        *ngIf="category.name === slideshow.categories"
+        [routerLink]="[slideshow.id]"
+      >
+        <div class="mat-card-child">
+          <img
+            [src]="
+              slideshow.title_image
+                ? slideshow.title_image.img.thumbnail
+                : 'assets/icons/icon.svg'
+            "
+            [alt]="
+              slideshow.title_image
+                ? slideshow.title_image.img_alt
+                : 'Kein Bild vorhanden'
+            "
+          />
+          <span class="slideshowTitle">{{ slideshow.title }}</span>
+        </div>
+      </mat-card>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion> -->
+
+<!-- <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
+  <mat-grid-tile
+    *ngFor="let slideshow of Slideshows | async"
+    class="mat-elevation-z2"
+    [routerLink]="[slideshow.id]"
+  >
+    <img
+      [src]="
+        slideshow.title_image
+          ? slideshow.title_image.img.thumbnail
+          : 'assets/icons/icon.svg'
+      "
+      [alt]="
+        slideshow.title_image
+          ? slideshow.title_image.img_alt
+          : 'Kein Bild vorhanden'
+      "
+    />
+    <span class="slideshowTitle">{{ slideshow.title }}</span>
+  </mat-grid-tile>
+</mat-grid-list> -->
+
+<div class="mat-card-container">
+  <mat-card
+    *ngFor="let slideshow of Slideshows | async"
+    [routerLink]="[slideshow.id]"
+  >
+    <div class="mat-card-child">
+      <img
+        [src]="
+          slideshow.title_image
+            ? slideshow.title_image.img.thumbnail
+            : 'assets/icons/icon.svg'
+        "
+        [alt]="
+          slideshow.title_image
+            ? slideshow.title_image.img_alt
+            : 'Kein Bild vorhanden'
+        "
+      />
+      <span class="slideshowTitle">{{ slideshow.title }}</span>
+    </div>
+  </mat-card>
+</div>

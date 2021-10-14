@@ -4,11 +4,11 @@ import { SlideshowComponent } from './components/slideshow/slideshow.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':categoriesSlug',
     component: SlideshowSelectComponent,
   },
   {
-    path: ':slideshowId',
+    path: ':categoriesSlug/:slideshowId',
     component: SlideshowComponent,
   },
 ];

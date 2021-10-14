@@ -26,6 +26,9 @@ export enum KEY {
 export function __internal__selectRouterParamSlideshowId(s: any) {
   return s.router.state.params['slideshowId'];
 }
+export function __internal__selectRouterParamcategoriesSlug(s: any) {
+  return s.router.state.params['categoriesSlug'];
+}
 
 @Component({
   selector: 'solid-slideshow',
@@ -41,6 +44,8 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   public Slideshow: Observable<Slideshow | undefined>;
   @Select(__internal__selectRouterParamSlideshowId)
   slideshowId!: Observable<string>;
+  @Select(__internal__selectRouterParamcategoriesSlug)
+  categoriesSlug!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<
     (id: number) => Slideshow | undefined
   >;
@@ -49,6 +54,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   public lastScrollTop = 0;
   public toolbar_up = false;
   public toolbar_down = false;
+  public MaxStep = 2;
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
@@ -65,6 +71,38 @@ export class SlideshowComponent implements OnInit, OnDestroy {
     );
   }
 
+  ngOnInit(): void {
+    this.load();
+    this.Slideshow.subscribe((slideshow) => {
+      this.MaxStep = slideshow?.pages.length as number;
+      // console.log(slideshow);
+    });
+    // this.categoriesId.subscribe((slideshow) => {
+    //   console.log(slideshow);
+    // });
+
+    this._breakpointObserver
+      .observe(['(max-width: 450px)'])
+      .subscribe((isMobile) => {
+        if (isMobile.matches) {
+          this.isMobile = true;
+        } else {
+          this.isMobile = false;
+        }
+      });
+  }
+
+  // ngAfterViewChecked(): void {
+  //   this.Slideshow.subscribe((slideshow) => {
+  //     this.maxStep = slideshow?.pages.length;
+  //     // console.log(slideshow);
+  //   });
+  // }
+
+  ngOnDestroy(): void {
+    this.$destroyed.next();
+  }
+
   @Dispatch()
   private load() {
     return new SlideshowActions.Load();
@@ -73,9 +111,9 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   @HostListener('window:keyup', ['$event'])
   public keyEvent(event: KeyboardEvent) {
     if (event.key === KEY.LEFT_ARROW) {
-      this.Stepper.previous();
+      this.onPrevStepClick();
     } else if (event.key === KEY.RIGHT_ARROW) {
-      this.Stepper.next();
+      this.onNextStepClick(this.MaxStep);
     }
   }
 
@@ -99,26 +137,6 @@ export class SlideshowComponent implements OnInit, OnDestroy {
     } else if ($event.deltaX < -100) {
       this.onNextStepClick(maxStep);
     }
-  }
-
-  ngOnDestroy(): void {
-    this.$destroyed.next();
-  }
-
-  ngOnInit(): void {
-    this.load();
-    // this.Slideshow.subscribe((slideshow) => {
-    //   console.log(slideshow);
-    // });
-    this._breakpointObserver
-      .observe(['(max-width: 450px)'])
-      .subscribe((isMobile) => {
-        if (isMobile.matches) {
-          this.isMobile = true;
-        } else {
-          this.isMobile = false;
-        }
-      });
   }
 
   public hideAndShowToolbar() {

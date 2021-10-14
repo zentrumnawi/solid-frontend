@@ -1,13 +1,18 @@
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from './menu.model';
 import { MenuActions } from './menu.actions';
 import { RouterDataResolved } from '@ngxs/router-plugin';
+import { HttpClient } from '@angular/common/http';
+import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
+import { map } from 'lodash';
 
 export interface MenuStateModel {
   items: MenuItem[];
 }
+
+// export type CategoryStateModel = SlideshowCategory[];
 
 const isActive = (routerUrl: string, routeUrl: string) =>
   routeUrl === ''
@@ -38,7 +43,12 @@ export class MenuState {
     return state.items.filter(filter);
   }
 
-  constructor(router: Router, private store: Store) {
+  constructor(
+    router: Router,
+    private store: Store,
+    private _http: HttpClient,
+    @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig
+  ) {
     const items: MenuItem[] = [];
     for (const route of router.config.sort(
       (a, b) => a.data?.order - b.data?.order
@@ -51,6 +61,7 @@ export class MenuState {
         svgIcon: route.data?.svgIcon,
         showInMenu: route.data?.showInMenu,
         showOnLanding: route.data?.showOnLandingPage,
+        name: route.data?.name,
       });
     }
     setTimeout(() => this.store.dispatch(new MenuActions.SetEntries(items)));
@@ -79,4 +90,26 @@ export class MenuState {
       items: newItems,
     });
   }
+
+  // @Action(MenuActions.GetSlideshowCategories)
+  // public GetSlideshowCategories() {
+  //   return this._http
+  //     .get<SlideshowCategory[]>(`${this._config.apiUrl}/categories`)
+  //     .pipe(
+  //       map((res: SlideshowCategory[]) => {
+  //         console.log(res);
+  //       })
+  //     );
+
+  // map((response: any) => {
+  //   console.log(response);
+
+  // const mapit = (input: SlideshowCategory[]) => {
+  //   return input.map((sc) => {
+  //     console.log(sc);
+  //   });
+  // };
+  // return mapit(response);
+  // })
+  // }
 }

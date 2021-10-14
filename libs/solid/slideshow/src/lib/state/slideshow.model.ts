@@ -10,6 +10,7 @@ export interface SlideshowApi {
   title_image: PhotographModel;
   position: number;
   pages: SlideshowPageApi[];
+  categories: string;
 }
 
 export interface SlideshowPage extends SlideshowPageApi {

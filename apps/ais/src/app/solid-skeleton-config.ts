@@ -9,27 +9,33 @@ export const skeletonConfig: SolidSkeletonConfig = {
   routingConfig: {
     landing: {
       svgIcon: 'icon',
+      name: 'landing',
     },
     profile: {
       svgIcon: 'profile',
       url: 'steckbriefe',
+      name: 'profile',
     },
     quiz: {
       svgIcon: 'quiz',
       url: 'selbsttest',
+      name: 'quiz',
     },
     privacy: {
       component: PrivacyComponent,
       svgIcon: 'privacy',
       url: 'datenschutz',
+      name: 'privacy',
     },
     slideshow: {
       svgIcon: 'properties',
       title: 'Keramikwissen',
       url: 'keramikwissen',
+      name: 'slideshow',
     },
     info: {
       svgIcon: 'info',
+      name: 'info',
     },
   },
 };

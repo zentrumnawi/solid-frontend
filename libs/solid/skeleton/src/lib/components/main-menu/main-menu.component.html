@@ -1,4 +1,4 @@
-<mat-nav-list>
+<!-- <mat-nav-list>
   <mat-list-item
     (click)="navigateTo(item.route)"
     *ngFor="let item of MenuItems | async"
@@ -9,4 +9,63 @@
   <mat-list-item (click)="feedback.showDialog()" *ngIf="feedback">
     <h3 matLine>Kontakt</h3>
   </mat-list-item>
-</mat-nav-list>
+</mat-nav-list> -->
+
+<mat-accordion>
+  <ng-container *ngFor="let item of MenuItems | async">
+    <mat-expansion-panel
+      (click)="navigateTo(item.route)"
+      *ngIf="item.name !== 'slideshow'"
+      [class.active]="item.active"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title
+          ><h3 matLine>{{ item.title }}</h3></mat-panel-title
+        >
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="item.name === 'slideshow'" hideToggle>
+      <mat-expansion-panel-header [class.active]="item.active">
+        <mat-panel-title
+          ><h3 matLine>{{ item.title }}</h3></mat-panel-title
+        >
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <mat-list-item
+          (click)="navigateTo(item.route + '/' + category.slug)"
+          *ngFor="let category of CategoriesItems | async"
+        >
+          <span matLine>{{ category.name }}</span>
+        </mat-list-item>
+        <mat-list-item
+          *ngIf="CategoriesItems | async as categories"
+          (click)="navigateTo(item.route + '/sonstiges')"
+        >
+          <span matLine>Sonstiges</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </ng-container>
+  <mat-expansion-panel
+    (click)="feedback.showDialog()"
+    *ngIf="feedback"
+    hideToggle
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title><h3 matLine>Kontakt</h3></mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+  <!-- <mat-expansion-panel
+    (click)="navigateTo(item.route)"
+    *ngFor="let item of MenuItems | async"
+    [class.active]="item.active"
+    hideToggle
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title
+        ><h3 matLine>{{ item.title }}</h3></mat-panel-title
+      >
+    </mat-expansion-panel-header>
+  </mat-expansion-panel> -->
+</mat-accordion>

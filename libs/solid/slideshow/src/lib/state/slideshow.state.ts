@@ -34,6 +34,16 @@ export class SlideshowState {
   }
 
   @Selector()
+  public static getSlideshowByCategories(state: SlideshowStateModel) {
+    const fn = function (
+      categories: string | undefined
+    ): Slideshow[] | undefined {
+      return state.filter((s) => s.categories === categories);
+    };
+    return fn;
+  }
+
+  @Selector()
   public static getSlideshowOverview(state: SlideshowStateModel) {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
@@ -43,6 +53,7 @@ export class SlideshowState {
         title: s.title,
         title_image: s.title_image,
         position: s.position,
+        categories: s.categories,
       }));
     return fn();
   }
@@ -63,6 +74,7 @@ export class SlideshowState {
             return input.map((slideshow) => {
               return {
                 ...slideshow,
+                categories: slideshow.categories[0],
                 pages: slideshow.pages.map((page) => ({
                   ...page,
                   images: page.images?.map((slideshowImg) => ({
