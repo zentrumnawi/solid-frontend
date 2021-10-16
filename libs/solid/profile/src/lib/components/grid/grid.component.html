@@ -26,10 +26,14 @@
   <div class="title" [innerHTML]="profile.name | profileTitle"></div>
   <div class="subtitle">{{ profile.trivial_name }}</div>
   <solid-core-media
+    *ngIf="profile.mediaObjects.length > 0; else noImage"
     [mediaObject]="profile.mediaObjects[0]"
     [hasAttributions]="false"
     [hasDialog]="false"
     [view]="'grid'"
     [hasControlPanel]="false"
   ></solid-core-media>
+  <ng-template #noImage>
+    <img src="assets/profile/no_thumbnail.svg" height="100px" />
+  </ng-template>
 </ng-template>
