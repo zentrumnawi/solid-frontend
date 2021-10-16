@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { SlideshowState } from '../../state/slideshow.state';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
@@ -7,13 +14,12 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { map, takeUntil } from 'rxjs/operators';
+import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
 
 export function __internal__selectRouterParamCategoriesSlug(s: any) {
   return s.router.state.params['categoriesSlug'];
 }
-export function __internal__selectRouterParamCategories(s: any) {
-  console.log(s);
-
+export function __internal__selectCategories(s: any) {
   return s.categories;
 }
 export interface SlideshowCategory {
@@ -30,27 +36,32 @@ export interface SlideshowCategory {
 export class SlideshowSelectComponent implements OnInit, OnDestroy {
   private $destroyed = new Subject();
   public Slideshows?: Observable<Slideshow[]>;
-  // @Select(CategoryState.getSlideshowCategoriesItems)
-  // public Categories!: Observable<SlideshowCategory[]>;
   @Select(__internal__selectRouterParamCategoriesSlug)
   slug!: Observable<string>;
-  @Select(__internal__selectRouterParamCategories)
+  @Select(__internal__selectCategories)
   categories!: Observable<SlideshowCategory[]>;
   @Select(SlideshowState.getSlideshowByCategories)
   categoriesSelector!: Observable<(categories: string) => []>;
   public hasNoCategories = false;
+  @ViewChild('slideshow_select_container')
+  public slideshow_select_container?: ElementRef;
+  @ViewChild('toolbar') public Toolbar?: ElementRef;
+  public lastScrollTop = 0;
+  public toolbar_up = false;
+  public toolbar_down = false;
+  public category_name?: string;
 
-  constructor() {
+  constructor(@Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string) {
     this.Slideshows = combineLatest([
       this.slug,
       this.categoriesSelector,
       this.categories,
     ]).pipe(
       map((val) => {
-        const name = val[2].find(
+        this.category_name = val[2].find(
           (category: SlideshowCategory) => category.slug === val[0]
         )?.name;
-        return val[1](name as string);
+        return val[1](this.category_name as string);
       }),
       takeUntil(this.$destroyed)
     );
@@ -61,11 +72,6 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
     return new SlideshowActions.Load();
   }
 
-  // @Dispatch()
-  // private GetSlideshowCategories() {
-  //   return new CategoriesActions.GetSlideshowCategories();
-  // }
-
   @Dispatch()
   private openSlideshow(id: number) {
     return new Navigate([`${id}`]);
@@ -73,10 +79,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.load();
-    // this.GetSlideshowCategories();
 
-    // this.categories.subscribe((x) => console.log(x));
-    // this.Slideshows?.subscribe((x) => console.log(x));
     // this.Slideshows?.pipe(takeUntil(this.$destroyed)).subscribe((slideshows) => {
     //   slideshows.map((slideshow) => {
     //     if (slideshow.categories === undefined) {
@@ -92,5 +95,25 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.$destroyed.next();
+  }
+
+  public hideAndShowToolbar() {
+    const delta = 5;
+    const scrollTop = this.slideshow_select_container?.nativeElement.scrollTop;
+    const toolbarHeight = this.Toolbar?.nativeElement.offsetHeight;
+    if (Math.abs(this.lastScrollTop - scrollTop) <= delta) {
+      return;
+    }
+
+    if (scrollTop > this.lastScrollTop && scrollTop > toolbarHeight) {
+      // Scroll Down
+      this.toolbar_down = false;
+      this.toolbar_up = true;
+    } else {
+      // Scroll Up
+      this.toolbar_up = false;
+      this.toolbar_down = true;
+    }
+    this.lastScrollTop = scrollTop;
   }
 }

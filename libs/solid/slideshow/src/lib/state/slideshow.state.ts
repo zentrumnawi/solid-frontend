@@ -44,7 +44,7 @@ export class SlideshowState {
   }
 
   @Selector()
-  public static getSlideshowOverview(state: SlideshowStateModel) {
+  public static getSlideshows(state: SlideshowStateModel) {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
     const fn = () =>

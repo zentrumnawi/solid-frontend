@@ -1,40 +1,106 @@
 :host {
   display: block;
-  padding: 1rem;
 }
 
-mat-grid-list {
-  width: 46rem;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+.slideshows-container {
+  overflow: auto;
+  height: 100%;
+  .spacer {
+    width: 100%;
+    height: 50px;
+  }
+  .slideshowTitle {
+    padding-top: 0.5rem;
+  }
+  img {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+.back-button-toolbar-container {
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+  transition: top 0.7s ease-in-out;
+  .back-button-toolbar {
+    display: grid;
+    grid-template-areas: 'front middle last';
+    grid-template-columns: 48px auto 48px;
+    button {
+      grid-area: front;
+      align-self: center;
+      justify-self: end;
+    }
+    h2 {
+      grid-area: middle;
+      justify-self: center;
+      align-self: center;
+      margin-bottom: 0;
+      text-align: center;
+    }
+  }
+}
+@media (min-width: 1000px) {
+  .back-button-toolbar-container {
+    width: calc(100% - 300px);
+    position: fixed;
+    left: 300px;
+    z-index: 2;
+    background-color: white;
+    box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+    transition: top 0.7s ease-in-out;
+  }
 }
 
-mat-grid-tile {
+.mat-card-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  flex-wrap: wrap;
+}
+mat-card {
+  width: 170px;
+  height: 170px;
   border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.05s linear 0.05s;
+  text-align: center;
+  margin: 0.5rem;
 
-  ::ng-deep {
-    figure.mat-figure {
-      display: inline-flex;
-      flex-direction: column;
-      align-content: center;
-    }
+  display: flex;
+  justify-content: center;
+
+  .mat-card-child {
+    margin-top: auto;
+    margin-bottom: auto;
   }
-  span {
-    text-align: center;
+}
+mat-card:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 410px) {
+  mat-card {
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
 }
 
-.slideshowTitle {
-  padding-top: 0.5rem;
+@media (max-width: 500px) {
+  .mat-card-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  mat-card {
+    width: 160px;
+    height: 160px;
+  }
 }
 
-img {
-  width: 6rem;
-  height: 6rem;
-}
+//Mat-expand-version, all slideshows in a page and are sorted by the categories
 ::ng-deep {
   // div.mat-horizontal-stepper-header-container {
   //   display: none;
@@ -77,66 +143,31 @@ img {
   }
 }
 
-mat-card {
-  width: 170px;
-  height: 170px;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: background-color 0.05s linear 0.05s;
-  text-align: center;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-
-  .mat-card-child {
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-}
-
-@media (max-width: 410px) {
-  ::ng-deep {
-    .mat-vertical-content {
-      flex-direction: column;
-    }
-    .mat-expansion-panel-body {
-      flex-direction: column;
-    }
-  }
-  mat-card {
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-}
-@media (max-width: 500px) {
-  ::ng-deep {
-    .mat-vertical-content-container {
-      margin-left: 0 !important;
-      display: flex;
-      justify-content: center;
-    }
-  }
-
-  .mat-card-container {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  mat-card {
-    width: 160px;
-    height: 160px;
-  }
-}
-mat-card:hover {
-  cursor: pointer;
-}
-
 mat-expansion-panel:not(:last-child) {
   margin-bottom: 10px;
 }
 
-.mat-card-container {
-  display: flex;
-  justify-content: center;
+//Original Grid from mkay
+mat-grid-list {
+  width: 23rem;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+mat-grid-tile {
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.05s linear 0.05s;
+
+  ::ng-deep {
+    figure.mat-figure {
+      display: inline-flex;
+      flex-direction: column;
+      align-content: center;
+    }
+  }
+  span {
+    text-align: center;
+  }
 }

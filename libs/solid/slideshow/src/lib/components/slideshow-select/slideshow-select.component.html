@@ -1,3 +1,4 @@
+<!-- Original Grid from mkay -->
 <!-- <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
   <mat-grid-tile
     *ngFor="let slideshow of Slideshows | async"
@@ -20,6 +21,7 @@
   </mat-grid-tile>
 </mat-grid-list> -->
 
+<!-- Mat-sterper version, all slideshows in a page and are sorted by the categories -->
 <!-- <mat-vertical-stepper #stepper>
   <mat-step *ngFor="let category of Categories | async">
     <ng-template matStepLabel>{{ category.name }}</ng-template>
@@ -73,6 +75,7 @@
   </mat-step>
 </mat-vertical-stepper> -->
 
+<!-- Mat-axpansion-panel version, all slideshows in a page and are sorted by the categories -->
 <!-- <mat-accordion multi>
   <mat-expansion-panel *ngFor="let category of Categories | async">
     <mat-expansion-panel-header>
@@ -106,47 +109,51 @@
   </mat-expansion-panel>
 </mat-accordion> -->
 
-<!-- <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
-  <mat-grid-tile
-    *ngFor="let slideshow of Slideshows | async"
-    class="mat-elevation-z2"
-    [routerLink]="[slideshow.id]"
+<div
+  class="slideshows-container"
+  (scroll)="hideAndShowToolbar()"
+  #slideshow_select_container
+>
+  <div
+    class="back-button-toolbar-container"
+    *ngIf="categories | async as categories"
+    [class.nav-up]="toolbar_up"
+    [class.nav-down]="toolbar_down"
+    #toolbar
   >
-    <img
-      [src]="
-        slideshow.title_image
-          ? slideshow.title_image.img.thumbnail
-          : 'assets/icons/icon.svg'
-      "
-      [alt]="
-        slideshow.title_image
-          ? slideshow.title_image.img_alt
-          : 'Kein Bild vorhanden'
-      "
-    />
-    <span class="slideshowTitle">{{ slideshow.title }}</span>
-  </mat-grid-tile>
-</mat-grid-list> -->
-
-<div class="mat-card-container">
-  <mat-card
-    *ngFor="let slideshow of Slideshows | async"
-    [routerLink]="[slideshow.id]"
-  >
-    <div class="mat-card-child">
-      <img
-        [src]="
-          slideshow.title_image
-            ? slideshow.title_image.img.thumbnail
-            : 'assets/icons/icon.svg'
-        "
-        [alt]="
-          slideshow.title_image
-            ? slideshow.title_image.img_alt
-            : 'Kein Bild vorhanden'
-        "
-      />
-      <span class="slideshowTitle">{{ slideshow.title }}</span>
+    <div class="back-button-toolbar">
+      <button
+        color="primary"
+        mat-icon-button
+        class="button-back"
+        [routerLink]="['/' + baseUrl]"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h2>{{ category_name === undefined ? 'Sonstiges' : category_name }}</h2>
     </div>
-  </mat-card>
+  </div>
+  <div class="spacer"></div>
+  <div class="mat-card-container">
+    <mat-card
+      *ngFor="let slideshow of Slideshows | async"
+      [routerLink]="[slideshow.id]"
+    >
+      <div class="mat-card-child">
+        <img
+          [src]="
+            slideshow.title_image
+              ? slideshow.title_image.img.thumbnail
+              : 'assets/icons/icon.svg'
+          "
+          [alt]="
+            slideshow.title_image
+              ? slideshow.title_image.img_alt
+              : 'Kein Bild vorhanden'
+          "
+        />
+        <span class="slideshowTitle">{{ slideshow.title }}</span>
+      </div>
+    </mat-card>
+  </div>
 </div>

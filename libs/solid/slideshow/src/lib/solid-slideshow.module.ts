@@ -13,13 +13,18 @@ import { SlideshowSelectComponent } from './components/slideshow-select/slidesho
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CategoriesSelectComponent } from './components/categories-select/categories-select.component';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
 export const ngxsFeatureModule = NgxsModule.forFeature([SlideshowState]);
 
 @NgModule({
-  declarations: [SlideshowComponent, SlideshowSelectComponent],
+  declarations: [
+    SlideshowComponent,
+    SlideshowSelectComponent,
+    CategoriesSelectComponent,
+  ],
   imports: [
     SolidCoreModule,
     SolidSlideshowRoutingModule,

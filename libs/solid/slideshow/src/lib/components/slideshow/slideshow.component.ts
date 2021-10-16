@@ -12,7 +12,7 @@ import { Select } from '@ngxs/store';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -26,7 +26,7 @@ export enum KEY {
 export function __internal__selectRouterParamSlideshowId(s: any) {
   return s.router.state.params['slideshowId'];
 }
-export function __internal__selectRouterParamcategoriesSlug(s: any) {
+export function __internal__selectRouterParamCategoriesSlug(s: any) {
   return s.router.state.params['categoriesSlug'];
 }
 
@@ -44,7 +44,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   public Slideshow: Observable<Slideshow | undefined>;
   @Select(__internal__selectRouterParamSlideshowId)
   slideshowId!: Observable<string>;
-  @Select(__internal__selectRouterParamcategoriesSlug)
+  @Select(__internal__selectRouterParamCategoriesSlug)
   categoriesSlug!: Observable<string>;
   @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<
     (id: number) => Slideshow | undefined
@@ -75,12 +75,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
     this.load();
     this.Slideshow.subscribe((slideshow) => {
       this.MaxStep = slideshow?.pages.length as number;
-      // console.log(slideshow);
     });
-    // this.categoriesId.subscribe((slideshow) => {
-    //   console.log(slideshow);
-    // });
-
     this._breakpointObserver
       .observe(['(max-width: 450px)'])
       .subscribe((isMobile) => {
@@ -91,13 +86,6 @@ export class SlideshowComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  // ngAfterViewChecked(): void {
-  //   this.Slideshow.subscribe((slideshow) => {
-  //     this.maxStep = slideshow?.pages.length;
-  //     // console.log(slideshow);
-  //   });
-  // }
 
   ngOnDestroy(): void {
     this.$destroyed.next();

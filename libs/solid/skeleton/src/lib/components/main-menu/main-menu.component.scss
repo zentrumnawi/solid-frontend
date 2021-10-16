@@ -1,29 +1,21 @@
 mat-accordion {
   padding: 0;
   display: inline-block;
-  height: calc(100vh - 56px);
   width: 300px;
   overflow-y: auto;
   overflow-x: hidden;
 
   ::ng-deep {
-    .mat-expansion-panel-header.mat-expanded {
-      height: 47px !important;
-      // background-color: #e0e0e0 !important;
-      // border-bottom: 1px solid #e0e0e0;
-    }
-
     .mat-line {
       margin-bottom: 0 !important;
     }
 
     .mat-expansion-panel-header {
       padding: 0 16px !important;
-      height: 47px !important;
+      height: 48px !important;
     }
 
     .mat-expansion-panel:not([class*='mat-elevation-z']) {
-      border-bottom: 1px solid #e0e0e0;
       box-shadow: none !important;
     }
 
@@ -55,14 +47,11 @@ mat-nav-list {
   width: 300px;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-bottom: -6px;
+  // margin-bottom: -5px;
 
   ::ng-deep {
     .mat-list-item-content {
       padding: 0 32px !important;
-    }
-    .mat-list-item:first-child {
-      border-top: 1px solid #e0e0e0;
     }
     .mat-list-item span {
       font-size: 15px !important;
@@ -70,6 +59,8 @@ mat-nav-list {
   }
 }
 
-.active {
-  background-color: #e0e0e0 !important;
+.main-menu-container {
+  height: calc(100vh - 56px);
+  width: 300px;
+  overflow: auto;
 }
