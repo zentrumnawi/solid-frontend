@@ -6,6 +6,7 @@
     <p class="facts-body" markdown [data]="profile.short_description"></p>
   </div>
   <solid-core-media
+    *ngIf="profile.mediaObjects.length > 0; else noImage"
     (swipeleft)="swipe(ImageSelected, $event.type)"
     (swiperight)="swipe(ImageSelected, $event.type)"
     [mediaObject]="profile.mediaObjects[ImageSelected]"
@@ -14,6 +15,11 @@
     [hasDescription]="hasDescription"
     [hasDescriptionToggle]="hasDescriptionToggle"
   ></solid-core-media>
+  <ng-template #noImage>
+    <div class="no-img-container">
+      <img class="no-img" src="assets/profile/no_image.svg" />
+    </div>
+  </ng-template>
   <div class="scroll-container">
     <div
       *ngIf="profile.mediaObjects.length > 1"

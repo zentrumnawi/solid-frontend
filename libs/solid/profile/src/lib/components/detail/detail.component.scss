@@ -16,6 +16,12 @@ solid-core-media {
   margin-bottom: 2px;
   height: calc(100vh / 2.5);
 }
+.no-img-container {
+  text-align: center;
+  .no-img {
+    height: calc(100vh / 2.5);
+  }
+}
 
 mat-expansion-panel {
   mat-expansion-panel-header {
