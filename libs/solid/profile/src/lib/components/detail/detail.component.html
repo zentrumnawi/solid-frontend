@@ -107,10 +107,15 @@
   >
     <p class="heading">{{ property.title }}</p>
     <ng-container *ngSwitchCase="PropertyTypes.String">
-      <p *ngIf="!isHttp(profile_obj[property.key]); else http">
+      <p
+        *ngIf="
+          !(profile_obj[property.key].indexOf('http') === 0);
+          else httpString
+        "
+      >
         {{ profile_obj[property.key] }}
       </p>
-      <ng-template #http>
+      <ng-template #httpString>
         <p>
           <a [href]="profile_obj[property.key]" target="_blank">
             {{ profile_obj[property.key] }}
