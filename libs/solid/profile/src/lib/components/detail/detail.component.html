@@ -130,11 +130,16 @@
       markdown
       [data]="profile_obj[property.key]"
     ></p>
-    <p
-      id="normal_color"
-      *ngSwitchCase="PropertyTypes.Colstring"
-      [style.background-color]="profile_obj[property.key]"
-    ></p>
+    <ng-container *ngSwitchCase="PropertyTypes.Colstring">
+      <p
+        *ngIf="profile_obj[property.key].indexOf('#') === 0; else notColString"
+        id="normal_color"
+        [style.background-color]="profile_obj[property.key]"
+      ></p>
+      <ng-template #notColString>
+        <p>{{ profile_obj[property.key] }}</p>
+      </ng-template>
+    </ng-container>
     <ng-container *ngSwitchCase="PropertyTypes.List">
       <p *ngFor="let val of profile_obj[property.key]">{{ val }}</p>
     </ng-container>
