@@ -51,7 +51,7 @@ export class DetailComponent {
 
   // TODO: Remove after custom type httpstring is implemented
   public isHttp(string: string) {
-    return string.substr(0, 4) == 'http';
+    return string.substr(0, 4) === 'http';
   }
 
   public onImageSelect(index: number) {
