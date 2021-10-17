@@ -49,7 +49,7 @@ export class DetailComponent {
     this.ImageLoaded[index] = true;
   }
 
-  //TODO: Remove after custom type httpstring is implemented
+  // TODO: Remove after custom type httpstring is implemented
   public isHttp(string: string) {
     return string.substr(0, 4) == 'http';
   }
