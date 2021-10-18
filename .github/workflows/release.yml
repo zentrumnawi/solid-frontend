@@ -83,7 +83,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           rm: true
-          source: 'dist/apps/planty'
+          source: 'dist/apps/ais'
           target: '${{ secrets.AIS_PRODUCTION_DIRECTORY }}'
           strip_components: 3
 
@@ -95,6 +95,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           rm: true
-          source: 'dist/apps/planty'
+          source: 'dist/apps/geomat'
           target: '${{ secrets.GEOMAT_PRODUCTION_DIRECTORY }}'
           strip_components: 3
