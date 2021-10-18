@@ -107,7 +107,7 @@ export class ProfileDefinitionService {
         }
         return {
           key: key,
-          title: schema.items!.title!,
+          title: title!,
           required,
           type: ProfilePropertyType.List,
         };
