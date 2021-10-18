@@ -62,18 +62,20 @@ export class DetailComponent {
       this.ImageStartIndex = index - 3;
       this.ImageEndIndex = index + 3;
     }
-    if (this.profile.mediaObjects[index].mediaType === 'audio') {
-      this.hasDialog = false;
-      this.hasDescription = false;
-      this.hasDescriptionToggle = true;
-    } else if (this.profile.mediaObjects[index].mediaType === 'video') {
-      this.hasDialog = false;
-      this.hasDescription = true;
-      this.hasDescriptionToggle = false;
-    } else {
-      this.hasDialog = true;
-      this.hasDescriptionToggle = false;
-      this.hasDescription = false;
+    if (this.profile.mediaObjects.length !== 0) {
+      if (this.profile.mediaObjects[index].mediaType === 'audio') {
+        this.hasDialog = false;
+        this.hasDescription = false;
+        this.hasDescriptionToggle = true;
+      } else if (this.profile.mediaObjects[index].mediaType === 'video') {
+        this.hasDialog = false;
+        this.hasDescription = true;
+        this.hasDescriptionToggle = false;
+      } else {
+        this.hasDialog = true;
+        this.hasDescriptionToggle = false;
+        this.hasDescription = false;
+      }
     }
   }
 
