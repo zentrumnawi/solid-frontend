@@ -7,26 +7,26 @@ import {
 } from '@angular/platform-browser';
 import { ErrorHandler, Injectable, NgModule } from '@angular/core';
 
-import { SolidSkeletonModule } from '@zentrumnawi/solid-skeleton';
-import { environment } from '../environments/environment';
-import { SolidCoreModule } from '@zentrumnawi/solid-core';
 import { AppComponent } from './app.component';
-import { NgxsModule } from '@ngxs/store';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PrivacyComponent } from './privacy/privacy.component';
 import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule } from '@ngxs/store';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { SolidCoreModule } from '@zentrumnawi/solid-core';
+import { SolidSkeletonModule } from '@zentrumnawi/solid-skeleton';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
-import { MatCardModule } from '@angular/material/card';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
-import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
 import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
 
 @Injectable()
