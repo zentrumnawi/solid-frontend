@@ -20,9 +20,9 @@ export const skeletonConfig: SolidSkeletonConfig = {
       url: 'selbsttest',
     },
     slideshow: {
-      svgIcon: 'assistant',
-      title: 'Bestimmungshelfer',
-      url: 'bestimmungshelfer',
+      svgIcon: 'slideshow',
+      title: 'Slideshows',
+      url: 'slideshows',
     },
     info: {
       svgIcon: 'info',

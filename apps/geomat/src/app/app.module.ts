@@ -91,14 +91,13 @@ export class AppModule {
         url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`)
       );
     addIcon('icon');
-    addIcon('assistant');
+    addIcon('slideshow');
     addIcon('privacy');
     addIcon('crystalsystem');
     addIcon('profile');
     addIcon('quiz');
     addIcon('glossary');
     addIcon('info');
-    addIcon('info2');
     addIcon('feedback');
   }
 }
