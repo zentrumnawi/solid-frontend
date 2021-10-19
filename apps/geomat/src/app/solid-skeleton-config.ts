@@ -21,6 +21,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
     },
     slideshow: {
       svgIcon: 'assistant',
+      title: 'Bestimmungshelfer',
       url: 'bestimmungshelfer',
     },
     info: {
