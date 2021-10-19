@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 
 @Component({
   selector: 'solid-core-media-error-dialog',
@@ -9,6 +10,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class MediaErrorDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    @Inject(MAT_DIALOG_DATA) public name: string
+    @Inject(MAT_DIALOG_DATA) public name: string,
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
   ) {}
 }

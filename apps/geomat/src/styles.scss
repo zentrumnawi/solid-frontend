@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import 'theme';
+@import 'core-theme';
 @import 'glossary-theme';
 @import 'profile-theme';
 @import 'quiz-theme';
@@ -15,6 +16,7 @@
 // that you are using.
 @include angular-material-theme($app-theme);
 
+@include solid-core-theme($app-theme);
 @include solid-glossary-theme($app-theme);
 @include solid-profile-theme($app-theme);
 @include solid-quiz-theme($app-theme, $quiz-correct, $quiz-incorrect);
