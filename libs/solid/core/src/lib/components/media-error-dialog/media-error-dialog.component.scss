@@ -1,0 +1,14 @@
+div.mat-dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.1em 0.55em;
+}
+
+div.mat-dialog-content {
+  margin: 0.1em 0.55em;
+  padding: 0;
+  max-height: calc(100% - 44px);
+  height: 100%;
+  position: relative;
+}
