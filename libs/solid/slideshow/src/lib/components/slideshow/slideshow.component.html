@@ -16,21 +16,7 @@
         color="primary"
         mat-icon-button
         class="button-back"
-        *ngIf="
-          slideshowAmount! > 1 && (categoriesSlug | async) as categoriesSlug
-        "
-        [routerLink]="['/' + baseUrl + '/' + categoriesSlug]"
-      >
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-      <button
-        color="primary"
-        mat-icon-button
-        class="button-back"
-        *ngIf="
-          slideshowAmount! === 1 && (categoriesSlug | async) as categoriesSlug
-        "
-        [routerLink]="['/' + baseUrl]"
+        (click)="goBack()"
       >
         <mat-icon>arrow_back</mat-icon>
       </button>
@@ -82,8 +68,7 @@
         color="primary"
         mat-icon-button
         class="button-back"
-        *ngIf="categoriesSlug | async as categoriesSlug"
-        [routerLink]="['/' + baseUrl + '/' + categoriesSlug]"
+        (click)="goBack()"
       >
         <mat-icon>arrow_back</mat-icon>
       </button>
@@ -129,6 +114,7 @@
         <div [data]="page.text" markdown></div>
         <div class="page-images">
           <div
+            [class.equal1Image]="page.images.length === 1"
             [class.lessThan3Images]="page.images.length < 3"
             [class.greaterEqual3Images]="page.images.length >= 3"
           >

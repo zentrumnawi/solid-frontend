@@ -124,12 +124,17 @@ div.page-images {
     @media (min-width: 1200px) {
       grid-template-columns: 1fr 1fr;
     }
-
-    // @media (min-width: 1400px) {
-    //   grid-template-columns: 1fr 1fr;
-    // }
-
     grid-template-columns: 1fr 1fr;
+  }
+  div.equal1Image {
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: 801px) {
+      mat-card {
+        width: 50%;
+      }
+    }
   }
 
   mat-card {
@@ -146,13 +151,17 @@ div.page-images {
         font-size: 16px;
       }
     }
+    mat-card-content {
+      height: calc(100% - 32px);
+    }
 
     solid-core-media {
+      height: 100%;
       ::ng-deep {
         solid-core-media-toolbar {
           position: absolute !important;
-          bottom: -0.7em !important;
-          right: -1.5em !important;
+          bottom: -0.4em !important;
+          right: -1.2em !important;
         }
       }
     }

@@ -17,6 +17,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
+import { Navigate } from '@ngxs/router-plugin';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
@@ -69,7 +70,8 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   public toolbar_up = false;
   public toolbar_down = false;
   public MaxStep = 2;
-  public slideshowAmount?: number;
+  public slideshowAmount!: number;
+  public slug!: string;
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
@@ -107,6 +109,9 @@ export class SlideshowComponent implements OnInit, OnDestroy {
           this.isMobile = false;
         }
       });
+    this.categoriesSlug.subscribe(
+      (categoriesSlug) => (this.slug = categoriesSlug)
+    );
   }
 
   ngOnDestroy(): void {
@@ -167,5 +172,13 @@ export class SlideshowComponent implements OnInit, OnDestroy {
       this.toolbar_down = true;
     }
     this.lastScrollTop = scrollTop;
+  }
+
+  @Dispatch()
+  public goBack() {
+    if (this.slideshowAmount === 1) {
+      return new Navigate([`${this.baseUrl}`]);
+    }
+    return new Navigate([`${this.baseUrl}`, this.slug]);
   }
 }

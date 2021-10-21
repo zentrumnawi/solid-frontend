@@ -17,9 +17,6 @@ import { map, takeUntil } from 'rxjs/operators';
 import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
 import { ActivatedRoute } from '@angular/router';
 
-// export function __internal__selectRouterParamCategoriesSlug(s: any) {
-//   return s.router.state.params['categoriesSlug'];
-// }
 export function __internal__selectCategories(s: any) {
   return s.categories;
 }
@@ -37,8 +34,6 @@ export interface SlideshowCategory {
 export class SlideshowSelectComponent implements OnInit, OnDestroy {
   private $destroyed = new Subject();
   public Slideshows?: Observable<Slideshow[]>;
-  // @Select(__internal__selectRouterParamCategoriesSlug)
-  // slug!: Observable<string>;
   @Select(__internal__selectCategories)
   categories!: Observable<SlideshowCategory[]>;
   @Select(SlideshowState.getSlideshowByCategories)
@@ -114,5 +109,10 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
       this.toolbar_down = true;
     }
     this.lastScrollTop = scrollTop;
+  }
+
+  @Dispatch()
+  public goBack() {
+    return new Navigate([`${this.baseUrl}`]);
   }
 }
