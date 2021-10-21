@@ -7,6 +7,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { takeUntil } from 'rxjs/operators';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'solid-slideshow-slideshow-select',
@@ -18,6 +19,8 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   @Select(SlideshowState.getSlideshowOverview)
   public Slideshows!: Observable<Slideshow[]>;
 
+  constructor(private route: ActivatedRoute) {}
+
   @Dispatch()
   private load() {
     return new SlideshowActions.Load();
@@ -25,7 +28,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   private openSlideshow(id: number) {
-    return new Navigate([`${id}`]);
+    return new Navigate([`${id}`], undefined, { relativeTo: this.route });
   }
 
   ngOnInit(): void {
