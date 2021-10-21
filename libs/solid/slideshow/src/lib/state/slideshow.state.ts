@@ -24,11 +24,16 @@ export class SlideshowState {
   ) {}
 
   @Selector()
-  public static getSlideshowById(state: SlideshowStateModel) {
+  public static getSlideshowByCategoriesAndId(state: SlideshowStateModel) {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
-    const fn = function (id: number): Slideshow | undefined {
-      return state.find((slideshow) => slideshow.id === id);
+    const fn = function (
+      id: number,
+      categories: string | undefined
+    ): Slideshow | undefined {
+      return state
+        .filter((slideshow) => slideshow.categories === categories)
+        .find((slideshow) => slideshow.id === id);
     };
     return fn;
   }
@@ -39,6 +44,13 @@ export class SlideshowState {
       categories: string | undefined
     ): Slideshow[] | undefined {
       return state.filter((s) => s.categories === categories);
+    };
+    return fn;
+  }
+  @Selector()
+  public static SlideshowAmountInACategory(state: SlideshowStateModel) {
+    const fn = function (categories: string | undefined): number {
+      return state.filter((s) => s.categories === categories).length;
     };
     return fn;
   }

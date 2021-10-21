@@ -3,22 +3,26 @@
     *ngFor="let category of Categories | async"
     [routerLink]="[category.slug]"
   >
-    <!-- <img
+    <div class="mat-card-child">
+      <!-- <img
         [src]="
-          slideshow.title_image
-            ? slideshow.title_image.img.thumbnail
+          category.title_image
+            ? category.title_image.img.thumbnail
             : 'assets/icons/icon.svg'
         "
         [alt]="
-          slideshow.title_image
-            ? slideshow.title_image.img_alt
+          category.title_image
+            ? category.title_image.img_alt
             : 'Kein Bild vorhanden'
         "
       /> -->
-    <span class="categoryName">{{ category.name }}</span>
+      <img [src]="'assets/icons/icon.svg'" />
+      <span class="categoryName">{{ category.name }}</span>
+    </div>
   </mat-card>
   <mat-card [routerLink]="['sonstiges']" *ngIf="hasNoCategories">
     <div class="mat-card-child">
+      <img [src]="'assets/icons/icon.svg'" />
       <span class="categoryName">Sonstiges</span>
     </div>
   </mat-card>

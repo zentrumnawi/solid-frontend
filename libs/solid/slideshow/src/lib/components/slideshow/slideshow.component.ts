@@ -29,7 +29,14 @@ export function __internal__selectRouterParamSlideshowId(s: any) {
 export function __internal__selectRouterParamCategoriesSlug(s: any) {
   return s.router.state.params['categoriesSlug'];
 }
-
+export function __internal__selectCategories(s: any) {
+  return s.categories;
+}
+export interface SlideshowCategory {
+  id: number;
+  name: string;
+  slug: string;
+}
 @Component({
   selector: 'solid-slideshow',
   templateUrl: './slideshow.component.html',
@@ -46,8 +53,15 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   slideshowId!: Observable<string>;
   @Select(__internal__selectRouterParamCategoriesSlug)
   categoriesSlug!: Observable<string>;
-  @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<
-    (id: number) => Slideshow | undefined
+  @Select(__internal__selectCategories)
+  categories!: Observable<SlideshowCategory[]>;
+  @Select(SlideshowState.getSlideshowByCategoriesAndId)
+  slideshowSelector!: Observable<
+    (id: number, categories: string | undefined) => Slideshow | undefined
+  >;
+  @Select(SlideshowState.SlideshowAmountInACategory)
+  slideshowAmountCounter!: Observable<
+    (categories: string | undefined) => number
   >;
   public page_index = 1;
   public isMobile = false;
@@ -55,17 +69,25 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   public toolbar_up = false;
   public toolbar_down = false;
   public MaxStep = 2;
+  public slideshowAmount?: number;
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
     @Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string
   ) {
     this.Slideshow = combineLatest([
+      this.categoriesSlug,
       this.slideshowId,
       this.slideshowSelector,
+      this.categories,
+      this.slideshowAmountCounter,
     ]).pipe(
       map((val) => {
-        return val[1](Number.parseInt(val[0], 10));
+        const category_name = val[3].find(
+          (category: SlideshowCategory) => category.slug === val[0]
+        )?.name;
+        this.slideshowAmount = val[4](category_name);
+        return val[2](Number.parseInt(val[1], 10), category_name);
       }),
       takeUntil(this.$destroyed)
     );

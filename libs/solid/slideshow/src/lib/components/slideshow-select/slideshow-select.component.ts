@@ -15,10 +15,11 @@ import { SlideshowActions } from '../../state/slideshow.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { map, takeUntil } from 'rxjs/operators';
 import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
+import { ActivatedRoute } from '@angular/router';
 
-export function __internal__selectRouterParamCategoriesSlug(s: any) {
-  return s.router.state.params['categoriesSlug'];
-}
+// export function __internal__selectRouterParamCategoriesSlug(s: any) {
+//   return s.router.state.params['categoriesSlug'];
+// }
 export function __internal__selectCategories(s: any) {
   return s.categories;
 }
@@ -36,8 +37,8 @@ export interface SlideshowCategory {
 export class SlideshowSelectComponent implements OnInit, OnDestroy {
   private $destroyed = new Subject();
   public Slideshows?: Observable<Slideshow[]>;
-  @Select(__internal__selectRouterParamCategoriesSlug)
-  slug!: Observable<string>;
+  // @Select(__internal__selectRouterParamCategoriesSlug)
+  // slug!: Observable<string>;
   @Select(__internal__selectCategories)
   categories!: Observable<SlideshowCategory[]>;
   @Select(SlideshowState.getSlideshowByCategories)
@@ -51,19 +52,21 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   public toolbar_down = false;
   public category_name?: string;
 
-  constructor(@Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string) {
+  constructor(
+    @Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string,
+    private actRoute: ActivatedRoute
+  ) {
     this.Slideshows = combineLatest([
-      this.slug,
       this.categoriesSelector,
       this.categories,
     ]).pipe(
       map((val) => {
-        this.category_name = val[2].find(
-          (category: SlideshowCategory) => category.slug === val[0]
+        this.category_name = val[1].find(
+          (category: SlideshowCategory) =>
+            category.slug === this.actRoute.snapshot.params['categoriesSlug']
         )?.name;
-        return val[1](this.category_name as string);
-      }),
-      takeUntil(this.$destroyed)
+        return val[0](this.category_name as string);
+      })
     );
   }
 
@@ -74,23 +77,18 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   private openSlideshow(id: number) {
-    return new Navigate([`${id}`]);
+    return new Navigate([`${id}`], undefined, { relativeTo: this.actRoute });
   }
 
   ngOnInit(): void {
     this.load();
-
-    // this.Slideshows?.pipe(takeUntil(this.$destroyed)).subscribe((slideshows) => {
-    //   slideshows.map((slideshow) => {
-    //     if (slideshow.categories === undefined) {
-    //       this.hasNoCategories = true;
-    //     }
-    //   });
-
-    //   if (slideshows.length === 1) {
-    //     this.openSlideshow(slideshows[0].id);
-    //   }
-    // });
+    this.Slideshows?.pipe(takeUntil(this.$destroyed)).subscribe(
+      (slideshows) => {
+        if (slideshows.length === 1) {
+          this.openSlideshow(slideshows[0].id);
+        }
+      }
+    );
   }
 
   ngOnDestroy(): void {

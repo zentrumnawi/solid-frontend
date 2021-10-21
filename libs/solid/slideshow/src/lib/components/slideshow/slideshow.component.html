@@ -16,8 +16,21 @@
         color="primary"
         mat-icon-button
         class="button-back"
-        *ngIf="categoriesSlug | async as categoriesSlug"
+        *ngIf="
+          slideshowAmount! > 1 && (categoriesSlug | async) as categoriesSlug
+        "
         [routerLink]="['/' + baseUrl + '/' + categoriesSlug]"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button
+        color="primary"
+        mat-icon-button
+        class="button-back"
+        *ngIf="
+          slideshowAmount! === 1 && (categoriesSlug | async) as categoriesSlug
+        "
+        [routerLink]="['/' + baseUrl]"
       >
         <mat-icon>arrow_back</mat-icon>
       </button>
