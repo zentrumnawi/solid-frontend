@@ -1740,6 +1740,18 @@
     jasmine-marbles "~0.6.0"
     tslib "^2.0.0"
 
+"@nrwl/cli@*", "@nrwl/cli@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-13.0.1.tgz#37f07849f4ecab73717cb8ca6521b5d169b2f86e"
+  integrity sha512-73fJIwvGhliEPC298zm8DTGa/TuMnDFQApf0tMqRk307SKC0oetszpOVDJGffFtvv6hOeCx67rBVtYDyMXRRvg==
+  dependencies:
+    "@nrwl/tao" "13.0.1"
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    v8-compile-cache "2.3.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
 "@nrwl/cli@11.4.0":
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-11.4.0.tgz#e5c464646fbe34d5dbd96a58895e30ec8b7c814e"
@@ -1997,6 +2009,23 @@
     rxjs-for-await "0.0.2"
     semver "7.3.4"
     strip-json-comments "^3.1.1"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-13.0.1.tgz#e8d6efc134635671c9780fc67b21e473ad346ffe"
+  integrity sha512-3dEgMst1MhM+pfztq58CWODXtRW6KUfMnZcqUCYK8wPkwN3H3Ym7Zo7uIvi3r+DlL9rf+6IOm2ikaGBACsGeCg==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    jsonc-parser "3.0.0"
+    nx "13.0.1"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
     tmp "~0.2.1"
     tslib "^2.0.0"
     yargs-parser "20.0.0"
@@ -9205,6 +9234,13 @@ nwsapi@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
   integrity sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==
+
+nx@13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-13.0.1.tgz#dc86255a7d4bc090789727277663e9927238048a"
+  integrity sha512-SVke3+POQJdNePyalqQlxV59eR1HNlQZ/5+g4W2U8nU97siSY+EITGAuGBAcSaNKwUluKSFQscro1NRhQ0keXg==
+  dependencies:
+    "@nrwl/cli" "*"
 
 oauth-sign@~0.9.0:
   version "0.9.0"
