@@ -66,7 +66,8 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
             category.slug === this.actRoute.snapshot.params['categoriesSlug']
         )?.name;
         return val[0](this.category_name as string);
-      })
+      }),
+      takeUntil(this.$destroyed)
     );
   }
 
