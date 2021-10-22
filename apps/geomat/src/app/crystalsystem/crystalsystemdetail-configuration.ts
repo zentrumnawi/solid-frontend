@@ -25,7 +25,7 @@ export const configurations: CrystalsystemdetailConfiguration[] = [
     name: 'hexagonal',
     displayName: 'hexagonal',
     description:
-      'Für die Seiten gilt: a = b &ne; c <br> Für die Winkel gilt: &alpha; = &beta; = 90&deg; und &gamma; = 120&deg;',
+      'Für die Seiten gilt: a = b &ne; c <br> Für die Winkel gilt: &alpha; = &beta; = 90&deg; und &gamma; = 60&deg;',
     layers: [
       { name: 0, title: '&#123; . . . &#125;' },
       { name: 100, title: '[0001]' },
@@ -37,7 +37,7 @@ export const configurations: CrystalsystemdetailConfiguration[] = [
     name: 'monoclinic',
     displayName: 'monoklin',
     description:
-      'Für die Seiten gilt: a &ne; b &ne; c <br> Für die Winkel gilt: &alpha; = &beta; = 90&deg; und &gamma; &ne; 90&deg;',
+      'Für die Seiten gilt: a &ne; b &ne; c <br> Für die Winkel gilt: &alpha; = &gamma; = 90&deg; und &beta; &ne; 90&deg;',
     layers: [
       { name: 0, title: '&#123; . . . &#125;' },
       { name: 100, title: '[001]' },

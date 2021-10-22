@@ -1,15 +1,18 @@
 const hexagonal = generate();
 
 function generate() {
-  const a1 = new THREE.Vector3(-5, 5, -5);
-  const a2 = new THREE.Vector3(4.33, 5, -2.5);
-  const a3 = new THREE.Vector3(4.33, -10, -2.5);
-  const a4 = new THREE.Vector3(-5, -10, -5);
+  //let factor = 2;
+  //lower square
+  const a1 = new THREE.Vector3(-2.2 * 2, 7.5, -3.8 * 2);
+  const a2 = new THREE.Vector3(2.2 * 2, 7.5, -1.2 * 2);
+  const a3 = new THREE.Vector3(2.2 * 2, -7.5, -1.2 * 2);
+  const a4 = new THREE.Vector3(-2.2 * 2, -7.5, -3.8 * 2);
 
-  const b1 = new THREE.Vector3(-5, 5, 5);
-  const b2 = new THREE.Vector3(4.33, 5, 7.5);
-  const b3 = new THREE.Vector3(4.33, -10, 7.5);
-  const b4 = new THREE.Vector3(-5, -10, 5);
+  //upper square
+  const b1 = new THREE.Vector3(-2.2 * 2, 7.5, 1.2 * 2);
+  const b2 = new THREE.Vector3(2.2 * 2, 7.5, 3.8 * 2);
+  const b3 = new THREE.Vector3(2.2 * 2, -7.5, 3.8 * 2);
+  const b4 = new THREE.Vector3(-2.2 * 2, -7.5, 1.2 * 2);
 
   return {
     vertices: [a1, a2, a3, a4, b1, b2, b3, b4],
@@ -32,3 +35,5 @@ function generate() {
     vertices_111: [a1, a3, a3, b4], // Add a minimum of 4 points for the convex hull algorithm. Duplicates allowed.
   };
 }
+
+// Hexagonal: Gamma = 60° nicht 90°! & Rhomboedrische Aufstellung
