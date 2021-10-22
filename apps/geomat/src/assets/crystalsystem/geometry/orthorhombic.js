@@ -1,15 +1,17 @@
 const orthorhombic = generate();
 
 function generate() {
-  const a1 = new THREE.Vector3(-5, 5, -1.25);
-  const a2 = new THREE.Vector3(5, 5, -1.25);
-  const a3 = new THREE.Vector3(5, -10, -1.25);
-  const a4 = new THREE.Vector3(-5, -10, -1.25);
+  //lower square
+  const a1 = new THREE.Vector3(-4, 9, -7);
+  const a2 = new THREE.Vector3(4, 9, -7);
+  const a3 = new THREE.Vector3(4, -9, -7);
+  const a4 = new THREE.Vector3(-4, -9, -7);
 
-  const b1 = new THREE.Vector3(-5, 5, 5);
-  const b2 = new THREE.Vector3(5, 5, 5);
-  const b3 = new THREE.Vector3(5, -10, 5);
-  const b4 = new THREE.Vector3(-5, -10, 5);
+  //upper square
+  const b1 = new THREE.Vector3(-4, 9, 7);
+  const b2 = new THREE.Vector3(4, 9, 7);
+  const b3 = new THREE.Vector3(4, -9, 7);
+  const b4 = new THREE.Vector3(-4, -9, 7);
 
   return {
     vertices: [a1, a2, a3, a4, b1, b2, b3, b4],

@@ -1,15 +1,17 @@
 const trigonal = generate();
 
 function generate() {
-  const a1 = new THREE.Vector3(-5, 5, -5);
-  const a2 = new THREE.Vector3(5, 3.535, -5);
-  const a3 = new THREE.Vector3(5, -6.465, -5);
-  const a4 = new THREE.Vector3(-5, -5, -5);
+  //lower square
+  const a1 = new THREE.Vector3((-2.2 - 1.45) * 2, 2.5 * 2, -6.3 * 2);
+  const a2 = new THREE.Vector3((2.2 - 1.45) * 2, 2.5 * 2, -3.7 * 2);
+  const a3 = new THREE.Vector3((4.7 - 1.45) * 2, -2.5 * 2, -1.2 * 2);
+  const a4 = new THREE.Vector3((0.3 - 1.45) * 2, -2.5 * 2, -3.8 * 2);
 
-  const b1 = new THREE.Vector3(-5, 5, 5);
-  const b2 = new THREE.Vector3(5, 3.535, 5);
-  const b3 = new THREE.Vector3(5, -6.465, 5);
-  const b4 = new THREE.Vector3(-5, -5, 5);
+  //upper square5
+  const b1 = new THREE.Vector3((-2.2 - 1.45) * 2, 2.5 * 2, -1.3 * 2);
+  const b2 = new THREE.Vector3((2.2 - 1.45) * 2, 2.5 * 2, 1.3 * 2);
+  const b3 = new THREE.Vector3((4.7 - 1.45) * 2, -2.5 * 2, 3.8 * 2);
+  const b4 = new THREE.Vector3((0.3 - 1.45) * 2, -2.5 * 2, 1.2 * 2);
 
   return {
     vertices: [a1, a2, a3, a4, b1, b2, b3, b4],
