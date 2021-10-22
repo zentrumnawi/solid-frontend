@@ -60,17 +60,15 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   slideshowSelector!: Observable<
     (id: number, categories: string | undefined) => Slideshow | undefined
   >;
-  @Select(SlideshowState.SlideshowAmountInACategory)
-  slideshowAmountCounter!: Observable<
-    (categories: string | undefined) => number
-  >;
+  @Select(SlideshowState.SlideshowByCategoryCounter)
+  slideshowCounter!: Observable<(categories: string | undefined) => number>;
   public page_index = 1;
   public isMobile = false;
   public lastScrollTop = 0;
   public toolbar_up = false;
   public toolbar_down = false;
   public MaxStep = 2;
-  public slideshowAmount!: number;
+  public slideshowCount!: number;
   public slug!: string;
 
   constructor(
@@ -82,13 +80,13 @@ export class SlideshowComponent implements OnInit, OnDestroy {
       this.slideshowId,
       this.slideshowSelector,
       this.categories,
-      this.slideshowAmountCounter,
+      this.slideshowCounter,
     ]).pipe(
       map((val) => {
         const category_name = val[3].find(
           (category: SlideshowCategory) => category.slug === val[0]
         )?.name;
-        this.slideshowAmount = val[4](category_name);
+        this.slideshowCount = val[4](category_name);
         return val[2](Number.parseInt(val[1], 10), category_name);
       }),
       takeUntil(this.$destroyed)
@@ -176,7 +174,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   public goBack() {
-    if (this.slideshowAmount === 1) {
+    if (this.slideshowCount === 1) {
       return new Navigate([`${this.baseUrl}`]);
     }
     return new Navigate([`${this.baseUrl}`, this.slug]);

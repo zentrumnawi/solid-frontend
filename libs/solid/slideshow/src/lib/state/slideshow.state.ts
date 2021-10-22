@@ -48,7 +48,7 @@ export class SlideshowState {
     return fn;
   }
   @Selector()
-  public static SlideshowAmountInACategory(state: SlideshowStateModel) {
+  public static SlideshowByCategoryCounter(state: SlideshowStateModel) {
     const fn = function (categories: string | undefined): number {
       return state.filter((s) => s.categories === categories).length;
     };
