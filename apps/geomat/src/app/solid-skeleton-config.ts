@@ -29,7 +29,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
     },
     custom: [
       {
-        enabled: false,
+        enabled: true,
         showOnLandingPage: true,
         showInMenu: true,
         url: 'crystalsystem',
