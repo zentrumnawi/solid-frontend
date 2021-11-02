@@ -1,11 +1,11 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin solid-core-audio-icon-theme($mat-theme) {
   $background: map-get($mat-theme, background);
   $accent: map-get($mat-theme, accent);
   $primary: map-get($mat-theme, primary);
   svg rect {
-    fill: mat-color($primary);
+    fill: mat.get-color-from-palette($primary);
     text-align: center;
   }
 }

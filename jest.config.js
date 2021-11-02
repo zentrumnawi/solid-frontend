@@ -10,6 +10,6 @@ module.exports = {
     '<rootDir>/apps/dive',
     '<rootDir>/apps/ais',
     '<rootDir>/apps/planty',
-    '<rootDir>/libs/tools',
+    // '<rootDir>/libs/tools',
   ],
 };

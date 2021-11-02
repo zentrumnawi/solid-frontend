@@ -1,11 +1,11 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin solid-profile-grid-theme($mat-theme) {
   $background: map-get($mat-theme, background);
   $accent: map-get($mat-theme, accent);
   solid-profile-grid {
     div.card.selected {
-      background-color: mat-color($accent);
+      background-color: mat.get-color-from-palette($accent);
     }
   }
 }

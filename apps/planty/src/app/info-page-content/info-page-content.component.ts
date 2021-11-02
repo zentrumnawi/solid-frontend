@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import * as version from '../../environments/version.json';
+import pjs from '../../../../../package.json';
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -11,10 +11,7 @@ import {
   styleUrls: ['./info-page-content.component.scss'],
 })
 export class InfoPageContentComponent {
-  public Version =
-    version && version.semver && version.semver.version
-      ? version.semver.version
-      : 'Version unbekannt';
+  public Version = pjs.version ? pjs.version : 'Version unbekannt';
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService

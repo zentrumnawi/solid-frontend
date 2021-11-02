@@ -4,7 +4,7 @@ import {
 } from '@angular-devkit/schematics/testing';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 import { Schema as ApplicationOptions } from '@schematics/angular/application/schema';
-import { Style } from '@angular/cli/lib/config/schema';
+// import { Style } from '@angular/cli/lib/config/schema';
 import { getFileContent } from '@nrwl/workspace/testing';
 import { DEPENDENCIES } from '../dependencies';
 
@@ -25,7 +25,7 @@ describe('ng-add', () => {
       inlineStyle: false,
       inlineTemplate: false,
       routing: false,
-      style: Style.Scss,
+      // style: Style.Scss,
       skipTests: false,
       skipPackageJson: false,
     };
@@ -61,7 +61,7 @@ describe('ng-add', () => {
     it('files created', async () => {
       expect(appTree.files).toEqual(
         expect.arrayContaining([
-          '/projects/bar/src/styles.scss',
+          // '/projects/bar/src/styles.scss',
           '/projects/bar/src/theme.scss',
           '/projects/bar/src/app/solid-core-config.ts',
           '/projects/bar/src/app/solid-skeleton-config.ts',
