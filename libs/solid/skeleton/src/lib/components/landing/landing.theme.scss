@@ -14,7 +14,8 @@
       padding-bottom: 0.5rem;
     }
     mat-list-item:not(:last-child) {
-      border-bottom: 1px solid mat.get-color-from-palette($background, status-bar);
+      border-bottom: 1px solid
+        mat.get-color-from-palette($background, status-bar);
       padding-bottom: -1rem;
     }
   }

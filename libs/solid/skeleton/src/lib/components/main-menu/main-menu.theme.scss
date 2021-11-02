@@ -5,10 +5,14 @@
   solid-skeleton-main-menu {
     mat-nav-list {
       mat-list-item {
-        border-bottom: 1px solid mat.get-color-from-palette($background, status-bar);
+        border-bottom: 1px solid
+          mat.get-color-from-palette($background, status-bar);
 
         &.active {
-          background-color: mat.get-color-from-palette($background, selected-button);
+          background-color: mat.get-color-from-palette(
+            $background,
+            selected-button
+          );
         }
       }
     }
