@@ -1,5 +1,5 @@
 import { Inject, Optional, Pipe, PipeTransform } from '@angular/core';
-import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile/di';
+import { SOLID_PROFILE_TITLE_FORMATTER } from '../../di/src/public_api';
 
 @Pipe({ name: 'profileTitle' })
 export class ProfileTitlePipe implements PipeTransform {

@@ -12,8 +12,7 @@ export interface RouterStateParams {
 // Map the router snapshot to { url, params, queryParams }
 @Injectable()
 export class CustomRouterStateSerializer
-  implements RouterStateSerializer<RouterStateParams>
-{
+  implements RouterStateSerializer<RouterStateParams> {
   serialize(routerState: RouterStateSnapshot): RouterStateParams {
     const {
       url,
