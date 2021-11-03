@@ -7,9 +7,8 @@ import { SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { catchError, map } from 'rxjs/operators';
 import { InternalSolidSkeletonConfig } from '../solid-skeleton-config';
 
-export const SOLID_SKELETON_FEEDBACK_SERVICE = new InjectionToken<FeedbackService | null>(
-  'SOLID_SKELETON_FEEDBACK_SERVICE'
-);
+export const SOLID_SKELETON_FEEDBACK_SERVICE =
+  new InjectionToken<FeedbackService | null>('SOLID_SKELETON_FEEDBACK_SERVICE');
 
 export function feedbackServiceFactory(
   http: HttpClient,

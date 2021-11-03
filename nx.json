@@ -8,55 +8,6 @@
     "tsconfig.base.json": "*",
     ".eslintrc.json": "*"
   },
-  "projects": {
-    "geomat": {
-      "tags": []
-    },
-    "geomat-e2e": {
-      "tags": [],
-      "implicitDependencies": ["geomat"]
-    },
-    "solid-core": {
-      "tags": ["solid"]
-    },
-    "solid-quiz": {
-      "tags": ["solid"]
-    },
-    "solid-slideshow": {
-      "tags": ["solid"]
-    },
-    "solid-glossary": {
-      "tags": ["solid"]
-    },
-    "solid-skeleton": {
-      "tags": ["solid"],
-      "dependencies": ["tools"]
-    },
-    "solid-profile": {
-      "tags": ["solid"]
-    },
-    "dive": {
-      "tags": []
-    },
-    "dive-e2e": {
-      "tags": [],
-      "implicitDependencies": ["dive"]
-    },
-    "ais": {
-      "tags": []
-    },
-    "ais-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ais"]
-    },
-    "planty": {
-      "tags": []
-    },
-    "planty-e2e": {
-      "tags": [],
-      "implicitDependencies": ["planty"]
-    }
-  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -67,5 +18,19 @@
   },
   "affected": {
     "defaultBase": "master"
-  }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "geomat"
 }

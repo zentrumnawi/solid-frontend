@@ -32,8 +32,9 @@ export class ProfileDefinitionService {
         map((swagger) => {
           const definitions = swagger.definitions || {};
           // tslint:disable-next-line:no-non-null-assertion
-          const topLevelRef = (definitions.TreeNode.properties!.profiles!
-            .items as Schema).$ref;
+          const topLevelRef = (
+            definitions.TreeNode.properties!.profiles!.items as Schema
+          ).$ref;
           return this.definitionToGroup(swagger, topLevelRef);
         })
       );

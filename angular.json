@@ -3,33 +3,33 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "geomat": {
+    "ais": {
       "projectType": "application",
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
         }
       },
-      "root": "apps/geomat",
-      "sourceRoot": "apps/geomat/src",
-      "prefix": "geomat",
+      "root": "apps/ais",
+      "sourceRoot": "apps/ais/src",
+      "prefix": "zentrumnawi",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/geomat",
-            "index": "apps/geomat/src/index.html",
-            "main": "apps/geomat/src/main.ts",
-            "polyfills": "apps/geomat/src/polyfills.ts",
-            "tsConfig": "apps/geomat/tsconfig.app.json",
+            "outputPath": "dist/apps/ais",
+            "index": "apps/ais/src/index.html",
+            "main": "apps/ais/src/main.ts",
+            "polyfills": "apps/ais/src/polyfills.ts",
+            "tsConfig": "apps/ais/tsconfig.app.json",
             "assets": [
-              "apps/geomat/src/favicon.ico",
-              "apps/geomat/src/assets",
-              "apps/geomat/src/manifest.webmanifest"
+              "apps/ais/src/favicon.ico",
+              "apps/ais/src/assets",
+              "apps/ais/src/manifest.webmanifest"
             ],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
-              "apps/geomat/src/styles.scss"
+              "apps/ais/src/styles.scss"
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
@@ -52,8 +52,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/geomat/src/environments/environment.ts",
-                  "with": "apps/geomat/src/environments/environment.prod.ts"
+                  "replace": "apps/ais/src/environments/environment.ts",
+                  "with": "apps/ais/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -76,13 +76,13 @@
                 }
               ],
               "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "ngswConfigPath": "apps/ais/ngsw-config.json"
             },
             "staging": {
               "fileReplacements": [
                 {
-                  "replace": "apps/geomat/src/environments/environment.ts",
-                  "with": "apps/geomat/src/environments/environment.staging.ts"
+                  "replace": "apps/ais/src/environments/environment.ts",
+                  "with": "apps/ais/src/environments/environment.staging.ts"
                 }
               ],
               "optimization": true,
@@ -114,352 +114,80 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "geomat:build",
-            "proxyConfig": "./apps/geomat/proxy.conf.json"
+            "browserTarget": "ais:build",
+            "proxyConfig": "./apps/ais/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "geomat:build:production"
+              "browserTarget": "ais:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "geomat:build"
+            "browserTarget": "ais:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/geomat/tsconfig.app.json",
-              "apps/geomat/tsconfig.spec.json"
+              "apps/ais/tsconfig.app.json",
+              "apps/ais/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/geomat/**/*"]
+            "exclude": ["**/node_modules/**", "!apps/ais/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/geomat/jest.config.js",
-            "passWithNoTests": true
+            "jestConfig": "apps/ais/jest.config.js",
+            "passWithNoTests": true,
+            "tsConfig": "apps/ais/tsconfig.spec.json"
           },
-          "outputs": ["coverage/apps/geomat"]
+          "outputs": ["coverage/apps/ais"]
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "configuration": "staging",
+            "baseHref": "/solid-frontend/",
+            "name": "Github Actions",
+            "email": "github@example.com"
+          }
         }
-      }
+      },
+      "tags": []
     },
-    "geomat-e2e": {
-      "root": "apps/geomat-e2e",
-      "sourceRoot": "apps/geomat-e2e/src",
+    "ais-e2e": {
+      "root": "apps/ais-e2e",
+      "sourceRoot": "apps/ais-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/geomat-e2e/cypress.json",
-            "tsConfig": "apps/geomat-e2e/tsconfig.e2e.json",
-            "devServerTarget": "geomat:serve"
+            "cypressConfig": "apps/ais-e2e/cypress.json",
+            "tsConfig": "apps/ais-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ais:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "geomat:serve:production"
+              "devServerTarget": "ais:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**/*"]
+            "tsConfig": ["apps/ais-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ais-e2e/**/*"]
           }
-        }
-      }
-    },
-    "solid-core": {
-      "projectType": "library",
-      "root": "libs/solid/core",
-      "sourceRoot": "libs/solid/core/src",
-      "prefix": "solid-core",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/solid/core/tsconfig.lib.json",
-            "project": "libs/solid/core/ng-package.json",
-            "buildableProjectDepsInPackageJsonType": "dependencies"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/solid/core/tsconfig.lib.prod.json"
-            },
-            "staging": {
-              "tsConfig": "libs/solid/core/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/solid/core/tsconfig.lib.json",
-              "libs/solid/core/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/core/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/solid/core/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/libs/solid/core"]
         }
       },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "solid-quiz": {
-      "projectType": "library",
-      "root": "libs/solid/quiz",
-      "sourceRoot": "libs/solid/quiz/src",
-      "prefix": "solid-quiz",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/solid/quiz/tsconfig.lib.json",
-            "project": "libs/solid/quiz/ng-package.json",
-            "buildableProjectDepsInPackageJsonType": "dependencies"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/solid/quiz/tsconfig.lib.prod.json"
-            },
-            "staging": {
-              "tsConfig": "libs/solid/quiz/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/solid/quiz/tsconfig.lib.json",
-              "libs/solid/quiz/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/solid/quiz/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/libs/solid/quiz"]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "solid-slideshow": {
-      "projectType": "library",
-      "root": "libs/solid/slideshow",
-      "sourceRoot": "libs/solid/slideshow/src",
-      "prefix": "solid-slideshow",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/solid/slideshow/tsconfig.lib.json",
-            "project": "libs/solid/slideshow/ng-package.json",
-            "buildableProjectDepsInPackageJsonType": "dependencies"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
-            },
-            "staging": {
-              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/solid/slideshow/tsconfig.lib.json",
-              "libs/solid/slideshow/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/solid/slideshow/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/libs/solid/slideshow"]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "solid-glossary": {
-      "projectType": "library",
-      "root": "libs/solid/glossary",
-      "sourceRoot": "libs/solid/glossary/src",
-      "prefix": "solid-glossary",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/solid/glossary/tsconfig.lib.json",
-            "project": "libs/solid/glossary/ng-package.json",
-            "buildableProjectDepsInPackageJsonType": "dependencies"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/solid/glossary/tsconfig.lib.prod.json"
-            },
-            "staging": {
-              "tsConfig": "libs/solid/glossary/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/solid/glossary/tsconfig.lib.json",
-              "libs/solid/glossary/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/solid/glossary/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/libs/solid/glossary"]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "solid-skeleton": {
-      "projectType": "library",
-      "root": "libs/solid/skeleton",
-      "sourceRoot": "libs/solid/skeleton/src",
-      "prefix": "solid-skeleton",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "project": "libs/solid/skeleton/ng-package.json",
-            "tsConfig": "libs/solid/skeleton/tsconfig.lib.json",
-            "buildableProjectDepsInPackageJsonType": "dependencies"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/solid/skeleton/ng-package.json",
-              "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
-            },
-            "staging": {
-              "project": "libs/solid/skeleton/ng-package.json",
-              "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/solid/skeleton/tsconfig.lib.json",
-              "libs/solid/skeleton/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/solid/skeleton/jest.config.js",
-            "passWithNoTests": false
-          },
-          "outputs": ["coverage/libs/solid/skeleton"]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss",
-          "style": "scss"
-        }
-      }
-    },
-    "solid-profile": {
-      "projectType": "library",
-      "root": "libs/solid/profile",
-      "sourceRoot": "libs/solid/profile/src",
-      "prefix": "solid-profile",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/solid/profile/tsconfig.lib.json",
-            "project": "libs/solid/profile/ng-package.json",
-            "buildableProjectDepsInPackageJsonType": "dependencies"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
-            },
-            "staging": {
-              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/solid/profile/tsconfig.lib.json",
-              "libs/solid/profile/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/profile/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/solid/profile/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/libs/solid/profile"]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
+      "tags": [],
+      "implicitDependencies": ["ais"]
     },
     "dive": {
       "projectType": "application",
@@ -614,7 +342,8 @@
             "email": "github@example.com"
           }
         }
-      }
+      },
+      "tags": []
     },
     "dive-e2e": {
       "root": "apps/dive-e2e",
@@ -641,7 +370,185 @@
             "exclude": ["**/node_modules/**", "!apps/dive-e2e/**/*"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["dive"]
+    },
+    "geomat": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/geomat",
+      "sourceRoot": "apps/geomat/src",
+      "prefix": "geomat",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/geomat",
+            "index": "apps/geomat/src/index.html",
+            "main": "apps/geomat/src/main.ts",
+            "polyfills": "apps/geomat/src/polyfills.ts",
+            "tsConfig": "apps/geomat/tsconfig.app.json",
+            "assets": [
+              "apps/geomat/src/favicon.ico",
+              "apps/geomat/src/assets",
+              "apps/geomat/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "./node_modules/material-icons/iconfont/material-icons.scss",
+              "apps/geomat/src/styles.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/core/src",
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            },
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/geomat/src/environments/environment.ts",
+                  "with": "apps/geomat/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/geomat/src/environments/environment.ts",
+                  "with": "apps/geomat/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          },
+          "outputs": ["{options.outputPath}"],
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "geomat:build",
+            "proxyConfig": "./apps/geomat/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "geomat:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "geomat:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/geomat/tsconfig.app.json",
+              "apps/geomat/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/geomat/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/geomat/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/apps/geomat"]
+        }
+      },
+      "tags": []
+    },
+    "geomat-e2e": {
+      "root": "apps/geomat-e2e",
+      "sourceRoot": "apps/geomat-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/geomat-e2e/cypress.json",
+            "tsConfig": "apps/geomat-e2e/tsconfig.e2e.json",
+            "devServerTarget": "geomat:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "geomat:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**/*"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["geomat"]
     },
     "planty": {
       "projectType": "application",
@@ -797,7 +704,8 @@
             "email": "github@example.com"
           }
         }
-      }
+      },
+      "tags": []
     },
     "planty-e2e": {
       "root": "apps/planty-e2e",
@@ -824,197 +732,302 @@
             "exclude": ["**/node_modules/**", "!apps/planty-e2e/**/*"]
           }
         }
-      }
-    },
-    "ais": {
-      "projectType": "application",
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
       },
-      "root": "apps/ais",
-      "sourceRoot": "apps/ais/src",
-      "prefix": "zentrumnawi",
+      "tags": [],
+      "implicitDependencies": ["planty"]
+    },
+    "solid-core": {
+      "projectType": "library",
+      "root": "libs/solid/core",
+      "sourceRoot": "libs/solid/core/src",
+      "prefix": "solid-core",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@nrwl/angular:package",
           "options": {
-            "outputPath": "dist/apps/ais",
-            "index": "apps/ais/src/index.html",
-            "main": "apps/ais/src/main.ts",
-            "polyfills": "apps/ais/src/polyfills.ts",
-            "tsConfig": "apps/ais/tsconfig.app.json",
-            "assets": [
-              "apps/ais/src/favicon.ico",
-              "apps/ais/src/assets",
-              "apps/ais/src/manifest.webmanifest"
-            ],
-            "styles": [
-              "./node_modules/material-icons/iconfont/material-icons.scss",
-              "apps/ais/src/styles.scss"
-            ],
-            "scripts": [],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "libs/solid/core/src",
-                "libs/solid/glossary/src",
-                "libs/solid/skeleton/src",
-                "libs/solid/quiz/src",
-                "libs/solid/profile/src"
-              ]
-            },
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "tsConfig": "libs/solid/core/tsconfig.lib.json",
+            "project": "libs/solid/core/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/ais/src/environments/environment.ts",
-                  "with": "apps/ais/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "apps/ais/ngsw-config.json"
+              "tsConfig": "libs/solid/core/tsconfig.lib.prod.json"
             },
             "staging": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/ais/src/environments/environment.ts",
-                  "with": "apps/ais/src/environments/environment.staging.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "tsConfig": "libs/solid/core/tsconfig.lib.prod.json"
             }
-          },
-          "outputs": ["{options.outputPath}"],
-          "defaultConfiguration": ""
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ais:build",
-            "proxyConfig": "./apps/ais/proxy.conf.json"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "ais:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "ais:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/ais/tsconfig.app.json",
-              "apps/ais/tsconfig.spec.json"
+              "libs/solid/core/tsconfig.lib.json",
+              "libs/solid/core/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ais/**/*"]
+            "exclude": ["**/node_modules/**", "!libs/solid/core/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/ais/jest.config.js",
-            "passWithNoTests": true,
-            "tsConfig": "apps/ais/tsconfig.spec.json"
+            "jestConfig": "libs/solid/core/jest.config.js",
+            "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/ais"]
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "configuration": "staging",
-            "baseHref": "/solid-frontend/",
-            "name": "Github Actions",
-            "email": "github@example.com"
-          }
+          "outputs": ["coverage/libs/solid/core"]
         }
-      }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "tags": ["solid"]
     },
-    "ais-e2e": {
-      "root": "apps/ais-e2e",
-      "sourceRoot": "apps/ais-e2e/src",
-      "projectType": "application",
+    "solid-glossary": {
+      "projectType": "library",
+      "root": "libs/solid/glossary",
+      "sourceRoot": "libs/solid/glossary/src",
+      "prefix": "solid-glossary",
       "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+        "build": {
+          "builder": "@nrwl/angular:package",
           "options": {
-            "cypressConfig": "apps/ais-e2e/cypress.json",
-            "tsConfig": "apps/ais-e2e/tsconfig.e2e.json",
-            "devServerTarget": "ais:serve"
+            "tsConfig": "libs/solid/glossary/tsconfig.lib.json",
+            "project": "libs/solid/glossary/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ais:serve:production"
+              "tsConfig": "libs/solid/glossary/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/glossary/tsconfig.lib.prod.json"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ais-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ais-e2e/**/*"]
+            "tsConfig": [
+              "libs/solid/glossary/tsconfig.lib.json",
+              "libs/solid/glossary/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**/*"]
           }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/glossary/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/glossary"]
         }
-      }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "tags": ["solid"]
+    },
+    "solid-profile": {
+      "projectType": "library",
+      "root": "libs/solid/profile",
+      "sourceRoot": "libs/solid/profile/src",
+      "prefix": "solid-profile",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/solid/profile/tsconfig.lib.json",
+            "project": "libs/solid/profile/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/profile/tsconfig.lib.json",
+              "libs/solid/profile/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/profile/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/profile/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/profile"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "tags": ["solid"]
+    },
+    "solid-quiz": {
+      "projectType": "library",
+      "root": "libs/solid/quiz",
+      "sourceRoot": "libs/solid/quiz/src",
+      "prefix": "solid-quiz",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/solid/quiz/tsconfig.lib.json",
+            "project": "libs/solid/quiz/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/solid/quiz/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/quiz/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/quiz/tsconfig.lib.json",
+              "libs/solid/quiz/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/quiz/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/quiz"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "tags": ["solid"]
+    },
+    "solid-skeleton": {
+      "projectType": "library",
+      "root": "libs/solid/skeleton",
+      "sourceRoot": "libs/solid/skeleton/src",
+      "prefix": "solid-skeleton",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "project": "libs/solid/skeleton/ng-package.json",
+            "tsConfig": "libs/solid/skeleton/tsconfig.lib.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/solid/skeleton/ng-package.json",
+              "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "project": "libs/solid/skeleton/ng-package.json",
+              "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/skeleton/tsconfig.lib.json",
+              "libs/solid/skeleton/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/skeleton/jest.config.js",
+            "passWithNoTests": false
+          },
+          "outputs": ["coverage/libs/solid/skeleton"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss",
+          "style": "scss"
+        }
+      },
+      "tags": ["solid"],
+      "dependencies": ["tools"]
+    },
+    "solid-slideshow": {
+      "projectType": "library",
+      "root": "libs/solid/slideshow",
+      "sourceRoot": "libs/solid/slideshow/src",
+      "prefix": "solid-slideshow",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/solid/slideshow/tsconfig.lib.json",
+            "project": "libs/solid/slideshow/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+            },
+            "staging": {
+              "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/solid/slideshow/tsconfig.lib.json",
+              "libs/solid/slideshow/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/solid/slideshow/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/solid/slideshow"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "tags": ["solid"]
     }
-  },
-
-  "defaultProject": "geomat",
-  "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": false
   },
   "schematics": {
     "@nrwl/angular:application": {

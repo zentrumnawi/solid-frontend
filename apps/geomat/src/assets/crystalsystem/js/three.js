@@ -359,7 +359,14 @@
     this.skinIndices = [];
     this.lineDistances = [];
     this.boundingSphere = this.boundingBox = null;
-    this.groupsNeedUpdate = this.lineDistancesNeedUpdate = this.colorsNeedUpdate = this.normalsNeedUpdate = this.uvsNeedUpdate = this.verticesNeedUpdate = this.elementsNeedUpdate = !1;
+    this.groupsNeedUpdate =
+      this.lineDistancesNeedUpdate =
+      this.colorsNeedUpdate =
+      this.normalsNeedUpdate =
+      this.uvsNeedUpdate =
+      this.verticesNeedUpdate =
+      this.elementsNeedUpdate =
+        !1;
   }
 
   function S(a, b, c) {
@@ -424,7 +431,12 @@
     this.skinWeights = [];
     this.skinIndices = [];
     this.boundingSphere = this.boundingBox = null;
-    this.groupsNeedUpdate = this.uvsNeedUpdate = this.colorsNeedUpdate = this.normalsNeedUpdate = this.verticesNeedUpdate = !1;
+    this.groupsNeedUpdate =
+      this.uvsNeedUpdate =
+      this.colorsNeedUpdate =
+      this.normalsNeedUpdate =
+      this.verticesNeedUpdate =
+        !1;
   }
 
   function Re(a) {
@@ -640,7 +652,13 @@
     this.linewidth = 1;
     this.wireframe = !1;
     this.wireframeLinewidth = 1;
-    this.morphNormals = this.morphTargets = this.skinning = this.clipping = this.lights = this.fog = !1;
+    this.morphNormals =
+      this.morphTargets =
+      this.skinning =
+      this.clipping =
+      this.lights =
+      this.fog =
+        !1;
     this.extensions = {
       derivatives: !1,
       fragDepth: !1,
@@ -2108,9 +2126,10 @@
         ShadowMaterial: 'shadow',
         SpriteMaterial: 'sprite',
       },
-      h = 'precision supportsVertexTextures map mapEncoding matcap matcapEncoding envMap envMapMode envMapEncoding lightMap aoMap emissiveMap emissiveMapEncoding bumpMap normalMap objectSpaceNormalMap displacementMap specularMap roughnessMap metalnessMap gradientMap alphaMap combine vertexColors vertexTangents fog useFog fogExp flatShading sizeAttenuation logarithmicDepthBuffer skinning maxBones useVertexTexture morphTargets morphNormals maxMorphTargets maxMorphNormals premultipliedAlpha numDirLights numPointLights numSpotLights numHemiLights numRectAreaLights shadowMapEnabled shadowMapType toneMapping physicallyCorrectLights alphaTest doubleSided flipSided numClippingPlanes numClipIntersection depthPacking dithering'.split(
-        ' '
-      );
+      h =
+        'precision supportsVertexTextures map mapEncoding matcap matcapEncoding envMap envMapMode envMapEncoding lightMap aoMap emissiveMap emissiveMapEncoding bumpMap normalMap objectSpaceNormalMap displacementMap specularMap roughnessMap metalnessMap gradientMap alphaMap combine vertexColors vertexTangents fog useFog fogExp flatShading sizeAttenuation logarithmicDepthBuffer skinning maxBones useVertexTexture morphTargets morphNormals maxMorphTargets maxMorphNormals premultipliedAlpha numDirLights numPointLights numSpotLights numHemiLights numRectAreaLights shadowMapEnabled shadowMapType toneMapping physicallyCorrectLights alphaTest doubleSided flipSided numClippingPlanes numClipIntersection depthPacking dithering'.split(
+          ' '
+        );
     this.getParameters = function (b, d, f, h, v, l, r) {
       var k = g[b.type];
       if (r.isSkinnedMesh) {
@@ -4961,12 +4980,20 @@
       z = null;
     this.domElement = x;
     this.context = null;
-    this.sortObjects = this.autoClearStencil = this.autoClearDepth = this.autoClearColor = this.autoClear = !0;
+    this.sortObjects =
+      this.autoClearStencil =
+      this.autoClearDepth =
+      this.autoClearColor =
+      this.autoClear =
+        !0;
     this.clippingPlanes = [];
     this.localClippingEnabled = !1;
     this.gammaFactor = 2;
     this.physicallyCorrectLights = this.gammaOutput = this.gammaInput = !1;
-    this.toneMappingWhitePoint = this.toneMappingExposure = this.toneMapping = 1;
+    this.toneMappingWhitePoint =
+      this.toneMappingExposure =
+      this.toneMapping =
+        1;
     this.maxMorphTargets = 8;
     this.maxMorphNormals = 4;
     var fa = this,
@@ -5561,26 +5588,8 @@
     if (void 0 === Wb) {
       Wb = new z();
       var b = new Float32Array([
-        -0.5,
-        -0.5,
-        0,
-        0,
-        0,
-        0.5,
-        -0.5,
-        0,
-        1,
-        0,
-        0.5,
-        0.5,
-        0,
-        1,
-        1,
-        -0.5,
-        0.5,
-        0,
-        0,
-        1,
+        -0.5, -0.5, 0, 0, 0, 0.5, -0.5, 0, 1, 0, 0.5, 0.5, 0, 1, 1, -0.5, 0.5,
+        0, 0, 1,
       ]);
       b = new xb(b, 5);
       Wb.setIndex([0, 1, 2, 0, 2, 3]);
@@ -6069,66 +6078,9 @@
         1,
       ],
       [
-        0,
-        11,
-        5,
-        0,
-        5,
-        1,
-        0,
-        1,
-        7,
-        0,
-        7,
-        10,
-        0,
-        10,
-        11,
-        1,
-        5,
-        9,
-        5,
-        11,
-        4,
-        11,
-        10,
-        2,
-        10,
-        7,
-        6,
-        7,
-        1,
-        8,
-        3,
-        9,
-        4,
-        3,
-        4,
-        2,
-        3,
-        2,
-        6,
-        3,
-        6,
-        8,
-        3,
-        8,
-        9,
-        4,
-        9,
-        5,
-        2,
-        4,
-        11,
-        6,
-        2,
-        10,
-        8,
-        6,
-        7,
-        9,
-        8,
-        1,
+        0, 11, 5, 0, 5, 1, 0, 1, 7, 0, 7, 10, 0, 10, 11, 1, 5, 9, 5, 11, 4, 11,
+        10, 2, 10, 7, 6, 7, 1, 8, 3, 9, 4, 3, 4, 2, 3, 2, 6, 3, 6, 8, 3, 8, 9,
+        4, 9, 5, 2, 4, 11, 6, 2, 10, 8, 6, 7, 9, 8, 1,
       ],
       a,
       b
@@ -6213,114 +6165,12 @@
         d,
       ],
       [
-        3,
-        11,
-        7,
-        3,
-        7,
-        15,
-        3,
-        15,
-        13,
-        7,
-        19,
-        17,
-        7,
-        17,
-        6,
-        7,
-        6,
-        15,
-        17,
-        4,
-        8,
-        17,
-        8,
-        10,
-        17,
-        10,
-        6,
-        8,
-        0,
-        16,
-        8,
-        16,
-        2,
-        8,
-        2,
-        10,
-        0,
-        12,
-        1,
-        0,
-        1,
-        18,
-        0,
-        18,
-        16,
-        6,
-        10,
-        2,
-        6,
-        2,
-        13,
-        6,
-        13,
-        15,
-        2,
-        16,
-        18,
-        2,
-        18,
-        3,
-        2,
-        3,
-        13,
-        18,
-        1,
-        9,
-        18,
-        9,
-        11,
-        18,
-        11,
-        3,
-        4,
-        14,
-        12,
-        4,
-        12,
-        0,
-        4,
-        0,
-        8,
-        11,
-        9,
-        5,
-        11,
-        5,
-        19,
-        11,
-        19,
-        7,
-        19,
-        5,
-        14,
-        19,
-        14,
-        4,
-        19,
-        4,
-        17,
-        1,
-        12,
-        14,
-        1,
-        14,
-        5,
-        1,
-        5,
-        9,
+        3, 11, 7, 3, 7, 15, 3, 15, 13, 7, 19, 17, 7, 17, 6, 7, 6, 15, 17, 4, 8,
+        17, 8, 10, 17, 10, 6, 8, 0, 16, 8, 16, 2, 8, 2, 10, 0, 12, 1, 0, 1, 18,
+        0, 18, 16, 6, 10, 2, 6, 2, 13, 6, 13, 15, 2, 16, 18, 2, 18, 3, 2, 3, 13,
+        18, 1, 9, 18, 9, 11, 18, 11, 3, 4, 14, 12, 4, 12, 0, 4, 0, 8, 11, 9, 5,
+        11, 5, 19, 11, 19, 7, 19, 5, 14, 19, 14, 4, 19, 4, 17, 1, 12, 14, 1, 14,
+        5, 1, 5, 9,
       ],
       a,
       b
@@ -7854,7 +7704,12 @@
     this.displacementBias = 0;
     this.wireframe = !1;
     this.wireframeLinewidth = 1;
-    this.morphNormals = this.morphTargets = this.skinning = this.lights = this.fog = !1;
+    this.morphNormals =
+      this.morphTargets =
+      this.skinning =
+      this.lights =
+      this.fog =
+        !1;
     this.setValues(a);
   }
 
@@ -7916,7 +7771,11 @@
 
   function Ed(a, b, c, d) {
     Fa.call(this, a, b, c, d);
-    this._offsetNext = this._weightNext = this._offsetPrev = this._weightPrev = -0;
+    this._offsetNext =
+      this._weightNext =
+      this._offsetPrev =
+      this._weightPrev =
+        -0;
   }
 
   function gd(a, b, c, d) {
@@ -8603,12 +8462,20 @@
     this._interpolantSettings = d;
     this._interpolants = c;
     this._propertyBindings = Array(b);
-    this._weightInterpolant = this._timeScaleInterpolant = this._byClipCacheIndex = this._cacheIndex = null;
+    this._weightInterpolant =
+      this._timeScaleInterpolant =
+      this._byClipCacheIndex =
+      this._cacheIndex =
+        null;
     this.loop = 2201;
     this._loopCount = -1;
     this._startTime = null;
     this.time = 0;
-    this._effectiveWeight = this.weight = this._effectiveTimeScale = this.timeScale = 1;
+    this._effectiveWeight =
+      this.weight =
+      this._effectiveTimeScale =
+      this.timeScale =
+        1;
     this.repetitions = Infinity;
     this.paused = !1;
     this.enabled = !0;
@@ -8743,36 +8610,8 @@
     this.color = b;
     a = new z();
     b = [
-      0,
-      0,
-      0,
-      0,
-      0,
-      1,
-      0,
-      0,
-      0,
-      1,
-      0,
-      1,
-      0,
-      0,
-      0,
-      -1,
-      0,
-      1,
-      0,
-      0,
-      0,
-      0,
-      1,
-      1,
-      0,
-      0,
-      0,
-      0,
-      -1,
-      1,
+      0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 1, 1,
+      0, 0, 0, 0, -1, 1,
     ];
     for (var c = 0, d = 1; 32 > c; c++, d++) {
       var e = (c / 32) * Math.PI * 2,
@@ -9073,30 +8912,7 @@
     this.object = a;
     void 0 === b && (b = 16776960);
     a = new Uint16Array([
-      0,
-      1,
-      1,
-      2,
-      2,
-      3,
-      3,
-      0,
-      4,
-      5,
-      5,
-      6,
-      6,
-      7,
-      7,
-      4,
-      0,
-      4,
-      1,
-      5,
-      2,
-      6,
-      3,
-      7,
+      0, 1, 1, 2, 2, 3, 3, 0, 4, 5, 5, 6, 6, 7, 7, 4, 0, 4, 1, 5, 2, 6, 3, 7,
     ]);
     var c = new Float32Array(24),
       d = new z();
@@ -9112,30 +8928,7 @@
     this.box = a;
     a = void 0 !== b ? b : 16776960;
     b = new Uint16Array([
-      0,
-      1,
-      1,
-      2,
-      2,
-      3,
-      3,
-      0,
-      4,
-      5,
-      5,
-      6,
-      6,
-      7,
-      7,
-      4,
-      0,
-      4,
-      1,
-      5,
-      2,
-      6,
-      3,
-      7,
+      0, 1, 1, 2, 2, 3, 3, 0, 4, 5, 5, 6, 6, 7, 7, 4, 0, 4, 1, 5, 2, 6, 3, 7,
     ]);
     var c = new z();
     c.setIndex(new S(b, 1));
@@ -9143,30 +8936,8 @@
       'position',
       new E(
         [
-          1,
-          1,
-          1,
-          -1,
-          1,
-          1,
-          -1,
-          -1,
-          1,
-          1,
-          -1,
-          1,
-          1,
-          1,
-          -1,
-          -1,
-          1,
-          -1,
-          -1,
-          -1,
-          -1,
-          1,
-          -1,
-          -1,
+          1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, -1, -1, -1,
+          -1, 1, -1, -1,
         ],
         3
       )
@@ -9185,36 +8956,8 @@
       'position',
       new E(
         [
-          1,
-          -1,
-          1,
-          -1,
-          1,
-          1,
-          -1,
-          -1,
-          1,
-          1,
-          1,
-          1,
-          -1,
-          1,
-          1,
-          -1,
-          -1,
-          1,
-          1,
-          -1,
-          1,
-          1,
-          1,
-          1,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
+          1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1,
+          1, 1, 1, 0, 0, 1, 0, 0, 0,
         ],
         3
       )
@@ -13234,9 +12977,10 @@
           case 'rgb':
           case 'rgba':
             if (
-              (c = /^(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
-                d
-              ))
+              (c =
+                /^(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
+                  d
+                ))
             )
               return (
                 (this.r = Math.min(255, parseInt(c[1], 10)) / 255),
@@ -13246,9 +12990,10 @@
                 this
               );
             if (
-              (c = /^(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
-                d
-              ))
+              (c =
+                /^(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
+                  d
+                ))
             )
               return (
                 (this.r = Math.min(100, parseInt(c[1], 10)) / 100),
@@ -13261,9 +13006,10 @@
           case 'hsl':
           case 'hsla':
             if (
-              (c = /^([0-9]*\.?[0-9]+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
-                d
-              ))
+              (c =
+                /^([0-9]*\.?[0-9]+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
+                  d
+                ))
             ) {
               d = parseFloat(c[1]) / 360;
               var e = parseInt(c[2], 10) / 100,
@@ -20587,8 +20333,10 @@
               break;
             case 'Geometry':
               'THREE' in window && 'LegacyJSONLoader' in THREE
-                ? (h = new THREE.LegacyJSONLoader().parse(g, this.resourcePath)
-                    .geometry)
+                ? (h = new THREE.LegacyJSONLoader().parse(
+                    g,
+                    this.resourcePath
+                  ).geometry)
                 : console.error(
                     'THREE.ObjectLoader: You have to import LegacyJSONLoader in order load geometry data of type "Geometry".'
                   );
@@ -21540,9 +21288,8 @@
   nd.prototype.constructor = nd;
   Object.assign(ve.prototype, {
     start: function () {
-      this.oldTime = this.startTime = ('undefined' === typeof performance
-        ? Date
-        : performance
+      this.oldTime = this.startTime = (
+        'undefined' === typeof performance ? Date : performance
       ).now();
       this.elapsedTime = 0;
       this.running = !0;
