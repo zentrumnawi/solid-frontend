@@ -1,5 +1,6 @@
 import { Inject, Optional, Pipe, PipeTransform } from '@angular/core';
-import { SOLID_PROFILE_TITLE_FORMATTER } from '../../di/src/public_api';
+// tslint:disable-next-line: nx-enforce-module-boundaries
+import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile/di';
 
 @Pipe({ name: 'profileTitle' })
 export class ProfileTitlePipe implements PipeTransform {
