@@ -50,9 +50,10 @@ mat-nav-list {
   // margin-bottom: -5px;
 
   ::ng-deep {
-    .mat-list-item-content {
-      padding: 0 32px !important;
-    }
+    // For the new toggled version
+    // .mat-list-item-content {
+    //   padding: 0 32px !important;
+    // }
     .mat-list-item span {
       font-size: 15px !important;
     }
