@@ -7,7 +7,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
 import { takeUntil } from 'rxjs/operators';
 
-export function __internal__selectRouterParamCategories(s: any) {
+export function __internal__selectCategories(s: any) {
   return s.categories;
 }
 export interface SlideshowCategory {
@@ -25,7 +25,7 @@ export class CategoriesSelectComponent implements OnInit, OnDestroy {
   private $destroyed = new Subject();
   @Select(SlideshowState.getSlideshows)
   public Slideshows?: Observable<Slideshow[]>;
-  @Select(__internal__selectRouterParamCategories)
+  @Select(__internal__selectCategories)
   Categories!: Observable<SlideshowCategory[]>;
   @Select(SlideshowState.getSlideshowByCategories)
   categoriesSelector!: Observable<(categories: string) => []>;

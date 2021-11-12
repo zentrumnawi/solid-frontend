@@ -24,8 +24,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./media-toolbar.component.scss'],
 })
 export class MediaToolbarComponent implements OnInit, OnChanges {
-  @Input() public mediaObject!: MediaModel;
-  @Input() public image!: ImageModel;
+  @Input() public mediaObject?: MediaModel;
+  @Input() public image?: ImageModel;
   @Input() public name!: string;
   @Input() hasAttributions!: boolean;
   @Input() hasDialog!: boolean;
@@ -116,6 +116,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
       data: {
         mediaObject: this.mediaObject,
         name: this.name,
+        type: 'mediaObject',
       },
     });
   }
@@ -128,8 +129,9 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
       maxHeight: this.length + 'vh',
       panelClass: 'solid-core-media-dialog',
       data: {
-        mediaObject: this.image,
+        image: this.image,
         name: this.name,
+        type: 'photograph',
       },
     });
   }

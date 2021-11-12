@@ -3,11 +3,13 @@ contain any media object now. It is just a temporary solution.
 It is not possible to use a image toolbar here, because quiz image
 use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
 <ng-container *ngIf="image">
-  <img
-    [src]="image.getRawImage('large')"
-    [alt]="image.alt"
-    [class.landscape]="image.isLandscape"
-  />
+  <div class="container">
+    <img
+      [src]="image.getRawImage('large')"
+      [alt]="image.alt"
+      [class.landscape]="image.isLandscape"
+    />
+  </div>
   <solid-core-media-toolbar
     *ngIf="view != 'grid'"
     [image]="image"
