@@ -198,8 +198,8 @@ const testSwagger = {
         },
         habitat: {
           type: 'array',
+          title: 'Habitat',
           items: {
-            title: 'Habitat',
             type: 'string',
             enum: [
               'Schlammfluren',

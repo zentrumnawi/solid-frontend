@@ -20,8 +20,9 @@ export const skeletonConfig: SolidSkeletonConfig = {
       url: 'selbsttest',
     },
     slideshow: {
-      svgIcon: 'assistant',
-      url: 'bestimmungshelfer',
+      svgIcon: 'slideshow',
+      title: 'Slideshows',
+      url: 'slideshows',
     },
     info: {
       svgIcon: 'info',
@@ -33,7 +34,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
     },
     custom: [
       {
-        enabled: false,
+        enabled: true,
         showOnLandingPage: true,
         showInMenu: true,
         url: 'crystalsystem',

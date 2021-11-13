@@ -13,7 +13,9 @@ import { MarkdownComponent, MediaComponent } from './components';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSliderModule } from '@angular/material/slider';
 import { MediaDialogComponent } from './components/media-dialog/media-dialog.component';
+import { MediaErrorDialogComponent } from './components/media-error-dialog/media-error-dialog.component';
 import { MediaDetailComponent } from './components/media-detail/media-detail.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -26,6 +28,7 @@ import { AudioIconComponent } from './components/audio-icon/audio-icon.component
     MarkdownComponent,
     MediaComponent,
     MediaDialogComponent,
+    MediaErrorDialogComponent,
     MediaDetailComponent,
     MediaToolbarComponent,
     AudioToolbarComponent,
@@ -41,6 +44,7 @@ import { AudioIconComponent } from './components/audio-icon/audio-icon.component
     MatButtonModule,
     MatDialogModule,
     ScrollingModule,
+    MatSliderModule,
   ],
   exports: [
     CommonModule,
