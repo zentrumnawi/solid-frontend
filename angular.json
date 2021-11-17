@@ -124,13 +124,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/ais/tsconfig.app.json",
-              "apps/ais/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/ais/**/*"]
+            "lintFilePatterns": [
+              "apps/ais/src/**/*.ts",
+              "apps/ais/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -172,10 +171,10 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "tsConfig": ["apps/ais-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ais-e2e/**/*"]
+            "lintFilePatterns": ["apps/ais-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -301,13 +300,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/dive/tsconfig.app.json",
-              "apps/dive/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/dive/**/*"]
+            "lintFilePatterns": [
+              "apps/dive/src/**/*.ts",
+              "apps/dive/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -348,10 +346,10 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "tsConfig": ["apps/dive-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/dive-e2e/**/*"]
+            "lintFilePatterns": ["apps/dive-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -477,13 +475,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/geomat/tsconfig.app.json",
-              "apps/geomat/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/geomat/**/*"]
+            "lintFilePatterns": [
+              "apps/geomat/src/**/*.ts",
+              "apps/geomat/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -515,10 +512,10 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "tsConfig": ["apps/geomat-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/geomat-e2e/**/*"]
+            "lintFilePatterns": ["apps/geomat-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -644,13 +641,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/planty/tsconfig.app.json",
-              "apps/planty/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/planty/**/*"]
+            "lintFilePatterns": [
+              "apps/planty/src/**/*.ts",
+              "apps/planty/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -692,10 +688,10 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "tsConfig": ["apps/planty-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/planty-e2e/**/*"]
+            "lintFilePatterns": ["apps/planty-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -723,13 +719,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/solid/core/tsconfig.lib.json",
-              "libs/solid/core/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/core/**/*"]
+            "lintFilePatterns": [
+              "libs/solid/core/src/**/*.ts",
+              "libs/solid/core/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -770,13 +765,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/solid/glossary/tsconfig.lib.json",
-              "libs/solid/glossary/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/glossary/**/*"]
+            "lintFilePatterns": [
+              "libs/solid/glossary/src/**/*.ts",
+              "libs/solid/glossary/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -817,13 +811,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/solid/profile/tsconfig.lib.json",
-              "libs/solid/profile/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/profile/**/*"]
+            "lintFilePatterns": [
+              "libs/solid/profile/src/**/*.ts",
+              "libs/solid/profile/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -864,13 +857,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/solid/quiz/tsconfig.lib.json",
-              "libs/solid/quiz/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/quiz/**/*"]
+            "lintFilePatterns": [
+              "libs/solid/quiz/src/**/*.ts",
+              "libs/solid/quiz/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -913,13 +905,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/solid/skeleton/tsconfig.lib.json",
-              "libs/solid/skeleton/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/skeleton/**/*"]
+            "lintFilePatterns": [
+              "libs/solid/skeleton/src/**/*.ts",
+              "libs/solid/skeleton/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -962,13 +953,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/solid/slideshow/tsconfig.lib.json",
-              "libs/solid/slideshow/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/solid/slideshow/**/*"]
+            "lintFilePatterns": [
+              "libs/solid/slideshow/src/**/*.ts",
+              "libs/solid/slideshow/src/**/*.html"
+            ]
           }
         },
         "test": {
