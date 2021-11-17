@@ -19,14 +19,14 @@
     "types": ["node"],
     "paths": {
       "@zentrumnawi/solid-core": ["libs/solid/core/src/index.ts"],
-      "@zentrumnawi/solid-quiz": ["libs/solid/quiz/src/index.ts"],
-      "@zentrumnawi/solid-slideshow": ["libs/solid/slideshow/src/index.ts"],
       "@zentrumnawi/solid-glossary": ["libs/solid/glossary/src/index.ts"],
-      "@zentrumnawi/solid-skeleton": ["libs/solid/skeleton/src/index.ts"],
       "@zentrumnawi/solid-profile": ["libs/solid/profile/src/index.ts"],
       "@zentrumnawi/solid-profile/di": [
         "libs/solid/profile/di/src/public_api.ts"
-      ]
+      ],
+      "@zentrumnawi/solid-quiz": ["libs/solid/quiz/src/index.ts"],
+      "@zentrumnawi/solid-skeleton": ["libs/solid/skeleton/src/index.ts"],
+      "@zentrumnawi/solid-slideshow": ["libs/solid/slideshow/src/index.ts"]
     },
     "rootDir": ".",
     "allowSyntheticDefaultImports": true

@@ -124,13 +124,17 @@ export class BaseComponent implements OnInit, AfterViewInit {
             );
             if (!this.Filter.value) {
               swipeLeft =
-                (profileAndNode.node.profiles.find(
-                  (p, i) => i === index - 1
-                ) as Profile | undefined)?.id || -1;
+                (
+                  profileAndNode.node.profiles.find(
+                    (p, i) => i === index - 1
+                  ) as Profile | undefined
+                )?.id || -1;
               swipeRight =
-                (profileAndNode.node.profiles.find((p, i) => i > index) as
-                  | Profile
-                  | undefined)?.id || -1;
+                (
+                  profileAndNode.node.profiles.find((p, i) => i > index) as
+                    | Profile
+                    | undefined
+                )?.id || -1;
             }
           }
           return {

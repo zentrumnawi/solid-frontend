@@ -9,31 +9,12 @@
     ".eslintrc.json": "*"
   },
   "projects": {
-    "geomat": {
+    "ais": {
       "tags": []
     },
-    "geomat-e2e": {
+    "ais-e2e": {
       "tags": [],
-      "implicitDependencies": ["geomat"]
-    },
-    "solid-core": {
-      "tags": ["solid"]
-    },
-    "solid-quiz": {
-      "tags": ["solid"]
-    },
-    "solid-slideshow": {
-      "tags": ["solid"]
-    },
-    "solid-glossary": {
-      "tags": ["solid"]
-    },
-    "solid-skeleton": {
-      "tags": ["solid"],
-      "dependencies": ["tools"]
-    },
-    "solid-profile": {
-      "tags": ["solid"]
+      "implicitDependencies": ["ais"]
     },
     "dive": {
       "tags": []
@@ -42,12 +23,12 @@
       "tags": [],
       "implicitDependencies": ["dive"]
     },
-    "ais": {
+    "geomat": {
       "tags": []
     },
-    "ais-e2e": {
+    "geomat-e2e": {
       "tags": [],
-      "implicitDependencies": ["ais"]
+      "implicitDependencies": ["geomat"]
     },
     "planty": {
       "tags": []
@@ -55,6 +36,25 @@
     "planty-e2e": {
       "tags": [],
       "implicitDependencies": ["planty"]
+    },
+    "solid-core": {
+      "tags": ["solid"]
+    },
+    "solid-glossary": {
+      "tags": ["solid"]
+    },
+    "solid-profile": {
+      "tags": ["solid"]
+    },
+    "solid-quiz": {
+      "tags": ["solid"]
+    },
+    "solid-skeleton": {
+      "tags": ["solid"],
+      "dependencies": ["tools"]
+    },
+    "solid-slideshow": {
+      "tags": ["solid"]
     }
   },
   "tasksRunnerOptions": {
