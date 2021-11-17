@@ -50,8 +50,7 @@
       "tags": ["solid"]
     },
     "solid-skeleton": {
-      "tags": ["solid"],
-      "dependencies": ["tools"]
+      "tags": ["solid"]
     },
     "solid-slideshow": {
       "tags": ["solid"]
