@@ -6,7 +6,7 @@
     "start": "node web-server.js",
     "build": "ng build",
     "build:staging": "ts-node git.versions.ts && ng build -c staging",
-    "build:prod": "ts-node git.versions.ts && ng build --prod",
+    "build:prod": "ts-node git.versions.ts && ng build --configuration production",
     "heroku-postbuild": "if [ $IS_STAGING = true ]; then yarn build:staging; else yarn build:prod; fi;",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
