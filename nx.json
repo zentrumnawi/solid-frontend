@@ -14,53 +14,78 @@
     },
     "ais-e2e": {
       "tags": [],
-      "implicitDependencies": ["ais"]
+      "implicitDependencies": [
+        "ais"
+      ]
     },
     "dive": {
       "tags": []
     },
     "dive-e2e": {
       "tags": [],
-      "implicitDependencies": ["dive"]
+      "implicitDependencies": [
+        "dive"
+      ]
     },
     "geomat": {
       "tags": []
     },
     "geomat-e2e": {
       "tags": [],
-      "implicitDependencies": ["geomat"]
+      "implicitDependencies": [
+        "geomat"
+      ]
     },
     "planty": {
       "tags": []
     },
     "planty-e2e": {
       "tags": [],
-      "implicitDependencies": ["planty"]
+      "implicitDependencies": [
+        "planty"
+      ]
     },
     "solid-core": {
-      "tags": ["solid"]
+      "tags": [
+        "solid"
+      ]
     },
     "solid-glossary": {
-      "tags": ["solid"]
+      "tags": [
+        "solid"
+      ]
     },
     "solid-profile": {
-      "tags": ["solid"]
+      "tags": [
+        "solid"
+      ]
     },
     "solid-quiz": {
-      "tags": ["solid"]
+      "tags": [
+        "solid"
+      ]
     },
     "solid-skeleton": {
-      "tags": ["solid"]
+      "tags": [
+        "solid"
+      ]
     },
     "solid-slideshow": {
-      "tags": ["solid"]
+      "tags": [
+        "solid"
+      ]
     }
   },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
       }
     }
   },
@@ -74,5 +99,19 @@
         "projects": "dependencies"
       }
     ]
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "defaultProject": "geomat",
+  "generators": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
   }
 }

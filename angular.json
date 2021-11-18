@@ -22,7 +22,6 @@
             "main": "apps/ais/src/main.ts",
             "polyfills": "apps/ais/src/polyfills.ts",
             "tsConfig": "apps/ais/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/ais/src/favicon.ico",
               "apps/ais/src/assets",
@@ -41,7 +40,13 @@
                 "libs/solid/quiz/src",
                 "libs/solid/profile/src"
               ]
-            }
+            },
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -103,7 +108,10 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -139,7 +147,9 @@
             "passWithNoTests": true,
             "tsConfig": "apps/ais/tsconfig.spec.json"
           },
-          "outputs": ["coverage/apps/ais"]
+          "outputs": [
+            "coverage/apps/ais"
+          ]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -172,9 +182,13 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/ais-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/ais-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -198,7 +212,6 @@
             "main": "apps/dive/src/main.ts",
             "polyfills": "apps/dive/src/polyfills.ts",
             "tsConfig": "apps/dive/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/dive/src/favicon.ico",
               "apps/dive/src/assets",
@@ -217,7 +230,13 @@
                 "libs/solid/quiz/src",
                 "libs/solid/profile/src"
               ]
-            }
+            },
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -279,7 +298,10 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -314,7 +336,9 @@
             "jestConfig": "apps/dive/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/dive"]
+          "outputs": [
+            "coverage/apps/dive"
+          ]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -347,9 +371,13 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/dive-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/dive-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -373,7 +401,6 @@
             "main": "apps/geomat/src/main.ts",
             "polyfills": "apps/geomat/src/polyfills.ts",
             "tsConfig": "apps/geomat/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/geomat/src/favicon.ico",
               "apps/geomat/src/assets",
@@ -392,7 +419,13 @@
                 "libs/solid/quiz/src",
                 "libs/solid/profile/src"
               ]
-            }
+            },
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -454,7 +487,10 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -489,7 +525,9 @@
             "jestConfig": "apps/geomat/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/geomat"]
+          "outputs": [
+            "coverage/apps/geomat"
+          ]
         }
       }
     },
@@ -513,9 +551,13 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/geomat-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/geomat-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -539,7 +581,6 @@
             "main": "apps/planty/src/main.ts",
             "polyfills": "apps/planty/src/polyfills.ts",
             "tsConfig": "apps/planty/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/planty/src/favicon.ico",
               "apps/planty/src/assets",
@@ -558,7 +599,13 @@
                 "libs/solid/quiz/src",
                 "libs/solid/profile/src"
               ]
-            }
+            },
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -620,7 +667,10 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -656,7 +706,9 @@
             "passWithNoTests": true,
             "tsConfig": "apps/planty/tsconfig.spec.json"
           },
-          "outputs": ["coverage/apps/planty"]
+          "outputs": [
+            "coverage/apps/planty"
+          ]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -689,9 +741,13 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/planty-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/planty-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -733,7 +789,9 @@
             "jestConfig": "libs/solid/core/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/core"]
+          "outputs": [
+            "coverage/libs/solid/core"
+          ]
         }
       },
       "schematics": {
@@ -779,7 +837,9 @@
             "jestConfig": "libs/solid/glossary/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/glossary"]
+          "outputs": [
+            "coverage/libs/solid/glossary"
+          ]
         }
       },
       "schematics": {
@@ -825,7 +885,9 @@
             "jestConfig": "libs/solid/profile/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/profile"]
+          "outputs": [
+            "coverage/libs/solid/profile"
+          ]
         }
       },
       "schematics": {
@@ -871,7 +933,9 @@
             "jestConfig": "libs/solid/quiz/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/quiz"]
+          "outputs": [
+            "coverage/libs/solid/quiz"
+          ]
         }
       },
       "schematics": {
@@ -919,7 +983,9 @@
             "jestConfig": "libs/solid/skeleton/jest.config.js",
             "passWithNoTests": false
           },
-          "outputs": ["coverage/libs/solid/skeleton"]
+          "outputs": [
+            "coverage/libs/solid/skeleton"
+          ]
         }
       },
       "schematics": {
@@ -928,7 +994,9 @@
           "style": "scss"
         }
       },
-      "dependencies": ["tools"]
+      "dependencies": [
+        "tools"
+      ]
     },
     "solid-slideshow": {
       "projectType": "library",
@@ -967,7 +1035,9 @@
             "jestConfig": "libs/solid/slideshow/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/slideshow"]
+          "outputs": [
+            "coverage/libs/solid/slideshow"
+          ]
         }
       },
       "schematics": {
@@ -975,20 +1045,6 @@
           "styleext": "scss"
         }
       }
-    }
-  },
-  "defaultProject": "geomat",
-  "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": false
-  },
-  "schematics": {
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
     }
   }
 }
