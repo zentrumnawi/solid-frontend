@@ -44,10 +44,7 @@ export class SlideshowState {
   }
 
   @Action(SlideshowActions.Load)
-  public load(
-    ctx: StateContext<SlideshowStateModel>,
-    {}: SlideshowActions.Load
-  ) {
+  public load(ctx: StateContext<SlideshowStateModel>) {
     if (ctx.getState().length > 0) {
       return;
     }

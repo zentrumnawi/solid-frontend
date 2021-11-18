@@ -60,10 +60,7 @@ export class MessageState {
   }
 
   @Action(MessageActions.LoadEntries)
-  public loadEntries(
-    { setState }: StateContext<MessageStateModel>,
-    {}: MessageActions.LoadEntries
-  ) {
+  public loadEntries({ setState }: StateContext<MessageStateModel>) {
     const now = new Date(Date.now());
     const localMessages: MessageModel[] = [];
     const localData = localStorage.getItem(MessageState.LOCAL_STORAGE_KEY);

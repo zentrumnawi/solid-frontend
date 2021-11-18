@@ -17,7 +17,7 @@ import { MenuItem } from '../../state/menu.model';
   styleUrls: ['./main-menu.component.scss'],
 })
 export class MainMenuComponent {
-  @Output() public select = new EventEmitter();
+  @Output() public selectMenuEntry = new EventEmitter();
   @Select(MenuState.getMenuItems)
   public MenuItems!: Observable<MenuItem[]>;
 
@@ -29,7 +29,7 @@ export class MainMenuComponent {
 
   @Dispatch()
   public async navigateTo(url: string) {
-    this.select.emit();
+    this.selectMenuEntry.emit();
     return new Navigate([url]);
   }
 }

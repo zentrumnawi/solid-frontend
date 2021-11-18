@@ -1,10 +1,10 @@
 // Process $overline$
 
 // same as UNESCAPE_MD_RE plus a space
-const UNESCAPE_RE = /\\([ \\!"#$%&'()*+,.\/:;<=>?@[\]^_`{|}$-])/g;
+const UNESCAPE_RE = /\\([ \\!"#$%&'()*+,./:;<=>?@[\]^_`{|}$-])/g;
 
 function subscript(state: any, silent: any) {
-  let found, content, token;
+  let found, token;
   const max = state.posMax,
     start = state.pos;
 
@@ -34,7 +34,7 @@ function subscript(state: any, silent: any) {
     return false;
   }
 
-  content = state.src.slice(start + 1, state.pos);
+  const content = state.src.slice(start + 1, state.pos);
 
   // don't allow unescaped spaces/newlines inside
   if (content.match(/(^|[^\\])(\\\\)*\s/)) {

@@ -39,7 +39,7 @@ export class QuizState {
   ) {}
 
   @Action(QuizActions.LoadQuestions)
-  public set(ctx: StateContext<QuizStateModel>, {}: QuizActions.LoadQuestions) {
+  public set(ctx: StateContext<QuizStateModel>) {
     return this._http
       .get<QuizQuestion[]>(`${this._config.apiUrl}/quizquestions`)
       .pipe(
@@ -89,10 +89,7 @@ export class QuizState {
   }
 
   @Action(QuizActions.EndSession)
-  public endSession(
-    { patchState }: StateContext<QuizStateModel>,
-    {}: QuizActions.EndSession
-  ) {
+  public endSession({ patchState }: StateContext<QuizStateModel>) {
     patchState({
       session: null,
     });

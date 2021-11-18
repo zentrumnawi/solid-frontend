@@ -106,10 +106,7 @@ export class ProfileState {
   }
 
   @Action(ProfileActions.LoadProfiles)
-  public set(
-    ctx: StateContext<ProfileStateModel>,
-    {}: ProfileActions.LoadProfiles
-  ) {
+  public set(ctx: StateContext<ProfileStateModel>) {
     if (ctx.getState().profiles.length !== 0) {
       return;
     }
@@ -152,10 +149,7 @@ export class ProfileState {
   }
 
   @Action(ProfileActions.LoadDefinition)
-  public loadDefinition(
-    ctx: StateContext<ProfileStateModel>,
-    {}: ProfileActions.LoadDefinition
-  ) {
+  public loadDefinition(ctx: StateContext<ProfileStateModel>) {
     if (ctx.getState().definition.length !== 0) {
       return;
     }

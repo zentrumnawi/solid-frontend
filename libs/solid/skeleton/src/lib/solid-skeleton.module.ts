@@ -97,8 +97,6 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
   providers: [UpdateService],
 })
 export class SolidSkeletonModule {
-  constructor() {}
-
   public static forRoot(
     cfg: SolidSkeletonConfig
   ): ModuleWithProviders<SolidSkeletonModule> {

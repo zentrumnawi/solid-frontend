@@ -46,20 +46,20 @@
     <ng-container [ngSwitch]="(View === 'tree' && Filter.value !== '') || View">
       <solid-profile-grid
         *ngSwitchCase="'grid'"
-        (select)="selectProfile($event)"
+        (selectProfile)="selectProfile($event)"
         [class.full-width]="!SelectedProfile"
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
       ></solid-profile-grid>
       <solid-profile-tree
         *ngSwitchCase="'tree'"
-        (select)="selectProfile($event)"
+        (selectProfile)="selectProfile($event)"
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
       ></solid-profile-tree>
       <solid-profile-list
         *ngSwitchDefault
-        (select)="selectProfile($event)"
+        (selectProfile)="selectProfile($event)"
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
       ></solid-profile-list>

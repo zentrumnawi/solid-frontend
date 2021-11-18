@@ -1,8 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace QuizActions {
   export class LoadQuestions {
     static readonly type = '[Quiz] questions load';
-
-    constructor() {}
   }
 
   export class StartSession {
@@ -13,8 +12,6 @@ export namespace QuizActions {
 
   export class EndSession {
     static readonly type = '[Quiz] session end';
-
-    constructor() {}
   }
 
   export class QuestionAnswered {

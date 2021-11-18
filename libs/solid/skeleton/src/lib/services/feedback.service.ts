@@ -38,9 +38,11 @@ export class FeedbackService {
   }
 
   private submitFeedback(value: any): Observable<boolean> {
-    return this._http.post<{}>(`${this._config.apiUrl}/contact`, value).pipe(
-      map((_) => true),
-      catchError((err) => of(false))
-    );
+    return this._http
+      .post<unknown>(`${this._config.apiUrl}/contact`, value)
+      .pipe(
+        map((_) => true),
+        catchError((err) => of(false))
+      );
   }
 }

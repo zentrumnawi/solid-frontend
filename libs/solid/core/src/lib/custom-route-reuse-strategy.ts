@@ -14,6 +14,7 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
   store(
     route: ActivatedRouteSnapshot,
     detachedTree: DetachedRouteHandle
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
   ): void {}
 
   shouldAttach(route: ActivatedRouteSnapshot): boolean {
