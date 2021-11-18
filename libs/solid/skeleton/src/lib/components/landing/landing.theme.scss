@@ -1,20 +1,20 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin solid-skeleton-landing-component-theme($theme) {
   $accent: map-get($theme, accent);
   $background: map-get($theme, background);
   solid-skeleton-landing {
     mat-grid-tile:hover {
-      background-color: mat-color($accent, lighter);
+      background-color: mat.get-color-from-palette($accent, lighter);
     }
     mat-list {
-      border: 1px solid mat-color($app-primary);
+      border: 1px solid mat.get-color-from-palette($app-primary);
       border-radius: 0.5rem;
       margin-bottom: 1.5rem;
       padding-bottom: 0.5rem;
     }
     mat-list-item:not(:last-child) {
-      border-bottom: 1px solid mat-color($background, status-bar);
+      border-bottom: 1px solid mat.get-color-from-palette($background, status-bar);
       padding-bottom: -1rem;
     }
   }

@@ -1,25 +1,26 @@
+@use '~@angular/material' as mat;
 @mixin glossary-component-theme($mat-theme) {
   $background: map-get($mat-theme, background);
   $foreground: map-get($mat-theme, foreground);
   $accent: map-get($mat-theme, accent);
   solid-glossary {
     h3 {
-      background-color: mat-color($background, status-bar);
+      background-color: mat.get-color-from-palette($background, status-bar);
     }
 
     mat-list-item {
-      border-bottom: 1px solid mat-color($background, app-bar);
+      border-bottom: 1px solid mat.get-color-from-palette($background, app-bar);
       span.links {
         font-style: italic;
         a {
-          color: mat-color($foreground);
+          color: mat.get-color-from-palette($foreground);
           &:hover {
-            color: mat-color($accent);
+            color: mat.get-color-from-palette($accent);
           }
         }
       }
       &.flash {
-        background-color: mat-color($accent);
+        background-color: mat.get-color-from-palette($accent);
       }
     }
   }
