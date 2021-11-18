@@ -4748,14 +4748,9 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001032, caniuse-lite@^1.0.30001219:
-  version "1.0.30001228"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001228.tgz#bfdc5942cd3326fa51ee0b42fbef4da9d492a7fa"
-  integrity sha512-QQmLOGJ3DEgokHbMSA8cj2a+geXqmnpyOFT0lhQV6P3/YOJvGDEwoedcwxEQ30gJIwIIunHIicunJ2rzK5gB2A==
-
-caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001280:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001032, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001280:
   version "1.0.30001282"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001282.tgz#38c781ee0a90ccfe1fe7fefd00e43f5ffdcb96fd"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001282.tgz"
   integrity sha512-YhF/hG6nqBEllymSIjLtR2iWDDnChvhnVJqp+vloyt2tEHFG1yBR+ac2B/rOw0qOK0m0lEXU2dv4E/sMk5P9Kg==
 
 canonical-path@1.0.0:
@@ -7457,6 +7452,11 @@ gzip-size@^6.0.0:
   integrity sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==
   dependencies:
     duplexer "^0.1.2"
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
 
 handle-thing@^2.0.0:
   version "2.0.1"

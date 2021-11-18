@@ -20,7 +20,9 @@
 
         &.incorrect {
           .mat-radio-outer-circle {
-            border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+            border-color: mat.get-color-from-palette(
+              $quiz-incorrect
+            ) !important;
           }
         }
       }
@@ -35,7 +37,10 @@
         }
         &.correctunselected {
           .mat-checkbox-background {
-            background-color: mat.get-color-from-palette($quiz-correct, lighter);
+            background-color: mat.get-color-from-palette(
+              $quiz-correct,
+              lighter
+            );
           }
         }
 
@@ -46,7 +51,10 @@
         }
         &.incorrectunselected {
           .mat-checkbox-background {
-            background-color: mat.get-color-from-palette($quiz-incorrect, lighter);
+            background-color: mat.get-color-from-palette(
+              $quiz-incorrect,
+              lighter
+            );
           }
         }
       }

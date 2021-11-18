@@ -108,9 +108,7 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "defaultConfiguration": ""
         },
         "serve": {
@@ -147,9 +145,7 @@
             "passWithNoTests": true,
             "tsConfig": "apps/ais/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/apps/ais"
-          ]
+          "outputs": ["coverage/apps/ais"]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -182,13 +178,9 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/ais-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/ais-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -298,9 +290,7 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "defaultConfiguration": ""
         },
         "serve": {
@@ -336,9 +326,7 @@
             "jestConfig": "apps/dive/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": [
-            "coverage/apps/dive"
-          ]
+          "outputs": ["coverage/apps/dive"]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -371,13 +359,9 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/dive-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/dive-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -487,9 +471,7 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "defaultConfiguration": ""
         },
         "serve": {
@@ -525,9 +507,7 @@
             "jestConfig": "apps/geomat/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": [
-            "coverage/apps/geomat"
-          ]
+          "outputs": ["coverage/apps/geomat"]
         }
       }
     },
@@ -551,13 +531,9 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/geomat-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/geomat-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -667,9 +643,7 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "defaultConfiguration": ""
         },
         "serve": {
@@ -706,9 +680,7 @@
             "passWithNoTests": true,
             "tsConfig": "apps/planty/tsconfig.spec.json"
           },
-          "outputs": [
-            "coverage/apps/planty"
-          ]
+          "outputs": ["coverage/apps/planty"]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -741,13 +713,9 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/planty-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/planty-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -789,9 +757,7 @@
             "jestConfig": "libs/solid/core/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": [
-            "coverage/libs/solid/core"
-          ]
+          "outputs": ["coverage/libs/solid/core"]
         }
       },
       "schematics": {
@@ -837,9 +803,7 @@
             "jestConfig": "libs/solid/glossary/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": [
-            "coverage/libs/solid/glossary"
-          ]
+          "outputs": ["coverage/libs/solid/glossary"]
         }
       },
       "schematics": {
@@ -885,9 +849,7 @@
             "jestConfig": "libs/solid/profile/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": [
-            "coverage/libs/solid/profile"
-          ]
+          "outputs": ["coverage/libs/solid/profile"]
         }
       },
       "schematics": {
@@ -933,9 +895,7 @@
             "jestConfig": "libs/solid/quiz/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": [
-            "coverage/libs/solid/quiz"
-          ]
+          "outputs": ["coverage/libs/solid/quiz"]
         }
       },
       "schematics": {
@@ -983,9 +943,7 @@
             "jestConfig": "libs/solid/skeleton/jest.config.js",
             "passWithNoTests": false
           },
-          "outputs": [
-            "coverage/libs/solid/skeleton"
-          ]
+          "outputs": ["coverage/libs/solid/skeleton"]
         }
       },
       "schematics": {
@@ -994,9 +952,7 @@
           "style": "scss"
         }
       },
-      "dependencies": [
-        "tools"
-      ]
+      "dependencies": ["tools"]
     },
     "solid-slideshow": {
       "projectType": "library",
@@ -1035,9 +991,7 @@
             "jestConfig": "libs/solid/slideshow/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": [
-            "coverage/libs/solid/slideshow"
-          ]
+          "outputs": ["coverage/libs/solid/slideshow"]
         }
       },
       "schematics": {

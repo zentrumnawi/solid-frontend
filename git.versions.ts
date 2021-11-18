@@ -25,7 +25,9 @@ if (p.version) {
   versionInfo = JSON.stringify(version, null, 2);
 }
 
-writeFileSync('apps/geomat/src/environments/version.json', versionInfo);
-writeFileSync('apps/dive/src/environments/version.json', versionInfo);
-writeFileSync('apps/ais/src/environments/version.json', versionInfo);
-writeFileSync('apps/planty/src/environments/version.json', versionInfo);
+versionInfo = `export const version = ${versionInfo}`;
+
+writeFileSync('apps/geomat/src/environments/version.ts', versionInfo);
+writeFileSync('apps/dive/src/environments/version.ts', versionInfo);
+writeFileSync('apps/ais/src/environments/version.ts', versionInfo);
+writeFileSync('apps/planty/src/environments/version.ts', versionInfo);

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import * as version from '../../environments/version.json';
+import { version } from '../../environments/version';
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,

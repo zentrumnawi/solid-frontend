@@ -6,11 +6,13 @@
     .base-layout-container {
       mat-toolbar {
         .right-border {
-          border-right: 1px solid mat.get-color-from-palette($background, status-bar);
+          border-right: 1px solid
+            mat.get-color-from-palette($background, status-bar);
         }
 
         .left-border {
-          border-left: 1px solid mat.get-color-from-palette($background, status-bar);
+          border-left: 1px solid
+            mat.get-color-from-palette($background, status-bar);
         }
       }
     }

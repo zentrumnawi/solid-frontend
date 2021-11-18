@@ -51,6 +51,7 @@
     "@sentry/angular": "^6.3.3",
     "core-js": "^3.12.1",
     "detect-browser": "^5.1.0",
+    "hammerjs": "^2.0.8",
     "markdown-it": "^12.2.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
