@@ -1,6 +1,10 @@
 import {
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
   HostListener,
+  Inject,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -10,9 +14,12 @@ import { Select } from '@ngxs/store';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
+import { Navigate } from '@ngxs/router-plugin';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
@@ -22,34 +29,98 @@ export enum KEY {
 export function __internal__selectRouterParamSlideshowId(s: any) {
   return s.router.state.params['slideshowId'];
 }
-
+export function __internal__selectRouterParamCategoriesSlug(s: any) {
+  return s.router.state.params['categoriesSlug'];
+}
+export function __internal__selectCategories(s: any) {
+  return s.categories;
+}
+export interface SlideshowCategory {
+  id: number;
+  name: string;
+  slug: string;
+}
 @Component({
   selector: 'solid-slideshow',
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss'],
 })
-export class SlideshowComponent implements OnInit, OnDestroy {
+export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
   private $destroyed = new Subject();
-  public MaxStep = 0;
   @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
+  @ViewChild('toolbar') public Toolbar?: ElementRef;
+  @ViewChild('navigation') public Navigation?: ElementRef;
+  @ViewChild('slideshow_container') public slideshow_container?: ElementRef;
   public Slideshow: Observable<Slideshow | undefined>;
   @Select(__internal__selectRouterParamSlideshowId)
   slideshowId!: Observable<string>;
-  @Select(SlideshowState.getSlideshowById) slideshowSelector!: Observable<
-    (id: number) => Slideshow | undefined
+  @Select(__internal__selectRouterParamCategoriesSlug)
+  categoriesSlug!: Observable<string>;
+  @Select(__internal__selectCategories)
+  categories!: Observable<SlideshowCategory[]>;
+  @Select(SlideshowState.getSlideshowByCategoriesAndId)
+  slideshowSelector!: Observable<
+    (id: number, categories: string | undefined) => Slideshow | undefined
   >;
+  @Select(SlideshowState.SlideshowByCategoryCounter)
+  slideshowCounter!: Observable<(categories: string | undefined) => number>;
+  public page_index = 1;
+  public isMobile = false;
+  public lastScrollTop = 0;
+  public toolbar_up = false;
+  public toolbar_down = false;
+  public MaxStep = 2;
+  public slideshowCount!: number;
+  public slug!: string;
 
-  constructor() {
+  constructor(
+    private _breakpointObserver: BreakpointObserver,
+    @Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string,
+    private cdr: ChangeDetectorRef
+  ) {
     this.Slideshow = combineLatest([
+      this.categoriesSlug,
       this.slideshowId,
       this.slideshowSelector,
+      this.categories,
+      this.slideshowCounter,
     ]).pipe(
       map((val) => {
-        return val[1](Number.parseInt(val[0], 10));
+        const category_name = val[3].find(
+          (category: SlideshowCategory) => category.slug === val[0]
+        )?.name;
+        this.slideshowCount = val[4](category_name);
+        return val[2](Number.parseInt(val[1], 10), category_name);
       }),
-      tap(() => (this.MaxStep = 0)),
       takeUntil(this.$destroyed)
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
+  }
+
+  ngOnInit(): void {
+    this.load();
+    this.categoriesSlug
+      .pipe(takeUntil(this.$destroyed))
+      .subscribe((categoriesSlug) => (this.slug = categoriesSlug));
+    this.Slideshow?.pipe(takeUntil(this.$destroyed)).subscribe((slideshow) => {
+      this.MaxStep = slideshow?.pages.length as number;
+    });
+    this._breakpointObserver
+      .observe(['(max-width: 450px)'])
+      .subscribe((isMobile) => {
+        if (isMobile.matches) {
+          this.isMobile = true;
+        } else {
+          this.isMobile = false;
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.$destroyed.next();
   }
 
   @Dispatch()
@@ -57,34 +128,62 @@ export class SlideshowComponent implements OnInit, OnDestroy {
     return new SlideshowActions.Load();
   }
 
+  @Dispatch()
+  public goBack() {
+    if (this.slideshowCount === 1) {
+      return new Navigate([`${this.baseUrl}`]);
+    }
+    return new Navigate([`${this.baseUrl}`, this.slug]);
+  }
+
   @HostListener('window:keyup', ['$event'])
   public keyEvent(event: KeyboardEvent) {
     if (event.key === KEY.LEFT_ARROW) {
-      this.Stepper.previous();
+      this.onPrevStepClick();
     } else if (event.key === KEY.RIGHT_ARROW) {
-      this.Stepper.next();
+      this.onNextStepClick(this.MaxStep);
     }
   }
 
-  public onNextStepClick(stepId: number) {
-    if (this.MaxStep < stepId) {
-      this.MaxStep = stepId;
-    }
-  }
-
-  public onPanEnd($event: any) {
-    if ($event.deltaX > 100) {
+  public onPrevStepClick() {
+    if (this.page_index > 1) {
+      this.page_index--;
       this.Stepper.previous();
-    } else if ($event.deltaX < -100) {
+    }
+  }
+
+  public onNextStepClick(maxStep: number) {
+    if (this.page_index < maxStep) {
+      this.page_index++;
       this.Stepper.next();
     }
   }
 
-  ngOnDestroy(): void {
-    this.$destroyed.next();
+  public onPanEnd($event: any, maxStep: number) {
+    if ($event.deltaX > 100) {
+      this.onPrevStepClick();
+    } else if ($event.deltaX < -100) {
+      this.onNextStepClick(maxStep);
+    }
   }
 
-  ngOnInit(): void {
-    this.load();
+  public hideAndShowToolbar() {
+    const delta = 5;
+    const scrollTop = this.slideshow_container?.nativeElement.scrollTop;
+    const toolbarHeight = this.Toolbar?.nativeElement.offsetHeight;
+    if (Math.abs(this.lastScrollTop - scrollTop) <= delta) {
+      return;
+    }
+
+    if (scrollTop > this.lastScrollTop && scrollTop > toolbarHeight) {
+      // Scroll Down
+      this.toolbar_down = false;
+      this.toolbar_up = true;
+    } else {
+      // Scroll Up
+      this.toolbar_up = false;
+      this.toolbar_down = true;
+    }
+    this.lastScrollTop = scrollTop;
   }
 }

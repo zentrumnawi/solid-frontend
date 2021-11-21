@@ -22,10 +22,10 @@ img {
 }
 .media-container {
   display: block;
-  height: 100%;
+  height: calc(100% - 44px);
   border-radius: inherit;
   position: relative;
-  margin-bottom: -48px;
+  // margin-bottom: -48px;
   box-sizing: border-box;
 
   .audio-container {

@@ -1,8 +1,67 @@
-mat-nav-list {
+mat-accordion {
   padding: 0;
   display: inline-block;
-  height: calc(100vh - 64px);
   width: 300px;
   overflow-y: auto;
   overflow-x: hidden;
+
+  ::ng-deep {
+    .mat-line {
+      margin-bottom: 0 !important;
+    }
+
+    .mat-expansion-panel-header {
+      padding: 0 16px !important;
+      height: 48px !important;
+    }
+
+    .mat-expansion-panel:not([class*='mat-elevation-z']) {
+      box-shadow: none !important;
+    }
+
+    .mat-accordion .mat-expansion-panel:last-of-type {
+      border-bottom-right-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+    .mat-accordion .mat-expansion-panel:first-of-type {
+      border-top-right-radius: 0 !important;
+      border-top-left-radius: 0 !important;
+    }
+
+    .mat-expansion-panel-spacing {
+      margin: 0 0 !important;
+    }
+    .mat-expansion-panel {
+      border-radius: 0 !important;
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0 !important;
+    }
+  }
+}
+
+mat-nav-list {
+  padding: 0;
+  display: inline-block;
+  width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  // margin-bottom: -5px;
+
+  ::ng-deep {
+    // For the new toggled version
+    // .mat-list-item-content {
+    //   padding: 0 32px !important;
+    // }
+    .mat-list-item span {
+      font-size: 15px !important;
+    }
+  }
+}
+
+.main-menu-container {
+  height: calc(100vh - 56px);
+  width: 300px;
+  overflow: auto;
 }

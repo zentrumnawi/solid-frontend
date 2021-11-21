@@ -1,0 +1,60 @@
+:host {
+  display: block;
+}
+
+.categories-container {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+
+  mat-card {
+    width: 170px;
+    height: 170px;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.05s linear 0.05s;
+    text-align: center;
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+
+    .mat-card-child {
+      margin-top: auto;
+      margin-bottom: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  mat-card:hover {
+    cursor: pointer;
+  }
+
+  .categoryName {
+    padding-top: 0.5rem;
+  }
+
+  img {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+@media (max-width: 410px) {
+  mat-card {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .mat-card-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  mat-card {
+    width: 160px;
+    height: 160px;
+  }
+}

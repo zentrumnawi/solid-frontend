@@ -2,6 +2,7 @@ div.toolbar {
   position: relative;
   display: flex;
   justify-content: flex-end;
+  bottom: 0.3em;
   &.dzi {
     bottom: 0.9em;
   }
@@ -40,7 +41,7 @@ div.dziToolbar {
       max-width: 700px;
       max-height: 110px;
       div.description-container {
-        width: 100%;
+        width: 99%;
         height: 100%;
         overflow: auto;
         padding-right: 0.4em;

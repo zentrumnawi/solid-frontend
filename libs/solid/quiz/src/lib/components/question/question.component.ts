@@ -55,7 +55,6 @@ export class QuestionComponent implements OnChanges {
         this.Correct = false;
       }
     }
-    console.log(this.question?.images[0]);
   }
 
   public trackByFn(index: number, item: QuizAnswer) {
