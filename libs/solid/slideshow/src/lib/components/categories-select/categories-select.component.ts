@@ -6,6 +6,8 @@ import { Select } from '@ngxs/store';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SlideshowActions } from '../../state/slideshow.actions';
 import { takeUntil } from 'rxjs/operators';
+import { Navigate } from '@ngxs/router-plugin';
+import { ActivatedRoute } from '@angular/router';
 
 export function __internal__selectCategories(s: any) {
   return s.categories;
@@ -29,9 +31,8 @@ export class CategoriesSelectComponent implements OnInit, OnDestroy {
   Categories!: Observable<SlideshowCategory[]>;
   @Select(SlideshowState.getSlideshowByCategories)
   categoriesSelector!: Observable<(categories: string) => []>;
-  public hasNoCategories = false;
 
-  constructor() {}
+  constructor(private actRoute: ActivatedRoute) {}
 
   @Dispatch()
   private load() {
@@ -40,15 +41,18 @@ export class CategoriesSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.load();
-    this.Slideshows?.pipe(takeUntil(this.$destroyed)).subscribe(
-      (slideshows) => {
-        slideshows.forEach((slideshow) => {
-          if (slideshow.categories === undefined) {
-            this.hasNoCategories = true;
-          }
-        });
+    this.Categories?.pipe(takeUntil(this.$destroyed)).subscribe(
+      (categories) => {
+        if (categories.length === 1) {
+          this.openSlideshowSelect(categories[0].slug);
+        }
       }
     );
+  }
+
+  @Dispatch()
+  private openSlideshowSelect(slug: string) {
+    return new Navigate([`${slug}`], undefined, { relativeTo: this.actRoute });
   }
 
   ngOnDestroy(): void {

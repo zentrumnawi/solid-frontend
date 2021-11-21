@@ -35,16 +35,16 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   private $destroyed = new Subject();
   public Slideshows?: Observable<Slideshow[]>;
   @Select(__internal__selectCategories)
-  categories!: Observable<SlideshowCategory[]>;
+  Categories!: Observable<SlideshowCategory[]>;
   @Select(SlideshowState.getSlideshowByCategories)
   categoriesSelector!: Observable<(categories: string) => []>;
-  public hasNoCategories = false;
   @ViewChild('slideshow_select_container')
   public slideshow_select_container?: ElementRef;
   @ViewChild('toolbar') public Toolbar?: ElementRef;
   public lastScrollTop = 0;
   public toolbar_up = false;
   public toolbar_down = false;
+  public hasOnlyOneCategory = false;
   public category_name?: string;
 
   constructor(
@@ -53,7 +53,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   ) {
     this.Slideshows = combineLatest([
       this.categoriesSelector,
-      this.categories,
+      this.Categories,
     ]).pipe(
       map((val) => {
         this.category_name = val[1].find(
@@ -82,6 +82,13 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
       (slideshows) => {
         if (slideshows.length === 1) {
           this.openSlideshow(slideshows[0].id);
+        }
+      }
+    );
+    this.Categories?.pipe(takeUntil(this.$destroyed)).subscribe(
+      (categories) => {
+        if (categories.length === 1) {
+          this.hasOnlyOneCategory = true;
         }
       }
     );

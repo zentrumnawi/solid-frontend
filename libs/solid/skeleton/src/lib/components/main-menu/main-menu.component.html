@@ -1,4 +1,4 @@
-<!-- Old Version Menu -->
+<!-- Without Dropdown Version -->
 <mat-nav-list>
   <mat-list-item
     (click)="navigateTo(item.route)"
@@ -12,7 +12,7 @@
   </mat-list-item>
 </mat-nav-list>
 
-<!-- New Version -->
+<!-- Slideshow Dropdown Version -->
 <!-- <div class="main-menu-container">
   <mat-accordion>
     <ng-container *ngFor="let menuItem of MenuItems | async">
@@ -40,16 +40,6 @@
             *ngFor="let category of categories"
           >
             <span matLine>{{ category.name }}</span>
-          </mat-list-item>
-          Cannot deal with the case that all slideshows have their own categories. 
-          Because when the first time Loading, the slideshows is not being loaded 
-          => no state slideshows => cannot notice if any slideshow has categories = undefined 
-          => "Sonstiges" will be allways static here 
-          Solution???: Create here a "small" state just for loading the slideshow, so that 
-          we know which slideshow has categories = undefined, which slideshow has his own categories.
-          But it makes the states more complicated
-          <mat-list-item (click)="navigateTo(menuItem.route + '/sonstiges')">
-            <span matLine>Sonstiges</span>
           </mat-list-item>
         </mat-nav-list>
       </mat-expansion-panel>

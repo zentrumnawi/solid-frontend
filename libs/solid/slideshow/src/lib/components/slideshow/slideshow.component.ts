@@ -1,4 +1,6 @@
 import {
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -43,7 +45,7 @@ export interface SlideshowCategory {
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss'],
 })
-export class SlideshowComponent implements OnInit, OnDestroy {
+export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
   private $destroyed = new Subject();
   @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
   @ViewChild('toolbar') public Toolbar?: ElementRef;
@@ -73,7 +75,8 @@ export class SlideshowComponent implements OnInit, OnDestroy {
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
-    @Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string
+    @Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string,
+    private cdr: ChangeDetectorRef
   ) {
     this.Slideshow = combineLatest([
       this.categoriesSlug,
@@ -93,9 +96,16 @@ export class SlideshowComponent implements OnInit, OnDestroy {
     );
   }
 
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
+  }
+
   ngOnInit(): void {
     this.load();
-    this.Slideshow.subscribe((slideshow) => {
+    this.categoriesSlug
+      .pipe(takeUntil(this.$destroyed))
+      .subscribe((categoriesSlug) => (this.slug = categoriesSlug));
+    this.Slideshow?.pipe(takeUntil(this.$destroyed)).subscribe((slideshow) => {
       this.MaxStep = slideshow?.pages.length as number;
     });
     this._breakpointObserver
@@ -107,9 +117,6 @@ export class SlideshowComponent implements OnInit, OnDestroy {
           this.isMobile = false;
         }
       });
-    this.categoriesSlug.subscribe(
-      (categoriesSlug) => (this.slug = categoriesSlug)
-    );
   }
 
   ngOnDestroy(): void {
@@ -119,6 +126,14 @@ export class SlideshowComponent implements OnInit, OnDestroy {
   @Dispatch()
   private load() {
     return new SlideshowActions.Load();
+  }
+
+  @Dispatch()
+  public goBack() {
+    if (this.slideshowCount === 1) {
+      return new Navigate([`${this.baseUrl}`]);
+    }
+    return new Navigate([`${this.baseUrl}`, this.slug]);
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -170,13 +185,5 @@ export class SlideshowComponent implements OnInit, OnDestroy {
       this.toolbar_down = true;
     }
     this.lastScrollTop = scrollTop;
-  }
-
-  @Dispatch()
-  public goBack() {
-    if (this.slideshowCount === 1) {
-      return new Navigate([`${this.baseUrl}`]);
-    }
-    return new Navigate([`${this.baseUrl}`, this.slug]);
   }
 }

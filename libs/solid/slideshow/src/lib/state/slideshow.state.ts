@@ -43,10 +43,17 @@ export class SlideshowState {
     const fn = function (
       categories: string | undefined
     ): Slideshow[] | undefined {
-      return state.filter((s) => s.categories === categories);
+      return state.filter((s) => {
+        if (!categories) {
+          return;
+        } else {
+          return s.categories === categories;
+        }
+      });
     };
     return fn;
   }
+
   @Selector()
   public static SlideshowByCategoryCounter(state: SlideshowStateModel) {
     const fn = function (categories: string | undefined): number {

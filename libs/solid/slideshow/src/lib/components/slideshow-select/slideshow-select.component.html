@@ -5,13 +5,14 @@
 >
   <div
     class="back-button-toolbar-container"
-    *ngIf="categories | async as categories"
+    *ngIf="Categories | async as categories"
     [class.nav-up]="toolbar_up"
     [class.nav-down]="toolbar_down"
     #toolbar
   >
     <div class="back-button-toolbar">
       <button
+        *ngIf="!hasOnlyOneCategory"
         color="primary"
         mat-icon-button
         class="button-back"
@@ -19,7 +20,7 @@
       >
         <mat-icon>arrow_back</mat-icon>
       </button>
-      <h2>{{ category_name === undefined ? 'Sonstiges' : category_name }}</h2>
+      <h2>{{ category_name }}</h2>
     </div>
   </div>
   <div class="spacer"></div>

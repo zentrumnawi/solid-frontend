@@ -90,26 +90,4 @@ export class MenuState {
       items: newItems,
     });
   }
-
-  // @Action(MenuActions.GetSlideshowCategories)
-  // public GetSlideshowCategories() {
-  //   return this._http
-  //     .get<SlideshowCategory[]>(`${this._config.apiUrl}/categories`)
-  //     .pipe(
-  //       map((res: SlideshowCategory[]) => {
-  //         console.log(res);
-  //       })
-  //     );
-
-  // map((response: any) => {
-  //   console.log(response);
-
-  // const mapit = (input: SlideshowCategory[]) => {
-  //   return input.map((sc) => {
-  //     console.log(sc);
-  //   });
-  // };
-  // return mapit(response);
-  // })
-  // }
 }
