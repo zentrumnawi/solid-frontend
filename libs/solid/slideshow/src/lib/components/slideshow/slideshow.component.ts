@@ -149,6 +149,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.page_index > 1) {
       this.page_index--;
       this.Stepper.previous();
+      this.scrollToTop();
     }
   }
 
@@ -156,6 +157,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.page_index < maxStep) {
       this.page_index++;
       this.Stepper.next();
+      this.scrollToTop();
     }
   }
 
@@ -174,7 +176,6 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
     if (Math.abs(this.lastScrollTop - scrollTop) <= delta) {
       return;
     }
-
     if (scrollTop > this.lastScrollTop && scrollTop > toolbarHeight) {
       // Scroll Down
       this.toolbar_down = false;
@@ -185,5 +186,13 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
       this.toolbar_down = true;
     }
     this.lastScrollTop = scrollTop;
+  }
+
+  public scrollToTop() {
+    const slideshowContainer = this.slideshow_container;
+    if (!slideshowContainer) {
+      return;
+    }
+    slideshowContainer.nativeElement.scrollTop = 0;
   }
 }

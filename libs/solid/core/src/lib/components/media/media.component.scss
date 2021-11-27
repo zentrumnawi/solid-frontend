@@ -6,11 +6,4 @@ solid-core-media-detail {
   height: 100%;
   width: 100%;
   position: relative;
-  ::ng-deep {
-    solid-core-media-toolbar {
-      position: absolute;
-      bottom: 0.5em;
-      right: 0;
-    }
-  }
 }
