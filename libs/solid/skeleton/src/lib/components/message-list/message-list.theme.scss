@@ -6,5 +6,12 @@
     mat-list-item:not(:last-child) {
       border-bottom: 1px solid mat-color($background, status-bar);
     }
+
+    a:link {
+      color: mat-color($app-primary, 600);
+    }
+    a:visited {
+      color: mat-color($app-primary, 900);
+    }
   }
 }
