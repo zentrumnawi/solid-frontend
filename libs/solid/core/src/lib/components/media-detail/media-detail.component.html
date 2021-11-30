@@ -19,6 +19,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDziTools]="false"
     [hasAudio]="hasAudio"
     [hasDescription]="hasDescription"
+    [slideshowPageChanged]="slideshowPageChanged"
   ></solid-core-media-toolbar>
 </ng-container>
 
@@ -103,6 +104,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDescription]="hasDescription"
     [hasDescriptionToggle]="hasDescriptionToggle"
     (descriptionToggle)="toggleDescription($event)"
+    [slideshowPageChanged]="slideshowPageChanged"
   ></solid-core-media-toolbar>
   <ng-template #grid>
     <img

@@ -1,0 +1,5 @@
+@import 'lib/components/slideshow/slideshow.theme';
+
+@mixin solid-slideshow-theme($mat-theme) {
+  @include solid-slideshow-component-theme($mat-theme);
+}
