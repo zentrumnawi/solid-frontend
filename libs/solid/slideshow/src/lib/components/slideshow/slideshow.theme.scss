@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+
+@mixin solid-slideshow-component-theme($mat-theme) {
+  $accent: map-get($mat-theme, accent);
+  $background: map-get($mat-theme, background);
+  solid-slideshow {
+    a:link {
+      color: mat-color($app-primary, 600);
+    }
+    a:visited {
+      color: mat-color($app-primary, 900);
+    }
+  }
+}

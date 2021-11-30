@@ -30,6 +30,9 @@ solid-core-media-detail {
   height: 99%;
   position: relative;
   ::ng-deep {
+    // .container {
+    //   margin-bottom: -46px;
+    // }
     img {
       position: absolute;
       top: 50%;
@@ -57,9 +60,9 @@ div.audiobar {
   position: absolute;
   display: flex;
   justify-content: flex-start;
-  bottom: 3.4em;
-  margin-bottom: -2.5em;
-  margin-left: 0.2em;
+  bottom: 0.85em;
+  // margin-bottom: -2.5em;
+  margin-left: 0.8em;
   //height: 40px;
 }
 

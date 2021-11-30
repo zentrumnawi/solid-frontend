@@ -3,11 +3,13 @@ contain any media object now. It is just a temporary solution.
 It is not possible to use a image toolbar here, because quiz image
 use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
 <ng-container *ngIf="image">
-  <img
-    [src]="image.getRawImage('large')"
-    [alt]="image.alt"
-    [class.landscape]="image.isLandscape"
-  />
+  <div class="img-container">
+    <img
+      [src]="image.getRawImage('large')"
+      [alt]="image.alt"
+      [class.landscape]="image.isLandscape"
+    />
+  </div>
   <solid-core-media-toolbar
     *ngIf="view != 'grid'"
     [image]="image"
@@ -17,6 +19,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDziTools]="false"
     [hasAudio]="hasAudio"
     [hasDescription]="hasDescription"
+    [slideshowPageChanged]="slideshowPageChanged"
   ></solid-core-media-toolbar>
 </ng-container>
 
@@ -24,12 +27,14 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
 <ng-container *ngIf="mediaObject">
   <ng-container [ngSwitch]="mediaObject.mediaType">
     <div class="media-container" *ngSwitchCase="'image'">
-      <img
-        *ngIf="view != 'grid'; else grid"
-        [src]="mediaObject.getRawImage('large')"
-        [alt]="mediaObject.alt"
-        [class.landscape]="mediaObject.isLandscape"
-      />
+      <div class="image-container">
+        <img
+          *ngIf="view != 'grid'; else grid"
+          [src]="mediaObject.getRawImage('large')"
+          [alt]="mediaObject.alt"
+          [class.landscape]="mediaObject.isLandscape"
+        />
+      </div>
     </div>
     <div class="media-container" *ngSwitchCase="'audio'">
       <!-- <img
@@ -61,26 +66,28 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
       </div>
     </div>
     <div class="media-container" *ngSwitchCase="'video'">
-      <video
-        #videoplayer
-        id="video"
-        preload="metadata"
-        [src]="mediaObject.getSrc()"
-        controls
-        (ended)="onPlayerEnded()"
-        (playing)="setInvisible()"
-        (pause)="setVisible()"
-      >
-        Your browser does not support the video tag.
-      </video>
-      <div class="play-button-wrapper" (click)="togglePlay()">
-        <div id="play-button-circle" [style.opacity]="playButtonIsShown">
-          <!-- SVG Play Button -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
-            <path
-              d="M40 0a40 40 0 1040 40A40 40 0 0040 0zM26 61.56V18.44L64 40z"
-            />
-          </svg>
+      <div class="video-container">
+        <video
+          #videoplayer
+          id="video"
+          preload="metadata"
+          [src]="mediaObject.getSrc()"
+          controls
+          (ended)="onPlayerEnded()"
+          (playing)="setInvisible()"
+          (pause)="setVisible()"
+        >
+          Your browser does not support the video tag.
+        </video>
+        <div class="play-button-wrapper" (click)="togglePlay()">
+          <div id="play-button-circle" [style.opacity]="playButtonIsShown">
+            <!-- SVG Play Button -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+              <path
+                d="M40 0a40 40 0 1040 40A40 40 0 0040 0zM26 61.56V18.44L64 40z"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -97,6 +104,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDescription]="hasDescription"
     [hasDescriptionToggle]="hasDescriptionToggle"
     (descriptionToggle)="toggleDescription($event)"
+    [slideshowPageChanged]="slideshowPageChanged"
   ></solid-core-media-toolbar>
   <ng-template #grid>
     <img

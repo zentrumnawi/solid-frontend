@@ -24,8 +24,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./media-toolbar.component.scss'],
 })
 export class MediaToolbarComponent implements OnInit, OnChanges {
-  @Input() public mediaObject!: MediaModel;
-  @Input() public image!: ImageModel;
+  @Input() public mediaObject?: MediaModel;
+  @Input() public image?: ImageModel;
   @Input() public name!: string;
   @Input() hasAttributions!: boolean;
   @Input() hasDialog!: boolean;
@@ -35,6 +35,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() hasDescriptionToggle!: boolean;
   @Input() data!: any;
   private length = 90;
+  @Input() slideshowPageChanged!: number;
 
   @Input() isAttributionsOverlayAbove!: boolean;
   attributionsPositions: ConnectedPosition[] = [];
@@ -48,25 +49,26 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
 
   constructor(
     private _dialog: MatDialog,
-    scrollDispatcher: ScrollDispatcher,
+    private scrollDispatcher: ScrollDispatcher,
     viewportRuler: ViewportRuler,
-    zone: NgZone,
+    private ngZone: NgZone,
     private _breakpointObserver: BreakpointObserver
   ) {
     this.attributionsScrollStrategy = new CloseScrollStrategy(
       scrollDispatcher,
-      zone,
+      ngZone,
       viewportRuler
     );
     this.descriptionScrollStrategy = new CloseScrollStrategy(
       scrollDispatcher,
-      zone,
+      ngZone,
       viewportRuler
     );
   }
 
   ngOnChanges(): void {
     this.descriptionToggled = false;
+    this.attributionsIsOpen = false;
   }
 
   ngOnInit(): void {
@@ -116,6 +118,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
       data: {
         mediaObject: this.mediaObject,
         name: this.name,
+        type: 'mediaObject',
       },
     });
   }
@@ -128,14 +131,22 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
       maxHeight: this.length + 'vh',
       panelClass: 'solid-core-media-dialog',
       data: {
-        mediaObject: this.image,
+        image: this.image,
         name: this.name,
+        type: 'photograph',
       },
     });
   }
 
   attributionsOpenClose() {
     this.attributionsIsOpen = !this.attributionsIsOpen;
+    if (this.attributionsIsOpen === true) {
+      this.scrollDispatcher.scrolled().subscribe(() => {
+        this.ngZone.run(() => {
+          this.attributionsIsOpen = false;
+        });
+      });
+    }
   }
 
   descriptionOpenClose() {

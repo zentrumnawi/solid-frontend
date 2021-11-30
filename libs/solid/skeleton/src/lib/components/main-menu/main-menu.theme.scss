@@ -12,5 +12,23 @@
         }
       }
     }
+    mat-accordion {
+      mat-expansion-panel {
+        mat-expansion-panel-header {
+          border-bottom: 1px solid mat-color($background, status-bar);
+
+          &.active {
+            background-color: mat-color(
+              $background,
+              selected-button
+            ) !important;
+          }
+        }
+
+        &.active {
+          background-color: mat-color($background, selected-button);
+        }
+      }
+    }
   }
 }
