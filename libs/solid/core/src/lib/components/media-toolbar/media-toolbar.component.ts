@@ -35,6 +35,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() hasDescriptionToggle!: boolean;
   @Input() data!: any;
   private length = 90;
+  @Input() slideshowPageChanged!: number;
 
   @Input() isAttributionsOverlayAbove!: boolean;
   attributionsPositions: ConnectedPosition[] = [];

@@ -1,6 +1,7 @@
 @import '~@angular/material/theming';
 @import 'glossary-theme';
 @import 'skeleton-theme';
+@import 'slideshow-theme';
 
 $planty-primary: (
   50: #f5f8e2,
@@ -12,7 +13,7 @@ $planty-primary: (
   600: #a7bd0a,
   700: #9db508,
   800: #94ae06,
-  900: #84a103,
+  900: #677c22,
   A100: #f4ffcb,
   A200: #eaff98,
   A400: #dfff65,

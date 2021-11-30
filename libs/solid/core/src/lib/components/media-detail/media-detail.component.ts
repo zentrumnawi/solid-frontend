@@ -19,6 +19,7 @@ export class MediaDetailComponent implements OnChanges {
   @Input() hasAudio!: boolean;
   @Input() hasDescription!: boolean;
   @Input() hasDescriptionToggle!: boolean;
+  @Input() slideshowPageChanged!: number;
 
   @ViewChild('videoplayer', { static: false }) videoplayer!: {
     nativeElement: HTMLVideoElement;
