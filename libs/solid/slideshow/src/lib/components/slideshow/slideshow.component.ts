@@ -12,7 +12,7 @@ import { Slideshow } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { SlideshowActions } from '../../state/slideshow.actions';
+import { LoadSlideshow } from '../../state/slideshow.actions';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
@@ -54,7 +54,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   private load() {
-    return new SlideshowActions.Load();
+    return new LoadSlideshow();
   }
 
   @HostListener('window:keyup', ['$event'])

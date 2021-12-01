@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
 import { Select } from '@ngxs/store';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { SlideshowActions } from '../../state/slideshow.actions';
+import { LoadSlideshow } from '../../state/slideshow.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { takeUntil } from 'rxjs/operators';
 
@@ -20,7 +20,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   private load() {
-    return new SlideshowActions.Load();
+    return new LoadSlideshow();
   }
 
   @Dispatch()

@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from './menu.model';
-import { MenuActions } from './menu.actions';
+import { SetMenuEntries } from './menu.actions';
 import { RouterDataResolved } from '@ngxs/router-plugin';
 
 export interface MenuStateModel {
@@ -53,13 +53,13 @@ export class MenuState {
         showOnLanding: route.data?.showOnLandingPage,
       });
     }
-    setTimeout(() => this.store.dispatch(new MenuActions.SetEntries(items)));
+    setTimeout(() => this.store.dispatch(new SetMenuEntries(items)));
   }
 
-  @Action(MenuActions.SetEntries)
+  @Action(SetMenuEntries)
   public setEntries(
     { setState }: StateContext<MenuStateModel>,
-    { items }: MenuActions.SetEntries
+    { items }: SetMenuEntries
   ) {
     return setState({
       items: [...items],

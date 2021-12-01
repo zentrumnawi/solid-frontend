@@ -5,7 +5,7 @@ import {
   GlossaryState,
   GlossaryStateModel,
 } from '../glossary.state';
-import { GlossaryActions } from '../glossary.actions';
+import { LoadGLossary } from '../glossary.actions';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { RefDirective } from './link.directive';
 import { FormControl } from '@angular/forms';
@@ -26,7 +26,7 @@ export class GlossaryComponent implements OnDestroy {
   public GlossaryEntries: Observable<GlossaryStateModel>;
 
   constructor(store: Store) {
-    store.dispatch(new GlossaryActions.Load());
+    store.dispatch(new LoadGLossary());
     this.GlossaryEntries = combineLatest([
       this.Filter.valueChanges.pipe(startWith('')),
       this.State,

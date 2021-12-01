@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { QuizActions } from '../../state/quiz.actions';
+import { StartQuizSession } from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { FormControl, Validators } from '@angular/forms';
@@ -25,9 +25,7 @@ export class StartComponent implements OnDestroy {
   }
 
   public onStartClick() {
-    this._store.dispatch(
-      new QuizActions.StartSession(this.questionCount.value)
-    );
+    this._store.dispatch(new StartQuizSession(this.questionCount.value));
   }
 
   ngOnDestroy(): void {
