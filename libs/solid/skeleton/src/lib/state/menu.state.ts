@@ -6,7 +6,6 @@ import { SetMenuEntries } from './menu.actions';
 import { RouterDataResolved } from '@ngxs/router-plugin';
 import { HttpClient } from '@angular/common/http';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { map } from 'lodash';
 
 export interface MenuStateModel {
   items: MenuItem[];
