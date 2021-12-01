@@ -1,5 +1,10 @@
 <ng-container *ngIf="!toolbar">
-  <button (click)="onPlayPauseClick()" mat-mini-fab color="accent">
+  <button
+    (click)="onPlayPauseClick()"
+    [disabled]="!audioLoaded"
+    mat-mini-fab
+    color="accent"
+  >
     <mat-icon>{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
   </button>
 </ng-container>

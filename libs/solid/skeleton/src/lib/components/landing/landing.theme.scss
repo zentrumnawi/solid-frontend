@@ -12,6 +12,13 @@
       border-radius: 0.5rem;
       margin-bottom: 1.5rem;
       padding-bottom: 0.5rem;
+
+      a:link {
+        color: mat-color($app-primary, 600);
+      }
+      a:visited {
+        color: mat-color($app-primary, 900);
+      }
     }
     mat-list-item:not(:last-child) {
       border-bottom: 1px solid

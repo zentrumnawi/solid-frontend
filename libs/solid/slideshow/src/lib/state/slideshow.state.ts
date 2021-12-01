@@ -1,10 +1,14 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Slideshow } from './slideshow.model';
+import { Slideshow, SlideshowApi } from './slideshow.model';
 import { HttpClient } from '@angular/common/http';
 import { LoadSlideshow } from './slideshow.actions';
 import { Inject, Injectable } from '@angular/core';
-import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
-import { tap } from 'rxjs/operators';
+import {
+  SOLID_CORE_CONFIG,
+  SolidCoreConfig,
+  ImageModel,
+} from '@zentrumnawi/solid-core';
+import { tap, map } from 'rxjs/operators';
 
 export type SlideshowStateModel = Slideshow[];
 
@@ -20,17 +24,46 @@ export class SlideshowState {
   ) {}
 
   @Selector()
-  public static getSlideshowById(state: SlideshowStateModel) {
+  public static getSlideshowByCategoriesAndId(state: SlideshowStateModel) {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
-    const fn = function (id: number): Slideshow | undefined {
-      return state.find((slideshow) => slideshow.id === id);
+    const fn = function (
+      id: number,
+      categories: string | undefined
+    ): Slideshow | undefined {
+      return state
+        .filter((slideshow) => slideshow.categories === categories)
+        .find((slideshow) => slideshow.id === id);
     };
     return fn;
   }
 
   @Selector()
-  public static getSlideshowOverview(state: SlideshowStateModel) {
+  public static getSlideshowByCategories(state: SlideshowStateModel) {
+    const fn = function (
+      categories: string | undefined
+    ): Slideshow[] | undefined {
+      return state.filter((s) => {
+        if (!categories) {
+          return;
+        } else {
+          return s.categories === categories;
+        }
+      });
+    };
+    return fn;
+  }
+
+  @Selector()
+  public static SlideshowByCategoryCounter(state: SlideshowStateModel) {
+    const fn = function (categories: string | undefined): number {
+      return state.filter((s) => s.categories === categories).length;
+    };
+    return fn;
+  }
+
+  @Selector()
+  public static getSlideshows(state: SlideshowStateModel) {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
     const fn = () =>
@@ -39,6 +72,7 @@ export class SlideshowState {
         title: s.title,
         title_image: s.title_image,
         position: s.position,
+        categories: s.categories,
       }));
     return fn();
   }
@@ -51,6 +85,24 @@ export class SlideshowState {
     return this._http
       .get<Slideshow[]>(`${this._config.apiUrl}/slideshows`)
       .pipe(
+        map((response) => {
+          const mapit = (input: SlideshowApi[]): Slideshow[] => {
+            return input.map((slideshow) => {
+              return {
+                ...slideshow,
+                categories: slideshow.categories[0],
+                pages: slideshow.pages.map((page) => ({
+                  ...page,
+                  images: page.images?.map((slideshowImg) => ({
+                    ...slideshowImg,
+                    img: new ImageModel(slideshowImg.image),
+                  })),
+                })),
+              };
+            });
+          };
+          return mapit(response);
+        }),
         tap((res) => {
           ctx.setState([
             ...res.map((slideshow) => {

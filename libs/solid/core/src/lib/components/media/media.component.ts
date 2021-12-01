@@ -17,4 +17,5 @@ export class MediaComponent {
   @Input() hasControlPanel = true;
   @Input() hasDescription!: boolean;
   @Input() hasDescriptionToggle!: boolean;
+  @Input() slideshowPageChanged!: number;
 }

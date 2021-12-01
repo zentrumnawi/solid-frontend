@@ -103,6 +103,40 @@
         <div class="attributions-overlay">{{ attributions }}</div>
       </ng-template>
     </button>
+    <button
+      *ngIf="hasDescription && image.description"
+      mat-mini-fab
+      color="accent"
+      cdkOverlayOrigin
+      #attributionsOverlayOrigin="cdkOverlayOrigin"
+      (click)="descriptionOpenClose()"
+    >
+      <mat-icon>description</mat-icon>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="attributionsOverlayOrigin"
+        [cdkConnectedOverlayOpen]="descriptionIsOpen"
+        [cdkConnectedOverlayPositions]="attributionsPositions"
+        [cdkConnectedOverlayScrollStrategy]="descriptionScrollStrategy"
+      >
+        <div class="description-overlay">
+          <div
+            class="description-container"
+            markdown
+            [data]="image.description"
+          ></div>
+        </div>
+      </ng-template>
+    </button>
+    <button
+      *ngIf="hasDescriptionToggle"
+      id=""
+      mat-mini-fab
+      color="accent"
+      (click)="toggleDescription()"
+    >
+      <mat-icon>description</mat-icon>
+    </button>
     <ng-container *ngIf="hasDziTools">
       <button id="zoom-in-button" mat-mini-fab color="accent">
         <mat-icon>zoom_in</mat-icon>

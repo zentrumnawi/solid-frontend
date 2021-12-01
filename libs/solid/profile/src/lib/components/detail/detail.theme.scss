@@ -11,5 +11,12 @@
         border: 2px solid mat.get-color-from-palette($accent);
       }
     }
+
+    a:link {
+      color: mat-color($app-primary, 600);
+    }
+    a:visited {
+      color: mat-color($app-primary, 900);
+    }
   }
 }

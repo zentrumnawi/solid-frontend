@@ -20,6 +20,7 @@ export function generateRoutes(config: RoutingConfig) {
         icon: cfg.matIcon,
         svgIcon: cfg.svgIcon,
         order: cfg.order,
+        name: cfg.name,
       },
     });
   };
@@ -34,6 +35,7 @@ export function generateRoutes(config: RoutingConfig) {
         icon: cfg.matIcon,
         svgIcon: cfg.svgIcon,
         order: cfg.order,
+        name: cfg.name,
       },
     });
   };

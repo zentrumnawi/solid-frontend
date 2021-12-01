@@ -1,3 +1,4 @@
+<!-- Without Dropdown Version -->
 <mat-nav-list>
   <mat-list-item
     (click)="navigateTo(item.route)"
@@ -10,3 +11,47 @@
     <h3 matLine>Kontakt</h3>
   </mat-list-item>
 </mat-nav-list>
+
+<!-- Slideshow Dropdown Version -->
+<!-- <div class="main-menu-container">
+  <mat-accordion>
+    <ng-container *ngFor="let menuItem of MenuItems | async">
+      <mat-expansion-panel
+        (click)="navigateTo(menuItem.route)"
+        *ngIf="menuItem.name !== 'slideshow'"
+        [class.active]="menuItem.active"
+        hideToggle
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            ><h3 matLine>{{ menuItem.title }}</h3></mat-panel-title
+          >
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+      <mat-expansion-panel *ngIf="menuItem.name === 'slideshow'" hideToggle>
+        <mat-expansion-panel-header [class.active]="menuItem.active">
+          <mat-panel-title
+            ><h3 matLine>{{ menuItem.title }}</h3></mat-panel-title
+          >
+        </mat-expansion-panel-header>
+        <mat-nav-list *ngIf="CategoriesItems | async as categories">
+          <mat-list-item
+            (click)="navigateTo(menuItem.route + '/' + category.slug)"
+            *ngFor="let category of categories"
+          >
+            <span matLine>{{ category.name }}</span>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </ng-container>
+    <mat-expansion-panel
+      (click)="feedback.showDialog()"
+      *ngIf="feedback"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title><h3 matLine>Kontakt</h3></mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div> -->

@@ -1,23 +1,73 @@
-.float-right {
-  float: right;
-  grid-area: next;
-}
+@import '~@angular/material/theming';
 
-.button-left {
-  grid-area: previous;
-}
-
-.step-actions {
-  margin-top: 1em;
+.container {
+  overflow: hidden;
+  height: 100%;
   display: grid;
-  grid-template-areas: 'previous header next';
-  grid-template-columns: 40px auto 40px;
-  width: 100%;
 }
 
-h1 {
-  text-align: center;
-  grid-area: header;
+.slideshow-container {
+  overflow-y: auto;
+}
+
+.toolbar {
+  padding-top: 0.3em;
+  width: 100%;
+  position: relative;
+
+  .button-back {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-45%);
+  }
+  .step-actions {
+    max-width: 530px;
+    display: grid;
+    grid-template-areas: 'previous header next';
+    grid-template-columns: 40px auto 40px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+  @media (min-width: 451px) and (max-width: 530px) {
+    .step-actions {
+      max-width: 350px;
+    }
+  }
+  @media (min-width: 531px) and (max-width: 645px) {
+    .step-actions {
+      max-width: 400px;
+    }
+  }
+  @media (min-width: 646px) and (max-width: 700px) {
+    .step-actions {
+      max-width: 500px;
+    }
+  }
+
+  .button-left {
+    grid-area: previous;
+  }
+
+  .button-right {
+    grid-area: next;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    grid-area: header;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    span {
+      margin-bottom: 0.5em;
+    }
+  }
 }
 
 ::ng-deep {
@@ -42,15 +92,56 @@ h1 {
 }
 
 div.page-images {
-  display: grid;
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
+  div.greaterEqual3Images {
+    display: grid;
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1000px) and (max-width: 1199px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1200px) and (max-width: 1399px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 1400px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    grid-template-columns: 1fr 1fr;
   }
 
-  @media (min-width: 1000px) and (max-width: 1400px) {
-    grid-template-columns: 1fr;
+  div.lessThan3Images {
+    display: grid;
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1000px) and (max-width: 1199px) {
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 1200px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    grid-template-columns: 1fr 1fr;
   }
-  grid-template-columns: 1fr 1fr;
+  div.equal1Image {
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: 801px) {
+      mat-card {
+        width: 50%;
+      }
+    }
+    @media (min-width: 1000px) and (max-width: 1199px) {
+      mat-card {
+        width: 100%;
+      }
+    }
+  }
 
   mat-card {
     min-width: 200px;
@@ -66,12 +157,160 @@ div.page-images {
         font-size: 16px;
       }
     }
+    mat-card-content {
+      height: calc(100% - 32px);
+      position: relative;
+    }
 
-    img {
-      width: 100%;
-      height: 100%;
+    solid-core-media {
+      ::ng-deep {
+        solid-core-media-detail {
+          all: unset;
+        }
+        solid-core-media-toolbar {
+          position: absolute !important;
+          bottom: -0.9em !important;
+          right: -1.2em !important;
+        }
+      }
+    }
+
+    .caption {
+      margin-right: 40px;
     }
 
     margin: 1em;
+  }
+}
+
+.toolbar-container {
+  width: calc(100% - 324px);
+  position: fixed;
+  left: 309px;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+  transition: top 0.7s ease-in-out;
+}
+@media (min-width: 801px) and (max-width: 999px) {
+  .toolbar-container {
+    width: 97%;
+    left: 12px;
+  }
+}
+@media (min-width: 700px) and (max-width: 800px) {
+  .toolbar-container {
+    width: 96%;
+    left: 12px;
+  }
+}
+@media (min-width: 451px) and (max-width: 699px) {
+  .toolbar-container {
+    width: 95%;
+    left: 12px;
+  }
+}
+.nav-up {
+  top: -68px;
+}
+.nav-down {
+  top: 56px;
+}
+
+.back-button-toolbar-container {
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+  transition: top 0.7s ease-in-out;
+  .back-button-toolbar {
+    display: grid;
+    grid-template-areas: 'front middle last';
+    grid-template-columns: 45px auto 45px;
+    button {
+      grid-area: front;
+      align-self: center;
+      justify-self: end;
+    }
+    h2 {
+      grid-area: middle;
+      justify-self: center;
+      align-self: center;
+      margin-bottom: 0;
+      text-align: center;
+    }
+  }
+}
+.navigation-toolbar-container {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0px -3px 2px -2px rgb(0 0 0 / 20%);
+  .navigation-toolbar {
+    padding-top: 0;
+    display: grid;
+    grid-template-areas: 'previous title next';
+    width: 100%;
+    grid-template-columns: 45px auto 45px;
+    align-items: center;
+
+    .button-left {
+      grid-area: previous;
+      justify-self: end;
+    }
+
+    .button-right {
+      grid-area: next;
+      justify-self: start;
+    }
+
+    span {
+      justify-self: center;
+      text-align: center;
+    }
+  }
+}
+
+.small-spacer {
+  width: 100%;
+  height: 85px;
+}
+.big-spacer {
+  width: 100%;
+  height: 105px;
+}
+.very-big-spacer {
+  width: 100%;
+  height: 117px;
+}
+.giant-spacer {
+  width: 100%;
+  height: 137px;
+}
+.small-spacer-mobile-top {
+  width: 100%;
+  height: 55px;
+}
+.big-spacer-mobile-top {
+  width: 100%;
+  height: 79px;
+}
+.small-spacer-mobile-bottom {
+  width: 100%;
+  height: 26px;
+}
+.big-spacer-mobile-bottom {
+  width: 100%;
+  height: 50px;
+}
+
+mat-progress-bar {
+  ::ng-deep {
+    .mat-progress-bar-buffer {
+      background-color: white;
+    }
   }
 }
