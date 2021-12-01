@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { CategoriesActions } from './slideshow-categories.actions';
+import { GetSlideshowCategories } from './slideshow-categories.actions';
 import { SlideshowCategory } from './slideshow-categories.model';
 import { map, tap } from 'rxjs/operators';
 
@@ -33,11 +33,8 @@ export class CategoriesState {
     return fn();
   }
 
-  @Action(CategoriesActions.GetSlideshowCategories)
-  public GetSlideshowCategories(
-    ctx: StateContext<CategoriesStateModel>,
-    {}: CategoriesActions.GetSlideshowCategories
-  ) {
+  @Action(GetSlideshowCategories)
+  public GetSlideshowCategories(ctx: StateContext<CategoriesStateModel>) {
     return this._http
       .get<SlideshowCategory[]>(`${this._config.apiUrl}/categories`)
       .pipe(

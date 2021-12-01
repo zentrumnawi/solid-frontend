@@ -12,7 +12,7 @@ import { MenuState } from '../../state/menu.state';
 import { MenuItem } from '../../state/menu.model';
 import { CategoriesState } from '../../state/slideshow-categories.state';
 import { SlideshowCategory } from '../../state/slideshow-categories.model';
-import { CategoriesActions } from '../../state/slideshow-categories.actions';
+import { GetSlideshowCategories } from '../../state/slideshow-categories.actions';
 
 @Component({
   selector: 'solid-skeleton-main-menu',
@@ -44,6 +44,6 @@ export class MainMenuComponent implements OnInit {
 
   @Dispatch()
   private GetSlideshowCategories() {
-    return new CategoriesActions.GetSlideshowCategories();
+    return new GetSlideshowCategories();
   }
 }

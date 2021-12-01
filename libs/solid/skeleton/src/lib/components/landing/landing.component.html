@@ -14,7 +14,7 @@
           >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
         >
       </h3>
-      <div *ngIf="msg.text != ''" [data]="msg.text" markdown matLine></div>
+      <div *ngIf="msg.text !== ''" [data]="msg.text" markdown matLine></div>
     </mat-list-item>
   </mat-list>
 </div>
