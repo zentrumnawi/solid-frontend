@@ -220,6 +220,7 @@
                 "libs/solid/core/src",
                 "libs/solid/glossary/src",
                 "libs/solid/skeleton/src",
+                "libs/solid/slideshow/src",
                 "libs/solid/quiz/src",
                 "libs/solid/profile/src"
               ]
