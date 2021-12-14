@@ -16,7 +16,7 @@ export interface MenuStateModel {
 const isActive = (routerUrl: string, routeUrl: string) =>
   routeUrl === ''
     ? routerUrl === '/'
-    : routerUrl.substr(1).startsWith(routeUrl);
+    : routerUrl.substring(1).startsWith(routeUrl);
 
 @State<MenuStateModel>({
   name: 'menu',
