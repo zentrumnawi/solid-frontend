@@ -2,11 +2,10 @@ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from './menu.model';
-import { MenuActions } from './menu.actions';
+import { SetMenuEntries } from './menu.actions';
 import { RouterDataResolved } from '@ngxs/router-plugin';
 import { HttpClient } from '@angular/common/http';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { map } from 'lodash';
 
 export interface MenuStateModel {
   items: MenuItem[];
@@ -17,7 +16,7 @@ export interface MenuStateModel {
 const isActive = (routerUrl: string, routeUrl: string) =>
   routeUrl === ''
     ? routerUrl === '/'
-    : routerUrl.substr(1).startsWith(routeUrl);
+    : routerUrl.substring(1).startsWith(routeUrl);
 
 @State<MenuStateModel>({
   name: 'menu',
@@ -64,13 +63,13 @@ export class MenuState {
         name: route.data?.name,
       });
     }
-    setTimeout(() => this.store.dispatch(new MenuActions.SetEntries(items)));
+    setTimeout(() => this.store.dispatch(new SetMenuEntries(items)));
   }
 
-  @Action(MenuActions.SetEntries)
+  @Action(SetMenuEntries)
   public setEntries(
     { setState }: StateContext<MenuStateModel>,
-    { items }: MenuActions.SetEntries
+    { items }: SetMenuEntries
   ) {
     return setState({
       items: [...items],

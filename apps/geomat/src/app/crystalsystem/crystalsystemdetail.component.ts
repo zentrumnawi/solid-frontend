@@ -81,7 +81,7 @@ export class CrystalsystemdetailComponent {
   public onModelSelectChange(newModel: Models) {
     const cw = this.contentWindow;
     if (cw && cw.switchModel && cw.toggleHighlight) {
-      /* tslint:disable-next-line:no-non-null-assertion */
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.SelectedConfig = this.Configs.find((c) => c.name === newModel)!;
       this.Model = this.SelectedConfig.name;
       this.Layer =

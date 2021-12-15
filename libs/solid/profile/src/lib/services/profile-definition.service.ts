@@ -31,9 +31,9 @@ export class ProfileDefinitionService {
       .pipe(
         map((swagger) => {
           const definitions = swagger.definitions || {};
-          // tslint:disable-next-line:no-non-null-assertion
-          const topLevelRef = (definitions.TreeNode.properties!.profiles!
-            .items as Schema).$ref;
+          const topLevelRef =
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            (definitions.TreeNode.properties!.profiles!.items as Schema).$ref;
           return this.definitionToGroup(swagger, topLevelRef);
         })
       );
@@ -60,7 +60,7 @@ export class ProfileDefinitionService {
   public definitionToGroup(swagger: Spec, $ref: string | undefined) {
     const groupSchema = this.resolveRef(swagger, $ref);
     const properties: ProfileProperty[] = [];
-    // tslint:disable-next-line:no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     for (const [key, value] of Object.entries(groupSchema.properties!)) {
       if (ignoredProperties.includes(key)) {
         continue;
@@ -71,7 +71,7 @@ export class ProfileDefinitionService {
           key,
           required: groupSchema.required?.includes(key) || false,
           type: ProfilePropertyType.Group,
-          // tslint:disable-next-line:no-non-null-assertion
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: schema.title!,
           properties: this.definitionToGroup(swagger, value.$ref),
         });
@@ -92,11 +92,11 @@ export class ProfileDefinitionService {
   ): ProfileProperty | null {
     const { title, type } = schema;
     const required = parent.required?.includes(key) ?? false;
-    // tslint:disable:no-non-null-assertion
     switch (type as ParameterType | 'colstring' | 'mdstring') {
       case 'string':
         return {
           key: key,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
           required,
           type: ProfilePropertyType.String,
@@ -107,6 +107,7 @@ export class ProfileDefinitionService {
         }
         return {
           key: key,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
           required,
           type: ProfilePropertyType.List,
@@ -116,6 +117,7 @@ export class ProfileDefinitionService {
           key,
           required,
           type: ProfilePropertyType.Integer,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
         };
       case 'boolean':
@@ -123,6 +125,7 @@ export class ProfileDefinitionService {
           key,
           required,
           type: ProfilePropertyType.Boolean,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
         };
       case 'mdstring':
@@ -130,6 +133,7 @@ export class ProfileDefinitionService {
           key,
           required,
           type: ProfilePropertyType.Mdstring,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
         };
       case 'colstring':
@@ -137,6 +141,7 @@ export class ProfileDefinitionService {
           key,
           required,
           type: ProfilePropertyType.Colstring,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
         };
       case 'object':

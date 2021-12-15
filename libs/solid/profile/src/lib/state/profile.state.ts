@@ -8,7 +8,7 @@ import {
   SolidCoreConfig,
   MediaModel,
 } from '@zentrumnawi/solid-core';
-import { ProfileActions } from './profile.actions';
+import { LoadDefinition, LoadProfiles } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
 import { ProfileProperty } from './profile-definition.model';
@@ -105,11 +105,8 @@ export class ProfileState {
     return null;
   }
 
-  @Action(ProfileActions.LoadProfiles)
-  public set(
-    ctx: StateContext<ProfileStateModel>,
-    {}: ProfileActions.LoadProfiles
-  ) {
+  @Action(LoadProfiles)
+  public set(ctx: StateContext<ProfileStateModel>) {
     if (ctx.getState().profiles.length !== 0) {
       return;
     }
@@ -151,11 +148,8 @@ export class ProfileState {
       );
   }
 
-  @Action(ProfileActions.LoadDefinition)
-  public loadDefinition(
-    ctx: StateContext<ProfileStateModel>,
-    {}: ProfileActions.LoadDefinition
-  ) {
+  @Action(LoadDefinition)
+  public loadDefinition(ctx: StateContext<ProfileStateModel>) {
     if (ctx.getState().definition.length !== 0) {
       return;
     }

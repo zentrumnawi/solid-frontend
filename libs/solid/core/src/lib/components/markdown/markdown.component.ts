@@ -1,10 +1,11 @@
 import { MarkdownService } from '../../services/markdown.service';
 import { Component, HostBinding, Input } from '@angular/core';
 
-/* tslint:disable:component-selector */
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[markdown]',
   template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'md-rendered',
   },

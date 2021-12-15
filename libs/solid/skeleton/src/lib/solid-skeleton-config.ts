@@ -154,6 +154,5 @@ export const defaultSkeletonConfig: Omit<
 export type SolidSkeletonConfig = PartialDeep<InternalSolidSkeletonConfig> &
   RequiredExternalConfig;
 
-export const SOLID_SKELETON_CONFIG = new InjectionToken<InternalSolidSkeletonConfig>(
-  'solid-skeleton-config'
-);
+export const SOLID_SKELETON_CONFIG =
+  new InjectionToken<InternalSolidSkeletonConfig>('solid-skeleton-config');

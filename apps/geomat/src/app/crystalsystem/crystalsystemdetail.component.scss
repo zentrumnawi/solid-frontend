@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import 'apps/geomat/src/theme';
 
 $background: map-get($app-theme, background);
@@ -21,5 +22,5 @@ mat-select {
 
 div.model-info {
   padding: 0.5em;
-  border-top: 1px solid mat-color($background, status-bar);
+  border-top: 1px solid mat.get-color-from-palette($background, status-bar);
 }

@@ -54,7 +54,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedElements!: QueryList<ElementRef>;
   @Input() selectedProfileId?: number;
   @Input() profiles!: Observable<TreeNode[]>;
-  @Output() select = new EventEmitter<number>();
+  @Output() selectProfile = new EventEmitter<number>();
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<TreeNode | Profile, FlatTreeNode>;

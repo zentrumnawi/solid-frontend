@@ -1,7 +1,7 @@
 <!--suppress AngularInvalidExpressionResultType -->
 <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
   <mat-tree-node
-    (click)="select.emit(node.id)"
+    (click)="selectProfile.emit(node.id)"
     *matTreeNodeDef="let node; when: hasNoChild"
     class="profile-link"
     matTreeNodePadding

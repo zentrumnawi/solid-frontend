@@ -15,7 +15,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { ProfileActions } from '../../state/profile.actions';
+import { LoadDefinition, LoadProfiles } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 
 export function __internal__selectRouterStateParams(s: any) {
@@ -54,10 +54,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string
   ) {
-    this._store.dispatch([
-      new ProfileActions.LoadDefinition(),
-      new ProfileActions.LoadProfiles(),
-    ]);
+    this._store.dispatch([new LoadDefinition(), new LoadProfiles()]);
   }
 
   ngOnInit(): void {
@@ -124,13 +121,17 @@ export class BaseComponent implements OnInit, AfterViewInit {
             );
             if (!this.Filter.value) {
               swipeLeft =
-                (profileAndNode.node.profiles.find(
-                  (p, i) => i === index - 1
-                ) as Profile | undefined)?.id || -1;
+                (
+                  profileAndNode.node.profiles.find(
+                    (p, i) => i === index - 1
+                  ) as Profile | undefined
+                )?.id || -1;
               swipeRight =
-                (profileAndNode.node.profiles.find((p, i) => i > index) as
-                  | Profile
-                  | undefined)?.id || -1;
+                (
+                  profileAndNode.node.profiles.find((p, i) => i > index) as
+                    | Profile
+                    | undefined
+                )?.id || -1;
             }
           }
           return {

@@ -1,11 +1,11 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin solid-quiz-question-theme($mat-theme, $quiz-correct, $quiz-incorrect) {
   $accent: map-get($mat-theme, accent);
   $foreground: map-get($mat-theme, foreground);
   $warn: map-get($mat-theme, warn);
-  $quiz-correct: mat-palette($mat-green, 400, 200, 600);
-  $quiz-wrong: mat-palette($mat-red, 400, 200, 600);
+  $quiz-correct: mat.define-palette(mat.$green-palette, 400, 200, 600);
+  $quiz-wrong: mat.define-palette(mat.$red-palette, 400, 200, 600);
   solid-quiz-question {
     mat-radio-group {
       display: flex;
@@ -14,13 +14,15 @@
       mat-radio-button {
         &.correct {
           .mat-radio-outer-circle {
-            border-color: mat-color($quiz-correct) !important;
+            border-color: mat.get-color-from-palette($quiz-correct) !important;
           }
         }
 
         &.incorrect {
           .mat-radio-outer-circle {
-            border-color: mat-color($quiz-incorrect) !important;
+            border-color: mat.get-color-from-palette(
+              $quiz-incorrect
+            ) !important;
           }
         }
       }
@@ -30,30 +32,36 @@
       mat-checkbox {
         &.correctselected {
           .mat-checkbox-background {
-            background-color: mat-color($quiz-correct);
+            background-color: mat.get-color-from-palette($quiz-correct);
           }
         }
         &.correctunselected {
           .mat-checkbox-background {
-            background-color: mat-color($quiz-correct, lighter);
+            background-color: mat.get-color-from-palette(
+              $quiz-correct,
+              lighter
+            );
           }
         }
 
         &.incorrectselected {
           .mat-checkbox-background {
-            background-color: mat-color($quiz-incorrect);
+            background-color: mat.get-color-from-palette($quiz-incorrect);
           }
         }
         &.incorrectunselected {
           .mat-checkbox-background {
-            background-color: mat-color($quiz-incorrect, lighter);
+            background-color: mat.get-color-from-palette(
+              $quiz-incorrect,
+              lighter
+            );
           }
         }
       }
     }
 
     span.feedback {
-      color: mat-color($foreground, text);
+      color: mat.get-color-from-palette($foreground, text);
     }
   }
 }

@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   template: '<solid-skeleton-base-layout></solid-skeleton-base-layout>',
   styleUrls: [],
 })
-export class AppComponent {
-  constructor() {}
-}
+export class AppComponent {}

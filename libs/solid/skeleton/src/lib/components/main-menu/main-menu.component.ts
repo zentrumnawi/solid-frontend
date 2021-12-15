@@ -10,10 +10,9 @@ import {
 } from '../../services/feedback.service';
 import { MenuState } from '../../state/menu.state';
 import { MenuItem } from '../../state/menu.model';
-import { MenuActions } from '../../state/menu.actions';
 import { CategoriesState } from '../../state/slideshow-categories.state';
 import { SlideshowCategory } from '../../state/slideshow-categories.model';
-import { CategoriesActions } from '../../state/slideshow-categories.actions';
+import { GetSlideshowCategories } from '../../state/slideshow-categories.actions';
 
 @Component({
   selector: 'solid-skeleton-main-menu',
@@ -21,7 +20,7 @@ import { CategoriesActions } from '../../state/slideshow-categories.actions';
   styleUrls: ['./main-menu.component.scss'],
 })
 export class MainMenuComponent implements OnInit {
-  @Output() public select = new EventEmitter();
+  @Output() public selectMenuEntry = new EventEmitter();
   @Select(MenuState.getMenuItems)
   public MenuItems!: Observable<MenuItem[]>;
   @Select(CategoriesState.getSlideshowCategoriesItems)
@@ -39,12 +38,12 @@ export class MainMenuComponent implements OnInit {
 
   @Dispatch()
   public async navigateTo(url: string) {
-    this.select.emit();
+    this.selectMenuEntry.emit();
     return new Navigate([url]);
   }
 
   @Dispatch()
   private GetSlideshowCategories() {
-    return new CategoriesActions.GetSlideshowCategories();
+    return new GetSlideshowCategories();
   }
 }

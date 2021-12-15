@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
 import { Select } from '@ngxs/store';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { SlideshowActions } from '../../state/slideshow.actions';
+import { LoadSlideshow } from '../../state/slideshow.actions';
 import { takeUntil } from 'rxjs/operators';
 import { Navigate } from '@ngxs/router-plugin';
 import { ActivatedRoute } from '@angular/router';
@@ -36,7 +36,7 @@ export class CategoriesSelectComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   private load() {
-    return new SlideshowActions.Load();
+    return new LoadSlideshow();
   }
 
   ngOnInit(): void {

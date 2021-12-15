@@ -1,4 +1,4 @@
-<!-- For quiz image because the quiz question doesn't 
+<!-- For quiz image because the quiz question doesn't
 contain any media object now. It is just a temporary solution.
 It is not possible to use a image toolbar here, because quiz image
 use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
@@ -11,7 +11,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     />
   </div>
   <solid-core-media-toolbar
-    *ngIf="view != 'grid'"
+    *ngIf="view !== 'grid'"
     [image]="image"
     [name]="name"
     [hasAttributions]="hasAttributions"
@@ -29,7 +29,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     <div class="media-container" *ngSwitchCase="'image'">
       <div class="image-container">
         <img
-          *ngIf="view != 'grid'; else grid"
+          *ngIf="view !== 'grid'; else grid"
           [src]="mediaObject.getRawImage('large')"
           [alt]="mediaObject.alt"
           [class.landscape]="mediaObject.isLandscape"
@@ -45,7 +45,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
       /> -->
       <div class="audio-container">
         <solid-core-audio-toolbar
-          *ngIf="view != 'grid'"
+          *ngIf="view !== 'grid'"
           [audiosrc]="mediaObject.getSrc()!"
           [toolbar]="true"
         ></solid-core-audio-toolbar>
@@ -94,7 +94,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
   </ng-container>
 
   <solid-core-media-toolbar
-    *ngIf="view != 'grid'"
+    *ngIf="view !== 'grid'"
     [mediaObject]="mediaObject"
     [name]="name"
     [hasAttributions]="hasAttributions"

@@ -3,8 +3,10 @@ import {
   UnitTestTree,
 } from '@angular-devkit/schematics/testing';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
-import { Schema as ApplicationOptions } from '@schematics/angular/application/schema';
-import { Style } from '@angular/cli/lib/config/schema';
+import {
+  Schema as ApplicationOptions,
+  Style,
+} from '@schematics/angular/application/schema';
 import { getFileContent } from '@nrwl/workspace/testing';
 import { DEPENDENCIES } from '../dependencies';
 

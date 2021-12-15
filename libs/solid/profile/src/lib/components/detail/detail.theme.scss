@@ -1,14 +1,14 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin solid-profile-detail($mat-theme) {
   $background: map-get($mat-theme, background);
   $accent: map-get($mat-theme, accent);
   solid-profile-detail {
-    background-color: mat-color($background, card);
+    background-color: mat.get-color-from-palette($background, card);
 
     div.img-toolbar {
       img {
-        border: 2px solid mat-color($accent);
+        border: 2px solid mat.get-color-from-palette($accent);
       }
     }
 

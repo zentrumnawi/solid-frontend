@@ -11,7 +11,7 @@ import { combineLatest, Observable, Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
 import { Select } from '@ngxs/store';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { SlideshowActions } from '../../state/slideshow.actions';
+import { LoadSlideshow } from '../../state/slideshow.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { map, takeUntil } from 'rxjs/operators';
 import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
@@ -68,7 +68,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
 
   @Dispatch()
   private load() {
-    return new SlideshowActions.Load();
+    return new LoadSlideshow();
   }
 
   @Dispatch()

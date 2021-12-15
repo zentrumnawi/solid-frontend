@@ -58,6 +58,7 @@ import { AudioIconComponent } from './components/audio-icon/audio-icon.component
   providers: [MarkdownService, TitleService],
 })
 export class SolidCoreModule {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(title: TitleService) {}
 
   public static forRoot(

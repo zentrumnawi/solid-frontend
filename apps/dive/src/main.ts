@@ -15,7 +15,7 @@ let supportedBrowser = true;
 
 if (browser) {
   switch (browser.name) {
-    case 'ie':
+    case 'ie': {
       const text = document.createTextNode(
         `Ihr Webbrowser (Internet Explorer ${browser.version}) ist veraltet und wird nicht von der Anwendung unterstützt. Bitte nutzen Sie einen aktuelleren Browser.`
       );
@@ -23,6 +23,7 @@ if (browser) {
       body[0].appendChild(text);
       supportedBrowser = false;
       break;
+    }
     default:
       break;
   }
