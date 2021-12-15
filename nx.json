@@ -12,30 +12,14 @@
     "ais": {
       "tags": []
     },
-    "ais-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ais"]
-    },
     "dive": {
       "tags": []
-    },
-    "dive-e2e": {
-      "tags": [],
-      "implicitDependencies": ["dive"]
     },
     "geomat": {
       "tags": []
     },
-    "geomat-e2e": {
-      "tags": [],
-      "implicitDependencies": ["geomat"]
-    },
     "planty": {
       "tags": []
-    },
-    "planty-e2e": {
-      "tags": [],
-      "implicitDependencies": ["planty"]
     },
     "solid-core": {
       "tags": ["solid"]
@@ -60,7 +44,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test"]
       }
     }
   },
@@ -76,14 +60,12 @@
     ]
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": false
+    "defaultCollection": "@nrwl/angular"
   },
   "defaultProject": "geomat",
   "generators": {
     "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "unitTestRunner": "jest"
     },
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
