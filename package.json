@@ -109,7 +109,7 @@
     "karma-jasmine-html-reporter": "1.5.4",
     "ng-packagr": "12.2.5",
     "pre-commit": "^1.2.2",
-    "prettier": "2.4.1",
+    "prettier": "2.5.1",
     "protractor": "7.0.0",
     "ts-jest": "27.0.5",
     "ts-node": "10.2.1",
