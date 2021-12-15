@@ -46,7 +46,7 @@ mat-grid-tile {
   transition: background-color 0.05s linear 0.05s;
 
   ::ng-deep {
-    figure.mat-figure {
+    div.mat-grid-tile-content {
       display: inline-flex;
       flex-direction: column;
       align-content: center;
