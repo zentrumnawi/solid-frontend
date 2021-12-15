@@ -61,7 +61,7 @@ mat-card-content.single-choice {
         label.mat-radio-label {
           vertical-align: top;
 
-          div.mat-radio-container {
+          span.mat-radio-container {
             margin-bottom: auto;
           }
 
@@ -70,7 +70,7 @@ mat-card-content.single-choice {
           }
         }
 
-        div.mat-radio-label-content {
+        span.mat-radio-label-content {
           display: inline-flex;
           flex-direction: column;
           width: calc(100% - 28px);
@@ -108,8 +108,8 @@ mat-card-content.multiple-choice {
         width: 100%;
       }
 
-      div.mat-checkbox-inner-container {
-        margin-top: 0;
+      span.mat-checkbox-inner-container {
+        margin-top: 4px;
         margin-bottom: auto;
       }
     }
