@@ -16,7 +16,7 @@ export class InfoPageContentComponent {
   public appVersion =
     version && version.semver && version.semver.version
       ? version.semver.version
-      : undefined;
+      : 'Version unbekannt';
   public solidVersion = pjs.version ? pjs.version : 'Version unbekannt';
 
   constructor(
