@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Inject,
   Input,
   NgZone,
   OnChanges,
@@ -11,12 +12,14 @@ import { ImageModel, MediaModel } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import {
   CloseScrollStrategy,
+  ComponentType,
   ConnectedPosition,
   ScrollDispatcher,
   ViewportRuler,
 } from '@angular/cdk/overlay';
-import { MediaDialogComponent } from '../media-dialog/media-dialog.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { MEDIA_DIALOG_TOKEN } from '../../media-dialog-token';
+import type { MediaDialogComponent } from '../media-dialog/media-dialog.component';
 
 @Component({
   selector: 'solid-core-media-toolbar',
@@ -52,7 +55,9 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
     private scrollDispatcher: ScrollDispatcher,
     viewportRuler: ViewportRuler,
     private ngZone: NgZone,
-    private _breakpointObserver: BreakpointObserver
+    private _breakpointObserver: BreakpointObserver,
+    @Inject(MEDIA_DIALOG_TOKEN)
+    private matDialogComponent: ComponentType<MediaDialogComponent>
   ) {
     this.attributionsScrollStrategy = new CloseScrollStrategy(
       scrollDispatcher,
@@ -109,7 +114,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   }
 
   public openDialog() {
-    this._dialog.open(MediaDialogComponent, {
+    this._dialog.open(this.matDialogComponent, {
       maxWidth: this.length + 'vw',
       width: '100%',
       height: '100%',
@@ -124,7 +129,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   }
 
   public openDialogImage() {
-    this._dialog.open(MediaDialogComponent, {
+    this._dialog.open(this.matDialogComponent, {
       maxWidth: this.length + 'vw',
       width: '100%',
       height: '100%',
