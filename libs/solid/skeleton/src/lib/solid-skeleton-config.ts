@@ -34,7 +34,7 @@ export interface SentryConfig {
   errorHandlerOptions?: ErrorHandlerOptions;
   dsn: string;
   environment: string;
-  version: { default: { semver: { version: string } } };
+  version: { semver: { version: string } };
 }
 
 export interface InternalSolidSkeletonConfig {
