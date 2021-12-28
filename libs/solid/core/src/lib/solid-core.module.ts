@@ -22,6 +22,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MediaToolbarComponent } from './components/media-toolbar/media-toolbar.component';
 import { AudioToolbarComponent } from './components/audio-toolbar/audio-toolbar.component';
 import { AudioIconComponent } from './components/audio-icon/audio-icon.component';
+import { MEDIA_DIALOG_TOKEN } from './media-dialog-token';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,10 @@ export class SolidCoreModule {
         {
           provide: RouterStateSerializer,
           useClass: CustomRouterStateSerializer,
+        },
+        {
+          provide: MEDIA_DIALOG_TOKEN,
+          useValue: MediaDialogComponent,
         },
       ],
     };
