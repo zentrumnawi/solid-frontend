@@ -1,12 +1,12 @@
 <div class="toolbar" [class.dzi]="hasDziTools">
-  <ng-container *ngIf="hasAudio">
+  <!-- <ng-container *ngIf="hasAudio">
     <solid-core-audio-toolbar
       *ngIf="hasAudio"
       [audiosrc]="data.mediaObject.audiosrc"
       [description]="data.mediaObject.description"
     >
     </solid-core-audio-toolbar>
-  </ng-container>
+  </ng-container> -->
   <div class="dziToolbar" *ngIf="mediaObject">
     <button
       *ngIf="hasAttributions && mediaObject.attributions as attributions"

@@ -25,11 +25,17 @@
         [hasAttributions]="true"
         [hasDialog]="false"
         [hasDziTools]="true"
-        [hasAudio]="hasAudio"
         [data]="data"
         [isAttributionsOverlayAbove]="isAttributionsOverlayAbove"
         [hasDescription]="hasDescription"
       ></solid-core-media-toolbar>
+      <div class="audiobar">
+        <solid-core-audio-toolbar
+          *ngIf="hasAudio"
+          [audiosrc]="data.mediaObject.audiosrc"
+        >
+        </solid-core-audio-toolbar>
+      </div>
     </div>
   </ng-template>
   <ng-template #noZoom>
@@ -74,11 +80,17 @@
         [hasAttributions]="true"
         [hasDialog]="false"
         [hasDziTools]="true"
-        [hasAudio]="hasAudio"
         [data]="data"
         [isAttributionsOverlayAbove]="isAttributionsOverlayAbove"
         [hasDescription]="hasDescription"
       ></solid-core-media-toolbar>
+      <div class="audiobar">
+        <solid-core-audio-toolbar
+          *ngIf="hasAudio"
+          [audiosrc]="data.image.audiosrc"
+        >
+        </solid-core-audio-toolbar>
+      </div>
     </div>
   </ng-template>
   <ng-template #noZoom>

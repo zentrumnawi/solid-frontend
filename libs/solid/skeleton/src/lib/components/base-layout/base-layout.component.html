@@ -38,13 +38,14 @@
       </button>
     </ng-container>
   </mat-toolbar>
-  <mat-sidenav-container>
+  <mat-sidenav-container (backdropClick)="closeMenu()">
     <mat-sidenav
       #mainmenu
       [fixedInViewport]="!FixedLayout"
       [mode]="FixedLayout ? 'side' : 'over'"
       class="mainmenu-sidenav"
       position="start"
+      disableClose
     >
       <mat-toolbar
         (click)="MainMenu?.toggle()"
