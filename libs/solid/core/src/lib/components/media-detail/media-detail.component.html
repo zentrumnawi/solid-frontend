@@ -3,7 +3,7 @@ contain any media object now. It is just a temporary solution.
 It is not possible to use a image toolbar here, because quiz image
 use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
 <ng-container *ngIf="image">
-  <div class="img-container">
+  <div class="img-container" (click)="handleClick()">
     <img
       [src]="image.getRawImage('large')"
       [alt]="image.alt"
@@ -20,13 +20,19 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasAudio]="hasAudio"
     [hasDescription]="hasDescription"
     [slideshowPageChanged]="slideshowPageChanged"
+    [dialogOpened]="dialogOpened"
+    (closeDialogEventEmitter)="receiveCloseDialogEvent($event)"
   ></solid-core-media-toolbar>
 </ng-container>
 
 <!-- For media object in Profile -->
 <ng-container *ngIf="mediaObject">
   <ng-container [ngSwitch]="mediaObject.mediaType">
-    <div class="media-container" *ngSwitchCase="'image'">
+    <div
+      class="media-container"
+      *ngSwitchCase="'image'"
+      (click)="handleClick()"
+    >
       <div class="image-container">
         <img
           *ngIf="view !== 'grid'; else grid"
@@ -105,6 +111,8 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDescriptionToggle]="hasDescriptionToggle"
     (descriptionToggle)="toggleDescription($event)"
     [slideshowPageChanged]="slideshowPageChanged"
+    [dialogOpened]="dialogOpened"
+    (closeDialogEventEmitter)="receiveCloseDialogEvent($event)"
   ></solid-core-media-toolbar>
   <ng-template #grid>
     <img

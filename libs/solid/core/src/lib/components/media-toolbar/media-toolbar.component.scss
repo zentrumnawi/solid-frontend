@@ -1,4 +1,4 @@
-div.toolbar {
+div.toolbar-container {
   position: absolute;
   display: flex;
   justify-content: flex-end;
@@ -7,13 +7,16 @@ div.toolbar {
   &.dzi {
     bottom: 0.9em;
   }
+  &.isToolbarInDialog {
+    bottom: 0.9em;
+  }
   solid-core-audio-toolbar {
     position: absolute;
     left: 0px;
   }
 }
 
-div.dziToolbar {
+div.toolbar {
   display: flex;
   margin-right: 0.85em;
   justify-content: flex-end;

@@ -1,4 +1,8 @@
-<div class="toolbar" [class.dzi]="hasDziTools">
+<div
+  class="toolbar-container"
+  [class.dzi]="hasDziTools"
+  [class.isToolbarInDialog]="isToolbarInDialog"
+>
   <!-- <ng-container *ngIf="hasAudio">
     <solid-core-audio-toolbar
       *ngIf="hasAudio"
@@ -7,7 +11,7 @@
     >
     </solid-core-audio-toolbar>
   </ng-container> -->
-  <div class="dziToolbar" *ngIf="mediaObject">
+  <div class="toolbar" *ngIf="mediaObject">
     <button
       *ngIf="hasAttributions && mediaObject.attributions as attributions"
       mat-mini-fab
@@ -83,7 +87,7 @@
   </div>
 
   <!-- For Image in quiz -->
-  <div class="dziToolbar" *ngIf="image">
+  <div class="toolbar" *ngIf="image">
     <button
       *ngIf="hasAttributions && image.attributions as attributions"
       mat-mini-fab

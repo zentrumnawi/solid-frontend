@@ -40,12 +40,28 @@
   </ng-template>
   <ng-template #noZoom>
     <div mat-dialog-content>
-      <solid-core-media-detail
+      <!-- <solid-core-media-detail
         [mediaObject]="data.mediaObject"
         [hasDialog]="false"
         [hasControlPanel]="true"
         [hasDescription]="hasDescription"
-      ></solid-core-media-detail>
+      ></solid-core-media-detail> -->
+      <div class="image-container">
+        <img
+          [src]="data.mediaObject.getRawImage('large')"
+          [alt]="data.mediaObject.alt"
+          [class.landscape]="data.mediaObject.isLandscape"
+        />
+      </div>
+      <solid-core-media-toolbar
+        [mediaObject]="data.mediaObject"
+        [hasAttributions]="true"
+        [hasDialog]="false"
+        [hasDziTools]="false"
+        [data]="data"
+        [hasDescription]="hasDescription"
+        [isToolbarInDialog]="true"
+      ></solid-core-media-toolbar>
       <div class="audiobar">
         <solid-core-audio-toolbar
           *ngIf="hasAudio"
@@ -76,7 +92,7 @@
     <div mat-dialog-content>
       <div id="dzi-container"></div>
       <solid-core-media-toolbar
-        [mediaObject]="data.image"
+        [image]="data.image"
         [hasAttributions]="true"
         [hasDialog]="false"
         [hasDziTools]="true"
@@ -95,12 +111,28 @@
   </ng-template>
   <ng-template #noZoom>
     <div mat-dialog-content>
-      <solid-core-media-detail
+      <!-- <solid-core-media-detail
         [image]="data.image"
         [hasDialog]="false"
         [hasControlPanel]="true"
         [hasDescription]="hasDescription"
-      ></solid-core-media-detail>
+      ></solid-core-media-detail> -->
+      <div class="image-container">
+        <img
+          [src]="data.image.getRawImage('large')"
+          [alt]="data.image.alt"
+          [class.landscape]="data.image.isLandscape"
+        />
+      </div>
+      <solid-core-media-toolbar
+        [image]="data.image"
+        [hasAttributions]="true"
+        [hasDialog]="false"
+        [hasDziTools]="false"
+        [data]="data"
+        [hasDescription]="hasDescription"
+        [isToolbarInDialog]="true"
+      ></solid-core-media-toolbar>
       <div class="audiobar">
         <solid-core-audio-toolbar
           *ngIf="hasAudio"
