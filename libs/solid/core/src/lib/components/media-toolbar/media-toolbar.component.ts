@@ -39,7 +39,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() data!: any;
   private length = 90;
   @Input() slideshowPageChanged!: number;
-  @Input() dialogOpened!: boolean;
+  @Input() openDialogRequest!: boolean;
   @Input() isToolbarInDialog = false;
 
   @Input() isAttributionsOverlayAbove!: boolean;
@@ -52,7 +52,6 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   @Output() descriptionToggle = new EventEmitter<boolean>();
   @Output() closeDialogEventEmitter = new EventEmitter<boolean>();
   descriptionToggled = false;
-  // dialogRef: any;
 
   constructor(
     private _dialog: MatDialog,
@@ -78,7 +77,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.descriptionToggled = false;
     this.attributionsIsOpen = false;
-    if (this.dialogOpened) {
+    if (this.openDialogRequest) {
       if (this.mediaObject) {
         this.openDialog();
       }
@@ -110,7 +109,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetX: 10,
+          offsetX: 4,
         },
       ];
     } else {

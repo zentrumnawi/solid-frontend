@@ -20,7 +20,7 @@ export class MediaDetailComponent implements OnChanges {
   @Input() hasDescription!: boolean;
   @Input() hasDescriptionToggle!: boolean;
   @Input() slideshowPageChanged!: number;
-  dialogOpened!: boolean;
+  openDialogRequest!: boolean;
 
   @ViewChild('videoplayer', { static: false }) videoplayer!: {
     nativeElement: HTMLVideoElement;
@@ -76,13 +76,13 @@ export class MediaDetailComponent implements OnChanges {
       : (this.descriptionShow = false);
   }
 
-  public handleClick() {
-    this.dialogOpened = true;
+  public handleOpenDialogClick() {
+    this.openDialogRequest = true;
   }
 
-  receiveCloseDialogEvent(event: any) {
+  handleCloseDialogEvent(event: any) {
     if (event) {
-      this.dialogOpened = false;
+      this.openDialogRequest = false;
     }
   }
 }

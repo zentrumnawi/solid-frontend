@@ -16,58 +16,92 @@
   <!-- I decide to keep it bcs we maybe need it in the future -->
   <!-- <div id="description-container" *ngIf="hasDescription">
   <span markdown [data]="data.mediaObject.description"></span>
-</div> -->
+  </div> -->
   <ng-template #deepZoom>
     <div mat-dialog-content>
       <div id="dzi-container"></div>
-      <solid-core-media-toolbar
-        [mediaObject]="data.mediaObject"
-        [hasAttributions]="true"
-        [hasDialog]="false"
-        [hasDziTools]="true"
-        [data]="data"
-        [isAttributionsOverlayAbove]="isAttributionsOverlayAbove"
-        [hasDescription]="hasDescription"
-      ></solid-core-media-toolbar>
-      <div class="audiobar">
+      <div class="toolbar-container">
+        <div class="spacer"></div>
         <solid-core-audio-toolbar
           *ngIf="hasAudio"
           [audiosrc]="data.mediaObject.audiosrc"
-        >
-        </solid-core-audio-toolbar>
+          [toolbar]="true"
+          [class.openAudioToolbar]="audioPlayBtnClicked"
+          [playAudio]="audioPlayBtnClicked"
+          (audioErrorEventEmitter)="handleAudioErrorEvent($event)"
+          (audioEndedEventEmitter)="handleAudioEndedEvent($event)"
+          [class.closeAudioToolbar]="audioEnded"
+        ></solid-core-audio-toolbar>
+        <div class="dialog-toolbar">
+          <button
+            *ngIf="hasAudio"
+            (click)="onPlayClick()"
+            mat-mini-fab
+            color="accent"
+            [class.disappear]="audioPlayBtnClicked"
+            [disabled]="audioLoadError"
+            [class.appear]="audioEnded"
+          >
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <solid-core-media-toolbar
+            [mediaObject]="data.mediaObject"
+            [hasAttributions]="true"
+            [hasDialog]="false"
+            [hasDziTools]="true"
+            [data]="data"
+            [isAttributionsOverlayAbove]="isAttributionsOverlayAbove"
+            [hasDescription]="hasDescription"
+          ></solid-core-media-toolbar>
+        </div>
       </div>
     </div>
   </ng-template>
+
   <ng-template #noZoom>
     <div mat-dialog-content>
-      <!-- <solid-core-media-detail
-        [mediaObject]="data.mediaObject"
-        [hasDialog]="false"
-        [hasControlPanel]="true"
-        [hasDescription]="hasDescription"
-      ></solid-core-media-detail> -->
-      <div class="image-container">
+      <div class="image">
         <img
           [src]="data.mediaObject.getRawImage('large')"
           [alt]="data.mediaObject.alt"
           [class.landscape]="data.mediaObject.isLandscape"
         />
       </div>
-      <solid-core-media-toolbar
-        [mediaObject]="data.mediaObject"
-        [hasAttributions]="true"
-        [hasDialog]="false"
-        [hasDziTools]="false"
-        [data]="data"
-        [hasDescription]="hasDescription"
-        [isToolbarInDialog]="true"
-      ></solid-core-media-toolbar>
-      <div class="audiobar">
+      <div class="toolbar-container">
+        <div class="spacer"></div>
         <solid-core-audio-toolbar
+          class="audio-toolbar"
           *ngIf="hasAudio"
           [audiosrc]="data.mediaObject.audiosrc"
-        >
-        </solid-core-audio-toolbar>
+          [toolbar]="true"
+          [class.openAudioToolbar]="audioPlayBtnClicked"
+          [playAudio]="audioPlayBtnClicked"
+          (audioErrorEventEmitter)="handleAudioErrorEvent($event)"
+          (audioEndedEventEmitter)="handleAudioEndedEvent($event)"
+          [class.closeAudioToolbar]="audioEnded"
+        ></solid-core-audio-toolbar>
+        <div class="dialog-toolbar">
+          <button
+            *ngIf="hasAudio"
+            (click)="onPlayClick()"
+            mat-mini-fab
+            color="accent"
+            [class.disappear]="audioPlayBtnClicked"
+            [disabled]="audioLoadError"
+            [class.appear]="audioEnded"
+          >
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <solid-core-media-toolbar
+            [mediaObject]="data.mediaObject"
+            [hasAttributions]="true"
+            [hasDialog]="false"
+            [hasDziTools]="false"
+            [data]="data"
+            [hasDescription]="hasDescription"
+            [isToolbarInDialog]="true"
+          ></solid-core-media-toolbar>
+        </div>
       </div>
     </div>
   </ng-template>
@@ -91,54 +125,88 @@
   <ng-template #deepZoom>
     <div mat-dialog-content>
       <div id="dzi-container"></div>
-      <solid-core-media-toolbar
-        [image]="data.image"
-        [hasAttributions]="true"
-        [hasDialog]="false"
-        [hasDziTools]="true"
-        [data]="data"
-        [isAttributionsOverlayAbove]="isAttributionsOverlayAbove"
-        [hasDescription]="hasDescription"
-      ></solid-core-media-toolbar>
-      <div class="audiobar">
+      <div class="toolbar-container">
+        <div class="spacer"></div>
         <solid-core-audio-toolbar
           *ngIf="hasAudio"
           [audiosrc]="data.image.audiosrc"
+          [toolbar]="true"
+          [class.openAudioToolbar]="audioPlayBtnClicked"
+          [playAudio]="audioPlayBtnClicked"
+          (audioErrorEventEmitter)="handleAudioErrorEvent($event)"
+          (audioEndedEventEmitter)="handleAudioEndedEvent($event)"
+          [class.closeAudioToolbar]="audioEnded"
         >
         </solid-core-audio-toolbar>
+        <div class="dialog-toolbar">
+          <button
+            *ngIf="hasAudio"
+            (click)="onPlayClick()"
+            mat-mini-fab
+            color="accent"
+            [class.disappear]="audioPlayBtnClicked"
+            [disabled]="audioLoadError"
+            [class.appear]="audioEnded"
+          >
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <solid-core-media-toolbar
+            [image]="data.image"
+            [hasAttributions]="true"
+            [hasDialog]="false"
+            [hasDziTools]="true"
+            [data]="data"
+            [isAttributionsOverlayAbove]="isAttributionsOverlayAbove"
+            [hasDescription]="hasDescription"
+          ></solid-core-media-toolbar>
+        </div>
       </div>
     </div>
   </ng-template>
   <ng-template #noZoom>
     <div mat-dialog-content>
-      <!-- <solid-core-media-detail
-        [image]="data.image"
-        [hasDialog]="false"
-        [hasControlPanel]="true"
-        [hasDescription]="hasDescription"
-      ></solid-core-media-detail> -->
-      <div class="image-container">
+      <div class="image">
         <img
           [src]="data.image.getRawImage('large')"
           [alt]="data.image.alt"
           [class.landscape]="data.image.isLandscape"
         />
       </div>
-      <solid-core-media-toolbar
-        [image]="data.image"
-        [hasAttributions]="true"
-        [hasDialog]="false"
-        [hasDziTools]="false"
-        [data]="data"
-        [hasDescription]="hasDescription"
-        [isToolbarInDialog]="true"
-      ></solid-core-media-toolbar>
-      <div class="audiobar">
+      <div class="toolbar-container">
         <solid-core-audio-toolbar
           *ngIf="hasAudio"
           [audiosrc]="data.image.audiosrc"
+          [toolbar]="true"
+          [class.openAudioToolbar]="audioPlayBtnClicked"
+          [playAudio]="audioPlayBtnClicked"
+          (audioErrorEventEmitter)="handleAudioErrorEvent($event)"
+          (audioEndedEventEmitter)="handleAudioEndedEvent($event)"
+          [class.closeAudioToolbar]="audioEnded"
         >
         </solid-core-audio-toolbar>
+        <div class="spacer"></div>
+        <div class="dialog-toolbar">
+          <button
+            *ngIf="hasAudio"
+            (click)="onPlayClick()"
+            mat-mini-fab
+            color="accent"
+            [class.disappear]="audioPlayBtnClicked"
+            [disabled]="audioLoadError"
+            [class.appear]="audioEnded"
+          >
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <solid-core-media-toolbar
+            [image]="data.image"
+            [hasAttributions]="true"
+            [hasDialog]="false"
+            [hasDziTools]="false"
+            [data]="data"
+            [hasDescription]="hasDescription"
+            [isToolbarInDialog]="true"
+          ></solid-core-media-toolbar>
+        </div>
       </div>
     </div>
   </ng-template>
