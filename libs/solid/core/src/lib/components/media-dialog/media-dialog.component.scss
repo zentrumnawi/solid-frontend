@@ -99,7 +99,6 @@ solid-core-audio-toolbar {
   height: 40px;
   z-index: 1;
   margin-left: 1.3em;
-  margin-right: 0.6em;
 
   @media (min-width: 621px) {
     ::ng-deep {
@@ -111,7 +110,6 @@ solid-core-audio-toolbar {
 
   @media (min-width: 621px) and (max-width: 799px) {
     margin-left: 0.85em;
-    margin-right: 0;
 
     ::ng-deep {
       .mat-slider-horizontal.volumeSlider {
@@ -188,7 +186,7 @@ div.spacer {
 }
 @keyframes openAudioHorizontal {
   from {
-    width: 0;
+    width: 40px;
   }
   to {
     width: 100%;
