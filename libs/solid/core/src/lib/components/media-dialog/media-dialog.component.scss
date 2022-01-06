@@ -101,6 +101,14 @@ solid-core-audio-toolbar {
   margin-left: 1.3em;
   margin-right: 0.6em;
 
+  @media (min-width: 621px) {
+    ::ng-deep {
+      .toolbar {
+        border-radius: 20px;
+      }
+    }
+  }
+
   @media (min-width: 621px) and (max-width: 799px) {
     margin-left: 0.85em;
     margin-right: 0;
@@ -164,6 +172,10 @@ div.spacer {
 
 .appear {
   animation: audioPlayBtnAppear 0.1s ease-in-out;
+}
+
+.fake-btn {
+  display: none;
 }
 
 @keyframes openAudioVertical {
