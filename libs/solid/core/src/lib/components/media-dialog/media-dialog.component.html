@@ -9,11 +9,6 @@
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
-    <!-- The focus in dialog might be a new feature within Angular 12 and Material 12.
-    Use fake-btn to avoid "focus" (has background) on the real close button when the dialog
-    is first opened. cdkFocusInitial distract the "focus" of real close button to fake button -->
-    <!-- Bad solution, but figured out no better solution -->
-    <button cdkFocusInitial class="fake-btn"></button>
   </div>
   <ng-container
     *ngIf="data.mediaObject.deepZoomLink as dziFile; then deepZoom; else noZoom"

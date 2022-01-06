@@ -172,10 +172,6 @@ div.spacer {
   animation: audioPlayBtnAppear 0.1s ease-in-out;
 }
 
-.fake-btn {
-  display: none;
-}
-
 @keyframes openAudioVertical {
   from {
     height: 0;
