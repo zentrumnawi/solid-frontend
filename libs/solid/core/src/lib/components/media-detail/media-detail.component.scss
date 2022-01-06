@@ -42,6 +42,7 @@ img {
 
   .audio-container {
     text-align: center;
+    height: 48px;
   }
 
   #svg-description-container {
@@ -105,12 +106,10 @@ img {
   }
 }
 
-::ng-deep {
-  solid-core-media-toolbar {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
+solid-core-media-toolbar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 video::-webkit-media-controls {

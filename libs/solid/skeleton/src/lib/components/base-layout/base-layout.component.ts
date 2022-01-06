@@ -53,4 +53,8 @@ export class BaseLayoutComponent implements OnInit {
       await this.Glossary.close();
     }
   }
+
+  public closeMenu() {
+    if (this.MainMenu && !this.FixedLayout) this.MainMenu.close();
+  }
 }

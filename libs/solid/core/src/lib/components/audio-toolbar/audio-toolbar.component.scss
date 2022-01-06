@@ -20,24 +20,41 @@ span.PlayPosition {
 
 .toolbar {
   width: 100%;
-  height: 48px;
+  height: 100%;
   box-shadow: 2px 2px 10px rgb(0 0 0 / 20%);
   display: flex;
   align-items: center;
   padding: 0 17px 0 10px;
+  overflow: hidden;
+  background-color: white;
 
   .replay-btn {
     margin-right: 0.5em;
   }
 
   ::ng-deep {
+    .mat-slider {
+      padding: 0;
+    }
     .mat-slider-horizontal.playingSlider {
+      min-width: 100px;
       flex: 1;
     }
+
     .mat-slider-horizontal.volumeSlider {
       min-width: 100px;
       margin-left: -0.4em;
     }
+
+    @media (min-width: 800px) and (max-width: 1200px) {
+      .mat-slider-horizontal.playingSlider {
+        min-width: 120px;
+      }
+      .mat-slider-horizontal.volumeSlider {
+        min-width: 80px;
+      }
+    }
+
     .mat-slider-thumb {
       width: 10px;
       height: 10px;

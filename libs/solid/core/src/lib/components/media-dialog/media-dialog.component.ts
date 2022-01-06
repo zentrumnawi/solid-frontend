@@ -21,6 +21,9 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   public hasAudio = false;
   public hasDescription = false;
   isAttributionsOverlayAbove = false;
+  audioPlayBtnClicked = false;
+  audioLoadError = false;
+  audioEnded = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -93,6 +96,23 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
         }
       }
     }, 0);
+  }
+
+  handleAudioErrorEvent(event: any) {
+    if (event) {
+      this.audioLoadError = true;
+    }
+  }
+  handleAudioEndedEvent(event: any) {
+    if (event) {
+      this.audioEnded = true;
+      setTimeout(() => (this.audioPlayBtnClicked = false), 460);
+    }
+  }
+
+  onPlayClick() {
+    this.audioEnded = false;
+    this.audioPlayBtnClicked = true;
   }
 
   ngOnDestroy(): void {

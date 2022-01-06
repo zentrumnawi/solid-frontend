@@ -8,6 +8,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
       [src]="image.getRawImage('large')"
       [alt]="image.alt"
       [class.landscape]="image.isLandscape"
+      (click)="handleOpenDialogClick()"
     />
   </div>
   <solid-core-media-toolbar
@@ -20,6 +21,8 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasAudio]="hasAudio"
     [hasDescription]="hasDescription"
     [slideshowPageChanged]="slideshowPageChanged"
+    [openDialogRequest]="openDialogRequest"
+    (closeDialogEventEmitter)="handleCloseDialogEvent($event)"
   ></solid-core-media-toolbar>
 </ng-container>
 
@@ -33,6 +36,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
           [src]="mediaObject.getRawImage('large')"
           [alt]="mediaObject.alt"
           [class.landscape]="mediaObject.isLandscape"
+          (click)="handleOpenDialogClick()"
         />
       </div>
     </div>
@@ -105,6 +109,8 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDescriptionToggle]="hasDescriptionToggle"
     (descriptionToggle)="toggleDescription($event)"
     [slideshowPageChanged]="slideshowPageChanged"
+    [openDialogRequest]="openDialogRequest"
+    (closeDialogEventEmitter)="handleCloseDialogEvent($event)"
   ></solid-core-media-toolbar>
   <ng-template #grid>
     <img

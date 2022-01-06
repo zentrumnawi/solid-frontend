@@ -39,6 +39,8 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() data!: any;
   private length = 90;
   @Input() slideshowPageChanged!: number;
+  @Input() openDialogRequest!: boolean;
+  @Input() isToolbarInDialog = false;
 
   @Input() isAttributionsOverlayAbove!: boolean;
   attributionsPositions: ConnectedPosition[] = [];
@@ -48,6 +50,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   descriptionIsOpen = false;
 
   @Output() descriptionToggle = new EventEmitter<boolean>();
+  @Output() closeDialogEventEmitter = new EventEmitter<boolean>();
   descriptionToggled = false;
 
   constructor(
@@ -74,6 +77,14 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.descriptionToggled = false;
     this.attributionsIsOpen = false;
+    if (this.openDialogRequest) {
+      if (this.mediaObject) {
+        this.openDialog();
+      }
+      if (this.image) {
+        this.openDialogImage();
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -98,7 +109,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetX: 10,
+          offsetX: 4,
         },
       ];
     } else {
@@ -114,7 +125,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   }
 
   public openDialog() {
-    this._dialog.open(this.matDialogComponent, {
+    const dialogRef = this._dialog.open(this.matDialogComponent, {
       maxWidth: this.length + 'vw',
       width: '100%',
       height: '100%',
@@ -126,10 +137,14 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
         type: 'mediaObject',
       },
     });
+    dialogRef.afterClosed().subscribe(() => {
+      this.emitCloseDialogEvent();
+      dialogRef.close();
+    });
   }
 
   public openDialogImage() {
-    this._dialog.open(this.matDialogComponent, {
+    const dialogRef = this._dialog.open(this.matDialogComponent, {
       maxWidth: this.length + 'vw',
       width: '100%',
       height: '100%',
@@ -140,6 +155,10 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
         name: this.name,
         type: 'photograph',
       },
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.emitCloseDialogEvent();
+      dialogRef.close();
     });
   }
 
@@ -161,5 +180,9 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   toggleDescription() {
     this.descriptionToggled = !this.descriptionToggled;
     this.descriptionToggle.emit(this.descriptionToggled);
+  }
+
+  emitCloseDialogEvent() {
+    this.closeDialogEventEmitter.emit(true);
   }
 }
