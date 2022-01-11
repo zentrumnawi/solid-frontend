@@ -14,7 +14,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./info.component.scss'],
 })
 export class InfoComponent {
-  public ContentComponent: Type<any>;
+  public InfoPageContentComponent: Type<any>;
+  public PrivacyContentComponent: Type<any>;
   @Select(MessageState.getChangelog)
   public Changelog!: Observable<MessageModel[]>;
 
@@ -22,6 +23,7 @@ export class InfoComponent {
   public Notices!: Observable<MessageModel[]>;
 
   constructor(@Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig) {
-    this.ContentComponent = cfg.infoPageContent;
+    this.InfoPageContentComponent = cfg.infoPageContent;
+    this.PrivacyContentComponent = cfg.privacyContent;
   }
 }

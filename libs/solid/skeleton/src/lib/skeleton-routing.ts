@@ -55,9 +55,9 @@ export function generateRoutes(config: RoutingConfig) {
   if (config.info.enabled) {
     addRoute({ ...config.info, component: InfoComponent });
   }
-  if (config.privacy.enabled) {
-    addRoute(config.privacy);
-  }
+  // if (config.privacy.enabled) {
+  //   addRoute(config.privacy);
+  // }
   config.custom?.forEach((custom) => {
     if (custom.enabled) {
       if ((custom as RouteConfigWithComponent).component) {

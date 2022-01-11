@@ -23,7 +23,7 @@ export type RouteConfigFromModule = RouteConfig & {
 export interface RoutingConfig {
   landing: RouteConfig;
   info: RouteConfig;
-  privacy: RouteConfigWithComponent;
+  // privacy: RouteConfigWithComponent;
   profile: RouteConfigFromModule;
   quiz: RouteConfigFromModule;
   slideshow: RouteConfigFromModule;
@@ -41,6 +41,7 @@ export interface InternalSolidSkeletonConfig {
   feedbackEnabled: boolean;
   landingBannerContent: Type<any>;
   infoPageContent: Type<any>;
+  privacyContent: Type<any>;
   glossary: {
     enabled: boolean;
     svgIcon?: string;
@@ -53,10 +54,11 @@ export interface InternalSolidSkeletonConfig {
 export interface RequiredExternalConfig {
   landingBannerContent: Type<any>;
   infoPageContent: Type<any>;
+  privacyContent: Type<any>;
   routingConfig: {
-    privacy: {
-      component: Type<any>;
-    };
+    // privacy: {
+    //   component: Type<any>;
+    // };
   };
   sentry?: SentryConfig;
 }
@@ -64,7 +66,8 @@ export interface RequiredExternalConfig {
 type componentPropertyKeys =
   | 'landingBannerContent'
   | 'component'
-  | 'infoPageContent';
+  | 'infoPageContent'
+  | 'privacyContent';
 
 export type PartialDeep<T> = {
   [P in Exclude<keyof T, componentPropertyKeys>]?: PartialDeep<T[P]>;
@@ -139,15 +142,15 @@ export const defaultSkeletonConfig: Omit<
       order: 4,
       matIcon: 'info',
     },
-    privacy: {
-      enabled: true,
-      showOnLandingPage: true,
-      showInMenu: true,
-      url: 'privacy',
-      title: 'Datenschutz',
-      order: 5,
-      matIcon: 'info',
-    },
+    // privacy: {
+    //   enabled: true,
+    //   showOnLandingPage: true,
+    //   showInMenu: true,
+    //   url: 'privacy',
+    //   title: 'Datenschutz',
+    //   order: 5,
+    //   matIcon: 'info',
+    // },
   },
 };
 

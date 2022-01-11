@@ -6,6 +6,7 @@ import { InfoPageContentComponent } from './info-page-content/info-page-content.
 export const skeletonConfig: SolidSkeletonConfig = {
   landingBannerContent: LandingBannerContentComponent,
   infoPageContent: InfoPageContentComponent,
+  privacyContent: PrivacyComponent,
   routingConfig: {
     landing: {
       svgIcon: 'icon',
@@ -26,10 +27,10 @@ export const skeletonConfig: SolidSkeletonConfig = {
       title: 'Wissensgalerie',
       url: 'wissensgalerie',
     },
-    privacy: {
-      component: PrivacyComponent,
-      svgIcon: 'privacy',
-      url: 'datenschutz',
-    },
+    // privacy: {
+    //   component: PrivacyComponent,
+    //   svgIcon: 'privacy',
+    //   url: 'datenschutz',
+    // },
   },
 };
