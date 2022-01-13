@@ -42,7 +42,8 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() openDialogRequest!: boolean;
   @Input() isToolbarInDialog = false;
 
-  @Input() isAttributionsOverlayAbove!: boolean;
+  @Input() isOverlayAboveOfDziZoomToolbar!: boolean;
+  @Input() isOverlayAboveOfNonDziZoomToolbar!: boolean;
   attributionsPositions: ConnectedPosition[] = [];
   attributionsScrollStrategy: CloseScrollStrategy;
   descriptionScrollStrategy: CloseScrollStrategy;
@@ -89,27 +90,27 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this._breakpointObserver
-      .observe(['(max-width: 400px)'])
+      .observe(['(max-width: 440px)'])
       .subscribe((isMobile) => {
         if (isMobile.matches) {
           this.length = 100;
         }
       });
     this._breakpointObserver
-      .observe(['(min-width: 400px)'])
+      .observe(['(min-width: 441px)'])
       .subscribe((isLarge) => {
         if (isLarge.matches) {
           this.length = 90;
         }
       });
-    if (this.isAttributionsOverlayAbove) {
+    if (this.isOverlayAboveOfDziZoomToolbar) {
       this.attributionsPositions = [
         {
-          originX: 'center',
+          originX: 'end',
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetX: 4,
+          offsetX: 30,
         },
       ];
     } else {
@@ -119,6 +120,16 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
           originY: 'center',
           overlayX: 'end',
           overlayY: 'center',
+        },
+      ];
+    }
+    if (this.isOverlayAboveOfNonDziZoomToolbar) {
+      this.attributionsPositions = [
+        {
+          originX: 'end',
+          originY: 'top',
+          overlayX: 'end',
+          overlayY: 'bottom',
         },
       ];
     }
@@ -164,6 +175,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
 
   attributionsOpenClose() {
     this.attributionsIsOpen = !this.attributionsIsOpen;
+    this.descriptionIsOpen = false;
     if (this.attributionsIsOpen === true) {
       this.scrollDispatcher.scrolled().subscribe(() => {
         this.ngZone.run(() => {
@@ -175,6 +187,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
 
   descriptionOpenClose() {
     this.descriptionIsOpen = !this.descriptionIsOpen;
+    this.attributionsIsOpen = false;
   }
 
   toggleDescription() {
