@@ -49,6 +49,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public SwipeLeft = -1;
   public SwipeRight = -1;
   public View = 'tree';
+  public isSearchBarOpen = false;
 
   constructor(
     private _store: Store,

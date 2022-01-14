@@ -9,9 +9,25 @@
     class="main-toolbar"
     color="accent"
   >
-    <mat-form-field appearance="fill" floatLabel="auto">
+    <mat-form-field
+      appearance="fill"
+      floatLabel="auto"
+      [class.openSearchBar]="isSearchBarOpen"
+    >
       <mat-label>Suche</mat-label>
-      <input [formControl]="Filter" matInput placeholder="Suche" type="text" />
+      <input
+        [formControl]="Filter"
+        matInput
+        placeholder="Suche"
+        type="text"
+        #search_input
+        (blur)="
+          Filter.value === ''
+            ? (isSearchBarOpen = false)
+            : (isSearchBarOpen = true)
+        "
+        (focus)="isSearchBarOpen = true"
+      />
       <button mat-icon-button matSuffix (click)="Filter.setValue('')">
         <!--mat-icon *ngIf="Filter.value == ''" matSuffix>search</mat-icon-->
         <mat-icon>

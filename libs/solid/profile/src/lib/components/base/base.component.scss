@@ -12,7 +12,8 @@
 }*/
 
 mat-form-field {
-  max-width: 20em;
+  max-width: 0;
+  transition: 0.5s ease-in-out;
   ::ng-deep {
     div.mat-form-field-wrapper {
       padding: 0;
@@ -21,12 +22,28 @@ mat-form-field {
         //but "appearance: fill" simply doesn't cut it
         background-color: rgba(0, 0, 0, 0);
         padding-bottom: 2.5px;
+        padding-left: 0;
+        margin-left: 10px;
+
+        div.mat-form-field-suffix {
+          margin-left: -0.75em;
+        }
       }
     }
 
     div.mat-form-field-underline {
       display: none;
     }
+  }
+}
+
+.openSearchBar {
+  max-width: 20em;
+}
+
+@media (max-width: 415px) {
+  .openSearchBar {
+    max-width: 9em;
   }
 }
 
