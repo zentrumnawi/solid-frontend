@@ -1,6 +1,8 @@
 <h2>Über die App</h2>
 <p>s.o.l.i.d. Version: {{ solidVersion }}</p>
-<p *ngIf="appVersion !== undefined">GeoMat Version: {{ appVersion }}</p>
+<p *ngIf="appVersion !== 'Version unbekannt'">
+  GeoMat Version: {{ appVersion }}
+</p>
 <div class="solid-logo">
   <img alt="Solid Logo" src="assets/info/Solid.svg" />
 </div>
@@ -24,25 +26,26 @@
   studentischen Hilfskräften maßgeblich.
 </p>
 <p>
-  GeoMat ist der Ursprung des E-Learning-Projekts s.o.l.i.d. (Systematisch
-  Objekte Lernen und IDentifizieren), das inzwischen eine weitere Grundlage für
-  andere E-Learning-Anwendungen bildet. s.o.l.i.d. bietet eine Plattform für die
-  strukturierte Darstellung von Objekten und bringt Bildmaterial und
-  objekttypische Merkmale in übersichtlicher Form zusammen.
+  <b>GeoMat</b><i>digital</i> ist der Ursprung des E-Learning-Projekts
+  s.o.l.i.d. (Systematisch Objekte Lernen und IDentifizieren), das die Grundlage
+  für weitere E-Learning-Anwendungenen bildet.
+</p>
+<p>
+  s.o.l.i.d. ist eine Plattform für die strukturierte Darstellung von Objekten.
+  Sie bringt Bild-, Video- und Audiomaterial sowie objekttypische Merkmale in
+  übersichtlicher Form zusammen.
 </p>
 
 <h2>Ziele der App</h2>
 <p>
-  Die <em>Lernanwendung</em> GeoMat<em>digital</em> ist als Lernanwendung an die
-  Lehrveranstaltung <em>Geomaterialien</em> am Institut für Geowissenschaften
-  der Goethe-Universität angeschlossen.
+  Die Lernanwendung <b>GeoMat</b><i>digital</i> ist an die Lehrveranstaltung
+  <em>Geomaterialien</em> am Institut für Geowissenschaften der
+  Goethe-Universität angeschlossen.
 </p>
 <p>
-  Das wesentliche Ziel dieser Lernanwendung liegt darin, die
-  <em>Mineralansprache</em>
-  und den Bestimmungsvorgang zu trainieren. Außerdem eignet sich die
-  <em>virtuelle Sammlung</em> von GeoMat <em>digital</em> zum Lernen der
-  Mineraleigenschaften.
+  Das wesentliche Ziel der Anwendung liegt darin, die Mineralansprache und den
+  Bestimmungsvorgang zu trainieren. Außerdem eignet sich die virtuelle Sammlung
+  von <b>GeoMat</b><i>digital</i> zum Lernen der Mineraleigenschaften.
 </p>
 
 <h2>Credits</h2>
@@ -118,7 +121,7 @@
     >GeoMat Team</a
   >
 </p>
-<h3>Haftungsausschluss:</h3>
+<h3>Haftungsausschluss</h3>
 <h4>Haftung für Links</h4>
 <p>
   Diese Web-App enthält Links zu externen Webseiten Dritter, auf deren Inhalte
@@ -135,17 +138,17 @@
 <h4>Urheberrecht</h4>
 <p>
   Die Inhalte und Werke unterliegen deutschem Urheberrecht. Bitte beachten Sie
-  die Lizenzinformationen, die dem Medien, Inhalten und Werken beigefügt sind.
-  Bitte nutzen Sie das Feedback-Formular für Rückfragen.
+  die Lizenzinformationen, die den Medien, Inhalten und Werken beigefügt sind.
 </p>
 
 <h2>Kontakt & Feedback</h2>
 <p>
-  Für Rückmeldungen und Rückfragen nutzen Sie bitte das
-  <a (click)="feedback.showDialog()" class="info-link">Kontaktformular</a>.
+  Für Rückmeldungen und Fragen nutzen Sie bitte das
+  <a class="info-link" (click)="feedback.showDialog()">Kontaktformular</a>.
 </p>
 <p>Wir sind dankbar über alle Hinweise zur Verbesseung der Anwendung!</p>
 <p>
-  Die Datenschutzerklärung gemäß Art 13. EU DSGVO finden Sie
-  <a class="info-link" href="/privacy">hier.</a>
+  Beachten Sie auch die
+  <a class="info-link" href="/privacy">Datenschutzerklärung.</a> gemäß Art 13.
+  EU DSGVO.
 </p>
