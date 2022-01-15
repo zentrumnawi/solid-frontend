@@ -109,9 +109,10 @@ export class AppModule {
     addIcon('slideshow');
     addIcon('icon');
     addIcon('glossary');
+    addIcon('info');
     addIcon('privacy');
+    addIcon('info_privacy');
     addIcon('feedback');
     addIcon('assistant');
-    addIcon('info');
   }
 }

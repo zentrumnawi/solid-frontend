@@ -20,7 +20,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
       url: 'selbsttest',
     },
     info: {
-      svgIcon: 'info',
+      svgIcon: 'info_privacy',
     },
     // privacy: {
     //   component: PrivacyComponent,

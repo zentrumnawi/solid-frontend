@@ -26,7 +26,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
       url: 'slideshows',
     },
     info: {
-      svgIcon: 'info',
+      svgIcon: 'info_privacy',
     },
     // privacy: {
     //   component: PrivacyComponent,

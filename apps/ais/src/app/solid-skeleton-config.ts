@@ -40,7 +40,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
       order: 1,
     },
     info: {
-      svgIcon: 'info',
+      svgIcon: 'info_privacy',
       name: 'info',
     },
   },
