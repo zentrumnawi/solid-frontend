@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { version } from '../../environments/version';
 import pjs from '../../../../../package.json';
+
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
