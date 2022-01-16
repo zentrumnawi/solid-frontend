@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { version } from '../../environments/version';
 import pjs from '../../../../../package.json';
 
