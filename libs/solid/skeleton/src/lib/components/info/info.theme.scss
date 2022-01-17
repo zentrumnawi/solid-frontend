@@ -1,0 +1,15 @@
+@use '~@angular/material' as mat;
+
+@mixin solid-skeleton-info-component-theme($theme) {
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  solid-skeleton-info {
+    .info-link,
+    .info-link:link,
+    .info-link:visited {
+      text-decoration: underline;
+      cursor: pointer;
+      color: mat.get-color-from-palette($app-primary, 900);
+    }
+  }
+}
