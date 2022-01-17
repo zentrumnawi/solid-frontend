@@ -12,7 +12,7 @@
 }*/
 
 mat-form-field {
-  max-width: 0;
+  width: 0;
   transition: 0.5s ease-in-out;
   ::ng-deep {
     div.mat-form-field-wrapper {
@@ -38,13 +38,7 @@ mat-form-field {
 }
 
 .openSearchBar {
-  max-width: 20em;
-}
-
-@media (max-width: 415px) {
-  .openSearchBar {
-    max-width: 9em;
-  }
+  width: 100%;
 }
 
 mat-form-field flex {
