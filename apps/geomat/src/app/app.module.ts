@@ -92,12 +92,13 @@ export class AppModule {
       );
     addIcon('icon');
     addIcon('slideshow');
-    addIcon('privacy');
     addIcon('crystalsystem');
     addIcon('profile');
     addIcon('quiz');
     addIcon('glossary');
     addIcon('info');
+    addIcon('privacy');
+    addIcon('info_privacy');
     addIcon('feedback');
   }
 }

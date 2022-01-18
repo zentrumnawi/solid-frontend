@@ -30,7 +30,6 @@ div.toolbar {
       margin-right: 0.5em;
       padding: 0.25em;
       border-radius: 0.5em;
-      margin-left: 1.6em;
       margin-bottom: 0.5em;
     }
     div.description-overlay {
@@ -52,5 +51,16 @@ div.toolbar {
         }
       }
     }
+
+    @media (max-width: 440px) {
+      div.description-overlay {
+        max-width: 280px;
+      }
+    }
+    // @media (max-width: 800px) {
+    //   div.description-overlay {
+    //     max-height: 90px;
+    //   }
+    // }
   }
 }

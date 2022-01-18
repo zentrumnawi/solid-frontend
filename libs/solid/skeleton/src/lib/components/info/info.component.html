@@ -1,15 +1,34 @@
-<mat-tab-group>
-  <mat-tab label="Info">
-    <ng-container *ngComponentOutlet="ContentComponent"></ng-container>
-  </mat-tab>
-  <mat-tab label="News">
-    <solid-skeleton-message-list
-      [messages]="Notices"
-    ></solid-skeleton-message-list>
-  </mat-tab>
-  <!-- <mat-tab label="Changelog">
-    <solid-skeleton-message-list
-      [messages]="Changelog"
-    ></solid-skeleton-message-list>
-  </mat-tab> -->
-</mat-tab-group>
+<div class="container">
+  <div class="info-container" #info_container>
+    <mat-tab-group [(selectedIndex)]="tabIndex">
+      <mat-tab label="Info">
+        <ng-container
+          *ngComponentOutlet="InfoPageContentComponent"
+        ></ng-container>
+        <p class="privacy">
+          Beachten Sie auch die
+          <a class="info-link" (click)="moveTabToPrivacy($event)" href=""
+            >Datenschutzerklärung</a
+          >
+          gemäß Art 13. EU DSGVO.
+        </p>
+      </mat-tab>
+      <mat-tab label="Privacy">
+        <ng-container
+          *ngComponentOutlet="PrivacyContentComponent"
+        ></ng-container>
+      </mat-tab>
+      <mat-tab label="News">
+        <solid-skeleton-message-list
+          [messages]="Notices"
+        ></solid-skeleton-message-list>
+      </mat-tab>
+      <ng-container *ngIf="Changelog | async as changelog">
+        <mat-tab label="Changelog" *ngIf="changelog.length > 0">
+          <solid-skeleton-message-list [messages]="Changelog">
+          </solid-skeleton-message-list>
+        </mat-tab>
+      </ng-container>
+    </mat-tab-group>
+  </div>
+</div>

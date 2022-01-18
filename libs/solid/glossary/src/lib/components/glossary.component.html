@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill">
   <mat-label>Suche</mat-label>
-  <input [formControl]="Filter" matInput placeholder="Suche" type="text" />
+  <input [formControl]="Filter" matInput type="text" />
   <button mat-icon-button matSuffix (click)="Filter.setValue('')">
     <mat-icon>{{ Filter.value === '' ? 'search' : 'close' }}</mat-icon>
   </button>

@@ -1,4 +1,4 @@
-import { Component, Inject, Type } from '@angular/core';
+import { Component, ElementRef, Inject, Type, ViewChild } from '@angular/core';
 import {
   InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
@@ -14,14 +14,32 @@ import { Observable } from 'rxjs';
   styleUrls: ['./info.component.scss'],
 })
 export class InfoComponent {
-  public ContentComponent: Type<any>;
+  public InfoPageContentComponent: Type<any>;
+  public PrivacyContentComponent: Type<any>;
   @Select(MessageState.getChangelog)
   public Changelog!: Observable<MessageModel[]>;
 
   @Select(MessageState.getNoticesAndSeries)
   public Notices!: Observable<MessageModel[]>;
+  tabIndex = 0;
+  @ViewChild('info_container') public info_container?: ElementRef;
 
   constructor(@Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig) {
-    this.ContentComponent = cfg.infoPageContent;
+    this.InfoPageContentComponent = cfg.infoPageContent;
+    this.PrivacyContentComponent = cfg.privacyContent;
+  }
+
+  moveTabToPrivacy(event: any) {
+    event.preventDefault();
+    this.tabIndex = 1;
+    this.scrollToTop();
+  }
+
+  public scrollToTop() {
+    const info_container = this.info_container;
+    if (!info_container) {
+      return;
+    }
+    info_container.nativeElement.scrollTop = 0;
   }
 }

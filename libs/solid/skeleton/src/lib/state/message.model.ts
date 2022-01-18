@@ -1,5 +1,6 @@
 export interface MessageModel {
   id: number;
+  img: any;
   type: MessageType;
   title: string;
   text: string;

@@ -9,6 +9,12 @@ div.mat-dialog-title {
   justify-content: space-between;
   align-items: center;
   margin: 0.1em 0.55em;
+
+  ::ng-deep {
+    .mat-button-focus-overlay {
+      background-color: transparent !important;
+    }
+  }
 }
 
 div.mat-dialog-content {

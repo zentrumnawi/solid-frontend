@@ -20,7 +20,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   private _viewer: Viewer | null = null;
   public hasAudio = false;
   public hasDescription = false;
-  isAttributionsOverlayAbove = false;
+  isOverlayAbove = false;
   audioPlayBtnClicked = false;
   audioLoadError = false;
   audioEnded = false;
@@ -34,10 +34,10 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
 
   public ngOnInit() {
     this._breakpointObserver
-      .observe(['(max-width: 415px)'])
+      .observe(['(max-width: 440px)'])
       .subscribe((isMobile) => {
         if (isMobile.matches) {
-          this.isAttributionsOverlayAbove = true;
+          this.isOverlayAbove = true;
         }
       });
   }

@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 export const skeletonConfig: SolidSkeletonConfig = {
   landingBannerContent: LandingBannerContentComponent,
   infoPageContent: InfoPageContentComponent,
+  privacyContent: PrivacyComponent,
   routingConfig: {
     landing: {
       svgIcon: 'icon',
@@ -25,13 +26,13 @@ export const skeletonConfig: SolidSkeletonConfig = {
       url: 'slideshows',
     },
     info: {
-      svgIcon: 'info',
+      svgIcon: 'info_privacy',
     },
-    privacy: {
-      component: PrivacyComponent,
-      svgIcon: 'privacy',
-      url: 'datenschutz',
-    },
+    // privacy: {
+    //   component: PrivacyComponent,
+    //   svgIcon: 'privacy',
+    //   url: 'datenschutz',
+    // },
     custom: [
       {
         enabled: true,

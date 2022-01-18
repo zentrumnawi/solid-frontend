@@ -8,8 +8,11 @@ $accent: map-get($app-theme, accent);
   padding: 1rem;
 }
 
+.info-link,
 .info-link:link,
 .info-link:visited {
+  text-decoration: underline;
+  cursor: pointer;
   color: mat.get-color-from-palette($app-primary, 900);
 }
 

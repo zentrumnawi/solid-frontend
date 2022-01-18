@@ -1,12 +1,21 @@
 <!-- Without Dropdown Version -->
 <mat-nav-list>
-  <mat-list-item
-    (click)="navigateTo(item.route)"
-    *ngFor="let item of MenuItems | async"
-    [class.active]="item.active"
-  >
-    <h3 matLine>{{ item.title }}</h3>
-  </mat-list-item>
+  <ng-container *ngFor="let item of MenuItems | async">
+    <mat-list-item
+      *ngIf="item.route === 'info'"
+      (click)="openGlossarClick.emit()"
+    >
+      <h3 matLine>Glossar</h3>
+    </mat-list-item>
+    <mat-list-item
+      (click)="navigateTo(item.route)"
+      [class.active]="item.active"
+    >
+      <h3 matLine>
+        {{ item.title }}
+      </h3>
+    </mat-list-item>
+  </ng-container>
   <mat-list-item (click)="feedback.showDialog()" *ngIf="feedback">
     <h3 matLine>Kontakt</h3>
   </mat-list-item>
