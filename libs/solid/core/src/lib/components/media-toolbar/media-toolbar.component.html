@@ -107,6 +107,8 @@
         [cdkConnectedOverlayOpen]="descriptionIsOpen"
         [cdkConnectedOverlayPositions]="attributionsPositions"
         [cdkConnectedOverlayScrollStrategy]="descriptionScrollStrategy"
+        [cdkConnectedOverlayHasBackdrop]="true"
+        (backdropClick)="descriptionOpenClose()"
       >
         <div class="description-overlay">
           <div
@@ -132,6 +134,8 @@
         [cdkConnectedOverlayOpen]="attributionsIsOpen"
         [cdkConnectedOverlayPositions]="attributionsPositions"
         [cdkConnectedOverlayScrollStrategy]="attributionsScrollStrategy"
+        [cdkConnectedOverlayHasBackdrop]="true"
+        (backdropClick)="attributionsOpenClose()"
       >
         <div class="attributions-overlay">{{ attributions }}</div>
       </ng-template>
