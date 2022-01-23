@@ -22,7 +22,7 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     [hasDescription]="hasDescription"
     [slideshowPageChanged]="slideshowPageChanged"
     [openDialogRequest]="openDialogRequest"
-    (closeDialogEventEmitter)="handleCloseDialogEvent($event)"
+    (closeDialogEventEmitter)="handleCloseDialogEvent()"
   ></solid-core-media-toolbar>
 </ng-container>
 
@@ -110,7 +110,10 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
     (descriptionToggle)="toggleDescription($event)"
     [slideshowPageChanged]="slideshowPageChanged"
     [openDialogRequest]="openDialogRequest"
-    (closeDialogEventEmitter)="handleCloseDialogEvent($event)"
+    (closeDialogEventEmitter)="handleCloseDialogEvent()"
+    (NextDialogEmitter)="NextDialogEmitter.emit()"
+    (PrevDialogEmitter)="PrevDialogEmitter.emit()"
+    [hasNavigationInDialog]="hasNavigationInDialog"
   ></solid-core-media-toolbar>
   <ng-template #grid>
     <img

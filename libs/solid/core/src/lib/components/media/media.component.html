@@ -10,4 +10,7 @@
   [hasDescription]="hasDescription"
   [hasDescriptionToggle]="hasDescriptionToggle"
   [slideshowPageChanged]="slideshowPageChanged"
+  (NextDialogEmitter)="NextDialogEmitter.emit()"
+  (PrevDialogEmitter)="PrevDialogEmitter.emit()"
+  [hasNavigationInDialog]="hasNavigationInDialog"
 ></solid-core-media-detail>

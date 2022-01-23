@@ -15,6 +15,31 @@ div.mat-dialog-title {
       background-color: transparent !important;
     }
   }
+
+  div.title-container {
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1;
+    margin-right: 0.5em;
+  }
+
+  div.title {
+    display: inline-block;
+  }
+}
+
+div.long-title {
+  margin-left: 100%;
+  animation: text-moving 10s linear infinite;
+}
+
+@keyframes text-moving {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: -160%;
+  }
 }
 
 div.mat-dialog-content {
@@ -99,14 +124,12 @@ img {
 
 solid-core-audio-toolbar {
   padding: 0;
-  height: 40px;
-  display: none;
-  width: 100%;
-  height: 40px;
   z-index: 1;
   margin-left: 1.3em;
+  height: 0;
+  transition: 0.5s ease-in-out;
 
-  @media (min-width: 621px) {
+  @media (min-width: 681px) {
     ::ng-deep {
       .toolbar {
         border-radius: 20px;
@@ -114,7 +137,7 @@ solid-core-audio-toolbar {
     }
   }
 
-  @media (min-width: 621px) and (max-width: 799px) {
+  @media (min-width: 681px) and (max-width: 839px) {
     margin-left: 0.85em;
 
     ::ng-deep {
@@ -127,7 +150,7 @@ solid-core-audio-toolbar {
       }
     }
   }
-  @media (min-width: 470px) and (max-width: 620px) {
+  @media (min-width: 470px) and (max-width: 680px) {
     ::ng-deep {
       .mat-slider-horizontal.volumeSlider {
         display: block;
@@ -136,19 +159,26 @@ solid-core-audio-toolbar {
   }
 }
 
+@media (min-width: 681px) {
+  solid-core-audio-toolbar {
+    width: 40px;
+    height: 40px;
+    visibility: hidden;
+    margin-right: 0.5em;
+  }
+
+  .openAudioToolbar {
+    width: 100%;
+    height: 40px;
+    visibility: visible;
+  }
+}
+
 div.spacer {
   flex: 1;
 }
 
-.openAudioToolbar {
-  display: block;
-  animation: openAudioHorizontal 0.5s ease-in-out;
-}
-.closeAudioToolbar {
-  animation: closeAudioHorizontal 0.5s ease-in-out;
-}
-
-@media (max-width: 620px) {
+@media (max-width: 680px) {
   .toolbar-container {
     flex-direction: column-reverse;
 
@@ -163,60 +193,31 @@ div.spacer {
   }
 
   .openAudioToolbar {
-    display: block;
-    animation: openAudioVertical 0.5s ease-in-out;
-  }
-  .closeAudioToolbar {
-    animation: closeAudioVertical 0.5s ease-in-out;
+    height: 40px;
   }
 }
 .disappear {
-  display: none;
+  display: none !important;
 }
 
-.appear {
-  animation: audioPlayBtnAppear 0.1s ease-in-out;
+.button-before {
+  margin-right: 4px;
+}
+.button-next {
+  margin-right: 6px;
 }
 
-@keyframes openAudioVertical {
-  from {
-    height: 0;
-  }
-  to {
-    height: 40px;
-  }
+.button-before-mini-fab {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.85em;
+  // filter: invert(0.8);
 }
-@keyframes openAudioHorizontal {
-  from {
-    width: 40px;
-  }
-  to {
-    width: 100%;
-  }
-}
-@keyframes closeAudioVertical {
-  from {
-    height: 40px;
-  }
-  to {
-    height: 0;
-    display: none;
-  }
-}
-@keyframes closeAudioHorizontal {
-  from {
-    width: 100%;
-  }
-  to {
-    width: 40px;
-    display: none;
-  }
-}
-@keyframes audioPlayBtnAppear {
-  from {
-    display: none;
-  }
-  to {
-    display: block;
-  }
+.button-next-mini-fab {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.85em;
+  // filter: invert(0.8);
 }

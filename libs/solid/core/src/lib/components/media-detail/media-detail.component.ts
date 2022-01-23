@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ImageModel, MediaModel } from '../../models';
 import { MatDialog } from '@angular/material/dialog';
 import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dialog.component';
@@ -20,7 +27,8 @@ export class MediaDetailComponent implements OnChanges {
   @Input() hasDescription!: boolean;
   @Input() hasDescriptionToggle!: boolean;
   @Input() slideshowPageChanged!: number;
-  openDialogRequest!: boolean;
+  @Input() hasNavigationInDialog!: boolean;
+  openDialogRequest?: boolean;
 
   @ViewChild('videoplayer', { static: false }) videoplayer!: {
     nativeElement: HTMLVideoElement;
@@ -28,6 +36,9 @@ export class MediaDetailComponent implements OnChanges {
   private loadError = false;
   public playButtonIsShown!: number;
   public descriptionShow = false;
+
+  @Output() NextDialogEmitter = new EventEmitter();
+  @Output() PrevDialogEmitter = new EventEmitter();
 
   constructor(private _dialog: MatDialog) {}
 
@@ -80,9 +91,7 @@ export class MediaDetailComponent implements OnChanges {
     this.openDialogRequest = true;
   }
 
-  handleCloseDialogEvent(event: any) {
-    if (event) {
-      this.openDialogRequest = false;
-    }
+  handleCloseDialogEvent() {
+    this.openDialogRequest = false;
   }
 }

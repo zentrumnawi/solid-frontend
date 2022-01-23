@@ -37,8 +37,8 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   public isMuted = false;
   public isMobile = false;
   @Input() public playAudio = false;
-  @Output() audioErrorEventEmitter = new EventEmitter<boolean>();
-  @Output() audioEndedEventEmitter = new EventEmitter<boolean>();
+  @Output() audioErrorEventEmitter = new EventEmitter();
+  @Output() audioEndedEventEmitter = new EventEmitter();
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
@@ -159,7 +159,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public onPlayerMediaError() {
-    this.audioErrorEventEmitter.emit(true);
+    this.audioErrorEventEmitter.emit();
     this.audioLoaded = false;
     this._dialog.open(MediaErrorDialogComponent, {
       data: {
@@ -172,7 +172,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
 
   public onPlayerEnded() {
     if (this.player) {
-      this.audioEndedEventEmitter.emit(true);
+      this.audioEndedEventEmitter.emit();
       this.playingStarted = false;
       this.playing = false;
       this.player.nativeElement.currentTime = 0;
