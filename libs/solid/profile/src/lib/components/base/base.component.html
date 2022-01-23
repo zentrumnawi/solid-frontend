@@ -43,10 +43,14 @@
   </mat-toolbar>
   <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
     <div class="title">
-      <span [innerHTML]="SelectedProfile.name | profileTitle"></span>
+      <span
+        [class.long-title]="title_width >= title_container_width"
+        [innerHTML]="SelectedProfile.name | profileTitle"
+        #title_container
+      ></span>
       <span>{{ SelectedProfile.trivial_name }}</span>
     </div>
-    <div class="spacer"></div>
+    <!-- <div class="spacer"></div> -->
     <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
       <mat-icon>navigate_before</mat-icon>
     </button>

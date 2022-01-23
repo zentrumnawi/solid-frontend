@@ -67,9 +67,13 @@ div.content-container {
   overflow: hidden;
 
   mat-toolbar.detail-toolbar {
+    flex-flow: wrap;
     div.title {
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      flex: 1;
+      margin-right: 0.5em;
       span:nth-child(2) {
         font-size: 15px;
         line-height: 27px;
@@ -128,4 +132,20 @@ div.content-container {
   }
 
   height: 100%;
+}
+
+span.long-title {
+  ::ng-deep i {
+    margin-left: 100%;
+    animation: text-moving 10s linear infinite;
+  }
+}
+
+@keyframes text-moving {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: -160%;
+  }
 }
