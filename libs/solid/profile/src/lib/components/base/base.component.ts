@@ -143,7 +143,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
             this.title_container_width =
               this.title_container?.nativeElement.offsetWidth;
             this.title_width =
-              this.title_container?.nativeElement.firstChild.offsetWidth;
+              this.title_container?.nativeElement.firstChild.firstChild.offsetWidth;
           }, 0);
 
           return {
@@ -175,7 +175,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     this.title_container_width =
       this.title_container?.nativeElement.offsetWidth;
     this.title_width =
-      this.title_container?.nativeElement.firstChild.offsetWidth;
+      this.title_container?.nativeElement.firstChild.firstChild.offsetWidth;
   }
 
   public ngAfterViewInit(): void {

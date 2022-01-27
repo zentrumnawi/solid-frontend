@@ -68,7 +68,7 @@ div.content-container {
 
   mat-toolbar.detail-toolbar {
     flex-flow: wrap;
-    div.title {
+    div.title-container {
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -133,19 +133,24 @@ div.content-container {
 
   height: 100%;
 }
-
+.title {
+  margin-right: -20em;
+}
 span.long-title {
   ::ng-deep i {
-    margin-left: 100%;
-    animation: text-moving 10s linear infinite;
+    display: inline-block;
+    animation: text-moving 7s linear infinite;
   }
 }
 
 @keyframes text-moving {
-  from {
-    margin-left: 100%;
+  0% {
+    transform: translateX(0);
   }
-  to {
-    margin-left: -160%;
+  30% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
