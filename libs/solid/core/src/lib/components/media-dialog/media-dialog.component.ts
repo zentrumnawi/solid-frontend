@@ -28,9 +28,8 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   audioStarted = false;
   audioLoadError = false;
   audioEnded = false;
-  expandLess = false;
   expandUpDown = false;
-  navigateInHeader = false;
+  audioCollapsed = false;
   dziInitialized = false;
   public onNextEmitter = new EventEmitter();
   public onPrevEmitter = new EventEmitter();
@@ -63,15 +62,6 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
           this.expandUpDown = true;
         } else {
           this.expandUpDown = false;
-        }
-      });
-    this._breakpointObserver
-      .observe(['(max-width: 500px)'])
-      .subscribe((navigateInHeader) => {
-        if (navigateInHeader.matches) {
-          this.navigateInHeader = true;
-        } else {
-          this.navigateInHeader = false;
         }
       });
   }
@@ -167,7 +157,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   }
   handleAudioEndedEvent() {
     this.audioStarted = false;
-    this.expandLess = false;
+    this.audioCollapsed = false;
     this.audioEnded = true;
   }
 
@@ -175,7 +165,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
     this.onNextEmitter.emit();
     this.audioLoadError = false;
     this.audioStarted = false;
-    this.expandLess = false;
+    this.audioCollapsed = false;
     this.ngAfterViewInit();
   }
 
@@ -183,7 +173,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
     this.onPrevEmitter.emit();
     this.audioLoadError = false;
     this.audioStarted = false;
-    this.expandLess = false;
+    this.audioCollapsed = false;
     this.ngAfterViewInit();
   }
 
@@ -192,8 +182,8 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
     this.audioStarted = true;
   }
 
-  onExpand() {
-    this.expandLess = !this.expandLess;
+  onExpandCollapse() {
+    this.audioCollapsed = !this.audioCollapsed;
   }
 
   ngOnDestroy(): void {

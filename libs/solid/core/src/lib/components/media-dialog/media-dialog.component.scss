@@ -26,19 +26,26 @@ div.mat-dialog-title {
   div.title {
     display: inline-block;
   }
+
+  span.media-object-title {
+    font-weight: normal;
+  }
 }
 
 div.long-title {
-  margin-left: 100%;
-  animation: text-moving 10s linear infinite;
+  display: inline-block;
+  animation: text-moving 7s linear infinite;
 }
 
 @keyframes text-moving {
-  from {
-    margin-left: 100%;
+  0% {
+    transform: translateX(0);
   }
-  to {
-    margin-left: -160%;
+  30% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 
@@ -50,6 +57,7 @@ div.mat-dialog-content {
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   div#dzi-container {
     width: 100%;
     margin-bottom: -53px;
@@ -107,11 +115,6 @@ img {
   }
 }
 
-.media-object-title {
-  font-weight: normal;
-  font-size: 0.8em;
-}
-
 .toolbar-container {
   width: 100%;
   display: flex;
@@ -126,8 +129,6 @@ solid-core-audio-toolbar {
   padding: 0;
   z-index: 1;
   margin-left: 1.3em;
-  height: 0;
-  transition: 0.5s ease-in-out;
 
   @media (min-width: 681px) {
     ::ng-deep {
@@ -144,9 +145,10 @@ solid-core-audio-toolbar {
       .mat-slider-horizontal.volumeSlider {
         display: none;
       }
-
       .toolbar {
-        padding: 0;
+        .play-btn {
+          margin-left: 0 !important;
+        }
       }
     }
   }
@@ -161,16 +163,13 @@ solid-core-audio-toolbar {
 
 @media (min-width: 681px) {
   solid-core-audio-toolbar {
-    width: 40px;
-    height: 40px;
-    visibility: hidden;
+    width: 0;
     margin-right: 0.5em;
+    transition: width 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
   }
 
   .openAudioToolbar {
     width: 100%;
-    height: 40px;
-    visibility: visible;
   }
 }
 
@@ -188,8 +187,10 @@ div.spacer {
   }
 
   solid-core-audio-toolbar {
+    height: 0;
     margin-left: 0;
     margin-right: 0;
+    transition: height 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
   }
 
   .openAudioToolbar {
@@ -201,23 +202,23 @@ div.spacer {
 }
 
 .button-before {
-  margin-right: 4px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.5em;
 }
 .button-next {
-  margin-right: 6px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.5em;
 }
 
-.button-before-mini-fab {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0.85em;
-  // filter: invert(0.8);
-}
-.button-next-mini-fab {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 0.85em;
-  // filter: invert(0.8);
+@media (min-width: 681px) {
+  .button-before {
+    left: 0.85em;
+  }
+  .button-next {
+    right: 0.85em;
+  }
 }

@@ -7,29 +7,11 @@
       >
         {{ data.name }}
         <span *ngIf="data.mediaObject.getTitle" class="media-object-title">
-          - {{ data.mediaObject.getTitle }}</span
+          | {{ data.mediaObject.getTitle }}</span
         >
       </div>
     </div>
     <div>
-      <ng-container *ngIf="navigateInHeader"
-        ><button
-          *ngIf="data.hasNavigationInDialog"
-          mat-icon-button
-          class="button-before"
-          (click)="onPrev()"
-        >
-          <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
-        </button>
-        <button
-          *ngIf="data.hasNavigationInDialog"
-          class="button-next"
-          mat-icon-button
-          (click)="onNext()"
-        >
-          <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
-        </button>
-      </ng-container>
       <button mat-icon-button mat-dialog-close>
         <mat-icon>close</mat-icon>
       </button>
@@ -45,33 +27,33 @@
   <ng-template #deepZoom>
     <div mat-dialog-content>
       <div id="dzi-container"></div>
-      <ng-container *ngIf="!navigateInHeader">
-        <button
-          *ngIf="data.hasNavigationInDialog"
-          mat-icon-button
-          color="accent"
-          class="button-before-mini-fab"
-          (click)="onPrev()"
-        >
-          <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
-        </button>
-        <button
-          *ngIf="data.hasNavigationInDialog"
-          class="button-next-mini-fab"
-          mat-mini-fab
-          color="accent"
-          (click)="onNext()"
-        >
-          <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
-        </button>
-      </ng-container>
+      <button
+        *ngIf="data.hasNavigationInDialog"
+        mat-mini-fab
+        color="accent"
+        class="button-before"
+        (click)="onPrev()"
+      >
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button
+        *ngIf="data.hasNavigationInDialog"
+        class="button-next"
+        mat-mini-fab
+        color="accent"
+        (click)="onNext()"
+      >
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
       <div class="toolbar-container">
         <div class="spacer"></div>
         <solid-core-audio-toolbar
           *ngIf="hasAudio"
           [audiosrc]="data.mediaObject.audiosrc"
           [toolbar]="true"
-          [class.openAudioToolbar]="audioStarted && !audioEnded && !expandLess"
+          [class.openAudioToolbar]="
+            audioStarted && !audioEnded && !audioCollapsed
+          "
           [playAudio]="audioStarted"
           (audioErrorEventEmitter)="handleAudioErrorEvent()"
           (audioEndedEventEmitter)="handleAudioEndedEvent()"
@@ -89,24 +71,24 @@
           </button>
           <button
             *ngIf="audioStarted && expandUpDown"
-            (click)="onExpand()"
+            (click)="onExpandCollapse()"
             mat-mini-fab
             color="accent"
             [disabled]="audioLoadError"
           >
             <mat-icon>{{
-              expandLess ? 'expand_less' : 'expand_more'
+              audioCollapsed ? 'headphones' : 'expand_less'
             }}</mat-icon>
           </button>
           <button
             *ngIf="audioStarted && !expandUpDown"
-            (click)="onExpand()"
+            (click)="onExpandCollapse()"
             mat-mini-fab
             color="accent"
             [disabled]="audioLoadError"
           >
             <mat-icon>{{
-              expandLess ? 'chevron_left' : 'chevron_right'
+              audioCollapsed ? 'headphones' : 'chevron_right'
             }}</mat-icon>
           </button>
           <solid-core-media-toolbar
@@ -132,26 +114,24 @@
           [class.landscape]="data.mediaObject.isLandscape"
         />
       </div>
-      <ng-container *ngIf="!navigateInHeader">
-        <button
-          *ngIf="data.hasNavigationInDialog"
-          mat-icon-button
-          color="accent"
-          class="button-before-mini-fab"
-          (click)="onPrev()"
-        >
-          <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
-        </button>
-        <button
-          *ngIf="data.hasNavigationInDialog"
-          class="button-next-mini-fab"
-          mat-mini-fab
-          color="accent"
-          (click)="onNext()"
-        >
-          <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
-        </button>
-      </ng-container>
+      <button
+        *ngIf="data.hasNavigationInDialog"
+        mat-mini-fab
+        color="accent"
+        class="button-before"
+        (click)="onPrev()"
+      >
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button
+        *ngIf="data.hasNavigationInDialog"
+        class="button-next"
+        mat-mini-fab
+        color="accent"
+        (click)="onNext()"
+      >
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
       <div class="toolbar-container">
         <div class="spacer"></div>
         <solid-core-audio-toolbar
@@ -159,7 +139,9 @@
           *ngIf="hasAudio"
           [audiosrc]="data.mediaObject.audiosrc"
           [toolbar]="true"
-          [class.openAudioToolbar]="audioStarted && !audioEnded && !expandLess"
+          [class.openAudioToolbar]="
+            audioStarted && !audioEnded && !audioCollapsed
+          "
           [playAudio]="audioStarted"
           (audioErrorEventEmitter)="handleAudioErrorEvent()"
           (audioEndedEventEmitter)="handleAudioEndedEvent()"
@@ -177,24 +159,24 @@
           </button>
           <button
             *ngIf="audioStarted && expandUpDown"
-            (click)="onExpand()"
+            (click)="onExpandCollapse()"
             mat-mini-fab
             color="accent"
             [disabled]="audioLoadError"
           >
             <mat-icon>{{
-              expandLess ? 'expand_less' : 'expand_more'
+              audioCollapsed ? 'headphones' : 'expand_less'
             }}</mat-icon>
           </button>
           <button
             *ngIf="audioStarted && !expandUpDown"
-            (click)="onExpand()"
+            (click)="onExpandCollapse()"
             mat-mini-fab
             color="accent"
             [disabled]="audioLoadError"
           >
             <mat-icon>{{
-              expandLess ? 'chevron_left' : 'chevron_right'
+              audioCollapsed ? 'headphones' : 'chevron_right'
             }}</mat-icon>
           </button>
           <solid-core-media-toolbar
@@ -242,7 +224,9 @@
           *ngIf="hasAudio"
           [audiosrc]="data.image.audiosrc"
           [toolbar]="true"
-          [class.openAudioToolbar]="audioStarted && !audioEnded && !expandLess"
+          [class.openAudioToolbar]="
+            audioStarted && !audioEnded && !audioCollapsed
+          "
           [playAudio]="audioStarted"
           (audioErrorEventEmitter)="handleAudioErrorEvent()"
           (audioEndedEventEmitter)="handleAudioEndedEvent()"
@@ -261,24 +245,24 @@
           </button>
           <button
             *ngIf="audioStarted && expandUpDown"
-            (click)="onExpand()"
+            (click)="onExpandCollapse()"
             mat-mini-fab
             color="accent"
             [disabled]="audioLoadError"
           >
             <mat-icon>{{
-              expandLess ? 'expand_less' : 'expand_more'
+              audioCollapsed ? 'headphones' : 'expand_less'
             }}</mat-icon>
           </button>
           <button
             *ngIf="audioStarted && !expandUpDown"
-            (click)="onExpand()"
+            (click)="onExpandCollapse()"
             mat-mini-fab
             color="accent"
             [disabled]="audioLoadError"
           >
             <mat-icon>{{
-              expandLess ? 'chevron_left' : 'chevron_right'
+              audioCollapsed ? 'headphones' : 'chevron_right'
             }}</mat-icon>
           </button>
           <solid-core-media-toolbar
@@ -308,7 +292,9 @@
           *ngIf="hasAudio"
           [audiosrc]="data.image.audiosrc"
           [toolbar]="true"
-          [class.openAudioToolbar]="audioStarted && !audioEnded && !expandLess"
+          [class.openAudioToolbar]="
+            audioStarted && !audioEnded && !audioCollapsed
+          "
           [playAudio]="audioStarted"
           (audioErrorEventEmitter)="handleAudioErrorEvent()"
           (audioEndedEventEmitter)="handleAudioEndedEvent()"
@@ -328,24 +314,24 @@
           </button>
           <button
             *ngIf="audioStarted && expandUpDown"
-            (click)="onExpand()"
+            (click)="onExpandCollapse()"
             mat-mini-fab
             color="accent"
             [disabled]="audioLoadError"
           >
             <mat-icon>{{
-              expandLess ? 'expand_less' : 'expand_more'
+              audioCollapsed ? 'headphones' : 'expand_less'
             }}</mat-icon>
           </button>
           <button
             *ngIf="audioStarted && !expandUpDown"
-            (click)="onExpand()"
+            (click)="onExpandCollapse()"
             mat-mini-fab
             color="accent"
             [disabled]="audioLoadError"
           >
             <mat-icon>{{
-              expandLess ? 'chevron_left' : 'chevron_right'
+              audioCollapsed ? 'headphones' : 'chevron_right'
             }}</mat-icon>
           </button>
           <solid-core-media-toolbar

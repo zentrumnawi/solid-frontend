@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   NgZone,
@@ -57,6 +58,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() hasNavigationInDialog!: boolean;
   @Output() NextDialogEmitter = new EventEmitter();
   @Output() PrevDialogEmitter = new EventEmitter();
+  isMobile = false;
 
   constructor(
     private _dialog: MatDialog,
@@ -102,23 +104,6 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
         hasNavigationInDialog: this.hasNavigationInDialog,
       };
     }
-  }
-
-  ngOnInit(): void {
-    this._breakpointObserver
-      .observe(['(max-width: 440px)'])
-      .subscribe((isMobile) => {
-        if (isMobile.matches) {
-          this.length = 100;
-        }
-      });
-    this._breakpointObserver
-      .observe(['(min-width: 441px)'])
-      .subscribe((isLarge) => {
-        if (isLarge.matches) {
-          this.length = 90;
-        }
-      });
     if (this.isOverlayAboveOfDziZoomToolbar) {
       this.attributionsPositions = [
         {
@@ -151,13 +136,29 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
     }
   }
 
+  ngOnInit(): void {
+    this._breakpointObserver
+      .observe(['(max-width: 440px)'])
+      .subscribe((isMobile) => {
+        if (isMobile.matches) {
+          this.length = 100;
+          this.isMobile = true;
+          this.dialogRef?.updateSize('100%', '100%');
+        } else {
+          this.length = 90;
+          this.isMobile = false;
+          this.dialogRef?.updateSize('90%', '90%');
+        }
+      });
+  }
+
   public openDialog() {
     if (this.mediaObject?.mediaType === 'image') {
       this.dialogRef = this._dialog.open(this.matDialogComponent, {
-        maxWidth: this.length + 'vw',
-        width: '100%',
-        height: '100%',
-        maxHeight: this.length + 'vh',
+        maxWidth: '100vw',
+        width: this.length + '%',
+        height: this.length + '%',
+        maxHeight: '100vh',
         panelClass: 'solid-core-media-dialog',
         data: {
           mediaObject: this.mediaObject,
