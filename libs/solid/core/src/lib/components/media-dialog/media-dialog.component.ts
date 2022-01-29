@@ -49,7 +49,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
 
   public ngOnInit() {
     this._breakpointObserver
-      .observe(['(max-width: 440px)'])
+      .observe(['(max-width: 680px)'])
       .subscribe((isMobile) => {
         if (isMobile.matches) {
           this.isOverlayAbove = true;

@@ -111,7 +111,6 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetX: 30,
         },
       ];
     } else {

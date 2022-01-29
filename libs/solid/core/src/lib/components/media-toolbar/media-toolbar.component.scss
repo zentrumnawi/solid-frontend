@@ -52,15 +52,20 @@ div.toolbar {
       }
     }
 
-    @media (max-width: 440px) {
+    @media (max-width: 680px) {
       div.description-overlay {
-        max-width: 280px;
+        max-width: 90%;
       }
     }
-    // @media (max-width: 800px) {
-    //   div.description-overlay {
-    //     max-height: 90px;
-    //   }
-    // }
+    @media (max-width: 400px) {
+      div.description-overlay {
+        max-width: 290px;
+      }
+    }
+    @media (max-width: 360px) {
+      div.description-overlay {
+        max-width: 220px;
+      }
+    }
   }
 }
