@@ -139,16 +139,33 @@ div.content-container {
 span.long-title {
   ::ng-deep i {
     display: inline-block;
-    animation: text-moving 7s linear infinite;
+    animation: text-moving-1 12s linear infinite;
+  }
+}
+span.long-title-1 {
+  ::ng-deep i {
+    display: inline-block;
+    animation: text-moving-2 13s linear infinite;
   }
 }
 
-@keyframes text-moving {
+@keyframes text-moving-1 {
   0% {
     transform: translateX(0);
   }
-  30% {
+  20% {
     transform: translateX(0);
+  }
+  80% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+@keyframes text-moving-2 {
+  0% {
+    transform: translateX(100%);
   }
   100% {
     transform: translateX(-100%);

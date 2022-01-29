@@ -45,7 +45,12 @@
     <div class="title-container" #title_container>
       <span
         class="title"
-        [class.long-title]="title_width >= title_container_width"
+        [class.long-title]="
+          title_width >= title_container_width && firstMovingAnimation
+        "
+        [class.long-title-1]="
+          title_width >= title_container_width && !firstMovingAnimation
+        "
         [innerHTML]="SelectedProfile.name | profileTitle"
       ></span>
       <span>{{ SelectedProfile.trivial_name }}</span>

@@ -37,6 +37,8 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   public title_container?: ElementRef;
   title_container_width = 0;
   title_width = 0;
+  public firstMovingAnimation = true;
+  public timeOut: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -136,20 +138,40 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
         }
       }
     }, 0);
+
     setTimeout(() => {
+      this.firstMovingAnimation = true;
+      clearTimeout(this.timeOut);
       this.title_container_width =
         this.title_container?.nativeElement.offsetWidth;
       this.title_width =
         this.title_container?.nativeElement.firstChild.offsetWidth;
+      if (this.title_container?.nativeElement.firstChild.firstChild) {
+        this.timeOut = setTimeout(() => {
+          this.firstMovingAnimation = false;
+        }, 10500);
+      }
     }, 0);
   }
 
   @HostListener('window:resize', ['$event'])
   public onResize() {
-    this.title_container_width =
-      this.title_container?.nativeElement.offsetWidth;
-    this.title_width =
-      this.title_container?.nativeElement.firstChild.offsetWidth;
+    this.firstMovingAnimation = false;
+    setTimeout(() => {
+      this.firstMovingAnimation = true;
+      clearTimeout(this.timeOut);
+      setTimeout(() => {
+        this.title_container_width =
+          this.title_container?.nativeElement.offsetWidth;
+        this.title_width =
+          this.title_container?.nativeElement.firstChild.offsetWidth;
+      }, 0);
+      if (this.title_container?.nativeElement.firstChild.firstChild) {
+        this.timeOut = setTimeout(() => {
+          this.firstMovingAnimation = false;
+        }, 10500);
+      }
+    }, 0);
   }
 
   handleAudioErrorEvent() {
@@ -166,6 +188,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
     this.audioLoadError = false;
     this.audioStarted = false;
     this.audioCollapsed = false;
+    this.firstMovingAnimation = false;
     this.ngAfterViewInit();
   }
 
@@ -174,6 +197,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
     this.audioLoadError = false;
     this.audioStarted = false;
     this.audioCollapsed = false;
+    this.firstMovingAnimation = false;
     this.ngAfterViewInit();
   }
 

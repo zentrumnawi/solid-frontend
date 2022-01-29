@@ -3,7 +3,12 @@
     <div class="title-container" #title_container>
       <div
         class="title"
-        [class.long-title]="title_width >= title_container_width"
+        [class.long-title]="
+          title_width >= title_container_width && firstMovingAnimation
+        "
+        [class.long-title-1]="
+          title_width >= title_container_width && !firstMovingAnimation
+        "
       >
         {{ data.name }}
         <span *ngIf="data.mediaObject.getTitle" class="media-object-title">
@@ -199,8 +204,12 @@
   <div mat-dialog-title class="mat-dialog-title">
     <div class="title-container" #title_container>
       <div
-        class="title"
-        [class.long-title]="title_width >= title_container_width"
+        [class.long-title]="
+          title_width >= title_container_width && firstMovingAnimation
+        "
+        [class.long-title-1]="
+          title_width >= title_container_width && !firstMovingAnimation
+        "
       >
         {{ data.name }}
         <span *ngIf="data.image.getTitle" class="media-object-title">
