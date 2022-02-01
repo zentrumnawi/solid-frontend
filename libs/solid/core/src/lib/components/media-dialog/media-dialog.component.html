@@ -1,14 +1,26 @@
 <ng-container *ngIf="data.type === 'mediaObject'">
   <div mat-dialog-title class="mat-dialog-title">
-    <div>
-      {{ data.name }}
-      <span *ngIf="data.mediaObject.getTitle" class="media-object-title">
-        - {{ data.mediaObject.getTitle }}</span
+    <div class="title-container" #title_container>
+      <div
+        class="title"
+        [class.long-title]="
+          title_width >= title_container_width && firstMovingAnimation
+        "
+        [class.long-title-1]="
+          title_width >= title_container_width && !firstMovingAnimation
+        "
       >
+        {{ data.name }}
+        <span *ngIf="data.mediaObject.getTitle" class="media-object-title">
+          | {{ data.mediaObject.getTitle }}</span
+        >
+      </div>
     </div>
-    <button mat-icon-button mat-dialog-close>
-      <mat-icon>close</mat-icon>
-    </button>
+    <div>
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
   </div>
   <ng-container
     *ngIf="data.mediaObject.deepZoomLink as dziFile; then deepZoom; else noZoom"
@@ -20,17 +32,36 @@
   <ng-template #deepZoom>
     <div mat-dialog-content>
       <div id="dzi-container"></div>
+      <button
+        *ngIf="data.hasNavigationInDialog"
+        mat-mini-fab
+        color="accent"
+        class="button-before"
+        (click)="onPrev()"
+      >
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button
+        *ngIf="data.hasNavigationInDialog"
+        class="button-next"
+        mat-mini-fab
+        color="accent"
+        (click)="onNext()"
+      >
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
       <div class="toolbar-container">
         <div class="spacer"></div>
         <solid-core-audio-toolbar
           *ngIf="hasAudio"
           [audiosrc]="data.mediaObject.audiosrc"
           [toolbar]="true"
-          [class.openAudioToolbar]="audioPlayBtnClicked"
-          [playAudio]="audioPlayBtnClicked"
-          (audioErrorEventEmitter)="handleAudioErrorEvent($event)"
-          (audioEndedEventEmitter)="handleAudioEndedEvent($event)"
-          [class.closeAudioToolbar]="audioEnded"
+          [class.openAudioToolbar]="
+            audioStarted && !audioEnded && !audioCollapsed
+          "
+          [playAudio]="audioStarted"
+          (audioErrorEventEmitter)="handleAudioErrorEvent()"
+          (audioEndedEventEmitter)="handleAudioEndedEvent()"
         ></solid-core-audio-toolbar>
         <div class="dialog-toolbar">
           <button
@@ -38,11 +69,32 @@
             (click)="onPlayClick()"
             mat-mini-fab
             color="accent"
-            [class.disappear]="audioPlayBtnClicked"
             [disabled]="audioLoadError"
-            [class.appear]="audioEnded"
+            [class.disappear]="audioStarted && !audioEnded"
           >
             <mat-icon>headphones</mat-icon>
+          </button>
+          <button
+            *ngIf="audioStarted && expandUpDown"
+            (click)="onExpandCollapse()"
+            mat-mini-fab
+            color="accent"
+            [disabled]="audioLoadError"
+          >
+            <mat-icon>{{
+              audioCollapsed ? 'headphones' : 'expand_less'
+            }}</mat-icon>
+          </button>
+          <button
+            *ngIf="audioStarted && !expandUpDown"
+            (click)="onExpandCollapse()"
+            mat-mini-fab
+            color="accent"
+            [disabled]="audioLoadError"
+          >
+            <mat-icon>{{
+              audioCollapsed ? 'headphones' : 'chevron_right'
+            }}</mat-icon>
           </button>
           <solid-core-media-toolbar
             [mediaObject]="data.mediaObject"
@@ -67,6 +119,24 @@
           [class.landscape]="data.mediaObject.isLandscape"
         />
       </div>
+      <button
+        *ngIf="data.hasNavigationInDialog"
+        mat-mini-fab
+        color="accent"
+        class="button-before"
+        (click)="onPrev()"
+      >
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <button
+        *ngIf="data.hasNavigationInDialog"
+        class="button-next"
+        mat-mini-fab
+        color="accent"
+        (click)="onNext()"
+      >
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
       <div class="toolbar-container">
         <div class="spacer"></div>
         <solid-core-audio-toolbar
@@ -74,11 +144,12 @@
           *ngIf="hasAudio"
           [audiosrc]="data.mediaObject.audiosrc"
           [toolbar]="true"
-          [class.openAudioToolbar]="audioPlayBtnClicked"
-          [playAudio]="audioPlayBtnClicked"
-          (audioErrorEventEmitter)="handleAudioErrorEvent($event)"
-          (audioEndedEventEmitter)="handleAudioEndedEvent($event)"
-          [class.closeAudioToolbar]="audioEnded"
+          [class.openAudioToolbar]="
+            audioStarted && !audioEnded && !audioCollapsed
+          "
+          [playAudio]="audioStarted"
+          (audioErrorEventEmitter)="handleAudioErrorEvent()"
+          (audioEndedEventEmitter)="handleAudioEndedEvent()"
         ></solid-core-audio-toolbar>
         <div class="dialog-toolbar">
           <button
@@ -86,11 +157,32 @@
             (click)="onPlayClick()"
             mat-mini-fab
             color="accent"
-            [class.disappear]="audioPlayBtnClicked"
             [disabled]="audioLoadError"
-            [class.appear]="audioEnded"
+            [class.disappear]="audioStarted && !audioEnded"
           >
             <mat-icon>headphones</mat-icon>
+          </button>
+          <button
+            *ngIf="audioStarted && expandUpDown"
+            (click)="onExpandCollapse()"
+            mat-mini-fab
+            color="accent"
+            [disabled]="audioLoadError"
+          >
+            <mat-icon>{{
+              audioCollapsed ? 'headphones' : 'expand_less'
+            }}</mat-icon>
+          </button>
+          <button
+            *ngIf="audioStarted && !expandUpDown"
+            (click)="onExpandCollapse()"
+            mat-mini-fab
+            color="accent"
+            [disabled]="audioLoadError"
+          >
+            <mat-icon>{{
+              audioCollapsed ? 'headphones' : 'chevron_right'
+            }}</mat-icon>
           </button>
           <solid-core-media-toolbar
             [mediaObject]="data.mediaObject"
@@ -110,11 +202,20 @@
 
 <ng-container *ngIf="data.type === 'photograph'">
   <div mat-dialog-title class="mat-dialog-title">
-    <div>
-      {{ data.name }}
-      <span *ngIf="data.image.getTitle" class="media-object-title">
-        - {{ data.image.getTitle }}</span
+    <div class="title-container" #title_container>
+      <div
+        [class.long-title]="
+          title_width >= title_container_width && firstMovingAnimation
+        "
+        [class.long-title-1]="
+          title_width >= title_container_width && !firstMovingAnimation
+        "
       >
+        {{ data.name }}
+        <span *ngIf="data.image.getTitle" class="media-object-title">
+          - {{ data.image.getTitle }}</span
+        >
+      </div>
     </div>
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
@@ -132,11 +233,12 @@
           *ngIf="hasAudio"
           [audiosrc]="data.image.audiosrc"
           [toolbar]="true"
-          [class.openAudioToolbar]="audioPlayBtnClicked"
-          [playAudio]="audioPlayBtnClicked"
-          (audioErrorEventEmitter)="handleAudioErrorEvent($event)"
-          (audioEndedEventEmitter)="handleAudioEndedEvent($event)"
-          [class.closeAudioToolbar]="audioEnded"
+          [class.openAudioToolbar]="
+            audioStarted && !audioEnded && !audioCollapsed
+          "
+          [playAudio]="audioStarted"
+          (audioErrorEventEmitter)="handleAudioErrorEvent()"
+          (audioEndedEventEmitter)="handleAudioEndedEvent()"
         >
         </solid-core-audio-toolbar>
         <div class="dialog-toolbar">
@@ -145,11 +247,32 @@
             (click)="onPlayClick()"
             mat-mini-fab
             color="accent"
-            [class.disappear]="audioPlayBtnClicked"
             [disabled]="audioLoadError"
-            [class.appear]="audioEnded"
+            [class.disappear]="audioStarted && !audioEnded"
           >
             <mat-icon>headphones</mat-icon>
+          </button>
+          <button
+            *ngIf="audioStarted && expandUpDown"
+            (click)="onExpandCollapse()"
+            mat-mini-fab
+            color="accent"
+            [disabled]="audioLoadError"
+          >
+            <mat-icon>{{
+              audioCollapsed ? 'headphones' : 'expand_less'
+            }}</mat-icon>
+          </button>
+          <button
+            *ngIf="audioStarted && !expandUpDown"
+            (click)="onExpandCollapse()"
+            mat-mini-fab
+            color="accent"
+            [disabled]="audioLoadError"
+          >
+            <mat-icon>{{
+              audioCollapsed ? 'headphones' : 'chevron_right'
+            }}</mat-icon>
           </button>
           <solid-core-media-toolbar
             [image]="data.image"
@@ -178,11 +301,12 @@
           *ngIf="hasAudio"
           [audiosrc]="data.image.audiosrc"
           [toolbar]="true"
-          [class.openAudioToolbar]="audioPlayBtnClicked"
-          [playAudio]="audioPlayBtnClicked"
-          (audioErrorEventEmitter)="handleAudioErrorEvent($event)"
-          (audioEndedEventEmitter)="handleAudioEndedEvent($event)"
-          [class.closeAudioToolbar]="audioEnded"
+          [class.openAudioToolbar]="
+            audioStarted && !audioEnded && !audioCollapsed
+          "
+          [playAudio]="audioStarted"
+          (audioErrorEventEmitter)="handleAudioErrorEvent()"
+          (audioEndedEventEmitter)="handleAudioEndedEvent()"
         >
         </solid-core-audio-toolbar>
         <div class="spacer"></div>
@@ -192,11 +316,32 @@
             (click)="onPlayClick()"
             mat-mini-fab
             color="accent"
-            [class.disappear]="audioPlayBtnClicked"
             [disabled]="audioLoadError"
-            [class.appear]="audioEnded"
+            [class.disappear]="audioStarted && !audioEnded"
           >
             <mat-icon>headphones</mat-icon>
+          </button>
+          <button
+            *ngIf="audioStarted && expandUpDown"
+            (click)="onExpandCollapse()"
+            mat-mini-fab
+            color="accent"
+            [disabled]="audioLoadError"
+          >
+            <mat-icon>{{
+              audioCollapsed ? 'headphones' : 'expand_less'
+            }}</mat-icon>
+          </button>
+          <button
+            *ngIf="audioStarted && !expandUpDown"
+            (click)="onExpandCollapse()"
+            mat-mini-fab
+            color="accent"
+            [disabled]="audioLoadError"
+          >
+            <mat-icon>{{
+              audioCollapsed ? 'headphones' : 'chevron_right'
+            }}</mat-icon>
           </button>
           <solid-core-media-toolbar
             [image]="data.image"

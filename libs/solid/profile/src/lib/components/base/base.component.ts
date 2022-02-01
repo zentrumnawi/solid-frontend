@@ -50,6 +50,12 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public SwipeRight = -1;
   public View = 'tree';
   public isSearchBarOpen = false;
+  @ViewChild('title_container', { static: false })
+  public title_container?: ElementRef;
+  public title_container_width = 0;
+  public title_width = 0;
+  public firstMovingAnimation = true;
+  public timeOut: any;
 
   constructor(
     private _store: Store,
@@ -135,6 +141,20 @@ export class BaseComponent implements OnInit, AfterViewInit {
                 )?.id || -1;
             }
           }
+          this.firstMovingAnimation = true;
+          setTimeout(() => {
+            clearTimeout(this.timeOut);
+            this.title_container_width =
+              this.title_container?.nativeElement.offsetWidth;
+            this.title_width =
+              this.title_container?.nativeElement.firstChild.firstChild.offsetWidth;
+            if (this.title_container?.nativeElement.firstChild.firstChild) {
+              this.timeOut = setTimeout(() => {
+                this.firstMovingAnimation = false;
+              }, 10000);
+            }
+          }, 0);
+
           return {
             view: params.view,
             selectedProfile: profileAndNode.profile,
@@ -161,6 +181,20 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   public onResize() {
     this.calculateLayout();
+    this.firstMovingAnimation = false;
+    setTimeout(() => {
+      this.firstMovingAnimation = true;
+      clearTimeout(this.timeOut);
+      this.title_container_width =
+        this.title_container?.nativeElement.offsetWidth;
+      this.title_width =
+        this.title_container?.nativeElement.firstChild.firstChild.offsetWidth;
+      if (this.title_container?.nativeElement.firstChild.firstChild) {
+        this.timeOut = setTimeout(() => {
+          this.firstMovingAnimation = false;
+        }, 10000);
+      }
+    }, 0);
   }
 
   public ngAfterViewInit(): void {

@@ -42,7 +42,13 @@ img {
 
   .audio-container {
     text-align: center;
-    height: 48px;
+    solid-core-audio-toolbar {
+      ::ng-deep {
+        .toolbar {
+          height: 48px;
+        }
+      }
+    }
   }
 
   #svg-description-container {

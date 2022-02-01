@@ -14,6 +14,9 @@
     [hasDialog]="hasDialog"
     [hasDescription]="hasDescription"
     [hasDescriptionToggle]="hasDescriptionToggle"
+    (NextDialogEmitter)="handleNextDialogEvent()"
+    (PrevDialogEmitter)="handlePrevDialogEvent()"
+    [hasNavigationInDialog]="MediaObjectsOnlyImages.length > 1"
   ></solid-core-media>
   <ng-template #noImage>
     <div class="no-img-container">

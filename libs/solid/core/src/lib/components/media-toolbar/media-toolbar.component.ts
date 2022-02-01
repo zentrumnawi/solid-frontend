@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   NgZone,
@@ -9,7 +10,7 @@ import {
   Output,
 } from '@angular/core';
 import { ImageModel, MediaModel } from '../../models';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   CloseScrollStrategy,
   ComponentType,
@@ -39,7 +40,7 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   @Input() data!: any;
   private length = 90;
   @Input() slideshowPageChanged!: number;
-  @Input() openDialogRequest!: boolean;
+  @Input() openDialogRequest?: boolean;
   @Input() isToolbarInDialog = false;
 
   @Input() isOverlayAboveOfDziZoomToolbar!: boolean;
@@ -49,10 +50,15 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   descriptionScrollStrategy: CloseScrollStrategy;
   attributionsIsOpen = false;
   descriptionIsOpen = false;
+  dialogRef?: MatDialogRef<any>;
 
   @Output() descriptionToggle = new EventEmitter<boolean>();
-  @Output() closeDialogEventEmitter = new EventEmitter<boolean>();
+  @Output() closeDialogEventEmitter = new EventEmitter();
   descriptionToggled = false;
+  @Input() hasNavigationInDialog!: boolean;
+  @Output() NextDialogEmitter = new EventEmitter();
+  @Output() PrevDialogEmitter = new EventEmitter();
+  isMobile = false;
 
   constructor(
     private _dialog: MatDialog,
@@ -86,23 +92,18 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
         this.openDialogImage();
       }
     }
-  }
-
-  ngOnInit(): void {
-    this._breakpointObserver
-      .observe(['(max-width: 440px)'])
-      .subscribe((isMobile) => {
-        if (isMobile.matches) {
-          this.length = 100;
-        }
-      });
-    this._breakpointObserver
-      .observe(['(min-width: 441px)'])
-      .subscribe((isLarge) => {
-        if (isLarge.matches) {
-          this.length = 90;
-        }
-      });
+    if (
+      this.dialogRef &&
+      this.dialogRef.componentInstance &&
+      this.mediaObject
+    ) {
+      this.dialogRef.componentInstance.data = {
+        mediaObject: this.mediaObject,
+        name: this.name,
+        type: 'mediaObject',
+        hasNavigationInDialog: this.hasNavigationInDialog,
+      };
+    }
     if (this.isOverlayAboveOfDziZoomToolbar) {
       this.attributionsPositions = [
         {
@@ -110,7 +111,6 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetX: 30,
         },
       ];
     } else {
@@ -135,27 +135,56 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
     }
   }
 
+  ngOnInit(): void {
+    this._breakpointObserver
+      .observe(['(max-width: 440px)'])
+      .subscribe((isMobile) => {
+        if (isMobile.matches) {
+          this.length = 100;
+          this.isMobile = true;
+          this.dialogRef?.updateSize('100%', '100%');
+        } else {
+          this.length = 90;
+          this.isMobile = false;
+          this.dialogRef?.updateSize('90%', '90%');
+        }
+      });
+  }
+
   public openDialog() {
-    const dialogRef = this._dialog.open(this.matDialogComponent, {
-      maxWidth: this.length + 'vw',
-      width: '100%',
-      height: '100%',
-      maxHeight: this.length + 'vh',
-      panelClass: 'solid-core-media-dialog',
-      data: {
-        mediaObject: this.mediaObject,
-        name: this.name,
-        type: 'mediaObject',
-      },
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.emitCloseDialogEvent();
-      dialogRef.close();
-    });
+    if (this.mediaObject?.mediaType === 'image') {
+      this.dialogRef = this._dialog.open(this.matDialogComponent, {
+        maxWidth: '100vw',
+        width: this.length + '%',
+        height: this.length + '%',
+        maxHeight: '100vh',
+        panelClass: 'solid-core-media-dialog',
+        data: {
+          mediaObject: this.mediaObject,
+          name: this.name,
+          type: 'mediaObject',
+          hasNavigationInDialog: this.hasNavigationInDialog,
+        },
+      });
+      this.dialogRef.afterClosed().subscribe(() => {
+        this.closeDialogEventEmitter.emit();
+        if (this.dialogRef) {
+          this.dialogRef.close();
+        }
+      });
+      this.dialogRef.componentInstance.onNextEmitter.subscribe(() => {
+        this.NextDialogEmitter.emit();
+        this.openDialogRequest = false;
+      });
+      this.dialogRef.componentInstance.onPrevEmitter.subscribe(() => {
+        this.PrevDialogEmitter.emit();
+        this.openDialogRequest = false;
+      });
+    }
   }
 
   public openDialogImage() {
-    const dialogRef = this._dialog.open(this.matDialogComponent, {
+    this.dialogRef = this._dialog.open(this.matDialogComponent, {
       maxWidth: this.length + 'vw',
       width: '100%',
       height: '100%',
@@ -167,9 +196,11 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
         type: 'photograph',
       },
     });
-    dialogRef.afterClosed().subscribe(() => {
-      this.emitCloseDialogEvent();
-      dialogRef.close();
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.closeDialogEventEmitter.emit();
+      if (this.dialogRef) {
+        this.dialogRef.close();
+      }
     });
   }
 
@@ -193,9 +224,5 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   toggleDescription() {
     this.descriptionToggled = !this.descriptionToggled;
     this.descriptionToggle.emit(this.descriptionToggled);
-  }
-
-  emitCloseDialogEvent() {
-    this.closeDialogEventEmitter.emit(true);
   }
 }

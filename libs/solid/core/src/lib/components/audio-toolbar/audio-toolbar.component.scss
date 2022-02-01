@@ -20,16 +20,23 @@ span.PlayPosition {
 
 .toolbar {
   width: 100%;
-  height: 100%;
+  height: 40px;
   box-shadow: 2px 2px 10px rgb(0 0 0 / 20%);
   display: flex;
   align-items: center;
-  padding: 0 17px 0 10px;
   overflow: hidden;
   background-color: white;
 
+  .play-btn {
+    margin-left: 10px;
+  }
+
   .replay-btn {
     margin-right: 0.5em;
+  }
+
+  .volumeSlider {
+    margin-right: 17px;
   }
 
   ::ng-deep {
@@ -68,9 +75,14 @@ span.PlayPosition {
 }
 
 .mobile {
-  padding: 0 5px 0 3px !important;
   .replay-btn {
     margin-right: 0.3em !important;
+  }
+  .play-btn {
+    margin-left: 3px;
+  }
+  .volumeSlider {
+    margin-right: 5px;
   }
 }
 

@@ -83,4 +83,8 @@ export class MediaModel {
   public get getTitle() {
     return this._mediaObject.title;
   }
+
+  public get getProfilePosition() {
+    return this._mediaObject.profile_position;
+  }
 }
