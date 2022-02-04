@@ -53,4 +53,16 @@ export class BaseLayoutComponent implements OnInit {
       await this.Glossary.close();
     }
   }
+  public onMenuGlossarClick() {
+    if (this.Glossary) {
+      this.Glossary.open();
+    }
+    if (!this.FixedLayout && this.MainMenu) {
+      this.MainMenu.close();
+    }
+  }
+
+  public closeMenu() {
+    if (this.MainMenu && !this.FixedLayout) this.MainMenu.close();
+  }
 }

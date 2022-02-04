@@ -1,7 +1,7 @@
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Inject, Injectable } from '@angular/core';
 import { MessageModel, MessageType } from './message.model';
-import { MessageActions } from './message.actions';
+import { LoadMessageEntries } from './message.actions';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
@@ -56,14 +56,11 @@ export class MessageState {
     private _http: HttpClient,
     store: Store
   ) {
-    setTimeout(() => store.dispatch(new MessageActions.LoadEntries()));
+    setTimeout(() => store.dispatch(new LoadMessageEntries()));
   }
 
-  @Action(MessageActions.LoadEntries)
-  public loadEntries(
-    { setState }: StateContext<MessageStateModel>,
-    {}: MessageActions.LoadEntries
-  ) {
+  @Action(LoadMessageEntries)
+  public loadEntries({ setState }: StateContext<MessageStateModel>) {
     const now = new Date(Date.now());
     const localMessages: MessageModel[] = [];
     const localData = localStorage.getItem(MessageState.LOCAL_STORAGE_KEY);

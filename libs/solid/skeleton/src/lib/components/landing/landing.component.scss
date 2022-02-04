@@ -11,28 +11,6 @@ mat-list {
   padding-top: 0 !important;
 }
 
-mat-list-item {
-  margin-top: 0;
-  ::ng-deep {
-    p {
-      margin-block-end: 0;
-    }
-    h3.mat-line {
-      padding-bottom: 0.5em;
-    }
-    div.mat-list-item-content {
-      padding: 0.7rem !important;
-    }
-    div.mat-line.md-rendered {
-      padding-left: 0.22rem !important;
-      white-space: normal !important;
-      h2 {
-        margin-bottom: 0;
-      }
-    }
-  }
-}
-
 mat-grid-list {
   width: 23rem;
   max-width: 100%;
@@ -46,7 +24,7 @@ mat-grid-tile {
   transition: background-color 0.05s linear 0.05s;
 
   ::ng-deep {
-    figure.mat-figure {
+    div.mat-grid-tile-content {
       display: inline-flex;
       flex-direction: column;
       align-content: center;

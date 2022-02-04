@@ -7,6 +7,8 @@ import {
   OnDestroy,
   OnChanges,
   OnInit,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
@@ -34,6 +36,9 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   public previousVolume = 0;
   public isMuted = false;
   public isMobile = false;
+  @Input() public playAudio = false;
+  @Output() audioErrorEventEmitter = new EventEmitter();
+  @Output() audioEndedEventEmitter = new EventEmitter();
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
@@ -133,6 +138,9 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
       this.isMuted = false;
       this.player.nativeElement.volume = change.value;
       this.volume = change.value;
+      if (change.value === 0) {
+        this.isMuted = true;
+      }
     }
   }
 
@@ -151,6 +159,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public onPlayerMediaError() {
+    this.audioErrorEventEmitter.emit();
     this.audioLoaded = false;
     this._dialog.open(MediaErrorDialogComponent, {
       data: {
@@ -163,6 +172,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
 
   public onPlayerEnded() {
     if (this.player) {
+      this.audioEndedEventEmitter.emit();
       this.playingStarted = false;
       this.playing = false;
       this.player.nativeElement.currentTime = 0;
@@ -176,6 +186,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
       this.playPositionString = '0:00/-:--';
       this.playPosition = 0;
     }
+    if (this.playAudio) this.onPlayPauseClick();
   }
 
   ngOnDestroy(): void {

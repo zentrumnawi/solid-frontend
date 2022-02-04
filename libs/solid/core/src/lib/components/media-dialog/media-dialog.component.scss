@@ -9,6 +9,59 @@ div.mat-dialog-title {
   justify-content: space-between;
   align-items: center;
   margin: 0.1em 0.55em;
+
+  ::ng-deep {
+    .mat-button-focus-overlay {
+      background-color: transparent !important;
+    }
+  }
+
+  div.title-container {
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1;
+    margin-right: 0.5em;
+  }
+
+  div.title {
+    display: inline-block;
+  }
+
+  span.media-object-title {
+    font-weight: normal;
+  }
+}
+
+div.long-title {
+  display: inline-block;
+  animation: text-moving-1 12s linear infinite;
+}
+div.long-title-1 {
+  display: inline-block;
+  animation: text-moving-2 13s linear infinite;
+}
+
+@keyframes text-moving-1 {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+@keyframes text-moving-2 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 div.mat-dialog-content {
@@ -17,28 +70,39 @@ div.mat-dialog-content {
   max-height: calc(100% - 44px);
   height: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   div#dzi-container {
     width: 100%;
-    height: 100%;
-    margin-bottom: -40px;
+    margin-bottom: -53px;
+    flex: 1;
+    z-index: 0;
+  }
+  .image {
+    flex: 1;
+    display: flex;
+    max-height: 100%;
+    width: 100%;
+    margin-bottom: -53px;
+    img {
+      margin: auto;
+    }
   }
 }
 
-solid-core-media-detail {
+img {
+  // portrait
   max-height: 100%;
-  width: 100%;
-  height: 99%;
-  position: relative;
-  ::ng-deep {
-    // .container {
-    //   margin-bottom: -46px;
-    // }
-    img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%) translateX(-50%);
-    }
+  max-width: 100%;
+  display: block;
+
+  // landscape
+  &.landscape {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    border-radius: inherit;
   }
 }
 
@@ -56,15 +120,6 @@ solid-core-media-detail {
   padding: 0 0.5em 0 0.8em;
   margin: 0.3em 0;
 }
-div.audiobar {
-  position: absolute;
-  display: flex;
-  justify-content: flex-start;
-  bottom: 0.85em;
-  // margin-bottom: -2.5em;
-  margin-left: 0.8em;
-  //height: 40px;
-}
 
 ::ng-deep {
   div.cdk-overlay-container {
@@ -75,7 +130,110 @@ div.audiobar {
   }
 }
 
-.media-object-title {
-  font-weight: normal;
-  font-size: 0.8em;
+.toolbar-container {
+  width: 100%;
+  display: flex;
+
+  div.dialog-toolbar {
+    display: flex;
+    margin-bottom: 5px;
+  }
+}
+
+solid-core-audio-toolbar {
+  padding: 0;
+  z-index: 1;
+  margin-left: 1.3em;
+
+  @media (min-width: 681px) {
+    ::ng-deep {
+      .toolbar {
+        border-radius: 20px;
+      }
+    }
+  }
+
+  @media (min-width: 681px) and (max-width: 839px) {
+    margin-left: 0.85em;
+
+    ::ng-deep {
+      .mat-slider-horizontal.volumeSlider {
+        display: none;
+      }
+      .toolbar {
+        .play-btn {
+          margin-left: 0 !important;
+        }
+      }
+    }
+  }
+  @media (min-width: 470px) and (max-width: 680px) {
+    ::ng-deep {
+      .mat-slider-horizontal.volumeSlider {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (min-width: 681px) {
+  solid-core-audio-toolbar {
+    width: 0;
+    margin-right: 0.5em;
+    transition: width 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  }
+
+  .openAudioToolbar {
+    width: 100%;
+  }
+}
+
+div.spacer {
+  flex: 1;
+}
+
+@media (max-width: 680px) {
+  .toolbar-container {
+    flex-direction: column-reverse;
+
+    .dialog-toolbar {
+      justify-content: flex-end;
+    }
+  }
+
+  solid-core-audio-toolbar {
+    height: 0;
+    margin-left: 0;
+    margin-right: 0;
+    transition: height 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  }
+
+  .openAudioToolbar {
+    height: 40px;
+  }
+}
+.disappear {
+  display: none !important;
+}
+
+.button-before {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.5em;
+}
+.button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.5em;
+}
+
+@media (min-width: 681px) {
+  .button-before {
+    left: 0.85em;
+  }
+  .button-next {
+    right: 0.85em;
+  }
 }

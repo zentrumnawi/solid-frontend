@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ListComponent {
   @Input() profiles!: Observable<Profile[]>;
-  @Output() select = new EventEmitter<number>();
+  @Output() selectProfile = new EventEmitter<number>();
   @Input() selectedProfileId?: number;
 
   public trackByFn(index: number, profile: Profile) {

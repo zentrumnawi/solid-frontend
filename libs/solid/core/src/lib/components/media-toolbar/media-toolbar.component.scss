@@ -1,10 +1,10 @@
-div.toolbar {
-  position: absolute;
+div.toolbar-container {
   display: flex;
-  justify-content: flex-end;
-  bottom: 0.5em;
   right: 0;
   &.dzi {
+    bottom: 0.9em;
+  }
+  &.isToolbarInDialog {
     bottom: 0.9em;
   }
   solid-core-audio-toolbar {
@@ -13,12 +13,13 @@ div.toolbar {
   }
 }
 
-div.dziToolbar {
+div.toolbar {
   display: flex;
   margin-right: 0.85em;
   justify-content: flex-end;
-  button:not(:last-child) {
-    margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  button {
+    margin-left: 0.5em;
   }
 }
 
@@ -29,7 +30,6 @@ div.dziToolbar {
       margin-right: 0.5em;
       padding: 0.25em;
       border-radius: 0.5em;
-      margin-left: 1.6em;
       margin-bottom: 0.5em;
     }
     div.description-overlay {
@@ -49,6 +49,22 @@ div.dziToolbar {
         p {
           margin: 0;
         }
+      }
+    }
+
+    @media (max-width: 680px) {
+      div.description-overlay {
+        max-width: 90%;
+      }
+    }
+    @media (max-width: 400px) {
+      div.description-overlay {
+        max-width: 290px;
+      }
+    }
+    @media (max-width: 360px) {
+      div.description-overlay {
+        max-width: 220px;
       }
     }
   }

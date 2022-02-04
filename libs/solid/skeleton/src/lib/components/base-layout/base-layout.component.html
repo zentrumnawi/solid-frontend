@@ -22,7 +22,7 @@
     </ng-container>
     <ng-container *ngIf="!FixedLayout">
       <div class="mainmenu-button">
-        <button (click)="MainMenu?.toggle()" mat-icon-button>
+        <button (click)="MainMenu?.toggle(); Glossary?.close()" mat-icon-button>
           <mat-icon aria-label="Menü öffnen">menu</mat-icon>
         </button>
       </div>
@@ -33,18 +33,19 @@
         [src]="config.appLogoSmall"
         onerror='this.style.display = "none"'
       />
-      <button (click)="Glossary?.toggle()" mat-icon-button>
+      <button (click)="Glossary?.toggle(); MainMenu?.close()" mat-icon-button>
         <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
       </button>
     </ng-container>
   </mat-toolbar>
-  <mat-sidenav-container>
+  <mat-sidenav-container (backdropClick)="closeMenu()">
     <mat-sidenav
       #mainmenu
       [fixedInViewport]="!FixedLayout"
       [mode]="FixedLayout ? 'side' : 'over'"
       class="mainmenu-sidenav"
       position="start"
+      disableClose
     >
       <mat-toolbar
         (click)="MainMenu?.toggle()"
@@ -54,7 +55,8 @@
         Menü
       </mat-toolbar>
       <solid-skeleton-main-menu
-        (select)="onMenuSelectionChanged()"
+        (selectMenuEntry)="onMenuSelectionChanged()"
+        (openGlossarClick)="onMenuGlossarClick()"
       ></solid-skeleton-main-menu>
     </mat-sidenav>
     <mat-sidenav-content>

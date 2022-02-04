@@ -61,7 +61,7 @@ mat-nav-list {
 }
 
 .main-menu-container {
-  height: calc(100vh - 56px);
+  height: calc(100% - 56px);
   width: 300px;
-  overflow: auto;
+  overflow-y: auto;
 }

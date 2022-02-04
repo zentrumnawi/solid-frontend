@@ -105,9 +105,10 @@ export class AppModule {
     addIcon('quiz');
     addIcon('profile');
     addIcon('icon');
-    addIcon('info');
     addIcon('glossary');
+    addIcon('info');
     addIcon('privacy');
+    addIcon('info_privacy');
     addIcon('feedback');
     addIcon('properties');
   }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ImageModel, MediaModel } from '../../models';
 
 @Component({
@@ -18,4 +18,7 @@ export class MediaComponent {
   @Input() hasDescription!: boolean;
   @Input() hasDescriptionToggle!: boolean;
   @Input() slideshowPageChanged!: number;
+  @Input() hasNavigationInDialog!: boolean;
+  @Output() NextDialogEmitter = new EventEmitter();
+  @Output() PrevDialogEmitter = new EventEmitter();
 }

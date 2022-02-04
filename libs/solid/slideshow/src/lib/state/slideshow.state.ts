@@ -1,7 +1,7 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Slideshow, SlideshowApi } from './slideshow.model';
 import { HttpClient } from '@angular/common/http';
-import { SlideshowActions } from './slideshow.actions';
+import { LoadSlideshow } from './slideshow.actions';
 import { Inject, Injectable } from '@angular/core';
 import {
   SOLID_CORE_CONFIG,
@@ -77,11 +77,8 @@ export class SlideshowState {
     return fn();
   }
 
-  @Action(SlideshowActions.Load)
-  public load(
-    ctx: StateContext<SlideshowStateModel>,
-    {}: SlideshowActions.Load
-  ) {
+  @Action(LoadSlideshow)
+  public load(ctx: StateContext<SlideshowStateModel>) {
     if (ctx.getState().length > 0) {
       return;
     }

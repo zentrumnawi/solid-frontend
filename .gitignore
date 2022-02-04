@@ -42,4 +42,4 @@ Thumbs.db
 .travis/*.key
 .travis/*.key.pub
 
-**/environments/version.json
+**/environments/version.ts

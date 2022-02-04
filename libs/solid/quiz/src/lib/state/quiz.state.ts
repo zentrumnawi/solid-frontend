@@ -5,7 +5,12 @@ import {
   QuizQuestionInSession,
   QuizSession,
 } from './quiz.model';
-import { QuizActions } from './quiz.actions';
+import {
+  LoadQuizQuestions,
+  StartQuizSession,
+  EndQuizSession,
+  QuizQuestionAnswered,
+} from './quiz.actions';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -38,8 +43,8 @@ export class QuizState {
     private _http: HttpClient
   ) {}
 
-  @Action(QuizActions.LoadQuestions)
-  public set(ctx: StateContext<QuizStateModel>, {}: QuizActions.LoadQuestions) {
+  @Action(LoadQuizQuestions)
+  public set(ctx: StateContext<QuizStateModel>) {
     return this._http
       .get<QuizQuestion[]>(`${this._config.apiUrl}/quizquestions`)
       .pipe(
@@ -62,10 +67,10 @@ export class QuizState {
       );
   }
 
-  @Action(QuizActions.StartSession)
+  @Action(StartQuizSession)
   public startSession(
     { patchState, getState }: StateContext<QuizStateModel>,
-    { questionCount }: QuizActions.StartSession
+    { questionCount }: StartQuizSession
   ) {
     const questions = getState().questions;
     const sessionQuestions: QuizQuestionInSession[] = [];
@@ -88,20 +93,17 @@ export class QuizState {
     });
   }
 
-  @Action(QuizActions.EndSession)
-  public endSession(
-    { patchState }: StateContext<QuizStateModel>,
-    {}: QuizActions.EndSession
-  ) {
+  @Action(EndQuizSession)
+  public endSession({ patchState }: StateContext<QuizStateModel>) {
     patchState({
       session: null,
     });
   }
 
-  @Action(QuizActions.QuestionAnswered)
+  @Action(QuizQuestionAnswered)
   public questionAnswered(
     { patchState, getState }: StateContext<QuizStateModel>,
-    { correct }: QuizActions.QuestionAnswered
+    { correct }: QuizQuestionAnswered
   ) {
     const session = { ...(getState().session as QuizSession) };
     const answeredQuestion = {

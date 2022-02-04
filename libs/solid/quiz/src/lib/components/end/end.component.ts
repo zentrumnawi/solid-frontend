@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { QuizSession } from '../../state/quiz.model';
-import { QuizActions } from '../../state/quiz.actions';
+import { StartQuizSession } from '../../state/quiz.actions';
 import { QuizFeedback } from './end-feedback';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -63,9 +63,7 @@ export class EndComponent implements OnDestroy {
   }
 
   onStartClick() {
-    this._store.dispatch(
-      new QuizActions.StartSession(this.questionCount.value)
-    );
+    this._store.dispatch(new StartQuizSession(this.questionCount.value));
     this.stopQuiz.emit(false);
   }
 

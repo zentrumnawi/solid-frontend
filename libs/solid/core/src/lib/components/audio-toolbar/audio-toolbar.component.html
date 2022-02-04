@@ -11,7 +11,7 @@
 
 <ng-container *ngIf="toolbar">
   <div class="toolbar" [class.mobile]="isMobile">
-    <button mat-icon-button (click)="onPlayPauseClick()">
+    <button class="play-btn" mat-icon-button (click)="onPlayPauseClick()">
       <mat-icon>{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
     </button>
     <button

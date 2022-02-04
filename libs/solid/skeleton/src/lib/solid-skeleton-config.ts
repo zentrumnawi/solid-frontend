@@ -23,7 +23,7 @@ export type RouteConfigFromModule = RouteConfig & {
 export interface RoutingConfig {
   landing: RouteConfig;
   info: RouteConfig;
-  privacy: RouteConfigWithComponent;
+  // privacy: RouteConfigWithComponent;
   profile: RouteConfigFromModule;
   quiz: RouteConfigFromModule;
   slideshow: RouteConfigFromModule;
@@ -34,13 +34,14 @@ export interface SentryConfig {
   errorHandlerOptions?: ErrorHandlerOptions;
   dsn: string;
   environment: string;
-  version: { default: { semver: { version: string } } };
+  version: { semver: { version: string } };
 }
 
 export interface InternalSolidSkeletonConfig {
   feedbackEnabled: boolean;
   landingBannerContent: Type<any>;
   infoPageContent: Type<any>;
+  privacyContent: Type<any>;
   glossary: {
     enabled: boolean;
     svgIcon?: string;
@@ -53,10 +54,11 @@ export interface InternalSolidSkeletonConfig {
 export interface RequiredExternalConfig {
   landingBannerContent: Type<any>;
   infoPageContent: Type<any>;
+  privacyContent: Type<any>;
   routingConfig: {
-    privacy: {
-      component: Type<any>;
-    };
+    // privacy: {
+    //   component: Type<any>;
+    // };
   };
   sentry?: SentryConfig;
 }
@@ -64,7 +66,8 @@ export interface RequiredExternalConfig {
 type componentPropertyKeys =
   | 'landingBannerContent'
   | 'component'
-  | 'infoPageContent';
+  | 'infoPageContent'
+  | 'privacyContent';
 
 export type PartialDeep<T> = {
   [P in Exclude<keyof T, componentPropertyKeys>]?: PartialDeep<T[P]>;
@@ -135,25 +138,24 @@ export const defaultSkeletonConfig: Omit<
       showOnLandingPage: true,
       showInMenu: true,
       url: 'info',
-      title: 'Info',
+      title: 'Info | Datenschutz',
       order: 4,
       matIcon: 'info',
     },
-    privacy: {
-      enabled: true,
-      showOnLandingPage: true,
-      showInMenu: true,
-      url: 'privacy',
-      title: 'Datenschutz',
-      order: 5,
-      matIcon: 'info',
-    },
+    // privacy: {
+    //   enabled: true,
+    //   showOnLandingPage: true,
+    //   showInMenu: true,
+    //   url: 'privacy',
+    //   title: 'Datenschutz',
+    //   order: 5,
+    //   matIcon: 'info',
+    // },
   },
 };
 
 export type SolidSkeletonConfig = PartialDeep<InternalSolidSkeletonConfig> &
   RequiredExternalConfig;
 
-export const SOLID_SKELETON_CONFIG = new InjectionToken<InternalSolidSkeletonConfig>(
-  'solid-skeleton-config'
-);
+export const SOLID_SKELETON_CONFIG =
+  new InjectionToken<InternalSolidSkeletonConfig>('solid-skeleton-config');

@@ -106,8 +106,9 @@ export class AppModule {
     addIcon('profile');
     addIcon('icon');
     addIcon('info');
-    addIcon('glossary');
     addIcon('privacy');
+    addIcon('info_privacy');
+    addIcon('glossary');
     addIcon('feedback');
     addIcon('slideshow');
   }

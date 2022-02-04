@@ -1,5 +1,7 @@
 <h2>Über die App</h2>
-<p>s.o.l.i.d. Version: {{ Version }}</p>
+<p>s.o.l.i.d. Version: {{ solidVersion }}</p>
+<p *ngIf="appVersion !== undefined">Div-e Version: {{ appVersion }}</p>
+
 <div class="solid-logo">
   <img alt="Solid Logo" src="assets/info/Solid.svg" />
 </div>
@@ -23,11 +25,14 @@
   studentischen Hilfskräften maßgeblich.
 </p>
 <p>
-  Div-e basiert auf dem E-Learning-Projekt s.o.l.i.d. (Systematisches
-  Objekt-Lernen und -IDentifizieren), das eine Grundlage für
-  E-Learning-Anwendungen bildet. s.o.l.i.d. bietet eine Plattform für die
-  strukturierte Darstellung von Objekten und bringt Bildmaterial und
-  objekttypische Merkmale in übersichtlicher Form zusammen.
+  <b>Div-e</b> basiert auf dem E-Learning-Projekt s.o.l.i.d. (Systematisch
+  Objekte Lernen und IDentifizieren), das eine Grundlage für
+  E-Learning-Anwendungen bildet.
+</p>
+<p>
+  ist eine Plattform für die strukturierte Darstellung von Objekten. Sie bringt
+  Bild-, Video- und Audiomaterial sowie objekttypische Merkmale in
+  übersichtlicher Form zusammen.
 </p>
 <h2>Ziele der App</h2>
 <p>
@@ -144,8 +149,7 @@
 <h4>Urheberrecht</h4>
 <p>
   Die Inhalte und Werke unterliegen deutschem Urheberrecht. Bitte beachten Sie
-  die Lizenzinformationen, die dem Medien, Inhalten und Werken beigefügt sind.
-  Bitte nutzen Sie das Feedback-Formular für Rückfragen.
+  die Lizenzinformationen, die den Medien, Inhalten und Werken beigefügt sind.
 </p>
 <h2>Kontakt & Feedback</h2>
 <p>
@@ -153,7 +157,3 @@
   <a class="info-link" (click)="feedback.showDialog()">Kontaktformular</a>.
 </p>
 <p>Wir sind dankbar über alle Hinweise zur Verbesseung der Anwendung!</p>
-<p>
-  Die Datenschutzerklärung gemäß Art 13. EU DSGVO finden Sie
-  <a class="info-link" href="/privacy"> hier.</a>
-</p>

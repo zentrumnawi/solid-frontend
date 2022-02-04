@@ -8,6 +8,7 @@ import {
   ProfilePropertyType,
 } from '../../state/profile-definition.model';
 import { MatAccordion } from '@angular/material/expansion';
+import { MediaModel } from '@zentrumnawi/solid-core';
 
 @Component({
   selector: 'solid-profile-detail',
@@ -25,13 +26,14 @@ export class DetailComponent {
   @Input() public node!: TreeNode;
   public ImageLoaded = [false];
   public ImageSelected = 0;
-  public ImageStartIndex = 0;
+  public ImageIndex = 0;
   public ImageEndIndex = 0;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   public hasDialog!: boolean;
   private _profile!: Profile;
   public hasDescription!: boolean;
   public hasDescriptionToggle = false;
+  public MediaObjectsOnlyImages!: MediaModel[];
 
   public get profile() {
     return this._profile;
@@ -41,8 +43,11 @@ export class DetailComponent {
   public set profile(profile: Profile) {
     this._profile = profile;
     this.ImageLoaded = profile.mediaObjects.map((_) => false);
-    this.onImageSelect(0);
     this.expansion?._headers.forEach((panel) => panel?.panel.close());
+    this.MediaObjectsOnlyImages = this.profile.mediaObjects.filter(
+      (x) => x.mediaType === 'image'
+    );
+    this.onImageSelect(0);
   }
 
   public onImageLoaded(index: number) {
@@ -51,17 +56,20 @@ export class DetailComponent {
 
   public onImageSelect(index: number) {
     this.ImageSelected = index;
-    if (index < 3) {
-      this.ImageStartIndex = 0;
-      this.ImageEndIndex = index + 3 + (3 - index);
-    } else if (index > this.profile.mediaObjects.length - 4) {
-      this.ImageEndIndex = this.profile.mediaObjects.length - 1;
-      this.ImageStartIndex =
-        index - 3 - (3 - (this.profile.mediaObjects.length - index - 1));
-    } else {
-      this.ImageStartIndex = index - 3;
-      this.ImageEndIndex = index + 3;
-    }
+    this.ImageIndex = this.MediaObjectsOnlyImages.findIndex(
+      (media) => media.getProfilePosition - 1 === index
+    );
+    // if (index < 3) {
+    //   this.ImageStartIndex = 0;
+    //   this.ImageEndIndex = index + 3 + (3 - index);
+    // } else if (index > this.profile.mediaObjects.length - 4) {
+    //   this.ImageEndIndex = this.profile.mediaObjects.length - 1;
+    //   this.ImageStartIndex =
+    //     index - 3 - (3 - (this.profile.mediaObjects.length - index - 1));
+    // } else {
+    //   this.ImageStartIndex = index - 3;
+    //   this.ImageEndIndex = index + 3;
+    // }
     if (this.profile.mediaObjects.length !== 0) {
       if (this.profile.mediaObjects[index].mediaType === 'audio') {
         this.hasDialog = false;
@@ -118,5 +126,24 @@ export class DetailComponent {
       behavior: 'smooth',
       block: 'nearest',
     });
+  }
+  handleNextDialogEvent() {
+    if (this.ImageIndex < this.MediaObjectsOnlyImages.length - 1) {
+      this.ImageIndex++;
+    } else {
+      this.ImageIndex = 0;
+    }
+    this.ImageSelected =
+      this.MediaObjectsOnlyImages[this.ImageIndex].getProfilePosition - 1;
+  }
+
+  handlePrevDialogEvent() {
+    if (this.ImageIndex > 0) {
+      this.ImageIndex--;
+    } else {
+      this.ImageIndex = this.MediaObjectsOnlyImages.length - 1;
+    }
+    this.ImageSelected =
+      this.MediaObjectsOnlyImages[this.ImageIndex].getProfilePosition - 1;
   }
 }

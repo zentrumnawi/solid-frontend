@@ -6,17 +6,9 @@
 
 <div *ngIf="limitedMessages.length">
   <h2>Neuigkeiten</h2>
-  <mat-list>
-    <mat-list-item *ngFor="let msg of limitedMessages">
-      <h3 matLine>
-        {{ msg.title
-        }}<span *ngIf="msg.valid_from"
-          >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
-        >
-      </h3>
-      <div *ngIf="msg.text != ''" [data]="msg.text" markdown matLine></div>
-    </mat-list-item>
-  </mat-list>
+  <solid-skeleton-message-list
+    [limitedMessages]="limitedMessages"
+  ></solid-skeleton-message-list>
 </div>
 
 <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">

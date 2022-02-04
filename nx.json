@@ -9,63 +9,66 @@
     ".eslintrc.json": "*"
   },
   "projects": {
+    "ais": {
+      "tags": []
+    },
+    "dive": {
+      "tags": []
+    },
     "geomat": {
       "tags": []
     },
-    "geomat-e2e": {
-      "tags": [],
-      "implicitDependencies": ["geomat"]
+    "planty": {
+      "tags": []
     },
     "solid-core": {
-      "tags": ["solid"]
-    },
-    "solid-quiz": {
-      "tags": ["solid"]
-    },
-    "solid-slideshow": {
       "tags": ["solid"]
     },
     "solid-glossary": {
       "tags": ["solid"]
     },
-    "solid-skeleton": {
-      "tags": ["solid"],
-      "dependencies": ["tools"]
-    },
     "solid-profile": {
       "tags": ["solid"]
     },
-    "dive": {
-      "tags": []
+    "solid-quiz": {
+      "tags": ["solid"]
     },
-    "dive-e2e": {
-      "tags": [],
-      "implicitDependencies": ["dive"]
+    "solid-skeleton": {
+      "tags": ["solid"]
     },
-    "ais": {
-      "tags": []
-    },
-    "ais-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ais"]
-    },
-    "planty": {
-      "tags": []
-    },
-    "planty-e2e": {
-      "tags": [],
-      "implicitDependencies": ["planty"]
+    "solid-slideshow": {
+      "tags": ["solid"]
     }
   },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test"]
       }
     }
   },
   "affected": {
     "defaultBase": "master"
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "geomat",
+  "generators": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
   }
 }

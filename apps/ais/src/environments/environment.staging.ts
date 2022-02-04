@@ -1,4 +1,4 @@
-import * as version from './version.json';
+import { version } from './version';
 
 export const environment = {
   preview: true,

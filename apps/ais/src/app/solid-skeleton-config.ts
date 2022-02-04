@@ -6,6 +6,7 @@ import { InfoPageContentComponent } from './info-page-content/info-page-content.
 export const skeletonConfig: SolidSkeletonConfig = {
   landingBannerContent: LandingBannerContentComponent,
   infoPageContent: InfoPageContentComponent,
+  privacyContent: PrivacyComponent,
   routingConfig: {
     landing: {
       svgIcon: 'icon',
@@ -25,12 +26,12 @@ export const skeletonConfig: SolidSkeletonConfig = {
       name: 'quiz',
       order: 2,
     },
-    privacy: {
-      component: PrivacyComponent,
-      svgIcon: 'privacy',
-      url: 'datenschutz',
-      name: 'privacy',
-    },
+    // privacy: {
+    //   component: PrivacyComponent,
+    //   svgIcon: 'privacy',
+    //   url: 'datenschutz',
+    //   name: 'privacy',
+    // },
     slideshow: {
       svgIcon: 'properties',
       title: 'Keramikwissen',
@@ -39,7 +40,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
       order: 1,
     },
     info: {
-      svgIcon: 'info',
+      svgIcon: 'info_privacy',
       name: 'info',
     },
   },

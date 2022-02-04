@@ -7,9 +7,8 @@ import { SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { catchError, map } from 'rxjs/operators';
 import { InternalSolidSkeletonConfig } from '../solid-skeleton-config';
 
-export const SOLID_SKELETON_FEEDBACK_SERVICE = new InjectionToken<FeedbackService | null>(
-  'SOLID_SKELETON_FEEDBACK_SERVICE'
-);
+export const SOLID_SKELETON_FEEDBACK_SERVICE =
+  new InjectionToken<FeedbackService | null>('SOLID_SKELETON_FEEDBACK_SERVICE');
 
 export function feedbackServiceFactory(
   http: HttpClient,
@@ -39,9 +38,11 @@ export class FeedbackService {
   }
 
   private submitFeedback(value: any): Observable<boolean> {
-    return this._http.post<{}>(`${this._config.apiUrl}/contact`, value).pipe(
-      map((_) => true),
-      catchError((err) => of(false))
-    );
+    return this._http
+      .post<unknown>(`${this._config.apiUrl}/contact`, value)
+      .pipe(
+        map((_) => true),
+        catchError((err) => of(false))
+      );
   }
 }

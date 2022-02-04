@@ -1,25 +1,19 @@
-export namespace QuizActions {
-  export class LoadQuestions {
-    static readonly type = '[Quiz] questions load';
+export class LoadQuizQuestions {
+  static readonly type = '[Quiz] questions load';
+}
 
-    constructor() {}
-  }
+export class StartQuizSession {
+  static readonly type = '[Quiz] session start';
 
-  export class StartSession {
-    static readonly type = '[Quiz] session start';
+  constructor(public questionCount: number) {}
+}
 
-    constructor(public questionCount: number) {}
-  }
+export class EndQuizSession {
+  static readonly type = '[Quiz] session end';
+}
 
-  export class EndSession {
-    static readonly type = '[Quiz] session end';
+export class QuizQuestionAnswered {
+  static readonly type = '[Quiz] question answered';
 
-    constructor() {}
-  }
-
-  export class QuestionAnswered {
-    static readonly type = '[Quiz] question answered';
-
-    constructor(public correct: boolean) {}
-  }
+  constructor(public correct: boolean) {}
 }

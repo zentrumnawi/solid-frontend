@@ -16,7 +16,7 @@ import { Slideshow } from '../../state/slideshow.model';
 import { SlideshowState } from '../../state/slideshow.state';
 import { map, takeUntil } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { SlideshowActions } from '../../state/slideshow.actions';
+import { LoadSlideshow } from '../../state/slideshow.actions';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
 import { Navigate } from '@ngxs/router-plugin';
@@ -125,7 +125,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Dispatch()
   private load() {
-    return new SlideshowActions.Load();
+    return new LoadSlideshow();
   }
 
   @Dispatch()

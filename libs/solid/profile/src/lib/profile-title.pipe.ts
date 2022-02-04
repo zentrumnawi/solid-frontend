@@ -1,4 +1,5 @@
 import { Inject, Optional, Pipe, PipeTransform } from '@angular/core';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile/di';
 
 @Pipe({ name: 'profileTitle' })

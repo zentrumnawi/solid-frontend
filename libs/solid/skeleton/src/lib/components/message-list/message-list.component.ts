@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
 })
 export class MessageListComponent {
   @Input() messages: Observable<MessageModel[]> = of([]);
+  @Input() limitedMessages?: MessageModel[];
 
   public trackByFn(index: number, msg: MessageModel): number {
     return msg.id;

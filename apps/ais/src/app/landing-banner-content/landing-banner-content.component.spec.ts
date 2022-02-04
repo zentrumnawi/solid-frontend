@@ -17,6 +17,7 @@ describe('LandingBannerContentComponent', () => {
         providers: [
           {
             provide: SOLID_SKELETON_HACKY_INJECTION,
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             useValue: () => {},
           },
         ],

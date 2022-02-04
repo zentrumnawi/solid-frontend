@@ -12,7 +12,8 @@
 }*/
 
 mat-form-field {
-  max-width: 20em;
+  width: 0;
+  transition: 0.5s ease-in-out;
   ::ng-deep {
     div.mat-form-field-wrapper {
       padding: 0;
@@ -21,6 +22,12 @@ mat-form-field {
         //but "appearance: fill" simply doesn't cut it
         background-color: rgba(0, 0, 0, 0);
         padding-bottom: 2.5px;
+        padding-left: 0;
+        margin-left: 10px;
+
+        div.mat-form-field-suffix {
+          margin-left: -0.75em;
+        }
       }
     }
 
@@ -28,6 +35,10 @@ mat-form-field {
       display: none;
     }
   }
+}
+
+.openSearchBar {
+  width: 328px;
 }
 
 mat-form-field flex {
@@ -56,9 +67,13 @@ div.content-container {
   overflow: hidden;
 
   mat-toolbar.detail-toolbar {
-    div.title {
+    flex-flow: wrap;
+    div.title-container {
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      flex: 1;
+      margin-right: 0.5em;
       span:nth-child(2) {
         font-size: 15px;
         line-height: 27px;
@@ -117,4 +132,42 @@ div.content-container {
   }
 
   height: 100%;
+}
+.title {
+  margin-right: -20em;
+}
+span.long-title {
+  ::ng-deep i {
+    display: inline-block;
+    animation: text-moving-1 12s linear infinite;
+  }
+}
+span.long-title-1 {
+  ::ng-deep i {
+    display: inline-block;
+    animation: text-moving-2 13s linear infinite;
+  }
+}
+
+@keyframes text-moving-1 {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+@keyframes text-moving-2 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }

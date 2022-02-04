@@ -1,6 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Inject, Injectable } from '@angular/core';
-import { GlossaryActions } from './glossary.actions';
+import { LoadGLossary } from './glossary.actions';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
@@ -43,8 +43,8 @@ export class GlossaryState {
     return { ...state };
   }
 
-  @Action(GlossaryActions.Load)
-  public load(ctx: StateContext<GlossaryStateModel>, {}: GlossaryActions.Load) {
+  @Action(LoadGLossary)
+  public load(ctx: StateContext<GlossaryStateModel>) {
     return this._http
       .get<GlossaryEntryModel[]>(`${this._config.apiUrl}/glossaryentries`)
       .pipe(
