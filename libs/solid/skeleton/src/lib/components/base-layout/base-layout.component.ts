@@ -4,6 +4,12 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { UpdateService } from '../../services/update.service';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 
+// lthuong
+import {
+  FeedbackService,
+  SOLID_SKELETON_FEEDBACK_SERVICE,
+} from '../../services/feedback.service';
+
 @Component({
   selector: 'solid-skeleton-base-layout',
   templateUrl: './base-layout.component.html',
@@ -16,6 +22,11 @@ export class BaseLayoutComponent implements OnInit {
 
   // noinspection JSUnusedLocalSymbols
   constructor(
+    //lthuong - add the FeedBackService to open the Kontakt formular
+    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
+    public feedback: FeedbackService,
+    
+
     @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig,
     update: UpdateService,
     private _breakpointObserver: BreakpointObserver

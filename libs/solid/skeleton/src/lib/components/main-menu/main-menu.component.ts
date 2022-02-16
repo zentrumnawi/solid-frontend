@@ -47,4 +47,5 @@ export class MainMenuComponent implements OnInit {
   private GetSlideshowCategories() {
     return new GetSlideshowCategories();
   }
+
 }
