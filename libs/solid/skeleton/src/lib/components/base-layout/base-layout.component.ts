@@ -25,8 +25,6 @@ export class BaseLayoutComponent implements OnInit {
     //lthuong - add the FeedBackService to open the Kontakt formular
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
-    
-
     @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig,
     update: UpdateService,
     private _breakpointObserver: BreakpointObserver
