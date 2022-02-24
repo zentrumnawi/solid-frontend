@@ -3,8 +3,6 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { UpdateService } from '../../services/update.service';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
-
-// lthuong
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -16,18 +14,18 @@ import {
   styleUrls: ['./base-layout.component.scss'],
 })
 export class BaseLayoutComponent implements OnInit {
+  public currentLocation : string = "";
   public FixedLayout = false;
   @ViewChild('mainmenu', { static: true }) MainMenu?: MatDrawer;
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
   // noinspection JSUnusedLocalSymbols
   constructor(
-    //lthuong - add the FeedBackService to open the Kontakt formular
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
     @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig,
     update: UpdateService,
-    private _breakpointObserver: BreakpointObserver
+    private _breakpointObserver: BreakpointObserver,
   ) {}
 
   public ngOnInit() {
@@ -74,4 +72,14 @@ export class BaseLayoutComponent implements OnInit {
   public closeMenu() {
     if (this.MainMenu && !this.FixedLayout) this.MainMenu.close();
   }
+
+  // is there any other way ?
+  public changeLocation() {
+    if(this.Glossary?.opened) {
+      this.currentLocation = "glossary";
+    } else {
+      this.currentLocation = "menu";
+    }
+  }
+
 }

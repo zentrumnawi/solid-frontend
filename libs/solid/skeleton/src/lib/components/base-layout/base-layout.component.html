@@ -15,7 +15,10 @@
         onerror='this.style.display = "none"'
       />
       <div>
-        <button (click)="feedback.showDialog()" mat-icon-button>
+        <button (click)="feedback.showDialog();
+                         changeLocation();
+                         feedback.setCurrentUrl(currentLocation)" 
+        mat-icon-button>
           <mat-icon>feedback</mat-icon>
         </button>
       </div>
@@ -38,6 +41,14 @@
         [src]="config.appLogoSmall"
         onerror='this.style.display = "none"'
       />
+      <div>
+        <button (click)="feedback.showDialog();
+                         changeLocation(); 
+                         feedback.setCurrentUrl(currentLocation)" 
+        mat-icon-button>
+          <mat-icon>feedback</mat-icon>
+        </button>
+      </div>
       <button (click)="Glossary?.toggle(); MainMenu?.close()" mat-icon-button>
         <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
       </button>

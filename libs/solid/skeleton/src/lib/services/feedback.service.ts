@@ -6,6 +6,7 @@ import { FeedbackComponent } from '../components/feedback/feedback.component';
 import { SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { catchError, map } from 'rxjs/operators';
 import { InternalSolidSkeletonConfig } from '../solid-skeleton-config';
+import { ThisReceiver } from '@angular/compiler';
 
 export const SOLID_SKELETON_FEEDBACK_SERVICE =
   new InjectionToken<FeedbackService | null>('SOLID_SKELETON_FEEDBACK_SERVICE');
@@ -23,6 +24,13 @@ export function feedbackServiceFactory(
 }
 
 export class FeedbackService {
+  /**
+   * use this variable to save the value of the component's url 
+   * 1. if the user open it from the toolbar => the url will be "menu"
+   * 2. if the user open it from the sidebar(Menu) => the url will be the current's url 
+   */
+  private currentUrl : string = ""; 
+  
   constructor(
     private _http: HttpClient,
     private _dialog: MatDialog,
@@ -44,5 +52,14 @@ export class FeedbackService {
         map((_) => true),
         catchError((err) => of(false))
       );
+  }
+
+  // using getter and setter to get/change the url from the components
+  public getCurrentUrl() : string{
+    return this.currentUrl;
+  }
+
+  public setCurrentUrl(url : string) {
+    this.currentUrl = url;
   }
 }
