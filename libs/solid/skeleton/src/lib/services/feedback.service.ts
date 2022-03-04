@@ -29,10 +29,11 @@ export class FeedbackService {
     private _config: SolidCoreConfig
   ) {}
 
-  public showDialog() {
+  public showDialog(location?: string) {
     this._dialog.open(FeedbackComponent, {
       width: '80%',
       maxWidth: '600px',
+      id: location,
       data: (data: any) => this.submitFeedback(data),
     });
   }
