@@ -3,6 +3,11 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { UpdateService } from '../../services/update.service';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
+import {
+  FeedbackService,
+  SOLID_SKELETON_FEEDBACK_SERVICE,
+} from '../../services/feedback.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -14,8 +19,10 @@ export class BaseLayoutComponent implements OnInit {
   @ViewChild('mainmenu', { static: true }) MainMenu?: MatDrawer;
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
-  // noinspection JSUnusedLocalSymbols
   constructor(
+    private _router: Router,
+    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
+    public feedback: FeedbackService,
     @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig,
     update: UpdateService,
     private _breakpointObserver: BreakpointObserver
@@ -64,5 +71,12 @@ export class BaseLayoutComponent implements OnInit {
 
   public closeMenu() {
     if (this.MainMenu && !this.FixedLayout) this.MainMenu.close();
+  }
+
+  public reportError() {
+    const location = this.Glossary?.opened
+      ? 'glossary'
+      : this._router.url.slice(1);
+    this.feedback.showDialog(location);
   }
 }

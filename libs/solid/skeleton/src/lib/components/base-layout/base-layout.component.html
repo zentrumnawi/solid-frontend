@@ -15,6 +15,11 @@
         onerror='this.style.display = "none"'
       />
       <div>
+        <button (click)="reportError()" mat-icon-button>
+          <mat-icon>feedback</mat-icon>
+        </button>
+      </div>
+      <div>
         <button (click)="Glossary?.toggle()" mat-icon-button>
           <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
         </button>
