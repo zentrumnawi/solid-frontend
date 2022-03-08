@@ -26,11 +26,11 @@ export class MainMenuComponent implements OnInit {
   @Select(CategoriesState.getSlideshowCategoriesItems)
   public Categories!: Observable<SlideshowCategory[]>;
   @Output() public openGlossarClick = new EventEmitter();
-  
+
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
-    private _router: Router,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -48,8 +48,7 @@ export class MainMenuComponent implements OnInit {
     return new GetSlideshowCategories();
   }
 
-  public currentUrl() : string {
+  public currentUrl(): string {
     return this._router.url;
   }
-
 }

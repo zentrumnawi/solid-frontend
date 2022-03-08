@@ -9,7 +9,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "strictPropertyInitialization": false,
+    "strictPropertyInitialization": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,

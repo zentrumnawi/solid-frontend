@@ -9,7 +9,7 @@
         <h3 matLine>Glossar</h3>
       </mat-list-item>
       <mat-list-item
-        (click)="navigateTo(item.route); feedback.setCurrentUrl(item.route)" 
+        (click)="navigateTo(item.route)"
         [class.active]="item.active"
       >
         <h3 matLine>
@@ -17,7 +17,7 @@
         </h3>
       </mat-list-item>
     </ng-container>
-    <mat-list-item (click)="feedback.showDialog(); feedback.setCurrentUrl(currentUrl())" *ngIf="feedback">
+    <mat-list-item (click)="feedback.showDialog()" *ngIf="feedback">
       <h3 matLine>Kontakt</h3>
     </mat-list-item>
   </mat-nav-list>

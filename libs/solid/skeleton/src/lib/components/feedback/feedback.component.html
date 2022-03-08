@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{ getTitle() }}</h1>
+<h1 mat-dialog-title>{{ formTitle }}</h1>
 <div mat-dialog-content>
   <form [formGroup]="Form">
     <mat-form-field>
@@ -15,9 +15,14 @@
     <mat-form-field>
       <input matInput formControlName="subject" placeholder="Betreff" />
     </mat-form-field>
+    <div *ngIf="getLocation()">
+      <mat-label style="font-weight: bold; text-align: center"
+        >Fehler gefunden in: {{ getLocation() }}</mat-label
+      >
+    </div>
     <mat-form-field>
       <textarea
-        cdkAutosizeMinRows="8"
+        cdkAutosizeMinRows="10"
         cdkTextareaAutosize
         formControlName="message"
         matInput
@@ -28,6 +33,6 @@
 </div>
 <div mat-dialog-actions>
   <div class="spacer"></div>
-  <button (click)="onCancelClick()" mat-button>Abbrechen</button>
+  <button type="submit" (click)="onCancelClick()" mat-button>Abbrechen</button>
   <button class="send-btn" (click)="onOkClick()" mat-button>Abschicken</button>
 </div>

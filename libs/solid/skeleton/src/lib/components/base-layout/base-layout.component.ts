@@ -7,6 +7,7 @@ import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from '../../services/feedback.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -14,7 +15,6 @@ import {
   styleUrls: ['./base-layout.component.scss'],
 })
 export class BaseLayoutComponent implements OnInit {
-  public currentLocation : string = "";
   public FixedLayout = false;
   @ViewChild('mainmenu', { static: true }) MainMenu?: MatDrawer;
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
@@ -26,6 +26,7 @@ export class BaseLayoutComponent implements OnInit {
     @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig,
     update: UpdateService,
     private _breakpointObserver: BreakpointObserver,
+    private _router: Router
   ) {}
 
   public ngOnInit() {
@@ -73,13 +74,8 @@ export class BaseLayoutComponent implements OnInit {
     if (this.MainMenu && !this.FixedLayout) this.MainMenu.close();
   }
 
-  // is there any other way ?
-  public changeLocation() {
-    if(this.Glossary?.opened) {
-      this.currentLocation = "glossary";
-    } else {
-      this.currentLocation = "menu";
-    }
+  public reportError() {
+    const location = this.Glossary?.opened ? 'glossary' : this._router.url;
+    this.feedback.showDialog(location);
   }
-
 }

@@ -15,10 +15,7 @@
         onerror='this.style.display = "none"'
       />
       <div>
-        <button (click)="feedback.showDialog();
-                         changeLocation();
-                         feedback.setCurrentUrl(currentLocation)" 
-        mat-icon-button>
+        <button (click)="reportError()" mat-icon-button>
           <mat-icon>feedback</mat-icon>
         </button>
       </div>
@@ -42,10 +39,7 @@
         onerror='this.style.display = "none"'
       />
       <div>
-        <button (click)="feedback.showDialog();
-                         changeLocation(); 
-                         feedback.setCurrentUrl(currentLocation)" 
-        mat-icon-button>
+        <button (click)="reportError()" mat-icon-button>
           <mat-icon>feedback</mat-icon>
         </button>
       </div>
