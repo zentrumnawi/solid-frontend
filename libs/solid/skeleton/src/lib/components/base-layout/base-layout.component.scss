@@ -57,11 +57,37 @@
       overflow: hidden;
     }
   }
+  
+  .reportButton {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    .button {
+      background-color: white;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      ::ng-deep {
+        .material-icons {
+          font-size: 30px;
+          margin-left: -6px;
+          margin-top: -3px;
+        }
+      }
+    }
+    .bottom {
+      background-color: white;
+      height: 6px;
+    }
+  }
 }
-img#largeLogo {
+
+.appName {
+  margin-left: -0.7em;
+}
+img#Logo {
+  margin-left: 0.7em;
   margin-right: 0.5em;
-  height: 42px;
+  height: 24px;
 }
-img#smallLogo {
-  margin-right: 0.5em;
-}
+

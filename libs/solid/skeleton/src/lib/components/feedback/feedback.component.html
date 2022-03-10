@@ -15,11 +15,6 @@
     <mat-form-field>
       <input matInput formControlName="subject" placeholder="Betreff" />
     </mat-form-field>
-    <div *ngIf="getLocation()">
-      <mat-label style="font-weight: bold; text-align: center"
-        >Fehler gefunden in: {{ getLocation() }}</mat-label
-      >
-    </div>
     <mat-form-field>
       <textarea
         cdkAutosizeMinRows="10"
@@ -29,6 +24,9 @@
         placeholder="Nachricht"
       ></textarea>
     </mat-form-field>
+    <div *ngIf="getLocation()">
+      <mat-label style="font-weight: bold">Fehler gefunden in: {{ getLocation() }}</mat-label>
+    </div>
   </form>
 </div>
 <div mat-dialog-actions>

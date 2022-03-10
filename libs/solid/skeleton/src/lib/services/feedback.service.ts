@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { FeedbackComponent } from '../components/feedback/feedback.component';
 import { SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { catchError, map } from 'rxjs/operators';
@@ -29,26 +29,21 @@ export class FeedbackService {
     private _config: SolidCoreConfig
   ) {}
 
-  public showDialog(location?: any) {
+  public showDialog(location?: string) {
     const dialogConfig = new MatDialogConfig();
-    let title = 'Kontakt und Feedback';
-    let subject = 'Feedback';
-    if (location != undefined) {
-      title = 'Fehler melden';
-      subject = 'Fehler melden';
-    }
     dialogConfig.data = {
       location: location,
-      title: title,
-      subject: subject,
-      width: '80%',
-      maxWidth: '600px',
+      title: location ? 'Fehler melden' : 'Kontakt und Feedback',
+      subject: location ? 'Fehler melden' : 'Feedback',
+      message: location ? '' + '\n\nFehler gefunden in: ' + location : ''
     };
+    dialogConfig.width = '80%';
+    dialogConfig.maxWidth = '600px';
     this._dialog.open(FeedbackComponent, dialogConfig);
   }
 
-  private submitFeedback(value: any): Observable<boolean> {
-    return this._http
+  public submitFeedback(value: any) {
+    this._http
       .post<unknown>(`${this._config.apiUrl}/contact`, value)
       .pipe(
         map((_) => true),
