@@ -5,5 +5,5 @@ export const coreConfig: SolidCoreConfig = {
   ...environment,
   markdownPlugins: [],
   appName: 'PLANTY2Learn',
-  appLogo: 'assets/info/HGU_Signet.svg'
+  appLogo: 'assets/info/HGU_Signet.svg',
 };

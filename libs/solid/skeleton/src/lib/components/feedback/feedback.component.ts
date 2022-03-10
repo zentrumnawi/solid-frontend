@@ -1,7 +1,15 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  EmailValidator,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FeedbackService, SOLID_SKELETON_FEEDBACK_SERVICE } from '../../services/feedback.service';
+import {
+  FeedbackService,
+  SOLID_SKELETON_FEEDBACK_SERVICE,
+} from '../../services/feedback.service';
 
 @Component({
   selector: 'solid-skeleton-feedback',
@@ -31,7 +39,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
       name: [''],
       email: ['', [Validators.required, Validators.email]],
       subject: [_submitFeedback.subject, Validators.required],
-      message: [_submitFeedback.message]
+      message: [_submitFeedback.message],
     });
   }
 
@@ -50,17 +58,19 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    const key = this.getLocation() ? FeedbackComponent.STORAGE_KEY_2 : FeedbackComponent.STORAGE_KEY_1;
-    sessionStorage.setItem(key,JSON.stringify(this.Form.value));
-    if(this._sent) {
+    const key = this.getLocation()
+      ? FeedbackComponent.STORAGE_KEY_2
+      : FeedbackComponent.STORAGE_KEY_1;
+    sessionStorage.setItem(key, JSON.stringify(this.Form.value));
+    if (this._sent) {
       sessionStorage.removeItem(key);
     }
   }
 
   public ngOnInit(): void {
-    const str = this.getLocation() ? 
-                sessionStorage.getItem(FeedbackComponent.STORAGE_KEY_2) : 
-                sessionStorage.getItem(FeedbackComponent.STORAGE_KEY_1);
+    const str = this.getLocation()
+      ? sessionStorage.getItem(FeedbackComponent.STORAGE_KEY_2)
+      : sessionStorage.getItem(FeedbackComponent.STORAGE_KEY_1);
     if (!str) {
       return;
     }

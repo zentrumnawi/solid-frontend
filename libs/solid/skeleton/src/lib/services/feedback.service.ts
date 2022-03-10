@@ -35,7 +35,7 @@ export class FeedbackService {
       location: location,
       title: location ? 'Fehler melden' : 'Kontakt und Feedback',
       subject: location ? 'Fehler melden' : 'Feedback',
-      message: location ? '' + '\n\nFehler gefunden in: ' + location : ''
+      message: location ? '' + '\n\nFehler gefunden in: ' + location : '',
     };
     dialogConfig.width = '80%';
     dialogConfig.maxWidth = '600px';
@@ -43,11 +43,9 @@ export class FeedbackService {
   }
 
   public submitFeedback(value: any) {
-    this._http
-      .post<unknown>(`${this._config.apiUrl}/contact`, value)
-      .pipe(
-        map((_) => true),
-        catchError((err) => of(false))
-      );
+    this._http.post<unknown>(`${this._config.apiUrl}/contact`, value).pipe(
+      map((_) => true),
+      catchError((err) => of(false))
+    );
   }
 }
