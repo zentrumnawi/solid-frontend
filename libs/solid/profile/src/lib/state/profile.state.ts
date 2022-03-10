@@ -8,7 +8,11 @@ import {
   SolidCoreConfig,
   MediaModel,
 } from '@zentrumnawi/solid-core';
-import { LoadDefinition, LoadProfiles } from './profile.actions';
+import {
+  LoadDefinition,
+  LoadDefinitionSwagger,
+  LoadProfiles,
+} from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
 import { ProfileProperty } from './profile-definition.model';
@@ -17,6 +21,7 @@ export interface ProfileStateModel {
   profiles: Profile[];
   nodes: TreeNode[];
   definition: ProfileProperty[];
+  definition_swagger: ProfileProperty[];
 }
 
 function b() {
@@ -34,6 +39,7 @@ function a() {
     profiles: [],
     nodes: [],
     definition: [],
+    definition_swagger: [],
   },
 })
 @Injectable()
@@ -73,6 +79,11 @@ export class ProfileState {
   @Selector()
   static selectDefinition(state: ProfileStateModel): ProfileProperty[] {
     return state.definition;
+  }
+
+  @Selector()
+  static selectDefinition_swagger(state: ProfileStateModel): ProfileProperty[] {
+    return state.definition_swagger;
   }
 
   @Selector()
@@ -156,7 +167,21 @@ export class ProfileState {
     return this._defService.loadDefinitions().pipe(
       tap((definition) => {
         ctx.patchState({
-          //definition,
+          definition,
+        });
+      })
+    );
+  }
+
+  @Action(LoadDefinitionSwagger)
+  public loadDefinitionSwagger(ctx: StateContext<ProfileStateModel>) {
+    if (ctx.getState().definition_swagger.length !== 0) {
+      return;
+    }
+    return this._defService.loadDefinitions_swagger()?.pipe(
+      tap((definition_swagger) => {
+        ctx.patchState({
+          definition_swagger,
         });
       })
     );
