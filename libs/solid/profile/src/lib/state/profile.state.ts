@@ -156,7 +156,7 @@ export class ProfileState {
     return this._defService.loadDefinitions().pipe(
       tap((definition) => {
         ctx.patchState({
-          definition,
+          //definition,
         });
       })
     );

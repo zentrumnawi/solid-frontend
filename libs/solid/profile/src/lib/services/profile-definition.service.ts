@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { ParameterType, Schema, Spec } from 'swagger-schema-official';
+import { OpenApi } from 'openapi-v3';
 import { map } from 'rxjs/operators';
 import {
   ProfileProperty,
@@ -25,12 +26,42 @@ export class ProfileDefinitionService {
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig
   ) {}
 
+  // check solid-frontend\node_modules\@types\openapi-v3\index.d.ts for available interfaces
+  // compare to solid-frontend\node_modules\@types\swagger-schema-official\index.d.ts
+
+  // You can compare OpenAPI 3.0 and Swagger output by renaming the loadDefinitions() functions
+  // (loadDefinitions_swagger will not be called)
+
   public loadDefinitions() {
+    return this.http.get<OpenApi>(`${this._config.apiUrl}/api/schema`).pipe(
+      map((swagger) => {
+        console.log(swagger);
+        const definitions = swagger.components?.schemas || {};
+        console.log(definitions);
+
+        // that's exactly the same output as with loadDefinitions_swagger up tp here
+
+        // But then it complains that 'properties' does not exist on OpenApiSchema
+        // in openapi-v3/index.d.ts it says that Property Definitions MUST be a Schema Object
+        // and not a JSON Schema. That might be an important clue.
+
+        //const topLevelRef =
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        // (definitions.properties!.profiles!.items as OpenApiReference)
+        // .$ref;
+        return; // this.definitionToGroup(swagger, topLevelRef);;
+      })
+    );
+  }
+
+  public loadDefinitions_swagger() {
     return this.http
-      .get<Spec>(`${this._config.apiUrl}/swagger/?format=openapi`)
+      .get<Spec>(`${this._config.apiUrl}/swagger?format=openapi`)
       .pipe(
         map((swagger) => {
+          console.log(swagger);
           const definitions = swagger.definitions || {};
+          console.log(definitions);
           const topLevelRef =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             (definitions.TreeNode.properties!.profiles!.items as Schema).$ref;
