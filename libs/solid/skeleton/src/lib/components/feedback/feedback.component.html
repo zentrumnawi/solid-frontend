@@ -25,7 +25,7 @@
       ></textarea>
     </mat-form-field>
     <div *ngIf="getLocation()">
-      <mat-label style="font-weight: bold"
+      <mat-label class="location"
         >Fehler gefunden in: {{ getLocation() }}</mat-label
       >
     </div>
@@ -34,5 +34,5 @@
 <div mat-dialog-actions>
   <div class="spacer"></div>
   <button type="submit" (click)="onCancelClick()" mat-button>Abbrechen</button>
-  <button class="send-btn" (click)="onOkClick()" mat-button>Abschicken</button>
+  <button class="send-btn" (click)="onOkClick()" mat-button>Absenden</button>
 </div>
