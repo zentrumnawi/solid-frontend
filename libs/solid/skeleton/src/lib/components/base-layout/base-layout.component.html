@@ -11,9 +11,6 @@
       />
       <span class="appName">{{ config.appName }}</span>
       <div class="spacer"></div>
-      <!-- <div class="left-border">
-        <span>Glossar</span>
-      </div> -->
       <div class="reportButton">
         <button class="button" (click)="reportError()" mat-icon-button>
           <mat-icon>error_outline</mat-icon>
@@ -32,15 +29,15 @@
           <mat-icon aria-label="Menü öffnen">menu</mat-icon>
         </button>
       </div>
-      <span [class.app-title-fixed]="FixedLayout" class="appName">{{
-        config.appName
-      }}</span>
-      <div class="spacer"></div>
       <img
         id="Logo"
         [src]="config.appLogo"
         onerror='this.style.display = "none"'
       />
+      <span [class.app-title-fixed]="FixedLayout" class="appName">{{
+        config.appName
+      }}</span>
+      <div class="spacer"></div>
       <div class="reportButton">
         <button class="button" (click)="reportError()" mat-icon-button>
           <mat-icon>error_outline</mat-icon>

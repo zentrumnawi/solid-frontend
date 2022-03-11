@@ -1,10 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import {
-  EmailValidator,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
   FeedbackService,
@@ -39,7 +34,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
       name: [''],
       email: ['', [Validators.required, Validators.email]],
       subject: [_submitFeedback.subject, Validators.required],
-      message: [_submitFeedback.message],
+      message: [''],
     });
   }
 
@@ -51,9 +46,11 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     if (!this.Form.valid) {
       this.Form.markAllAsTouched();
     } else {
-      this.feedback.submitFeedback(this.Form.value);
-      this._sent = true;
-      this._ref.close();
+      this.Form.value['message'] += '\n\n' + this._submitFeedback.location;
+      this.feedback.submitFeedback(this.Form.value).subscribe(() => {
+        this._sent = true;
+        this._ref.close();
+      });
     }
   }
 
