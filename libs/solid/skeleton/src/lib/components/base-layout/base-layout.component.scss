@@ -67,10 +67,9 @@
       background-color: white;
       border-radius: 10px 10px 0 0;
       ::ng-deep {
-        .material-icons {
-          font-size: 30px;
-          margin-left: -6px;
-          margin-top: -3px;
+        .mat-icon {
+          height: 40px;
+          width: 40px;
         }
       }
     }

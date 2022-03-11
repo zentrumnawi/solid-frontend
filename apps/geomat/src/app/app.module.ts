@@ -100,5 +100,6 @@ export class AppModule {
     addIcon('privacy');
     addIcon('info_privacy');
     addIcon('feedback');
+    addIcon('feedback_outline');
   }
 }

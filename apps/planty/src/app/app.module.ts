@@ -110,6 +110,7 @@ export class AppModule {
     addIcon('info_privacy');
     addIcon('glossary');
     addIcon('feedback');
+    addIcon('feedback_outline');
     addIcon('slideshow');
   }
 }
