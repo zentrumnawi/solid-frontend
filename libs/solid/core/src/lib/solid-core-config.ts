@@ -7,6 +7,7 @@ export interface SolidCoreConfig {
   appName: string;
   appLogo?: string;
   production: boolean;
+  error_report: boolean;
 }
 
 export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>(

@@ -11,4 +11,5 @@ export const coreConfig: SolidCoreConfig = {
   ...environment,
   markdownPlugins: [subscript, superscript, overlinePlugin],
   appName: 'GeoMat',
+  error_report: true,
 };

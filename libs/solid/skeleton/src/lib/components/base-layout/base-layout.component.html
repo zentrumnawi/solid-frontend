@@ -11,7 +11,7 @@
       />
       <span class="appName">{{ config.appName }}</span>
       <div class="spacer"></div>
-      <div class="reportButton">
+      <div class="reportButton" *ngIf="this.config.error_report">
         <button class="button" (click)="reportError()" mat-icon-button>
           <mat-icon>error_outline</mat-icon>
         </button>
@@ -38,7 +38,7 @@
         config.appName
       }}</span>
       <div class="spacer"></div>
-      <div class="reportButton">
+      <div class="reportButton" *ngIf="this.config.error_report">
         <button class="button" (click)="reportError()" mat-icon-button>
           <mat-icon>error_outline</mat-icon>
         </button>

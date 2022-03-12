@@ -36,9 +36,12 @@ export class FeedbackService {
       title: location ? 'Fehler melden' : 'Kontakt und Feedback',
       subject: location ? 'Fehler melden' : 'Feedback',
     };
-    dialogConfig.width = '80%';
-    dialogConfig.maxWidth = '600px';
-    this._dialog.open(FeedbackComponent, dialogConfig);
+    this._dialog.open(FeedbackComponent, {
+      data: dialogConfig.data,
+      width: '80%',
+      maxWidth: '600px',
+      panelClass: 'custom-dialog',
+    });
   }
 
   public submitFeedback(value: any): Observable<boolean> {
