@@ -13,7 +13,10 @@
       <div class="spacer"></div>
       <div class="reportButton" *ngIf="this.config.error_report">
         <button class="button" (click)="reportError()" mat-icon-button>
-          <mat-icon>error_outline</mat-icon>
+          <mat-icon
+            aria-label="Fehler melden"
+            svgIcon="feedback_outline"
+          ></mat-icon>
         </button>
         <div class="bottom"></div>
       </div>
@@ -40,7 +43,10 @@
       <div class="spacer"></div>
       <div class="reportButton" *ngIf="this.config.error_report">
         <button class="button" (click)="reportError()" mat-icon-button>
-          <mat-icon>error_outline</mat-icon>
+          <mat-icon
+            aria-label="Fehler melden"
+            svgIcon="feedback_outline"
+          ></mat-icon>
         </button>
         <div class="bottom"></div>
       </div>
