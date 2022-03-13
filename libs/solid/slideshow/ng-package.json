@@ -2,11 +2,6 @@
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../../dist/libs/solid/slideshow",
   "lib": {
-    "entryFile": "src/index.ts",
-    "umdModuleIds": {
-      "@ngxs/store": "ngxs-store",
-      "@ngxs/router-plugin": "ngxs-router-plugin",
-      "@zentrumnawi/solid-core": "zentrumnawi-solid-core"
-    }
+    "entryFile": "src/index.ts"
   }
 }
