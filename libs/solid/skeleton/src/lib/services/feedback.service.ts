@@ -40,7 +40,7 @@ export class FeedbackService {
       data: dialogConfig.data,
       width: '80%',
       maxWidth: '600px',
-      panelClass: 'custom-dialog',
+      panelClass: location ? 'report-dialog' : '',
     });
   }
 
