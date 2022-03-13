@@ -4,16 +4,22 @@
       <div class="right-border">
         <span>Menü</span>
       </div>
-      <span>{{ config.appName }}</span>
-      <div class="spacer"></div>
-      <!-- <div class="left-border">
-        <span>Glossar</span>
-      </div> -->
       <img
-        id="largeLogo"
-        [src]="config.appLogoLarge"
+        id="Logo"
+        [src]="config.appLogo"
         onerror='this.style.display = "none"'
       />
+      <span class="appName">{{ config.appName }}</span>
+      <div class="spacer"></div>
+      <div class="reportButton" *ngIf="this.config.error_report">
+        <button class="button" (click)="reportError()" mat-icon-button>
+          <mat-icon
+            aria-label="Fehler melden"
+            svgIcon="feedback_outline"
+          ></mat-icon>
+        </button>
+        <div class="bottom"></div>
+      </div>
       <div>
         <button (click)="Glossary?.toggle()" mat-icon-button>
           <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
@@ -26,13 +32,24 @@
           <mat-icon aria-label="Menü öffnen">menu</mat-icon>
         </button>
       </div>
-      <span [class.app-title-fixed]="FixedLayout">{{ config.appName }}</span>
-      <div class="spacer"></div>
       <img
-        id="smallLogo"
-        [src]="config.appLogoSmall"
+        id="Logo"
+        [src]="config.appLogo"
         onerror='this.style.display = "none"'
       />
+      <span [class.app-title-fixed]="FixedLayout" class="appName">{{
+        config.appName
+      }}</span>
+      <div class="spacer"></div>
+      <div class="reportButton" *ngIf="this.config.error_report">
+        <button class="button" (click)="reportError()" mat-icon-button>
+          <mat-icon
+            aria-label="Fehler melden"
+            svgIcon="feedback_outline"
+          ></mat-icon>
+        </button>
+        <div class="bottom"></div>
+      </div>
       <button (click)="Glossary?.toggle(); MainMenu?.close()" mat-icon-button>
         <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
       </button>
