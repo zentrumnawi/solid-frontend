@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @mixin glossary-component-theme($mat-theme) {
   $background: map-get($mat-theme, background);
   $foreground: map-get($mat-theme, foreground);

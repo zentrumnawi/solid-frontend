@@ -10,12 +10,12 @@ mat-list-item {
     h3.mat-line {
       padding-bottom: 0.5em;
     }
-    div.mat-list-item-content {
+    .mat-list-item-content {
       padding: 0 !important;
       flex-direction: column !important;
       align-items: baseline !important;
     }
-    div.mat-line.md-rendered {
+    .mat-line.md-rendered {
       padding-left: 0.22rem !important;
       white-space: normal !important;
     }
