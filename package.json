@@ -113,7 +113,7 @@
     "ng-packagr": "13.2.1",
     "postcss": "^8.3.9",
     "postcss-import": "^14.0.2",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "7.0.0",
     "postcss-url": "^10.1.1",
     "pre-commit": "^1.2.2",
     "prettier": "2.5.1",
@@ -124,3 +124,4 @@
     "webpack-bundle-analyzer": "^4.4.1"
   }
 }
+
