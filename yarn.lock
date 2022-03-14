@@ -3520,10 +3520,10 @@
   resolved "https://registry.yarnpkg.com/@types/npmlog/-/npmlog-4.1.4.tgz#30eb872153c7ead3e8688c476054ddca004115f6"
   integrity sha512-WKG4gTr8przEZBiJ5r3s8ZIAoMXNbOgQ+j/d5O4X3x6kZJRLNvyUJuUK/KoG3+8BaOHPhp2m7WC6JKKeovDSzQ==
 
-"@types/openseadragon@^2.4.7":
-  version "2.4.8"
-  resolved "https://registry.yarnpkg.com/@types/openseadragon/-/openseadragon-2.4.8.tgz#dfaf0206030f7e860e3c4123f44817d76c9f1867"
-  integrity sha512-vPmpmigVdMYgdPJLUbQJgpFIQCeRnoUQW4bT/l9u1yajJLSx2BUKFhURvdTDxJWYFA/+oqMeXfJl2/NLhPZq7A==
+"@types/openseadragon@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/openseadragon/-/openseadragon-3.0.2.tgz#4720875a23c9a2a09c12b73695ca0b3f337b6834"
+  integrity sha512-j+ML3ybCbEyHWPJjX7GVsR8OJakg0BSmuUpjioZYG0sYhwB9A90W8wThODLWJco5tirUBYMIIko25Z36mz8Law==
 
 "@types/overlayscrollbars@^1.12.0":
   version "1.12.1"
