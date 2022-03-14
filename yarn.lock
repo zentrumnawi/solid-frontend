@@ -2147,12 +2147,12 @@
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-13.2.6.tgz#8fe9c54dce13ec291eeef352ed773b77d1d0bed0"
   integrity sha512-N8SvRV91+/57TcAfbghc0k0tKCukw/7KqbDaLPAQTGFekJ4xMGT3elMzOyBXTH3Hvp5HL8/hiBt2tG04qiMf+w==
 
-"@ngxs-labs/dispatch-decorator@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@ngxs-labs/dispatch-decorator/-/dispatch-decorator-3.1.0.tgz#9c3f5e26fe747bb21802c5fbbf21b9b7a4e54d32"
-  integrity sha512-SmVtWDZn+tveQdjh+ngNBdn6OeRcP9XNcJCiopqcXRafBZMYM/uJdXff43IyTi4rew8WJugHIQBTJSBi+6ILdw==
+"@ngxs-labs/dispatch-decorator@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ngxs-labs/dispatch-decorator/-/dispatch-decorator-4.0.2.tgz#cccdf6fc3758ce44506ff5c07f8452f3f65a84b4"
+  integrity sha512-XXdWMDsPVGt7BCIVGgvmRNXLCVcE2wAbmC32soiLfBWFzJBxVcvZ3faY7Jan7BRKLnfyCanIu6N8JZoJ2ZVEyA==
   dependencies:
-    tslib "^2.1.0"
+    tslib "^2.3.0"
 
 "@ngxs/devtools-plugin@^3.7.1":
   version "3.7.3"
