@@ -120,7 +120,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    this.$destroyed.next();
+    this.$destroyed.next(true);
   }
 
   @Dispatch()

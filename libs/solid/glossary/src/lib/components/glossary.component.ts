@@ -80,6 +80,6 @@ export class GlossaryComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.$destroyed.next();
+    this.$destroyed.next(true);
   }
 }
