@@ -8,6 +8,10 @@ mat-form-field {
   }
 }
 
+::ng-deep .mat-button-focus-overlay {
+  background-color: transparent;
+}
+
 .location {
   color: rgba(0, 0, 0, 0.54);
   font-weight: 500;

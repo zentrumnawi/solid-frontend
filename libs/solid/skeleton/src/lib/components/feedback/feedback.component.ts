@@ -46,7 +46,8 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     if (!this.Form.valid) {
       this.Form.markAllAsTouched();
     } else {
-      this.Form.value['message'] += '\n\n' + this._submitFeedback.location;
+      this.Form.value['message'] +=
+        '\n\n' + 'Fehler gefunden in: ' + this._submitFeedback.location;
       this.feedback.submitFeedback(this.Form.value).subscribe(() => {
         this._sent = true;
         this._ref.close();
