@@ -5,4 +5,5 @@ export const coreConfig: SolidCoreConfig = {
   ...environment,
   markdownPlugins: [],
   appName: 'Div-e',
+  error_report: true,
 };

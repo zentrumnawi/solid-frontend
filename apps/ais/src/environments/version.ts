@@ -1,5 +1,5 @@
 export const version = {
   "semver": {
-    "version": ""
+    "version": "2.6.0"
   }
 }

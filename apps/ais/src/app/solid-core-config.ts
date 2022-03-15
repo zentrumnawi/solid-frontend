@@ -5,4 +5,5 @@ export const coreConfig: SolidCoreConfig = {
   ...environment,
   markdownPlugins: [],
   appName: 'AIS',
+  error_report: true,
 };
