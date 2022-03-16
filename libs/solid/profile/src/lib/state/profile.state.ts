@@ -164,7 +164,7 @@ export class ProfileState {
     if (ctx.getState().definition.length !== 0) {
       return;
     }
-    return this._defService.loadDefinitions().pipe(
+    return this._defService.loadDefinitions()?.pipe(
       tap((definition) => {
         ctx.patchState({
           definition,
