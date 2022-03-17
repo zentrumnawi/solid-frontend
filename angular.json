@@ -28,9 +28,10 @@
             ],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
-              "apps/ais/src/styles.scss"
+              "apps/ais/src/styles.scss",
+              "node_modules/intro.js/introjs.css"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/intro.js/intro.js"],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "libs/solid/core/src",
@@ -184,9 +185,10 @@
             ],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
-              "apps/dive/src/styles.scss"
+              "apps/dive/src/styles.scss",
+              "node_modules/intro.js/introjs.css"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/intro.js/intro.js"],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "libs/solid/core/src",
@@ -339,9 +341,10 @@
             ],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
-              "apps/geomat/src/styles.scss"
+              "apps/geomat/src/styles.scss",
+              "node_modules/intro.js/introjs.css"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/intro.js/intro.js"],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "libs/solid/core/src",
@@ -485,9 +488,10 @@
             ],
             "styles": [
               "./node_modules/material-icons/iconfont/material-icons.scss",
-              "apps/planty/src/styles.scss"
+              "apps/planty/src/styles.scss",
+              "node_modules/intro.js/introjs.css"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/intro.js/intro.js"],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "libs/solid/core/src",

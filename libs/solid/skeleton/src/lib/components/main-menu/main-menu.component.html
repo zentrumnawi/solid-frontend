@@ -1,8 +1,9 @@
 <!-- Without Dropdown Version -->
 <div class="main-menu-container">
   <mat-nav-list>
-    <ng-container *ngFor="let item of MenuItems | async">
+    <ng-container *ngFor="let item of MenuItems | async; let index = index">
       <mat-list-item
+        id="step35"
         *ngIf="item.route === 'info'"
         (click)="openGlossarClick.emit()"
       >
@@ -12,7 +13,7 @@
         (click)="navigateTo(item.route)"
         [class.active]="item.active"
       >
-        <h3 matLine>
+        <h3 id="step3{{ index }}" matLine>
           {{ item.title }}
         </h3>
       </mat-list-item>

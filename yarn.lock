@@ -3403,6 +3403,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/intro.js@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/intro.js/-/intro.js-3.0.2.tgz#cbf9b69f055b77582cc2cebe236e9a405b30efbd"
+  integrity sha512-kow8REgIIG42atN9vAaIdpEqVzj6WzV9m0PII8oce+an4Lc3eyfQF32/FbabbGmfWuF7TceTdd+gh74kOrXkPw==
+
 "@types/is-function@^1.0.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/is-function/-/is-function-1.0.1.tgz#2d024eace950c836d9e3335a66b97960ae41d022"
@@ -8682,6 +8687,11 @@ interpret@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-2.2.0.tgz#1a78a0b5965c40a5416d007ad6f50ad27c417df9"
   integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
+
+intro.js@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/intro.js/-/intro.js-5.0.0.tgz#4e5fab764be6c086dd0413c6e0b6dac54d5ed7b2"
+  integrity sha512-bj3R8Fb9h5I/oJIit60KciZUXBDviA4qV1iM9O/AXQvrfv78Szx9ILuRWET1W2jGge8RcM11TApxwQ0007Y1nQ==
 
 invariant@^2.2.4:
   version "2.2.4"

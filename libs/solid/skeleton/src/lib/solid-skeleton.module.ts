@@ -46,6 +46,7 @@ import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
 import { SOLID_SLIDESHOW_BASE_URL } from '@zentrumnawi/solid-slideshow';
 import { CategoriesState } from './state/slideshow-categories.state';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { IntroService } from './services/intro.service';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -99,7 +100,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     MessageListComponent,
   ],
   exports: [BaseLayoutComponent],
-  providers: [UpdateService],
+  providers: [UpdateService, IntroService],
 })
 export class SolidSkeletonModule {
   public static forRoot(
