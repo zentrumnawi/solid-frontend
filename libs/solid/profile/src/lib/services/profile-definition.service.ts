@@ -26,10 +26,6 @@ export class ProfileDefinitionService {
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig
   ) {}
 
-  //Now i created 2 ways to calling OpenAPI, one is for the 2.0 Version,
-  //another is for the 3.0 Version. Just to make sure the other APPs
-  //work as well, which haven't had the OpenAPI 3.0 Version yet.
-
   //OpenAPI 3.0
   public loadDefinitions() {
     //prevent AIS, Dive, Planty calling OpenAPI 3.0
