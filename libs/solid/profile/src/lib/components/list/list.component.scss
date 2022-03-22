@@ -6,6 +6,12 @@ mat-list-item {
 div.profile-title {
   display: flex;
   flex-direction: column;
+
+  span.name {
+    ::ng-deep p {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .selected {

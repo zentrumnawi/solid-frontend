@@ -17,7 +17,7 @@
         class="profile-title"
         [class.selected]="selectedProfileId === profile.id"
       >
-        <span [innerHTML]="profile.name | profileTitle"></span>
+        <span class="name" [data]="profile.name" markdown></span>
         <span>{{ profile.trivial_name }}</span>
       </div>
     </mat-list-item>

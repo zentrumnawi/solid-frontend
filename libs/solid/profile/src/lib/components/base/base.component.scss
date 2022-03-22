@@ -69,8 +69,7 @@ div.content-container {
   mat-toolbar.detail-toolbar {
     flex-flow: wrap;
     div.title-container {
-      display: flex;
-      flex-direction: column;
+      white-space: nowrap;
       overflow: hidden;
       flex: 1;
       margin-right: 0.5em;
@@ -135,18 +134,18 @@ div.content-container {
 }
 .title {
   margin-right: -20em;
-}
-span.long-title {
-  ::ng-deep i {
-    display: inline-block;
-    animation: text-moving-1 12s linear infinite;
+  display: inline-block;
+  ::ng-deep p {
+    margin-bottom: 0;
   }
 }
-span.long-title-1 {
-  ::ng-deep i {
-    display: inline-block;
-    animation: text-moving-2 13s linear infinite;
-  }
+div.long-title {
+  display: inline-block;
+  animation: text-moving-1 12s linear infinite;
+}
+div.long-title-1 {
+  display: inline-block;
+  animation: text-moving-2 13s linear infinite;
 }
 
 @keyframes text-moving-1 {

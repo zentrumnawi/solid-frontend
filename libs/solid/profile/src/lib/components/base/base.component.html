@@ -43,16 +43,21 @@
   </mat-toolbar>
   <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
     <div class="title-container" #title_container>
-      <span
+      <div
         class="title"
+        [data]="SelectedProfile.name"
+        markdown
         [class.long-title]="
-          title_width >= title_container_width && firstMovingAnimation
+          title_width >= title_container_width &&
+          firstMovingAnimation &&
+          !stopAnimation
         "
         [class.long-title-1]="
-          title_width >= title_container_width && !firstMovingAnimation
+          title_width >= title_container_width &&
+          !firstMovingAnimation &&
+          !stopAnimation
         "
-        [innerHTML]="SelectedProfile.name | profileTitle"
-      ></span>
+      ></div>
       <span>{{ SelectedProfile.trivial_name }}</span>
     </div>
     <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>

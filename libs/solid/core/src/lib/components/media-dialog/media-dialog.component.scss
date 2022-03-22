@@ -25,10 +25,17 @@ div.mat-dialog-title {
 
   div.title {
     display: inline-block;
-  }
+    ::ng-deep {
+      p {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-top: 0;
+      }
 
-  span.media-object-title {
-    font-weight: normal;
+      span.media-object-title {
+        font-weight: normal;
+      }
+    }
   }
 }
 

@@ -21,12 +21,13 @@
         <span
           solidProfileSelected
           class="selected"
-          [innerHTML]="node.title | profileTitle"
+          [data]="node.title"
+          markdown
         ></span>
         <span class="selected">{{ node.subtitle }}</span>
       </ng-container>
       <ng-container *ngIf="selectedProfileId !== node.id">
-        <span [innerHTML]="node.title | profileTitle"></span>
+        <span class="title-not-selected" [data]="node.title" markdown></span>
         <span>{{ node.subtitle }}</span>
       </ng-container>
     </div>

@@ -55,7 +55,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public title_container_width = 0;
   public title_width = 0;
   public firstMovingAnimation = true;
-  public timeOut: any;
+  public stopAnimation = true;
+  public timeOut_1: any;
+  public timeOut_2: any;
 
   constructor(
     private _store: Store,
@@ -141,19 +143,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
                 )?.id || -1;
             }
           }
-          this.firstMovingAnimation = true;
-          setTimeout(() => {
-            clearTimeout(this.timeOut);
-            this.title_container_width =
-              this.title_container?.nativeElement.offsetWidth;
-            this.title_width =
-              this.title_container?.nativeElement.firstChild.firstChild.offsetWidth;
-            if (this.title_container?.nativeElement.firstChild.firstChild) {
-              this.timeOut = setTimeout(() => {
-                this.firstMovingAnimation = false;
-              }, 10000);
-            }
-          }, 0);
+          this.handleLongTitle();
 
           return {
             view: params.view,
@@ -181,24 +171,30 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   public onResize() {
     this.calculateLayout();
-    this.firstMovingAnimation = false;
-    setTimeout(() => {
-      this.firstMovingAnimation = true;
-      clearTimeout(this.timeOut);
-      this.title_container_width =
-        this.title_container?.nativeElement.offsetWidth;
-      this.title_width =
-        this.title_container?.nativeElement.firstChild.firstChild.offsetWidth;
-      if (this.title_container?.nativeElement.firstChild.firstChild) {
-        this.timeOut = setTimeout(() => {
-          this.firstMovingAnimation = false;
-        }, 10000);
-      }
-    }, 0);
+    this.handleLongTitle();
   }
 
   public ngAfterViewInit(): void {
     this.calculateLayout();
+  }
+
+  public handleLongTitle() {
+    this.stopAnimation = true;
+    clearTimeout(this.timeOut_1);
+    clearTimeout(this.timeOut_2);
+    this.timeOut_1 = setTimeout(() => {
+      this.stopAnimation = false;
+      this.firstMovingAnimation = true;
+      this.title_container_width =
+        this.title_container?.nativeElement.offsetWidth;
+      this.title_width =
+        this.title_container?.nativeElement.firstChild.offsetWidth;
+      if (this.title_container?.nativeElement.firstChild.firstChild) {
+        this.timeOut_2 = setTimeout(() => {
+          this.firstMovingAnimation = false;
+        }, 10000);
+      }
+    }, 0);
   }
 
   @Dispatch()

@@ -28,6 +28,14 @@ export class MarkdownComponent {
     this.onDataChange();
   }
 
+  @Input() public set appendData(value: string) {
+    if (value !== null) {
+      this.innerHTML =
+        this._md.compile(this._data, this._inline) +
+        `<span class="media-object-title"> | ${value}<span>`;
+    }
+  }
+
   public onDataChange() {
     if (this._data) {
       this.innerHTML = this._md.compile(this._data, this._inline);
