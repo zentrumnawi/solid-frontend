@@ -1,24 +1,25 @@
 <!-- Without Dropdown Version -->
 <div class="main-menu-container">
-  <mat-nav-list>
+  <mat-nav-list id="step1">
     <ng-container *ngFor="let item of MenuItems | async; let index = index">
       <mat-list-item
-        id="step35"
+        id="step2-4-1"
         *ngIf="item.route === 'info'"
         (click)="openGlossarClick.emit()"
       >
         <h3 matLine>Glossar</h3>
       </mat-list-item>
       <mat-list-item
+        id="step2-{{ index }}"
         (click)="navigateTo(item.route)"
         [class.active]="item.active"
       >
-        <h3 id="step3{{ index }}" matLine>
+        <h3 matLine>
           {{ item.title }}
         </h3>
       </mat-list-item>
     </ng-container>
-    <mat-list-item (click)="feedback.showDialog()" *ngIf="feedback">
+    <mat-list-item id="step5" (click)="feedback.showDialog()" *ngIf="feedback">
       <h3 matLine>Kontakt</h3>
     </mat-list-item>
   </mat-nav-list>

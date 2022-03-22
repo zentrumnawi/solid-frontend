@@ -59,23 +59,14 @@ export class BaseLayoutComponent implements OnInit, AfterViewInit {
         }
         this.FixedLayout = newFixedLayout;
       });
-    if (this.Glossary) {
-      console.log(this.Glossary);
-    }
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     setTimeout(() => {
-      this.introService.featureOne((_targetElement: any) => {
-        if (_targetElement.id === 'step2') {
-          this.Glossary?.toggle();
-        }
-        if (_targetElement.id === 'step3') {
-          this.reportError();
-        }
+      this.introService.guidedTour((_targetElement: any) => {
+        return;
       });
-      this.introService.featureTwo();
-    }, 2000);
+    }, 1000);
   }
 
   public async onMenuSelectionChanged() {
