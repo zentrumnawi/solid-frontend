@@ -42,13 +42,13 @@ export class ProfileDefinitionService {
       return;
     }
     return this.http.get<OpenApi>(`${this._config.apiUrl}/api/schema`).pipe(
-      map((swagger) => {
-        const schemas = swagger.components?.schemas || {};
+      map((openapi) => {
+        const schemas = openapi.components?.schemas || {};
         const treeNode = schemas.TreeNode as OpenApiSchema;
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const profiles = treeNode.properties!.profiles! as OpenApiSchema;
         const topLevelRef = (profiles.items as OpenApiReference).$ref;
-        return this.definitionToGroup(swagger, topLevelRef);
+        return this.definitionToGroup(openapi, topLevelRef);
       })
     );
   }
@@ -177,9 +177,9 @@ export class ProfileDefinitionService {
       case 'number':
       case 'file':
         throw new Error(`Type not implemented ${type}`);
+      default:
+        return null;
     }
-    return null;
-    // tslint:enable:no-non-null-assertion
   }
 
   //OpenAPI Version 2.0
@@ -311,8 +311,8 @@ export class ProfileDefinitionService {
       case 'number':
       case 'file':
         throw new Error(`Type not implemented ${type}`);
+      default:
+        return null;
     }
-    return null;
-    // tslint:enable:no-non-null-assertion
   }
 }
