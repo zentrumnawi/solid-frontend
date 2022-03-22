@@ -40,16 +40,16 @@ export class MyHammerConfig extends HammerGestureConfig {
   };
 }
 
-const regexp = /^([^(]*)(.*)/i;
-function profileTitleFormatter(title: string): string {
-  const match = title.match(regexp) || [];
-  if (match.length !== 3) {
-    throw new Error(
-      `Failed to transform the profile title "${title}" with the supplied profile formatter`
-    );
-  }
-  return `<i>${match[1]}</i>${match[2]}`;
-}
+// const regexp = /^([^(]*)(.*)/i;
+// function profileTitleFormatter(title: string): string {
+//   const match = title.match(regexp) || [];
+//   if (match.length !== 3) {
+//     throw new Error(
+//       `Failed to transform the profile title "${title}" with the supplied profile formatter`
+//     );
+//   }
+//   return `<i>${match[1]}</i>${match[2]}`;
+// }
 
 @NgModule({
   declarations: [
@@ -88,10 +88,10 @@ function profileTitleFormatter(title: string): string {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,
     },
-    {
-      provide: SOLID_PROFILE_TITLE_FORMATTER,
-      useValue: profileTitleFormatter,
-    },
+    // {
+    //   provide: SOLID_PROFILE_TITLE_FORMATTER,
+    //   useValue: profileTitleFormatter,
+    // },
   ],
   bootstrap: [AppComponent],
 })
