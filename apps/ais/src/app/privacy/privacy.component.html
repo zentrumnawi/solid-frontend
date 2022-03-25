@@ -113,7 +113,8 @@ Art der Speicherung keinen unverhältnismäßig hohen Aufwand verursacht.<br />
   Smartphone o.ä.) spezifische, auf das Gerät bezogene Informationen zu
   speichern. Sie dienen zum einem der Benutzerfreundlichkeit von Webseiten (z.B.
   Speicherung von Logindaten). Zum jetzigen Zeitpunkt speichert AIS keine
-  Cookies auf Ihrem Gerät.
+  Cookies auf Ihrem Gerät. Cookies werden jedoch im Falle eines Fehlers vom
+  Fehlerüberwachungsdienst Sentry gespeichert (siehe unten).
 </p>
 
 <h4>Lokaler Speicher</h4>
@@ -128,12 +129,19 @@ Art der Speicherung keinen unverhältnismäßig hohen Aufwand verursacht.<br />
 <p>
   Wir verwenden den Dienst Sentry, um die technische Stabilität unserer App
   durch Überwachung der Systemstabilität und Ermittlung von Codefehlern zu
-  verbessern. Sentry dient alleine diesen Zielen und wertet keine Daten zu
-  Werbezwecken aus. Die Daten der Nutzer, wie z.B. Angaben zum Gerät oder
-  Fehlerzeitpunkt werden anonym erhoben und nicht personenbezogen genutzt sowie
-  anschließend gelöscht. Bei Abstürzen ermöglicht Sentry die Eingabe einer
-  Fehlerbeschreibung. Die im Absturzbericht eingegebene E-Mail-Adresse wird zur
-  weiteren Bearbeitung des Anliegens bei den Entwicklern gespeichert.Sentry wird
-  lokal auf Rechnern der Goethe-Universität gehostet; es werden keine Daten nach
-  außen übertragen.
+  verbessern.
+</p>
+<p>
+  Sentry dient alleine diesen Zielen und wertet keine Daten zu Werbezwecken aus.
+  Die Daten der Nutzer, wie z.B. Angaben zum Gerät oder Fehlerzeitpunkt werden
+  anonym erhoben und nicht personenbezogen genutzt sowie anschließend gelöscht.
+  Bei Abstürzen setzt Sentry ein <i>Session-Cookie</i> mit Fehlerinformationen.
+  Zusätzlich erscheint ein Fenster mit der Möglichkeit, eine Fehlerbeschreibung
+  anzugeben. Im Absturzbericht kann eine Mail-Adresse angegeben werden, die zur
+  weiteren Bearbeitung des Anliegens bei den Entwicklern gespeichert wird. Die
+  Angabe einer Mail-Adresse ist freiwillig.
+</p>
+<p>
+  Sentry wird lokal auf Rechnern der Goethe-Universität gehostet; es werden
+  keine Daten nach außen übertragen.
 </p>
