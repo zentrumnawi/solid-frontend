@@ -13,15 +13,19 @@
 
 <mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
   <mat-grid-tile
-    *ngFor="let menuItem of MenuItems | async"
+    *ngFor="let menuItem of MenuItems | async; let index = index"
     class="mat-elevation-z2"
     [routerLink]="menuItem.route"
+    id="menu-tile-{{ index }}"
   >
     <mat-icon *ngIf="menuItem.svgIcon" [svgIcon]="menuItem.svgIcon"></mat-icon>
     <mat-icon *ngIf="!menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
     <span class="navTitle">{{ menuItem.title }}</span>
   </mat-grid-tile>
-  <mat-grid-tile (click)="feedback.showDialog()" class="mat-elevation-z2"
+  <mat-grid-tile
+    id="feedback"
+    (click)="feedback.showDialog()"
+    class="mat-elevation-z2"
     ><mat-icon matListIcon svgIcon="feedback"></mat-icon>
     <span class="navTitle">Kontakt</span>
   </mat-grid-tile>

@@ -1,58 +1,76 @@
 {
-  "steps": [
+  "landing": [
     {
       "intro": "Willkommen bei PLANTY2Learn .In einer kurzen Tour möchten wir Ihnen die wesentlichen Funktionen zeigen."
     },
     {
-      "element": "#step1",
-      "intro": "Über das Menü erreichen Sie die verschiedenen Funktionen der App."
-    },
-    {
-      "element": "#step2-0",
-      "intro": "Startseite",
+      "element": "#menu",
+      "intro": "Über das Menü erreichen Sie die verschiedenen Funktionen der App.",
       "position": "right"
     },
     {
-      "title": "Steckbriefe",
-      "element": "#step2-1",
+      "element": "#menu-tile-0",
       "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Rebeneigenschaften sowie Fotos, Videos und/oder Audios.",
-      "position": "right"
+      "position": "left"
     },
     {
-      "element": "#step2-2",
+      "element": "#menu-tile-1",
       "intro": "Mit dem Selbsttest können Sie Ihren bisherigen Kenntnistand prüfen und Ihr Wissen festigen.",
       "position": "right"
     },
     {
       "title": "Wissensgalerien",
-      "element": "#step2-3",
+      "element": "#menu-tile-2",
       "intro": "Hier sind weitere Inhalte dargestellt, die Ihr Wissen erweitern und vertiefen.",
-      "position": "right"
+      "position": "left"
     },
     {
-      "element": "#step2-4",
+      "element": "#menu-tile-3",
       "intro": "Hier finden Sie allgemeine Informationen zu PLANTY2Learn und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
       "position": "right"
     },
     {
-      "element": "#step1",
-      "intro": "Über das Listenmenü können Sie zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen."
+      "element": "#menu",
+      "intro": "Über das Listenmenü können Sie zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
+      "position": "right"
     },
     {
-      "element": "#step3",
-      "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So können Sie uns schnell und einfach auf inhaltliche Fehler hinweisen."
-    },
-    {
-      "element": "#step4",
+      "element": "#glossary",
       "intro": "Hier finden Sie unser PLANTY2Learn-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
     },
     {
-      "element": "#step5",
+      "element": "#reportButton",
+      "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So können Sie uns schnell und einfach auf inhaltliche Fehler hinweisen."
+    },
+    {
+      "element": "#feedback",
       "intro": "Über das Kontaktformular können Sie uns Feedback geben, uns auf technische Probleme hinweisen oder andere Fragen an unser Team richten.",
       "position": "right"
     },
     {
       "intro": "Wir wünschen Ihnen viel Freude beim Lernen und Entdecken der PLANTY2Learn-App."
+    }
+  ],
+
+  "profile": [
+    {
+      "intro": "Steckbriefe"
+    },
+    {
+      "title": "Steckbriefe",
+      "element": "#profile-1",
+      "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Rebeneigenschaften sowie Fotos, Videos und/oder Audios.",
+      "position": "right"
+    },
+    {
+      "element": "#profile-2",
+      "intro": "Suche",
+      "position": "right"
+    },
+    {
+      "element": "#profile-3",
+      "intro": "Filter",
+      "position": "right"
     }
   ]
 }

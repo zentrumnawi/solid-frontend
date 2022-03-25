@@ -9,6 +9,7 @@ export interface SolidCoreConfig {
   production: boolean;
   error_report: boolean;
   guidedTour: Array<any>;
+  profileTour: Array<any>;
 }
 
 export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>(

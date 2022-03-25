@@ -11,7 +11,11 @@
       />
       <span class="appName">{{ config.appName }}</span>
       <div class="spacer"></div>
-      <div id="step3" class="reportButton" *ngIf="this.config.error_report">
+      <div
+        class="reportButton"
+        id="reportButton"
+        *ngIf="this.config.error_report"
+      >
         <button class="button" (click)="reportError()" mat-icon-button>
           <mat-icon
             aria-label="Fehler melden"
@@ -20,15 +24,19 @@
         </button>
         <div class="bottom"></div>
       </div>
-      <div id="step4">
+      <div id="glossary">
         <button (click)="Glossary?.toggle()" mat-icon-button>
-          <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
+          <mat-icon aria-label="Glossar öffnen" svgIcon="glossary"></mat-icon>
         </button>
       </div>
     </ng-container>
     <ng-container *ngIf="!FixedLayout">
       <div class="mainmenu-button">
-        <button (click)="MainMenu?.toggle(); Glossary?.close()" mat-icon-button>
+        <button
+          id="menu"
+          (click)="MainMenu?.toggle(); Glossary?.close()"
+          mat-icon-button
+        >
           <mat-icon aria-label="Menü öffnen">menu</mat-icon>
         </button>
       </div>
@@ -42,7 +50,12 @@
       }}</span>
       <div class="spacer"></div>
       <div class="reportButton" *ngIf="this.config.error_report">
-        <button class="button" (click)="reportError()" mat-icon-button>
+        <button
+          id="reportButton"
+          class="button"
+          (click)="reportError()"
+          mat-icon-button
+        >
           <mat-icon
             aria-label="Fehler melden"
             svgIcon="feedback_outline"
@@ -50,7 +63,11 @@
         </button>
         <div class="bottom"></div>
       </div>
-      <button (click)="Glossary?.toggle(); MainMenu?.close()" mat-icon-button>
+      <button
+        id="glossary"
+        (click)="Glossary?.toggle(); MainMenu?.close()"
+        mat-icon-button
+      >
         <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
       </button>
     </ng-container>

@@ -1,58 +1,74 @@
 {
-  "steps": [
+  "landing": [
     {
       "intro": "Willkommen bei Div-e .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
     },
     {
-      "element": "#step1",
-      "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App."
-    },
-    {
-      "element": "#step2-0",
-      "intro": "Startseite",
+      "element": "#menu",
+      "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App.",
       "position": "right"
     },
     {
-      "title": "Steckbriefe",
-      "element": "#step2-1",
+      "element": "#menu-tile-0",
       "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Pflanzeneigenschaften sowie ergänzend Fotos, Videos und/oder Audios.",
-      "position": "right"
+      "position": "left"
     },
     {
-      "element": "#step2-2",
+      "element": "#menu-tile-1",
       "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnistand prüfen und dein archäologisches Wissen festigen.",
       "position": "right"
     },
     {
-      "title": "Merkmale",
-      "element": "#step2-3",
+      "element": "#menu-tile-2",
       "intro": "Hier sind weitere Inhalte dargestellt, die dein Wissen erweitern und vertiefen.",
-      "position": "right"
+      "position": "left"
     },
     {
-      "element": "#step2-4",
+      "element": "#menu-tile-3",
       "intro": "Hier findest du allgemeine Informationen zu Div-e und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
       "position": "right"
     },
     {
-      "element": "#step1",
-      "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen."
+      "element": "#menu",
+      "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
+      "position": "right"
     },
     {
-      "element": "#step3",
-      "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
-    },
-    {
-      "element": "#step4",
+      "element": "#glossary",
       "intro": "Hier findest du unser Div-e-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
     },
     {
-      "element": "#step5",
+      "element": "#reportButton",
+      "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
+    },
+    {
+      "element": "#feedback",
       "intro": "Über das Kontaktformular kannst du uns Feedback geben, uns auf technische Probleme hinweisen oder andere Fragen an unser Team richten.",
       "position": "right"
     },
     {
       "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der Div-e-App."
+    }
+  ],
+
+  "profile": [
+    {
+      "intro": "Steckbriefe"
+    },
+    {
+      "element": "#profile-1",
+      "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Rebeneigenschaften sowie Fotos, Videos und/oder Audios.",
+      "position": "right"
+    },
+    {
+      "element": "#profile-2",
+      "intro": "Suche",
+      "position": "right"
+    },
+    {
+      "element": "#profile-3",
+      "intro": "Filter",
+      "position": "right"
     }
   ]
 }

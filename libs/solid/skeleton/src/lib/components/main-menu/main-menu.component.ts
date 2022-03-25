@@ -13,6 +13,7 @@ import { MenuItem } from '../../state/menu.model';
 import { CategoriesState } from '../../state/slideshow-categories.state';
 import { SlideshowCategory } from '../../state/slideshow-categories.model';
 import { GetSlideshowCategories } from '../../state/slideshow-categories.actions';
+import { IntroService } from '../../services/intro.service';
 
 @Component({
   selector: 'solid-skeleton-main-menu',
@@ -30,7 +31,8 @@ export class MainMenuComponent implements OnInit {
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
-    private _router: Router
+    private _router: Router,
+    private introService: IntroService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +42,14 @@ export class MainMenuComponent implements OnInit {
   @Dispatch()
   public async navigateTo(url: string) {
     this.selectMenuEntry.emit();
+    // Profile-tour test
+    // if(url == 'profile' || url == 'steckbriefe' || url == 'fundstuecke') {
+    //   setTimeout(() => {
+    //     this.introService.profileTour((_targetElement: any) => {
+    //       return;
+    //     });
+    //   }, 500);
+    // }
     return new Navigate([url]);
   }
 
