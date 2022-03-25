@@ -17,7 +17,13 @@
         class="profile-title"
         [class.selected]="selectedProfileId === profile.id"
       >
-        <span class="name" [data]="profile.name" markdown></span>
+        <span
+          *ngIf="isDiveApp"
+          class="name"
+          [data]="profile.name"
+          markdown
+        ></span>
+        <span *ngIf="!isDiveApp" class="name" [innerHTML]="profile.name"></span>
         <span>{{ profile.trivial_name }}</span>
       </div>
     </mat-list-item>

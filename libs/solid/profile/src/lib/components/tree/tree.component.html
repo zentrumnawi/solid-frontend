@@ -19,15 +19,32 @@
     <div class="profile-title">
       <ng-container *ngIf="selectedProfileId === node.id">
         <span
+          *ngIf="isDiveApp"
           solidProfileSelected
           class="selected"
           [data]="node.title"
           markdown
         ></span>
+        <span
+          *ngIf="!isDiveApp"
+          solidProfileSelected
+          class="selected"
+          [innerHTML]="node.title"
+        ></span>
         <span class="selected">{{ node.subtitle }}</span>
       </ng-container>
       <ng-container *ngIf="selectedProfileId !== node.id">
-        <span class="title-not-selected" [data]="node.title" markdown></span>
+        <span
+          *ngIf="isDiveApp"
+          class="title-not-selected"
+          [data]="node.title"
+          markdown
+        ></span>
+        <span
+          *ngIf="!isDiveApp"
+          class="title-not-selected"
+          [innerHTML]="node.title"
+        ></span>
         <span>{{ node.subtitle }}</span>
       </ng-container>
     </div>

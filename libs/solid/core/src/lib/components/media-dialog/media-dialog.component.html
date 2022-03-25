@@ -2,6 +2,7 @@
   <div mat-dialog-title class="mat-dialog-title">
     <div class="title-container" #title_container>
       <div
+        *ngIf="coreConfig.appName === this.APP_NAME_DIVE"
         class="title"
         [class.long-title]="
           title_width >= title_container_width && firstMovingAnimation
@@ -9,13 +10,27 @@
         [class.long-title-1]="
           title_width >= title_container_width && !firstMovingAnimation
         "
-        [data]="data.name"
-        [appendData]="data.mediaObject.getTitle"
-        markdown
-      ></div>
-      <!-- <span *ngIf="data.mediaObject.getTitle" class="media-object-title">
-        | {{ data.mediaObject.getTitle }}</span
-      > -->
+      >
+        <div [data]="data.name" style="display: inline" markdown></div>
+        <span *ngIf="data.mediaObject.getTitle" class="media-object-title">
+          | {{ data.mediaObject.getTitle }}</span
+        >
+      </div>
+      <div
+        *ngIf="coreConfig.appName !== this.APP_NAME_DIVE"
+        class="title"
+        [class.long-title]="
+          title_width >= title_container_width && firstMovingAnimation
+        "
+        [class.long-title-1]="
+          title_width >= title_container_width && !firstMovingAnimation
+        "
+      >
+        {{ data.name }}
+        <span *ngIf="data.mediaObject.getTitle" class="media-object-title">
+          | {{ data.mediaObject.getTitle }}</span
+        >
+      </div>
     </div>
     <div>
       <button mat-icon-button mat-dialog-close>

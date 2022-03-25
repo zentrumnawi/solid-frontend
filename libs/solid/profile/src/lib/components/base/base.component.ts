@@ -17,9 +17,13 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { LoadDefinition, LoadProfiles } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
+import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
+}
+export enum APP {
+  DIVE = 'Div-e',
 }
 
 @Component({
@@ -28,6 +32,7 @@ export function __internal__selectRouterStateParams(s: any) {
   styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent implements OnInit, AfterViewInit {
+  public APP_NAME_DIVE = APP.DIVE;
   @Select(ProfileState.selectTree)
   public $profilesTree!: Observable<TreeNode[]>;
   @Select(ProfileState.selectFlat)
@@ -61,7 +66,8 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _store: Store,
-    @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string
+    @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
   ) {
     this._store.dispatch([new LoadDefinition(), new LoadProfiles()]);
   }
@@ -188,13 +194,13 @@ export class BaseComponent implements OnInit, AfterViewInit {
       this.title_container_width =
         this.title_container?.nativeElement.offsetWidth;
       this.title_width =
-        this.title_container?.nativeElement.firstChild.offsetWidth;
-      if (this.title_container?.nativeElement.firstChild.firstChild) {
+        this.title_container?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
+      if (this.title_container?.nativeElement.firstElementChild) {
         this.timeOut_2 = setTimeout(() => {
           this.firstMovingAnimation = false;
         }, 10000);
       }
-    }, 0);
+    }, 1000);
   }
 
   @Dispatch()

@@ -11,6 +11,7 @@ export class ListComponent {
   @Input() profiles!: Observable<Profile[]>;
   @Output() selectProfile = new EventEmitter<number>();
   @Input() selectedProfileId?: number;
+  @Input() isDiveApp = false;
 
   public trackByFn(index: number, profile: Profile) {
     return profile.id;

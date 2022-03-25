@@ -45,7 +45,7 @@ div.long-title {
 }
 div.long-title-1 {
   display: inline-block;
-  animation: text-moving-2 13s linear infinite;
+  animation: text-moving-2 11s linear infinite;
 }
 
 @keyframes text-moving-1 {
@@ -64,7 +64,7 @@ div.long-title-1 {
 }
 @keyframes text-moving-2 {
   0% {
-    transform: translateX(100%);
+    margin-left: 140%;
   }
   100% {
     transform: translateX(-100%);

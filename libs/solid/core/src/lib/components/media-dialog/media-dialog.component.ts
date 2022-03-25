@@ -15,12 +15,18 @@ import { Viewer } from 'openseadragon';
 import OpenSeadragon from 'openseadragon';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
+export enum APP {
+  DIVE = 'Div-e',
+}
+
 @Component({
   selector: 'solid-core-media-dialog',
   templateUrl: './media-dialog.component.html',
   styleUrls: ['./media-dialog.component.scss'],
 })
 export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
+  public APP_NAME_DIVE = APP.DIVE;
+
   private _viewer: Viewer | null = null;
   public hasAudio = false;
   public hasDescription = false;
@@ -150,8 +156,8 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
       this.title_container_width =
         this.title_container?.nativeElement.offsetWidth;
       this.title_width =
-        this.title_container?.nativeElement.firstChild.offsetWidth;
-      if (this.title_container?.nativeElement.firstChild) {
+        this.title_container?.nativeElement.firstElementChild.offsetWidth;
+      if (this.title_container?.nativeElement.firstElementChild) {
         this.timeOut_2 = setTimeout(() => {
           this.firstMovingAnimation = false;
         }, 10500);

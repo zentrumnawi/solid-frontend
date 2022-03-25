@@ -63,7 +63,7 @@ mat-icon.clear-filter {
 div.content-container {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 64px 1fr;
+  grid-template-rows: 56px 1fr;
   overflow: hidden;
 
   mat-toolbar.detail-toolbar {
@@ -73,9 +73,12 @@ div.content-container {
       overflow: hidden;
       flex: 1;
       margin-right: 0.5em;
+      display: flex;
+      flex-direction: column;
       span:nth-child(2) {
-        font-size: 15px;
+        font-size: 14px;
         line-height: 27px;
+        margin-top: -3px;
       }
     }
   }
@@ -83,7 +86,6 @@ div.content-container {
   &.splitLayout {
     grid-template-areas: 'main-toolbar toolbar' 'view profile';
     grid-template-columns: 400px 1fr;
-    grid-template-rows: 64px 1fr;
     max-height: 100%;
 
     mat-toolbar.detail-toolbar {
@@ -132,6 +134,11 @@ div.content-container {
 
   height: 100%;
 }
+
+mat-toolbar {
+  height: 56px !important;
+}
+
 .title {
   margin-right: -20em;
   display: inline-block;
@@ -145,7 +152,7 @@ div.long-title {
 }
 div.long-title-1 {
   display: inline-block;
-  animation: text-moving-2 13s linear infinite;
+  animation: text-moving-2 11s linear infinite;
 }
 
 @keyframes text-moving-1 {
@@ -164,7 +171,7 @@ div.long-title-1 {
 }
 @keyframes text-moving-2 {
   0% {
-    transform: translateX(100%);
+    margin-left: 140%;
   }
   100% {
     transform: translateX(-100%);

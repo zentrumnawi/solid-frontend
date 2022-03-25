@@ -43,21 +43,40 @@
   </mat-toolbar>
   <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
     <div class="title-container" #title_container>
-      <div
-        class="title"
-        [data]="SelectedProfile.name"
-        markdown
-        [class.long-title]="
-          title_width >= title_container_width &&
-          firstMovingAnimation &&
-          !stopAnimation
-        "
-        [class.long-title-1]="
-          title_width >= title_container_width &&
-          !firstMovingAnimation &&
-          !stopAnimation
-        "
-      ></div>
+      <div *ngIf="coreConfig.appName === APP_NAME_DIVE">
+        <div
+          class="title"
+          [data]="SelectedProfile.name"
+          markdown
+          [class.long-title]="
+            title_width >= title_container_width &&
+            firstMovingAnimation &&
+            !stopAnimation
+          "
+          [class.long-title-1]="
+            title_width >= title_container_width &&
+            !firstMovingAnimation &&
+            !stopAnimation
+          "
+        ></div>
+      </div>
+      <div *ngIf="coreConfig.appName !== APP_NAME_DIVE">
+        <div
+          class="title"
+          [class.long-title]="
+            title_width >= title_container_width &&
+            firstMovingAnimation &&
+            !stopAnimation
+          "
+          [class.long-title-1]="
+            title_width >= title_container_width &&
+            !firstMovingAnimation &&
+            !stopAnimation
+          "
+        >
+          {{ SelectedProfile.name }}
+        </div>
+      </div>
       <span>{{ SelectedProfile.trivial_name }}</span>
     </div>
     <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
@@ -78,18 +97,21 @@
         [class.full-width]="!SelectedProfile"
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
       ></solid-profile-grid>
       <solid-profile-tree
         *ngSwitchCase="'tree'"
         (selectProfile)="selectProfile($event)"
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
       ></solid-profile-tree>
       <solid-profile-list
         *ngSwitchDefault
         (selectProfile)="selectProfile($event)"
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
       ></solid-profile-list>
     </ng-container>
   </ng-container>

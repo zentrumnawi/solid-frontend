@@ -23,7 +23,8 @@
 </ng-container>
 
 <ng-template #cardContent let-profile="profile">
-  <div class="title" [data]="profile.name" markdown></div>
+  <div *ngIf="isDiveApp" class="title" [data]="profile.name" markdown></div>
+  <div *ngIf="!isDiveApp" class="title" [innerHTML]="profile.name"></div>
   <div class="subtitle">{{ profile.trivial_name }}</div>
   <solid-core-media
     *ngIf="profile.mediaObjects.length > 0; else noImage"
