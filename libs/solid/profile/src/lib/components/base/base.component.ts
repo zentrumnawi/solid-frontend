@@ -15,7 +15,11 @@ import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { LoadDefinition, LoadProfiles } from '../../state/profile.actions';
+import {
+  LoadDefinition,
+  LoadDefinitionSwagger,
+  LoadProfiles,
+} from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 
 export function __internal__selectRouterStateParams(s: any) {
@@ -61,7 +65,12 @@ export class BaseComponent implements OnInit, AfterViewInit {
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string
   ) {
-    this._store.dispatch([new LoadDefinition(), new LoadProfiles()]);
+    this._store.dispatch([
+      new LoadDefinition(),
+      new LoadProfiles(),
+      //Load definitions from OpenAPI 2.0
+      new LoadDefinitionSwagger(),
+    ]);
   }
 
   ngOnInit(): void {

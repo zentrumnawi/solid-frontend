@@ -5,3 +5,7 @@ export class LoadProfiles {
 export class LoadDefinition {
   static readonly type = '[Profile] LoadDefinition';
 }
+
+export class LoadDefinitionSwagger {
+  static readonly type = '[Profile] LoadDefinitionSwagger';
+}
