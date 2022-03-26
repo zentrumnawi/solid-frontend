@@ -1,6 +1,21 @@
 .container {
   height: 100%;
   overflow: hidden;
+
+  mat-tab-group {
+    ::ng-deep {
+      .mat-tab-header {
+        box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+        height: 56px;
+        border-bottom: 0;
+        background-color: white;
+      }
+
+      .mat-tab-label {
+        height: 56px;
+      }
+    }
+  }
 }
 .info-container {
   overflow-y: auto;
