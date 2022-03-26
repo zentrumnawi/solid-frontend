@@ -14,12 +14,22 @@
       .mat-tab-label {
         height: 56px;
       }
+      .mat-tab-labels {
+        margin-left: 60px;
+      }
     }
   }
 }
 .info-container {
   overflow-y: auto;
   height: 100%;
+
+  .button-back {
+    position: absolute;
+    z-index: 2;
+    left: 16px;
+    top: 8px;
+  }
 }
 .privacy {
   margin-top: -1rem;

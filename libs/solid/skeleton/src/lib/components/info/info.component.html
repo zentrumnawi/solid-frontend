@@ -1,5 +1,8 @@
 <div class="container">
   <div class="info-container" #info_container>
+    <button mat-icon-button class="button-back" routerLink="">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
     <mat-tab-group [(selectedIndex)]="tabIndex">
       <mat-tab label="Info">
         <ng-container
