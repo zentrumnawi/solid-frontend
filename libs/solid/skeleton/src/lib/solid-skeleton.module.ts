@@ -36,8 +36,6 @@ import { NgxsModule } from '@ngxs/store';
 import { MenuState } from './state/menu.state';
 import { generateRoutes } from './skeleton-routing';
 import { createErrorHandler } from '@sentry/angular';
-// TODO: Get rid of lodash. It increases the bundle size...
-import * as _ from 'lodash';
 import { InfoComponent } from './components/info/info.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MessageState } from './state/message.state';
@@ -46,6 +44,7 @@ import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
 import { SOLID_SLIDESHOW_BASE_URL } from '@zentrumnawi/solid-slideshow';
 import { CategoriesState } from './state/slideshow-categories.state';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { deepMerge } from './utils/deep-merge';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -59,7 +58,7 @@ export function configFactory(
   cfg: SolidSkeletonConfig
 ): () => () => InternalSolidSkeletonConfig {
   const fn = function () {
-    return _.merge({}, defaultSkeletonConfig as any, cfg);
+    return deepMerge(defaultSkeletonConfig, cfg);
   };
   return fn;
 }
