@@ -72,13 +72,13 @@
       "position": "right"
     },
     {
-      "element": "#profile-copyright-btn",
-      "intro": "Über diesen Button kannst du die Copyright-Informationen der Fotos abrufen.",
+      "element": "#profile-detail-btn",
+      "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
       "position": "right"
     },
     {
-      "element": "#profile-detail-btn",
-      "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
+      "element": "#profile-copyright-btn",
+      "intro": "Über diesen Button kannst du die Copyright-Informationen der Fotos abrufen.",
       "position": "right"
     },
     {
@@ -89,6 +89,11 @@
     {
       "element": "#profile",
       "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Minerale."
+    }
+  ],
+  "location": [
+    {
+      "url": "steckbriefe/tree/100"
     }
   ]
 }

@@ -68,13 +68,13 @@
       "position": "right"
     },
     {
-      "element": "#profile-copyright-btn",
-      "intro": "Über diesen Button kannst du die Copyright-Informationen zu den Fotos, Videos oder Audios abrufen.",
+      "element": "#profile-detail-btn",
+      "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
       "position": "right"
     },
     {
-      "element": "#profile-detail-btn",
-      "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
+      "element": "#profile-copyright-btn",
+      "intro": "Über diesen Button kannst du die Copyright-Informationen zu den Fotos, Videos oder Audios abrufen.",
       "position": "right"
     },
     {
@@ -85,6 +85,11 @@
     {
       "element": "#profile",
       "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Reben."
+    }
+  ],
+  "location": [
+    {
+      "url": "profile/tree/2"
     }
   ]
 }

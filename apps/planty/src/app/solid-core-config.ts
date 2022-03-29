@@ -10,4 +10,5 @@ export const coreConfig: SolidCoreConfig = {
   error_report: true,
   guidedTour: guidedTour.landing,
   profileTour: guidedTour.profile,
+  profileLocation: JSON.stringify(guidedTour.location[0].url),
 };

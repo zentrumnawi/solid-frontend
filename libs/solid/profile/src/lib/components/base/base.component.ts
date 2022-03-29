@@ -18,6 +18,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { LoadDefinition, LoadProfiles } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
+import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -61,7 +62,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
   constructor(
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
-    private introService: IntroService
+    private introService: IntroService,
+
+    @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig
   ) {
     this._store.dispatch([new LoadDefinition(), new LoadProfiles()]);
   }
@@ -207,22 +210,8 @@ export class BaseComponent implements OnInit, AfterViewInit {
       localStorage.getItem('hide_profile_tour') == 'false' ||
       localStorage.getItem('hide_profile_tour') == null
     ) {
-      setTimeout(() => {
-        // need to be modified - not a good solution
-        let category = 'tree-node-category-';
-        let entry = 'tree-node-entry-';
-        for (let i = 0; i < 4; ++i) {
-          category += i;
-          document.getElementById(category)?.click();
-          category = 'tree-node-category-';
-        }
-        for (let i = 1; i < 5; ++i) {
-          entry += i;
-          document.getElementById(entry)?.click();
-          entry = 'tree-node-entry-';
-        }
-      }, 500);
-
+      const location = this.config.profileLocation;
+      this.navigateTo(location.slice(1, location.length - 1));
       setTimeout(() => {
         this.introService.profileTour((_targetElement: any) => {
           return;
@@ -263,6 +252,11 @@ export class BaseComponent implements OnInit, AfterViewInit {
     if (this.SwipeLeft > 0) {
       this.selectProfile(this.SwipeLeft);
     }
+  }
+
+  @Dispatch()
+  public async navigateTo(url: string) {
+    return new Navigate([url]);
   }
 
   public swipeRight() {
