@@ -4,6 +4,9 @@
   $background: map-get($mat-theme, background);
   solid-skeleton-base-layout {
     .base-layout-container {
+      .base-layout-main-toolbar {
+        border-bottom: 4px solid mat.get-color-from-palette($app-accent);
+      }
       mat-toolbar {
         .right-border {
           border-right: 1px solid

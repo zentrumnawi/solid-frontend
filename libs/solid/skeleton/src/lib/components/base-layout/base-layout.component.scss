@@ -13,13 +13,13 @@
   mat-sidenav-container {
     position: absolute;
     left: 0;
-    top: 56px;
+    top: 60px;
     right: 0;
     bottom: 0;
   }
 
   mat-toolbar {
-    height: 56px;
+    height: 60px;
     position: relative;
     z-index: 999;
     span {
@@ -32,7 +32,7 @@
 
     .right-border {
       width: 300px - 16px;
-      height: 56px;
+      height: 100%;
       display: inline-flex;
       align-items: center;
     }
@@ -63,6 +63,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin-top: 7px;
+    margin-right: 0.3em;
     .button {
       background-color: white;
       border-radius: 10px 10px 0 0;
@@ -76,7 +78,7 @@
     }
     .bottom {
       background-color: white;
-      height: 6px;
+      height: 10px;
     }
   }
 }
