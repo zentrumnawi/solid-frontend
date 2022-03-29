@@ -1,6 +1,5 @@
 :host {
   display: block;
-  padding: 1rem;
 }
 
 mat-card {
@@ -40,4 +39,10 @@ mat-grid-tile {
 
 .navTitle {
   padding-top: 0.5rem;
+}
+
+.landing-container {
+  overflow: auto;
+  height: calc(100vh - 60px);
+  padding: 1rem;
 }

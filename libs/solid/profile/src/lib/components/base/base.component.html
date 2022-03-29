@@ -2,14 +2,13 @@
   #contentContainer
   [class.splitLayout]="SplitLayout"
   class="content-container"
-  id="profile-1"
+  id="profile"
 >
   <mat-toolbar
     *ngIf="SplitLayout || !SelectedProfile"
     [class.full-width]="!SelectedProfile"
     class="main-toolbar"
     color="accent"
-    id="profile-2"
   >
     <mat-form-field
       appearance="fill"
@@ -37,13 +36,18 @@
       </button>
     </mat-form-field>
     <div class="spacer"></div>
-    <button id="profile-3" (click)="toggleGridTree()" mat-icon-button>
+    <button (click)="toggleGridTree()" mat-icon-button>
       <mat-icon>{{
         View === 'tree' ? 'view_module' : 'account_tree'
       }}</mat-icon>
     </button>
   </mat-toolbar>
-  <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
+  <mat-toolbar
+    id="profile-detail-toolbar"
+    *ngIf="SplitLayout && SelectedProfile"
+    class="detail-toolbar"
+    color="accent"
+  >
     <div class="title-container" #title_container>
       <span
         class="title"

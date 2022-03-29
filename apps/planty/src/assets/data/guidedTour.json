@@ -54,23 +54,37 @@
 
   "profile": [
     {
-      "intro": "Steckbriefe"
+      "element": "#profile",
+      "intro": "Willkommen in den Steckbriefe! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
     },
     {
-      "title": "Steckbriefe",
-      "element": "#profile-1",
-      "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Rebeneigenschaften sowie Fotos, Videos und/oder Audios.",
+      "element": "#profile-detail-toolbar",
+      "intro": "Hier kannst du zwischen Steckbriefen der selben Rebsorte wechseln oder den gerade offenen Steckbrief schließen.",
       "position": "right"
     },
     {
-      "element": "#profile-2",
-      "intro": "Suche",
+      "element": "#profile-media-container",
+      "intro": "Hier werden Fotos, Videos oder Audiodateien zu einer Rebe angezeigt. Über die Thumbnails kannst du zwischen diesen wechseln.",
       "position": "right"
     },
     {
-      "element": "#profile-3",
-      "intro": "Filter",
+      "element": "#profile-copyright-btn",
+      "intro": "Über diesen Button kannst du die Copyright-Informationen zu den Fotos, Videos oder Audios abrufen.",
       "position": "right"
+    },
+    {
+      "element": "#profile-detail-btn",
+      "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
+      "position": "right"
+    },
+    {
+      "element": "#profile-detail-info",
+      "intro": "In diesem Bereich sind die charakteristische Eigenschaften der Rebe übersichtlich dargestellt.",
+      "position": "right"
+    },
+    {
+      "element": "#profile",
+      "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Reben."
     }
   ]
 }

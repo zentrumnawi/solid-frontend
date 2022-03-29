@@ -1,9 +1,12 @@
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
   Inject,
   InjectionToken,
   Injector,
   Type,
+  ViewChild,
 } from '@angular/core';
 import {
   SOLID_SKELETON_CONFIG,
@@ -19,6 +22,7 @@ import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from '../../services/feedback.service';
+import { IntroService } from '../../services/intro.service';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   'solid-skeleton-hacky-injection'
@@ -29,7 +33,7 @@ export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
 })
-export class LandingComponent {
+export class LandingComponent implements AfterViewInit {
   public BannerComponent?: Type<any>;
   public BannerInjector: Injector;
   public ShowLanding = false;
@@ -41,10 +45,13 @@ export class LandingComponent {
   public Notices!: Observable<MessageModel[]>;
   limitedMessages!: MessageModel[];
 
+  @ViewChild('landing') Landing?: ElementRef;
+
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
-    injector: Injector
+    injector: Injector,
+    private introService: IntroService
   ) {
     this.BannerComponent = cfg.landingBannerContent;
     this.BannerInjector = Injector.create({
@@ -72,5 +79,22 @@ export class LandingComponent {
       this.limitedMessages = message.slice(0, 2);
       return this.limitedMessages;
     });
+  }
+
+  public ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.introService.guidedTour((_targetElement: any) => {
+        const landing = this.Landing?.nativeElement;
+        const menuOffSetTop =
+          document.getElementById('menu-grid-list')?.offsetTop;
+        if (_targetElement.id == 'menu-tile-0') {
+          if (menuOffSetTop) landing.scrollTop = menuOffSetTop - 50;
+        }
+        if (_targetElement.id == '') {
+          if (menuOffSetTop) landing.scrollTop = 0;
+        }
+        return;
+      });
+    }, 1000);
   }
 }

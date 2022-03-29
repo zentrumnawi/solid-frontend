@@ -25,22 +25,4 @@ export class IntroService {
       localStorage.setItem('hide_tour', 'true');
     }
   }
-
-  profileTour(callback: (target: any) => void) {
-    this.introJS = introJs();
-    localStorage.setItem('hide_tour', 'false'); // for testing
-    if (
-      localStorage.getItem('hide_tour') == 'false' ||
-      localStorage.getItem('hide_tour') == null
-    ) {
-      this.introJS
-        .setOptions({
-          tooltipClass: 'customTooltip',
-          steps: this.config.profileTour,
-        })
-        .onbeforechange(callback)
-        .start();
-      localStorage.setItem('hide_tour', 'true');
-    }
-  }
 }

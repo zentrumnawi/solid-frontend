@@ -17,6 +17,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { LoadDefinition, LoadProfiles } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
+import { IntroService } from '../../services/intro.service';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -59,7 +60,8 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _store: Store,
-    @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string
+    @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
+    private introService: IntroService
   ) {
     this._store.dispatch([new LoadDefinition(), new LoadProfiles()]);
   }
@@ -199,6 +201,34 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.calculateLayout();
+
+    localStorage.setItem('hide_profile_tour', 'false'); // for testing
+    if (
+      localStorage.getItem('hide_profile_tour') == 'false' ||
+      localStorage.getItem('hide_profile_tour') == null
+    ) {
+      setTimeout(() => {
+        // need to be modified - not a good solution
+        let category = 'tree-node-category-';
+        let entry = 'tree-node-entry-';
+        for (let i = 0; i < 4; ++i) {
+          category += i;
+          document.getElementById(category)?.click();
+          category = 'tree-node-category-';
+        }
+        for (let i = 1; i < 5; ++i) {
+          entry += i;
+          document.getElementById(entry)?.click();
+          entry = 'tree-node-entry-';
+        }
+      }, 500);
+
+      setTimeout(() => {
+        this.introService.profileTour((_targetElement: any) => {
+          return;
+        });
+      }, 2000);
+    }
   }
 
   @Dispatch()

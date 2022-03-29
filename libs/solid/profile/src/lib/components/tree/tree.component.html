@@ -6,6 +6,7 @@
     class="profile-link"
     matTreeNodePadding
     matTreeNodeToggle
+    id="tree-node-entry-{{ node.level }}"
   >
     <img
       [alt]="node.title"
@@ -36,6 +37,7 @@
     (click)="onNodeClick(node)"
     *matTreeNodeDef="let node; when: hasChild"
     matTreeNodePadding
+    id="tree-node-category-{{ node.level }}"
   >
     <button [attr.aria-label]="'toggle ' + node.title" mat-icon-button>
       <mat-icon class="mat-icon-rtl-mirror">

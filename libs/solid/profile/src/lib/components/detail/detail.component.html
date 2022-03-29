@@ -23,7 +23,7 @@
       <img class="no-img" src="assets/profile/no_image.svg" />
     </div>
   </ng-template>
-  <div class="scroll-container">
+  <div id="profile-media-container" class="scroll-container">
     <div
       *ngIf="profile.mediaObjects.length > 1"
       class="img-toolbar"
@@ -58,7 +58,12 @@
   </div>
 </ng-container>
 <ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
-  <mat-accordion [multi]="false" displayMode="flat" #expansion>
+  <mat-accordion
+    id="profile-detail-info"
+    [multi]="false"
+    displayMode="flat"
+    #expansion
+  >
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>Allgemein </mat-panel-title>
