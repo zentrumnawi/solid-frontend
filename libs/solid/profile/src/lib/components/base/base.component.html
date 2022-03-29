@@ -7,8 +7,10 @@
     *ngIf="SplitLayout || !SelectedProfile"
     [class.full-width]="!SelectedProfile"
     class="main-toolbar"
-    color="accent"
   >
+    <button mat-icon-button class="button-back" routerLink="">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
     <mat-form-field
       appearance="fill"
       floatLabel="auto"
@@ -41,7 +43,7 @@
       }}</mat-icon>
     </button>
   </mat-toolbar>
-  <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
+  <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar">
     <div class="title-container" #title_container>
       <div *ngIf="coreConfig.appName === APP_NAME_DIVE">
         <div
@@ -77,7 +79,9 @@
           {{ SelectedProfile.name }}
         </div>
       </div>
-      <span>{{ SelectedProfile.trivial_name }}</span>
+      <span *ngIf="SelectedProfile.trivial_name">{{
+        SelectedProfile.trivial_name
+      }}</span>
     </div>
     <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
       <mat-icon>navigate_before</mat-icon>

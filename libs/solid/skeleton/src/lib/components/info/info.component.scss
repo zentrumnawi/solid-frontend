@@ -1,10 +1,39 @@
 .container {
   height: 100%;
   overflow: hidden;
+
+  mat-tab-group {
+    ::ng-deep {
+      .mat-tab-header {
+        box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+        height: 56px;
+        border-bottom: 0;
+        background-color: white;
+        margin-left: 60px;
+      }
+      .mat-tab-label {
+        height: 56px;
+      }
+    }
+  }
 }
 .info-container {
   overflow-y: auto;
   height: 100%;
+
+  .button-back-container {
+    background-color: white;
+    box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+    height: 56px;
+    width: 64px;
+    position: absolute;
+
+    .button-back {
+      position: absolute;
+      left: 16px;
+      top: 8px;
+    }
+  }
 }
 .privacy {
   margin-top: -1rem;

@@ -94,6 +94,8 @@ div.content-container {
 
     mat-toolbar.main-toolbar {
       grid-area: main-toolbar;
+      width: 101%;
+      padding-right: 25px;
     }
 
     mat-toolbar.full-width {
@@ -103,6 +105,7 @@ div.content-container {
     solid-profile-detail {
       grid-area: profile;
       overflow-y: auto;
+      margin-top: 3px;
     }
 
     solid-profile-tree,
@@ -130,6 +133,7 @@ div.content-container {
   solid-profile-detail {
     grid-row: 2;
     overflow-y: auto;
+    margin-top: 3px;
   }
 
   height: 100%;
@@ -137,6 +141,7 @@ div.content-container {
 
 mat-toolbar {
   height: 56px !important;
+  // background-color: white;
 }
 
 .title {
