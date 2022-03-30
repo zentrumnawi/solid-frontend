@@ -1,99 +1,100 @@
 {
-  "landing": [
-    {
-      "intro": "Willkommen bei GeoMat .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
-    },
-    {
-      "element": "#menu",
-      "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App.",
-      "position": "right"
-    },
-    {
-      "element": "#menu-tile-0",
-      "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Mineraleigenschaften sowie ergänzend Fotos, Videos und/oder Audios.",
-      "position": "left"
-    },
-    {
-      "element": "#menu-tile-1",
-      "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnistand prüfen und dein mineralogisches Wissen festigen.",
-      "position": "right"
-    },
-    {
-      "element": "#menu-tile-2",
-      "intro": "Hier sind weitere Inhalte dargestellt, die dein Wissen erweitern und vertiefen.",
-      "position": "left"
-    },
-    {
-      "element": "#menu-tile-3",
-      "intro": "Hier werden die 7 Kristallsysteme als interaktive, dreidimensionale Körper angezeigt.",
-      "position": "right"
-    },
-    {
-      "element": "#menu-tile-4",
-      "intro": "Hier findest du allgemeine Informationen zu GeoMatdigital und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
-      "position": "left"
-    },
-    {
-      "element": "#menu",
-      "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
-      "position": "right"
-    },
-    {
-      "element": "#glossary",
-      "intro": "Hier findest du unser GeoMat-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
-    },
-    {
-      "element": "#reportButton",
-      "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
-    },
-    {
-      "element": "#feedback",
-      "intro": "Über das Kontaktformular kannst du uns Feedback geben, uns auf technische Probleme hinweisen oder andere Fragen an unser Team richten.",
-      "position": "right"
-    },
-    {
-      "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der GeoMat-App."
-    }
-  ],
+  "landing": {
+    "location": "",
+    "steps": [
+      {
+        "intro": "Willkommen bei GeoMat .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
+      },
+      {
+        "element": "#menu",
+        "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-0",
+        "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Mineraleigenschaften sowie ergänzend Fotos, Videos und/oder Audios.",
+        "position": "left"
+      },
+      {
+        "element": "#menu-tile-1",
+        "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnistand prüfen und dein mineralogisches Wissen festigen.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-2",
+        "intro": "Hier sind weitere Inhalte dargestellt, die dein Wissen erweitern und vertiefen.",
+        "position": "left"
+      },
+      {
+        "element": "#menu-tile-3",
+        "intro": "Hier werden die 7 Kristallsysteme als interaktive, dreidimensionale Körper angezeigt.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-4",
+        "intro": "Hier findest du allgemeine Informationen zu GeoMatdigital und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
+        "position": "left"
+      },
+      {
+        "element": "#feedback",
+        "intro": "Über das Kontaktformular kannst du uns Feedback geben, uns auf technische Probleme hinweisen oder andere Fragen an unser Team richten.",
+        "position": "right"
+      },
+      {
+        "element": "#menu",
+        "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
+        "position": "right"
+      },
+      {
+        "element": "#glossary",
+        "intro": "Hier findest du unser GeoMat-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
+      },
+      {
+        "element": "#reportButton",
+        "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
+      },
+      {
+        "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der GeoMat-App."
+      }
+    ]
+  },
 
-  "profile": [
-    {
-      "element": "#profile",
-      "intro": "Willkommen in den Steckbriefe! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
-    },
-    {
-      "element": "#profile-detail-toolbar",
-      "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Rebeneigenschaften sowie Fotos, Videos und/oder Audios.",
-      "position": "right"
-    },
-    {
-      "element": "#profile-media-container",
-      "intro": "Hier werden hochauflösende Fotos zu dem Mineral angezeigt. Über die Thumbnails kannst du zwischen diesen wechseln.",
-      "position": "right"
-    },
-    {
-      "element": "#profile-detail-btn",
-      "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
-      "position": "right"
-    },
-    {
-      "element": "#profile-copyright-btn",
-      "intro": "Über diesen Button kannst du die Copyright-Informationen der Fotos abrufen.",
-      "position": "right"
-    },
-    {
-      "element": "#profile-detail-info",
-      "intro": "In diesem Bereich sind wichtige Bestimmungseigenschaften des Minerals übersichtlich dargestellt.",
-      "position": "right"
-    },
-    {
-      "element": "#profile",
-      "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Minerale."
-    }
-  ],
-  "location": [
-    {
-      "url": "steckbriefe/tree/100"
-    }
-  ]
+  "profile": {
+    "location": "steckbriefe/tree/100",
+    "steps": [
+      {
+        "element": "#profile",
+        "intro": "Willkommen in den Steckbriefe! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
+      },
+      {
+        "element": "#profile-view",
+        "intro": "Hier kannst du zwischen zwei verschiedenen Ansichten der Steckbriefübersicht wechseln.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-toolbar",
+        "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Rebeneigenschaften sowie Fotos, Videos und/oder Audios.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-btn",
+        "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-copyright-btn",
+        "intro": "Über diesen Button kannst du die Copyright-Informationen der Fotos abrufen.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-info",
+        "intro": "In diesem Bereich sind wichtige Bestimmungseigenschaften des Minerals übersichtlich dargestellt.",
+        "position": "right"
+      },
+      {
+        "element": "#profile",
+        "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Minerale."
+      }
+    ]
+  }
 }

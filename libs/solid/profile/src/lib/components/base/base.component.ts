@@ -19,6 +19,7 @@ import { LoadDefinition, LoadProfiles } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
+import { Router } from '@angular/router';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -63,7 +64,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
     private introService: IntroService,
-
+    private _router: Router,
     @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig
   ) {
     this._store.dispatch([new LoadDefinition(), new LoadProfiles()]);
@@ -210,8 +211,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
       localStorage.getItem('hide_profile_tour') == 'false' ||
       localStorage.getItem('hide_profile_tour') == null
     ) {
-      const location = this.config.profileLocation;
-      this.navigateTo(location.slice(1, location.length - 1));
+      this.navigateTo(this.config.profileTourLocation);
       setTimeout(() => {
         this.introService.profileTour((_targetElement: any) => {
           return;

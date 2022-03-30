@@ -1,91 +1,96 @@
 {
-  "landing": [
-    {
-      "intro": "Willkommen bei AIS .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
-    },
-    {
-      "element": "#menu",
-      "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App."
-    },
-    {
-      "element": "#menu-tile-0",
-      "intro": "Hier sind archäologische Inhalte dargestellt, die dein Wissen erweitern und vertiefen.",
-      "position": "right"
-    },
-    {
-      "element": "#menu-tile-1",
-      "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnistand prüfen und dein archäologisches Wissen festigen.",
-      "position": "right"
-    },
-    {
-      "element": "#menu-tile-2",
-      "intro": "Hier findest du in übersichtlicher Form Fundstückbeispiele mit ihren Eigenschaften sowie Fotos, Videos und/oder Audios.",
-      "position": "right"
-    },
-    {
-      "element": "#menu-tile-3",
-      "intro": "Hier findest du allgemeine Informationen zu AIS und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
-      "position": "right"
-    },
-    {
-      "element": "#menu",
-      "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen."
-    },
-    {
-      "element": "#glossary",
-      "intro": "Hier findest du unser AIS-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
-    },
-    {
-      "element": "#reportButton",
-      "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
-    },
-    {
-      "element": "#feedback",
-      "intro": "Über das Kontaktformular kannst du uns Feedback geben, uns auf technische Probleme hinweisen oder andere Fragen an unser Team richten.",
-      "position": "right"
-    },
-    {
-      "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der AIS-App."
-    }
-  ],
+  "landing": {
+    "location": "",
+    "steps": [
+      {
+        "intro": "Willkommen bei AIS .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
+      },
+      {
+        "element": "#menu",
+        "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App."
+      },
+      {
+        "element": "#menu-tile-0",
+        "intro": "Hier sind archäologische Inhalte dargestellt, die dein Wissen erweitern und vertiefen.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-1",
+        "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnistand prüfen und dein archäologisches Wissen festigen.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-2",
+        "intro": "Hier findest du in übersichtlicher Form Fundstückbeispiele mit ihren Eigenschaften sowie Fotos, Videos und/oder Audios.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-3",
+        "intro": "Hier findest du allgemeine Informationen zu AIS und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
+        "position": "right"
+      },
+      {
+        "element": "#feedback",
+        "intro": "Über das Kontaktformular kannst du uns Feedback geben, uns auf technische Probleme hinweisen oder andere Fragen an unser Team richten.",
+        "position": "right"
+      },
+      {
+        "element": "#menu",
+        "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen."
+      },
+      {
+        "element": "#glossary",
+        "intro": "Hier findest du unser AIS-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
+      },
+      {
+        "element": "#reportButton",
+        "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
+      },
+      {
+        "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der AIS-App."
+      }
+    ]
+  },
 
-  "profile": [
-    {
-      "element": "#profile",
-      "intro": "Willkommen in den Fundstücke! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
-    },
-    {
-      "element": "#profile-detail-toolbar",
-      "intro": "Hier kannst du zwischen Steckbriefen der selben Keramikgattung wechseln oder den gerade offenen Steckbrief schließen."
-    },
-    {
-      "element": "#profile-media-container",
-      "intro": "Hier werden Fotos, Videos oder Audiodateien zu einem Fundstück angezeigt. Über die Thumbnails kannst du zwischen diesen wechseln."
-    },
-    {
-      "element": "#profile-detail-btn",
-      "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern oder kurze Fotobeschreibungstexte.",
-      "position": "right"
-    },
-    {
-      "element": "#profile-copyright-btn",
-      "intro": "Über diesen Button kannst du die Copyright-Informationen zu den Fotos, Videos oder Audios abrufen.",
-      "position": "right"
-    },
-    {
-      "element": "#profile-detail-info",
-      "intro": "In diesem Bereich sind die charakteristische Eigenschaften des individuellen Fundstücks übersichtlich dargestellt.",
-      "position": "right"
-    },
-    {
-      "element": "#profile",
-      "intro": "Wir wünschen dir viel Spaß beim Erkunden verschiedener Fundstücke."
-    }
-  ],
-
-  "location": [
-    {
-      "url": "fundstuecke/tree/37"
-    }
-  ]
+  "profile": {
+    "location": "fundstuecke/tree/37",
+    "steps": [
+      {
+        "element": "#profile",
+        "intro": "Willkommen in den Fundstücke! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
+      },
+      {
+        "element": "#profile-view",
+        "intro": "Hier kannst du zwischen zwei verschiedenen Ansichten der Steckbriefübersicht wechseln.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-toolbar",
+        "intro": "Hier kannst du zwischen Steckbriefen der selben Keramikgattung wechseln oder den gerade offenen Steckbrief schließen."
+      },
+      {
+        "element": "#profile-media-container",
+        "intro": "Hier werden Fotos, Videos oder Audiodateien zu einem Fundstück angezeigt. Über die Thumbnails kannst du zwischen diesen wechseln."
+      },
+      {
+        "element": "#profile-detail-btn",
+        "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern oder kurze Fotobeschreibungstexte.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-copyright-btn",
+        "intro": "Über diesen Button kannst du die Copyright-Informationen zu den Fotos, Videos oder Audios abrufen.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-info",
+        "intro": "In diesem Bereich sind die charakteristische Eigenschaften des individuellen Fundstücks übersichtlich dargestellt.",
+        "position": "right"
+      },
+      {
+        "element": "#profile",
+        "intro": "Wir wünschen dir viel Spaß beim Erkunden verschiedener Fundstücke."
+      }
+    ]
+  }
 }
