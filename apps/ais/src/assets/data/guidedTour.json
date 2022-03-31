@@ -12,7 +12,7 @@
       {
         "element": "#menu-tile-0",
         "intro": "Hier sind archäologische Inhalte dargestellt, die dein Wissen erweitern und vertiefen.",
-        "position": "right"
+        "position": "left"
       },
       {
         "element": "#menu-tile-1",
@@ -22,7 +22,7 @@
       {
         "element": "#menu-tile-2",
         "intro": "Hier findest du in übersichtlicher Form Fundstückbeispiele mit ihren Eigenschaften sowie Fotos, Videos und/oder Audios.",
-        "position": "right"
+        "position": "left"
       },
       {
         "element": "#menu-tile-3",

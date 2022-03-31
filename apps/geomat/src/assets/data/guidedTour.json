@@ -60,7 +60,7 @@
   },
 
   "profile": {
-    "location": "steckbriefe/tree/100",
+    "location": "steckbriefe/tree/10",
     "steps": [
       {
         "element": "#profile",

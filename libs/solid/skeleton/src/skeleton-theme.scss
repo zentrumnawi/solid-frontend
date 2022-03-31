@@ -20,6 +20,17 @@
     flex: 1 0 auto;
   }
 
+  .customTooltip .introjs-tooltip-header {
+    background-color: mat.get-color-from-palette($app-primary, 600);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    height: 30px;
+  }
+
+  .customTooltip .introjs-bullets ul li a.active {
+    background: mat.get-color-from-palette($app-primary, 600);
+  }
+
   @include base-layout-component($mat-theme);
   @include main-menu-component($mat-theme);
   @include solid-skeleton-landing-component-theme($mat-theme);
@@ -28,105 +39,100 @@
 }
 
 .customTooltip {
-  min-width: 275px !important;
+  min-width: 289px !important;
   background-color: transparent !important;
+  box-shadow: none !important ;
 }
 
 .customTooltip .introjs-tooltiptext {
   background-color: white;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 400;
   text-align: center;
   font-family: 'Roboto';
-}
-
-.customTooltip .introjs-tooltip-header {
-  background-color: lightgray;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  padding: 25px 15px 0;
 }
 
 .customTooltip .introjs-bullets {
   background-color: white;
-}
-
-.customTooltip .introjs-tooltipbuttons {
-  background-color: lightgray;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-.customTooltip .introjs-skipbutton {
-  color: white;
-  padding: 3px 0px 11px 13px;
+  padding: 30px 0px 0px 0px;
 }
 
 .customTooltip .introjs-bullets ul li a {
-  background-color: black;
+  background-color: lightgray;
+  width: 9px;
+  height: 9px;
 }
 
-.customTooltip .introjs-bullets ul li a.active {
-  background: red;
+.customTooltip .introjs-tooltipbuttons {
+  background-color: white;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border-top: none;
+  padding: 0px;
+  height: 24px;
+}
+
+.customTooltip .introjs-skipbutton {
+  color: black;
+  padding: 0px 3px 2px 0px;
+  font-weight: 500;
+  font-size: 34px;
+  margin: -11px -15px;
 }
 
 .customTooltip .introjs-nextbutton {
   box-sizing: border-box;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: black;
-  border: 2px solid black;
-  border-radius: 11px;
-  color: white;
+  background-color: white;
   cursor: pointer;
-  display: flex;
-  align-self: center;
-  font-size: 15px;
-  font-weight: 20;
-  line-height: 1;
-  margin: 0px;
-  padding: 0.2em 2em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: monospace;
+  bottom: 49px;
+  font-size: 0px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 4px;
+  margin: 13%;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 
 .customTooltip .introjs-nextbutton:hover {
   background-color: white;
+  color: black;
 }
 
 .customTooltip .introjs-nextbutton:focus {
-  background-color: black;
-  color: white;
+  background-color: transparent;
+  color: black;
+  box-shadow: none;
+  border: solid black;
+  border-width: 0 3px 3px 0;
 }
 
 .customTooltip .introjs-prevbutton {
   box-sizing: border-box;
-  appearance: none;
   background-color: white;
-  border: 2px solid black;
-  border-radius: 11px;
-  color: black;
   cursor: pointer;
-  display: flex;
-  align-self: center;
-  font-size: 15px;
-  font-weight: 20;
-  line-height: 1;
-  margin: 0px;
-  padding: 0.2em 2em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: monospace;
-}
-
-.customTooltip .introjs-prevbutton:hover {
-  background-color: red;
-  color: white;
+  bottom: 49px;
+  font-size: 0px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 4px;
+  margin: 13%;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
 
 .customTooltip .introjs-prevbutton:focus {
+  background-color: transparent;
+  color: black;
+  box-shadow: none;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+}
+
+.customTooltip .introjs-prevbutton:hover {
   background-color: white;
   color: black;
 }
