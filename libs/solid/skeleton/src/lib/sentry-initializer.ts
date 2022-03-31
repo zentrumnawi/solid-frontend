@@ -7,7 +7,7 @@ export const initSentry = (cfg?: SentryConfig) => {
     dsn: cfg?.dsn,
     environment: cfg?.environment,
     release: cfg?.version.semver.version,
-    //release: '2.4.0',
+    autoSessionTracking: false,
     integrations: [
       // new Integrations.BrowserTracing({
       //   tracingOrigins: ["localhost", "https://yourserver.io/api"],

@@ -63,6 +63,15 @@ div.profile-title {
 
 .selected {
   font-weight: bold;
+  ::ng-deep p {
+    margin-bottom: 0;
+  }
+}
+
+.title-not-selected {
+  ::ng-deep p {
+    margin-bottom: 0;
+  }
 }
 
 span.hidden {

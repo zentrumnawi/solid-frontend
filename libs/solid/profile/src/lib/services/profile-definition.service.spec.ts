@@ -39,7 +39,7 @@ describe('ProfileDefinitionService', () => {
   });
 
   it('check simple string property', () => {
-    const prop = service.schemaToProperty(
+    const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'name',
       testSwagger.definitions.Plant.properties.name as Schema
@@ -55,7 +55,7 @@ describe('ProfileDefinitionService', () => {
   });
 
   it('check string enum property', () => {
-    const prop = service.schemaToProperty(
+    const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'interaction',
       testSwagger.definitions.Plant.properties.interaction as Schema
@@ -71,7 +71,7 @@ describe('ProfileDefinitionService', () => {
   });
 
   it('check array enum property', () => {
-    const prop = service.schemaToProperty(
+    const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'habitat',
       testSwagger.definitions.Plant.properties.habitat as Schema
@@ -87,7 +87,7 @@ describe('ProfileDefinitionService', () => {
   });
 
   it('check integer property', () => {
-    const prop = service.schemaToProperty(
+    const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'cnt_germ',
       testSwagger.definitions.Plant.properties.cnt_germ as Schema
@@ -103,7 +103,7 @@ describe('ProfileDefinitionService', () => {
   });
 
   it('check boolean property', () => {
-    const prop = service.schemaToProperty(
+    const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'arr_special',
       testSwagger.definitions.Plant.properties.arr_special as Schema
@@ -119,7 +119,7 @@ describe('ProfileDefinitionService', () => {
   });
 
   it('check group property', () => {
-    const defs = service.definitionToGroup(
+    const defs = service.definitionToGroup_swagger(
       {
         definitions: {
           Leaf: testSwagger.definitions.Leaf,

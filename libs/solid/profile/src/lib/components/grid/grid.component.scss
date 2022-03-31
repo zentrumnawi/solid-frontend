@@ -21,6 +21,10 @@ div.card {
     padding: 0.5em 0.5em 0 0.5em;
     font-weight: 500;
     font-size: 14px;
+
+    ::ng-deep p {
+      margin-bottom: 0;
+    }
   }
   div.subtitle {
     padding-top: 0;

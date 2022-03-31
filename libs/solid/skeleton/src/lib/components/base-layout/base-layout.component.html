@@ -1,5 +1,5 @@
 <div class="base-layout-container mat-typography">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="base-layout-main-toolbar">
     <ng-container *ngIf="FixedLayout">
       <div class="right-border">
         <span>Menü</span>
@@ -63,12 +63,8 @@
         </button>
         <div class="bottom"></div>
       </div>
-      <button
-        id="glossary"
-        (click)="Glossary?.toggle(); MainMenu?.close()"
-        mat-icon-button
-      >
-        <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
+      <button (click)="Glossary?.toggle(); MainMenu?.close()" mat-icon-button>
+        <mat-icon aria-label="Glossar öffnen" svgIcon="glossary"></mat-icon>
       </button>
     </ng-container>
   </mat-toolbar>

@@ -20,9 +20,11 @@ export class DetailComponent {
   expansion?: MatAccordion;
   @ViewChild('thumbnails') thumbnails: ElementRef | undefined;
   public PropertyTypes = ProfilePropertyType;
-  @Select(ProfileState.selectDefinition) $ProfileDefinition!: Observable<
-    ProfileProperty[]
-  >;
+  @Select(ProfileState.selectDefinition)
+  $ProfileDefinition!: Observable<ProfileProperty[]>;
+  //Load definitions from OpenAPI 2.0
+  @Select(ProfileState.selectDefinition_swagger)
+  $ProfileDefinition_Swagger!: Observable<ProfileProperty[]>;
   @Input() public node!: TreeNode;
   public ImageLoaded = [false];
   public ImageSelected = 0;

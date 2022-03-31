@@ -15,14 +15,20 @@ import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { LoadDefinition, LoadProfiles } from '../../state/profile.actions';
+import {
+  LoadDefinition,
+  LoadDefinitionSwagger,
+  LoadProfiles,
+} from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { Router } from '@angular/router';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
+}
+export enum APP {
+  DIVE = 'Div-e',
 }
 
 @Component({
@@ -31,6 +37,7 @@ export function __internal__selectRouterStateParams(s: any) {
   styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent implements OnInit, AfterViewInit {
+  public APP_NAME_DIVE = APP.DIVE;
   @Select(ProfileState.selectTree)
   public $profilesTree!: Observable<TreeNode[]>;
   @Select(ProfileState.selectFlat)
@@ -58,16 +65,22 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public title_container_width = 0;
   public title_width = 0;
   public firstMovingAnimation = true;
-  public timeOut: any;
+  public stopAnimation = true;
+  public timeOut_1: any;
+  public timeOut_2: any;
 
   constructor(
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
     private introService: IntroService,
-    private _router: Router,
-    @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
   ) {
-    this._store.dispatch([new LoadDefinition(), new LoadProfiles()]);
+    this._store.dispatch([
+      new LoadDefinition(),
+      new LoadProfiles(),
+      //Load definitions from OpenAPI 2.0
+      new LoadDefinitionSwagger(),
+    ]);
   }
 
   ngOnInit(): void {
@@ -147,19 +160,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
                 )?.id || -1;
             }
           }
-          this.firstMovingAnimation = true;
-          setTimeout(() => {
-            clearTimeout(this.timeOut);
-            this.title_container_width =
-              this.title_container?.nativeElement.offsetWidth;
-            this.title_width =
-              this.title_container?.nativeElement.firstChild.firstChild.offsetWidth;
-            if (this.title_container?.nativeElement.firstChild.firstChild) {
-              this.timeOut = setTimeout(() => {
-                this.firstMovingAnimation = false;
-              }, 10000);
-            }
-          }, 0);
+          this.handleLongTitle();
 
           return {
             view: params.view,
@@ -187,20 +188,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   public onResize() {
     this.calculateLayout();
-    this.firstMovingAnimation = false;
-    setTimeout(() => {
-      this.firstMovingAnimation = true;
-      clearTimeout(this.timeOut);
-      this.title_container_width =
-        this.title_container?.nativeElement.offsetWidth;
-      this.title_width =
-        this.title_container?.nativeElement.firstChild.firstChild.offsetWidth;
-      if (this.title_container?.nativeElement.firstChild.firstChild) {
-        this.timeOut = setTimeout(() => {
-          this.firstMovingAnimation = false;
-        }, 10000);
-      }
-    }, 0);
+    this.handleLongTitle();
   }
 
   public ngAfterViewInit(): void {
@@ -211,13 +199,32 @@ export class BaseComponent implements OnInit, AfterViewInit {
       localStorage.getItem('hide_profile_tour') == 'false' ||
       localStorage.getItem('hide_profile_tour') == null
     ) {
-      this.navigateTo(this.config.profileTourLocation);
+      this.navigateTo(this.coreConfig.profileTourLocation);
       setTimeout(() => {
         this.introService.profileTour((_targetElement: any) => {
           return;
         });
       }, 2000);
     }
+  }
+
+  public handleLongTitle() {
+    this.stopAnimation = true;
+    clearTimeout(this.timeOut_1);
+    clearTimeout(this.timeOut_2);
+    this.timeOut_1 = setTimeout(() => {
+      this.stopAnimation = false;
+      this.firstMovingAnimation = true;
+      this.title_container_width =
+        this.title_container?.nativeElement.offsetWidth;
+      this.title_width =
+        this.title_container?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
+      if (this.title_container?.nativeElement.firstElementChild) {
+        this.timeOut_2 = setTimeout(() => {
+          this.firstMovingAnimation = false;
+        }, 10000);
+      }
+    }, 0);
   }
 
   @Dispatch()
