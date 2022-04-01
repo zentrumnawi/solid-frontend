@@ -10,21 +10,16 @@ import {
 } from '../../services/feedback.service';
 import { MenuState } from '../../state/menu.state';
 import { MenuItem } from '../../state/menu.model';
-import { CategoriesState } from '../../state/slideshow-categories.state';
-import { SlideshowCategory } from '../../state/slideshow-categories.model';
-import { GetSlideshowCategories } from '../../state/slideshow-categories.actions';
 
 @Component({
   selector: 'solid-skeleton-main-menu',
   templateUrl: './main-menu.component.html',
   styleUrls: ['./main-menu.component.scss'],
 })
-export class MainMenuComponent implements OnInit {
+export class MainMenuComponent {
   @Output() public selectMenuEntry = new EventEmitter();
   @Select(MenuState.getMenuItems)
   public MenuItems!: Observable<MenuItem[]>;
-  @Select(CategoriesState.getSlideshowCategoriesItems)
-  public Categories!: Observable<SlideshowCategory[]>;
   @Output() public openGlossarClick = new EventEmitter();
 
   constructor(
@@ -33,19 +28,10 @@ export class MainMenuComponent implements OnInit {
     private _router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.GetSlideshowCategories();
-  }
-
   @Dispatch()
   public async navigateTo(url: string) {
     this.selectMenuEntry.emit();
     return new Navigate([url]);
-  }
-
-  @Dispatch()
-  private GetSlideshowCategories() {
-    return new GetSlideshowCategories();
   }
 
   public currentUrl(): string {
