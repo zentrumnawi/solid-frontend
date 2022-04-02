@@ -41,8 +41,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MessageState } from './state/message.state';
 import { MessageListComponent } from './components/message-list/message-list.component';
 import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
-import { SOLID_SLIDESHOW_BASE_URL } from '@zentrumnawi/solid-slideshow';
-import { CategoriesState } from './state/slideshow-categories.state';
+import { SOLID_SLIDESHOW_APP_ROUTING_CONFIG } from '@zentrumnawi/solid-slideshow';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { deepMerge } from './utils/deep-merge';
 
@@ -51,7 +50,6 @@ import { deepMerge } from './utils/deep-merge';
 export const ngxsFeatureModule = NgxsModule.forFeature([
   MenuState,
   MessageState,
-  CategoriesState,
 ]);
 
 export function configFactory(
@@ -137,8 +135,8 @@ export class SolidSkeletonModule {
           useValue: cfg.routingConfig.profile?.url ?? 'profile',
         },
         {
-          provide: SOLID_SLIDESHOW_BASE_URL,
-          useValue: cfg.routingConfig.slideshow?.url ?? 'slideshow',
+          provide: SOLID_SLIDESHOW_APP_ROUTING_CONFIG,
+          useValue: cfg.routingConfig.slideshow,
         },
       ],
     };
