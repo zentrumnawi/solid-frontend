@@ -1,11 +1,15 @@
 <div class="container">
+  <div class="spacer"></div>
+  <div class="button-back-container">
+    <button mat-icon-button class="button-back" routerLink="">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
   <div class="info-container" #info_container>
-    <div class="button-back-container">
-      <button mat-icon-button class="button-back" routerLink="">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-    </div>
-    <mat-tab-group [(selectedIndex)]="tabIndex">
+    <mat-tab-group
+      [(selectedIndex)]="tabIndex"
+      (selectedIndexChange)="scrollToTop()"
+    >
       <mat-tab label="Info">
         <ng-container
           *ngComponentOutlet="InfoPageContentComponent"

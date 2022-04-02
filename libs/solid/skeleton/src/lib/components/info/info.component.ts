@@ -32,12 +32,11 @@ export class InfoComponent {
   moveTabToPrivacy(event: any) {
     event.preventDefault();
     this.tabIndex = 1;
-    this.scrollToTop();
   }
 
   public scrollToTop() {
     const info_container = this.info_container;
-    if (!info_container) {
+    if (!info_container || info_container.nativeElement.scrollTop === 0) {
       return;
     }
     info_container.nativeElement.scrollTop = 0;
