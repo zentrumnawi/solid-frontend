@@ -78,9 +78,9 @@
           <div
             *ngIf="isMobile"
             [class.small-spacer-mobile]="
-              Toolbar?.nativeElement.offsetHeight <= 50
+              Toolbar?.nativeElement.offsetHeight <= 60
             "
-            [class.big-spacer-mobile]="Toolbar?.nativeElement.offsetHeight > 50"
+            [class.big-spacer-mobile]="Toolbar?.nativeElement.offsetHeight > 60"
           ></div>
           <div [data]="page.text" markdown></div>
           <div class="page-images">
