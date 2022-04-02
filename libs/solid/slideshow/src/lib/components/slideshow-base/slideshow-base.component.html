@@ -1,0 +1,11 @@
+<solid-slideshow-slideshow-select
+  *ngIf="!DeepLinkFirstLoad"
+  [class.disappear]="SelectedSlideshow"
+  [class.appear]="!SelectedSlideshow"
+  (selectSlideshow)="selectSlideshow($event)"
+></solid-slideshow-slideshow-select>
+<solid-slideshow
+  *ngIf="SelectedSlideshow"
+  [selectSlideshow]="Slideshow | async"
+  (backButtonClick)="goBack()"
+></solid-slideshow>

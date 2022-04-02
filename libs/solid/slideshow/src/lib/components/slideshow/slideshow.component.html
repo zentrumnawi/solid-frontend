@@ -1,18 +1,14 @@
 <div class="container">
-  <!-- Slideshow for big screen version -->
   <div class="slideshow-container">
-    <div
-      class="toolbar-container"
-      *ngIf="!isMobile && (Slideshow | async) as slideshow"
-      #toolbar
-    >
+    <!-- Slideshow toolbar for big screen version -->
+    <div class="toolbar-container" *ngIf="!isMobile && slideshow" #toolbar>
       <div class="toolbar">
         <button mat-icon-button class="button-back" (click)="goBack()">
           <mat-icon>arrow_back</mat-icon>
         </button>
         <div class="step-actions">
           <button
-            [disabled]="page_index === 1"
+            [disabled]="page_index === 0"
             mat-icon-button
             class="button-left"
             (click)="onPrevStepClick()"
@@ -22,14 +18,14 @@
           <div class="title">
             <h2>{{ slideshow.title }}</h2>
             <span>
-              {{ slideshow.pages[page_index - 1].title }} ({{ page_index }}/{{
+              {{ slideshow.pages[page_index].title }} ({{ page_index + 1 }}/{{
                 slideshow.pages.length
               }})
             </span>
           </div>
           <button
-            [disabled]="page_index === slideshow.pages.length"
-            (click)="onNextStepClick(slideshow.pages.length)"
+            [disabled]="page_index + 1 === slideshow.pages.length"
+            (click)="onNextStepClick()"
             class="button-right"
             mat-icon-button
           >
@@ -39,14 +35,14 @@
       </div>
       <mat-progress-bar
         mode="determinate"
-        value="{{ (page_index / slideshow.pages.length) * 100 }}"
+        value="{{ ((page_index + 1) / slideshow.pages.length) * 100 }}"
       ></mat-progress-bar>
     </div>
 
-    <!-- Slideshow for Mobile version -->
+    <!-- Slideshow toolbar for Mobile version -->
     <div
       class="back-button-toolbar-container"
-      *ngIf="isMobile && (Slideshow | async) as slideshow"
+      *ngIf="isMobile && slideshow"
       [class.nav-up]="toolbar_up"
       [class.nav-down]="toolbar_down"
       #toolbar
@@ -59,6 +55,7 @@
       </div>
     </div>
 
+    <!-- Slideshow content for 2 versions -->
     <div
       class="slideshow-content-container"
       (scroll)="hideAndShowToolbar()"
@@ -68,15 +65,15 @@
     >
       <mat-horizontal-stepper
         #stepper
-        (panend)="onPanEnd($event, slideshow.pages.length)"
-        *ngIf="Slideshow | async as slideshow"
+        (panend)="onPanEnd($event)"
+        *ngIf="slideshow"
         labelPosition="bottom"
         linear="false"
       >
         <mat-step
           *ngFor="let page of slideshow.pages"
           [label]="page.title"
-          [state]="slideshow.pages.length >= page_index ? 'done' : ''"
+          [state]="slideshow.pages.length >= page_index + 1 ? 'done' : ''"
         >
           <div
             *ngIf="isMobile"
@@ -103,7 +100,7 @@
                       [hasDialog]="true"
                       [hasAttributions]="true"
                       [name]="img.title"
-                      [slideshowPageChanged]="page_index"
+                      [slideshowPageChanged]="page_index + 1"
                     ></solid-core-media>
                     <p markdown class="caption" [data]="img.caption"></p>
                   </mat-card-content>
@@ -114,18 +111,20 @@
         </mat-step>
       </mat-horizontal-stepper>
     </div>
+
+    <!-- Slideshow lower toolbar for Mobile version -->
     <div
       class="navigation-toolbar-container"
-      *ngIf="isMobile && (Slideshow | async) as slideshow"
+      *ngIf="isMobile && slideshow"
       #navigation
     >
       <mat-progress-bar
         mode="determinate"
-        value="{{ (page_index / slideshow.pages.length) * 100 }}"
+        value="{{ ((page_index + 1) / slideshow.pages.length) * 100 }}"
       ></mat-progress-bar>
       <div #toolbar class="navigation-toolbar">
         <button
-          [disabled]="page_index === 1"
+          [disabled]="page_index === 0"
           mat-icon-button
           class="button-left"
           (click)="onPrevStepClick()"
@@ -133,13 +132,13 @@
           <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
         </button>
         <span>
-          {{ slideshow.pages[page_index - 1].title }} ({{ page_index }}/{{
+          {{ slideshow.pages[page_index].title }} ({{ page_index + 1 }}/{{
             slideshow.pages.length
           }})
         </span>
         <button
-          [disabled]="page_index === slideshow.pages.length"
-          (click)="onNextStepClick(slideshow.pages.length)"
+          [disabled]="page_index + 1 === slideshow.pages.length"
+          (click)="onNextStepClick()"
           class="button-right"
           mat-icon-button
         >
