@@ -1,128 +1,11 @@
-<div class="container">
-  <div class="slideshow-container">
-    <!-- Slideshow toolbar for big screen version -->
-    <div class="toolbar-container" *ngIf="!isMobile && slideshow" #toolbar>
-      <div class="toolbar">
-        <button mat-icon-button class="button-back" (click)="goBack()">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
-        <div class="step-actions">
-          <button
-            [disabled]="page_index === 0"
-            mat-icon-button
-            class="button-left"
-            (click)="onPrevStepClick()"
-          >
-            <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
-          </button>
-          <div class="title">
-            <h2>{{ slideshow.title }}</h2>
-            <span>
-              {{ slideshow.pages[page_index].title }} ({{ page_index + 1 }}/{{
-                slideshow.pages.length
-              }})
-            </span>
-          </div>
-          <button
-            [disabled]="page_index + 1 === slideshow.pages.length"
-            (click)="onNextStepClick()"
-            class="button-right"
-            mat-icon-button
-          >
-            <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
-          </button>
-        </div>
-      </div>
-      <mat-progress-bar
-        mode="determinate"
-        value="{{ ((page_index + 1) / slideshow.pages.length) * 100 }}"
-      ></mat-progress-bar>
-    </div>
-
-    <!-- Slideshow toolbar for Mobile version -->
-    <div
-      class="back-button-toolbar-container"
-      *ngIf="isMobile && slideshow"
-      [class.nav-up]="toolbar_up"
-      [class.nav-down]="toolbar_down"
-      #toolbar
-    >
-      <div class="back-button-toolbar">
-        <button mat-icon-button class="button-back" (click)="goBack()">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
-        <h2>{{ slideshow.title }}</h2>
-      </div>
-    </div>
-
-    <!-- Slideshow content for 2 versions -->
-    <div
-      class="slideshow-content-container"
-      (scroll)="hideAndShowToolbar()"
-      [class.mobile-slideshow]="isMobile"
-      [class.more-slideshow]="Toolbar?.nativeElement.offsetHeight > 70"
-      #slideshow_container
-    >
-      <mat-horizontal-stepper
-        #stepper
-        (panend)="onPanEnd($event)"
-        *ngIf="slideshow"
-        labelPosition="bottom"
-        linear="false"
-      >
-        <mat-step
-          *ngFor="let page of slideshow.pages"
-          [label]="page.title"
-          [state]="slideshow.pages.length >= page_index + 1 ? 'done' : ''"
-        >
-          <div
-            *ngIf="isMobile"
-            [class.small-spacer-mobile]="
-              Toolbar?.nativeElement.offsetHeight <= 60
-            "
-            [class.big-spacer-mobile]="Toolbar?.nativeElement.offsetHeight > 60"
-          ></div>
-          <div [data]="page.text" markdown></div>
-          <div class="page-images">
-            <div
-              [class.equal1Image]="page.images.length === 1"
-              [class.lessThan3Images]="page.images.length < 3"
-              [class.greaterEqual3Images]="page.images.length >= 3"
-            >
-              <ng-container *ngFor="let img of page.images">
-                <mat-card *ngIf="img.image">
-                  <mat-card-header>
-                    <mat-card-title>{{ img.title }}</mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content>
-                    <solid-core-media
-                      [image]="img.img"
-                      [hasDialog]="true"
-                      [hasAttributions]="true"
-                      [name]="img.title"
-                      [slideshowPageChanged]="page_index + 1"
-                    ></solid-core-media>
-                    <p markdown class="caption" [data]="img.caption"></p>
-                  </mat-card-content>
-                </mat-card>
-              </ng-container>
-            </div>
-          </div>
-        </mat-step>
-      </mat-horizontal-stepper>
-    </div>
-
-    <!-- Slideshow lower toolbar for Mobile version -->
-    <div
-      class="navigation-toolbar-container"
-      *ngIf="isMobile && slideshow"
-      #navigation
-    >
-      <mat-progress-bar
-        mode="determinate"
-        value="{{ ((page_index + 1) / slideshow.pages.length) * 100 }}"
-      ></mat-progress-bar>
-      <div #toolbar class="navigation-toolbar">
+<div class="slideshow-container">
+  <!-- Slideshow toolbar for big screen version -->
+  <div class="toolbar-container" *ngIf="!isMobile && slideshow" #toolbar>
+    <div class="toolbar">
+      <button mat-icon-button class="button-back" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="step-actions">
         <button
           [disabled]="page_index === 0"
           mat-icon-button
@@ -131,11 +14,14 @@
         >
           <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
         </button>
-        <span>
-          {{ slideshow.pages[page_index].title }} ({{ page_index + 1 }}/{{
-            slideshow.pages.length
-          }})
-        </span>
+        <div class="title">
+          <h2>{{ slideshow.title }}</h2>
+          <span>
+            {{ slideshow.pages[page_index].title }} ({{ page_index + 1 }}/{{
+              slideshow.pages.length
+            }})
+          </span>
+        </div>
         <button
           [disabled]="page_index + 1 === slideshow.pages.length"
           (click)="onNextStepClick()"
@@ -145,6 +31,116 @@
           <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
         </button>
       </div>
+    </div>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ ((page_index + 1) / slideshow.pages.length) * 100 }}"
+    ></mat-progress-bar>
+  </div>
+
+  <!-- Slideshow toolbar for Mobile version -->
+  <div
+    class="back-button-toolbar-container"
+    *ngIf="isMobile && slideshow"
+    [class.nav-up]="toolbar_up"
+    [class.nav-down]="toolbar_down"
+    #toolbar
+  >
+    <div class="back-button-toolbar">
+      <button mat-icon-button class="button-back" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h2>{{ slideshow.title }}</h2>
+    </div>
+  </div>
+
+  <!-- Slideshow content for 2 versions -->
+  <div
+    class="slideshow-content-container"
+    (scroll)="hideAndShowToolbar()"
+    [style.max-height]="
+      'calc(100% - ' + Navigation?.nativeElement.offsetHeight + 'px)'
+    "
+    #slideshow_container
+  >
+    <mat-horizontal-stepper
+      #stepper
+      (panend)="onPanEnd($event)"
+      *ngIf="slideshow"
+      labelPosition="bottom"
+      linear="false"
+    >
+      <mat-step
+        *ngFor="let page of slideshow.pages"
+        [label]="page.title"
+        [state]="slideshow.pages.length >= page_index + 1 ? 'done' : ''"
+      >
+        <div
+          *ngIf="isMobile"
+          [style.height]="Toolbar?.nativeElement.offsetHeight - 6 + 'px'"
+        ></div>
+        <div [data]="page.text" markdown></div>
+        <div class="page-images">
+          <div
+            [class.equal1Image]="page.images.length === 1"
+            [class.lessThan3Images]="page.images.length < 3"
+            [class.greaterEqual3Images]="page.images.length >= 3"
+          >
+            <ng-container *ngFor="let img of page.images">
+              <mat-card *ngIf="img.image">
+                <mat-card-header>
+                  <mat-card-title>{{ img.title }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <solid-core-media
+                    [image]="img.img"
+                    [hasDialog]="true"
+                    [hasAttributions]="true"
+                    [name]="img.title"
+                    [slideshowPageChanged]="page_index + 1"
+                  ></solid-core-media>
+                  <p markdown class="caption" [data]="img.caption"></p>
+                </mat-card-content>
+              </mat-card>
+            </ng-container>
+          </div>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+
+  <!-- Slideshow lower toolbar for Mobile version -->
+  <div
+    class="navigation-toolbar-container"
+    *ngIf="isMobile && slideshow"
+    #navigation
+  >
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ ((page_index + 1) / slideshow.pages.length) * 100 }}"
+    ></mat-progress-bar>
+    <div #toolbar class="navigation-toolbar">
+      <button
+        [disabled]="page_index === 0"
+        mat-icon-button
+        class="button-left"
+        (click)="onPrevStepClick()"
+      >
+        <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+      </button>
+      <span>
+        {{ slideshow.pages[page_index].title }} ({{ page_index + 1 }}/{{
+          slideshow.pages.length
+        }})
+      </span>
+      <button
+        [disabled]="page_index + 1 === slideshow.pages.length"
+        (click)="onNextStepClick()"
+        class="button-right"
+        mat-icon-button
+      >
+        <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+      </button>
     </div>
   </div>
 </div>
