@@ -14,6 +14,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./info.component.scss'],
 })
 export class InfoComponent {
+  public tourLandingChecked = false;
+  public tourProfileChecked = false;
+  public landingChecked = false;
+
   public InfoPageContentComponent: Type<any>;
   public PrivacyContentComponent: Type<any>;
   @Select(MessageState.getChangelog)
@@ -41,5 +45,15 @@ export class InfoComponent {
       return;
     }
     info_container.nativeElement.scrollTop = 0;
+  }
+
+  public toggleChange() {
+    if (this.tourLandingChecked) localStorage.setItem('hide_tour', 'false');
+    else localStorage.setItem('hide_tour', 'true');
+    if (this.tourProfileChecked)
+      localStorage.setItem('hide_profile_tour', 'false');
+    else localStorage.setItem('hide_profile_tour', 'true');
+    if (this.landingChecked) localStorage.setItem('hide_landing', 'false');
+    else localStorage.setItem('hide_landing', 'true');
   }
 }

@@ -15,7 +15,7 @@ export class IntroService {
         tooltipClass: 'customTooltip',
         steps: this.config.profileTour,
       })
-      .onbeforechange(callback)
+      .onafterchange(callback)
       .start();
     localStorage.setItem('hide_profile_tour', 'true');
   }

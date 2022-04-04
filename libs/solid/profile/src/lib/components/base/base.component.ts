@@ -194,17 +194,26 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    localStorage.setItem('hide_profile_tour', 'false'); // for testing
     if (
       localStorage.getItem('hide_profile_tour') == 'false' ||
       localStorage.getItem('hide_profile_tour') == null
     ) {
-      this.navigateTo(this.coreConfig.profileTourLocation);
       setTimeout(() => {
+        // testing - not done yet
         this.introService.profileTour((_targetElement: any) => {
+          if (_targetElement.id == 'profile-view') {
+            setTimeout(() => {
+              this.navigateTo(this.coreConfig.profileTourLocation);
+            }, 500);
+          }
+          if (_targetElement.id == 'profile') {
+            this.navigateTo(this.baseUrl);
+          }
+          this.introService.introProfile.refresh(true);
+
           return;
         });
-      }, 2000);
+      }, 1000);
     }
   }
 

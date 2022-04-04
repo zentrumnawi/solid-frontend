@@ -39,3 +39,13 @@
   margin-top: -1rem;
   padding: 0 1rem 1rem 1rem;
 }
+
+.setting-container {
+  padding: 0.8rem 1rem 1rem 1rem;
+}
+
+.setting-container mat-slide-toggle {
+  margin: 7px 0;
+  display: block;
+  font-size: 14px;
+}
