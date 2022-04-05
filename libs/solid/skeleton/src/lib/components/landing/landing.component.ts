@@ -23,6 +23,9 @@ import {
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from '../../services/feedback.service';
 import { IntroService } from '../../services/intro.service';
+import { Navigate } from '@ngxs/router-plugin';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   'solid-skeleton-hacky-injection'
@@ -50,6 +53,7 @@ export class LandingComponent implements AfterViewInit {
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     injector: Injector,
     private introService: IntroService
   ) {
@@ -82,19 +86,41 @@ export class LandingComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
+    // testing - still need to be modified
     setTimeout(() => {
       this.introService.guidedTour((_targetElement: any) => {
+        const id = _targetElement.id;
         const landing = this.Landing?.nativeElement;
         const menuOffSetTop =
           document.getElementById('menu-grid-list')?.offsetTop;
-        if (_targetElement.id == 'menu-tile-0') {
+        const settingIndex = this.coreConfig.guidedTour.data.settingTabIndex;
+        if (id.slice(0, 9) == 'menu-tile' || id == 'feedback') {
           if (menuOffSetTop) landing.scrollTop = menuOffSetTop - 50;
-        }
-        if (_targetElement.id == '') {
-          if (menuOffSetTop) landing.scrollTop = 0;
+        } else if (id == 'reportButton') {
+          this.navigateTo('/info');
+          setTimeout(() => {
+            for (let i = 0; i < settingIndex; ++i) {
+              const settingTab = document.getElementById(
+                'mat-tab-label-' + i + '-' + settingIndex
+              );
+              if (settingTab) settingTab.click();
+            }
+          }, 400);
+          setTimeout(() => {
+            this.introService.introJS.refresh(true);
+          }, 1000);
+        } else if (id == 'glossary') {
+          this.navigateTo('/');
+        } else if (id == 'menu') {
+          this.introService.introJS.refresh(false);
         }
         return;
       });
     }, 1000);
+  }
+
+  @Dispatch()
+  public async navigateTo(url: string) {
+    return new Navigate([url]);
   }
 }

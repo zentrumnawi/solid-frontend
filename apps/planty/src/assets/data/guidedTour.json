@@ -3,6 +3,7 @@
     "location": "",
     "steps": [
       {
+        "element": "#Logo",
         "intro": "Willkommen bei PLANTY2Learn .In einer kurzen Tour möchten wir Ihnen die wesentlichen Funktionen zeigen."
       },
       {
@@ -48,15 +49,24 @@
         "element": "#reportButton",
         "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So können Sie uns schnell und einfach auf inhaltliche Fehler hinweisen."
       },
-
+      {
+        "element": "#setting",
+        "intro": "If you want to reactivate the tour please go to: Menu > Info | Datenschutz > Einstellung"
+      },
       {
         "intro": "Wir wünschen Ihnen viel Freude beim Lernen und Entdecken der PLANTY2Learn-App."
       }
-    ]
+    ],
+    "data": {
+      "settingTabIndex": 4
+    }
   },
 
   "profile": {
-    "location": "profile/tree/2",
+    "location": {
+      "treeNode": "profile/tree/2",
+      "profileTree": "profile/tree"
+    },
     "steps": [
       {
         "element": "#profile-1",
@@ -96,6 +106,7 @@
         "element": "#profile",
         "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Reben."
       }
-    ]
+    ],
+    "data": ""
   }
 }

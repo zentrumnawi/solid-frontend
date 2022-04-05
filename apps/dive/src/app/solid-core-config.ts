@@ -7,7 +7,6 @@ export const coreConfig: SolidCoreConfig = {
   markdownPlugins: [],
   appName: 'Div-e',
   error_report: true,
-  guidedTour: guidedTour.landing.steps,
-  profileTour: guidedTour.profile.steps,
-  profileTourLocation: guidedTour.profile.location,
+  guidedTour: guidedTour.landing,
+  profileTour: guidedTour.profile,
 };

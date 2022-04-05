@@ -7,7 +7,8 @@
       },
       {
         "element": "#menu",
-        "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App."
+        "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App.",
+        "position": "right"
       },
       {
         "element": "#menu-tile-0",
@@ -36,7 +37,8 @@
       },
       {
         "element": "#menu",
-        "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen."
+        "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
+        "position": "right"
       },
       {
         "element": "#glossary",
@@ -47,13 +49,23 @@
         "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
       },
       {
+        "element": "#setting",
+        "intro": "If you want to reactivate the tour please go to: Menu > Info | Datenschutz > Einstellung"
+      },
+      {
         "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der AIS-App."
       }
-    ]
+    ],
+    "data": {
+      "settingTabIndex": 3
+    }
   },
 
   "profile": {
-    "location": "fundstuecke/tree/37",
+    "location": {
+      "treeNode": "fundstuecke/tree/37",
+      "profileTree": "fundstuecke/tree"
+    },
     "steps": [
       {
         "element": "#profile",
@@ -91,6 +103,7 @@
         "element": "#profile",
         "intro": "Wir wünschen dir viel Spaß beim Erkunden verschiedener Fundstücke."
       }
-    ]
+    ],
+    "data": ""
   }
 }

@@ -3,6 +3,7 @@
     "location": "",
     "steps": [
       {
+        "element": "#app-name",
         "intro": "Willkommen bei GeoMat .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
       },
       {
@@ -54,13 +55,23 @@
         "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
       },
       {
+        "element": "#setting",
+        "intro": "If you want to reactivate the tour please go to: Menu > Info | Datenschutz > Einstellung"
+      },
+      {
         "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der GeoMat-App."
       }
-    ]
+    ],
+    "data": {
+      "settingTabIndex": 4
+    }
   },
 
   "profile": {
-    "location": "steckbriefe/tree/10",
+    "location": {
+      "treeNode": "steckbriefe/tree/100",
+      "profileTree": "steckbriefe/tree/"
+    },
     "steps": [
       {
         "element": "#profile",
@@ -95,6 +106,7 @@
         "element": "#profile",
         "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Minerale."
       }
-    ]
+    ],
+    "data": ""
   }
 }

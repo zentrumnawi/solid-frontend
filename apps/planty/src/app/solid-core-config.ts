@@ -8,7 +8,6 @@ export const coreConfig: SolidCoreConfig = {
   appName: 'PLANTY2Learn',
   appLogo: 'assets/info/HGU_Signet.svg',
   error_report: true,
-  guidedTour: guidedTour.landing.steps,
-  profileTour: guidedTour.profile.steps,
-  profileTourLocation: guidedTour.profile.location,
+  guidedTour: guidedTour.landing,
+  profileTour: guidedTour.profile,
 };

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="info-container" #info_container>
     <div class="button-back-container">
-      <button mat-icon-button class="button-back" routerLink="">
+      <button id="backBtn" mat-icon-button class="button-back" routerLink="">
         <mat-icon>arrow_back</mat-icon>
       </button>
     </div>
@@ -36,7 +36,7 @@
       </ng-container>
       <mat-tab label="Einstellung">
         <div class="setting-container">
-          <mat-list class="setting-list">
+          <mat-list id="setting" class="setting-list">
             <div mat-subheader>Tour-Setting</div>
             <mat-list-item>
               <mat-slide-toggle

@@ -68,6 +68,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public stopAnimation = true;
   public timeOut_1: any;
   public timeOut_2: any;
+  public turnAround = false;
 
   constructor(
     private _store: Store,
@@ -199,18 +200,37 @@ export class BaseComponent implements OnInit, AfterViewInit {
       localStorage.getItem('hide_profile_tour') == null
     ) {
       setTimeout(() => {
-        // testing - not done yet
         this.introService.profileTour((_targetElement: any) => {
-          if (_targetElement.id == 'profile-view') {
-            setTimeout(() => {
-              this.navigateTo(this.coreConfig.profileTourLocation);
-            }, 500);
-          }
-          if (_targetElement.id == 'profile') {
-            this.navigateTo(this.baseUrl);
-          }
-          this.introService.introProfile.refresh(true);
+          const id = _targetElement.id;
+          const direction = this.introService.introProfile._direction;
+          const treeNopdeLocation =
+            this.coreConfig.profileTour.location.treeNode;
+          const treeLocation = this.coreConfig.profileTour.location.profileTree;
 
+          if (id == 'profile-view') {
+            if (direction == 'forward' && !this.turnAround) {
+              setTimeout(() => {
+                this.navigateTo(treeNopdeLocation);
+                setTimeout(() => {
+                  this.introService.introProfile.refresh(true);
+                  this.introService.introProfile.goToStep(3);
+                }, 100);
+              }, 1000);
+            }
+          }
+          if (id == 'profile-detail-toolbar') {
+            if (direction == 'backward') {
+              setTimeout(() => {
+                this.navigateTo(treeLocation);
+                setTimeout(() => {
+                  this.introService.introProfile.refresh(true);
+                  this.turnAround = true;
+                  this.introService.introProfile.goToStep(2);
+                }, 500);
+              }, 1000);
+            }
+          }
+          this.turnAround = false;
           return;
         });
       }, 1000);

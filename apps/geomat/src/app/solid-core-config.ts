@@ -13,7 +13,6 @@ export const coreConfig: SolidCoreConfig = {
   markdownPlugins: [subscript, superscript, overlinePlugin],
   appName: 'GeoMat',
   error_report: true,
-  guidedTour: guidedTour.landing.steps,
-  profileTour: guidedTour.profile.steps,
-  profileTourLocation: guidedTour.profile.location,
+  guidedTour: guidedTour.landing,
+  profileTour: guidedTour.profile,
 };
