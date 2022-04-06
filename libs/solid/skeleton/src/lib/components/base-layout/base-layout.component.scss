@@ -22,8 +22,15 @@
     height: 60px;
     position: relative;
     z-index: 999;
-    span {
+    span.appName {
       padding-left: 16px;
+    }
+
+    @media (max-width: 365px) {
+      span.appName {
+        padding-left: 9px;
+        padding-right: 5px;
+      }
     }
 
     .app-title-fixed {
@@ -81,9 +88,22 @@
       height: 10px;
     }
   }
+
+  @media (max-width: 365px) {
+    .reportButton {
+      margin-right: 0;
+    }
+  }
 }
 
 img#Logo {
   margin-left: 1em;
   height: 24px;
+}
+
+@media (max-width: 365px) {
+  img#Logo {
+    margin-left: 3px;
+    height: 20px;
+  }
 }

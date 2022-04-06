@@ -176,7 +176,7 @@ div.long-title-1 {
 }
 @keyframes text-moving-2 {
   0% {
-    margin-left: 140%;
+    transform: translateX(100%);
   }
   100% {
     transform: translateX(-100%);
