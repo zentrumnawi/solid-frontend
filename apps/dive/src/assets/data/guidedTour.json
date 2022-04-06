@@ -63,8 +63,8 @@
 
   "profile": {
     "location": {
-      "treeNode": "steckbriefe/tree/10",
-      "profileTree": "steckbriefe/tree/"
+      "treeNode": "/steckbriefe/tree/10",
+      "profileTree": "/steckbriefe/tree/"
     },
     "steps": [
       {

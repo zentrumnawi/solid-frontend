@@ -63,8 +63,8 @@
 
   "profile": {
     "location": {
-      "treeNode": "fundstuecke/tree/37",
-      "profileTree": "fundstuecke/tree"
+      "treeNode": "/fundstuecke/tree/37",
+      "profileTree": "/fundstuecke/tree/"
     },
     "steps": [
       {
