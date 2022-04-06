@@ -13,7 +13,6 @@ import { MenuItem } from '../../state/menu.model';
 import { CategoriesState } from '../../state/slideshow-categories.state';
 import { SlideshowCategory } from '../../state/slideshow-categories.model';
 import { GetSlideshowCategories } from '../../state/slideshow-categories.actions';
-import { IntroService } from '../../services/intro.service';
 
 @Component({
   selector: 'solid-skeleton-main-menu',
@@ -31,8 +30,7 @@ export class MainMenuComponent implements OnInit {
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
-    private _router: Router,
-    private introService: IntroService
+    private _router: Router
   ) {}
 
   ngOnInit(): void {

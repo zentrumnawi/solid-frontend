@@ -20,17 +20,13 @@ export class IntroService {
 
   profileTour(callback: (target: any) => void) {
     this.introProfile = introJs();
-    const location = this.location;
     this.introProfile
       .setOptions({
         tooltipClass: 'customTooltip',
         steps: this.config.profileTour.steps,
         exitOnOverlayClick: false,
       })
-      .onafterchange(callback)
-      .onexit(function () {
-        IntroService.navigateTo(location);
-      })
+      .onbeforechange(callback)
       .start();
     localStorage.setItem('hide_profile_tour', 'true');
   }

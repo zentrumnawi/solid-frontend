@@ -64,12 +64,12 @@
 
   "profile": {
     "location": {
-      "treeNode": "profile/tree/2",
-      "profileTree": "profile/tree"
+      "treeNode": "/profile/tree/2",
+      "profileTree": "/profile/tree/"
     },
     "steps": [
       {
-        "element": "#profile-1",
+        "element": "#profile",
         "intro": "Willkommen in den Steckbriefe! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
       },
       {

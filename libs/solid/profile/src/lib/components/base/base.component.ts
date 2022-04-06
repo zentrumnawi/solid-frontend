@@ -23,6 +23,7 @@ import {
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
+import { Router } from '@angular/router';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -68,13 +69,13 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public stopAnimation = true;
   public timeOut_1: any;
   public timeOut_2: any;
-  public turnAround = false;
 
   constructor(
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
     private introService: IntroService,
-    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
+    private _route: Router
   ) {
     this._store.dispatch([
       new LoadDefinition(),
@@ -195,42 +196,33 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
+    localStorage.setItem('hide_profile_tour', 'false'); // for testing
     if (
       localStorage.getItem('hide_profile_tour') == 'false' ||
       localStorage.getItem('hide_profile_tour') == null
     ) {
       setTimeout(() => {
         this.introService.profileTour((_targetElement: any) => {
+          setTimeout(() => {
+            this.introService.introProfile.refresh(true);
+          }, 365);
           const id = _targetElement.id;
-          const direction = this.introService.introProfile._direction;
-          const treeNopdeLocation =
+          const treeNodeLocation =
             this.coreConfig.profileTour.location.treeNode;
           const treeLocation = this.coreConfig.profileTour.location.profileTree;
-
-          if (id == 'profile-view') {
-            if (direction == 'forward' && !this.turnAround) {
-              setTimeout(() => {
-                this.navigateTo(treeNopdeLocation);
-                setTimeout(() => {
-                  this.introService.introProfile.refresh(true);
-                  this.introService.introProfile.goToStep(3);
-                }, 100);
-              }, 1000);
-            }
+          if (id == '') {
+            if (this._route.url == treeLocation)
+              this.navigateTo(treeNodeLocation);
+            else this.navigateTo(treeLocation);
+          } else if (id == 'profile-view' || id == 'profile') {
+            if (this._route.url != treeLocation) this.navigateTo(treeLocation);
+          } else {
+            if (this._route.url != treeNodeLocation)
+              this.navigateTo(treeNodeLocation);
           }
-          if (id == 'profile-detail-toolbar') {
-            if (direction == 'backward') {
-              setTimeout(() => {
-                this.navigateTo(treeLocation);
-                setTimeout(() => {
-                  this.introService.introProfile.refresh(true);
-                  this.turnAround = true;
-                  this.introService.introProfile.goToStep(2);
-                }, 500);
-              }, 1000);
-            }
-          }
-          this.turnAround = false;
+          setTimeout(() => {
+            this.introService.introProfile.refresh(true);
+          }, 1);
           return;
         });
       }, 1000);
