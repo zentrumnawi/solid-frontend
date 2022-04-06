@@ -31,14 +31,32 @@
 
 .slideshow-select-container {
   ::ng-deep {
+    .mat-expansion-panel {
+      border-radius: 0 !important;
+      box-shadow: none;
+      background: #fafafa;
+    }
+    .mat-expansion-panel-header {
+      height: 40px;
+      margin: 0 7px;
+    }
+
+    .mat-expansion-panel-header.mat-expanded {
+      height: 40px;
+    }
+
     .mat-expansion-panel-spacing {
-      margin: 0 !important;
+      margin: 0;
     }
 
     .mat-expansion-panel-body {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
+      padding-top: 16px;
+    }
+
+    mat-expansion-panel:not(:last-child) {
+      margin-bottom: 10px;
     }
   }
 
