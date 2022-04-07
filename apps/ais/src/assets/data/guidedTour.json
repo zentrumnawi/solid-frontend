@@ -77,7 +77,7 @@
         "position": "right"
       },
       {
-        "element": "#profile-detail-toolbar",
+        "element": "#profile-detail-navigation",
         "intro": "Hier kannst du zwischen Steckbriefen der selben Keramikgattung wechseln oder den gerade offenen Steckbrief schließen."
       },
       {

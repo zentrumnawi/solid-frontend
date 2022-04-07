@@ -84,7 +84,7 @@
         SelectedProfile?.trivial_name
       }}</span>
     </div>
-    <div id="profile-detail-toolbar">
+    <div id="profile-detail-navigation">
       <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
         <mat-icon>navigate_before</mat-icon>
       </button>
@@ -116,6 +116,7 @@
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
+        [collapseTree]="collapseTree"
       ></solid-profile-tree>
       <solid-profile-list
         *ngSwitchDefault

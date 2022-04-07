@@ -69,6 +69,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public stopAnimation = true;
   public timeOut_1: any;
   public timeOut_2: any;
+  public collapseTree = false;
 
   constructor(
     private _store: Store,
@@ -203,6 +204,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     ) {
       setTimeout(() => {
         this.introService.profileTour((_targetElement: any) => {
+          this.collapseTree = false;
           setTimeout(() => {
             this.introService.introProfile.refresh(true);
           }, 365);
@@ -216,13 +218,15 @@ export class BaseComponent implements OnInit, AfterViewInit {
             else this.navigateTo(treeLocation);
           } else if (id == 'profile-view' || id == 'profile') {
             if (this._route.url != treeLocation) this.navigateTo(treeLocation);
+            this.collapseTree = true;
           } else {
             if (this._route.url != treeNodeLocation)
               this.navigateTo(treeNodeLocation);
           }
           setTimeout(() => {
             this.introService.introProfile.refresh(true);
-          }, 1);
+          }, 0.1);
+
           return;
         });
       }, 1000);

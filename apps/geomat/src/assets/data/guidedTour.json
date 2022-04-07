@@ -83,7 +83,7 @@
         "position": "right"
       },
       {
-        "element": "#profile-detail-toolbar",
+        "element": "#profile-detail-navigation",
         "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Rebeneigenschaften sowie Fotos, Videos und/oder Audios.",
         "position": "right"
       },
