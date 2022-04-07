@@ -25,6 +25,9 @@ export class IntroService {
         .setOptions({
           tooltipClass: 'customTooltip',
           steps: this.config.guidedTour.steps,
+          exitOnOverlayClick: false,
+          hidePrev: true,
+          hideNext: true,
         })
         .onbeforechange(callback)
         .onexit(function () {

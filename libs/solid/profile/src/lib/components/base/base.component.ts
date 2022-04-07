@@ -197,7 +197,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    localStorage.setItem('hide_profile_tour', 'false'); // for testing
     if (
       localStorage.getItem('hide_profile_tour') == 'false' ||
       localStorage.getItem('hide_profile_tour') == null
@@ -229,7 +228,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
           return;
         });
-      }, 1000);
+      }, 2000);
     }
   }
 

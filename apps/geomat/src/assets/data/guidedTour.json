@@ -3,7 +3,6 @@
     "location": "",
     "steps": [
       {
-        "element": "#app-name",
         "intro": "Willkommen bei GeoMat .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
       },
       {
@@ -55,7 +54,7 @@
         "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
       },
       {
-        "element": "#menu",
+        "element": "#menu-tile-3",
         "intro": "If you want to reactivate the tour please go to: Menu > Info | Datenschutz > Einstellung"
       },
       {

@@ -25,6 +25,8 @@ export class IntroService {
         tooltipClass: 'customTooltip',
         steps: this.config.profileTour.steps,
         exitOnOverlayClick: false,
+        hidePrev: true,
+        hideNext: true,
       })
       .onbeforechange(callback)
       .start();
