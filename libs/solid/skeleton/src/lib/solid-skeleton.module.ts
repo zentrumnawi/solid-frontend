@@ -1,4 +1,9 @@
-import { ErrorHandler, ModuleWithProviders, NgModule } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  ErrorHandler,
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SOLID_CORE_CONFIG, SolidCoreModule } from '@zentrumnawi/solid-core';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
@@ -23,7 +28,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {
   defaultSkeletonConfig,
   InternalSolidSkeletonConfig,
-  SentryConfig,
   SOLID_SKELETON_CONFIG,
   SolidSkeletonConfig,
 } from './solid-skeleton-config';
@@ -44,7 +48,9 @@ import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
 import { SOLID_SLIDESHOW_BASE_URL } from '@zentrumnawi/solid-slideshow';
 import { CategoriesState } from './state/slideshow-categories.state';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { IntroService } from './services/intro.service';
 import { deepMerge } from './utils/deep-merge';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -87,6 +93,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     MatToolbarModule,
     ngxsFeatureModule,
     MatExpansionModule,
+    MatSlideToggleModule,
   ],
   declarations: [
     BaseLayoutComponent,
@@ -98,7 +105,8 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     MessageListComponent,
   ],
   exports: [BaseLayoutComponent],
-  providers: [UpdateService],
+  providers: [UpdateService, IntroService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SolidSkeletonModule {
   public static forRoot(

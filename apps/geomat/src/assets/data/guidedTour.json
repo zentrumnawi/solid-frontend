@@ -1,0 +1,111 @@
+{
+  "landing": {
+    "location": "",
+    "steps": [
+      {
+        "intro": "Willkommen bei GeoMat! In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
+      },
+      {
+        "element": "#menu",
+        "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-0",
+        "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Mineraleigenschaften sowie ergänzend Fotos, Videos und/oder Audios.",
+        "position": "left"
+      },
+      {
+        "element": "#menu-tile-1",
+        "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnistand prüfen und dein mineralogisches Wissen festigen.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-2",
+        "intro": "Hier sind weitere Inhalte dargestellt, die dein Wissen um die Mineralbestimmung erweitern und vertiefen.",
+        "position": "left"
+      },
+      {
+        "element": "#menu-tile-3",
+        "intro": "Hier werden die 7 Kristallsysteme als interaktive, dreidimensionale Körper angezeigt.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-4",
+        "intro": "Hier findest du allgemeine Informationen zu GeoMat <i>digital</i> und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise und einige Einstellungen.",
+        "position": "left"
+      },
+      {
+        "element": "#feedback",
+        "intro": "Über das Kontaktformular kannst du uns Feedback geben, uns auf technische Probleme hinweisen oder andere Fragen an unser Team richten.",
+        "position": "right"
+      },
+      {
+        "element": "#menu",
+        "intro": "Über das Menü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
+        "position": "right"
+      },
+      {
+        "element": "#glossary",
+        "intro": "Hier findest du unser GeoMat-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen. Das Glossar kannst Du aus jeder Ansicht heraus aufrufen."
+      },
+      {
+        "element": "#reportButton",
+        "intro": "Wenn Dir ein inhaltlicher Fehler auffällt, kannst Du den Fehler-Melden-Button nutzen, um uns darauf hinzuweisen."
+      },
+      {
+        "element": "#menu-tile-4",
+        "intro": "Wenn du die Tour nochmals ansehen willst, kannst du sie im Info-Bereich in den <i>Einstellungen</i> wieder aktivieren."
+      },
+      {
+        "intro": "Wir wünschen dir viel Freude beim Lernen und beim Entdecken der GeoMat-App!"
+      }
+    ],
+    "data": {
+      "settingTabIndex": 4
+    }
+  },
+
+  "profile": {
+    "location": {
+      "treeNode": "/steckbriefe/tree/100",
+      "profileTree": "/steckbriefe/tree/"
+    },
+    "steps": [
+      {
+        "element": "#profile",
+        "intro": "Willkommen in den Steckbriefen! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
+      },
+      {
+        "element": "#profile-view",
+        "intro": "Hier kannst du zwischen zwei verschiedenen Ansichten der Steckbriefübersicht wechseln.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-navigation",
+        "intro": "Hier kannst du zwischen Steckbriefen derselben Gruppe wechseln oder den gerade offenen Steckbrief schließen.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-btn",
+        "intro": "Mit diesem Button öffnest du die Detailansicht. Dort gibt es eine Zoom-Funktion für hochauflösende Bilder, Audiodateien oder kurze Beschreibungstexte zum Bild.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-copyright-btn",
+        "intro": "Mit diesem Button kannst du die Copyright- und Lizenzinformationen der Fotos anzeigen.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-info",
+        "intro": "In diesem Bereich sind wichtige Bestimmungseigenschaften des Minerals übersichtlich dargestellt.",
+        "position": "right"
+      },
+      {
+        "element": "#profile",
+        "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen der virtuellen Mineralsammlung!"
+      }
+    ],
+    "data": ""
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "zentrumnawi",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "scripts": {
     "ng": "nx",
     "start": "node web-server.js",
@@ -49,10 +49,12 @@
     "@sentry/angular": "^6.18.2",
     "@storybook/builder-webpack5": "~6.4.5",
     "@storybook/manager-webpack5": "~6.4.5",
+    "@types/intro.js": "^3.0.2",
     "@types/openapi-v3": "^3.0.0",
     "core-js": "^3.21.1",
     "detect-browser": "^5.1.0",
     "hammerjs": "^2.0.8",
+    "intro.js": "^5.0.0",
     "markdown-it": "^12.3.2",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",

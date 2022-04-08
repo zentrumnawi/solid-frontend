@@ -8,6 +8,8 @@ export interface SolidCoreConfig {
   appLogo?: string;
   production: boolean;
   error_report: boolean;
+  guidedTour: any;
+  profileTour: any;
 }
 
 export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>(

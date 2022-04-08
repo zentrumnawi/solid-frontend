@@ -1,5 +1,5 @@
 <ng-container>
-  <div *ngIf="profile.short_description">
+  <div id="profile-short-description" *ngIf="profile.short_description">
     <div class="facts-title">
       <div>Kurzbeschreibung</div>
     </div>
@@ -27,6 +27,7 @@
     <div
       *ngIf="profile.mediaObjects.length > 1"
       class="img-toolbar"
+      id="profile-media-container"
       #thumbnails
     >
       <ng-container
@@ -63,6 +64,7 @@
   *ngIf="$ProfileDefinition_Swagger | async as profileDefinitions_swagger"
 >
   <mat-accordion
+    id="profile-detail-info"
     *ngIf="profileDefinitions_swagger.length !== 0"
     [multi]="false"
     displayMode="flat"
@@ -165,6 +167,7 @@
 <!-- Load definitions from OpenAPI 3.0 -->
 <ng-container *ngIf="$ProfileDefinition | async as profileDefinitions">
   <mat-accordion
+    id="profile-detail-info"
     *ngIf="profileDefinitions.length !== 0"
     [multi]="false"
     displayMode="flat"
