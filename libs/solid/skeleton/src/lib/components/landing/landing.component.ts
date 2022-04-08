@@ -89,17 +89,21 @@ export class LandingComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     setTimeout(() => {
       this.introService.guidedTour((_targetElement: any) => {
-        const id = _targetElement.id;
-        const landing = this.Landing?.nativeElement;
-        const menuOffSetTop =
-          document.getElementById('menu-grid-list')?.offsetTop;
+        try {
+          const id = _targetElement.id;
+          const landing = this.Landing?.nativeElement;
+          const menuOffSetTop =
+            document.getElementById('menu-grid-list')?.offsetTop;
 
-        if (id.slice(0, 9) == 'menu-tile' || id == 'feedback') {
-          if (menuOffSetTop) landing.scrollTop = menuOffSetTop - 50;
-        }
+          if (id.slice(0, 9) == 'menu-tile' || id == 'feedback') {
+            if (menuOffSetTop) landing.scrollTop = menuOffSetTop - 50;
+          }
 
-        if (id == '') {
-          if (menuOffSetTop) landing.scrollTop = 0;
+          if (id == '') {
+            if (menuOffSetTop) landing.scrollTop = 0;
+          }
+        } catch (error) {
+          return;
         }
         return;
       });

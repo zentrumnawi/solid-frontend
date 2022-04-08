@@ -30,9 +30,6 @@ export class IntroService {
           hideNext: true,
         })
         .onbeforechange(callback)
-        .onexit(function () {
-          IntroService.navigateTo('/');
-        })
         .start();
       localStorage.setItem('hide_tour', 'true');
     }
