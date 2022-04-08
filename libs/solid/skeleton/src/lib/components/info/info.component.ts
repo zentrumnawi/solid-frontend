@@ -33,6 +33,12 @@ export class InfoComponent {
     this.InfoPageContentComponent = cfg.infoPageContent;
     this.PrivacyContentComponent = cfg.privacyContent;
     this.ProfileTitle = cfg.routingConfig.profile.title;
+    this.landingChecked =
+      localStorage.getItem('hide_landing') === 'false' ? true : false;
+    this.tourLandingChecked =
+      localStorage.getItem('hide_landing_tour') === 'false' ? true : false;
+    this.tourProfileChecked =
+      localStorage.getItem('hide_profile_tour') === 'false' ? true : false;
   }
 
   moveTabToPrivacy(event: any) {
