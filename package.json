@@ -67,7 +67,7 @@
   "devDependencies": {
     "@angular-devkit/architect": "0.1302.6",
     "@angular-devkit/build-angular": "13.2.6",
-    "@angular-devkit/schematics-cli": "^13.2.6",
+    "@angular-devkit/schematics-cli": "^13.3.2",
     "@angular-eslint/eslint-plugin": "13.1.0",
     "@angular-eslint/eslint-plugin-template": "13.1.0",
     "@angular-eslint/template-parser": "13.1.0",
@@ -90,7 +90,7 @@
     "@types/jest": "27.4.1",
     "@types/markdown-it": "^12.2.1",
     "@types/minimist": "^1.2.2",
-    "@types/node": "17.0.21",
+    "@types/node": "17.0.23",
     "@types/openseadragon": "^3.0.2",
     "@types/punycode": "^2.1.0",
     "@types/swagger-schema-official": "^2.0.22",
