@@ -3,11 +3,11 @@
     "location": "",
     "steps": [
       {
-        "intro": "Willkommen bei PLANTY2Learn! In einer kurzen Tour möchten wir Ihnen die wesentlichen Funktionen zeigen."
+        "intro": "Willkommen bei PLANTY2Learn! In einer kurzen Tour möchten wir Ihnen die wesentlichen Funktionen der App zeigen."
       },
       {
         "element": "#menu",
-        "intro": "Über das Menü erreichen Sie die verschiedenen Funktionen der App.",
+        "intro": "Über das Menü erreichen Sie die verschiedenen Komponenten der App.",
         "position": "right"
       },
       {
@@ -27,7 +27,7 @@
       },
       {
         "element": "#menu-tile-3",
-        "intro": "Hier finden Sie allgemeine Informationen zu PLANTY2Learn und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
+        "intro": "Hier finden Sie allgemeine Informationen zu PLANTY2Learn und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise und einige Einstellungen.",
         "position": "right"
       },
       {
@@ -46,7 +46,7 @@
       },
       {
         "element": "#reportButton",
-        "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So können Sie uns schnell und einfach auf inhaltliche Fehler hinweisen."
+        "intro": "Wenn Ihnen ein inhaltlicher Fehler auffällt, können Sie den Fehler-Melden-Button nutzen, um uns darauf hinzuweisen."
       },
       {
         "element": "#menu-tile-3",
@@ -83,12 +83,12 @@
       },
       {
         "element": "#profile-media-container",
-        "intro": "Hier werden Fotos, Videos oder Audiodateien zu einer Rebe angezeigt. Über die Thumbnails können Sie zwischen diesen wechseln.",
+        "intro": "Hier werden Fotos, Videos oder Audiodateien der ausgewählten Rebsorte angezeigt. Über die Thumbnails können Sie zwischen verschiedenen Bildern wechseln.",
         "position": "right"
       },
       {
         "element": "#profile-detail-btn",
-        "intro": "Über diesen Button erreichen Sie weitere Funktionen wie die Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Beschreibungstexte.",
+        "intro": "Mit diesem Button öffnen sie die Detailansicht. Dort gibt es eine Zoom-Funktion für hochauflösende Bilder, Audiodateien oder kurze Beschreibungstexte zum Bild.",
         "position": "right"
       },
       {
