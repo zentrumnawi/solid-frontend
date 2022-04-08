@@ -1,4 +1,11 @@
-import { Component, ElementRef, Inject, Type, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  Type,
+  ViewChild,
+} from '@angular/core';
 import {
   InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
@@ -20,6 +27,7 @@ export class InfoComponent {
 
   public InfoPageContentComponent: Type<any>;
   public PrivacyContentComponent: Type<any>;
+  public ProfileTitle;
   @Select(MessageState.getChangelog)
   public Changelog!: Observable<MessageModel[]>;
 
@@ -31,6 +39,7 @@ export class InfoComponent {
   constructor(@Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig) {
     this.InfoPageContentComponent = cfg.infoPageContent;
     this.PrivacyContentComponent = cfg.privacyContent;
+    this.ProfileTitle = cfg.routingConfig.profile.title;
   }
 
   moveTabToPrivacy(event: any) {

@@ -34,34 +34,42 @@
           </solid-skeleton-message-list>
         </mat-tab>
       </ng-container>
-      <mat-tab label="Einstellung">
+      <mat-tab label="Einstellungen">
         <div class="setting-container">
           <mat-list id="setting" class="setting-list">
-            <div mat-subheader>Tour-Setting</div>
-            <mat-list-item>
-              <mat-slide-toggle
-                (change)="toggleChange()"
-                [(ngModel)]="tourLandingChecked"
-              >
-                Tour Landing
-              </mat-slide-toggle>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-slide-toggle
-                (change)="toggleChange()"
-                [(ngModel)]="tourProfileChecked"
-              >
-                Tour Profile
-              </mat-slide-toggle>
-            </mat-list-item>
+            <div mat-subheader>Startseite</div>
             <mat-list-item>
               <mat-slide-toggle
                 (change)="toggleChange()"
                 [(ngModel)]="landingChecked"
               >
-                Landing Banner
+                Willkommensnachricht anzeigen
               </mat-slide-toggle>
             </mat-list-item>
+            <mat-list-item>
+              <mat-slide-toggle
+                (change)="toggleChange()"
+                [(ngModel)]="tourLandingChecked"
+              >
+                Tour anzeigen
+              </mat-slide-toggle>
+            </mat-list-item>
+            <div mat-subheader class="hint" *ngIf="tourLandingChecked">
+              Die Tour wird beim nächsten Besuch der Startseite angezeigt.
+            </div>
+            <div mat-subheader>{{ ProfileTitle }}</div>
+            <mat-list-item>
+              <mat-slide-toggle
+                (change)="toggleChange()"
+                [(ngModel)]="tourProfileChecked"
+              >
+                Tour anzeigen
+              </mat-slide-toggle>
+            </mat-list-item>
+            <div mat-subheader class="hint" *ngIf="tourProfileChecked">
+              Die Tour wird beim nächsten Besuch der
+              {{ ProfileTitle }} angezeigt.
+            </div>
           </mat-list>
         </div>
       </mat-tab>
