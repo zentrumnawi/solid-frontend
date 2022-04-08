@@ -27,7 +27,7 @@
       },
       {
         "element": "#menu-tile-3",
-        "intro": "Hier findest du allgemeine Informationen zu Div-e und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
+        "intro": "Hier findest du allgemeine Informationen zu Div-e und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise und einige Einstellungen.",
         "position": "right"
       },
       {
@@ -46,14 +46,14 @@
       },
       {
         "element": "#reportButton",
-        "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
+        "intro": "Wenn Dir ein inhaltlicher Fehler auffällt, kannst Du den Fehler-Melden-Button nutzen, um uns darauf hinzuweisen."
       },
       {
         "element": "#menu-tile-3",
-        "intro": "Wenn du die Tour nochmals ansehen willst, kannst du  sie im Info-Bereich in den <i>Einstellungen</i> wieder aktivieren."
+        "intro": "Wenn du die Tour nochmals ansehen willst, kannst du sie im Info-Bereich in den <i>Einstellungen</i> wieder aktivieren."
       },
       {
-        "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der Div-e-App."
+        "intro": "Wir wünschen dir viel Freude beim Lernen und beim Entdecken der Div-e-App!"
       }
     ],
     "data": {
@@ -73,7 +73,7 @@
       },
       {
         "element": "#profile-view",
-        "intro": "Hier kannst du zwischen zwei verschiedenen Ansichten der Steckbriefübersicht wechseln.",
+        "intro": "Hier kannst du zwischen zwei verschiedenen Ansichten der Steckbrief-Übersicht wechseln.",
         "position": "right"
       },
       {
@@ -82,17 +82,17 @@
       },
       {
         "element": "#profile-short-description",
-        "intro": "Hier findest du eine Kurzbeschreibung der Pflanze.",
+        "intro": "Hier findest du eine Kurzbeschreibung der Art.",
         "position": "right"
       },
       {
         "element": "#profile-media-container",
-        "intro": "Hier werden Fotos, Videos oder Audiodateien zu der Pflanze angezeigt. Über die Thumbnails kannst du zwischen diesen wechseln.",
+        "intro": "Hier werden Fotos, Videos oder Audiodateien der ausgewählten Art angezeigt. Über die Thumbnails kannst du zwischen verschiedenen Bildern wechseln.",
         "position": "right"
       },
       {
         "element": "#profile-detail-btn",
-        "intro": "Über diesen Button erreichst du weitere Funktionen wie die Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
+        "intro": "Mit diesem Button öffnest du die Detailansicht. Dort gibt es eine Zoom-Funktion für hochauflösende Bilder, Audiodateien oder kurze Beschreibungstexte zum Bild.",
         "position": "right"
       },
       {
