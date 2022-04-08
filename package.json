@@ -46,7 +46,7 @@
     "@ngxs/devtools-plugin": "^3.7.1",
     "@ngxs/router-plugin": "^3.7.1",
     "@ngxs/store": "^3.7.2",
-    "@sentry/angular": "^6.18.2",
+    "@sentry/angular": "^6.19.6",
     "@storybook/builder-webpack5": "~6.4.5",
     "@storybook/manager-webpack5": "~6.4.20",
     "@types/intro.js": "^3.0.2",
