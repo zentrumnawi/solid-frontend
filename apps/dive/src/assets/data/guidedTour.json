@@ -3,7 +3,7 @@
     "location": "",
     "steps": [
       {
-        "intro": "Willkommen bei Div-e .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
+        "intro": "Willkommen bei Div-e! In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
       },
       {
         "element": "#menu",
@@ -17,7 +17,7 @@
       },
       {
         "element": "#menu-tile-1",
-        "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnistand prüfen und dein archäologisches Wissen festigen.",
+        "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnistand prüfen und dein botanisches Wissen festigen.",
         "position": "right"
       },
       {
@@ -42,7 +42,7 @@
       },
       {
         "element": "#glossary",
-        "intro": "Hier findest du unser Div-e-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
+        "intro": "Hier findest du unser Div-e-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen. Das Glossar kann aus jeder Ansicht heraus geöffnet werden."
       },
       {
         "element": "#reportButton",
@@ -50,7 +50,7 @@
       },
       {
         "element": "#menu-tile-3",
-        "intro": "If you want to reactivate the tour please go to: Menu > Info | Datenschutz > Einstellung"
+        "intro": "Wenn du die Tour nochmals ansehen willst, kannst du  sie im Info-Bereich in den <i>Einstellungen</i> wieder aktivieren."
       },
       {
         "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der Div-e-App."
@@ -69,7 +69,7 @@
     "steps": [
       {
         "element": "#profile",
-        "intro": "Willkommen in den Steckbriefe! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
+        "intro": "Willkommen in den Steckbriefen! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
       },
       {
         "element": "#profile-view",
@@ -78,7 +78,7 @@
       },
       {
         "element": "#profile-detail-navigation",
-        "intro": "Hier kannst du zwischen Steckbriefen der selben Gattung wechseln oder den gerade offenen Steckbrief schließen."
+        "intro": "Hier kannst du zwischen Steckbriefen derselben Gattung wechseln oder den gerade offenen Steckbrief schließen."
       },
       {
         "element": "#profile-short-description",
@@ -92,12 +92,12 @@
       },
       {
         "element": "#profile-detail-btn",
-        "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
+        "intro": "Über diesen Button erreichst du weitere Funktionen wie die Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
         "position": "right"
       },
       {
         "element": "#profile-copyright-btn",
-        "intro": "Über diesen Button kannst du die Copyright-Informationen zu den Fotos, Videos oder Audios abrufen.",
+        "intro": "Mit diesem Button kannst du die Copyright- und Lizenzinformationen zu Fotos, Videos oder Audios anzeigen.",
         "position": "right"
       },
       {
@@ -107,7 +107,7 @@
       },
       {
         "element": "#profile",
-        "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Pflanzen."
+        "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen!"
       }
     ],
     "data": ""

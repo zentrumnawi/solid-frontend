@@ -3,7 +3,7 @@
     "location": "",
     "steps": [
       {
-        "intro": "Willkommen bei GeoMat .In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
+        "intro": "Willkommen bei GeoMat! In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
       },
       {
         "element": "#menu",
@@ -22,7 +22,7 @@
       },
       {
         "element": "#menu-tile-2",
-        "intro": "Hier sind weitere Inhalte dargestellt, die dein Wissen erweitern und vertiefen.",
+        "intro": "Hier sind weitere Inhalte dargestellt, die dein Wissen um die Mineralbestimmung erweitern und vertiefen.",
         "position": "left"
       },
       {
@@ -32,7 +32,7 @@
       },
       {
         "element": "#menu-tile-4",
-        "intro": "Hier findest du allgemeine Informationen zu GeoMatdigital und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
+        "intro": "Hier findest du allgemeine Informationen zu GeoMat <i>digital</i> und dem Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise.",
         "position": "left"
       },
       {
@@ -42,23 +42,23 @@
       },
       {
         "element": "#menu",
-        "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
+        "intro": "Über das Menü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
         "position": "right"
       },
       {
         "element": "#glossary",
-        "intro": "Hier findest du unser GeoMat-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
+        "intro": "Hier findest du unser GeoMat-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen. Das Glossar kannst Du aus jeder Ansicht heraus aufrufen."
       },
       {
         "element": "#reportButton",
         "intro": "Für inhaltliches Feedback haben wir den Fehler-Melden-Button. So kannst du uns schnell und einfach auf inhaltliche Fehler hinweisen."
       },
       {
-        "element": "#menu-tile-3",
-        "intro": "If you want to reactivate the tour please go to: Menu > Info | Datenschutz > Einstellung"
+        "element": "#menu-tile-4",
+        "intro": "Wenn du die Tour nochmals ansehen willst, kannst du  sie im Info-Bereich in den <i>Einstellungen</i> wieder aktivieren."
       },
       {
-        "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der GeoMat-App."
+        "intro": "Wir wünschen dir viel Freude beim Lernen und Entdecken der GeoMat-App!"
       }
     ],
     "data": {
@@ -74,7 +74,7 @@
     "steps": [
       {
         "element": "#profile",
-        "intro": "Willkommen in den Steckbriefe! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
+        "intro": "Willkommen in den Steckbriefen! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
       },
       {
         "element": "#profile-view",
@@ -83,17 +83,17 @@
       },
       {
         "element": "#profile-detail-navigation",
-        "intro": "Die Steckbriefe zeigen in übersichtlicher Form die wichtigsten Rebeneigenschaften sowie Fotos, Videos und/oder Audios.",
+        "intro": "Hier kannst du zwischen Steckbriefen derselben Gruppe wechseln oder den gerade offenen Steckbrief schließen.",
         "position": "right"
       },
       {
         "element": "#profile-detail-btn",
-        "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
+        "intro": "Über diesen Button erreichst du weitere Funktionen wie die Zoom-Funktion der hochauflösenden Bilder, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
         "position": "right"
       },
       {
         "element": "#profile-copyright-btn",
-        "intro": "Über diesen Button kannst du die Copyright-Informationen der Fotos abrufen.",
+        "intro": "Mit diesem Button kannst du die Copyright- und Lizenzinformationen der Fotos anzeigen.",
         "position": "right"
       },
       {
@@ -103,7 +103,7 @@
       },
       {
         "element": "#profile",
-        "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Minerale."
+        "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen der virtuellen Mineralsammlung!"
       }
     ],
     "data": ""

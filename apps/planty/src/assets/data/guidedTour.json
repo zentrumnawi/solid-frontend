@@ -3,7 +3,7 @@
     "location": "",
     "steps": [
       {
-        "intro": "Willkommen bei PLANTY2Learn .In einer kurzen Tour möchten wir Ihnen die wesentlichen Funktionen zeigen."
+        "intro": "Willkommen bei PLANTY2Learn! In einer kurzen Tour möchten wir Ihnen die wesentlichen Funktionen zeigen."
       },
       {
         "element": "#menu",
@@ -22,7 +22,7 @@
       },
       {
         "element": "#menu-tile-2",
-        "intro": "Hier sind weitere Inhalte dargestellt, die Ihr Wissen erweitern und vertiefen.",
+        "intro": "Hier sind weitere Inhalte dargestellt, die Ihr ampelographisches Wissen erweitern und vertiefen.",
         "position": "left"
       },
       {
@@ -42,7 +42,7 @@
       },
       {
         "element": "#glossary",
-        "intro": "Hier finden Sie unser PLANTY2Learn-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen."
+        "intro": "Hier finden Sie unser PLANTY2Learn-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen. Das Glossar kann aus jeder Ansicht heraus geöffnet werden."
       },
       {
         "element": "#reportButton",
@@ -50,10 +50,10 @@
       },
       {
         "element": "#menu-tile-3",
-        "intro": "If you want to reactivate the tour please go to: Menu > Info | Datenschutz > Einstellung"
+        "intro": "Wenn Sie die Tour nochmals ansehen wollen, können Sie sie im Info-Bereich in den <i>Einstellungen</i> aktivieren."
       },
       {
-        "intro": "Wir wünschen Ihnen viel Freude beim Lernen und Entdecken der PLANTY2Learn-App."
+        "intro": "Wir wünschen Ihnen viel Freude beim Lernen und Entdecken von PLANTY2Learn!"
       }
     ],
     "data": {
@@ -69,41 +69,41 @@
     "steps": [
       {
         "element": "#profile",
-        "intro": "Willkommen in den Steckbriefe! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
+        "intro": "Willkommen in den Steckbriefen! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
       },
       {
         "element": "#profile-view",
-        "intro": "Hier kannst du zwischen zwei verschiedenen Ansichten der Steckbriefübersicht wechseln.",
+        "intro": "Hier können Sie zwischen zwei verschiedenen Ansichten der Steckbriefübersicht wechseln.",
         "position": "right"
       },
       {
         "element": "#profile-detail-navigation",
-        "intro": "Hier kannst du zwischen Steckbriefen der selben Rebsorte wechseln oder den gerade offenen Steckbrief schließen.",
+        "intro": "Hier können Sie zwischen Steckbriefen derselben Rebsortenart wechseln oder den gerade offenen Steckbrief schließen.",
         "position": "right"
       },
       {
         "element": "#profile-media-container",
-        "intro": "Hier werden Fotos, Videos oder Audiodateien zu einer Rebe angezeigt. Über die Thumbnails kannst du zwischen diesen wechseln.",
+        "intro": "Hier werden Fotos, Videos oder Audiodateien zu einer Rebe angezeigt. Über die Thumbnails können Sie zwischen diesen wechseln.",
         "position": "right"
       },
       {
         "element": "#profile-detail-btn",
-        "intro": "Über diesen Button erreichst du weitere Funktionen wie die Deep-Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Fotobeschreibungstexte.",
+        "intro": "Über diesen Button erreichen Sie weitere Funktionen wie die Zoom-Funktion von hochauflösenden Bildern, Audiodateien zum Bild oder kurze Beschreibungstexte.",
         "position": "right"
       },
       {
         "element": "#profile-copyright-btn",
-        "intro": "Über diesen Button kannst du die Copyright-Informationen zu den Fotos, Videos oder Audios abrufen.",
+        "intro": "Mit diesem Button können Sie die Copyright- und Lizenzinformationen zu Fotos, Videos oder Audios anzeigen.",
         "position": "right"
       },
       {
         "element": "#profile-detail-info",
-        "intro": "In diesem Bereich sind die charakteristische Eigenschaften der Rebe übersichtlich dargestellt.",
+        "intro": "In diesem Bereich sind die charakteristischen Eigenschaften der Rebe übersichtlich dargestellt.",
         "position": "right"
       },
       {
         "element": "#profile",
-        "intro": "Wir wünschen dir viel Spaß beim Erkunden und Bestimmen verschiedener Reben."
+        "intro": "Wir wünschen Ihnen viel Spaß beim Erkunden und Bestimmen verschiedener Reben!"
       }
     ],
     "data": ""
