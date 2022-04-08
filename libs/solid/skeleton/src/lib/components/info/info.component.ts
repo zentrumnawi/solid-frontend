@@ -33,7 +33,8 @@ export class InfoComponent {
     this.InfoPageContentComponent = cfg.infoPageContent;
     this.PrivacyContentComponent = cfg.privacyContent;
     this.ProfileTitle = cfg.routingConfig.profile.title;
-    this.landingChecked = localStorage.getItem('hide_landing') === 'false';
+    this.landingChecked =
+      localStorage.getItem('hide_landing_banner') === 'false';
     this.tourLandingChecked =
       localStorage.getItem('hide_landing_tour') === 'false';
     this.tourProfileChecked =
@@ -61,7 +62,8 @@ export class InfoComponent {
     if (this.tourProfileChecked)
       localStorage.setItem('hide_profile_tour', 'false');
     else localStorage.setItem('hide_profile_tour', 'true');
-    if (this.landingChecked) localStorage.setItem('hide_landing', 'false');
-    else localStorage.setItem('hide_landing', 'true');
+    if (this.landingChecked)
+      localStorage.setItem('hide_landing_banner', 'false');
+    else localStorage.setItem('hide_landing_banner', 'true');
   }
 }
