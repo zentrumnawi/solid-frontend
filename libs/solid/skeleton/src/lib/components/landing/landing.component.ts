@@ -68,7 +68,7 @@ export class LandingComponent implements AfterViewInit {
       ],
       parent: injector,
     });
-    if (localStorage.getItem('hide_landing') !== 'true') {
+    if (localStorage.getItem('hide_landing_banner') !== 'true') {
       this.ShowLanding = true;
     }
     this.limitMessages();
@@ -76,7 +76,7 @@ export class LandingComponent implements AfterViewInit {
 
   private onCloseClick() {
     this.ShowLanding = false;
-    localStorage.setItem('hide_landing', 'true');
+    localStorage.setItem('hide_landing_banner', 'true');
   }
 
   private limitMessages() {
