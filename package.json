@@ -97,7 +97,7 @@
     "@typescript-eslint/eslint-plugin": "5.18.0",
     "@typescript-eslint/parser": "5.10.2",
     "canvas": "^2.9.1",
-    "eslint": "8.12.0",
+    "eslint": "8.13.0",
     "eslint-config-prettier": "8.5.0",
     "fs-extra": "^10.0.1",
     "git-describe": "^4.1.0",
