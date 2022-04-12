@@ -101,7 +101,7 @@
     "eslint-config-prettier": "8.5.0",
     "fs-extra": "^10.0.1",
     "git-describe": "^4.1.0",
-    "jasmine": "^4.0.2",
+    "jasmine": "^4.1.0",
     "jasmine-core": "4.0.1",
     "jasmine-spec-reporter": "7.0.0",
     "jest": "27.5.1",
