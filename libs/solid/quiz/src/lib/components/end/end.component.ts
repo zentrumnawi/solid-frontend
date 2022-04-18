@@ -13,7 +13,7 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./end.component.scss'],
 })
 export class EndComponent implements OnDestroy {
-  private $destroyed = new Subject();
+  private $destroyed = new Subject<boolean>();
   questionCount = new FormControl(10, [Validators.min(1)]);
   QuizSession: QuizSession | null = null;
   FeedbackText = '';

@@ -11,7 +11,7 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnDestroy {
-  private $destroyed = new Subject();
+  private $destroyed = new Subject<boolean>();
   public QuizLoaded: Observable<boolean>;
   questionCount = new FormControl(10, [Validators.min(1)]);
 

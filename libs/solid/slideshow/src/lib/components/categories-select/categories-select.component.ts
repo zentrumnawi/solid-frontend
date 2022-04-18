@@ -24,7 +24,7 @@ export interface SlideshowCategory {
   styleUrls: ['./categories-select.component.scss'],
 })
 export class CategoriesSelectComponent implements OnInit, OnDestroy {
-  private $destroyed = new Subject();
+  private $destroyed = new Subject<boolean>();
   @Select(SlideshowState.getSlideshows)
   public Slideshows?: Observable<Slideshow[]>;
   @Select(__internal__selectCategories)
