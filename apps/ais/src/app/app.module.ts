@@ -23,7 +23,6 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
-import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile/di';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
 import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
@@ -38,17 +37,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     rotate: { enable: false },
     swipe: { enable: true, direction: Hammer.DIRECTION_HORIZONTAL },
   };
-}
-
-const regexp = /^([^(]*)(.*)/i;
-function profileTitleFormatter(title: string): string {
-  const match = title.match(regexp) || [];
-  if (match.length !== 3) {
-    throw new Error(
-      `Failed to transform the profile title "${title}" with the supplied profile formatter`
-    );
-  }
-  return `<i>${match[1]}</i>${match[2]}`;
 }
 
 @NgModule({
@@ -88,10 +76,6 @@ function profileTitleFormatter(title: string): string {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,
     },
-    {
-      provide: SOLID_PROFILE_TITLE_FORMATTER,
-      useValue: profileTitleFormatter,
-    },
   ],
   bootstrap: [AppComponent],
 })
@@ -113,6 +97,7 @@ export class AppModule {
     addIcon('privacy');
     addIcon('info_privacy');
     addIcon('feedback');
+    addIcon('feedback_outline');
     addIcon('assistant');
   }
 }

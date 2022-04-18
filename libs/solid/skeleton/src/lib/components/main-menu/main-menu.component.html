@@ -1,7 +1,7 @@
 <!-- Without Dropdown Version -->
 <div class="main-menu-container">
-  <mat-nav-list>
-    <ng-container *ngFor="let item of MenuItems | async">
+  <mat-nav-list id="menu">
+    <ng-container *ngFor="let item of MenuItems | async; let index = index">
       <mat-list-item
         *ngIf="item.route === 'info'"
         (click)="openGlossarClick.emit()"

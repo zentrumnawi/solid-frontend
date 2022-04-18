@@ -15,12 +15,18 @@ import { Viewer } from 'openseadragon';
 import OpenSeadragon from 'openseadragon';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
+export enum APP {
+  DIVE = 'Div-e',
+}
+
 @Component({
   selector: 'solid-core-media-dialog',
   templateUrl: './media-dialog.component.html',
   styleUrls: ['./media-dialog.component.scss'],
 })
 export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
+  public APP_NAME_DIVE = APP.DIVE;
+
   private _viewer: Viewer | null = null;
   public hasAudio = false;
   public hasDescription = false;
@@ -38,7 +44,8 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   title_container_width = 0;
   title_width = 0;
   public firstMovingAnimation = true;
-  public timeOut: any;
+  public timeOut_1: any;
+  public timeOut_2: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -138,16 +145,20 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
         }
       }
     }, 0);
+    this.handleLongTitle();
+  }
 
-    setTimeout(() => {
+  public handleLongTitle() {
+    clearTimeout(this.timeOut_1);
+    clearTimeout(this.timeOut_2);
+    this.timeOut_1 = setTimeout(() => {
       this.firstMovingAnimation = true;
-      clearTimeout(this.timeOut);
       this.title_container_width =
         this.title_container?.nativeElement.offsetWidth;
       this.title_width =
-        this.title_container?.nativeElement.firstChild.offsetWidth;
-      if (this.title_container?.nativeElement.firstChild.firstChild) {
-        this.timeOut = setTimeout(() => {
+        this.title_container?.nativeElement.firstElementChild.offsetWidth;
+      if (this.title_container?.nativeElement.firstElementChild) {
+        this.timeOut_2 = setTimeout(() => {
           this.firstMovingAnimation = false;
         }, 10500);
       }
@@ -156,22 +167,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
 
   @HostListener('window:resize', ['$event'])
   public onResize() {
-    this.firstMovingAnimation = false;
-    setTimeout(() => {
-      this.firstMovingAnimation = true;
-      clearTimeout(this.timeOut);
-      setTimeout(() => {
-        this.title_container_width =
-          this.title_container?.nativeElement.offsetWidth;
-        this.title_width =
-          this.title_container?.nativeElement.firstChild.offsetWidth;
-      }, 0);
-      if (this.title_container?.nativeElement.firstChild.firstChild) {
-        this.timeOut = setTimeout(() => {
-          this.firstMovingAnimation = false;
-        }, 10500);
-      }
-    }, 0);
+    this.handleLongTitle();
   }
 
   handleAudioErrorEvent() {

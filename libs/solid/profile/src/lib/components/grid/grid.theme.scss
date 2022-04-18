@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 
 @mixin solid-profile-grid-theme($mat-theme) {
   $background: map-get($mat-theme, background);

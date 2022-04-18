@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 
 @mixin solid-profile-base($mat-theme) {
   $background: map-get($mat-theme, background);
@@ -6,7 +6,12 @@
   solid-profile-base {
     background-color: mat.get-color-from-palette($background);
     mat-toolbar.mat-toolbar.main-toolbar {
-      background-color: mat.get-color-from-palette($accent);
+      background-color: white;
+      box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+    }
+    mat-toolbar.mat-toolbar.detail-toolbar {
+      background-color: white;
+      box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
     }
   }
 }

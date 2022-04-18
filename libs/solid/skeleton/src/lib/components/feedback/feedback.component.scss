@@ -2,6 +2,17 @@ mat-form-field {
   width: 100%;
 }
 
+::ng-deep .report-dialog {
+  mat-dialog-container {
+    border: 3px solid crimson;
+  }
+}
+
+.location {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 500;
+}
+
 @media (max-width: 325px) {
   .send-btn {
     margin-left: 0 !important;

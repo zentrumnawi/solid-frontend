@@ -1,5 +1,10 @@
 <div class="container">
   <div class="info-container" #info_container>
+    <div class="button-back-container">
+      <button id="backBtn" mat-icon-button class="button-back" routerLink="">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
     <mat-tab-group [(selectedIndex)]="tabIndex">
       <mat-tab label="Info">
         <ng-container
@@ -29,6 +34,49 @@
           </solid-skeleton-message-list>
         </mat-tab>
       </ng-container>
+      <mat-tab label="Einstellungen">
+        <div class="setting-container">
+          <div mat-subheader class="hint">
+            Hinweis: Alle Einstellungen werden nur auf diesem Gerät gespeichert.
+          </div>
+
+          <mat-list id="setting" class="setting-list">
+            <div mat-subheader>Startseite</div>
+            <mat-list-item>
+              <mat-slide-toggle
+                (change)="toggleChange()"
+                [(ngModel)]="landingChecked"
+              >
+                Willkommensnachricht anzeigen
+              </mat-slide-toggle>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-slide-toggle
+                (change)="toggleChange()"
+                [(ngModel)]="tourLandingChecked"
+              >
+                Tour anzeigen
+              </mat-slide-toggle>
+            </mat-list-item>
+            <div mat-subheader class="hint" *ngIf="tourLandingChecked">
+              Die Tour wird beim nächsten Besuch der Startseite angezeigt.
+            </div>
+            <div mat-subheader>{{ ProfileTitle }}</div>
+            <mat-list-item>
+              <mat-slide-toggle
+                (change)="toggleChange()"
+                [(ngModel)]="tourProfileChecked"
+              >
+                Tour anzeigen
+              </mat-slide-toggle>
+            </mat-list-item>
+            <div mat-subheader class="hint" *ngIf="tourProfileChecked">
+              Die Tour wird beim nächsten Besuch der
+              {{ ProfileTitle }} angezeigt.
+            </div>
+          </mat-list>
+        </div>
+      </mat-tab>
     </mat-tab-group>
   </div>
 </div>

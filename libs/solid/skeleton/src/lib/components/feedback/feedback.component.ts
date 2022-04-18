@@ -1,6 +1,10 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  FeedbackService,
+  SOLID_SKELETON_FEEDBACK_SERVICE,
+} from '../../services/feedback.service';
 
 @Component({
   selector: 'solid-skeleton-feedback',
@@ -8,22 +12,28 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./feedback.component.scss'],
 })
 export class FeedbackComponent implements OnInit, OnDestroy {
-  private static STORAGE_KEY = 'FEEDBACK';
+  private static STORAGE_KEY_1 = 'FEEDBACK';
+  private static STORAGE_KEY_2 = 'ERROR_REPORT';
+  private _sent = false;
   public Form: FormGroup;
+  public formTitle: string;
 
   constructor(
+    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
+    public feedback: FeedbackService,
+    public fb: FormBuilder,
     private _ref: MatDialogRef<FeedbackComponent>,
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
     /* type is defined as any to prevent ng-packagr issues
      (data: any) => Observable<boolean> */
-    @Inject(MAT_DIALOG_DATA)
-    private _submitFeedback: any,
-    fb: FormBuilder
+    @Inject(MAT_DIALOG_DATA) private _submitFeedback: any
   ) {
+    this.formTitle = _submitFeedback.title;
+
     this.Form = fb.group({
       name: [''],
       email: ['', [Validators.required, Validators.email]],
-      subject: ['Feedback', Validators.required],
+      subject: [_submitFeedback.subject, Validators.required],
       message: [''],
     });
   }
@@ -36,25 +46,36 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     if (!this.Form.valid) {
       this.Form.markAllAsTouched();
     } else {
-      this._submitFeedback(this.Form.value).subscribe(() => {
+      this.Form.value['message'] += '\n\n' + this._submitFeedback.location;
+      this.feedback.submitFeedback(this.Form.value).subscribe(() => {
+        this._sent = true;
         this._ref.close();
       });
     }
   }
 
   public ngOnDestroy(): void {
-    sessionStorage.setItem(
-      FeedbackComponent.STORAGE_KEY,
-      JSON.stringify(this.Form.value)
-    );
+    const key = this.getLocation()
+      ? FeedbackComponent.STORAGE_KEY_2
+      : FeedbackComponent.STORAGE_KEY_1;
+    sessionStorage.setItem(key, JSON.stringify(this.Form.value));
+    if (this._sent) {
+      sessionStorage.removeItem(key);
+    }
   }
 
   public ngOnInit(): void {
-    const str = sessionStorage.getItem(FeedbackComponent.STORAGE_KEY);
+    const str = this.getLocation()
+      ? sessionStorage.getItem(FeedbackComponent.STORAGE_KEY_2)
+      : sessionStorage.getItem(FeedbackComponent.STORAGE_KEY_1);
     if (!str) {
       return;
     }
     const obj = JSON.parse(str);
     this.Form.setValue(obj);
+  }
+
+  public getLocation(): string {
+    return this._submitFeedback.location;
   }
 }

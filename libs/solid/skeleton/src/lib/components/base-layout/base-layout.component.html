@@ -1,40 +1,78 @@
 <div class="base-layout-container mat-typography">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="base-layout-main-toolbar">
     <ng-container *ngIf="FixedLayout">
       <div class="right-border">
         <span>Menü</span>
       </div>
-      <span>{{ config.appName }}</span>
-      <div class="spacer"></div>
-      <!-- <div class="left-border">
-        <span>Glossar</span>
-      </div> -->
       <img
-        id="largeLogo"
-        [src]="config.appLogoLarge"
+        id="Logo"
+        [src]="config.appLogo"
         onerror='this.style.display = "none"'
       />
-      <div>
+      <span id="app-name" class="appName">{{ config.appName }}</span>
+      <div class="spacer"></div>
+      <div class="reportButton" *ngIf="this.config.error_report">
+        <button
+          id="reportButton"
+          class="button"
+          (click)="reportError()"
+          mat-icon-button
+        >
+          <mat-icon
+            aria-label="Fehler melden"
+            svgIcon="feedback_outline"
+          ></mat-icon>
+        </button>
+        <div class="bottom"></div>
+      </div>
+      <div id="glossary">
         <button (click)="Glossary?.toggle()" mat-icon-button>
-          <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
+          <mat-icon aria-label="Glossar öffnen" svgIcon="glossary"></mat-icon>
         </button>
       </div>
     </ng-container>
     <ng-container *ngIf="!FixedLayout">
       <div class="mainmenu-button">
-        <button (click)="MainMenu?.toggle(); Glossary?.close()" mat-icon-button>
+        <button
+          id="menu"
+          (click)="MainMenu?.toggle(); Glossary?.close()"
+          mat-icon-button
+        >
           <mat-icon aria-label="Menü öffnen">menu</mat-icon>
         </button>
       </div>
-      <span [class.app-title-fixed]="FixedLayout">{{ config.appName }}</span>
-      <div class="spacer"></div>
       <img
-        id="smallLogo"
-        [src]="config.appLogoSmall"
+        id="Logo"
+        [src]="config.appLogo"
         onerror='this.style.display = "none"'
       />
-      <button (click)="Glossary?.toggle(); MainMenu?.close()" mat-icon-button>
-        <mat-icon aria-label="Menü öffnen" svgIcon="glossary"></mat-icon>
+      <span
+        id="app-name"
+        [class.app-title-fixed]="FixedLayout"
+        class="appName"
+        >{{ config.appName }}</span
+      >
+      <div class="spacer"></div>
+      <div class="reportButton" *ngIf="this.config.error_report">
+        <button
+          id="reportButton"
+          class="button"
+          (click)="reportError()"
+          mat-icon-button
+        >
+          <mat-icon
+            aria-label="Fehler melden"
+            svgIcon="feedback_outline"
+          ></mat-icon>
+        </button>
+        <div class="bottom"></div>
+      </div>
+      <button
+        id="glossary"
+        (click)="Glossary?.toggle(); MainMenu?.close()"
+        mat-icon-button
+      >
+        <mat-icon aria-label="Glossar öffnen" svgIcon="glossary"></mat-icon>
       </button>
     </ng-container>
   </mat-toolbar>

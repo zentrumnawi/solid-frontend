@@ -5,9 +5,11 @@ export interface SolidCoreConfig {
   apiUrl: string;
   markdownPlugins?: ((md: MarkdownIt, ...params: any[]) => void)[];
   appName: string;
-  appLogoLarge?: string;
-  appLogoSmall?: string;
+  appLogo?: string;
   production: boolean;
+  error_report: boolean;
+  guidedTour: any;
+  profileTour: any;
 }
 
 export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>(

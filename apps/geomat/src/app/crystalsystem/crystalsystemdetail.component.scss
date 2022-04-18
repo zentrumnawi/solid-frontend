@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @import 'apps/geomat/src/theme';
 
 $background: map-get($app-theme, background);
@@ -7,6 +7,12 @@ $background: map-get($app-theme, background);
   display: grid;
   grid-template-rows: min-content auto min-content;
   height: 100%;
+}
+
+mat-toolbar {
+  height: 56px;
+  background-color: white;
+  box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
 }
 
 iframe {

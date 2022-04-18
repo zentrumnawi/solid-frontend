@@ -8,43 +8,12 @@
     "tsconfig.base.json": "*",
     ".eslintrc.json": "*"
   },
-  "projects": {
-    "ais": {
-      "tags": []
-    },
-    "dive": {
-      "tags": []
-    },
-    "geomat": {
-      "tags": []
-    },
-    "planty": {
-      "tags": []
-    },
-    "solid-core": {
-      "tags": ["solid"]
-    },
-    "solid-glossary": {
-      "tags": ["solid"]
-    },
-    "solid-profile": {
-      "tags": ["solid"]
-    },
-    "solid-quiz": {
-      "tags": ["solid"]
-    },
-    "solid-skeleton": {
-      "tags": ["solid"]
-    },
-    "solid-slideshow": {
-      "tags": ["solid"]
-    }
-  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test"]
+        "cacheableOperations": ["build", "lint", "test"],
+        "parallel": 1
       }
     }
   },

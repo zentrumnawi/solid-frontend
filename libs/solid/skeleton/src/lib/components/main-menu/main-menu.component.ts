@@ -29,7 +29,7 @@ export class MainMenuComponent implements OnInit {
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
-    public feedback: FeedbackService | null,
+    public feedback: FeedbackService,
     private _router: Router
   ) {}
 
@@ -46,5 +46,9 @@ export class MainMenuComponent implements OnInit {
   @Dispatch()
   private GetSlideshowCategories() {
     return new GetSlideshowCategories();
+  }
+
+  public currentUrl(): string {
+    return this._router.url;
   }
 }

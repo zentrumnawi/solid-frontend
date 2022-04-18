@@ -1,28 +1,37 @@
-<mat-card *ngIf="BannerComponent && ShowLanding">
-  <ng-container
-    *ngComponentOutlet="BannerComponent; injector: BannerInjector"
-  ></ng-container>
-</mat-card>
+<div class="landing-container" #landing>
+  <mat-card *ngIf="BannerComponent && ShowLanding">
+    <ng-container
+      *ngComponentOutlet="BannerComponent; injector: BannerInjector"
+    ></ng-container>
+  </mat-card>
 
-<div *ngIf="limitedMessages.length">
-  <h2>Neuigkeiten</h2>
-  <solid-skeleton-message-list
-    [limitedMessages]="limitedMessages"
-  ></solid-skeleton-message-list>
+  <div *ngIf="limitedMessages.length">
+    <h2>Neuigkeiten</h2>
+    <solid-skeleton-message-list
+      [limitedMessages]="limitedMessages"
+    ></solid-skeleton-message-list>
+  </div>
+
+  <mat-grid-list id="menu-grid-list" cols="2" gutterSize="1rem" rowHeight="1:1">
+    <mat-grid-tile
+      *ngFor="let menuItem of MenuItems | async; let index = index"
+      class="mat-elevation-z2"
+      [routerLink]="menuItem.route"
+      id="menu-tile-{{ index }}"
+    >
+      <mat-icon
+        *ngIf="menuItem.svgIcon"
+        [svgIcon]="menuItem.svgIcon"
+      ></mat-icon>
+      <mat-icon *ngIf="!menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
+      <span class="navTitle">{{ menuItem.title }}</span>
+    </mat-grid-tile>
+    <mat-grid-tile
+      id="feedback"
+      (click)="feedback.showDialog()"
+      class="mat-elevation-z2"
+      ><mat-icon matListIcon svgIcon="feedback"></mat-icon>
+      <span class="navTitle">Kontakt</span>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
-
-<mat-grid-list cols="2" gutterSize="1rem" rowHeight="1:1">
-  <mat-grid-tile
-    *ngFor="let menuItem of MenuItems | async"
-    class="mat-elevation-z2"
-    [routerLink]="menuItem.route"
-  >
-    <mat-icon *ngIf="menuItem.svgIcon" [svgIcon]="menuItem.svgIcon"></mat-icon>
-    <mat-icon *ngIf="!menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
-    <span class="navTitle">{{ menuItem.title }}</span>
-  </mat-grid-tile>
-  <mat-grid-tile (click)="feedback.showDialog()" class="mat-elevation-z2"
-    ><mat-icon matListIcon svgIcon="feedback"></mat-icon>
-    <span class="navTitle">Kontakt</span>
-  </mat-grid-tile>
-</mat-grid-list>
