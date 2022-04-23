@@ -34,3 +34,9 @@ export interface QuizSession {
   currentQuestion: number;
   questions: QuizQuestionInSession[];
 }
+
+export interface QuizMetadata {
+  count: number;
+  tags: string[];
+  difficulty: 1 | 2 | 3 | 4 | 5;
+}
