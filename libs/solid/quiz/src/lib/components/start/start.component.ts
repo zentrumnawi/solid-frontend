@@ -16,10 +16,10 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class StartComponent implements OnDestroy {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
   private $destroyed = new Subject();
+  questionCount = new FormControl(10, [Validators.min(1)]);
   isValid = true;
   difficulty = 1;
   chosenTags: string[] = [];
-  questionCount = new FormControl(10, [Validators.min(1)]);
 
   constructor(private _store: Store) {}
 
