@@ -3,7 +3,7 @@ export class LoadQuizQuestions {
 
   constructor(
     public questionCount: number,
-    public tags: string,
+    public tags: string[],
     public difficulty: number
   ) {}
 }

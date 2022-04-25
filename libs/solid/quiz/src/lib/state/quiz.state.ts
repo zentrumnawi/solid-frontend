@@ -43,6 +43,11 @@ export class QuizState {
     return state.session;
   }
 
+  @Selector()
+  static getMeta(state: QuizStateModel): QuizMetadata | null {
+    return state.metadata;
+  }
+
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
     private _http: HttpClient
@@ -50,14 +55,13 @@ export class QuizState {
 
   @Action(LoadQuizMetadata)
   public setMeta(ctx: StateContext<QuizStateModel>) {
-    const metaData = this._http.get<QuizMetadata>(
-      `${this._config.apiUrl}/quizmeta`
+    return this._http.get<QuizMetadata>(`${this._config.apiUrl}/quizmeta`).pipe(
+      tap((res) => {
+        ctx.patchState({
+          metadata: res,
+        });
+      })
     );
-    metaData.subscribe((res) => {
-      ctx.patchState({
-        metadata: res,
-      });
-    });
   }
 
   @Action(LoadQuizQuestions)
@@ -67,7 +71,7 @@ export class QuizState {
   ) {
     const params = new HttpParams()
       .set('count', questionCount)
-      .set('tags', tags)
+      .set('tags', JSON.stringify(tags))
       .set('difficulty', difficulty);
     return this._http
       .get<QuizQuestion[]>(`${this._config.apiUrl}/quizsession`, {

@@ -16,6 +16,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 export const routes: Route[] = [
   { path: '', component: MainComponent, data: { title: 'Selbsttest' } },
@@ -46,6 +50,10 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MatRadioModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    MatExpansionModule,
+    MatSliderModule,
+    MatChipsModule,
+    MatAutocompleteModule,
   ],
 })
 export class SolidQuizModule {}

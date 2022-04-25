@@ -1,8 +1,6 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>Selbsttest</mat-card-title>
-  </mat-card-header>
-  <mat-card-content *ngIf="QuizLoaded | async; else quizLoading">
+  <mat-card-title>Selbsttest</mat-card-title>
+  <mat-card-content>
     <p>
       Mit diesen Fragen kann der persönliche Wissensstand in verschiedenen
       Teilbereichen überprüft werden.
@@ -17,16 +15,54 @@
       Fragenanzahl kann hier festgelegt werden:
     </p>
   </mat-card-content>
-  <mat-card-actions *ngIf="QuizLoaded | async">
-    <mat-form-field>
-      <input
-        [formControl]="questionCount"
-        matInput
-        placeholder="Anzahl an Fragen"
-        type="number"
-      />
+  <hr />
+  <mat-card-title>Konfiguration</mat-card-title>
+  <mat-card-actions *ngIf="metaData$ | async as meta">
+    <mat-form-field appearance="outline">
+      <mat-label>Tags</mat-label>
+      <mat-chip-list #tagList>
+        <mat-chip
+          *ngFor="let tag of chosenTags"
+          (removed)="removeTag(tag)"
+          selected
+        >
+          {{ tag }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          type="text"
+          placeholder="More Tags..."
+          [matChipInputFor]="tagList"
+          (matChipInputTokenEnd)="addTag($event)"
+          [matAutocomplete]="auto"
+        />
+      </mat-chip-list>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)"
+      >
+        <mat-option *ngFor="let tag of meta.tags" [value]="tag">
+          {{ tag }}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Anzahl der Fragen</mat-label>
+      <input [formControl]="questionCount" matInput type="number" />
+    </mat-form-field>
+
+    <mat-slider min="0" max="5" step="1" [(ngModel)]="difficulty"> </mat-slider>
+    <div class="formInvalid" *ngIf="!isValid">
+      <p>
+        Ooops in dieser Kombination gibt es keine Fragen, versuche eine andere
+        Kombination
+      </p>
+    </div>
     <button
+      class="startBtn"
       (click)="onStartClick()"
       mat-raised-button
       [disabled]="!questionCount.valid"
@@ -35,8 +71,3 @@
     </button>
   </mat-card-actions>
 </mat-card>
-<ng-template #quizLoading>
-  <mat-card-content>
-    <mat-spinner color="primary"></mat-spinner>
-  </mat-card-content>
-</ng-template>
