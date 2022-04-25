@@ -15,7 +15,7 @@ export class InfoPageContentComponent {
   public appVersion =
     version && version.semver && version.semver.version
       ? version.semver.version
-      : 'Version unbekannt';
+      : undefined;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService

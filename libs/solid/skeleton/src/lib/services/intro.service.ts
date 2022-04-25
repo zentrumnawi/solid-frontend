@@ -18,8 +18,8 @@ export class IntroService {
   guidedTour(callback: (target: any) => void) {
     this.introJS = introJs();
     if (
-      localStorage.getItem('hide_tour') == 'false' ||
-      localStorage.getItem('hide_tour') == null
+      localStorage.getItem('hide_landing_tour') == 'false' ||
+      localStorage.getItem('hide_landing_tour') == null
     ) {
       this.introJS
         .setOptions({
@@ -31,7 +31,7 @@ export class IntroService {
         })
         .onbeforechange(callback)
         .start();
-      localStorage.setItem('hide_tour', 'true');
+      localStorage.setItem('hide_landing_tour', 'true');
     }
   }
 }

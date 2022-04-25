@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  OnInit,
-  Type,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Inject, Type, ViewChild } from '@angular/core';
 import {
   InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
@@ -40,6 +33,12 @@ export class InfoComponent {
     this.InfoPageContentComponent = cfg.infoPageContent;
     this.PrivacyContentComponent = cfg.privacyContent;
     this.ProfileTitle = cfg.routingConfig.profile.title;
+    this.landingChecked =
+      localStorage.getItem('hide_landing_banner') === 'false';
+    this.tourLandingChecked =
+      localStorage.getItem('hide_landing_tour') === 'false';
+    this.tourProfileChecked =
+      localStorage.getItem('hide_profile_tour') === 'false';
   }
 
   moveTabToPrivacy(event: any) {
@@ -57,12 +56,14 @@ export class InfoComponent {
   }
 
   public toggleChange() {
-    if (this.tourLandingChecked) localStorage.setItem('hide_tour', 'false');
-    else localStorage.setItem('hide_tour', 'true');
+    if (this.tourLandingChecked)
+      localStorage.setItem('hide_landing_tour', 'false');
+    else localStorage.setItem('hide_landing_tour', 'true');
     if (this.tourProfileChecked)
       localStorage.setItem('hide_profile_tour', 'false');
     else localStorage.setItem('hide_profile_tour', 'true');
-    if (this.landingChecked) localStorage.setItem('hide_landing', 'false');
-    else localStorage.setItem('hide_landing', 'true');
+    if (this.landingChecked)
+      localStorage.setItem('hide_landing_banner', 'false');
+    else localStorage.setItem('hide_landing_banner', 'true');
   }
 }
