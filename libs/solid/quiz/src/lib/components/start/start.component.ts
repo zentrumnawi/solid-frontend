@@ -2,11 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { LoadQuizQuestions, StartQuizSession } from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
-import { FormControl, Validators } from '@angular/forms';
 import { QuizState } from '../../state/quiz.state';
 import { QuizMetadata } from '../../state/quiz.model';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'solid-quiz-start',
@@ -16,7 +13,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class StartComponent implements OnDestroy {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
   private $destroyed = new Subject();
-  questionCount = new FormControl(10, [Validators.min(1)]);
+  questionCount = 5;
   isValid = true;
   difficulty = 1;
   chosenTags: string[] = [];
@@ -26,14 +23,14 @@ export class StartComponent implements OnDestroy {
   public onStartClick() {
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
-        this.questionCount.value,
+        this.questionCount,
         this.chosenTags,
         this.difficulty
       )
     );
     quizLoaded.subscribe((res) => {
       if (res.quiz.questions.length > 0) {
-        this._store.dispatch(new StartQuizSession(this.questionCount.value));
+        this._store.dispatch(new StartQuizSession(this.questionCount));
         this.isValid = true;
       } else {
         this.isValid = false;
@@ -45,23 +42,8 @@ export class StartComponent implements OnDestroy {
     this.$destroyed.next(true);
   }
 
-  addTag(event: MatChipInputEvent) {
-    const value = (event.value || '').trim();
-    if (value) {
-      this.chosenTags.push(value);
-    }
-  }
-
-  removeTag(tag: string): void {
+  remove(tag: string) {
     const index = this.chosenTags.indexOf(tag);
-    if (index >= 0) {
-      this.chosenTags.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    const tag = event.option.viewValue;
-    if (!this.chosenTags.includes(tag))
-      this.chosenTags.push(event.option.viewValue);
+    if (index >= 0) this.chosenTags.splice(index, 1);
   }
 }

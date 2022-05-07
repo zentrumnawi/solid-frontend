@@ -20,6 +20,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 
 export const routes: Route[] = [
   { path: '', component: MainComponent, data: { title: 'Selbsttest' } },
@@ -54,6 +56,8 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MatSliderModule,
     MatChipsModule,
     MatAutocompleteModule,
+    MatListModule,
+    MatSelectModule,
   ],
 })
 export class SolidQuizModule {}

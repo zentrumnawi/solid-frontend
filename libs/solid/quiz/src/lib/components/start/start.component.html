@@ -18,56 +18,70 @@
   <hr />
   <mat-card-title>Konfiguration</mat-card-title>
   <mat-card-actions *ngIf="metaData$ | async as meta">
-    <mat-form-field appearance="outline">
-      <mat-label>Tags</mat-label>
-      <mat-chip-list #tagList>
-        <mat-chip
-          *ngFor="let tag of chosenTags"
-          (removed)="removeTag(tag)"
-          selected
-        >
-          {{ tag }}
-          <button matChipRemove>
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip>
-        <input
-          type="text"
-          placeholder="More Tags..."
-          [matChipInputFor]="tagList"
-          (matChipInputTokenEnd)="addTag($event)"
-          [matAutocomplete]="auto"
-        />
-      </mat-chip-list>
-      <mat-autocomplete
-        #auto="matAutocomplete"
-        (optionSelected)="selected($event)"
-      >
-        <mat-option *ngFor="let tag of meta.tags" [value]="tag">
-          {{ tag }}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Anzahl der Fragen</mat-label>
-      <input [formControl]="questionCount" matInput type="number" />
-    </mat-form-field>
-
-    <mat-slider min="0" max="5" step="1" [(ngModel)]="difficulty"> </mat-slider>
+    <div class="config">
+      <div class="row">
+        <div class="col-1">
+          <div class="mat-subheader">Fragenanzahl</div>
+        </div>
+        <div class="col-2">
+          <mat-slider
+            min="0"
+            max="10"
+            step="1"
+            thumbLabel
+            [(ngModel)]="questionCount"
+          >
+          </mat-slider>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1">
+          <div class="mat-subheader">Difficulty</div>
+        </div>
+        <div class="col-2">
+          <mat-slider
+            min="0"
+            max="5"
+            step="1"
+            thumbLabel
+            [(ngModel)]="difficulty"
+          >
+          </mat-slider>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1">
+          <div class="mat-subheader">Tag</div>
+        </div>
+        <div class="col-2">
+          <mat-form-field appearance="outline">
+            <mat-chip-list>
+              <mat-chip *ngFor="let tag of chosenTags" (removed)="remove(tag)">
+                {{ tag }}
+                <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+            </mat-chip-list>
+            <mat-select [(ngModel)]="chosenTags" multiple>
+              <mat-option *ngFor="let tag of meta.tags" [value]="tag">
+                {{ tag }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
     <div class="formInvalid" *ngIf="!isValid">
       <p>
         Ooops in dieser Kombination gibt es keine Fragen, versuche eine andere
         Kombination
       </p>
     </div>
-    <button
-      class="startBtn"
-      (click)="onStartClick()"
-      mat-raised-button
-      [disabled]="!questionCount.valid"
-    >
-      Start
-    </button>
+    <div class="button">
+      <button class="startBtn" (click)="onStartClick()" mat-raised-button>
+        Start
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>

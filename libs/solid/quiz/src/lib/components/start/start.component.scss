@@ -6,12 +6,17 @@
 mat-card {
   margin-left: auto;
   margin-right: auto;
-  max-width: 30em;
+  max-width: 29em;
 }
 
 mat-form-field {
   width: 20em;
   margin-left: 0.75em;
+}
+
+mat-card-title {
+  font-size: 20px;
+  padding-left: 20px;
 }
 
 mat-card-content {
@@ -21,13 +26,20 @@ mat-card-content {
   }
 }
 
-mat-card-title {
-  font-size: 20px;
-  padding-left: 20px;
+mat-list {
+  margin-left: 2px;
+}
+
+mat-form-field {
+  width: 85%;
+  padding-left: 3%;
+}
+
+mat-card-actions {
+  padding: 0px;
 }
 
 .mat-standard-chip {
-  background-color: lightseagreen;
   color: white;
   font-size: 13px;
   min-height: 25px;
@@ -39,21 +51,60 @@ mat-card-title {
 }
 
 .mat-slider {
-  min-width: 291px;
-  left: 8px;
+  min-width: 80%;
+  left: 10px;
 }
 
 .formInvalid {
+  box-sizing: border-box;
   font-size: 11px;
   color: red;
   font-style: italic;
-  padding: 1px 10px;
+  text-align: center;
+  padding: 0px 8%;
 }
 
 .startBtn {
-  margin: 8px 174px !important;
+  margin: 7px 0px !important;
 }
 
 hr {
   margin: 15px;
+}
+
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.col-1 {
+  float: left;
+  width: 25%;
+  padding: 4px;
+}
+
+.col-2 {
+  float: left;
+  width: 75%;
+  padding: 4px;
+}
+
+.mat-subheader {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.button {
+  text-align: center;
+  position: relative;
+}
+
+.config {
+  text-align: center;
+  position: relative;
+}
+
+::ng-deep .mat-select-value-text {
+  display: none;
 }

@@ -1,6 +1,10 @@
 @import 'lib/components/question/question.theme';
 
 @mixin solid-quiz-theme($mat-theme, $quiz-correct, $quiz-incorrect) {
+  .mat-standard-chip {
+    background-color: mat.get-color-from-palette($app-primary, 600) !important;
+  }
+
   @include solid-quiz-question-theme(
     $mat-theme,
     $quiz-correct,
