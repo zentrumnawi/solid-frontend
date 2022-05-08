@@ -70,7 +70,6 @@ export class QuizState {
     { questionCount, tags, difficulty }: LoadQuizQuestions
   ) {
     let params;
-
     if (tags.length == 0 && difficulty == 0) {
       params = new HttpParams().set('count', questionCount);
     } else if (tags.length == 0) {
