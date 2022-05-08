@@ -5,16 +5,22 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  TemplateRef,
+  ViewChild,
 } from '@angular/core';
 import {
   QuizAnswer,
   QuizQuestion,
   QuizQuestionType,
+  QuizSession,
 } from '../../state/quiz.model';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { Store } from '@ngxs/store';
-import { QuizQuestionAnswered } from '../../state/quiz.actions';
+import { Select, Store } from '@ngxs/store';
+import { EndQuizSession, QuizQuestionAnswered } from '../../state/quiz.actions';
+import { QuizState } from '../../state/quiz.state';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'solid-quiz-question',
@@ -22,7 +28,7 @@ import { QuizQuestionAnswered } from '../../state/quiz.actions';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnChanges {
-  @Input() public question?: QuizQuestion;
+  @Input() public question!: QuizQuestion;
   public QuestionTypes = QuizQuestionType;
   public SelectedAnswers: number[] = [];
   public ShowAnswers = false;
@@ -30,9 +36,14 @@ export class QuestionComponent implements OnChanges {
   public ImageIndex = 0;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
+  @Select(QuizState.getSession)
+  QuizSession!: Observable<QuizSession | null>;
+
+  @ViewChild('backPopup', { read: TemplateRef }) backPopup!: TemplateRef<any>;
+
   @Output() stopQuiz = new EventEmitter<boolean>();
 
-  constructor(private _store: Store) {}
+  constructor(private _store: Store, private dialog: MatDialog) {}
 
   public onRadioChange(e: MatRadioChange) {
     this.SelectedAnswers = [e.value];
@@ -120,5 +131,13 @@ export class QuestionComponent implements OnChanges {
 
   onCloseClick() {
     this.stopQuiz.emit(true);
+  }
+
+  onBackBtnClick() {
+    this.dialog.open(this.backPopup, { panelClass: 'custom-dialog-container' });
+  }
+
+  onBackToStart() {
+    this._store.dispatch(new EndQuizSession());
   }
 }

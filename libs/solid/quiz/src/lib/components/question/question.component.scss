@@ -47,6 +47,10 @@ solid-core-media {
   }
 }
 
+mat-card {
+  margin: 10px;
+}
+
 mat-card-content.single-choice {
   display: flex;
   flex-direction: column;
@@ -127,4 +131,129 @@ mat-card-actions {
 
 span.feedback {
   font-weight: normal;
+}
+
+.toolbar-container {
+  left: 300px;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+  transition: top 0.7s ease-in-out;
+}
+
+.toolbar {
+  width: 100%;
+  position: relative;
+  min-height: 52px;
+
+  .button-back {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-45%);
+  }
+  .step-actions {
+    max-width: 530px;
+    display: grid;
+    grid-template-areas: 'previous header next';
+    grid-template-columns: 40px auto 40px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+  @media (min-width: 451px) and (max-width: 530px) {
+    .step-actions {
+      max-width: 350px;
+    }
+  }
+  @media (min-width: 531px) and (max-width: 645px) {
+    .step-actions {
+      max-width: 400px;
+    }
+  }
+  @media (min-width: 646px) and (max-width: 700px) {
+    .step-actions {
+      max-width: 500px;
+    }
+  }
+
+  .button-left {
+    grid-area: previous;
+  }
+
+  .button-right {
+    grid-area: next;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    grid-area: header;
+
+    h2 {
+      margin-bottom: -2px;
+    }
+
+    span {
+      margin-bottom: 0;
+    }
+  }
+}
+
+mat-progress-bar {
+  ::ng-deep {
+    .mat-progress-bar-buffer {
+      background-color: white;
+    }
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  grid-area: header;
+
+  h2 {
+    margin-bottom: -2px;
+  }
+
+  span {
+    margin-bottom: 0;
+  }
+}
+
+::ng-deep .custom-dialog-container {
+  .mat-dialog-container {
+    height: 150px;
+    padding: 5px;
+    overflow: unset;
+  }
+
+  .popUpCloseBtn {
+    float: right;
+  }
+
+  .mat-dialog-content {
+    padding: 0;
+    margin: 15px 7px 1px 21px;
+
+    p {
+      margin-top: 26px;
+      font-size: 15px;
+    }
+  }
+
+  .mat-dialog-actions {
+    justify-content: space-between;
+    padding: 0 8px;
+    min-height: 42px;
+  }
+
+  .cancelBtn {
+  }
+
+  .backBtn {
+  }
 }

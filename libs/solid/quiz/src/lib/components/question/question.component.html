@@ -1,7 +1,26 @@
-<ng-container *ngIf="question">
+<ng-container *ngIf="question && QuizSession | async as quizSession">
+  <div class="toolbar-container" #toolbar>
+    <div class="toolbar">
+      <button mat-icon-button class="button-back" (click)="onBackBtnClick()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="step-actions">
+        <div class="title">
+          <h2>
+            Fragen {{ quizSession.currentQuestion + 1 }} von
+            {{ quizSession.questions.length }}
+          </h2>
+          <span>{{ question.tags.join(' ') }}</span>
+        </div>
+      </div>
+    </div>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="quizSession.progress"
+    ></mat-progress-bar>
+  </div>
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{ question.tags.join(' ') }}</mat-card-title>
       <mat-card-subtitle markdown [data]="question.text"></mat-card-subtitle>
       <div class="spacer"></div>
       <div class="close-btn">
@@ -148,4 +167,27 @@
       </ng-container>
     </mat-card-content>
   </mat-card>
+  <ng-template #backPopup>
+    <div class="close-popup">
+      <button mat-icon-button mat-dialog-close class="popUpCloseBtn">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-dialog-content>
+      <p>Do you really want to close this Quiz-session?</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button class="cancelBtn" mat-button mat-dialog-close cdkFocusInitial>
+        Cancel
+      </button>
+      <button
+        class="backBtn"
+        mat-button
+        [mat-dialog-close]="true"
+        (click)="onBackToStart()"
+      >
+        Yes
+      </button>
+    </mat-dialog-actions>
+  </ng-template>
 </ng-container>
