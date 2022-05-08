@@ -69,10 +69,25 @@ export class QuizState {
     ctx: StateContext<QuizStateModel>,
     { questionCount, tags, difficulty }: LoadQuizQuestions
   ) {
-    const params = new HttpParams()
-      .set('count', questionCount)
-      .set('tags', JSON.stringify(tags))
-      .set('difficulty', difficulty);
+    let params;
+
+    if (tags.length == 0 && difficulty == 0) {
+      params = new HttpParams().set('count', questionCount);
+    } else if (tags.length == 0) {
+      params = new HttpParams()
+        .set('count', questionCount)
+        .set('difficulty', difficulty);
+    } else if (difficulty == 0) {
+      params = new HttpParams()
+        .set('count', questionCount)
+        .set('tags', JSON.stringify(tags));
+    } else {
+      params = new HttpParams()
+        .set('count', questionCount)
+        .set('tags', JSON.stringify(tags))
+        .set('difficulty', difficulty);
+    }
+
     return this._http
       .get<QuizQuestion[]>(`${this._config.apiUrl}/quizsession`, {
         params: params,
