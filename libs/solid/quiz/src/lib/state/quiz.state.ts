@@ -69,7 +69,6 @@ export class QuizState {
     ctx: StateContext<QuizStateModel>,
     { questionCount, tags, difficulty }: LoadQuizQuestions
   ) {
-    
     let params;
     if (tags.length == 0 && difficulty == 0) {
       params = new HttpParams().set('count', questionCount);
