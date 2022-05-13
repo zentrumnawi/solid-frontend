@@ -17,7 +17,7 @@
   </mat-card-content>
   <hr />
   <mat-card-title>Konfiguration</mat-card-title>
-  <mat-card-actions *ngIf="metaData$ | async as meta">
+  <mat-card-actions *ngIf="metaData$ | async as meta; else quizLoading">
     <div class="config">
       <div class="row">
         <div class="col-1">
@@ -85,3 +85,8 @@
     </div>
   </mat-card-actions>
 </mat-card>
+<ng-template #quizLoading>
+  <mat-card-content>
+    <mat-spinner color="primary"></mat-spinner>
+  </mat-card-content>
+</ng-template>

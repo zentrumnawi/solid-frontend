@@ -30,37 +30,11 @@
       </div>
     </mat-card-header>
     <mat-card-content>
-      <div *ngIf="question.images.length > 0" class="image-container">
-        <button
-          mat-icon-button
-          class="button-before"
-          color="accent"
-          *ngIf="question.images.length > 1"
-          (click)="
-            swipe(ImageIndex, question.images.length, SWIPE_ACTION.RIGHT)
-          "
-        >
-          <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
-        </button>
-        <solid-core-media
-          (swiperight)="swipe(ImageIndex, question.images.length, $event.type)"
-          (swipeleft)="swipe(ImageIndex, question.images.length, $event.type)"
-          [image]="question.images[ImageIndex]"
-          [hasDialog]="true"
-          [hasAudio]="false"
-          [hasAttributions]="true"
-        ></solid-core-media>
-        <button
-          class="button-next"
-          color="accent"
-          mat-icon-button
-          *ngIf="question.images.length > 1"
-          (click)="swipe(ImageIndex, question.images.length, SWIPE_ACTION.LEFT)"
-        >
-          <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
-        </button>
-      </div>
-
+      <solid-quiz-question-media
+        [question]="question"
+        [ImageIndex]="ImageIndex"
+      >
+      </solid-quiz-question-media>
       <ng-container [ngSwitch]="question.type">
         <mat-card-content
           *ngSwitchCase="QuestionTypes.SingleChoice"

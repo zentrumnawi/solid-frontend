@@ -4,6 +4,7 @@ import { StartComponent } from './components/start/start.component';
 import { MainComponent } from './components/main/main.component';
 import { QuestionComponent } from './components/question/question.component';
 import { EndComponent } from './components/end/end.component';
+import { QuestionMediaComponent } from './components/question-media/question-media.component';
 import { NgxsModule } from '@ngxs/store';
 import { QuizState } from './state/quiz.state';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -39,6 +40,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MainComponent,
     QuestionComponent,
     EndComponent,
+    QuestionMediaComponent,
   ],
   imports: [
     SolidCoreModule,

@@ -34,7 +34,6 @@ export class QuestionComponent implements OnChanges {
   public ShowAnswers = false;
   public Correct?: boolean;
   public ImageIndex = 0;
-  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   @Select(QuizState.getSession)
   QuizSession!: Observable<QuizSession | null>;
@@ -109,24 +108,6 @@ export class QuestionComponent implements OnChanges {
       return false;
     }
     return !answer.correct; // && this.SelectedAnswers.includes(answer.id);
-  }
-
-  swipe(
-    currentIndex: number,
-    imageLength: number,
-    action: string = this.SWIPE_ACTION.RIGHT
-  ) {
-    if (currentIndex > imageLength || currentIndex < 0) {
-      return;
-    }
-    if (action === this.SWIPE_ACTION.LEFT) {
-      const isLast = currentIndex === imageLength - 1;
-      this.ImageIndex = isLast ? 0 : currentIndex + 1;
-    }
-    if (action === this.SWIPE_ACTION.RIGHT) {
-      const isFirst = currentIndex === 0;
-      this.ImageIndex = isFirst ? imageLength - 1 : currentIndex - 1;
-    }
   }
 
   onCloseClick() {
