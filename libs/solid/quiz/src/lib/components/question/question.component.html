@@ -4,6 +4,9 @@
       <button mat-icon-button class="button-back" (click)="onBackBtnClick()">
         <mat-icon>arrow_back</mat-icon>
       </button>
+      <button mat-icon-button class="button-close" (click)="onCloseClick()">
+        <mat-icon>bar_chart</mat-icon>
+      </button>
       <div class="step-actions">
         <div class="title">
           <h2>
@@ -22,12 +25,6 @@
   <mat-card>
     <mat-card-header>
       <mat-card-subtitle markdown [data]="question.text"></mat-card-subtitle>
-      <div class="spacer"></div>
-      <div class="close-btn">
-        <button mat-icon-button (click)="onCloseClick()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
     </mat-card-header>
     <mat-card-content>
       <solid-quiz-question-media

@@ -1,9 +1,3 @@
-.close-btn {
-  margin-top: -0.6rem;
-  margin-right: -0.6rem;
-  margin-left: -0.9rem;
-}
-
 mat-card {
   margin: 10px;
 }
@@ -109,6 +103,14 @@ span.feedback {
     top: 50%;
     transform: translateY(-45%);
   }
+
+  .button-close {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-45%);
+  }
+
   .step-actions {
     max-width: 530px;
     display: grid;
@@ -150,6 +152,7 @@ span.feedback {
 
     h2 {
       margin-bottom: -2px;
+      font-size: 19px;
     }
 
     span {
