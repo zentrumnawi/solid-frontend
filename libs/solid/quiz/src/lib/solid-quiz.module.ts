@@ -3,6 +3,7 @@ import { Route, RouterModule } from '@angular/router';
 import { StartComponent } from './components/start/start.component';
 import { MainComponent } from './components/main/main.component';
 import { QuestionComponent } from './components/question/question.component';
+import { SingleChoiceQuestionComponent } from './components/single-choice-question/single-choice-question.component';
 import { EndComponent } from './components/end/end.component';
 import { NgxsModule } from '@ngxs/store';
 import { QuizState } from './state/quiz.state';
@@ -39,6 +40,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MainComponent,
     QuestionComponent,
     EndComponent,
+    SingleChoiceQuestionComponent,
   ],
   imports: [
     SolidCoreModule,
