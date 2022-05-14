@@ -9,13 +9,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  QuizAnswer,
   QuizQuestion,
   QuizQuestionType,
   QuizSession,
 } from '../../state/quiz.model';
-import { MatRadioChange } from '@angular/material/radio';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Select, Store } from '@ngxs/store';
 import { EndQuizSession, QuizQuestionAnswered } from '../../state/quiz.actions';
 import { QuizState } from '../../state/quiz.state';
@@ -45,10 +42,6 @@ export class QuestionComponent implements OnChanges {
 
   constructor(private _store: Store, private dialog: MatDialog) {}
 
-  public onRadioChange(e: MatRadioChange) {
-    this.SelectedAnswers = [e.value];
-  }
-
   public onShowAnswersClick() {
     this.ShowAnswers = true;
     if (this.question) {
@@ -68,10 +61,6 @@ export class QuestionComponent implements OnChanges {
     }
   }
 
-  public trackByFn(index: number, item: QuizAnswer) {
-    return item.id;
-  }
-
   onNextQuestionClick() {
     if (this.question && this.Correct !== undefined) {
       this._store.dispatch(new QuizQuestionAnswered(this.Correct));
@@ -85,30 +74,6 @@ export class QuestionComponent implements OnChanges {
       this.SelectedAnswers = [];
       this.Correct = undefined;
     }
-  }
-
-  onSelectChange(e: MatCheckboxChange, answer: QuizAnswer) {
-    if (e.checked) {
-      this.SelectedAnswers.push(answer.id);
-    } else {
-      this.SelectedAnswers = this.SelectedAnswers.filter(
-        (id) => id !== answer.id
-      );
-    }
-  }
-
-  isAnswerCorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
-      return false;
-    }
-    return answer.correct; // && this.SelectedAnswers.includes(answer.id);
-  }
-
-  isAnswerIncorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
-      return false;
-    }
-    return !answer.correct; // && this.SelectedAnswers.includes(answer.id);
   }
 
   swipe(

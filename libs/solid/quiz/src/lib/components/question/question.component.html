@@ -73,44 +73,12 @@
           *ngSwitchCase="QuestionTypes.MultipleChoice"
           class="multiple-choice"
         >
-          <mat-checkbox
-            (change)="onSelectChange($event, answer)"
-            *ngFor="let answer of question.answers; trackBy: trackByFn"
-            [checked]="isAnswerCorrect(answer)"
-            [class.correctselected]="
-              isAnswerCorrect(answer) && SelectedAnswers.includes(answer.id)
-            "
-            [class.incorrectselected]="
-              isAnswerIncorrect(answer) && SelectedAnswers.includes(answer.id)
-            "
-            [class.correctunselected]="
-              isAnswerCorrect(answer) && !SelectedAnswers.includes(answer.id)
-            "
-            [class.incorrectunselected]="
-              isAnswerIncorrect(answer) && !SelectedAnswers.includes(answer.id)
-            "
-            [disabled]="ShowAnswers"
-            [indeterminate]="isAnswerIncorrect(answer)"
-            color="primary"
+          <solid-quiz-multiple-choice-question
+            [SelectedAnswers]="SelectedAnswers"
+            [ShowAnswers]="ShowAnswers"
+            [question]="question"
           >
-            <span
-              markdown
-              [data]="answer.text"
-              [class.selected]="
-                ShowAnswers && SelectedAnswers.includes(answer.id)
-              "
-            ></span>
-            <span
-              *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
-              [data]="
-                answer.correct
-                  ? answer.feedback_correct
-                  : answer.feedback_incorrect
-              "
-              markdown
-              class="feedback"
-            ></span>
-          </mat-checkbox>
+          </solid-quiz-multiple-choice-question>
         </mat-card-content>
         <mat-card-actions>
           <button

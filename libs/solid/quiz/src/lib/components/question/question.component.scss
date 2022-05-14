@@ -55,35 +55,6 @@ mat-card-content.multiple-choice {
   display: flex;
   flex-direction: column;
   margin-left: 0.5rem;
-
-  mat-checkbox {
-    width: 100%;
-
-    ::ng-deep {
-      &.correctunselected,
-      &.correctselected {
-        span.mat-checkbox-label {
-          font-weight: bold;
-        }
-      }
-      span.mat-checkbox-label {
-        display: flex;
-        flex-direction: column;
-        width: calc(100% - 24px);
-        white-space: normal;
-      }
-
-      label.mat-checkbox-layout {
-        vertical-align: top;
-        width: 100%;
-      }
-
-      span.mat-checkbox-inner-container {
-        margin-top: 4px;
-        margin-bottom: auto;
-      }
-    }
-  }
 }
 
 mat-card-actions {
