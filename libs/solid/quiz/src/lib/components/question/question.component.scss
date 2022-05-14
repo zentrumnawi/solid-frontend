@@ -2,6 +2,49 @@ mat-card {
   margin: 10px;
 }
 
+solid-core-media {
+  width: 100%;
+  ::ng-deep {
+    solid-core-image-detail {
+      solid-core-image-toolbar {
+        div.dziToolbar {
+          margin-right: 0.3em;
+        }
+      }
+    }
+  }
+}
+
+.image-container {
+  height: calc(100vh / 2.5);
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-left: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+
+  .button-before {
+    position: absolute;
+    left: 0;
+    top: 42%;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+  }
+
+  .button-next {
+    position: absolute;
+    right: 0;
+    top: 42%;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+  }
+}
+
 mat-card-content.single-choice {
   display: flex;
   flex-direction: column;

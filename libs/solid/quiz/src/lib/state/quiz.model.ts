@@ -1,7 +1,11 @@
-import { ImageModel, PhotographModel } from '@zentrumnawi/solid-core';
+import {
+  MediaModel,
+  MediaObjectModel,
+  PhotographModel,
+} from '@zentrumnawi/solid-core';
 
 export interface QuizQuestion extends QuizQuestionApi {
-  images: ImageModel[];
+  images: MediaModel[];
 }
 
 export interface QuizQuestionApi {
@@ -9,7 +13,7 @@ export interface QuizQuestionApi {
   type: QuizQuestionType;
   difficulty: 1 | 2 | 3 | 4 | 5;
   answers: QuizAnswer[];
-  img: PhotographModel[];
+  img: MediaObjectModel[];
   tags: string[];
   text: string;
 }

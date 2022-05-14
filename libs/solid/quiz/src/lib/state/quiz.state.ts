@@ -18,7 +18,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import {
   SOLID_CORE_CONFIG,
   SolidCoreConfig,
-  ImageModel,
+  MediaModel,
 } from '@zentrumnawi/solid-core';
 import { map, tap } from 'rxjs/operators';
 
@@ -98,7 +98,7 @@ export class QuizState {
             return input.map((question) => {
               return {
                 ...question,
-                images: question.img.map((p) => new ImageModel(p)),
+                images: question.img.map((p) => new MediaModel(p)),
               };
             });
           };
