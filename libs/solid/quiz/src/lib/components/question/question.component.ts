@@ -42,7 +42,7 @@ export class QuestionComponent implements OnChanges {
 
   constructor(private _store: Store, private dialog: MatDialog) {}
 
-  public onShowAnswersClick() {
+  onShowAnswersClick() {
     this.ShowAnswers = true;
     if (this.question) {
       this.Correct = true;

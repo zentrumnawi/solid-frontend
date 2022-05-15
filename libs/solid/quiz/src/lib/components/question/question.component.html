@@ -80,6 +80,20 @@
           >
           </solid-quiz-multiple-choice-question>
         </mat-card-content>
+        <ng-container
+          *ngSwitchCase="QuestionTypes.TrueFalse"
+          class="true-false"
+        >
+          <mat-card-content>
+            <solid-quiz-true-false-question
+              [SelectedAnswers]="SelectedAnswers"
+              [ShowAnswers]="ShowAnswers"
+              [question]="question"
+            >
+            </solid-quiz-true-false-question>
+          </mat-card-content>
+        </ng-container>
+
         <mat-card-actions>
           <button
             (click)="onShowAnswersClick()"

@@ -26,14 +26,14 @@ export class MultipleChoiceQuestionComponent {
     if (!this.ShowAnswers) {
       return false;
     }
-    return answer.correct; // && this.SelectedAnswers.includes(answer.id);
+    return answer.correct;
   }
 
   isAnswerIncorrect(answer: QuizAnswer) {
     if (!this.ShowAnswers) {
       return false;
     }
-    return !answer.correct; // && this.SelectedAnswers.includes(answer.id);
+    return !answer.correct;
   }
 
   public trackByFn(index: number, item: QuizAnswer) {

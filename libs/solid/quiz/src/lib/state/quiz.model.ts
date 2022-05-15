@@ -1,8 +1,4 @@
-import {
-  MediaModel,
-  MediaObjectModel,
-  PhotographModel,
-} from '@zentrumnawi/solid-core';
+import { MediaModel, MediaObjectModel } from '@zentrumnawi/solid-core';
 
 export interface QuizQuestion extends QuizQuestionApi {
   images: MediaModel[];
@@ -29,6 +25,7 @@ export interface QuizAnswer {
 export enum QuizQuestionType {
   SingleChoice = 'SC',
   MultipleChoice = 'MC',
+  TrueFalse = 'TF',
 }
 
 export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };
