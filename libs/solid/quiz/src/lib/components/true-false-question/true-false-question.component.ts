@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
-import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
+import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
   selector: 'solid-quiz-true-false-question',
@@ -13,24 +13,6 @@ export class TrueFalseQuestionComponent {
   @Input() public ShowAnswers!: boolean;
 
   public onRadioChange(e: MatRadioChange) {
-    this.SelectedAnswers = [e.value];
-  }
-
-  public trackByFn(index: number, item: QuizAnswer) {
-    return item.id;
-  }
-
-  isAnswerCorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
-      return false;
-    }
-    return answer.correct;
-  }
-
-  isAnswerIncorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
-      return false;
-    }
-    return !answer.correct;
+    this.SelectedAnswers.push(e.value);
   }
 }

@@ -13,7 +13,7 @@ export class SingleChoiceQuestionComponent {
   @Input() public ShowAnswers!: boolean;
 
   public onRadioChange(e: MatRadioChange) {
-    this.SelectedAnswers = [e.value];
+    this.SelectedAnswers.push(e.value);
   }
 
   public trackByFn(index: number, item: QuizAnswer) {

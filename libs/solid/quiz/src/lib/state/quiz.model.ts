@@ -20,12 +20,16 @@ export interface QuizAnswer {
   correct: boolean;
   feedback_correct: string;
   feedback_incorrect: string;
+  ranking_position: number;
+  subsequences: boolean;
+  feedback_subsequences: string;
 }
 
 export enum QuizQuestionType {
   SingleChoice = 'SC',
   MultipleChoice = 'MC',
   TrueFalse = 'TF',
+  Ranking = 'RG',
 }
 
 export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };

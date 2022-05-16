@@ -6,6 +6,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { SingleChoiceQuestionComponent } from './components/single-choice-question/single-choice-question.component';
 import { MultipleChoiceQuestionComponent } from './components/multiple-choice-question/multiple-choice-question.component';
 import { TrueFalseQuestionComponent } from './components/true-false-question/true-false-question.component';
+import { RankingQuestionComponent } from './components/ranking-question/ranking-question.component';
 import { EndComponent } from './components/end/end.component';
 import { NgxsModule } from '@ngxs/store';
 import { QuizState } from './state/quiz.state';
@@ -26,6 +27,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 export const routes: Route[] = [
   { path: '', component: MainComponent, data: { title: 'Selbsttest' } },
@@ -45,6 +47,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     SingleChoiceQuestionComponent,
     MultipleChoiceQuestionComponent,
     TrueFalseQuestionComponent,
+    RankingQuestionComponent,
   ],
   imports: [
     SolidCoreModule,
@@ -66,6 +69,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MatListModule,
     MatSelectModule,
     MatDialogModule,
+    DragDropModule,
   ],
 })
 export class SolidQuizModule {}

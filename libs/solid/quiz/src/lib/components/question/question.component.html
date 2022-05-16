@@ -69,6 +69,7 @@
           >
           </solid-quiz-single-choice-question>
         </mat-card-content>
+
         <mat-card-content
           *ngSwitchCase="QuestionTypes.MultipleChoice"
           class="multiple-choice"
@@ -80,19 +81,27 @@
           >
           </solid-quiz-multiple-choice-question>
         </mat-card-content>
-        <ng-container
+
+        <mat-card-content
           *ngSwitchCase="QuestionTypes.TrueFalse"
           class="true-false"
         >
-          <mat-card-content>
-            <solid-quiz-true-false-question
-              [SelectedAnswers]="SelectedAnswers"
-              [ShowAnswers]="ShowAnswers"
-              [question]="question"
-            >
-            </solid-quiz-true-false-question>
-          </mat-card-content>
-        </ng-container>
+          <solid-quiz-true-false-question
+            [SelectedAnswers]="SelectedAnswers"
+            [ShowAnswers]="ShowAnswers"
+            [question]="question"
+          >
+          </solid-quiz-true-false-question>
+        </mat-card-content>
+
+        <mat-card-content *ngSwitchCase="QuestionTypes.Ranking" class="ranking">
+          <solid-quiz-ranking-question
+            [SelectedAnswers]="SelectedAnswers"
+            [ShowAnswers]="ShowAnswers"
+            [question]="question"
+          >
+          </solid-quiz-ranking-question>
+        </mat-card-content>
 
         <mat-card-actions>
           <button
