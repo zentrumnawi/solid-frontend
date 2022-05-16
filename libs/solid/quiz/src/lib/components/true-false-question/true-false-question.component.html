@@ -4,7 +4,11 @@
   aria-label="Wähle ein Antwort aus"
   color="primary"
 >
-  <mat-radio-button value="True">
+  <mat-radio-button
+    value="True"
+    [class.correct]="ShowAnswers && question.answers[0].correct"
+    [class.incorrect]="ShowAnswers && !question.answers[0].correct"
+  >
     <span
       markdown
       [data]="
@@ -27,7 +31,11 @@
     >
     </span>
   </mat-radio-button>
-  <mat-radio-button value="False">
+  <mat-radio-button
+    value="False"
+    [class.correct]="ShowAnswers && !question.answers[0].correct"
+    [class.incorrect]="ShowAnswers && question.answers[0].correct"
+  >
     <span
       markdown
       [data]="
@@ -36,6 +44,7 @@
           : 'Falsch' +
             (!question.answers[0].correct ? ' &#10004;' : ' &#10008;')
       "
+      [class.selected]="ShowAnswers"
     >
     </span>
     <span

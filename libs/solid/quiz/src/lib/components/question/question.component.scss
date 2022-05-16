@@ -57,6 +57,18 @@ mat-card-content.multiple-choice {
   margin-left: 0.5rem;
 }
 
+mat-card-content.true-false {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+
+mat-card-content.ranking {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+
 mat-card-actions {
   margin-left: 0.5rem;
   margin-right: 0.5rem;

@@ -13,6 +13,6 @@ export class TrueFalseQuestionComponent {
   @Input() public ShowAnswers!: boolean;
 
   public onRadioChange(e: MatRadioChange) {
-    this.SelectedAnswers.push(e.value);
+    this.SelectedAnswers[0] = e.value == 'True' ? 1 : 0;
   }
 }

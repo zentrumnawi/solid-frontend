@@ -44,7 +44,7 @@ export class QuestionComponent implements OnChanges {
 
   onShowAnswersClick() {
     this.ShowAnswers = true;
-    if (this.question) {
+    if (this.question.type == 'SC' || this.question.type == 'MC') {
       this.Correct = true;
       let correctAnswers = 0;
       this.question.answers.forEach((answer) => {
@@ -56,6 +56,13 @@ export class QuestionComponent implements OnChanges {
         }
       });
       if (this.SelectedAnswers.length !== correctAnswers) {
+        this.Correct = false;
+      }
+    } else if (this.question.type == 'TF') {
+      const answer = this.SelectedAnswers[0] == 1 ? true : false;
+      if (answer && this.question.answers[0].correct) {
+        this.Correct = true;
+      } else {
         this.Correct = false;
       }
     }
