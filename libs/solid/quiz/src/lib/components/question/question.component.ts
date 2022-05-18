@@ -2,9 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
-  SimpleChanges,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -24,12 +22,11 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
 })
-export class QuestionComponent implements OnChanges {
+export class QuestionComponent {
   @Input() public question!: QuizQuestion;
+  @Output() stopQuiz = new EventEmitter<boolean>();
+
   public QuestionTypes = QuizQuestionType;
-  public SelectedAnswers: number[] = [];
-  public ShowAnswers = false;
-  public Correct?: boolean;
   public ImageIndex = 0;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
@@ -38,49 +35,13 @@ export class QuestionComponent implements OnChanges {
 
   @ViewChild('backPopup', { read: TemplateRef }) backPopup!: TemplateRef<any>;
 
-  @Output() stopQuiz = new EventEmitter<boolean>();
-
   constructor(private _store: Store, private dialog: MatDialog) {}
 
-  onShowAnswersClick() {
-    this.ShowAnswers = true;
-    if (this.question.type == 'SC' || this.question.type == 'MC') {
-      this.Correct = true;
-      let correctAnswers = 0;
-      this.question.answers.forEach((answer) => {
-        if (answer.correct) {
-          correctAnswers++;
-          if (!this.SelectedAnswers.includes(answer.id)) {
-            this.Correct = false;
-          }
-        }
-      });
-      if (this.SelectedAnswers.length !== correctAnswers) {
-        this.Correct = false;
-      }
-    } else if (this.question.type == 'TF') {
-      const answer = this.SelectedAnswers[0] == 1 ? true : false;
-      if (answer && this.question.answers[0].correct) {
-        this.Correct = true;
-      } else {
-        this.Correct = false;
-      }
-    }
-  }
-
-  onNextQuestionClick() {
-    if (this.question && this.Correct !== undefined) {
-      this._store.dispatch(new QuizQuestionAnswered(this.Correct));
+  onNextQuestionClicked(correct: boolean) {
+    if (this.question) {
+      this._store.dispatch(new QuizQuestionAnswered(correct));
     }
     this.ImageIndex = 0;
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.question.previousValue !== changes.question.currentValue) {
-      this.ShowAnswers = false;
-      this.SelectedAnswers = [];
-      this.Correct = undefined;
-    }
   }
 
   swipe(

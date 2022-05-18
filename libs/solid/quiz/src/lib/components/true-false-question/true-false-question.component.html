@@ -16,13 +16,13 @@
           ? 'Wahr'
           : 'Wahr' + (question.answers[0].correct ? ' &#10004;' : ' &#10008;')
       "
-      [class.selected]="ShowAnswers && SelectedAnswers[0] === 1"
+      [class.selected]="ShowAnswers && SelectedAnswer"
     >
     </span>
     <span
       class="feedback"
       markdown
-      *ngIf="ShowAnswers && SelectedAnswers[0] === 1"
+      *ngIf="ShowAnswers && SelectedAnswer.includes(true)"
       [data]="
         question.answers[0].correct
           ? question.answers[0].feedback_correct
@@ -44,13 +44,13 @@
           : 'Falsch' +
             (!question.answers[0].correct ? ' &#10004;' : ' &#10008;')
       "
-      [class.selected]="ShowAnswers && SelectedAnswers[0] === 0"
+      [class.selected]="ShowAnswers && !SelectedAnswer"
     >
     </span>
     <span
       class="feedback"
       markdown
-      *ngIf="ShowAnswers && SelectedAnswers[0] === 0"
+      *ngIf="ShowAnswers && SelectedAnswer.includes(false)"
       [data]="
         !question.answers[0].correct
           ? question.answers[0].feedback_correct
@@ -60,3 +60,21 @@
     </span>
   </mat-radio-button>
 </mat-radio-group>
+<button
+  (click)="onShowAnswersClick()"
+  *ngIf="!ShowAnswers"
+  color="primary"
+  mat-raised-button
+  class="showAnswerBtn"
+>
+  Lösungen anzeigen
+</button>
+<button
+  (click)="onNextQuestionClick()"
+  *ngIf="ShowAnswers"
+  color="primary"
+  mat-raised-button
+  class="nextQuestionBtn"
+>
+  {{ Correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+</button>

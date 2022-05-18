@@ -63,9 +63,8 @@
           class="single-choice"
         >
           <solid-quiz-single-choice-question
-            [SelectedAnswers]="SelectedAnswers"
-            [ShowAnswers]="ShowAnswers"
             [question]="question"
+            (nextQuestionClicked)="onNextQuestionClicked($event)"
           >
           </solid-quiz-single-choice-question>
         </mat-card-content>
@@ -75,9 +74,8 @@
           class="multiple-choice"
         >
           <solid-quiz-multiple-choice-question
-            [SelectedAnswers]="SelectedAnswers"
-            [ShowAnswers]="ShowAnswers"
             [question]="question"
+            (nextQuestionClicked)="onNextQuestionClicked($event)"
           >
           </solid-quiz-multiple-choice-question>
         </mat-card-content>
@@ -87,41 +85,16 @@
           class="true-false"
         >
           <solid-quiz-true-false-question
-            [SelectedAnswers]="SelectedAnswers"
-            [ShowAnswers]="ShowAnswers"
             [question]="question"
+            (nextQuestionClicked)="onNextQuestionClicked($event)"
           >
           </solid-quiz-true-false-question>
         </mat-card-content>
 
         <mat-card-content *ngSwitchCase="QuestionTypes.Ranking" class="ranking">
-          <solid-quiz-ranking-question
-            [SelectedAnswers]="SelectedAnswers"
-            [ShowAnswers]="ShowAnswers"
-            [question]="question"
-          >
+          <solid-quiz-ranking-question [question]="question">
           </solid-quiz-ranking-question>
         </mat-card-content>
-
-        <mat-card-actions>
-          <button
-            (click)="onShowAnswersClick()"
-            *ngIf="!ShowAnswers"
-            color="primary"
-            mat-raised-button
-            class="ShowAnswerBtn"
-          >
-            Lösungen anzeigen
-          </button>
-          <button
-            (click)="onNextQuestionClick()"
-            *ngIf="ShowAnswers"
-            color="primary"
-            mat-raised-button
-          >
-            {{ Correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
-          </button>
-        </mat-card-actions>
       </ng-container>
     </mat-card-content>
   </mat-card>

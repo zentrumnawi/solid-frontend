@@ -1,4 +1,11 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
 
@@ -7,10 +14,21 @@ import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
   templateUrl: './multiple-choice-question.component.html',
   styleUrls: ['./multiple-choice-question.component.scss'],
 })
-export class MultipleChoiceQuestionComponent {
+export class MultipleChoiceQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;
-  @Input() public SelectedAnswers!: number[];
-  @Input() public ShowAnswers!: boolean;
+  @Output() public nextQuestionClicked = new EventEmitter<boolean>();
+
+  public SelectedAnswers: number[] = [];
+  public ShowAnswers = false;
+  public Correct = false;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.question.previousValue !== changes.question.currentValue) {
+      this.ShowAnswers = false;
+      this.SelectedAnswers = [];
+      this.Correct = false;
+    }
+  }
 
   onSelectChange(e: MatCheckboxChange, answer: QuizAnswer) {
     if (e.checked) {
@@ -38,5 +56,26 @@ export class MultipleChoiceQuestionComponent {
 
   public trackByFn(index: number, item: QuizAnswer) {
     return item.id;
+  }
+
+  public onShowAnswersClick() {
+    this.ShowAnswers = true;
+    this.Correct = true;
+    let correctAnswers = 0;
+    this.question.answers.forEach((answer) => {
+      if (answer.correct) {
+        correctAnswers++;
+        if (!this.SelectedAnswers.includes(answer.id)) {
+          this.Correct = false;
+        }
+      }
+    });
+    if (this.SelectedAnswers.length !== correctAnswers) {
+      this.Correct = false;
+    }
+  }
+
+  public onNextQuestionClick() {
+    this.nextQuestionClicked.emit(this.Correct);
   }
 }
