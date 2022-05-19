@@ -4,6 +4,7 @@ import { LoadQuizQuestions, StartQuizSession } from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
 import { QuizState } from '../../state/quiz.state';
 import { QuizMetadata } from '../../state/quiz.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'solid-quiz-start',
@@ -16,7 +17,7 @@ export class StartComponent implements OnDestroy {
   questionCount = 5;
   isValid = true;
   difficulty = 1;
-  chosenTags: string[] = [];
+  chosenTags = new FormControl();
 
   constructor(private _store: Store) {}
 
@@ -24,7 +25,7 @@ export class StartComponent implements OnDestroy {
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
         this.questionCount,
-        this.chosenTags,
+        this.chosenTags.value,
         this.difficulty
       )
     );
@@ -43,7 +44,8 @@ export class StartComponent implements OnDestroy {
   }
 
   remove(tag: string) {
-    const index = this.chosenTags.indexOf(tag);
-    if (index >= 0) this.chosenTags.splice(index, 1);
+    const index = this.chosenTags.value.indexOf(tag);
+    if (index >= 0) this.chosenTags.value.splice(index, 1);
+    this.chosenTags.setValue(this.chosenTags.value);
   }
 }

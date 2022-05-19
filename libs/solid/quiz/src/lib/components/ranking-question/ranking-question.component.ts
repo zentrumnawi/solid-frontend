@@ -1,5 +1,13 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
@@ -7,10 +15,10 @@ import { QuizQuestion } from '../../state/quiz.model';
   templateUrl: './ranking-question.component.html',
   styleUrls: ['./ranking-question.component.scss'],
 })
-export class RankingQuestionComponent implements OnInit,OnChanges {
+export class RankingQuestionComponent implements OnInit, OnChanges {
   @Input() public question!: QuizQuestion;
   @Output() public nextQuestionClicked = new EventEmitter<boolean>();
-  
+
   public SelectedAnswers!: number[];
   public ShowAnswers!: boolean;
   public Correct = false;
@@ -41,6 +49,24 @@ export class RankingQuestionComponent implements OnInit,OnChanges {
 
   public onShowAnswersClick() {
     this.ShowAnswers = true;
+    let subsequence = false;
+    for (let i = 0; i < this.question.answers.length; ++i) {
+      if (this.question.answers[i].ranking_position == 1) {
+        subsequence = this.question.answers[i].subsequences;
+        break;
+      }
+    }
+
+    if (!subsequence) {
+      this.Correct = true;
+      for (let i = 0; i < this.answersList.length; ++i) {
+        if (this.answersList[i].correct_position != i + 1) {
+          this.Correct = false;
+        }
+      }
+    } else {
+      // find the subsequence
+    }
   }
 
   public onNextQuestionClick() {
