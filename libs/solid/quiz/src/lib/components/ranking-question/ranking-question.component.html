@@ -1,0 +1,23 @@
+<div cdkDropList class="ranking-list" (cdkDropListDropped)="drop($event)">
+  <div class="ranking-box" cdkDrag *ngFor="let answer of answersList">
+    {{ answer.text }}
+  </div>
+</div>
+<button
+  (click)="onShowAnswersClick()"
+  *ngIf="!ShowAnswers"
+  color="primary"
+  mat-raised-button
+  class="showAnswerBtn"
+>
+  Lösungen anzeigen
+</button>
+<button
+  (click)="onNextQuestionClick()"
+  *ngIf="ShowAnswers"
+  color="primary"
+  mat-raised-button
+  class="nextQuestionBtn"
+>
+  {{ Correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+</button>
