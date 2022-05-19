@@ -25,6 +25,9 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
 
   public answersList: any[] = [];
 
+  public subsequence: number[] = [];
+  public subsequences: any[] = [];
+
   ngOnInit(): void {
     for (let i = 0; i < this.question.answers.length; ++i) {
       this.answersList.push({
@@ -44,20 +47,21 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
 
   drop(event: CdkDragDrop<any[]>) {
     moveItemInArray(this.answersList, event.previousIndex, event.currentIndex);
-    console.log(this.answersList);
+    console.log(this.question.answers);
   }
 
   public onShowAnswersClick() {
     this.ShowAnswers = true;
-    let subsequence = false;
+    let hasSubsequence = false;
     for (let i = 0; i < this.question.answers.length; ++i) {
       if (this.question.answers[i].ranking_position == 1) {
-        subsequence = this.question.answers[i].subsequences;
+        hasSubsequence = this.question.answers[i].subsequences;
         break;
       }
     }
 
-    if (!subsequence) {
+    // set to hasSubsequence for testing
+    if (hasSubsequence) {
       this.Correct = true;
       for (let i = 0; i < this.answersList.length; ++i) {
         if (this.answersList[i].correct_position != i + 1) {
@@ -65,7 +69,37 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
         }
       }
     } else {
-      // find the subsequence
+      // find all the subsequences
+      for (let i = 0; i < this.answersList.length - 1; ++i) {
+        if (
+          this.answersList[i].correct_position ==
+          this.answersList[i + 1].correct_position - 1
+        ) {
+          if (this.subsequence.length > 1) {
+            this.subsequence.push(this.answersList[i + 1].correct_position);
+          } else {
+            this.subsequence.push(this.answersList[i].correct_position);
+            this.subsequence.push(this.answersList[i + 1].correct_position);
+          }
+        } else {
+          if (this.subsequence.length > 0)
+            this.subsequences.push(this.subsequence);
+          this.subsequence = [];
+        }
+      }
+      if (this.subsequence.length > 0) this.subsequences.push(this.subsequence);
+
+      // find the longest subsequence
+      let max_length = 0;
+      let indexOfMax = 0;
+      for (let i = 0; i < this.subsequences.length; ++i) {
+        if (this.subsequences[i].length >= max_length) {
+          max_length = this.subsequences[i].length;
+          indexOfMax = i;
+        }
+      }
+
+      console.log('Longest subsequence: ' + this.subsequences[indexOfMax]);
     }
   }
 

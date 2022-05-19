@@ -71,9 +71,9 @@ export class QuizState {
   ) {
     let params;
 
-    if (tags.length == 0 && difficulty == 0) {
+    if (tags == undefined && difficulty == 0) {
       params = new HttpParams().set('count', questionCount);
-    } else if (tags.length == 0) {
+    } else if (tags == undefined) {
       params = new HttpParams()
         .set('count', questionCount)
         .set('difficulty', difficulty);
