@@ -63,5 +63,21 @@
     span.feedback {
       color: mat.get-color-from-palette($foreground, text);
     }
+
+    .cdk-drag {
+      &.correct_position {
+        background-color: mat.get-color-from-palette($quiz-correct) !important;
+      }
+
+      &.incorrect_position {
+        background-color: mat.get-color-from-palette(
+          $quiz-incorrect
+        ) !important;
+      }
+
+      &.subsequence {
+        background-color: mat.get-color-from-palette($accent) !important;
+      }
+    }
   }
 }
