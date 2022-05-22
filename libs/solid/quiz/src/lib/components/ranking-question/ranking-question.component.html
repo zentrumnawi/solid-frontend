@@ -16,20 +16,32 @@
     "
     *ngFor="let answer of answersList; let index = index"
   >
-    <span
-      markdown
-      [data]="
-        !showAnswers
-          ? answer.text
-          : hasSubsequence &&
-            subsequence.includes(answer.correct_position) &&
-            !correct
-          ? answer.text + ' &#9733;'
-          : answer.text +
-            (answer.correct_position === index + 1 ? ' &#10004;' : ' &#10008;')
-      "
-    >
-    </span>
+    {{ answer.text }}
+    <div class="feedback-icon" *ngIf="showAnswers">
+      <mat-icon
+        *ngIf="
+          (!subsequence.includes(answer.correct_position) &&
+            answer.correct_position === index + 1) ||
+          correct
+        "
+        >check</mat-icon
+      >
+      <mat-icon
+        *ngIf="
+          !subsequence.includes(answer.correct_position) &&
+          answer.correct_position !== index + 1
+        "
+        >highlight_off</mat-icon
+      >
+      <mat-icon
+        *ngIf="
+          hasSubsequence &&
+          subsequence.includes(answer.correct_position) &&
+          !correct
+        "
+        >star</mat-icon
+      >
+    </div>
   </div>
 </div>
 <span

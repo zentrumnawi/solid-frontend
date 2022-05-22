@@ -16,7 +16,7 @@ export class StartComponent implements OnDestroy {
   private $destroyed = new Subject();
   questionCount = 5;
   isValid = true;
-  difficulty = 1;
+  difficulty = 0;
   chosenTags = new FormControl();
 
   constructor(private _store: Store) {}

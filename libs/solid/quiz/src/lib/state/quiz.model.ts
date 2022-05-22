@@ -30,6 +30,7 @@ export enum QuizQuestionType {
   MultipleChoice = 'MC',
   TrueFalse = 'TF',
   Ranking = 'RG',
+  Range = 'RN',
 }
 
 export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };

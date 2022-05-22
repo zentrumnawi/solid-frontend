@@ -8,7 +8,6 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { max } from 'rxjs/operators';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
@@ -63,26 +62,23 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
     let sub: number[] = [];
 
     this.answersList.forEach((value, index, array) => {
-      if (index == array.length - 1) return;
-
       if (
         array[index].correct_position ==
-        array[index + 1].correct_position - 1
+        array[index + 1]?.correct_position - 1
       ) {
         sub.push(array[index].correct_position);
       } else {
         sub.push(array[index].correct_position);
         if (sub.length > maxLength) {
-          maxLength = sub.length;
           this.subsequence = sub;
+          maxLength = sub.length;
         }
         sub = [];
       }
     });
 
-    if (this.subsequence.length === this.answersList.length)
-      this.correct = true;
-    if (this.subsequence.length < 2) this.hasSubsequence = false;
+    this.correct = maxLength == this.answersList.length ? true : false;
+    this.hasSubsequence = maxLength < 3 ? false : true;
   }
 
   public isCorrectPosition(answer: any) {

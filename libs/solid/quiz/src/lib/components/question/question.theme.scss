@@ -66,17 +66,15 @@
 
     .cdk-drag {
       &.correctPosition {
-        background-color: mat.get-color-from-palette($quiz-correct) !important;
+        border-right: 9px solid mat.get-color-from-palette($quiz-correct) !important;
       }
 
       &.incorrectPosition {
-        background-color: mat.get-color-from-palette(
-          $quiz-incorrect
-        ) !important;
+        border-right: 9px solid mat.get-color-from-palette($quiz-incorrect) !important;
       }
 
       &.subsequence {
-        background-color: mat.get-color-from-palette($accent) !important;
+        border-right: 9px solid mat.get-color-from-palette($accent) !important;
       }
     }
   }

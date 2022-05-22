@@ -7,6 +7,7 @@ import { SingleChoiceQuestionComponent } from './components/single-choice-questi
 import { MultipleChoiceQuestionComponent } from './components/multiple-choice-question/multiple-choice-question.component';
 import { TrueFalseQuestionComponent } from './components/true-false-question/true-false-question.component';
 import { RankingQuestionComponent } from './components/ranking-question/ranking-question.component';
+import { RangeQuestionComponent } from './components/range-question/range-question.component';
 import { EndComponent } from './components/end/end.component';
 import { NgxsModule } from '@ngxs/store';
 import { QuizState } from './state/quiz.state';
@@ -48,6 +49,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MultipleChoiceQuestionComponent,
     TrueFalseQuestionComponent,
     RankingQuestionComponent,
+    RangeQuestionComponent,
   ],
   imports: [
     SolidCoreModule,

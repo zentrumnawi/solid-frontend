@@ -11,7 +11,7 @@
 }
 
 .ranking-box {
-  padding: 20px 10px 10px 10px;
+  padding: 20px 10px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
@@ -22,6 +22,7 @@
   cursor: move;
   background: white;
   font-size: 14px;
+  max-height: 61px;
 }
 
 .cdk-drag-preview {
@@ -57,4 +58,8 @@ span.feedback {
 
 .nextQuestionBtn {
   margin-top: 15px;
+}
+
+.feedback-icon {
+  display: contents;
 }
