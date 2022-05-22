@@ -7,8 +7,8 @@
   <div
     class="ranking-box"
     cdkDrag
-    [class.correct_position]="isCorrectPosition(answer)"
-    [class.incorrect_position]="isInCorrectPosition(answer)"
+    [class.correctPosition]="isCorrectPosition(answer)"
+    [class.incorrectPosition]="isInCorrectPosition(answer)"
     [class.subsequence]="
       hasSubsequence &&
       subsequence.includes(answer.correct_position) &&
@@ -16,16 +16,20 @@
     "
     *ngFor="let answer of answersList; let index = index"
   >
-    {{
-      !showAnswers
-        ? answer.text
-        : hasSubsequence &&
-          subsequence.includes(answer.correct_position) &&
-          !correct
-        ? answer.text + '  &#9734;'
-        : answer.text +
-          (answer.correct_position === index + 1 ? '  &#10004;' : '  &#10008;')
-    }}
+    <span
+      markdown
+      [data]="
+        !showAnswers
+          ? answer.text
+          : hasSubsequence &&
+            subsequence.includes(answer.correct_position) &&
+            !correct
+          ? answer.text + ' &#9733;'
+          : answer.text +
+            (answer.correct_position === index + 1 ? ' &#10004;' : ' &#10008;')
+      "
+    >
+    </span>
   </div>
 </div>
 <span

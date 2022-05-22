@@ -8,6 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { max } from 'rxjs/operators';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
