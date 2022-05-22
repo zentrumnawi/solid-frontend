@@ -29,7 +29,6 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
 
   public hasSubsequence = false;
   public subsequence: number[] = [];
-  public subsequences: any[] = [];
 
   ngOnInit(): void {
     for (let i = 0; i < this.question.answers.length; ++i) {
@@ -60,41 +59,30 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
     });
     this.hasSubsequence = this.question.answers[this.index].subsequences;
 
-    // find all the subsequences
-    for (let i = 0; i < this.answersList.length - 1; ++i) {
-      if (
-        this.answersList[i].correct_position ==
-        this.answersList[i + 1].correct_position - 1
-      ) {
-        if (this.subsequence.length > 1) {
-          this.subsequence.push(this.answersList[i + 1].correct_position);
-        } else {
-          this.subsequence.push(this.answersList[i].correct_position);
-          this.subsequence.push(this.answersList[i + 1].correct_position);
-        }
-      } else {
-        if (this.subsequence.length > 0)
-          this.subsequences.push(this.subsequence);
-        this.subsequence = [];
-      }
-    }
-    if (this.subsequence.length > 0) this.subsequences.push(this.subsequence);
+    let maxLength = 2; // change later if needed
+    let sub: number[] = [];
 
-    if (this.subsequences.length == 0) this.hasSubsequence = false;
-    else if (this.subsequence.length == this.answersList.length)
-      this.correct = true;
-    else {
-      // find the longest subsequence
-      let max_length = 0;
-      let indexOfMax = 0;
-      for (let i = 0; i < this.subsequences.length; ++i) {
-        if (this.subsequences[i].length > max_length) {
-          max_length = this.subsequences[i].length;
-          indexOfMax = i;
+    this.answersList.forEach((value, index, array) => {
+      if (index == array.length - 1) return;
+
+      if (
+        array[index].correct_position ==
+        array[index + 1].correct_position - 1
+      ) {
+        sub.push(array[index].correct_position);
+      } else {
+        sub.push(array[index].correct_position);
+        if (sub.length > maxLength) {
+          maxLength = sub.length;
+          this.subsequence = sub;
         }
+        sub = [];
       }
-      this.subsequence = this.subsequences[indexOfMax];
-    }
+    });
+
+    if (this.subsequence.length === this.answersList.length)
+      this.correct = true;
+    if (this.subsequence.length < 2) this.hasSubsequence = false;
   }
 
   public isCorrectPosition(answer: any) {
