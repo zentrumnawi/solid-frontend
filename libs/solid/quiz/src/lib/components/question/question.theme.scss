@@ -75,6 +75,7 @@
 
       &.subsequence {
         border-right: 9px solid mat.get-color-from-palette($accent) !important;
+        border-left: 9px solid mat.get-color-from-palette($quiz-correct) !important;
       }
     }
   }
