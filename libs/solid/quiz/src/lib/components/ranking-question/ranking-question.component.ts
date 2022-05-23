@@ -59,6 +59,7 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
     this.hasSubsequence = this.question.answers[this.index].subsequences;
 
     let maxLength = 2; // change later if needed
+    let count = 0;
     let sub: number[] = [];
 
     this.answersList.forEach((value, index, array) => {
@@ -69,6 +70,7 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
       ) {
         sub.push(array[index].correct_position);
       } else {
+        count++;
         sub.push(array[index].correct_position);
         if (sub.length > maxLength) {
           this.subsequence = sub;
@@ -77,8 +79,7 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
         sub = [];
       }
     });
-
-    this.correct = maxLength == this.answersList.length ? true : false;
+    this.correct = count == this.answersList.length ? true : false;
     this.hasSubsequence = maxLength < 3 ? false : true;
   }
 
