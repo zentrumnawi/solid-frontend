@@ -64,7 +64,8 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
     this.answersList.forEach((value, index, array) => {
       if (
         array[index].correct_position ==
-        array[index + 1]?.correct_position - 1
+          array[index + 1]?.correct_position - 1 &&
+        array[index].correct_position != index + 1
       ) {
         sub.push(array[index].correct_position);
       } else {
