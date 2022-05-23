@@ -96,5 +96,6 @@ export class AppModule {
     addIcon('feedback');
     addIcon('feedback_outline');
     addIcon('properties');
+    addIcon('semicorrect');
   }
 }
