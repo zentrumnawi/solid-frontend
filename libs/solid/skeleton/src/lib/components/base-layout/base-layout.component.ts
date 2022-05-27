@@ -8,6 +8,8 @@ import {
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from '../../services/feedback.service';
 import { Router } from '@angular/router';
+import { LandingComponent } from '../landing/landing.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -16,6 +18,7 @@ import { Router } from '@angular/router';
 })
 export class BaseLayoutComponent implements OnInit {
   public FixedLayout = false;
+  public subscription!: Subscription;
   @ViewChild('mainmenu', { static: true }) MainMenu?: MatDrawer;
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
@@ -77,5 +80,23 @@ export class BaseLayoutComponent implements OnInit {
   public reportError() {
     const location = this.Glossary?.opened ? 'glossary' : this._router.url;
     this.feedback.showDialog(location);
+  }
+
+  public onLandingGlossarClick(ref: any) {
+    if (!(ref instanceof LandingComponent)) {
+      return;
+    }
+
+    ref.onGlossarClick.subscribe(() => {
+      if (this.Glossary) {
+        this.Glossary.open();
+      }
+    });
+  }
+
+  public unsubscribe() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

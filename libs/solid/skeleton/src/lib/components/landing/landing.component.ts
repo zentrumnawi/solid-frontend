@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Inject,
   InjectionToken,
   Injector,
@@ -23,10 +24,9 @@ import {
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from '../../services/feedback.service';
 import { IntroService } from '../../services/intro.service';
-import { Navigate } from '@ngxs/router-plugin';
-import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { Router } from '@angular/router';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   'solid-skeleton-hacky-injection'
@@ -50,12 +50,15 @@ export class LandingComponent implements AfterViewInit {
   limitedMessages!: MessageModel[];
 
   @ViewChild('landing') Landing?: ElementRef;
+  public onGlossarClick = new EventEmitter();
 
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     injector: Injector,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
     private introService: IntroService
   ) {
     this.BannerComponent = cfg.landingBannerContent;
@@ -72,6 +75,11 @@ export class LandingComponent implements AfterViewInit {
       this.ShowLanding = true;
     }
     this.limitMessages();
+
+    iconRegistry.addSvgIcon(
+      'glossar',
+      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossarLogo)
+    );
   }
 
   private onCloseClick() {

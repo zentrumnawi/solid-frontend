@@ -9,19 +9,21 @@ import { SOLID_SKELETON_HACKY_INJECTION } from '@zentrumnawi/solid-skeleton';
 describe('LandingBannerContentComponent', () => {
   let component: LandingBannerContentComponent;
   let fixture: ComponentFixture<LandingBannerContentComponent>;
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [LandingBannerContentComponent],
-      imports: [MatCardModule, MatButtonModule, MatIconModule],
-      providers: [
-        {
-          provide: SOLID_SKELETON_HACKY_INJECTION,
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          useValue: () => {},
-        },
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [LandingBannerContentComponent],
+        imports: [MatCardModule, MatButtonModule, MatIconModule],
+        providers: [
+          {
+            provide: SOLID_SKELETON_HACKY_INJECTION,
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            useValue: () => {},
+          },
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LandingBannerContentComponent);

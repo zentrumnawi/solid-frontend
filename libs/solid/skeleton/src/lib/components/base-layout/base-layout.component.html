@@ -98,7 +98,11 @@
       ></solid-skeleton-main-menu>
     </mat-sidenav>
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <router-outlet
+        (activate)="onLandingGlossarClick($event)"
+        (deativate)="unsubscribe()"
+      >
+      </router-outlet>
     </mat-sidenav-content>
     <mat-sidenav
       #glossary
