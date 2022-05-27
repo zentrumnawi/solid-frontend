@@ -23,6 +23,11 @@ export interface QuizAnswer {
   ranking_position: number;
   subsequences: boolean;
   feedback_subsequences: string;
+  range_value: number;
+  range_max: number;
+  range_min: number;
+  range_step: number;
+  tolerance: number;
 }
 
 export enum QuizQuestionType {

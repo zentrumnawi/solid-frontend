@@ -100,11 +100,11 @@
         </mat-card-content>
 
         <mat-card-content *ngSwitchCase="QuestionTypes.Range" class="range">
-          <solid-quiz-ranking-question
+          <solid-quiz-range-question
             [question]="question"
             (nextQuestionClicked)="onNextQuestionClicked($event)"
           >
-          </solid-quiz-ranking-question>
+          </solid-quiz-range-question>
         </mat-card-content>
       </ng-container>
     </mat-card-content>

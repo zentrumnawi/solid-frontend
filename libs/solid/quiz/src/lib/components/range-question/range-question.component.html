@@ -1,1 +1,43 @@
-<p>range-question works!</p>
+<div>
+  <mat-slider
+    thumbLabel
+    tickInterval="2.5"
+    [min]="question.answers[0].range_min"
+    [max]="question.answers[0].range_max"
+    [step]="question.answers[0].range_step"
+    [(ngModel)]="sliderPosition"
+  >
+  </mat-slider>
+  <span
+    class="feedback"
+    markdown
+    *ngIf="showAnswers"
+    [data]="
+      correct
+        ? this.question.answers[0].feedback_correct
+        : this.question.answers[0].feedback_incorrect
+    "
+  >
+  </span>
+</div>
+
+<div>
+  <button
+    (click)="onShowAnswersClick()"
+    *ngIf="!showAnswers"
+    color="primary"
+    mat-raised-button
+    class="showAnswerBtn"
+  >
+    Lösungen anzeigen
+  </button>
+  <button
+    (click)="onNextQuestionClick()"
+    *ngIf="showAnswers"
+    color="primary"
+    mat-raised-button
+    class="nextQuestionBtn"
+  >
+    {{ correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+  </button>
+</div>

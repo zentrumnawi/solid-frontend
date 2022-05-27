@@ -78,5 +78,19 @@
         border-left: 9px solid mat.get-color-from-palette($quiz-correct) !important;
       }
     }
+
+    mat-slider {
+      .mat-slider-horizontal .mat-slider-track-fill {
+        background-color: mat.get-color-from-palette($accent);
+      }
+
+      .mat-slider-horizontal .mat-slider-track-wrapper {
+        border: solid 3px mat.get-color-from-palette($accent);
+      }
+    } 
+    
+    .mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
+      background-color: mat.get-color-from-palette($app-primary);
+    }
   }
 }
