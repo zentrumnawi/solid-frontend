@@ -24,7 +24,7 @@
   </div>
   <mat-card>
     <mat-card-header>
-      <mat-card-subtitle markdown [data]="question.text"></mat-card-subtitle>
+      <mat-card-title>{{ question.text }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div *ngIf="question.images.length > 0" class="image-container">
