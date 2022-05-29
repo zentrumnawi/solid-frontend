@@ -1,17 +1,20 @@
+:host{
+  margin-left: -3px;
+}
+
 mat-radio-group {
   display: flex;
   flex-direction: column;
 
   mat-radio-button {
-    &:not(:last-child) {
-      margin-bottom: 0.5rem;
+    &:not(:first-child) {
+      margin-top: 20px;
     }
-
     ::ng-deep {
       label.mat-radio-label {
         vertical-align: top;
 
-        span.mat-radio-container {
+        .mat-radio-container {
           margin-bottom: auto;
         }
 
@@ -20,24 +23,42 @@ mat-radio-group {
         }
       }
 
-      span.mat-radio-label-content {
+      .mat-radio-label-content {
         display: inline-flex;
         flex-direction: column;
         width: calc(100% - 28px);
         white-space: normal;
       }
+
+      .mat-radio-inner-circle {
+        z-index: 0;
+      }
     }
   }
 }
+
+
+  .correctIcon {
+    transform: translateY(-22px) translateX(-30px);
+    opacity: 1;
+    z-index: 9999;
+  }
+
+  .incorrectIcon {
+    transform: translateY(-22px) translateX(-30px);
+    opacity: 1;
+    z-index: 9999;  
+  }
+
 
 span.feedback {
   font-weight: normal;
 }
 
 .showAnswerBtn {
-  margin-top: 10px;
+  margin-top: 23px;
 }
 
 .nextQuestionBtn {
-  margin-top: 10px;
+  margin-top: 23px;
 }

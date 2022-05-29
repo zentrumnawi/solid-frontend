@@ -1,8 +1,9 @@
 <mat-radio-group
   (change)="onRadioChange($event)"
-  [disabled]="ShowAnswers"
+  [disabled]="showAnswers"
   aria-label="Wähle ein Antwort aus"
   color="primary"
+  class="container"
 >
   <mat-radio-button
     *ngFor="let answer of question.answers; trackBy: trackByFn"
@@ -10,17 +11,11 @@
     [class.incorrect]="isAnswerIncorrect(answer)"
     [value]="answer.id"
   >
+    {{ answer.text }}
+      <mat-icon class="correctIcon" *ngIf="showAnswers && answer.correct">check_circle</mat-icon>
+      <mat-icon class="incorrectIcon" *ngIf="showAnswers && !answer.correct">highlight_off</mat-icon>
     <span
-      markdown
-      [data]="
-        !ShowAnswers
-          ? answer.text
-          : answer.text + (answer.correct ? ' &#10004;' : ' &#10008;')
-      "
-      [class.selected]="ShowAnswers && SelectedAnswers.includes(answer.id)"
-    ></span>
-    <span
-      *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
+      *ngIf="showAnswers && selectedAnswer === answer.id"
       [data]="
         answer.correct ? answer.feedback_correct : answer.feedback_incorrect
       "
@@ -31,7 +26,7 @@
 </mat-radio-group>
 <button
   (click)="onShowAnswersClick()"
-  *ngIf="!ShowAnswers"
+  *ngIf="!showAnswers"
   color="primary"
   mat-raised-button
   class="showAnswerBtn"
@@ -40,10 +35,10 @@
 </button>
 <button
   (click)="onNextQuestionClick()"
-  *ngIf="ShowAnswers"
+  *ngIf="showAnswers"
   color="primary"
   mat-raised-button
   class="nextQuestionBtn"
 >
-  {{ Correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+  {{ correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
 </button>

@@ -18,20 +18,19 @@ export class SingleChoiceQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;
   @Output() public nextQuestionClicked = new EventEmitter<boolean>();
 
-  public SelectedAnswers: number[] = [];
-  public ShowAnswers = false;
-  public Correct = false;
+  public selectedAnswer! : number;
+  public showAnswers = false;
+  public correct = false;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.question.previousValue !== changes.question.currentValue) {
-      this.ShowAnswers = false;
-      this.SelectedAnswers = [];
-      this.Correct = false;
+      this.showAnswers = false;
+      this.correct = false;
     }
   }
 
   public onRadioChange(e: MatRadioChange) {
-    this.SelectedAnswers.push(e.value);
+    this.selectedAnswer = e.value;
   }
 
   public trackByFn(index: number, item: QuizAnswer) {
@@ -39,37 +38,27 @@ export class SingleChoiceQuestionComponent implements OnChanges {
   }
 
   public isAnswerCorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
+    if (!this.showAnswers) {
       return false;
     }
     return answer.correct;
   }
 
   public isAnswerIncorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
+    if (!this.showAnswers) {
       return false;
     }
     return !answer.correct;
   }
 
   public onShowAnswersClick() {
-    this.ShowAnswers = true;
-    this.Correct = true;
-    let correctAnswers = 0;
-    this.question.answers.forEach((answer) => {
-      if (answer.correct) {
-        correctAnswers++;
-        if (!this.SelectedAnswers.includes(answer.id)) {
-          this.Correct = false;
-        }
-      }
-    });
-    if (this.SelectedAnswers.length !== correctAnswers) {
-      this.Correct = false;
-    }
+    this.showAnswers = true;
+    this.question.answers.forEach(value => {
+      if(value.id == this.selectedAnswer && value.correct) this.correct = true;
+    })
   }
 
   public onNextQuestionClick() {
-    this.nextQuestionClicked.emit(this.Correct);
+    this.nextQuestionClicked.emit(this.correct);
   }
 }
