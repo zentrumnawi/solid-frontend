@@ -29,6 +29,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 export const routes: Route[] = [
   { path: '', component: MainComponent, data: { title: 'Selbsttest' } },
@@ -72,6 +73,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MatSelectModule,
     MatDialogModule,
     DragDropModule,
+    MatButtonToggleModule,
   ],
 })
 export class SolidQuizModule {}

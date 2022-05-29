@@ -1,37 +1,36 @@
-mat-radio-group {
-  display: flex;
-  flex-direction: column;
+:host {
+  margin-left: -8px;
+}
 
-  mat-radio-button {
-    &:not(:last-child) {
-      margin-bottom: 0.5rem;
-    }
+.button-container {
+  display: block;
+  margin: 0px 10px 16px;
 
-    ::ng-deep {
-      label.mat-radio-label {
-        vertical-align: top;
+  .trueBtn {
+    border-radius: 5px;
+    min-height: 44px;
+    width: 100%;
+    font-size: 17px;
+    margin-bottom: 9px;
+  }
 
-        span.mat-radio-container {
-          margin-bottom: auto;
-        }
-
-        &.correct {
-          font-weight: bold;
-        }
-      }
-
-      span.mat-radio-label-content {
-        display: inline-flex;
-        flex-direction: column;
-        width: calc(100% - 28px);
-        white-space: normal;
-      }
-    }
+  .falseBtn {
+    border-radius: 5px;
+    min-height: 44px;
+    width: 100%;
+    font-size: 17px;
   }
 }
 
-span.feedback {
-  font-weight: normal;
+.feedback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span.feedback-text {
+  font-weight: 500;
+  text-align: center;
 }
 
 .showAnswerBtn {

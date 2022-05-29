@@ -1,26 +1,54 @@
-mat-slider {
-  min-width: 350px;
-  max-width: 450px;
-
-  .mat-slider-horizontal .mat-slider-track-wrapper {
-    height: 12px;
-    border-radius: 10px;
-  }
+.range-container {
+  border-radius: 7px;
+  padding: 15px;
+  margin: 6px 0px 15px;
 }
 
-.mat-slider.mat-slider-horizontal .mat-slider-track-background,
+.mat-slider {
+  min-width: 100%;
+}
+
+// ::ng-deep {
+
+.mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+  top: 18px;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+  height: 11px;
+  border-radius: 10px;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-track-background {
+  height: 100%;
+  background-color: lightgray;
+}
+
 .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
   height: 100%;
 }
 
 .mat-accent .mat-slider-thumb {
-  height: 30px;
-  width: 30px;
-  background-color: white;
+  height: 23px;
+  width: 23px;
+  background-color: white !important;
   border: solid 2px gray;
-  bottom: -20px;
-  right: -20px;
+  bottom: -16px;
 }
+
+.mat-slider-wrapper .mat-slider-thumb-container .mat-slider-thumb-label {
+  width: 28px;
+  height: 28px;
+}
+
+.mat-slider:not(.mat-slider-disabled).cdk-focused .mat-slider-thumb-label {
+  background-color: white;
+  border-radius: 50%;
+  border: solid 1px gray;
+  top: -10px;
+}
+
+// }
 
 .showAnswerBtn {
   margin-top: 10px;

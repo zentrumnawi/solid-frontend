@@ -1,80 +1,68 @@
-<mat-radio-group
-  (change)="onRadioChange($event)"
-  [disabled]="ShowAnswers"
-  aria-label="Wähle ein Antwort aus"
-  color="primary"
->
-  <mat-radio-button
-    value="True"
-    [class.correct]="ShowAnswers && question.answers[0].correct"
-    [class.incorrect]="ShowAnswers && !question.answers[0].correct"
+<div class="button-container">
+  <button
+    class="trueBtn"
+    [disabled]="showAnswers"
+    mat-stroked-button
+    [class.correct]="showAnswers && question.answers[0].correct"
+    [class.incorrect]="showAnswers && !question.answers[0].correct"
+    (click)="onTrueClick()"
   >
-    <span
-      markdown
-      [data]="
-        !ShowAnswers
-          ? 'Wahr'
-          : 'Wahr' + (question.answers[0].correct ? ' &#10004;' : ' &#10008;')
-      "
-      [class.selected]="ShowAnswers && SelectedAnswer"
-    >
-    </span>
-    <span
-      class="feedback"
-      markdown
-      *ngIf="ShowAnswers && SelectedAnswer.includes(true)"
-      [data]="
-        question.answers[0].correct
-          ? question.answers[0].feedback_correct
-          : question.answers[0].feedback_incorrect
-      "
-    >
-    </span>
-  </mat-radio-button>
-  <mat-radio-button
-    value="False"
-    [class.correct]="ShowAnswers && !question.answers[0].correct"
-    [class.incorrect]="ShowAnswers && question.answers[0].correct"
+    Wahr
+    <mat-icon *ngIf="question.answers[0].correct && showAnswers">
+      check
+    </mat-icon>
+    <mat-icon *ngIf="!question.answers[0].correct && showAnswers">
+      highlight_off
+    </mat-icon>
+  </button>
+  <button
+    class="falseBtn"
+    [disabled]="showAnswers"
+    mat-stroked-button
+    [class.correct]="showAnswers && !question.answers[0].correct"
+    [class.incorrect]="showAnswers && question.answers[0].correct"
+    (click)="onFalseClick()"
   >
-    <span
-      markdown
-      [data]="
-        !ShowAnswers
-          ? 'Falsch'
-          : 'Falsch' +
-            (!question.answers[0].correct ? ' &#10004;' : ' &#10008;')
-      "
-      [class.selected]="ShowAnswers && !SelectedAnswer"
-    >
-    </span>
-    <span
-      class="feedback"
-      markdown
-      *ngIf="ShowAnswers && SelectedAnswer.includes(false)"
-      [data]="
-        !question.answers[0].correct
-          ? question.answers[0].feedback_correct
-          : question.answers[0].feedback_incorrect
-      "
-    >
-    </span>
-  </mat-radio-button>
-</mat-radio-group>
-<button
-  (click)="onShowAnswersClick()"
-  *ngIf="!ShowAnswers"
-  color="primary"
-  mat-raised-button
-  class="showAnswerBtn"
->
-  Lösungen anzeigen
-</button>
-<button
-  (click)="onNextQuestionClick()"
-  *ngIf="ShowAnswers"
-  color="primary"
-  mat-raised-button
-  class="nextQuestionBtn"
->
-  {{ Correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
-</button>
+    Falsch
+    <mat-icon *ngIf="!question.answers[0].correct && showAnswers">
+      check
+    </mat-icon>
+    <mat-icon *ngIf="question.answers[0].correct && showAnswers">
+      highlight_off
+    </mat-icon>
+  </button>
+</div>
+
+<div class="feedback" *ngIf="showAnswers">
+  <span
+    class="feedback-text"
+    markdown
+    [data]="
+      selectedAnswer === question.answers[0].correct
+        ? question.answers[0].feedback_correct
+        : question.answers[0].feedback_incorrect
+    "
+  ></span>
+</div>
+
+<div>
+  <button
+    [disabled]="selectedAnswer === undefined"
+    (click)="onShowAnswersClick()"
+    *ngIf="!showAnswers"
+    color="primary"
+    mat-raised-button
+    class="showAnswerBtn"
+  >
+    Lösungen anzeigen
+  </button>
+  <button
+    (click)="onNextQuestionClick()"
+    *ngIf="showAnswers"
+    color="primary"
+    mat-raised-button
+    class="nextQuestionBtn"
+  >
+    {{ correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+  </button>
+</div>

@@ -79,19 +79,44 @@
       }
     }
 
-    mat-slider {
-      .mat-slider-horizontal .mat-slider-track-fill {
-        background-color: mat.get-color-from-palette($accent);
+    .range-container {
+      border: solid 2px mat.get-color-from-palette($app-primary);
+    }
+
+    .trueBtn {
+      border: solid 2px mat.get-color-from-palette($accent);
+
+      &:focus {
+        background-color: mat.get-color-from-palette($app-primary);
+        border-color: white;
+        color: white;
       }
 
-      .mat-slider-horizontal .mat-slider-track-wrapper {
-        border: solid 3px mat.get-color-from-palette($accent);
+      &.correct {
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+      }
+
+      &.incorrect {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
       }
     }
 
-    .mat-slider-min-value:not(.mat-slider-thumb-label-showing)
-      .mat-slider-thumb {
-      background-color: mat.get-color-from-palette($app-primary);
+    .falseBtn {
+      border: solid 2px mat.get-color-from-palette($app-primary);
+
+      &:focus {
+        background-color: mat.get-color-from-palette($accent);
+        border-color: white;
+        color: white;
+      }
+
+      &.correct {
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+      }
+
+      &.incorrect {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+      }
     }
   }
 }

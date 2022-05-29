@@ -1,7 +1,7 @@
-<div>
+<div class="range-container">
   <mat-slider
     thumbLabel
-    tickInterval="2.5"
+    [disabled]="showAnswers"
     [min]="question.answers[0].range_min"
     [max]="question.answers[0].range_max"
     [step]="question.answers[0].range_step"
