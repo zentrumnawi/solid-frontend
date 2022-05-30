@@ -18,37 +18,37 @@ export class MultipleChoiceQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;
   @Output() public nextQuestionClicked = new EventEmitter<boolean>();
 
-  public SelectedAnswers: number[] = [];
-  public ShowAnswers = false;
-  public Correct = false;
+  public selectedAnswers: number[] = [];
+  public showAnswers = false;
+  public correct = false;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes.question.previousValue !== changes.question.currentValue) {
-      this.ShowAnswers = false;
-      this.SelectedAnswers = [];
-      this.Correct = false;
+      this.showAnswers = false;
+      this.selectedAnswers = [];
+      this.correct = false;
     }
   }
 
-  onSelectChange(e: MatCheckboxChange, answer: QuizAnswer) {
+  public onSelectChange(e: MatCheckboxChange, answer: QuizAnswer) {
     if (e.checked) {
-      this.SelectedAnswers.push(answer.id);
+      this.selectedAnswers.push(answer.id);
     } else {
-      this.SelectedAnswers = this.SelectedAnswers.filter(
+      this.selectedAnswers = this.selectedAnswers.filter(
         (id) => id !== answer.id
       );
     }
   }
 
-  isAnswerCorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
+  public isAnswerCorrect(answer: QuizAnswer) {
+    if (!this.showAnswers) {
       return false;
     }
     return answer.correct;
   }
 
-  isAnswerIncorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
+  public isAnswerIncorrect(answer: QuizAnswer) {
+    if (!this.showAnswers) {
       return false;
     }
     return !answer.correct;
@@ -59,23 +59,25 @@ export class MultipleChoiceQuestionComponent implements OnChanges {
   }
 
   public onShowAnswersClick() {
-    this.ShowAnswers = true;
-    this.Correct = true;
+    this.showAnswers = true;
+    this.correct = true;
+
     let correctAnswers = 0;
     this.question.answers.forEach((answer) => {
       if (answer.correct) {
         correctAnswers++;
-        if (!this.SelectedAnswers.includes(answer.id)) {
-          this.Correct = false;
+        if (!this.selectedAnswers.includes(answer.id)) {
+          this.correct = false;
         }
       }
     });
-    if (this.SelectedAnswers.length !== correctAnswers) {
-      this.Correct = false;
+
+    if (this.selectedAnswers.length !== correctAnswers) {
+      this.correct = false;
     }
   }
 
   public onNextQuestionClick() {
-    this.nextQuestionClicked.emit(this.Correct);
+    this.nextQuestionClicked.emit(this.correct);
   }
 }

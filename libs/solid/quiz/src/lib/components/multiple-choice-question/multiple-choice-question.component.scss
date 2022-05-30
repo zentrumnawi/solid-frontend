@@ -1,5 +1,6 @@
 mat-checkbox {
   width: 100%;
+  margin-bottom: 14px;
 
   ::ng-deep {
     &.correctunselected,
@@ -13,6 +14,7 @@ mat-checkbox {
       flex-direction: column;
       width: calc(100% - 24px);
       white-space: normal;
+      line-height: 28px;
     }
 
     label.mat-checkbox-layout {
@@ -23,12 +25,46 @@ mat-checkbox {
     span.mat-checkbox-inner-container {
       margin-top: 4px;
       margin-bottom: auto;
+      margin-right: 10px;
+    }
+
+    .mat-checkbox-frame {
+      border-radius: 20px;
+      height: 20px;
+      width: 20px;
+    }
+
+    .mat-checkbox-background {
+      border-radius: 20px;
+      height: 20px;
+      width: 20px;
+    }
+
+    .mat-checkbox-mixedmark {
+      height: 16px;
+      width: 16px;
+      background-color: white;
+      border-radius: 20px;
+      position: relative;
+      &:after {
+        position: absolute;
+        top: 3px;
+        left: 0;
+        right: 0;
+        content: '×';
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 10px;
+        text-align: center;
+      }
     }
   }
 }
 
 span.feedback {
   font-weight: normal;
+  margin-top: 6px;
+  margin-bottom: -12px;
 }
 
 .showAnswerBtn {

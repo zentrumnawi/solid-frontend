@@ -56,6 +56,11 @@
               lighter
             );
           }
+          .mat-checkbox-mixedmark {
+            &:after {
+              color: mat.get-color-from-palette($quiz-incorrect, lighter);
+            }
+          }
         }
       }
     }
@@ -129,6 +134,12 @@
 
     mat-radio-button.mat-radio-disabled .mat-radio-inner-circle {
       background-color: white !important;
+    }
+
+    .mat-checkbox-mixedmark {
+      &:after {
+        color: mat.get-color-from-palette($quiz-incorrect);
+      }
     }
   }
 }

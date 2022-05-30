@@ -3,28 +3,24 @@
   *ngFor="let answer of question.answers; trackBy: trackByFn"
   [checked]="isAnswerCorrect(answer)"
   [class.correctselected]="
-    isAnswerCorrect(answer) && SelectedAnswers.includes(answer.id)
+    isAnswerCorrect(answer) && selectedAnswers.includes(answer.id)
   "
   [class.incorrectselected]="
-    isAnswerIncorrect(answer) && SelectedAnswers.includes(answer.id)
+    isAnswerIncorrect(answer) && selectedAnswers.includes(answer.id)
   "
   [class.correctunselected]="
-    isAnswerCorrect(answer) && !SelectedAnswers.includes(answer.id)
+    isAnswerCorrect(answer) && !selectedAnswers.includes(answer.id)
   "
   [class.incorrectunselected]="
-    isAnswerIncorrect(answer) && !SelectedAnswers.includes(answer.id)
+    isAnswerIncorrect(answer) && !selectedAnswers.includes(answer.id)
   "
-  [disabled]="ShowAnswers"
+  [disabled]="showAnswers"
   [indeterminate]="isAnswerIncorrect(answer)"
   color="primary"
 >
+  {{ answer.text }}
   <span
-    markdown
-    [data]="answer.text"
-    [class.selected]="ShowAnswers && SelectedAnswers.includes(answer.id)"
-  ></span>
-  <span
-    *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
+    *ngIf="showAnswers && selectedAnswers.includes(answer.id)"
     [data]="
       answer.correct ? answer.feedback_correct : answer.feedback_incorrect
     "
@@ -34,7 +30,7 @@
 </mat-checkbox>
 <button
   (click)="onShowAnswersClick()"
-  *ngIf="!ShowAnswers"
+  *ngIf="!showAnswers"
   color="primary"
   mat-raised-button
   class="showAnswerBtn"
@@ -43,10 +39,10 @@
 </button>
 <button
   (click)="onNextQuestionClick()"
-  *ngIf="ShowAnswers"
+  *ngIf="showAnswers"
   color="primary"
   mat-raised-button
   class="nextQuestionBtn"
 >
-  {{ Correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+  {{ correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
 </button>
