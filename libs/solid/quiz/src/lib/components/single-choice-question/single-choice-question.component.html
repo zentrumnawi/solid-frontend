@@ -12,8 +12,12 @@
     [value]="answer.id"
   >
     {{ answer.text }}
-      <mat-icon class="correctIcon" *ngIf="showAnswers && answer.correct">check_circle</mat-icon>
-      <mat-icon class="incorrectIcon" *ngIf="showAnswers && !answer.correct">highlight_off</mat-icon>
+    <mat-icon class="correctIcon" *ngIf="showAnswers && answer.correct"
+      >check_circle</mat-icon
+    >
+    <mat-icon class="incorrectIcon" *ngIf="showAnswers && !answer.correct"
+      >highlight_off</mat-icon
+    >
     <span
       *ngIf="showAnswers && selectedAnswer === answer.id"
       [data]="

@@ -126,5 +126,9 @@
     .incorrectIcon {
       color: mat.get-color-from-palette($quiz-incorrect);
     }
+
+    mat-radio-button.mat-radio-disabled .mat-radio-inner-circle {
+      background-color: white !important;
+    }
   }
 }

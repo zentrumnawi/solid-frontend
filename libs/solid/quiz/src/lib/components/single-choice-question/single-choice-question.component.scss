@@ -1,4 +1,4 @@
-:host{
+:host {
   margin-left: -3px;
 }
 
@@ -37,22 +37,24 @@ mat-radio-group {
   }
 }
 
+.correctIcon {
+  transform: translateY(2px) translateX(-30px);
+  opacity: 1;
+  z-index: 9999;
+  margin-top: -25px;
+}
 
-  .correctIcon {
-    transform: translateY(-22px) translateX(-30px);
-    opacity: 1;
-    z-index: 9999;
-  }
-
-  .incorrectIcon {
-    transform: translateY(-22px) translateX(-30px);
-    opacity: 1;
-    z-index: 9999;  
-  }
-
+.incorrectIcon {
+  transform: translateY(2px) translateX(-30px);
+  opacity: 1;
+  z-index: 9999;
+  margin-top: -25px;
+}
 
 span.feedback {
   font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: -12px;
 }
 
 .showAnswerBtn {

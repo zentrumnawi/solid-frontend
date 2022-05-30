@@ -18,7 +18,7 @@ export class SingleChoiceQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;
   @Output() public nextQuestionClicked = new EventEmitter<boolean>();
 
-  public selectedAnswer! : number;
+  public selectedAnswer!: number;
   public showAnswers = false;
   public correct = false;
 
@@ -53,9 +53,9 @@ export class SingleChoiceQuestionComponent implements OnChanges {
 
   public onShowAnswersClick() {
     this.showAnswers = true;
-    this.question.answers.forEach(value => {
-      if(value.id == this.selectedAnswer && value.correct) this.correct = true;
-    })
+    this.question.answers.forEach((value) => {
+      if (value.id == this.selectedAnswer && value.correct) this.correct = true;
+    });
   }
 
   public onNextQuestionClick() {
