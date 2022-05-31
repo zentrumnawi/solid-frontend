@@ -6,7 +6,7 @@ export interface SolidCoreConfig {
   markdownPlugins?: ((md: MarkdownIt, ...params: any[]) => void)[];
   appName: string;
   appLogo?: string;
-  glossarLogo: string;
+  glossaryLogo: string;
   production: boolean;
   error_report: boolean;
   guidedTour: any;

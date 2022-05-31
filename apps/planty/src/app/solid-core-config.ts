@@ -7,7 +7,7 @@ export const coreConfig: SolidCoreConfig = {
   markdownPlugins: [],
   appName: 'PLANTY2Learn',
   appLogo: 'assets/info/HGU_Signet.svg',
-  glossarLogo: 'assets/svg/glossary2.svg',
+  glossaryLogo: 'assets/svg/glossary2.svg',
   error_report: true,
   guidedTour: guidedTour.landing,
   profileTour: guidedTour.profile,
