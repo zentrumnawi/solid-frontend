@@ -94,6 +94,7 @@ export class AppModule {
     addIcon('info_privacy');
     addIcon('glossary');
     addIcon('glossary2');
+    addIcon('contact');
     addIcon('feedback');
     addIcon('feedback_outline');
     addIcon('slideshow');
