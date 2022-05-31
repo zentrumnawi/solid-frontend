@@ -7,6 +7,7 @@ export interface SolidCoreConfig {
   appName: string;
   appLogo?: string;
   glossaryLogo: string;
+  feedbackLogo: string;
   production: boolean;
   error_report: boolean;
   guidedTour: any;

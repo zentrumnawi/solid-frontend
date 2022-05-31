@@ -80,6 +80,11 @@ export class LandingComponent implements AfterViewInit {
       'glossary',
       sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossaryLogo)
     );
+
+    iconRegistry.addSvgIcon(
+      'feedback',
+      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.feedbackLogo)
+    );
   }
 
   private onCloseClick() {
