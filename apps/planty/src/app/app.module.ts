@@ -93,6 +93,7 @@ export class AppModule {
     addIcon('privacy');
     addIcon('info_privacy');
     addIcon('glossary');
+    addIcon('glossary2');
     addIcon('feedback');
     addIcon('feedback_outline');
     addIcon('slideshow');
