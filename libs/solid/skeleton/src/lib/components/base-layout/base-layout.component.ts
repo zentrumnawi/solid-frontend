@@ -64,7 +64,7 @@ export class BaseLayoutComponent implements OnInit {
       await this.Glossary.close();
     }
   }
-  public onMenuGlossarClick() {
+  public onMenuGlossaryClick() {
     if (this.Glossary) {
       this.Glossary.open();
     }
@@ -82,12 +82,12 @@ export class BaseLayoutComponent implements OnInit {
     this.feedback.showDialog(location);
   }
 
-  public onLandingGlossarClick(ref: any) {
+  public onLandingGlossaryClick(ref: any) {
     if (!(ref instanceof LandingComponent)) {
       return;
     }
 
-    ref.onGlossarClick.subscribe(() => {
+    ref.onGlossaryClick.subscribe(() => {
       if (this.Glossary) {
         this.Glossary.open();
       }

@@ -50,7 +50,7 @@ export class LandingComponent implements AfterViewInit {
   limitedMessages!: MessageModel[];
 
   @ViewChild('landing') Landing?: ElementRef;
-  public onGlossarClick = new EventEmitter();
+  public onGlossaryClick = new EventEmitter();
 
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
@@ -77,8 +77,8 @@ export class LandingComponent implements AfterViewInit {
     this.limitMessages();
 
     iconRegistry.addSvgIcon(
-      'glossar',
-      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossarLogo)
+      'glossary',
+      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossaryLogo)
     );
   }
 

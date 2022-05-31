@@ -94,12 +94,12 @@
       </mat-toolbar>
       <solid-skeleton-main-menu
         (selectMenuEntry)="onMenuSelectionChanged()"
-        (openGlossarClick)="onMenuGlossarClick()"
+        (openGlossaryClick)="onMenuGlossaryClick()"
       ></solid-skeleton-main-menu>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet
-        (activate)="onLandingGlossarClick($event)"
+        (activate)="onLandingGlossaryClick($event)"
         (deativate)="unsubscribe()"
       >
       </router-outlet>
