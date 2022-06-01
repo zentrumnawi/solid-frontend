@@ -1,6 +1,5 @@
 import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
 
-/* tslint:disable-next-line */
 @Directive({ selector: '[solidGlossaryEntry]' })
 export class RefDirective {
   @Input() public refId!: number;

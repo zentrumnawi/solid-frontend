@@ -8,8 +8,11 @@
         id="Logo"
         [src]="config.appLogo"
         onerror='this.style.display = "none"'
+        (click)="navigateTo('/')"
       />
-      <span id="app-name" class="appName">{{ config.appName }}</span>
+      <span id="app-name" class="appName" (click)="navigateTo('/')">{{
+        config.appName
+      }}</span>
       <div class="spacer"></div>
       <div class="reportButton" *ngIf="this.config.error_report">
         <button
@@ -45,11 +48,13 @@
         id="Logo"
         [src]="config.appLogo"
         onerror='this.style.display = "none"'
+        (click)="navigateTo('/')"
       />
       <span
         id="app-name"
         [class.app-title-fixed]="FixedLayout"
         class="appName"
+        (click)="navigateTo('/')"
         >{{ config.appName }}</span
       >
       <div class="spacer"></div>
@@ -94,11 +99,15 @@
       </mat-toolbar>
       <solid-skeleton-main-menu
         (selectMenuEntry)="onMenuSelectionChanged()"
-        (openGlossarClick)="onMenuGlossarClick()"
+        (openGlossaryClick)="onMenuGlossaryClick()"
       ></solid-skeleton-main-menu>
     </mat-sidenav>
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <router-outlet
+        (activate)="onLandingGlossaryClick($event)"
+        (deativate)="unsubscribe()"
+      >
+      </router-outlet>
     </mat-sidenav-content>
     <mat-sidenav
       #glossary

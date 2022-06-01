@@ -27,6 +27,13 @@
       <span class="navTitle">{{ menuItem.title }}</span>
     </mat-grid-tile>
     <mat-grid-tile
+      id="glossary"
+      (click)="onGlossaryClick.emit()"
+      class="mat-elevation-z2"
+      ><mat-icon matListIcon svgIcon="glossary"></mat-icon>
+      <span class="navTitle">Glossar</span>
+    </mat-grid-tile>
+    <mat-grid-tile
       id="feedback"
       (click)="feedback.showDialog()"
       class="mat-elevation-z2"
