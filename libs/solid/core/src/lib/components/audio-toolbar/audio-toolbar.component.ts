@@ -67,7 +67,6 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
         'iPad',
         'iPhone',
         'iPod',
-        // tslint:disable-next-line: deprecation
       ].includes(navigator.platform) ||
       navigator.userAgent.includes('iPad') ||
       navigator.userAgent.includes('iPhone') ||
