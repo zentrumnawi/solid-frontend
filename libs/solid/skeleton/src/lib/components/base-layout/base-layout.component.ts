@@ -10,6 +10,8 @@ import {
 import { Router } from '@angular/router';
 import { LandingComponent } from '../landing/landing.component';
 import { Subscription } from 'rxjs';
+import { Navigate } from '@ngxs/router-plugin';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -98,5 +100,10 @@ export class BaseLayoutComponent implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  @Dispatch()
+  public async navigateTo(url: string) {
+    return new Navigate([url]);
   }
 }

@@ -4,14 +4,15 @@
       <div class="right-border">
         <span>Menü</span>
       </div>
-      <a href="/">
-        <img
+      <img
         id="Logo"
         [src]="config.appLogo"
         onerror='this.style.display = "none"'
+        (click)="navigateTo('/')"
       />
-      <span id="app-name" class="appName">{{ config.appName }}</span>
-      </a>
+      <span id="app-name" class="appName" (click)="navigateTo('/')">{{
+        config.appName
+      }}</span>
       <div class="spacer"></div>
       <div class="reportButton" *ngIf="this.config.error_report">
         <button
@@ -43,19 +44,19 @@
           <mat-icon aria-label="Menü öffnen">menu</mat-icon>
         </button>
       </div>
-      <a href="/">
-        <img
+      <img
         id="Logo"
         [src]="config.appLogo"
         onerror='this.style.display = "none"'
+        (click)="navigateTo('/')"
       />
       <span
-      id="app-name"
-      [class.app-title-fixed]="FixedLayout"
-      class="appName"
-      >{{ config.appName }}</span
-    >
-      </a>
+        id="app-name"
+        [class.app-title-fixed]="FixedLayout"
+        class="appName"
+        (click)="navigateTo('/')"
+        >{{ config.appName }}</span
+      >
       <div class="spacer"></div>
       <div class="reportButton" *ngIf="this.config.error_report">
         <button
