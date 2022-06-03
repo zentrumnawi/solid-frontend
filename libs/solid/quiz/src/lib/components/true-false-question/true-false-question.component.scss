@@ -16,11 +16,11 @@
     border: solid 2px lightgray;
 
     &.correctUnselected {
-      border: solid 2px;
+      border: solid 3px;
     }
 
     &.incorrectUnselected {
-      border: solid 4px;
+      border: solid 2px;
     }
   }
 
@@ -33,11 +33,11 @@
     border: solid 2px lightgray;
 
     &.correctUnselected {
-      border: solid 2px;
+      border: solid 3px;
     }
 
     &.incorrectUnselected {
-      border: solid 4px;
+      border: solid 2px;
     }
   }
 }

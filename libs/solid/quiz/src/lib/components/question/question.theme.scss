@@ -30,7 +30,7 @@
 
     mat-card-content.multiple-choice {
       mat-checkbox {
-        &.correctselected {
+        &.correctSelected {
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette($quiz-correct);
           }
@@ -39,7 +39,7 @@
             color: black !important;
           }
         }
-        &.correctunselected {
+        &.correctUnselected {
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette(
               $quiz-correct,
@@ -48,7 +48,7 @@
           }
         }
 
-        &.incorrectselected {
+        &.incorrectSelected {
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette($quiz-incorrect);
           }
@@ -57,7 +57,7 @@
             color: black !important;
           }
         }
-        &.incorrectunselected {
+        &.incorrectUnselected {
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette(
               $quiz-incorrect,

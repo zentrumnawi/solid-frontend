@@ -2,16 +2,16 @@
   (change)="onSelectChange($event, answer)"
   *ngFor="let answer of question.answers; trackBy: trackByFn"
   [checked]="isAnswerCorrect(answer)"
-  [class.correctselected]="
+  [class.correctSelected]="
     isAnswerCorrect(answer) && selectedAnswers.includes(answer.id)
   "
-  [class.incorrectselected]="
+  [class.incorrectSelected]="
     isAnswerIncorrect(answer) && selectedAnswers.includes(answer.id)
   "
-  [class.correctunselected]="
+  [class.correctUnselected]="
     isAnswerCorrect(answer) && !selectedAnswers.includes(answer.id)
   "
-  [class.incorrectunselected]="
+  [class.incorrectUnselected]="
     isAnswerIncorrect(answer) && !selectedAnswers.includes(answer.id)
   "
   [disabled]="showAnswers"
