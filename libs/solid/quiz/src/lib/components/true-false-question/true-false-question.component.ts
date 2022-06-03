@@ -13,7 +13,7 @@ export class TrueFalseQuestionComponent {
   public selectedAnswer!: boolean;
   public showAnswers = false;
   public correct = false;
-
+  
   public onTrueClick() {
     this.selectedAnswer = true;
   }

@@ -3,37 +3,35 @@
     class="trueBtn"
     [disabled]="showAnswers"
     mat-stroked-button
-    [class.correct]="showAnswers && question.answers[0].correct"
-    [class.incorrect]="showAnswers && !question.answers[0].correct"
+    [class.correctUnselected]="showAnswers && question.answers[0].correct"
+    [class.incorrectUnselected]="showAnswers && !question.answers[0].correct"
+    [class.correctSelected]="showAnswers && question.answers[0].correct && selectedAnswer"
+    [class.incorrectSelected]="showAnswers && !question.answers[0].correct && selectedAnswer"
     (click)="onTrueClick()"
   >
     Wahr
-    <mat-icon *ngIf="question.answers[0].correct && showAnswers">
-      check
-    </mat-icon>
-    <mat-icon *ngIf="!question.answers[0].correct && showAnswers">
-      highlight_off
-    </mat-icon>
   </button>
   <button
     class="falseBtn"
     [disabled]="showAnswers"
     mat-stroked-button
-    [class.correct]="showAnswers && !question.answers[0].correct"
-    [class.incorrect]="showAnswers && question.answers[0].correct"
+    [class.correctUnselected]="showAnswers && !question.answers[0].correct"
+    [class.incorrectUnselected]="showAnswers && question.answers[0].correct"
+    [class.correctSelected]="showAnswers && !question.answers[0].correct && !selectedAnswer"
+    [class.incorrectSelected]="showAnswers && question.answers[0].correct && !selectedAnswer"
     (click)="onFalseClick()"
   >
     Falsch
-    <mat-icon *ngIf="!question.answers[0].correct && showAnswers">
-      check
-    </mat-icon>
-    <mat-icon *ngIf="question.answers[0].correct && showAnswers">
-      highlight_off
-    </mat-icon>
   </button>
 </div>
 
 <div class="feedback" *ngIf="showAnswers">
+  <mat-icon class="correctIcon" *ngIf="question.answers[0].correct === selectedAnswer && showAnswers">
+    check
+  </mat-icon>
+  <mat-icon class="incorrectIcon" *ngIf="question.answers[0].correct !== selectedAnswer && showAnswers">
+    highlight_off
+  </mat-icon>
   <span
     class="feedback-text"
     markdown

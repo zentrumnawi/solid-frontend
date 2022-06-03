@@ -95,18 +95,31 @@
         background-color: mat.get-color-from-palette($app-primary);
         border-color: white;
         color: white;
+        
       }
 
-      &.correct {
+      &.correctUnselected {
         border-color: mat.get-color-from-palette($quiz-correct) !important;
-        color: mat.get-color-from-palette($quiz-correct) !important;
+        color: black !important;
       }
 
-      &.incorrect {
-        border-color: mat.get-color-from-palette(
-          $quiz-incorrect,
-          lighter
-        ) !important;
+      &.incorrectUnselected {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        color: black !important;
+        opacity: 0.4;
+      }
+
+      &.correctSelected {
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+        background-color: mat.get-color-from-palette($quiz-correct) !important;
+        color: white !important;
+      }
+
+      &.incorrectSelected {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        background-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        color: white !important;
+        opacity: 0.4;
       }
     }
 
@@ -119,16 +132,28 @@
         color: white;
       }
 
-      &.correct {
+      &.correctUnselected {
         border-color: mat.get-color-from-palette($quiz-correct) !important;
-        color: mat.get-color-from-palette($quiz-correct) !important;
+        color: black !important;
       }
 
-      &.incorrect {
-        border-color: mat.get-color-from-palette(
-          $quiz-incorrect,
-          lighter
-        ) !important;
+      &.incorrectUnselected {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        color: black !important;
+        opacity: 0.4;
+      }
+
+      &.correctSelected {
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+        background-color: mat.get-color-from-palette($quiz-correct) !important;
+        color: white !important;
+      }
+
+      &.incorrectSelected {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        background-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        color: white !important;
+        opacity: 0.4;
       }
     }
 
