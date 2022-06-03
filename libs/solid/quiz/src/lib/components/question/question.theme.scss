@@ -97,7 +97,6 @@
     }
 
     .trueBtn {
-      border: solid 2px mat.get-color-from-palette($accent);
 
       &:focus {
         background-color: mat.get-color-from-palette($app-primary);
@@ -112,7 +111,7 @@
       }
 
       &.incorrectUnselected {
-        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
         color: black !important;
         opacity: 0.4;
       }
@@ -124,24 +123,23 @@
       }
 
       &.incorrectSelected {
-        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
-        background-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+        background-color: mat.get-color-from-palette($quiz-correct) !important;
         color: white !important;
         opacity: 0.4;
       }
     }
 
     .falseBtn {
-      border: solid 2px mat.get-color-from-palette($app-primary);
 
       &:focus {
-        background-color: mat.get-color-from-palette($accent);
+        background-color: mat.get-color-from-palette($app-primary);
         border-color: white;
         color: white;
       }
 
       &.correctUnselected {
-        border-color: mat.get-color-from-palette($quiz-correct) !important;
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
         color: black !important;
       }
 
@@ -152,8 +150,8 @@
       }
 
       &.correctSelected {
-        border-color: mat.get-color-from-palette($quiz-correct) !important;
-        background-color: mat.get-color-from-palette($quiz-correct) !important;
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        background-color: mat.get-color-from-palette($quiz-incorrect) !important;
         color: white !important;
       }
 

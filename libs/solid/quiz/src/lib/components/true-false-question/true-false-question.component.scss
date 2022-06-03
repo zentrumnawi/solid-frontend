@@ -13,8 +13,13 @@
     font-size: 15px;
     margin-bottom: 15px;
     font-weight: 500;
+    border: solid 2px lightgray;
 
     &.correctUnselected {
+      border: solid 2px;
+    }
+
+    &.incorrectUnselected {
       border: solid 4px;
     }
   }
@@ -25,8 +30,13 @@
     width: 100%;
     font-size: 15px;
     font-weight: 500;
+    border: solid 2px lightgray;
 
     &.correctUnselected {
+      border: solid 2px;
+    }
+
+    &.incorrectUnselected {
       border: solid 4px;
     }
   }
@@ -51,7 +61,7 @@
 span.feedback-text {
   margin-top: 10px;
   font-weight: 500;
-  text-align: center;
+  text-align: justify;
 }
 
 .showAnswerBtn {

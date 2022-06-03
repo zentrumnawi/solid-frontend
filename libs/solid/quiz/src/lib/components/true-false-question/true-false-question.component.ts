@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
@@ -6,13 +6,20 @@ import { QuizQuestion } from '../../state/quiz.model';
   templateUrl: './true-false-question.component.html',
   styleUrls: ['./true-false-question.component.scss'],
 })
-export class TrueFalseQuestionComponent {
+export class TrueFalseQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;
   @Output() public nextQuestionClicked = new EventEmitter<boolean>();
 
   public selectedAnswer!: boolean;
   public showAnswers = false;
   public correct = false;
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.question.previousValue !== changes.question.currentValue) {
+      this.showAnswers = false;
+      this.correct = false;
+    }
+  }
   
   public onTrueClick() {
     this.selectedAnswer = true;
