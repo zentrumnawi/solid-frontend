@@ -4,7 +4,7 @@
 
 .button-container {
   display: block;
-  margin: 0px 10px 16px;
+  margin: 0px 5px 16px;
 
   .trueBtn {
     border-radius: 5px;
@@ -12,6 +12,11 @@
     width: 100%;
     font-size: 17px;
     margin-bottom: 9px;
+
+    &.correct {
+      font-weight: 600;
+      border: solid 4px;
+    }
   }
 
   .falseBtn {
@@ -19,6 +24,11 @@
     min-height: 44px;
     width: 100%;
     font-size: 17px;
+
+    &.correct {
+      font-weight: 600;
+      border: solid 4px;
+    }
   }
 }
 

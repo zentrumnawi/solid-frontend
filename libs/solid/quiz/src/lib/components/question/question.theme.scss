@@ -99,10 +99,14 @@
 
       &.correct {
         border-color: mat.get-color-from-palette($quiz-correct) !important;
+        color: mat.get-color-from-palette($quiz-correct) !important;
       }
 
       &.incorrect {
-        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        border-color: mat.get-color-from-palette(
+          $quiz-incorrect,
+          lighter
+        ) !important;
       }
     }
 
@@ -117,10 +121,14 @@
 
       &.correct {
         border-color: mat.get-color-from-palette($quiz-correct) !important;
+        color: mat.get-color-from-palette($quiz-correct) !important;
       }
 
       &.incorrect {
-        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        border-color: mat.get-color-from-palette(
+          $quiz-incorrect,
+          lighter
+        ) !important;
       }
     }
 
