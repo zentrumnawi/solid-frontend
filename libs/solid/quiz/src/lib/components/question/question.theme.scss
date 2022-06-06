@@ -92,17 +92,11 @@
       }
     }
 
-    .range-container {
-      border: solid 2px mat.get-color-from-palette($app-primary);
-    }
-
     .trueBtn {
-
       &:focus {
         background-color: mat.get-color-from-palette($app-primary);
         border-color: white;
         color: white;
-        
       }
 
       &.correctUnselected {
@@ -131,7 +125,6 @@
     }
 
     .falseBtn {
-
       &:focus {
         background-color: mat.get-color-from-palette($app-primary);
         border-color: white;
@@ -151,13 +144,17 @@
 
       &.correctSelected {
         border-color: mat.get-color-from-palette($quiz-incorrect) !important;
-        background-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        background-color: mat.get-color-from-palette(
+          $quiz-incorrect
+        ) !important;
         color: white !important;
       }
 
       &.incorrectSelected {
         border-color: mat.get-color-from-palette($quiz-incorrect) !important;
-        background-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        background-color: mat.get-color-from-palette(
+          $quiz-incorrect
+        ) !important;
         color: white !important;
         opacity: 0.4;
       }
@@ -179,6 +176,28 @@
       &:after {
         color: mat.get-color-from-palette($quiz-incorrect);
       }
+    }
+
+    mat-slider {
+      &.correctRange {
+        .mat-slider-track-fill {
+          background-color: mat.get-color-from-palette(
+            $quiz-correct
+          ) !important;
+        }
+      }
+
+      &.incorrectRange {
+        .mat-slider-track-fill {
+          background-color: mat.get-color-from-palette(
+            $quiz-incorrect
+          ) !important;
+        }
+      }
+    }
+
+    .correctTick {
+      background-color: mat.get-color-from-palette($app-primary);
     }
   }
 }

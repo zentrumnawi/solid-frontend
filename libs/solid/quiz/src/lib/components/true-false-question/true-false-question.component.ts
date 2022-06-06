@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
@@ -20,7 +27,7 @@ export class TrueFalseQuestionComponent implements OnChanges {
       this.correct = false;
     }
   }
-  
+
   public onTrueClick() {
     this.selectedAnswer = true;
   }

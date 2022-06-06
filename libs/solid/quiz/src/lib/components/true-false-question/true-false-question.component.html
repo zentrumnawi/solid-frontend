@@ -5,8 +5,12 @@
     mat-stroked-button
     [class.correctUnselected]="showAnswers && question.answers[0].correct"
     [class.incorrectUnselected]="showAnswers && !question.answers[0].correct"
-    [class.correctSelected]="showAnswers && question.answers[0].correct && selectedAnswer"
-    [class.incorrectSelected]="showAnswers && !question.answers[0].correct && selectedAnswer"
+    [class.correctSelected]="
+      showAnswers && question.answers[0].correct && selectedAnswer
+    "
+    [class.incorrectSelected]="
+      showAnswers && !question.answers[0].correct && selectedAnswer
+    "
     (click)="onTrueClick()"
   >
     Wahr
@@ -17,8 +21,12 @@
     mat-stroked-button
     [class.correctUnselected]="showAnswers && !question.answers[0].correct"
     [class.incorrectUnselected]="showAnswers && question.answers[0].correct"
-    [class.correctSelected]="showAnswers && !question.answers[0].correct && !selectedAnswer"
-    [class.incorrectSelected]="showAnswers && question.answers[0].correct && !selectedAnswer"
+    [class.correctSelected]="
+      showAnswers && !question.answers[0].correct && !selectedAnswer
+    "
+    [class.incorrectSelected]="
+      showAnswers && question.answers[0].correct && !selectedAnswer
+    "
     (click)="onFalseClick()"
   >
     Falsch
@@ -26,10 +34,16 @@
 </div>
 
 <div class="feedback" *ngIf="showAnswers">
-  <mat-icon class="correctIcon" *ngIf="question.answers[0].correct === selectedAnswer && showAnswers">
+  <mat-icon
+    class="correctIcon"
+    *ngIf="question.answers[0].correct === selectedAnswer && showAnswers"
+  >
     check
   </mat-icon>
-  <mat-icon class="incorrectIcon" *ngIf="question.answers[0].correct !== selectedAnswer && showAnswers">
+  <mat-icon
+    class="incorrectIcon"
+    *ngIf="question.answers[0].correct !== selectedAnswer && showAnswers"
+  >
     highlight_off
   </mat-icon>
   <span

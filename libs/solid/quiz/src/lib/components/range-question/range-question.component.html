@@ -1,24 +1,40 @@
 <div class="range-container">
+  <span class="minTick"></span>
+  <p class="minLabel">{{ question.answers[0].range_min }}</p>
+  <div id="correctTick" class="correctTick" *ngIf="showAnswers && !correct">
+    <p>{{ question.answers[0].range_value }}</p>
+  </div>
   <mat-slider
+    id="slider"
     thumbLabel
+    tickInterval="3"
+    defaultTabIndex="3"
     [disabled]="showAnswers"
     [min]="question.answers[0].range_min"
     [max]="question.answers[0].range_max"
     [step]="question.answers[0].range_step"
+    [class.correctRange]="showAnswers && correct"
+    [class.incorrectRange]="showAnswers && !correct"
     [(ngModel)]="sliderPosition"
   >
   </mat-slider>
-  <span
-    class="feedback"
-    markdown
-    *ngIf="showAnswers"
-    [data]="
-      correct
-        ? this.question.answers[0].feedback_correct
-        : this.question.answers[0].feedback_incorrect
-    "
-  >
-  </span>
+  <p class="maxLabel">{{ question.answers[0].range_max }}</p>
+  <span class="maxTick"></span>
+
+  <div class="feedback-container" *ngIf="showAnswers">
+    <mat-icon class="correctIcon" *ngIf="correct"> check </mat-icon>
+    <mat-icon class="incorrectIcon" *ngIf="!correct"> highlight_off </mat-icon>
+    <span
+      class="feedback"
+      markdown
+      [data]="
+        correct
+          ? this.question.answers[0].feedback_correct
+          : this.question.answers[0].feedback_incorrect
+      "
+    >
+    </span>
+  </div>
 </div>
 
 <div>
