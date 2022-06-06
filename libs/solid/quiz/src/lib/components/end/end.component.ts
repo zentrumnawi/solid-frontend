@@ -64,7 +64,7 @@ export class EndComponent implements OnDestroy {
 
   onStartClick() {
     this._store.dispatch(new StartQuizSession(this.questionCount.value));
-    this.stopQuiz.emit(false);
+    this.stopQuiz.emit(false); 
   }
 
   ngOnDestroy(): void {
