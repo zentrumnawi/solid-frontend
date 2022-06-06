@@ -6,7 +6,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "files.eol": "\n",
   "[jsonc]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
