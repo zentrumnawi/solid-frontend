@@ -185,6 +185,10 @@
             $quiz-correct
           ) !important;
         }
+        .mat-slider-thumb {
+          background-color: mat.get-color-from-palette($quiz-correct) !important;
+          border: none !important;
+        }
       }
 
       &.incorrectRange {
@@ -193,11 +197,25 @@
             $quiz-incorrect
           ) !important;
         }
+        .mat-slider-thumb {
+          background-color: mat.get-color-from-palette($quiz-incorrect) !important;
+          border: none !important;
+        }
       }
     }
 
     .correctTick {
-      background-color: mat.get-color-from-palette($quiz-incorrect);
+      &.correct {
+        background-color: mat.get-color-from-palette($quiz-correct);
+      }
+      
+      &.incorrect {
+        border: solid 2px mat.get-color-from-palette($quiz-correct);
+        
+        p {
+          color: black !important;
+        }
+      }
     }
   }
 }

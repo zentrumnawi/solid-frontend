@@ -1,7 +1,8 @@
 <div class="range-container">
   <span class="minTick"></span>
   <p class="minLabel">{{ question.answers[0].range_min }}</p>
-  <div id="correctTick" class="correctTick" *ngIf="showAnswers && !correct">
+  <div id="correctTick" class="correctTick" *ngIf="showAnswers" [class.correct]="correct"
+  [class.incorrect]="!correct">
     <p>{{ question.answers[0].range_value }}</p>
   </div>
   <mat-slider
