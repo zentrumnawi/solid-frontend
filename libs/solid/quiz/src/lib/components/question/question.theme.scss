@@ -178,6 +178,12 @@
       }
     }
 
+    mat-slider:not(.mat-slider-disabled).cdk-focused.mat-slider-thumb-label-showing
+      .mat-slider-thumb {
+      border-color: mat.get-color-from-palette($accent) !important;
+      background-color: white !important;
+    }
+
     mat-slider {
       &.correctRange {
         .mat-slider-track-fill {
@@ -186,7 +192,9 @@
           ) !important;
         }
         .mat-slider-thumb {
-          background-color: mat.get-color-from-palette($quiz-correct) !important;
+          background-color: mat.get-color-from-palette(
+            $quiz-correct
+          ) !important;
           border: none !important;
         }
       }
@@ -198,23 +206,37 @@
           ) !important;
         }
         .mat-slider-thumb {
-          background-color: mat.get-color-from-palette($quiz-incorrect) !important;
+          background-color: mat.get-color-from-palette(
+            $quiz-incorrect
+          ) !important;
           border: none !important;
         }
       }
     }
 
-    .correctTick {
+    #correctThumb {
       &.correct {
         background-color: mat.get-color-from-palette($quiz-correct);
       }
-      
+
       &.incorrect {
         border: solid 2px mat.get-color-from-palette($quiz-correct);
-        
+
         p {
           color: black !important;
         }
+      }
+    }
+
+    .minTick {
+      background-color: mat.get-color-from-palette($accent);
+
+      &.correct {
+        background-color: mat.get-color-from-palette($quiz-correct);
+      }
+
+      &.incorrect {
+        background-color: mat.get-color-from-palette($quiz-incorrect);
       }
     }
   }

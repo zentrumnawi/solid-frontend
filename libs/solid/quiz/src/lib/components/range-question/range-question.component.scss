@@ -3,16 +3,18 @@
   grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: auto;
   place-items: center;
+  margin-top: 10px;
+  margin-left: 4px;
 }
 
 .minTick {
   content: '';
-  border: solid 7px;
-  border-right: 0px;
   grid-row-start: 2;
   justify-self: start;
-  transform: translateY(-37px);
+  transform: translateX(2px) translateY(-37px);
   grid-column-start: 1;
+  height: 18px;
+  width: 7px;
 }
 
 .minLabel {
@@ -21,6 +23,7 @@
   font-size: 12px;
   font-weight: bold;
   grid-row-start: 2;
+  transform: translateX(2px);
 }
 
 .maxLabel {
@@ -29,16 +32,19 @@
   font-size: 12px;
   font-weight: bold;
   grid-row-start: 2;
+  transform: translateX(-4px);
 }
 
 .maxTick {
   content: '';
-  border: solid 7px;
   border-right: 0px;
   grid-row-start: 2;
-  transform: translateY(-37px);
+  transform: translateX(-7px) translateY(-37px);
   justify-self: end;
   grid-column-start: 3;
+  height: 18px;
+  width: 7px;
+  background-color: lightgray;
 }
 
 .feedback-container {
@@ -71,8 +77,12 @@
     grid-row-start: 1;
   }
 
+  .mat-slider-wrapper {
+    top: 24px;
+  }
+
   .mat-slider-horizontal .mat-slider-track-wrapper {
-    height: 7px;
+    height: 6px;
   }
 
   .mat-slider.mat-slider-horizontal .mat-slider-track-background {
@@ -86,15 +96,29 @@
 
   .mat-slider.mat-accent .mat-slider-thumb {
     background-color: white;
-    height: 24px;
-    width: 24px;
+    height: 26px;
+    width: 26px;
     bottom: -15px;
-    border: solid 2px lightgray;
+    border: solid 3px lightgray;
     transform: scale(0.75);
+  }
+
+  .mat-slider:not(.mat-slider-disabled).cdk-focused.mat-slider-thumb-label-showing
+    .mat-slider-thumb {
+    transform: scale(0.75);
+  }
+
+  .mat-slider.mat-slider-min-value.mat-slider-thumb-label-showing
+    .mat-slider-thumb {
+    border-color: lightgray !important;
+  }
+
+  .mat-slider-horizontal .mat-slider-thumb-label {
+    top: -45px;
   }
 }
 
-.correctTick {
+#correctThumb {
   border-radius: 50% 50% 0;
   transform: rotate(45deg);
   display: flex;
@@ -103,7 +127,8 @@
   position: absolute;
   width: 28px;
   height: 28px;
-  top: 45px;
+  top: 53px;
+  left: -50px;
 
   p {
     font-weight: bold;

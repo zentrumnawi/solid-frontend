@@ -21,21 +21,25 @@ export class RangeQuestionComponent {
     const value = this.question.answers[0].range_value;
     if (Math.abs(this.sliderPosition - value) <= tolerance) this.correct = true;
 
-    if (!this.correct) {
-      const correctTick = document.getElementById('correctTick');
+    setTimeout(() => {
+      const correctThumb = document.getElementById('correctThumb');
       const slider = document.getElementById('slider');
 
-      if (correctTick && slider) {
+      if (slider && correctThumb) {
         const steps =
           this.question.answers[0].range_max /
             this.question.answers[0].range_step -
           1;
-        const stepLength =
-          slider?.offsetWidth / this.question.answers[0].range_max;
-        const correctPos = stepLength * this.question.answers[0].range_value;
-        correctTick.style.left = correctPos + 'px';
+        const stepLength = slider.offsetWidth / steps;
+        const correctPos =
+          stepLength *
+            (this.question.answers[0].range_value /
+              this.question.answers[0].range_step -
+              2) +
+          20;
+        correctThumb.style.left = correctPos + 'px';
       }
-    }
+    }, 1);
   }
 
   public onNextQuestionClick() {
