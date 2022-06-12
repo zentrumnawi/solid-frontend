@@ -13,6 +13,10 @@ mat-form-field {
   font-weight: 500;
 }
 
+mat-checkbox {
+  font-size: small;
+}
+
 @media (max-width: 325px) {
   .send-btn {
     margin-left: 0 !important;

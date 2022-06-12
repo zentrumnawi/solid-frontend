@@ -19,6 +19,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
   feedbackServiceFactory,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -88,6 +89,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     MatInputModule,
     MatListModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatSidenavModule,
     MatTabsModule,
     MatToolbarModule,

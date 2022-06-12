@@ -1,6 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -17,6 +18,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   private _sent = false;
   public Form: FormGroup;
   public formTitle: string;
+  public privacyChecked = false;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
