@@ -52,6 +52,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { IntroService } from './services/intro.service';
 import { deepMerge } from './utils/deep-merge';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { PrivacyDialogComponent } from './components/privacy-dialog/privacy-dialog.component';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -105,6 +106,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     LandingComponent,
     InfoComponent,
     MessageListComponent,
+    PrivacyDialogComponent,
   ],
   exports: [BaseLayoutComponent],
   providers: [UpdateService, IntroService],
