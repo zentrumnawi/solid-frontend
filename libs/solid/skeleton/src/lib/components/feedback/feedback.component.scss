@@ -14,7 +14,16 @@ mat-form-field {
 }
 
 mat-checkbox {
+  margin-top: 20px;
   font-size: small;
+
+  ::ng-deep .mat-checkbox-layout {
+    white-space: normal !important;
+  }
+
+  ::ng-deep .mat-checkbox-label {
+    margin-left: 8px;
+  }
 }
 
 @media (max-width: 325px) {
