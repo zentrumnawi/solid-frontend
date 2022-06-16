@@ -14,6 +14,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { BaseComponent } from 'libs/solid/profile/src/lib/components/base/base.component';
 
+
 @Component({
   selector: 'solid-skeleton-base-layout',
   templateUrl: './base-layout.component.html',
@@ -117,5 +118,28 @@ export class BaseLayoutComponent implements OnInit {
     ref.profileTitle.subscribe( (profileTitle : string) => {
       this.title = profileTitle;
     });
+  }
+
+  public onLandingGlossaryClick(ref: any) {
+    if (!(ref instanceof LandingComponent)) {
+      return;
+    }
+
+    ref.onGlossaryClick.subscribe(() => {
+      if (this.Glossary) {
+        this.Glossary.open();
+      }
+    });
+  }
+
+  public unsubscribe() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  @Dispatch()
+  public async navigateTo(url: string) {
+    return new Navigate([url]);
   }
 }
