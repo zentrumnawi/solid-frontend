@@ -1,7 +1,7 @@
 <mat-list role="list">
   <ng-container *ngIf="profiles | async as profilesArr">
     <mat-list-item
-      (click)="selectProfile.emit(profile.id)"
+      (click)="selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)"
       *ngFor="let profile of profilesArr; trackBy: trackByFn"
     >
       <!-- <img
