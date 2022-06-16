@@ -120,26 +120,4 @@ export class BaseLayoutComponent implements OnInit {
     });
   }
 
-  public onLandingGlossaryClick(ref: any) {
-    if (!(ref instanceof LandingComponent)) {
-      return;
-    }
-
-    ref.onGlossaryClick.subscribe(() => {
-      if (this.Glossary) {
-        this.Glossary.open();
-      }
-    });
-  }
-
-  public unsubscribe() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
-
-  @Dispatch()
-  public async navigateTo(url: string) {
-    return new Navigate([url]);
-  }
 }
