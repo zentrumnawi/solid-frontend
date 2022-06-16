@@ -1,40 +1,44 @@
 <h1 mat-dialog-title>{{ formTitle }}</h1>
 <div mat-dialog-content>
-    <form [formGroup]="Form">
-      <mat-form-field>
-        <input formControlName="name" matInput placeholder="Name" type="text" />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          formControlName="email"
-          matInput
-          placeholder="Email"
-          type="email"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput formControlName="subject" placeholder="Betreff" />
-      </mat-form-field>
-      <mat-form-field>
-        <textarea
-          cdkAutosizeMinRows="10"
-          cdkTextareaAutosize
-          formControlName="message"
-          matInput
-          placeholder="Nachricht"
-        ></textarea>
-      </mat-form-field>
-      <div *ngIf="getLocation()">
-        <mat-label class="location"
-          >Fehler gefunden in: {{ getLocation() }}</mat-label
-        >
-      </div>
-    </form>
+  <form [formGroup]="Form">
+    <mat-form-field>
+      <input formControlName="name" matInput placeholder="Name" type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        formControlName="email"
+        matInput
+        placeholder="Email"
+        type="email"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="subject" placeholder="Betreff" />
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        cdkAutosizeMinRows="10"
+        cdkTextareaAutosize
+        formControlName="message"
+        matInput
+        placeholder="Nachricht"
+      ></textarea>
+    </mat-form-field>
+    <div *ngIf="getLocation()">
+      <mat-label class="location"
+        >Fehler gefunden in: {{ getLocation() }}</mat-label
+      >
+    </div>
+  </form>
 </div>
 <div>
   <mat-checkbox [(ngModel)]="privacyChecked">
-    Hiermit nehme ich die <button class="privacyBtn" (click)="onPrivacyClick()">Datenschutzerklärung</button> zur Kenntnis und stimme der
-    Speicherung der in diesem Formular angegebenen Daten zu.
+    Hiermit nehme ich die
+    <button class="privacyBtn" (click)="onPrivacyClick()">
+      Datenschutzerklärung
+    </button>
+    zur Kenntnis und stimme der Speicherung der in diesem Formular angegebenen
+    Daten zu.
   </mat-checkbox>
 </div>
 <div mat-dialog-actions>
@@ -49,4 +53,3 @@
     Absenden
   </button>
 </div>
-

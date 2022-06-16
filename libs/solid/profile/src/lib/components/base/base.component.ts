@@ -238,7 +238,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
         });
       }, 2000);
     }
-    
   }
 
   public handleLongTitle() {
@@ -294,7 +293,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     }
     setTimeout(() => {
       this.profileTitle.emit(this.SelectedProfile?.name);
-    },10);
+    }, 10);
   }
 
   @Dispatch()
@@ -308,7 +307,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     }
     setTimeout(() => {
       this.profileTitle.emit(this.SelectedProfile?.name);
-    },10);
+    }, 10);
   }
 
   public onPanEnd($event: any) {
@@ -330,7 +329,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public selectProfileTitle(title : string) : void {
-    if(title) this.profileTitle.emit(title);
+  public selectProfileTitle(title: string): void {
+    if (title) this.profileTitle.emit(title);
   }
 }

@@ -1,6 +1,10 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialog,
+} from '@angular/material/dialog';
 
 import {
   FeedbackService,
@@ -26,7 +30,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     public feedback: FeedbackService,
     public fb: FormBuilder,
     private _ref: MatDialogRef<FeedbackComponent>,
-    private _dialog : MatDialog,
+    private _dialog: MatDialog,
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
     /* type is defined as any to prevent ng-packagr issues
      (data: any) => Observable<boolean> */
@@ -66,7 +70,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     // if (this._sent) {
     //   sessionStorage.removeItem(key);
     // }
-    
+
     // for testing
     sessionStorage.removeItem(key);
   }
@@ -90,7 +94,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     this._dialog.open(PrivacyDialogComponent, {
       width: '85%',
       maxWidth: '800px',
-      panelClass: 'privacy-dialog'
+      panelClass: 'privacy-dialog',
     });
   }
 }

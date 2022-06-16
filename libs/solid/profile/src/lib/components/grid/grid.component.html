@@ -3,7 +3,9 @@
 >
   <div
     *ngIf="selectedProfileId === profile.id"
-    (click)="selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)"
+    (click)="
+      selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)
+    "
     class="card mat-elevation-z2 selected"
     solidProfileSelected
   >
@@ -13,7 +15,9 @@
   </div>
   <div
     *ngIf="selectedProfileId !== profile.id"
-    (click)="selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)"
+    (click)="
+      selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)
+    "
     class="card mat-elevation-z2"
   >
     <ng-container

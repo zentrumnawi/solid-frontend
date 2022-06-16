@@ -1,6 +1,9 @@
 import { Component, Inject, Type } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { InternalSolidSkeletonConfig, SOLID_SKELETON_CONFIG } from '../../solid-skeleton-config';
+import {
+  InternalSolidSkeletonConfig,
+  SOLID_SKELETON_CONFIG,
+} from '../../solid-skeleton-config';
 
 @Component({
   selector: 'solid-skeleton-privacy-dialog',

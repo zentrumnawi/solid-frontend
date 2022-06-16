@@ -51,6 +51,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([ProfileState]);
     MatToolbarModule,
     MatTreeModule,
   ],
+  exports: [BaseComponent],
   providers: [ProfileDefinitionService],
 })
 export class SolidProfileModule {
