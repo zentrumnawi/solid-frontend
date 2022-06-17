@@ -1,18 +1,63 @@
-mat-form-field {
-  width: 100%;
+@media (max-width: 420px) {
+  .send-btn {
+    margin-left: 0 !important;
+  }
+
+  ::ng-deep {
+    .mat-dialog-container {
+      margin: 0px 0px !important;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .mat-dialog-title {
+      margin-bottom: 20px;
+    }
+
+    textarea.mat-input-element {
+      min-height: 340px !important;
+    }
+
+    mat-checkbox {
+      ::ng-deep .mat-checkbox-label {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+@media (max-height: 740px) {
+  ::ng-deep {
+    .mat-dialog-title {
+      margin-bottom: 11px;
+    }
+    textarea.mat-input-element {
+      min-height: 180px !important;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-dialog-content {
+    overflow: unset;
+  }
+
+  textarea.mat-input-element {
+    height: 30px;
+  }
 }
 
 ::ng-deep .report-dialog {
   mat-dialog-container {
     border: 3px solid crimson;
-    margin: 35px 0px;
-    height: auto;
-  }
-  .mat-dialog-content {
-    overflow: unset;
-    padding: 0px 21px;
   }
 }
+
+
+mat-form-field {
+  width: 100%;
+}
+
 
 .location {
   color: rgba(0, 0, 0, 0.54);
@@ -29,12 +74,6 @@ mat-checkbox {
 
   ::ng-deep .mat-checkbox-label {
     margin-left: 8px;
-  }
-}
-
-@media (max-width: 325px) {
-  .send-btn {
-    margin-left: 0 !important;
   }
 }
 

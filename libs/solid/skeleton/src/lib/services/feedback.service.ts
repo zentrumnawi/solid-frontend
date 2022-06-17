@@ -39,9 +39,8 @@ export class FeedbackService {
     };
     this._dialog.open(FeedbackComponent, {
       data: dialogConfig.data,
-      width: '80%',
       maxWidth: '600px',
-      panelClass: location ? 'report-dialog' : '',
+      panelClass: location ? 'report-dialog' : 'feedback-dialog',
     });
   }
 
