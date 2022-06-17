@@ -12,6 +12,7 @@
 
     .mat-dialog-title {
       margin-bottom: 20px;
+      margin-top: 8px;
     }
 
     textarea.mat-input-element {
@@ -30,6 +31,7 @@
   ::ng-deep {
     .mat-dialog-title {
       margin-bottom: 11px;
+      margin-top: 8px;
     }
     textarea.mat-input-element {
       min-height: 180px !important;
@@ -81,4 +83,26 @@ mat-checkbox {
   display: contents;
   font-weight: 600;
   font-style: italic;
+}
+
+.closeBtn-container {
+  display: flex;
+  justify-content: end;
+
+  .closeBtn {
+    width: 25px;
+    height: 25px;
+    margin-top: -5px;
+    margin-right: -10px;
+
+    mat-icon {
+      vertical-align: top;
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    ::ng-deep .mat-button-focus-overlay {
+      background-color: transparent;
+    }
+  }
 }
