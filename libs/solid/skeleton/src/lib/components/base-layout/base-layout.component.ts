@@ -12,7 +12,7 @@ import { LandingComponent } from '../landing/landing.component';
 import { Subscription } from 'rxjs';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { BaseComponent } from '@zentrumnawi/solid-profile';
+import { BaseComponent } from 'libs/solid/profile/src/lib/components/base/base.component';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -110,11 +110,11 @@ export class BaseLayoutComponent implements OnInit {
     return new Navigate([url]);
   }
 
-  public profileTitle(ref: any): void {
+  public profileTitle(ref: any) : void {
     if (!(ref instanceof BaseComponent)) {
       return;
     }
-    ref.profileTitle.subscribe((profileTitle: string) => {
+    ref.profileTitle.subscribe( (profileTitle : string) => {
       this.title = profileTitle;
     });
   }

@@ -45,10 +45,7 @@ import { InfoComponent } from './components/info/info.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MessageState } from './state/message.state';
 import { MessageListComponent } from './components/message-list/message-list.component';
-import {
-  SolidProfileModule,
-  SOLID_PROFILE_BASE_URL,
-} from '@zentrumnawi/solid-profile';
+import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
 import { SOLID_SLIDESHOW_BASE_URL } from '@zentrumnawi/solid-slideshow';
 import { CategoriesState } from './state/slideshow-categories.state';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -83,7 +80,6 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     CommonModule,
     SolidCoreModule,
     SolidGlossaryModule,
-    SolidProfileModule,
     RouterModule,
     MatButtonModule,
     MatCardModule,
