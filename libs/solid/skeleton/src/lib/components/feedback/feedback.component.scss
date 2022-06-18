@@ -1,6 +1,7 @@
 ::ng-deep {
   .mat-dialog-content {
     overflow: unset;
+    margin-top: 28px;
   }
 
   .mat-dialog-title {
@@ -16,14 +17,18 @@
 }
 
 ::ng-deep .report-dialog {
-  mat-dialog-container {
-    border: 3px solid crimson;
+  .header-container {
+    color: tomato !important;
   }
 }
 
 @media (max-width: 420px) {
   .send-btn {
     margin-left: 0 !important;
+  }
+
+  .header-container {
+    width: 100% !important;
   }
 
   ::ng-deep {
@@ -79,15 +84,28 @@ mat-checkbox {
   font-style: italic;
 }
 
-.closeBtn-container {
+.header-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  position: fixed;
+  width: 600px;
+  height: 40px;
+  margin-top: -24px;
+  margin-left: -24px;
+  border-radius: inherit;
+  color: white;
+
+  p.title {
+    margin-left: 19px;
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 18px;
+  }
 
   .closeBtn {
-    width: 25px;
-    height: 25px;
-    margin-top: -5px;
-    margin-right: -10px;
+    width: 23px;
+    margin-top: 8px;
+    margin-right: 8px;
 
     mat-icon {
       vertical-align: top;
