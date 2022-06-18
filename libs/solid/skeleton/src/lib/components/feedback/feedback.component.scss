@@ -18,7 +18,7 @@
 
 ::ng-deep .report-dialog {
   .header-container {
-    color: tomato !important;
+    background-color: tomato !important;
   }
 }
 
@@ -60,7 +60,6 @@
   }
 }
 
-
 mat-form-field {
   width: 100%;
 }
@@ -78,10 +77,10 @@ mat-checkbox {
   }
 }
 
-.privacyBtn {
-  display: contents;
-  font-weight: 600;
-  font-style: italic;
+.privacy-link {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .header-container {

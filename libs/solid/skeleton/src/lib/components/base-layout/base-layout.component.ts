@@ -110,11 +110,11 @@ export class BaseLayoutComponent implements OnInit {
     return new Navigate([url]);
   }
 
-  public profileTitle(ref: any) : void {
+  public profileTitle(ref: any): void {
     if (!(ref instanceof BaseComponent)) {
       return;
     }
-    ref.profileTitle.subscribe( (profileTitle : string) => {
+    ref.profileTitle.subscribe((profileTitle: string) => {
       this.title = profileTitle;
     });
   }

@@ -29,7 +29,7 @@ export class FeedbackService {
     private _config: SolidCoreConfig
   ) {}
 
-  public showDialog(location?: string, title? : string) {
+  public showDialog(location?: string, title?: string) {
     const dialogConfig = new MatDialogConfig();
     const report = title == '' ? 'Fehler melden' : 'Fehler melden - ' + title;
     dialogConfig.data = {
