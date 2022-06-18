@@ -17,7 +17,7 @@ export class PrivacyDialogComponent {
     this.PrivacyContentComponent = cfg.privacyContent;
   }
 
-  onCancelClick() {
+  public onCancelClick() {
     this._ref.close();
   }
 }

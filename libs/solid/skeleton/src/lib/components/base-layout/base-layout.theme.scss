@@ -27,4 +27,9 @@
   .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: mat.get-color-from-palette($app-primary) !important;
   }
+
+  .header-container {
+    background-color: mat.get-color-from-palette($app-primary);
+    border-bottom: solid 3px mat.get-color-from-palette($app-accent);
+  }
 }
