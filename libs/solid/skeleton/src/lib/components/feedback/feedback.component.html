@@ -29,14 +29,11 @@
           placeholder="Nachricht"
         ></textarea>
       </mat-form-field>
-      <div *ngIf="getLocation()">
-        <mat-label class="location"
-          >Fehler gefunden in: {{ getLocation() }}</mat-label
-        >
-      </div>
     </form>
 </div>
-<div>
+<div class="additional-container">
+  <mat-label class="location" *ngIf="getLocation()"
+  >Fehler gefunden in: {{ getLocation() }}</mat-label>
   <mat-checkbox [(ngModel)]="privacyChecked">
     Hiermit nehme ich die <button class="privacyBtn" (click)="onPrivacyClick()">Datenschutzerklärung</button> zur Kenntnis und stimme der
     Speicherung der in diesem Formular angegebenen Daten zu.

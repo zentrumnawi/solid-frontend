@@ -1,47 +1,12 @@
-@media (max-width: 420px) {
-  .send-btn {
-    margin-left: 0 !important;
-  }
-
-  ::ng-deep {
-    .mat-dialog-container {
-      margin: 0px 0px !important;
-      width: 100vw;
-      height: 100vh;
-    }
-
-    .mat-dialog-title {
-      margin-bottom: 20px;
-      margin-top: 8px;
-    }
-
-    textarea.mat-input-element {
-      min-height: 340px !important;
-    }
-
-    mat-checkbox {
-      ::ng-deep .mat-checkbox-label {
-        margin-top: 10px;
-      }
-    }
-  }
-}
-
-@media (max-height: 740px) {
-  ::ng-deep {
-    .mat-dialog-title {
-      margin-bottom: 11px;
-      margin-top: 8px;
-    }
-    textarea.mat-input-element {
-      min-height: 180px !important;
-    }
-  }
-}
-
 ::ng-deep {
   .mat-dialog-content {
     overflow: unset;
+  }
+
+  .mat-dialog-title {
+    margin-bottom: 20px;
+    height: 42px;
+    margin-top: -25px;
   }
 
   textarea.mat-input-element {
@@ -55,15 +20,41 @@
   }
 }
 
+@media (max-width: 420px) {
+  .send-btn {
+    margin-left: 0 !important;
+  }
 
-mat-form-field {
-  width: 100%;
+  ::ng-deep {
+    .mat-dialog-container {
+      margin: 0px 0px !important;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    textarea.mat-input-element {
+      min-height: 320px !important;
+    }
+
+    mat-checkbox {
+      ::ng-deep .mat-checkbox-label {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+@media (max-height: 740px) {
+  ::ng-deep {
+    textarea.mat-input-element {
+      min-height: 200px !important;
+    }
+  }
 }
 
 
-.location {
-  color: rgba(0, 0, 0, 0.54);
-  font-weight: 500;
+mat-form-field {
+  width: 100%;
 }
 
 mat-checkbox {
@@ -87,7 +78,7 @@ mat-checkbox {
 
 .closeBtn-container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 
   .closeBtn {
     width: 25px;
@@ -104,5 +95,15 @@ mat-checkbox {
     ::ng-deep .mat-button-focus-overlay {
       background-color: transparent;
     }
+  }
+}
+
+.additional-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  .location {
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: 500;
   }
 }
