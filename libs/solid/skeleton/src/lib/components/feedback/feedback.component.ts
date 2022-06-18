@@ -88,7 +88,6 @@ export class FeedbackComponent implements OnInit, OnDestroy {
 
   public onPrivacyClick() {
     this._dialog.open(PrivacyDialogComponent, {
-      width: '85%',
       maxWidth: '800px',
       panelClass: 'privacy-dialog'
     });

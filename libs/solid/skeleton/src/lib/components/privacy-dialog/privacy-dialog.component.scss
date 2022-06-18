@@ -1,30 +1,34 @@
 ::ng-deep .privacy-dialog {
-  mat-dialog-container {
-    padding-top: 0px;
+  h1 {
+    position: fixed;
+    margin-top: -30px !important;
+  }
+  .mat-dialog-content {
     font-size: 13px;
-  }
+    padding: 0px 0px 0px 3px;
+}
 }
 
-@media(max-width: 420px){
-  ::ng-deep .privacy-dialog {
-    mat-dialog-container {
-      padding-top: 0px;
-      font-size: 11px;
-      height: 700px;
+.closeBtn-container {
+  display: flex;
+  justify-content: flex-end;
+
+  .closeBtn {
+    width: 23px;
+    height: 0px;
+    margin-top: -12px;
+    margin-right: -2px;
+
+    mat-icon {
+      vertical-align: top;
+      font-size: 25px;
+      font-weight: 600;
+      position: fixed;
+    }
+
+    ::ng-deep .mat-button-focus-overlay {
+      background-color: transparent;
     }
   }
-}
-
-@media (max-height: 740px) {
-  ::ng-deep .privacy-dialog {
-    mat-dialog-container {
-      height: 570px;
-    }
-  }
-}
-
-
-.mat-dialog-content {
-    padding: 0px 0px 0px 6px;
 }
 
