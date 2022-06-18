@@ -1,18 +1,28 @@
-@media(max-width: 800px){
+::ng-deep .privacy-dialog {
+  mat-dialog-container {
+    padding-top: 0px;
+    font-size: 13px;
+  }
+}
+
+@media(max-width: 420px){
   ::ng-deep .privacy-dialog {
     mat-dialog-container {
       padding-top: 0px;
       font-size: 11px;
+      height: 700px;
     }
   }
-} 
+}
 
-::ng-deep .privacy-dialog {
+@media (max-height: 740px) {
+  ::ng-deep .privacy-dialog {
     mat-dialog-container {
-      padding-top: 0px;
-      font-size: 13px;
+      height: 570px;
     }
   }
+}
+
 
 .mat-dialog-content {
     padding: 0px 0px 0px 6px;
