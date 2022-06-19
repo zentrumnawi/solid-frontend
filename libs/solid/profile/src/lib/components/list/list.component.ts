@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class ListComponent {
   @Input() profiles!: Observable<Profile[]>;
   @Output() selectProfile = new EventEmitter<number>();
+  @Output() selectProfileTitle = new EventEmitter<string>();
   @Input() selectedProfileId?: number;
   @Input() isDiveApp = false;
 

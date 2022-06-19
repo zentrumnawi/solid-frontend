@@ -23,11 +23,13 @@
           *ngComponentOutlet="PrivacyContentComponent"
         ></ng-container>
       </mat-tab>
-      <mat-tab label="News">
-        <solid-skeleton-message-list
-          [messages]="Notices"
-        ></solid-skeleton-message-list>
-      </mat-tab>
+      <ng-container *ngIf="Notices | async as notices">
+        <mat-tab label="News" *ngIf="notices.length > 0">
+          <solid-skeleton-message-list
+            [messages]="Notices"
+          ></solid-skeleton-message-list>
+        </mat-tab>
+      </ng-container>
       <ng-container *ngIf="Changelog | async as changelog">
         <mat-tab label="Changelog" *ngIf="changelog.length > 0">
           <solid-skeleton-message-list [messages]="Changelog">

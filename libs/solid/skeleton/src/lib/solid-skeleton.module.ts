@@ -19,6 +19,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
   feedbackServiceFactory,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -51,6 +52,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { IntroService } from './services/intro.service';
 import { deepMerge } from './utils/deep-merge';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { PrivacyDialogComponent } from './components/privacy-dialog/privacy-dialog.component';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -88,6 +90,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     MatInputModule,
     MatListModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatSidenavModule,
     MatTabsModule,
     MatToolbarModule,
@@ -103,6 +106,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     LandingComponent,
     InfoComponent,
     MessageListComponent,
+    PrivacyDialogComponent,
   ],
   exports: [BaseLayoutComponent],
   providers: [UpdateService, IntroService],

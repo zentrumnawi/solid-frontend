@@ -55,6 +55,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() selectedProfileId?: number;
   @Input() profiles!: Observable<TreeNode[]>;
   @Output() selectProfile = new EventEmitter<number>();
+  @Output() selectProfileTitle = new EventEmitter<string>();
   @Input() isDiveApp = false;
   @Input() collapseTree = false;
 

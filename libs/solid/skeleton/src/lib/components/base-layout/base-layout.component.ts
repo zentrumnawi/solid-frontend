@@ -12,6 +12,7 @@ import { LandingComponent } from '../landing/landing.component';
 import { Subscription } from 'rxjs';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { BaseComponent } from '@zentrumnawi/solid-profile';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -21,6 +22,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 export class BaseLayoutComponent implements OnInit {
   public FixedLayout = false;
   public subscription!: Subscription;
+  public title = '';
   @ViewChild('mainmenu', { static: true }) MainMenu?: MatDrawer;
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
@@ -81,7 +83,8 @@ export class BaseLayoutComponent implements OnInit {
 
   public reportError() {
     const location = this.Glossary?.opened ? 'glossary' : this._router.url;
-    this.feedback.showDialog(location);
+    this.feedback.showDialog(location, this.title);
+    this.title = '';
   }
 
   public onLandingGlossaryClick(ref: any) {
@@ -105,5 +108,14 @@ export class BaseLayoutComponent implements OnInit {
   @Dispatch()
   public async navigateTo(url: string) {
     return new Navigate([url]);
+  }
+
+  public profileTitle(ref: any): void {
+    if (!(ref instanceof BaseComponent)) {
+      return;
+    }
+    ref.profileTitle.subscribe((profileTitle: string) => {
+      this.title = profileTitle;
+    });
   }
 }
