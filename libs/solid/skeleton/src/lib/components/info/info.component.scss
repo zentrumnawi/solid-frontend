@@ -20,6 +20,9 @@
       .mat-tab-body-wrapper {
         position: relative;
         margin-top: 40px;
+        .mat-list {
+          margin-top: 1.5em;
+        }
       }
     }
   }
