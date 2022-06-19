@@ -19,6 +19,7 @@
 ::ng-deep .report-dialog {
   .header-container {
     background-color: tomato !important;
+    z-index: 999;
   }
 }
 
@@ -29,6 +30,7 @@
 
   .header-container {
     width: 100% !important;
+    z-index: 999;
   }
 
   ::ng-deep {
