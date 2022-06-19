@@ -1,10 +1,16 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialog,
+} from '@angular/material/dialog';
+
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from '../../services/feedback.service';
+import { PrivacyDialogComponent } from '../privacy-dialog/privacy-dialog.component';
 
 @Component({
   selector: 'solid-skeleton-feedback',
@@ -17,12 +23,14 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   private _sent = false;
   public Form: FormGroup;
   public formTitle: string;
+  public privacyChecked = false;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
     public fb: FormBuilder,
     private _ref: MatDialogRef<FeedbackComponent>,
+    private _dialog: MatDialog,
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
     /* type is defined as any to prevent ng-packagr issues
      (data: any) => Observable<boolean> */
@@ -59,9 +67,12 @@ export class FeedbackComponent implements OnInit, OnDestroy {
       ? FeedbackComponent.STORAGE_KEY_2
       : FeedbackComponent.STORAGE_KEY_1;
     sessionStorage.setItem(key, JSON.stringify(this.Form.value));
-    if (this._sent) {
-      sessionStorage.removeItem(key);
-    }
+    // if (this._sent) {
+    //   sessionStorage.removeItem(key);
+    // }
+
+    // for testing
+    sessionStorage.removeItem(key);
   }
 
   public ngOnInit(): void {
@@ -77,5 +88,12 @@ export class FeedbackComponent implements OnInit, OnDestroy {
 
   public getLocation(): string {
     return this._submitFeedback.location;
+  }
+
+  public onPrivacyClick() {
+    this._dialog.open(PrivacyDialogComponent, {
+      maxWidth: '800px',
+      panelClass: 'privacy-dialog',
+    });
   }
 }

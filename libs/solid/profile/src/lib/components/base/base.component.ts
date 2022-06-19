@@ -2,9 +2,11 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Inject,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
@@ -70,6 +72,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public timeOut_1: any;
   public timeOut_2: any;
   public collapseTree = false;
+  @Output() profileTitle = new EventEmitter<string>();
 
   constructor(
     private _store: Store,
@@ -288,6 +291,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
     if (this.SwipeLeft > 0) {
       this.selectProfile(this.SwipeLeft);
     }
+    setTimeout(() => {
+      this.profileTitle.emit(this.SelectedProfile?.name);
+    }, 10);
   }
 
   @Dispatch()
@@ -299,6 +305,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
     if (this.SwipeRight > 0) {
       this.selectProfile(this.SwipeRight);
     }
+    setTimeout(() => {
+      this.profileTitle.emit(this.SelectedProfile?.name);
+    }, 10);
   }
 
   public onPanEnd($event: any) {
@@ -318,5 +327,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
         this.SplitLayout = split;
       }, 0);
     }
+  }
+
+  public selectProfileTitle(title: string): void {
+    if (title) this.profileTitle.emit(title);
   }
 }

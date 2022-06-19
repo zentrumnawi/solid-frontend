@@ -109,10 +109,12 @@
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
+        (selectProfileTitle)="selectProfileTitle($event)"
       ></solid-profile-grid>
       <solid-profile-tree
         *ngSwitchCase="'tree'"
         (selectProfile)="selectProfile($event)"
+        (selectProfileTitle)="selectProfileTitle($event)"
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
@@ -121,6 +123,7 @@
       <solid-profile-list
         *ngSwitchDefault
         (selectProfile)="selectProfile($event)"
+        (selectProfileTitle)="selectProfileTitle($event)"
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"

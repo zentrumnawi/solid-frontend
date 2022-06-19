@@ -25,7 +25,7 @@ export class MainMenuComponent implements OnInit {
   public MenuItems!: Observable<MenuItem[]>;
   @Select(CategoriesState.getSlideshowCategoriesItems)
   public Categories!: Observable<SlideshowCategory[]>;
-  @Output() public openGlossarClick = new EventEmitter();
+  @Output() public openGlossaryClick = new EventEmitter();
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
