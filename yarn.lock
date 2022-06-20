@@ -8990,20 +8990,7 @@ jest-each@^27.4.2, jest-each@^27.5.1:
     jest-util "^27.5.1"
     pretty-format "^27.5.1"
 
-jest-environment-jsdom@^27.0.0, jest-environment-jsdom@^27.2.2:
-  version "27.4.4"
-  resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-27.4.4.tgz#94f738e99514d7a880e8ed8e03e3a321d43b49db"
-  integrity sha512-cYR3ndNfHBqQgFvS1RL7dNqSvD//K56j/q1s2ygNHcfTCAp12zfIromO1w3COmXrxS8hWAh7+CmZmGCIoqGcGA==
-  dependencies:
-    "@jest/environment" "^27.4.4"
-    "@jest/fake-timers" "^27.4.2"
-    "@jest/types" "^27.4.2"
-    "@types/node" "*"
-    jest-mock "^27.4.2"
-    jest-util "^27.4.2"
-    jsdom "^16.6.0"
-
-jest-environment-jsdom@^27.4.4, jest-environment-jsdom@^27.5.1:
+jest-environment-jsdom@^27.0.0, jest-environment-jsdom@^27.2.2, jest-environment-jsdom@^27.4.4, jest-environment-jsdom@^27.5.1:
   version "27.5.1"
   resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-27.5.1.tgz#ea9ccd1fc610209655a77898f86b2b559516a546"
   integrity sha512-TFBvkTC1Hnnnrka/fUb56atfDtJ9VMZ94JkjTbggl1PEpwrYtUBKMezB3inLmWqQsXYLcMwNoDQwoBTAvFfsfw==
@@ -9183,10 +9170,10 @@ jest-pnp-resolver@^1.2.2:
   resolved "https://registry.yarnpkg.com/jest-pnp-resolver/-/jest-pnp-resolver-1.2.2.tgz#b704ac0ae028a89108a4d040b3f919dfddc8e33c"
   integrity sha512-olV41bKSMm8BdnuMsewT4jqlZ8+3TCARAXjZGT9jcoSnrfUnRCqnMoF9XEeoWjbzObpqF9dRhHQj0Xb9QdF6/w==
 
-jest-preset-angular@11.1.1:
-  version "11.1.1"
-  resolved "https://registry.yarnpkg.com/jest-preset-angular/-/jest-preset-angular-11.1.1.tgz#cc1c0a1395727af332c439174fb689d92e853f6a"
-  integrity sha512-ZlYiKJhAQSU9wIjncX59xutcj49R4MiDsTPSwZiwdTAHQvHm32MS6SGimQIVBqh1DukfwYX0NXKS0D/onLAsLQ==
+jest-preset-angular@11.1.2:
+  version "11.1.2"
+  resolved "https://registry.yarnpkg.com/jest-preset-angular/-/jest-preset-angular-11.1.2.tgz#127a53747821d9a979877da4c42ab00334c7e815"
+  integrity sha512-qPvOP6wnLP8M01TDVSa3UC3PcDWxoj87T58mWEp5yWlWPrXBJ6rhnTEI+HPmZLyehwlK686+O/49hwFRVXFP0A==
   dependencies:
     bs-logger "^0.2.6"
     esbuild-wasm "0.14.11"
