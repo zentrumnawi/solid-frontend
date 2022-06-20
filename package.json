@@ -113,7 +113,7 @@
     "karma-jasmine": "4.0.2",
     "karma-jasmine-html-reporter": "1.7.0",
     "ng-packagr": "13.3.1",
-    "postcss": "^8.4.12",
+    "postcss": "^8.4.14",
     "postcss-import": "^14.1.0",
     "postcss-preset-env": "7.4.3",
     "postcss-url": "^10.1.1",
