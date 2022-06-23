@@ -2069,10 +2069,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ngxs/router-plugin@^3.7.4":
-  version "3.7.4"
-  resolved "https://registry.yarnpkg.com/@ngxs/router-plugin/-/router-plugin-3.7.4.tgz#3a6415b0f2897468e18bddd0c3e1eeb634a0123a"
-  integrity sha512-u2bM/7PfU9ktIFhIvJimyWkgNTvkbznWPPy4SIQNhi5uwwz9fmCvlLJkGQM74XEBv8MEeIPZySJR0BrCy8vVdw==
+"@ngxs/router-plugin@^3.7.1":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@ngxs/router-plugin/-/router-plugin-3.7.3.tgz#76a4a275a9758a2a0124603087143bd75fffebd2"
+  integrity sha512-KeerQ1h3We3kKENQboJVID/39eKbhfAxZ9JBUcl9WVHjQoOShOdocNQ/34neReJEzW5VTToM7MQt0tDmN48Eig==
   dependencies:
     tslib "^1.9.0"
 

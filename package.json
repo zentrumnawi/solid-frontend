@@ -44,7 +44,7 @@
     "@angular/service-worker": "13.2.6",
     "@ngxs-labs/dispatch-decorator": "^4.0.2",
     "@ngxs/devtools-plugin": "^3.7.4",
-    "@ngxs/router-plugin": "^3.7.4",
+    "@ngxs/router-plugin": "^3.7.1",
     "@ngxs/store": "^3.7.4",
     "@sentry/angular": "^7.2.0",
     "@storybook/builder-webpack5": "~6.5.9",
