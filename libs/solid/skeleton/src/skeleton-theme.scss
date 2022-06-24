@@ -118,6 +118,13 @@
   border-width: 0 3px 3px 0;
 }
 
+.customTooltip .introjs-nextbutton:before {
+  content: '';
+  position: absolute;
+  width: 27px;
+  height: 27px;
+}
+
 .customTooltip .introjs-prevbutton {
   box-sizing: border-box;
   background-color: white;
@@ -143,4 +150,11 @@
 .customTooltip .introjs-prevbutton:hover {
   background-color: white;
   color: black;
+}
+
+.customTooltip .introjs-prevbutton:before {
+  content: '';
+  position: absolute;
+  width: 27px;
+  height: 27px;
 }
