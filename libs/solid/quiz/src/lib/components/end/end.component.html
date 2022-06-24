@@ -1,7 +1,14 @@
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button mat-icon-button class="button-back" (click)="onBackBtnClick()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="title">
+      <h2>Selbsttest - Auswertung</h2>
+    </div>
+  </div>
+</div>
 <mat-card *ngIf="QuizSession">
-  <mat-card-header>
-    <mat-card-title>Selbsttest - Auswertung</mat-card-title>
-  </mat-card-header>
   <mat-card-content>
     <p>
       {{ correctQuestions }} von {{ answeredQuestions }} Fragen wurden richtig

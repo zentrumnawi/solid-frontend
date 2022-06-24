@@ -6,11 +6,13 @@ import { QuizFeedback } from './end-feedback';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { FormControl, Validators } from '@angular/forms';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'solid-quiz-end',
   templateUrl: './end.component.html',
-  styleUrls: ['./end.component.scss'],
+  styleUrls: ['./end.component.scss']
 })
 export class EndComponent implements OnDestroy {
   private $destroyed = new Subject<boolean>();
@@ -69,5 +71,14 @@ export class EndComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.$destroyed.next(true);
+  }
+
+  // @Dispatch()
+  // public async navigateTo(url: string) {
+  //   return new Navigate([url]);
+  // }
+
+  onBackBtnClick() {
+    // back to quiz question ???
   }
 }
