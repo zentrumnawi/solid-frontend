@@ -12,7 +12,7 @@ import { Navigate } from '@ngxs/router-plugin';
 @Component({
   selector: 'solid-quiz-end',
   templateUrl: './end.component.html',
-  styleUrls: ['./end.component.scss']
+  styleUrls: ['./end.component.scss'],
 })
 export class EndComponent implements OnDestroy {
   private $destroyed = new Subject<boolean>();

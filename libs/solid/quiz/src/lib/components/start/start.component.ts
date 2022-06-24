@@ -11,7 +11,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 @Component({
   selector: 'solid-quiz-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnDestroy {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
