@@ -5,7 +5,7 @@
 mat-card {
   margin-left: auto;
   margin-right: auto;
-  max-width: 29em;
+  max-width: 45em;
 }
 
 mat-form-field {
@@ -38,6 +38,12 @@ mat-card-actions {
   padding: 0px;
 }
 
+.content-container {
+  padding: 0px 0px 0px 18px;
+  text-align: left;
+  font-size: 15px;
+}
+
 .mat-standard-chip {
   color: white;
   font-size: 13px;
@@ -61,10 +67,6 @@ mat-card-actions {
   font-style: italic;
   text-align: center;
   padding: 0px 8%;
-}
-
-.startBtn {
-  margin: 7px 0px !important;
 }
 
 hr {
@@ -94,9 +96,21 @@ hr {
   font-size: 14px;
 }
 
-.button {
+.button-container {
   text-align: center;
   position: relative;
+
+  .startBtn {
+    margin: 7px 0px !important;
+    font-size: 15px;
+    width: 35%;
+  }
+
+  .expBtn {
+    margin: 10px 0px 10px 10px;
+    display: block;
+    font-weight: 500;
+  }
 }
 
 .config {

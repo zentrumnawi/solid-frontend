@@ -9,7 +9,7 @@
   </div>
 </div>
 <mat-card>
-  <mat-card-content>
+  <mat-card-content class="content-container">
     <p>
       Mit diesen Fragen kann der persönliche Wissensstand in verschiedenen
       Teilbereichen überprüft werden.
@@ -24,10 +24,21 @@
       Fragenanzahl kann hier festgelegt werden:
     </p>
   </mat-card-content>
-  <hr />
-  <mat-card-title>Konfiguration</mat-card-title>
   <mat-card-actions *ngIf="metaData$ | async as meta; else quizLoading">
-    <div class="config">
+    <div class="button-container">
+      <button
+        class="startBtn"
+        (click)="onStartClick()"
+        mat-raised-button
+        color="primary"
+      >
+        Quiz starten
+      </button>
+      <mat-slide-toggle class="expBtn" [(ngModel)]="expertMode">
+        Expertenmodus aktivieren
+      </mat-slide-toggle>
+    </div>
+    <div class="config" *ngIf="expertMode">
       <div class="row">
         <div class="col-1">
           <div class="mat-subheader">Fragenanzahl</div>
@@ -89,11 +100,6 @@
         Ooops in dieser Kombination gibt es keine Fragen, versuche eine andere
         Kombination
       </p>
-    </div>
-    <div class="button">
-      <button class="startBtn" (click)="onStartClick()" mat-raised-button>
-        Start
-      </button>
     </div>
   </mat-card-actions>
 </mat-card>

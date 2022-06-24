@@ -16,6 +16,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 export class StartComponent implements OnDestroy {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
   private $destroyed = new Subject();
+  expertMode = false;
   questionCount = 5;
   isValid = true;
   difficulty = 0;
