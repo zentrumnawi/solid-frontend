@@ -10,9 +10,19 @@
         border-bottom: 0;
         background-color: white;
         margin-left: 60px;
+        position: fixed;
+        width: calc(100% - 56px);
+        z-index: 999;
       }
       .mat-tab-label {
         height: 56px;
+      }
+      .mat-tab-body-wrapper {
+        position: relative;
+        margin-top: 40px;
+        .mat-list {
+          margin-top: 1.5em;
+        }
       }
     }
   }
@@ -20,6 +30,7 @@
 .info-container {
   overflow-y: auto;
   height: 100%;
+  z-index: -999;
 
   .button-back-container {
     background-color: white;
@@ -27,6 +38,7 @@
     height: 56px;
     width: 64px;
     position: absolute;
+    z-index: 99;
 
     .button-back {
       position: absolute;

@@ -1,0 +1,50 @@
+::ng-deep .privacy-dialog {
+  h1.title {
+    display: none;
+  }
+  .mat-dialog-content {
+    font-size: 13px;
+    padding: 0px 0px 0px 3px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-container {
+    width: 100% !important;
+  }
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 800px;
+  height: 40px;
+  margin-top: -24px;
+  margin-left: -24px;
+  border-radius: inherit;
+  color: white;
+
+  p.title {
+    margin-left: 19px;
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .closeBtn {
+    width: 23px;
+    margin-top: 8px;
+    margin-right: 8px;
+
+    mat-icon {
+      vertical-align: top;
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    ::ng-deep .mat-button-focus-overlay {
+      background-color: transparent;
+    }
+  }
+}

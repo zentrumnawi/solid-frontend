@@ -15,4 +15,6 @@ export const coreConfig: SolidCoreConfig = {
   error_report: true,
   guidedTour: guidedTour.landing,
   profileTour: guidedTour.profile,
+  glossaryLogo: 'assets/svg/glossary.svg',
+  feedbackLogo: 'assets/svg/feedback.svg',
 };

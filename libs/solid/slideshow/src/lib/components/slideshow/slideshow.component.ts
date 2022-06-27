@@ -46,7 +46,7 @@ export interface SlideshowCategory {
   styleUrls: ['./slideshow.component.scss'],
 })
 export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
-  private $destroyed = new Subject();
+  private $destroyed = new Subject<boolean>();
   @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
   @ViewChild('toolbar') public Toolbar?: ElementRef;
   @ViewChild('navigation') public Navigation?: ElementRef;
@@ -120,7 +120,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    this.$destroyed.next();
+    this.$destroyed.next(true);
   }
 
   @Dispatch()
