@@ -1,6 +1,6 @@
 {
   "name": "zentrumnawi",
-  "version": "2.8.3",
+  "version": "2.8.4",
   "scripts": {
     "ng": "nx",
     "start": "node web-server.js",
@@ -45,8 +45,8 @@
     "@ngxs-labs/dispatch-decorator": "^4.0.2",
     "@ngxs/devtools-plugin": "^3.7.1",
     "@ngxs/router-plugin": "^3.7.1",
-    "@ngxs/store": "^3.7.4",
-    "@sentry/angular": "^7.2.0",
+    "@ngxs/store": "3.7.3",
+    "@sentry/angular": "^6.19.6",
     "@storybook/builder-webpack5": "~6.5.9",
     "@storybook/manager-webpack5": "~6.5.9",
     "@types/intro.js": "^3.0.2",
