@@ -10094,10 +10094,10 @@ markdown-it@^13.0.1:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-material-icons@^1.11.2:
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-1.11.2.tgz#c873d831894a03b92a2c84a594cf7d0a759927b0"
-  integrity sha512-maKSVQNQEHrHXjKTPTwH0141hR2bC8fFUaX4bJzzwVRs7jY+9A+jx0kH/lpgEGIPoYR8gho4iLDvWN3mBRL53A==
+material-icons@^1.11.3:
+  version "1.11.3"
+  resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-1.11.3.tgz#a17ae4387df09d0fc117df19aecdcd07d2266769"
+  integrity sha512-pGkZ5LJOLH/R3jlqL2HXGVi36cucTn/RxSkPtqsinxB2xoDE0fZStwAUZlMKcW0z4qqDamBwVvzM1IVQe6OQDw==
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -12450,7 +12450,7 @@ rxjs-for-await@0.0.2:
   resolved "https://registry.yarnpkg.com/rxjs-for-await/-/rxjs-for-await-0.0.2.tgz#26598a1d6167147cc192172970e7eed4e620384b"
   integrity sha512-IJ8R/ZCFMHOcDIqoABs82jal00VrZx8Xkgfe7TOKoaRPAW5nH/VFlG23bXpeGdrmtqI9UobFPgUKgCuFc7Lncw==
 
-rxjs@6.6.7, rxjs@^6.5.4:
+rxjs@6.6.7, rxjs@^6.5.4, rxjs@^6.6.0:
   version "6.6.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
   integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
