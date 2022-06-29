@@ -10,10 +10,8 @@ export interface MessageStateModel {
   items: MessageModel[];
 }
 
-// TODO: Find a more sane and any-free way to do this
-// Ascending or Descending?
 const sortByDate = function (a: MessageModel, b: MessageModel) {
-  return <any>b.valid_from - <any>a.valid_from;
+  return b.valid_from.getTime() - a.valid_from.getTime();
 };
 
 @State<MessageStateModel>({
