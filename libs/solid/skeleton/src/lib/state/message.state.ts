@@ -10,6 +10,10 @@ export interface MessageStateModel {
   items: MessageModel[];
 }
 
+const sortByDate = function (a: MessageModel, b: MessageModel) {
+  return b.valid_from.getTime() - a.valid_from.getTime();
+};
+
 @State<MessageStateModel>({
   name: 'message',
   defaults: {
@@ -19,12 +23,13 @@ export interface MessageStateModel {
 @Injectable()
 export class MessageState {
   private static LOCAL_STORAGE_KEY = 'solid_skeleton_messages';
+
   @Selector()
   public static getChangelog(state: MessageStateModel): MessageModel[] {
     const filter = function (msg: MessageModel) {
       return msg.type === MessageType.Changelog;
     };
-    return state.items.filter(filter);
+    return state.items.filter(filter).sort(sortByDate);
   }
 
   @Selector()
@@ -32,7 +37,7 @@ export class MessageState {
     const filter = function (msg: MessageModel) {
       return msg.type === MessageType.Notice;
     };
-    return state.items.filter(filter);
+    return state.items.filter(filter).sort(sortByDate);
   }
 
   @Selector()
@@ -40,7 +45,7 @@ export class MessageState {
     const filter = function (msg: MessageModel) {
       return msg.type === MessageType.Series;
     };
-    return state.items.filter(filter);
+    return state.items.filter(filter).sort(sortByDate);
   }
 
   @Selector()
@@ -48,7 +53,7 @@ export class MessageState {
     const filter = function (msg: MessageModel) {
       return msg.type === MessageType.Notice || msg.type === MessageType.Series;
     };
-    return state.items.filter(filter);
+    return state.items.filter(filter).sort(sortByDate);
   }
 
   constructor(
