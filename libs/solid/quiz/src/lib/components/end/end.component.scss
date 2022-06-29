@@ -8,6 +8,13 @@ mat-card {
   max-width: 60em;
 }
 
+@media (max-width: 450px) {
+  mat-card {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
 mat-card-content {
   mat-spinner {
     margin-left: auto;

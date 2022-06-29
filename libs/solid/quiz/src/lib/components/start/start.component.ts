@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { LoadQuizQuestions, StartQuizSession } from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
@@ -7,29 +7,40 @@ import { QuizMetadata } from '../../state/quiz.model';
 import { FormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'solid-quiz-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss'],
+  styleUrls: ['./start.component.scss']
 })
-export class StartComponent implements OnDestroy {
+export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
   private $destroyed = new Subject();
-  expertMode = false;
-  questionCount = 5;
-  isValid = true;
-  difficulty = 0;
+  expertMode: boolean;
+  maxDifficulty?: number;
+  questionCount = 10;
   chosenTags = new FormControl();
+  chosenDifficulty: number[] = [];
+  isValid = true;
+  difficulty = [1, 2, 3, 4, 5]; // for testing - Difficulty levels
 
-  constructor(private _store: Store) {}
+  constructor(private _store: Store) {
+    this.expertMode = false;
+  }
+
+  public ngOnInit(): void {
+    this.metaData$?.subscribe((data) => {
+      if (data) this.maxDifficulty = data.difficulties.length;
+    });
+  }
 
   public onStartClick() {
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
         this.questionCount,
         this.chosenTags.value,
-        this.difficulty
+        this.chosenDifficulty
       )
     );
     quizLoaded.subscribe((res) => {
@@ -59,5 +70,9 @@ export class StartComponent implements OnDestroy {
 
   onBackBtnClick() {
     this.navigateTo('/');
+  }
+
+  onButtonToggleChange(change: MatButtonToggleChange) {
+    this.chosenDifficulty = change.value;
   }
 }

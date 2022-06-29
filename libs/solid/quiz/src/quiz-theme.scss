@@ -1,13 +1,19 @@
 @import 'lib/components/question/question.theme';
 
 @mixin solid-quiz-theme($mat-theme, $quiz-correct, $quiz-incorrect) {
-  .mat-standard-chip {
-    background-color: mat.get-color-from-palette($app-primary, 600) !important;
-  }
-
   @include solid-quiz-question-theme(
     $mat-theme,
     $quiz-correct,
     $quiz-incorrect
   );
+
+  .mat-button-toggle {
+    border: solid 2px mat.get-color-from-palette($app-primary) !important;
+    color: mat.get-color-from-palette($app-primary);
+  }
+
+  .mat-button-toggle-checked {
+    background-color: mat.get-color-from-palette($app-primary);
+    color: white !important;
+  }
 }

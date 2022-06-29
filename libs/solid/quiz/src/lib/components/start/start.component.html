@@ -58,22 +58,24 @@
         <div class="col-1">
           <div class="mat-subheader">Difficulty</div>
         </div>
-        <div class="col-2">
-          <mat-slider
-            min="0"
-            max="5"
-            step="1"
-            thumbLabel
-            [(ngModel)]="difficulty"
+        <div class="col-2" id="difficulty">
+          <mat-button-toggle-group
+            multiple
+            (change)="onButtonToggleChange($event)"
           >
-          </mat-slider>
+            <mat-button-toggle
+              *ngFor="let difficulty of meta.difficulties; let i = index"
+              [value]="i + 1"
+              >{{ i + 1 }}</mat-button-toggle
+            >
+          </mat-button-toggle-group>
         </div>
       </div>
       <div class="row">
         <div class="col-1">
           <div class="mat-subheader">Tag</div>
         </div>
-        <div class="col-2">
+        <div class="col-2" id="tag">
           <mat-form-field appearance="outline">
             <mat-chip-list>
               <mat-chip

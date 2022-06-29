@@ -10,6 +10,13 @@ mat-card {
   }
 }
 
+@media (max-width: 450px) {
+  mat-card {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
 solid-core-media {
   width: 100%;
   ::ng-deep {

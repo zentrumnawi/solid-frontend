@@ -35,7 +35,7 @@ export enum QuizQuestionType {
   MultipleChoice = 'MC',
   TrueFalse = 'TF',
   Ranking = 'RG',
-  Range = 'RN',
+  Range = 'RN'
 }
 
 export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };
@@ -47,7 +47,7 @@ export interface QuizSession {
 }
 
 export interface QuizMetadata {
-  count: number;
+  question_count: number;
   tags: string[];
-  difficulty: 1 | 2 | 3 | 4 | 5;
+  difficulties: number[];
 }
