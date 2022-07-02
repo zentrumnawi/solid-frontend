@@ -3,19 +3,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
-  MatDialog,
+  MatDialog
 } from '@angular/material/dialog';
 
 import {
   FeedbackService,
-  SOLID_SKELETON_FEEDBACK_SERVICE,
+  SOLID_SKELETON_FEEDBACK_SERVICE
 } from '../../services/feedback.service';
 import { PrivacyDialogComponent } from '../privacy-dialog/privacy-dialog.component';
 
 @Component({
   selector: 'solid-skeleton-feedback',
   templateUrl: './feedback.component.html',
-  styleUrls: ['./feedback.component.scss'],
+  styleUrls: ['./feedback.component.scss']
 })
 export class FeedbackComponent implements OnInit, OnDestroy {
   private static STORAGE_KEY_1 = 'FEEDBACK';
@@ -42,7 +42,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
       name: [''],
       email: ['', [Validators.required, Validators.email]],
       subject: [_submitFeedback.subject, Validators.required],
-      message: [''],
+      message: ['']
     });
   }
 
@@ -67,12 +67,9 @@ export class FeedbackComponent implements OnInit, OnDestroy {
       ? FeedbackComponent.STORAGE_KEY_2
       : FeedbackComponent.STORAGE_KEY_1;
     sessionStorage.setItem(key, JSON.stringify(this.Form.value));
-    // if (this._sent) {
-    //   sessionStorage.removeItem(key);
-    // }
-
-    // for testing
-    sessionStorage.removeItem(key);
+    if (this._sent) {
+      sessionStorage.removeItem(key);
+    }
   }
 
   public ngOnInit(): void {
@@ -93,7 +90,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   public onPrivacyClick() {
     this._dialog.open(PrivacyDialogComponent, {
       maxWidth: '800px',
-      panelClass: 'privacy-dialog',
+      panelClass: 'privacy-dialog'
     });
   }
 }

@@ -56,7 +56,7 @@ mat-card-actions {
 }
 
 .mat-slider {
-  min-width: 80%;
+  width: 91%;
 }
 
 .formInvalid {
@@ -72,6 +72,10 @@ hr {
   margin: 15px;
 }
 
+.row {
+  margin-bottom: 10px;
+}
+
 .row:after {
   content: '';
   display: table;
@@ -82,6 +86,14 @@ hr {
   float: left;
   width: 25%;
   padding: 4px;
+
+  &#difficulty {
+    padding: 0px 4px;
+  }
+
+  &#tag {
+    padding: 2px 4px;
+  }
 }
 
 .col-2 {
@@ -92,13 +104,13 @@ hr {
 
 #difficulty {
   .mat-button-toggle-group {
-    width: 80%;
+    width: 95%;
     border: none;
   }
 
   .mat-button-toggle {
-    width: 32%;
-    margin-right: 10px;
+    width: 20%;
+    margin-right: 5%;
     border-radius: 7px;
     height: 39px;
     font-weight: 500;
@@ -106,6 +118,29 @@ hr {
 
   ::ng-deep.mat-button-toggle-label-content {
     line-height: 35px;
+  }
+}
+
+#tag {
+  ::ng-deep .mat-chip-list-wrapper {
+    width: 95%;
+    margin: 0;
+  }
+
+  .mat-chip {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 10px 0px 10px 0px;
+    width: 20%;
+    margin-right: 5%;
+    display: block;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .mat-standard-chip:focus::after {
+    opacity: 0;
   }
 }
 
@@ -132,7 +167,6 @@ hr {
 }
 
 .config {
-  text-align: center;
   position: relative;
 }
 

@@ -4,10 +4,10 @@ import { LoadQuizQuestions, StartQuizSession } from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
 import { QuizState } from '../../state/quiz.state';
 import { QuizMetadata } from '../../state/quiz.model';
-import { FormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { MatChipListChange } from '@angular/material/chips';
 
 @Component({
   selector: 'solid-quiz-start',
@@ -18,28 +18,22 @@ export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
   private $destroyed = new Subject();
   expertMode: boolean;
-  maxDifficulty?: number;
   questionCount = 10;
-  chosenTags = new FormControl();
+  chosenTags = [];
   chosenDifficulty: number[] = [];
   isValid = true;
-  difficulty = [1, 2, 3, 4, 5]; // for testing - Difficulty levels
+  tags: string[] = [];
+  difficulty = [1, 2, 3, 4, 5]; // for testing - DELETE later
 
   constructor(private _store: Store) {
     this.expertMode = false;
-  }
-
-  public ngOnInit(): void {
-    this.metaData$?.subscribe((data) => {
-      if (data) this.maxDifficulty = data.difficulties.length;
-    });
   }
 
   public onStartClick() {
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
         this.questionCount,
-        this.chosenTags.value,
+        this.chosenTags,
         this.chosenDifficulty
       )
     );
@@ -53,14 +47,17 @@ export class StartComponent implements OnDestroy, OnInit {
     });
   }
 
-  ngOnDestroy(): void {
-    this.$destroyed.next(true);
+  ngOnInit(): void {
+    this.metaData$?.subscribe((data) => {
+      if (data) {
+        const tags = [...data.tags];
+        this.tags = tags.sort();
+      }
+    });
   }
 
-  remove(tag: string) {
-    const index = this.chosenTags.value.indexOf(tag);
-    if (index >= 0) this.chosenTags.value.splice(index, 1);
-    this.chosenTags.setValue(this.chosenTags.value);
+  ngOnDestroy(): void {
+    this.$destroyed.next(true);
   }
 
   @Dispatch()
@@ -74,5 +71,9 @@ export class StartComponent implements OnDestroy, OnInit {
 
   onButtonToggleChange(change: MatButtonToggleChange) {
     this.chosenDifficulty = change.value;
+  }
+
+  onTagSelectionChange(change: MatChipListChange) {
+    this.chosenTags = change.value;
   }
 }

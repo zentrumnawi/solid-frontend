@@ -16,4 +16,17 @@
     background-color: mat.get-color-from-palette($app-primary);
     color: white !important;
   }
+
+  #tag {
+    .mat-chip {
+      background-color: white;
+      border: solid 2px mat.get-color-from-palette($app-primary) !important;
+      color: mat.get-color-from-palette($app-primary);
+    }
+
+    .mat-chip-selected {
+      background-color: mat.get-color-from-palette($app-primary);
+      color: white !important;
+    }
+  }
 }

@@ -40,7 +40,7 @@
     </div>
     <div class="config" *ngIf="expertMode">
       <div class="row">
-        <div class="col-1">
+        <div class="col-1" id="questionCount">
           <div class="mat-subheader">Fragenanzahl</div>
         </div>
         <div class="col-2">
@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-1">
+        <div class="col-1" id="difficulty">
           <div class="mat-subheader">Difficulty</div>
         </div>
         <div class="col-2" id="difficulty">
@@ -64,7 +64,7 @@
             (change)="onButtonToggleChange($event)"
           >
             <mat-button-toggle
-              *ngFor="let difficulty of meta.difficulties; let i = index"
+              *ngFor="let difficulty of meta.difficulty; let i = index"
               [value]="i + 1"
               >{{ i + 1 }}</mat-button-toggle
             >
@@ -72,28 +72,24 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-1">
+        <div class="col-1" id="tag">
           <div class="mat-subheader">Tag</div>
         </div>
         <div class="col-2" id="tag">
-          <mat-form-field appearance="outline">
-            <mat-chip-list>
-              <mat-chip
-                *ngFor="let tag of chosenTags.value"
-                (removed)="remove(tag)"
-              >
-                {{ tag }}
-                <button matChipRemove>
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </mat-chip>
-            </mat-chip-list>
-            <mat-select [formControl]="chosenTags" multiple>
-              <mat-option *ngFor="let tag of meta.tags" [value]="tag">
-                {{ tag }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <mat-chip-list
+            selectable
+            multiple
+            (change)="onTagSelectionChange($event)"
+          >
+            <mat-chip
+              #c="matChip"
+              *ngFor="let tag of tags"
+              [value]="tag"
+              (click)="c.toggleSelected(true)"
+            >
+              {{ tag }}
+            </mat-chip>
+          </mat-chip-list>
         </div>
       </div>
     </div>
