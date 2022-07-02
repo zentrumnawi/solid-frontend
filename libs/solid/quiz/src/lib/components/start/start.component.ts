@@ -81,7 +81,11 @@ export class StartComponent implements OnDestroy, OnInit {
     this.chosenTags = change.value;
   }
 
-  onDeselectAllClick() {
+  onDeselectAllTagClick() {
     this.chosenTags = [];
+  }
+
+  onDeselectAllDifficultyClick() {
+    this.chosenDifficulty = [];
   }
 }

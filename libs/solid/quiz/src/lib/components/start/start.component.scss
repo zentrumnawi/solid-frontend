@@ -88,20 +88,12 @@ hr {
 
     &#difficulty {
       padding: 0px 4px;
+      display: flex;
     }
 
     &#tag {
       padding: 2px 4px;
       display: flex;
-
-      .deselectAllBtn {
-        margin-left: -15px;
-
-        .mat-icon {
-          line-height: 34px;
-          color: orangered;
-        }
-      }
     }
   }
 
@@ -129,21 +121,12 @@ hr {
     &#difficulty {
       margin-top: -5px;
       margin-bottom: 5px;
+      display: flex;
     }
 
     &#tag {
       display: flex;
       margin-bottom: -5px;
-
-      .deselectAllBtn {
-        margin-left: auto;
-        margin-bottom: -7px;
-
-        .mat-icon {
-          line-height: 39px;
-          color: orangered;
-        }
-      }
     }
   }
 
@@ -152,6 +135,15 @@ hr {
     width: 100%;
     padding: 4px;
     margin-left: 16px;
+  }
+}
+
+.deselectAllBtn {
+  margin-left: -15px;
+
+  .mat-icon {
+    line-height: 34px;
+    color: orangered;
   }
 }
 
