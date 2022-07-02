@@ -76,30 +76,68 @@ hr {
   margin-bottom: 10px;
 }
 
+@media (min-width: 460px) {
+  .mat-subheader {
+    font-size: 14px;
+  }
+
+  .col-1 {
+    float: left;
+    width: 25%;
+    padding: 4px;
+
+    &#difficulty {
+      padding: 0px 4px;
+    }
+
+    &#tag {
+      padding: 2px 4px;
+    }
+  }
+
+  .col-2 {
+    float: left;
+    width: 75%;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 450px) {
+  .mat-subheader {
+    font-size: 15px;
+  }
+
+  .col-1 {
+    float: left;
+    width: 30%;
+    padding: 4px;
+
+    &#questionCount {
+      margin-bottom: -5px;
+    }
+
+    &#difficulty {
+      margin-top: -5px;
+      margin-bottom: 5px;
+    }
+
+    &#tag {
+      margin-bottom: -5px;
+    }
+  }
+
+  .col-2 {
+    float: left;
+    width: 100%;
+    padding: 4px;
+    margin-left: 16px;
+  }
+}
+
 .row:after {
   content: '';
   display: table;
   clear: both;
-}
-
-.col-1 {
-  float: left;
-  width: 25%;
-  padding: 4px;
-
-  &#difficulty {
-    padding: 0px 4px;
-  }
-
-  &#tag {
-    padding: 2px 4px;
-  }
-}
-
-.col-2 {
-  float: left;
-  width: 75%;
-  padding: 4px;
 }
 
 #difficulty {
@@ -146,7 +184,6 @@ hr {
 
 .mat-subheader {
   font-weight: 500;
-  font-size: 14px;
 }
 
 .button-container {
