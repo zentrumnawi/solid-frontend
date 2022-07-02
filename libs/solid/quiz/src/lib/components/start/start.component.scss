@@ -76,7 +76,7 @@ hr {
   margin-bottom: 10px;
 }
 
-@media (min-width: 460px) {
+@media (min-width: 441px) {
   .mat-subheader {
     font-size: 14px;
   }
@@ -92,6 +92,16 @@ hr {
 
     &#tag {
       padding: 2px 4px;
+      display: flex;
+
+      .deselectAllBtn {
+        margin-left: -15px;
+
+        .mat-icon {
+          line-height: 34px;
+          color: orangered;
+        }
+      }
     }
   }
 
@@ -102,14 +112,14 @@ hr {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 440px) {
   .mat-subheader {
     font-size: 15px;
   }
 
   .col-1 {
     float: left;
-    width: 30%;
+    width: 100%;
     padding: 4px;
 
     &#questionCount {
@@ -122,7 +132,18 @@ hr {
     }
 
     &#tag {
+      display: flex;
       margin-bottom: -5px;
+
+      .deselectAllBtn {
+        margin-left: auto;
+        margin-bottom: -7px;
+
+        .mat-icon {
+          line-height: 39px;
+          color: orangered;
+        }
+      }
     }
   }
 

@@ -31,6 +31,7 @@ export class StartComponent implements OnDestroy, OnInit {
   }
 
   public onStartClick() {
+    console.log(this.chosenTags);
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
         this.questionCount,
@@ -78,5 +79,9 @@ export class StartComponent implements OnDestroy, OnInit {
 
   onTagSelectionChange(change: MatChipListChange) {
     this.chosenTags = change.value;
+  }
+
+  onDeselectAllClick() {
+    this.chosenTags = [];
   }
 }
