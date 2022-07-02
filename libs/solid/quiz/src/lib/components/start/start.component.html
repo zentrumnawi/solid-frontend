@@ -64,9 +64,9 @@
             (change)="onButtonToggleChange($event)"
           >
             <mat-button-toggle
-              *ngFor="let difficulty of meta.difficulty; let i = index"
-              [value]="i + 1"
-              >{{ i + 1 }}</mat-button-toggle
+              *ngFor="let difficulty of difficulties; let i = index"
+              [value]="difficulty"
+              >{{ difficulty }}</mat-button-toggle
             >
           </mat-button-toggle-group>
         </div>

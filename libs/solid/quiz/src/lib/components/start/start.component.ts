@@ -23,7 +23,8 @@ export class StartComponent implements OnDestroy, OnInit {
   chosenDifficulty: number[] = [];
   isValid = true;
   tags: string[] = [];
-  difficulty = [1, 2, 3, 4, 5]; // for testing - DELETE later
+  difficulties: number[] = [];
+  // difficulty = [1, 2, 3, 4, 5]; // for testing - DELETE later
 
   constructor(private _store: Store) {
     this.expertMode = false;
@@ -51,7 +52,9 @@ export class StartComponent implements OnDestroy, OnInit {
     this.metaData$?.subscribe((data) => {
       if (data) {
         const tags = [...data.tags];
+        const difficulties = [...data.difficulties];
         this.tags = tags.sort();
+        this.difficulties = difficulties.sort();
       }
     });
   }
