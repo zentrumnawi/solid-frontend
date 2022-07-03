@@ -1,7 +1,6 @@
 mat-card {
   margin: auto;
   max-width: 60em;
-  margin-top: 10px;
 
   .mat-card-header .mat-card-title {
     font-size: 16px;
@@ -158,6 +157,18 @@ mat-card-content.ranking {
     span {
       margin-bottom: 0;
     }
+  }
+}
+
+@media (min-width: 451px) {
+  mat-progress-bar {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 450px) {
+  mat-progress-bar {
+    margin-bottom: 10px;
   }
 }
 

@@ -13,7 +13,7 @@ import { MatSliderChange } from '@angular/material/slider';
 @Component({
   selector: 'solid-quiz-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
@@ -31,7 +31,6 @@ export class StartComponent implements OnDestroy, OnInit {
   }
 
   public onStartClick() {
-    console.log(this.chosenTags);
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
         this.questionCount,
