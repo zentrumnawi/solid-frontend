@@ -26,7 +26,8 @@
     }
 
     .mat-chip-selected {
-      background-color: mat.get-color-from-palette($app-primary);
+      background-color: mat.get-color-from-palette($accent);
+      border-color: transparent !important;
       color: white !important;
     }
   }
