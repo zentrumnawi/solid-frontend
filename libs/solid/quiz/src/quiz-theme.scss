@@ -6,6 +6,7 @@
     $quiz-correct,
     $quiz-incorrect
   );
+  $accent: map-get($mat-theme, accent);
 
   .mat-button-toggle {
     border: solid 2px mat.get-color-from-palette($app-primary) !important;
@@ -28,5 +29,9 @@
       background-color: mat.get-color-from-palette($app-primary);
       color: white !important;
     }
+  }
+
+  .displayValueBox {
+    color: mat.get-color-from-palette($accent);
   }
 }

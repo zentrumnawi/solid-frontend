@@ -8,6 +8,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatChipListChange } from '@angular/material/chips';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'solid-quiz-start',
@@ -24,7 +25,6 @@ export class StartComponent implements OnDestroy, OnInit {
   isValid = true;
   tags: string[] = [];
   difficulties: number[] = [];
-  // difficulty = [1, 2, 3, 4, 5]; // for testing - DELETE later
 
   constructor(private _store: Store) {
     this.expertMode = false;
@@ -71,6 +71,10 @@ export class StartComponent implements OnDestroy, OnInit {
 
   onBackBtnClick() {
     this.navigateTo('/');
+  }
+
+  onSliderChange(change: MatSliderChange) {
+    if (change.value) this.questionCount = change.value;
   }
 
   onButtonToggleChange(change: MatButtonToggleChange) {

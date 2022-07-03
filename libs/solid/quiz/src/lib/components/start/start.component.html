@@ -48,10 +48,13 @@
             min="1"
             max="10"
             step="1"
-            thumbLabel
+            (input)="onSliderChange($event)"
             [(ngModel)]="questionCount"
           >
           </mat-slider>
+          <p class="displayValueBox">
+            {{ questionCount }}
+          </p>
         </div>
       </div>
       <div class="row">
