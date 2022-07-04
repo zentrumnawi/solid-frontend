@@ -13,13 +13,16 @@
             Fragen {{ quizSession.currentQuestion + 1 }} von
             {{ quizSession.questions.length }}
           </h2>
-          <span>{{ question.tags.join(' ') }}</span>
+          <span
+            >Tags: {{ question.tags.join(' ') }} | Schwierigkeitsgrad:
+            {{ question.difficulty }}</span
+          >
         </div>
       </div>
     </div>
     <mat-progress-bar
       mode="determinate"
-      [value]="quizSession.progress + 10"
+      [value]="quizSession.progress + 100 / quizSession.questions.length"
     ></mat-progress-bar>
   </div>
   <mat-card>
