@@ -9,7 +9,7 @@
   </div>
 </div>
 <mat-card *ngIf="QuizSession">
-  <mat-card-content>
+  <mat-card-content class="quizEval">
     <p>
       {{ correctQuestions }} von {{ answeredQuestions }} Fragen wurden richtig
       beantwortet.
@@ -17,22 +17,38 @@
     <p [data]="FeedbackText" markdown></p>
   </mat-card-content>
   <mat-card-actions>
-    <mat-form-field>
-      <input
-        [formControl]="questionCount"
-        matInput
-        placeholder="Anzahl an Fragen"
-        type="number"
-      />
-    </mat-form-field>
-    <button
-      (click)="onStartClick()"
-      mat-raised-button
-      [disabled]="!questionCount.valid"
-    >
-      Start
-    </button>
+    <div class="button-container">
+      <button
+        class="startBtn"
+        (click)="onStartClick()"
+        mat-raised-button
+        color="primary"
+      >
+        Quiz neu starten
+      </button>
+    </div>
   </mat-card-actions>
+  <mat-expansion-panel MatAccordionDisplayMode="flat">
+    <mat-expansion-panel-header>Details</mat-expansion-panel-header>
+    <div
+      class="answerDetails"
+      *ngFor="let question of QuizSession.questions; let i = index"
+    >
+      <mat-icon class="correctIcon" *ngIf="question.answered === 1">
+        check_circle
+      </mat-icon>
+      <mat-icon class="incorrectIcon" *ngIf="question.answered === -1">
+        cancel
+      </mat-icon>
+      <mat-icon class="unansweredIcon" *ngIf="question.answered === 0">
+        remove_circle
+      </mat-icon>
+      <div class="questionText">
+        <span class="questionHeader">Frage {{ i + 1 }}: </span>
+        {{ question.text }}
+      </div>
+    </div>
+  </mat-expansion-panel>
   <mat-card-footer>
     <p class="footnote">
       Als richtig wurde eine Frage nur dann gezählt, wenn alle richtigen

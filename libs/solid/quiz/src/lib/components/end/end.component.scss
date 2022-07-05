@@ -77,3 +77,51 @@ mat-form-field {
     }
   }
 }
+
+.button-container {
+  text-align: center;
+  position: relative;
+
+  .startBtn {
+    margin: 7px 0px !important;
+    font-size: 15px;
+    width: 45%;
+  }
+}
+
+.mat-expansion-panel-header {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.quizEval {
+  margin: 1em;
+}
+
+.answerDetails {
+  margin: 0 0 1.5em 0;
+  display: flex;
+}
+
+.correctIcon {
+  transform: translateY(-3px) translateX(-5px);
+  opacity: 1;
+}
+
+.incorrectIcon {
+  transform: translateY(-3px) translateX(-5px);
+  opacity: 1;
+}
+
+.unansweredIcon {
+  transform: translateY(-3px) translateX(-5px);
+  opacity: 1;
+}
+
+.questionText {
+  margin-left: 0.5em;
+}
+
+.questionHeader {
+  font-weight: 500;
+}
