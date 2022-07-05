@@ -197,21 +197,33 @@ mat-progress-bar {
 
 ::ng-deep .custom-dialog-container {
   .mat-dialog-container {
-    height: 150px;
+    height: 180px;
     padding: 5px;
     overflow: unset;
   }
 
+  .closeDialog {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .closeDialogTitle {
+    font-size: 14;
+    font-weight: 500;
+    margin-left: 15px;
+  }
+
   .popUpCloseBtn {
     float: right;
+    margin-top: 2px;
   }
 
   .mat-dialog-content {
-    padding: 0;
-    margin: 15px 7px 1px 21px;
+    padding: 0 1em 0 1em;
+    margin: 5px;
 
     p {
-      margin-top: 26px;
+      margin-top: 15px;
       font-size: 15px;
     }
   }

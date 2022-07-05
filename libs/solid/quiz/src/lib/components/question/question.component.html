@@ -14,7 +14,7 @@
             {{ quizSession.questions.length }}
           </h2>
           <span
-            >Tags: {{ question.tags.join(' ') }} | Schwierigkeitsgrad:
+            >Tags: {{ question.tags.join(' ') }} | Schwierigkeit:
             {{ question.difficulty }}</span
           >
         </div>
@@ -113,25 +113,26 @@
     </mat-card-content>
   </mat-card>
   <ng-template #backPopup>
-    <div class="close-popup">
-      <button mat-icon-button mat-dialog-close class="popUpCloseBtn">
+    <div class="closeDialog">
+      <p class="closeDialogTitle">Quiz beenden</p>
+      <button class="popUpCloseBtn" mat-icon-button mat-dialog-close>
         <mat-icon>close</mat-icon>
       </button>
     </div>
     <mat-dialog-content>
-      <p>Do you really want to close this Quiz-session?</p>
+      <p>Möchtest Du dieses Quiz beenden?</p>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <button class="cancelBtn" mat-button mat-dialog-close cdkFocusInitial>
-        Cancel
-      </button>
       <button
         class="backBtn"
         mat-button
         [mat-dialog-close]="true"
         (click)="onBackToStart()"
       >
-        Yes
+        Ja
+      </button>
+      <button class="cancelBtn" mat-button mat-dialog-close cdkFocusInitial>
+        Nein
       </button>
     </mat-dialog-actions>
   </ng-template>
