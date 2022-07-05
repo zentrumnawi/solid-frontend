@@ -2,6 +2,7 @@
   #contentContainer
   [class.splitLayout]="SplitLayout"
   class="content-container"
+  id="profile"
 >
   <mat-toolbar
     *ngIf="SplitLayout || !SelectedProfile"
@@ -37,18 +38,18 @@
       </button>
     </mat-form-field>
     <div class="spacer"></div>
-    <button (click)="toggleGridTree()" mat-icon-button>
+    <button id="profile-view" (click)="toggleGridTree()" mat-icon-button>
       <mat-icon>{{
         View === 'tree' ? 'view_module' : 'account_tree'
       }}</mat-icon>
     </button>
   </mat-toolbar>
-  <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar">
+  <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
     <div class="title-container" #title_container>
       <div *ngIf="coreConfig.appName === APP_NAME_DIVE">
         <div
           class="title"
-          [data]="SelectedProfile.name"
+          [data]="SelectedProfile!.name"
           markdown
           [class.long-title]="
             title_width >= title_container_width &&
@@ -76,22 +77,28 @@
             !stopAnimation
           "
         >
-          {{ SelectedProfile.name }}
+          {{ SelectedProfile?.name }}
         </div>
       </div>
-      <span *ngIf="SelectedProfile.trivial_name">{{
-        SelectedProfile.trivial_name
+      <span *ngIf="SelectedProfile?.trivial_name">{{
+        SelectedProfile?.trivial_name
       }}</span>
     </div>
-    <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
-      <mat-icon>navigate_before</mat-icon>
-    </button>
-    <button (click)="selectProfile()" mat-icon-button>
-      <mat-icon>{{ SplitLayout ? 'close' : 'expand_less' }}</mat-icon>
-    </button>
-    <button (click)="swipeRight()" [disabled]="SwipeRight < 0" mat-icon-button>
-      <mat-icon>navigate_next</mat-icon>
-    </button>
+    <div id="profile-detail-navigation">
+      <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button (click)="selectProfile()" mat-icon-button>
+        <mat-icon>{{ SplitLayout ? 'close' : 'expand_less' }}</mat-icon>
+      </button>
+      <button
+        (click)="swipeRight()"
+        [disabled]="SwipeRight < 0"
+        mat-icon-button
+      >
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
   </mat-toolbar>
   <ng-container *ngIf="SplitLayout || !SelectedProfile">
     <ng-container [ngSwitch]="(View === 'tree' && Filter.value !== '') || View">
@@ -102,17 +109,21 @@
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
+        (selectProfileTitle)="selectProfileTitle($event)"
       ></solid-profile-grid>
       <solid-profile-tree
         *ngSwitchCase="'tree'"
         (selectProfile)="selectProfile($event)"
+        (selectProfileTitle)="selectProfileTitle($event)"
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
+        [collapseTree]="collapseTree"
       ></solid-profile-tree>
       <solid-profile-list
         *ngSwitchDefault
         (selectProfile)="selectProfile($event)"
+        (selectProfileTitle)="selectProfileTitle($event)"
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"

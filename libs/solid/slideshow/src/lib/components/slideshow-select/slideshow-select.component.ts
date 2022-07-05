@@ -93,6 +93,6 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.$destroyed.next();
+    this.$destroyed.next(true);
   }
 }

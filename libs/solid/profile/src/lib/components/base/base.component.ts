@@ -2,9 +2,11 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Inject,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
@@ -21,7 +23,9 @@ import {
   LoadProfiles,
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
+import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
+import { Router } from '@angular/router';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -67,11 +71,15 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public stopAnimation = true;
   public timeOut_1: any;
   public timeOut_2: any;
+  public collapseTree = false;
+  @Output() profileTitle = new EventEmitter<string>();
 
   constructor(
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
-    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
+    private introService: IntroService,
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
+    private _route: Router
   ) {
     this._store.dispatch([
       new LoadDefinition(),
@@ -191,6 +199,45 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.calculateLayout();
+
+    if (
+      localStorage.getItem('hide_profile_tour') == 'false' ||
+      localStorage.getItem('hide_profile_tour') == null
+    ) {
+      setTimeout(() => {
+        this.introService.profileTour((_targetElement: any) => {
+          try {
+            const id = _targetElement.id;
+            const treeNodeLocation =
+              this.coreConfig.profileTour.location.treeNode;
+            const treeLocation =
+              this.coreConfig.profileTour.location.profileTree;
+            this.collapseTree = false;
+            setTimeout(() => {
+              this.introService.introProfile.refresh(true);
+            }, 365);
+            if (id == '') {
+              if (this._route.url == treeLocation)
+                this.navigateTo(treeNodeLocation);
+              else this.navigateTo(treeLocation);
+            } else if (id == 'profile-view' || id == 'profile') {
+              if (this._route.url != treeLocation)
+                this.navigateTo(treeLocation);
+              this.collapseTree = true;
+            } else {
+              if (this._route.url != treeNodeLocation)
+                this.navigateTo(treeNodeLocation);
+            }
+            setTimeout(() => {
+              this.introService.introProfile.refresh(true);
+            }, 0.1);
+          } catch (error) {
+            return;
+          }
+          return;
+        });
+      }, 2000);
+    }
   }
 
   public handleLongTitle() {
@@ -209,7 +256,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
           this.firstMovingAnimation = false;
         }, 10000);
       }
-    }, 1000);
+    }, 0);
   }
 
   @Dispatch()
@@ -244,12 +291,23 @@ export class BaseComponent implements OnInit, AfterViewInit {
     if (this.SwipeLeft > 0) {
       this.selectProfile(this.SwipeLeft);
     }
+    setTimeout(() => {
+      this.profileTitle.emit(this.SelectedProfile?.name);
+    }, 10);
+  }
+
+  @Dispatch()
+  public async navigateTo(url: string) {
+    return new Navigate([url]);
   }
 
   public swipeRight() {
     if (this.SwipeRight > 0) {
       this.selectProfile(this.SwipeRight);
     }
+    setTimeout(() => {
+      this.profileTitle.emit(this.SelectedProfile?.name);
+    }, 10);
   }
 
   public onPanEnd($event: any) {
@@ -269,5 +327,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
         this.SplitLayout = split;
       }, 0);
     }
+  }
+
+  public selectProfileTitle(title: string): void {
+    if (title) this.profileTitle.emit(title);
   }
 }

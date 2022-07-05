@@ -23,7 +23,6 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
-import { SOLID_PROFILE_TITLE_FORMATTER } from '@zentrumnawi/solid-profile/di';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
 import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
@@ -94,6 +93,8 @@ export class AppModule {
     addIcon('privacy');
     addIcon('info_privacy');
     addIcon('glossary');
+    addIcon('glossary2');
+    addIcon('contact');
     addIcon('feedback');
     addIcon('feedback_outline');
     addIcon('slideshow');

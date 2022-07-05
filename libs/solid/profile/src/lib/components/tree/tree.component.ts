@@ -55,7 +55,9 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() selectedProfileId?: number;
   @Input() profiles!: Observable<TreeNode[]>;
   @Output() selectProfile = new EventEmitter<number>();
+  @Output() selectProfileTitle = new EventEmitter<string>();
   @Input() isDiveApp = false;
+  @Input() collapseTree = false;
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<TreeNode | Profile, FlatTreeNode>;
@@ -180,6 +182,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.expandSelectedNode();
+    if (this.collapseTree) this.TreeControl.collapseAll();
   }
 
   private expandSelectedNode() {

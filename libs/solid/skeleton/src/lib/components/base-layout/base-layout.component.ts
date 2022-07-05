@@ -8,6 +8,11 @@ import {
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from '../../services/feedback.service';
 import { Router } from '@angular/router';
+import { LandingComponent } from '../landing/landing.component';
+import { Subscription } from 'rxjs';
+import { Navigate } from '@ngxs/router-plugin';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { BaseComponent } from '@zentrumnawi/solid-profile';
 
 @Component({
   selector: 'solid-skeleton-base-layout',
@@ -16,6 +21,8 @@ import { Router } from '@angular/router';
 })
 export class BaseLayoutComponent implements OnInit {
   public FixedLayout = false;
+  public subscription!: Subscription;
+  public title = '';
   @ViewChild('mainmenu', { static: true }) MainMenu?: MatDrawer;
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
@@ -61,7 +68,7 @@ export class BaseLayoutComponent implements OnInit {
       await this.Glossary.close();
     }
   }
-  public onMenuGlossarClick() {
+  public onMenuGlossaryClick() {
     if (this.Glossary) {
       this.Glossary.open();
     }
@@ -76,6 +83,39 @@ export class BaseLayoutComponent implements OnInit {
 
   public reportError() {
     const location = this.Glossary?.opened ? 'glossary' : this._router.url;
-    this.feedback.showDialog(location);
+    this.feedback.showDialog(location, this.title);
+    this.title = '';
+  }
+
+  public onLandingGlossaryClick(ref: any) {
+    if (!(ref instanceof LandingComponent)) {
+      return;
+    }
+
+    ref.onGlossaryClick.subscribe(() => {
+      if (this.Glossary) {
+        this.Glossary.open();
+      }
+    });
+  }
+
+  public unsubscribe() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  @Dispatch()
+  public async navigateTo(url: string) {
+    return new Navigate([url]);
+  }
+
+  public profileTitle(ref: any): void {
+    if (!(ref instanceof BaseComponent)) {
+      return;
+    }
+    ref.profileTitle.subscribe((profileTitle: string) => {
+      this.title = profileTitle;
+    });
   }
 }

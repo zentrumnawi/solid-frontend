@@ -17,7 +17,7 @@ import { map, startWith, takeUntil } from 'rxjs/operators';
   styleUrls: ['./glossary.component.scss'],
 })
 export class GlossaryComponent implements OnDestroy {
-  private $destroyed = new Subject();
+  private $destroyed = new Subject<boolean>();
   public Filter = new FormControl('');
   @ViewChildren(RefDirective, { read: RefDirective })
   public refElements!: QueryList<RefDirective>;
@@ -80,6 +80,6 @@ export class GlossaryComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.$destroyed.next();
+    this.$destroyed.next(true);
   }
 }

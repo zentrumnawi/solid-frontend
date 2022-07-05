@@ -20,7 +20,7 @@ export class MainMenuComponent {
   @Output() public selectMenuEntry = new EventEmitter();
   @Select(MenuState.getMenuItems)
   public MenuItems!: Observable<MenuItem[]>;
-  @Output() public openGlossarClick = new EventEmitter();
+  @Output() public openGlossaryClick = new EventEmitter();
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)

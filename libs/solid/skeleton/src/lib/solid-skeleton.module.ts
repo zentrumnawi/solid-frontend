@@ -1,4 +1,9 @@
-import { ErrorHandler, ModuleWithProviders, NgModule } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  ErrorHandler,
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SOLID_CORE_CONFIG, SolidCoreModule } from '@zentrumnawi/solid-core';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
@@ -14,6 +19,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
   feedbackServiceFactory,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -23,7 +29,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {
   defaultSkeletonConfig,
   InternalSolidSkeletonConfig,
-  SentryConfig,
   SOLID_SKELETON_CONFIG,
   SolidSkeletonConfig,
 } from './solid-skeleton-config';
@@ -43,7 +48,10 @@ import { MessageListComponent } from './components/message-list/message-list.com
 import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
 import { SOLID_SLIDESHOW_APP_ROUTING_CONFIG } from '@zentrumnawi/solid-slideshow';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { IntroService } from './services/intro.service';
 import { deepMerge } from './utils/deep-merge';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { PrivacyDialogComponent } from './components/privacy-dialog/privacy-dialog.component';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -80,11 +88,13 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     MatInputModule,
     MatListModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatSidenavModule,
     MatTabsModule,
     MatToolbarModule,
     ngxsFeatureModule,
     MatExpansionModule,
+    MatSlideToggleModule,
   ],
   declarations: [
     BaseLayoutComponent,
@@ -94,9 +104,11 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     LandingComponent,
     InfoComponent,
     MessageListComponent,
+    PrivacyDialogComponent,
   ],
   exports: [BaseLayoutComponent],
-  providers: [UpdateService],
+  providers: [UpdateService, IntroService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SolidSkeletonModule {
   public static forRoot(

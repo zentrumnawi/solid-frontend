@@ -20,9 +20,141 @@
     flex: 1 0 auto;
   }
 
+  .customTooltip .introjs-tooltip-header {
+    background-color: mat.get-color-from-palette($app-primary, 600);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    height: 30px;
+  }
+
+  .customTooltip .introjs-bullets ul li a.active {
+    background: mat.get-color-from-palette($app-primary, 600);
+  }
+
+  .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: mat.get-color-from-palette($app-primary, 600);
+  }
+
+  .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: white;
+  }
+
   @include base-layout-component($mat-theme);
   @include main-menu-component($mat-theme);
   @include solid-skeleton-landing-component-theme($mat-theme);
   @include solid-skeleton-message-list-theme($mat-theme);
   @include solid-skeleton-info-component-theme($mat-theme);
+}
+
+.customTooltip {
+  max-width: 285px !important;
+  min-width: 274px !important;
+  background-color: transparent !important;
+  box-shadow: none !important ;
+  height: 185px;
+}
+
+.customTooltip .introjs-tooltiptext {
+  background-color: white;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  font-family: 'Roboto';
+  padding: 25px 21px 0 34px;
+}
+
+.customTooltip .introjs-bullets {
+  background-color: white;
+  padding: 30px 0px 0px 0px;
+}
+
+.customTooltip .introjs-bullets ul li a {
+  background-color: lightgray;
+  width: 9px;
+  height: 9px;
+}
+
+.customTooltip .introjs-tooltipbuttons {
+  background-color: white;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border-top: none;
+  padding: 0px;
+  height: 24px;
+}
+
+.customTooltip .introjs-skipbutton {
+  color: black;
+  padding: 0px 3px 2px 0px;
+  font-weight: 500;
+  font-size: 34px;
+  margin: -11px -15px;
+}
+
+.customTooltip .introjs-nextbutton {
+  box-sizing: border-box;
+  background-color: white;
+  cursor: pointer;
+  bottom: 49px;
+  font-size: 0px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  padding: 4px;
+  margin: 13%;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.customTooltip .introjs-nextbutton:hover {
+  background-color: white;
+  color: black;
+}
+
+.customTooltip .introjs-nextbutton:focus {
+  background-color: transparent;
+  color: black;
+  box-shadow: none;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+}
+
+.customTooltip .introjs-nextbutton:before {
+  content: '';
+  position: absolute;
+  width: 27px;
+  height: 27px;
+}
+
+.customTooltip .introjs-prevbutton {
+  box-sizing: border-box;
+  background-color: white;
+  cursor: pointer;
+  bottom: 49px;
+  font-size: 0px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  padding: 4px;
+  margin: 13%;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.customTooltip .introjs-prevbutton:focus {
+  background-color: transparent;
+  color: black;
+  box-shadow: none;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+}
+
+.customTooltip .introjs-prevbutton:hover {
+  background-color: white;
+  color: black;
+}
+
+.customTooltip .introjs-prevbutton:before {
+  content: '';
+  position: absolute;
+  width: 27px;
+  height: 27px;
 }
