@@ -1,6 +1,8 @@
 mat-card {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 60em;
+  top: 71px;
 
   .mat-card-header .mat-card-title {
     font-size: 16px;
@@ -9,7 +11,7 @@ mat-card {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 1141px) {
   mat-card {
     margin-left: 10px;
     margin-right: 10px;
@@ -83,8 +85,20 @@ mat-card-content.ranking {
   margin-left: 0.5rem;
 }
 
+@media (max-width: 999px) {
+  .toolbar-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .toolbar-container {
+    width: calc(100% - 300px);
+  }
+}
+
 .toolbar-container {
-  left: 300px;
+  position: fixed;
   z-index: 2;
   background-color: white;
   box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
@@ -160,15 +174,9 @@ mat-card-content.ranking {
   }
 }
 
-@media (min-width: 451px) {
-  mat-progress-bar {
-    margin-bottom: 15px;
-  }
-}
-
 @media (max-width: 450px) {
-  mat-progress-bar {
-    margin-bottom: 10px;
+  mat-card {
+    top: 66px;
   }
 }
 

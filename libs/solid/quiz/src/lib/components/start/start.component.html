@@ -64,7 +64,6 @@
             mat-icon-button
             class="deselectAllBtn"
             (click)="onDeselectAllDifficultyClick()"
-            [class.disabled]="chosenDifficulty.length === 0"
             [disabled]="chosenDifficulty.length === 0"
           >
             <mat-icon>restart_alt</mat-icon>
@@ -91,8 +90,7 @@
             mat-icon-button
             class="deselectAllBtn"
             (click)="onDeselectAllTagClick()"
-            [class.disabled]="chosenTags.length === 0"
-            [disabled]="chosenDifficulty.length === 0"
+            [disabled]="chosenTags.length === 0"
           >
             <mat-icon>restart_alt</mat-icon>
           </button>

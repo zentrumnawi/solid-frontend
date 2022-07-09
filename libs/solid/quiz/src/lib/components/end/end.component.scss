@@ -6,22 +6,13 @@ mat-card {
   margin-left: auto;
   margin-right: auto;
   max-width: 60em;
+  top: 67px;
 }
 
-@media (min-width: 451px) {
-  .toolbar-container {
-    margin-bottom: 15px;
-  }
-}
-
-@media (max-width: 450px) {
+@media (max-width: 1141px) {
   mat-card {
     margin-left: 10px;
     margin-right: 10px;
-  }
-
-  .toolbar-container {
-    margin-bottom: 10px;
   }
 }
 
@@ -42,8 +33,24 @@ mat-form-field {
   margin: 2em;
 }
 
+@media (max-width: 999px) {
+  mat-card {
+    top: 62px;
+  }
+
+  .toolbar-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .toolbar-container {
+    width: calc(100% - 300px);
+  }
+}
+
 .toolbar-container {
-  left: 300px;
+  position: fixed;
   z-index: 2;
   background-color: white;
   box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
