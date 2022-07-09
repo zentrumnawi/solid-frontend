@@ -43,10 +43,10 @@
         <div class="col-1" id="questionCount">
           <div class="mat-subheader">Fragenanzahl</div>
         </div>
-        <div class="col-2">
+        <div class="col-2" id="questionCount">
           <mat-slider
             min="1"
-            max="10"
+            max="30"
             step="1"
             (input)="onSliderChange($event)"
             [(ngModel)]="questionCount"
@@ -64,6 +64,7 @@
             mat-icon-button
             class="deselectAllBtn"
             (click)="onDeselectAllDifficultyClick()"
+            [class.disabled]="chosenDifficulty.length === 0"
           >
             <mat-icon>restart_alt</mat-icon>
           </button>
@@ -89,6 +90,7 @@
             mat-icon-button
             class="deselectAllBtn"
             (click)="onDeselectAllTagClick()"
+            [class.disabled]="chosenTags.length === 0"
           >
             <mat-icon>restart_alt</mat-icon>
           </button>

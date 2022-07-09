@@ -43,10 +43,10 @@ mat-form-field {
 
 mat-card-actions {
   padding: 0px;
+  margin-left: 0px;
 }
 
 .content-container {
-  padding: 10px 0px 0px 10px;
   text-align: left;
   font-size: 15px;
 }
@@ -86,7 +86,7 @@ hr {
 
 @media (min-width: 441px) {
   .mat-slider {
-    width: 80%;
+    width: 82%;
   }
 
   .mat-subheader {
@@ -96,27 +96,47 @@ hr {
   .col-1 {
     display: flex;
     float: left;
-    width: 25%;
+    width: 100%;
     padding: 4px;
+    margin-left: 22px;
+
+    &#questionCount {
+      margin-top: -8px;
+    }
 
     &#difficulty {
-      padding: 0px 4px;
+      padding: 0px 4px 20px;
     }
 
     &#tag {
-      padding: 2px 4px;
+      padding: 2px 4px 8px;
     }
   }
 
   .col-2 {
     display: flex;
     float: left;
-    width: 75%;
+    width: 100%;
     padding: 4px;
+    margin-left: 35px;
   }
 
   .toolbar-container {
     margin-bottom: 15px;
+  }
+
+  .content-container {
+    padding: 10px 0px 0px 42px;
+  }
+
+  .button-container {
+    .startBtn {
+      margin: 10px 0px !important;
+    }
+
+    .expBtn {
+      margin: 10px 0px 24px 42px;
+    }
   }
 }
 
@@ -160,14 +180,32 @@ hr {
   .toolbar-container {
     margin-bottom: 10px;
   }
+
+  .content-container {
+    padding: 10px 0px 0px 21px;
+  }
+
+  .button-container {
+    .startBtn {
+      margin: 10px 0px 20px !important;
+    }
+
+    .expBtn {
+      margin: 10px 0px 20px 21px;
+    }
+  }
 }
 
 .deselectAllBtn {
   margin-left: -15px;
+  color: orangered;
 
   .mat-icon {
     line-height: 34px;
-    color: orangered;
+  }
+
+  &.disabled {
+    color: gray;
   }
 }
 
@@ -228,13 +266,11 @@ hr {
   position: relative;
 
   .startBtn {
-    margin: 7px 0px !important;
     font-size: 15px;
     width: 35%;
   }
 
   .expBtn {
-    margin: 10px 0px 10px 10px;
     display: block;
     font-weight: 500;
   }
