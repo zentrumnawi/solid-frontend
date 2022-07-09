@@ -4,7 +4,7 @@
       <button mat-icon-button class="button-back" (click)="onBackBtnClick()">
         <mat-icon>arrow_back</mat-icon>
       </button>
-      <button mat-icon-button class="button-close" (click)="onCloseClick()">
+      <button mat-icon-button class="button-close" (click)="onChartBtnClick()">
         <mat-icon>bar_chart</mat-icon>
       </button>
       <div class="step-actions">
@@ -114,13 +114,13 @@
   </mat-card>
   <ng-template #backPopup>
     <div class="closeDialog">
-      <p class="closeDialogTitle">Quiz beenden</p>
+      <p class="closeDialogTitle">Quiz abbrechen</p>
       <button class="popUpCloseBtn" mat-icon-button mat-dialog-close>
         <mat-icon>close</mat-icon>
       </button>
     </div>
     <mat-dialog-content>
-      <p>Möchtest Du dieses Quiz beenden?</p>
+      <p>Möchtest Du dieses Quiz abbrechen ?</p>
     </mat-dialog-content>
     <mat-dialog-actions>
       <button
@@ -128,6 +128,31 @@
         mat-button
         [mat-dialog-close]="true"
         (click)="onBackToStart()"
+      >
+        Ja
+      </button>
+      <button class="cancelBtn" mat-button mat-dialog-close cdkFocusInitial>
+        Nein
+      </button>
+    </mat-dialog-actions>
+  </ng-template>
+
+  <ng-template #skipPopup>
+    <div class="closeDialog">
+      <p class="closeDialogTitle">Quiz beenden</p>
+      <button class="popUpCloseBtn" mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-dialog-content>
+      <p>Möchtest Du dieses Quiz beenden und zur Auswertung springen?</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        class="backBtn"
+        mat-button
+        [mat-dialog-close]="true"
+        (click)="onSkipToEnd()"
       >
         Ja
       </button>

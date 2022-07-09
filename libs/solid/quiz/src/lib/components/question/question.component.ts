@@ -4,12 +4,12 @@ import {
   Input,
   Output,
   TemplateRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import {
   QuizQuestion,
   QuizQuestionType,
-  QuizSession,
+  QuizSession
 } from '../../state/quiz.model';
 import { Select, Store } from '@ngxs/store';
 import { EndQuizSession, QuizQuestionAnswered } from '../../state/quiz.actions';
@@ -20,7 +20,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'solid-quiz-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss'],
+  styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent {
   @Input() public question!: QuizQuestion;
@@ -34,6 +34,7 @@ export class QuestionComponent {
   QuizSession!: Observable<QuizSession | null>;
 
   @ViewChild('backPopup', { read: TemplateRef }) backPopup!: TemplateRef<any>;
+  @ViewChild('skipPopup', { read: TemplateRef }) skipPopup!: TemplateRef<any>;
 
   constructor(private _store: Store, private dialog: MatDialog) {}
 
@@ -62,7 +63,11 @@ export class QuestionComponent {
     }
   }
 
-  onCloseClick() {
+  onChartBtnClick() {
+    this.dialog.open(this.skipPopup, { panelClass: 'custom-dialog-container' });
+  }
+
+  onSkipToEnd() {
     this.stopQuiz.emit(true);
   }
 

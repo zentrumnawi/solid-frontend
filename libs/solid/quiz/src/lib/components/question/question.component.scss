@@ -197,7 +197,8 @@ mat-progress-bar {
 
 ::ng-deep .custom-dialog-container {
   .mat-dialog-container {
-    height: 180px;
+    width: 330px;
+    min-height: 165px;
     padding: 5px;
     overflow: unset;
   }
@@ -232,5 +233,6 @@ mat-progress-bar {
     justify-content: space-between;
     padding: 0 8px;
     min-height: 42px;
+    margin-bottom: 2px;
   }
 }
