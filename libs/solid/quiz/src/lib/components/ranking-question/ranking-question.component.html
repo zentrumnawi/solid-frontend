@@ -12,7 +12,7 @@
     [class.subsequence]="
       hasSubsequence &&
       subsequence.includes(answer.correct_position) &&
-      !correct
+      correct === -1
     "
     *ngFor="let answer of answersList; let index = index"
   >
@@ -22,7 +22,7 @@
         *ngIf="
           (!subsequence.includes(answer.correct_position) &&
             answer.correct_position === index + 1) ||
-          correct
+          correct === 1
         "
         >check</mat-icon
       >
@@ -37,7 +37,7 @@
         *ngIf="
           hasSubsequence &&
           subsequence.includes(answer.correct_position) &&
-          !correct
+          correct === -1
         "
         svgIcon="semicorrect"
       ></mat-icon>
@@ -49,7 +49,7 @@
   markdown
   *ngIf="showAnswers"
   [data]="
-    correct
+    correct === 1
       ? this.question.answers[index].feedback_correct
       : hasSubsequence
       ? this.question.answers[index].feedback_subsequences
@@ -73,5 +73,5 @@
   mat-raised-button
   class="nextQuestionBtn"
 >
-  {{ correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+  {{ correct === 1 ? 'Richtig,' : ' Falsch,' }} nächste Frage
 </button>

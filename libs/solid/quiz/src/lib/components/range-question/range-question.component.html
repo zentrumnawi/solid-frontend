@@ -1,15 +1,15 @@
 <div class="range-container">
   <span
     class="minTick"
-    [class.correct]="showAnswers && correct"
-    [class.incorrect]="showAnswers && !correct"
+    [class.correct]="showAnswers && correct === 1"
+    [class.incorrect]="(showAnswers && correct === -1) || correct === 0"
   ></span>
   <p class="minLabel">{{ question.answers[0].range_min }}</p>
   <div
     id="correctThumb"
     *ngIf="showAnswers"
-    [class.correct]="correct"
-    [class.incorrect]="!correct"
+    [class.correct]="correct === 1"
+    [class.incorrect]="correct === -1 || correct === 0"
   >
     <p>{{ question.answers[0].range_value }}</p>
   </div>
@@ -20,22 +20,25 @@
     [min]="question.answers[0].range_min"
     [max]="question.answers[0].range_max"
     [step]="question.answers[0].range_step"
-    [class.correctRange]="showAnswers && correct"
-    [class.incorrectRange]="showAnswers && !correct"
+    [class.correctRange]="showAnswers && correct === 1"
+    [class.incorrectRange]="(showAnswers && correct === -1) || correct === 0"
     [(ngModel)]="sliderPosition"
+    (change)="onSliderChange($event)"
   >
   </mat-slider>
   <p class="maxLabel">{{ question.answers[0].range_max }}</p>
   <span class="maxTick"></span>
 
   <div class="feedback-container" *ngIf="showAnswers">
-    <mat-icon class="correctIcon" *ngIf="correct"> check </mat-icon>
-    <mat-icon class="incorrectIcon" *ngIf="!correct"> highlight_off </mat-icon>
+    <mat-icon class="correctIcon" *ngIf="correct === 1"> check </mat-icon>
+    <mat-icon class="incorrectIcon" *ngIf="correct === -1 || correct === 0">
+      highlight_off
+    </mat-icon>
     <span
       class="feedback"
       markdown
       [data]="
-        correct
+        correct === 1
           ? this.question.answers[0].feedback_correct
           : this.question.answers[0].feedback_incorrect
       "
@@ -61,6 +64,6 @@
     mat-raised-button
     class="nextQuestionBtn"
   >
-    {{ correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
+    {{ correct === 1 ? 'Richtig,' : ' Falsch,' }} nächste Frage
   </button>
 </div>

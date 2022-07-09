@@ -35,4 +35,22 @@
   .displayValueBox {
     color: mat.get-color-from-palette($accent);
   }
+
+  .restartBtn {
+    border: solid 2px mat.get-color-from-palette($app-primary) !important;
+    color: mat.get-color-from-palette($app-primary) !important;
+    background-color: white !important;
+  }
+
+  .correctIcon {
+    color: mat.get-color-from-palette($quiz-correct);
+  }
+
+  .incorrectIcon {
+    color: mat.get-color-from-palette($quiz-incorrect);
+  }
+
+  .unansweredIcon {
+    color: mat.get-color-from-palette($accent);
+  }
 }

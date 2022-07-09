@@ -27,12 +27,6 @@ mat-form-field {
   margin-left: 0.75em;
 }
 
-.footnote {
-  font-size: smaller;
-  font-style: oblique;
-  margin: 2em;
-}
-
 @media (max-width: 999px) {
   mat-card {
     top: 62px;
@@ -85,14 +79,59 @@ mat-form-field {
   }
 }
 
-.button-container {
-  text-align: center;
-  position: relative;
+@media (min-width: 441px) {
+  mat-expansion-panel {
+    width: 95%;
+    margin: auto;
+  }
 
+  .button-container {
+    display: flex;
+    justify-content: space-evenly;
+
+    .startBtn {
+      margin: 7px 0px !important;
+      font-size: 15px;
+      width: 45%;
+    }
+
+    .restartBtn {
+      margin: 7px 0px !important;
+      font-size: 15px;
+      width: 45%;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  mat-expansion-panel {
+    width: 93%;
+    margin: auto;
+  }
+
+  .button-container {
+    display: block;
+    text-align: center;
+
+    .startBtn {
+      width: 90%;
+    }
+
+    .restartBtn {
+      width: 90%;
+    }
+  }
+}
+
+.button-container {
   .startBtn {
     margin: 7px 0px !important;
     font-size: 15px;
-    width: 45%;
+  }
+
+  .restartBtn {
+    margin: 7px 0px !important;
+    font-size: 15px;
   }
 }
 
@@ -131,4 +170,16 @@ mat-form-field {
 
 .questionHeader {
   font-weight: 500;
+}
+
+.resultText {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.footnote {
+  font-size: smaller;
+  font-style: oblique;
+  margin: 2em;
+  text-align: center;
 }

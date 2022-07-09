@@ -38,7 +38,7 @@ export class QuestionComponent {
 
   constructor(private _store: Store, private dialog: MatDialog) {}
 
-  onNextQuestionClicked(correct: boolean) {
+  onNextQuestionClicked(correct: number) {
     if (this.question) {
       this._store.dispatch(new QuizQuestionAnswered(correct));
     }

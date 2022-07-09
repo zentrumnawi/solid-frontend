@@ -4,7 +4,7 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
@@ -12,20 +12,21 @@ import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
 @Component({
   selector: 'solid-quiz-single-choice-question',
   templateUrl: './single-choice-question.component.html',
-  styleUrls: ['./single-choice-question.component.scss'],
+  styleUrls: ['./single-choice-question.component.scss']
 })
 export class SingleChoiceQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;
-  @Output() public nextQuestionClicked = new EventEmitter<boolean>();
+  @Output() public nextQuestionClicked = new EventEmitter<number>();
 
-  public selectedAnswer!: number;
+  public selectedAnswer?: number;
   public showAnswers = false;
-  public correct = false;
+  public correct = 0;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.question.previousValue !== changes.question.currentValue) {
+      this.selectedAnswer = undefined;
       this.showAnswers = false;
-      this.correct = false;
+      this.correct = 0;
     }
   }
 
@@ -53,12 +54,15 @@ export class SingleChoiceQuestionComponent implements OnChanges {
 
   public onShowAnswersClick() {
     this.showAnswers = true;
+    if (this.selectedAnswer == undefined) this.correct = 0;
+    else this.correct = -1;
     this.question.answers.forEach((value) => {
-      if (value.id == this.selectedAnswer && value.correct) this.correct = true;
+      if (value.id == this.selectedAnswer && value.correct) this.correct = 1;
     });
   }
 
   public onNextQuestionClick() {
+    if (this.selectedAnswer == undefined) this.correct = 0;
     this.nextQuestionClicked.emit(this.correct);
   }
 }

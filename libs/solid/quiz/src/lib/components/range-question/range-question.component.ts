@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatSliderChange } from '@angular/material/slider';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
   selector: 'solid-quiz-range-question',
   templateUrl: './range-question.component.html',
-  styleUrls: ['./range-question.component.scss'],
+  styleUrls: ['./range-question.component.scss']
 })
 export class RangeQuestionComponent {
   @Input() public question!: QuizQuestion;
-  @Output() public nextQuestionClicked = new EventEmitter<boolean>();
+  @Output() public nextQuestionClicked = new EventEmitter<number>();
 
-  public correct = false;
+  public correct = -2;
   public showAnswers!: boolean;
   public sliderPosition = 1;
 
@@ -19,7 +20,11 @@ export class RangeQuestionComponent {
 
     const tolerance = this.question.answers[0].tolerance;
     const value = this.question.answers[0].range_value;
-    if (Math.abs(this.sliderPosition - value) <= tolerance) this.correct = true;
+
+    if (this.correct != -2) {
+      if (Math.abs(this.sliderPosition - value) <= tolerance) this.correct = 1;
+    }
+    this.correct = 0;
 
     setTimeout(() => {
       const correctThumb = document.getElementById('correctThumb');
@@ -40,6 +45,10 @@ export class RangeQuestionComponent {
         correctThumb.style.left = correctPos + 'px';
       }
     }, 1);
+  }
+
+  onSliderChange(change: MatSliderChange) {
+    this.correct = -1;
   }
 
   public onNextQuestionClick() {

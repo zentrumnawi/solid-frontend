@@ -6,22 +6,21 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
   selector: 'solid-quiz-ranking-question',
   templateUrl: './ranking-question.component.html',
-  styleUrls: ['./ranking-question.component.scss'],
+  styleUrls: ['./ranking-question.component.scss']
 })
 export class RankingQuestionComponent implements OnInit, OnChanges {
   @Input() public question!: QuizQuestion;
-  @Output() public nextQuestionClicked = new EventEmitter<boolean>();
+  @Output() public nextQuestionClicked = new EventEmitter<number>();
 
-  public selectedAnswers!: number[];
   public showAnswers!: boolean;
-  public correct = false;
+  public correct = 0;
   public index!: number;
 
   public answersList: any[] = [];
@@ -33,7 +32,7 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
     for (let i = 0; i < this.question.answers.length; ++i) {
       this.answersList.push({
         text: this.question.answers[i].text,
-        correct_position: this.question.answers[i].ranking_position,
+        correct_position: this.question.answers[i].ranking_position
       });
     }
   }
@@ -41,12 +40,12 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.question.previousValue !== changes.question.currentValue) {
       this.showAnswers = false;
-      this.selectedAnswers = [];
-      this.correct = false;
+      this.correct = 0;
     }
   }
 
   drop(event: CdkDragDrop<any[]>) {
+    this.correct = -1;
     moveItemInArray(this.answersList, event.previousIndex, event.currentIndex);
   }
 
@@ -70,7 +69,7 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
       ) {
         sub.push(array[index].correct_position);
       } else {
-        count++;
+        if (array[index].correct_position == index + 1) count++;
         sub.push(array[index].correct_position);
         if (sub.length > maxLength) {
           this.subsequence = sub;
@@ -79,7 +78,8 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
         sub = [];
       }
     });
-    this.correct = count == this.answersList.length ? true : false;
+    if (this.correct != 0)
+      this.correct = count == this.answersList.length ? 1 : -1;
     this.hasSubsequence = maxLength < 3 ? false : true;
   }
 

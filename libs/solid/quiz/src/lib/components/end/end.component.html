@@ -10,7 +10,7 @@
 </div>
 <mat-card *ngIf="QuizSession">
   <mat-card-content class="quizEval">
-    <p>
+    <p class="resultText">
       {{ correctQuestions }} von {{ answeredQuestions }} Fragen wurden richtig
       beantwortet.
     </p>
@@ -24,7 +24,16 @@
         mat-raised-button
         color="primary"
       >
-        Quiz neu starten
+        Neues Quiz starten
+      </button>
+
+      <button
+        class="restartBtn"
+        (click)="onRestartClick()"
+        mat-raised-button
+        color="primary"
+      >
+        Quiz wiederholen
       </button>
     </div>
   </mat-card-actions>

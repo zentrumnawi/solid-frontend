@@ -21,7 +21,7 @@ export class EndQuizSession {
 export class QuizQuestionAnswered {
   static readonly type = '[Quiz] question answered';
 
-  constructor(public correct: boolean) {}
+  constructor(public correct: number) {}
 }
 
 export class LoadQuizMetadata {

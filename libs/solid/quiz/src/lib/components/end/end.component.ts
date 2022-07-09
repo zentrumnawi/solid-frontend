@@ -1,13 +1,11 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { QuizSession } from '../../state/quiz.model';
-import { StartQuizSession } from '../../state/quiz.actions';
+import { EndQuizSession, StartQuizSession } from '../../state/quiz.actions';
 import { QuizFeedback } from './end-feedback';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { FormControl, Validators } from '@angular/forms';
-import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'solid-quiz-end',
@@ -64,8 +62,13 @@ export class EndComponent implements OnDestroy {
       });
   }
 
-  onStartClick() {
+  onRestartClick() {
     this._store.dispatch(new StartQuizSession(this.questionCount.value));
+    this.stopQuiz.emit(false);
+  }
+
+  onStartClick() {
+    this._store.dispatch(new EndQuizSession());
     this.stopQuiz.emit(false);
   }
 
@@ -73,12 +76,8 @@ export class EndComponent implements OnDestroy {
     this.$destroyed.next(true);
   }
 
-  // @Dispatch()
-  // public async navigateTo(url: string) {
-  //   return new Navigate([url]);
-  // }
-
   onBackBtnClick() {
-    // back to quiz question ???
+    this._store.dispatch(new EndQuizSession());
+    this.stopQuiz.emit(false);
   }
 }

@@ -4,27 +4,27 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
   selector: 'solid-quiz-true-false-question',
   templateUrl: './true-false-question.component.html',
-  styleUrls: ['./true-false-question.component.scss'],
+  styleUrls: ['./true-false-question.component.scss']
 })
 export class TrueFalseQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;
-  @Output() public nextQuestionClicked = new EventEmitter<boolean>();
+  @Output() public nextQuestionClicked = new EventEmitter<number>();
 
   public selectedAnswer!: boolean;
   public showAnswers = false;
-  public correct = false;
+  public correct = -1;
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.question.previousValue !== changes.question.currentValue) {
       this.showAnswers = false;
-      this.correct = false;
+      this.correct = -1;
     }
   }
 
@@ -39,9 +39,9 @@ export class TrueFalseQuestionComponent implements OnChanges {
   public onShowAnswersClick() {
     this.showAnswers = true;
     if (this.selectedAnswer == this.question.answers[0].correct) {
-      this.correct = true;
+      this.correct = 1;
     } else {
-      this.correct = false;
+      this.correct = -1;
     }
   }
 
