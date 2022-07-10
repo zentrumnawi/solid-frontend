@@ -11,7 +11,8 @@ import {
   StartQuizSession,
   EndQuizSession,
   QuizQuestionAnswered,
-  LoadQuizMetadata
+  LoadQuizMetadata,
+  ToggleExpertMode
 } from './quiz.actions';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -26,6 +27,7 @@ export interface QuizStateModel {
   metadata: QuizMetadata | null;
   questions: QuizQuestion[];
   session: QuizSession | null;
+  expertMode: boolean | false;
 }
 
 @State<QuizStateModel>({
@@ -33,7 +35,8 @@ export interface QuizStateModel {
   defaults: {
     metadata: null,
     questions: [],
-    session: null
+    session: null,
+    expertMode: false
   }
 })
 @Injectable()
@@ -46,6 +49,11 @@ export class QuizState {
   @Selector()
   static getMeta(state: QuizStateModel): QuizMetadata | null {
     return state.metadata;
+  }
+
+  @Selector()
+  static getExpertMode(state: QuizStateModel): boolean | false {
+    return state.expertMode;
   }
 
   constructor(
@@ -62,6 +70,13 @@ export class QuizState {
         });
       })
     );
+  }
+
+  @Action(ToggleExpertMode)
+  public setExpertMode(ctx: StateContext<QuizStateModel>) {
+    const state = ctx.getState();
+    ctx.setState({ ...state, expertMode: !state.expertMode });
+    return;
   }
 
   @Action(LoadQuizQuestions)

@@ -1,6 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { LoadQuizQuestions, StartQuizSession } from '../../state/quiz.actions';
+import {
+  LoadQuizQuestions,
+  StartQuizSession,
+  ToggleExpertMode
+} from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
 import { QuizState } from '../../state/quiz.state';
 import { QuizMetadata } from '../../state/quiz.model';
@@ -13,12 +17,13 @@ import { MatSliderChange } from '@angular/material/slider';
 @Component({
   selector: 'solid-quiz-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss'],
+  styleUrls: ['./start.component.scss']
 })
 export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
+  @Select(QuizState.getExpertMode) expertMode!: boolean | false;
   private $destroyed = new Subject();
-  expertMode: boolean;
+  expertModeStatus: boolean;
   questionCount = 10;
   chosenTags = [];
   chosenDifficulty: number[] = [];
@@ -27,7 +32,7 @@ export class StartComponent implements OnDestroy, OnInit {
   difficulties: number[] = [];
 
   constructor(private _store: Store) {
-    this.expertMode = false;
+    this.expertModeStatus = false;
   }
 
   public onStartClick() {
@@ -49,6 +54,9 @@ export class StartComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+    this._store.select(QuizState.getExpertMode).subscribe((data) => {
+      this.expertModeStatus = data;
+    });
     this.metaData$?.subscribe((data) => {
       if (data) {
         const tags = [...data.tags];
@@ -66,6 +74,10 @@ export class StartComponent implements OnDestroy, OnInit {
   @Dispatch()
   public async navigateTo(url: string) {
     return new Navigate([url]);
+  }
+
+  expertModeToggle() {
+    this._store.dispatch(new ToggleExpertMode());
   }
 
   onBackBtnClick() {

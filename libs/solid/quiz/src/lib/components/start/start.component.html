@@ -34,11 +34,15 @@
       >
         Quiz starten
       </button>
-      <mat-slide-toggle class="expBtn" [(ngModel)]="expertMode">
+      <mat-slide-toggle
+        class="expBtn"
+        [checked]="expertModeStatus"
+        (change)="expertModeToggle()"
+      >
         Expertenmodus aktivieren
       </mat-slide-toggle>
     </div>
-    <div class="config" *ngIf="expertMode">
+    <div class="config" *ngIf="expertModeStatus">
       <div class="row">
         <div class="col-1" id="questionCount">
           <div class="mat-subheader">Fragenanzahl</div>

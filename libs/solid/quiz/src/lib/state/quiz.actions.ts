@@ -27,3 +27,7 @@ export class QuizQuestionAnswered {
 export class LoadQuizMetadata {
   static readonly type = '[Quiz] metadata load';
 }
+
+export class ToggleExpertMode {
+  static readonly type = '[Quiz] expert mode set';
+}
