@@ -3,6 +3,7 @@
 }
 
 mat-radio-group {
+  margin-top: 7px;
   display: flex;
   flex-direction: column;
 
@@ -24,9 +25,9 @@ mat-radio-group {
       }
 
       .mat-radio-label-content {
-        display: inline-flex;
-        flex-direction: column;
-        width: calc(100% - 28px);
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: auto 20px;
         white-space: normal;
       }
 
@@ -37,23 +38,31 @@ mat-radio-group {
   }
 }
 
+.answer {
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
 .correctIcon {
-  transform: translateY(2px) translateX(-30px);
+  grid-row-start: 1;
+  grid-column-start: 1;
+  transform: translateX(-30px) translateY(-2px);
   opacity: 1;
   z-index: 9999;
-  margin-top: -25px;
 }
 
 .incorrectIcon {
-  transform: translateY(2px) translateX(-30px);
+  grid-row-start: 1;
+  grid-column-start: 1;
+  transform: translateX(-30px) translateY(-2px);
   opacity: 1;
   z-index: 9999;
-  margin-top: -25px;
 }
 
 span.feedback {
+  grid-column-start: 1;
   font-weight: normal;
-  margin-top: 12px;
+  margin-top: 5px;
   margin-bottom: -12px;
 }
 
@@ -63,4 +72,8 @@ span.feedback {
 
 .nextQuestionBtn {
   margin-top: 23px;
+}
+
+::ng-deep .mat-radio-button.mat-radio-disabled .mat-radio-outer-circle {
+  display: none;
 }

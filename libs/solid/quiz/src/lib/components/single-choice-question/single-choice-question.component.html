@@ -11,7 +11,7 @@
     [class.incorrect]="isAnswerIncorrect(answer)"
     [value]="answer.id"
   >
-    {{ answer.text }}
+    <p class="answer">{{ answer.text }}</p>
     <mat-icon class="correctIcon" *ngIf="showAnswers && answer.correct"
       >check_circle</mat-icon
     >
