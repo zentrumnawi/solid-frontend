@@ -8,106 +8,75 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  Input,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
-import { Select } from '@ngxs/store';
-import { combineLatest, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Slideshow } from '../../state/slideshow.model';
-import { SlideshowState } from '../../state/slideshow.state';
-import { map, takeUntil } from 'rxjs/operators';
-import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { LoadSlideshow } from '../../state/slideshow.actions';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
-import { Navigate } from '@ngxs/router-plugin';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SOLID_SLIDESHOW_APP_ROUTING_CONFIG } from '../../app-config';
 
 export enum KEY {
   RIGHT_ARROW = 'ArrowRight',
   LEFT_ARROW = 'ArrowLeft',
 }
 
-export function __internal__selectRouterParamSlideshowId(s: any) {
-  return s.router.state.params['slideshowId'];
-}
-export function __internal__selectRouterParamCategoriesSlug(s: any) {
-  return s.router.state.params['categoriesSlug'];
-}
-export function __internal__selectCategories(s: any) {
-  return s.categories;
-}
-export interface SlideshowCategory {
-  id: number;
-  name: string;
-  slug: string;
-}
 @Component({
   selector: 'solid-slideshow',
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss'],
 })
 export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
-  private $destroyed = new Subject<boolean>();
-  @ViewChild('stepper', { static: false }) public Stepper!: MatStepper;
+  private $destroyed = new Subject();
+
+  @ViewChild('stepper', { static: false }) public Stepper?: MatStepper;
   @ViewChild('toolbar') public Toolbar?: ElementRef;
   @ViewChild('navigation') public Navigation?: ElementRef;
   @ViewChild('slideshow_container') public slideshow_container?: ElementRef;
-  public Slideshow: Observable<Slideshow | undefined>;
-  @Select(__internal__selectRouterParamSlideshowId)
-  slideshowId!: Observable<string>;
-  @Select(__internal__selectRouterParamCategoriesSlug)
-  categoriesSlug!: Observable<string>;
-  @Select(__internal__selectCategories)
-  categories!: Observable<SlideshowCategory[]>;
-  @Select(SlideshowState.getSlideshowByCategoriesAndId)
-  slideshowSelector!: Observable<
-    (id: number, categories: string | undefined) => Slideshow | undefined
-  >;
-  @Select(SlideshowState.SlideshowByCategoryCounter)
-  slideshowCounter!: Observable<(categories: string | undefined) => number>;
-  public page_index = 1;
+  @Output() backButtonClick = new EventEmitter<any>();
+
+  public slideshow!: Slideshow | null;
+  public page_index = 0;
   public isMobile = false;
   public lastScrollTop = 0;
   public toolbar_up = false;
   public toolbar_down = false;
-  public MaxStep = 2;
   public slideshowCount!: number;
-  public slug!: string;
+  public slideshowid!: string;
+  public slideshowPageid!: string;
+
+  @Input()
+  public set selectSlideshow(slideshow: Slideshow | null) {
+    this.slideshow = slideshow;
+    if (slideshow) {
+      setTimeout(() => {
+        if (this.Stepper) {
+          const pagePosition = this.slideshow?.pages.findIndex(
+            (page) => page.id === Number.parseInt(this.slideshowPageid)
+          );
+          if (pagePosition !== -1) {
+            this.Stepper.selectedIndex = pagePosition;
+            this.page_index = this.Stepper.selectedIndex;
+          }
+        }
+      }, 0);
+    }
+  }
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
-    @Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string,
-    private cdr: ChangeDetectorRef
-  ) {
-    this.Slideshow = combineLatest([
-      this.categoriesSlug,
-      this.slideshowId,
-      this.slideshowSelector,
-      this.categories,
-      this.slideshowCounter,
-    ]).pipe(
-      map((val) => {
-        const category_name = val[3].find(
-          (category: SlideshowCategory) => category.slug === val[0]
-        )?.name;
-        this.slideshowCount = val[4](category_name);
-        return val[2](Number.parseInt(val[1], 10), category_name);
-      }),
-      takeUntil(this.$destroyed)
-    );
-  }
-
-  ngAfterViewInit(): void {
-    this.cdr.detectChanges();
-  }
+    @Inject(SOLID_SLIDESHOW_APP_ROUTING_CONFIG) public routingConfig: any,
+    private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.load();
-    this.categoriesSlug
-      .pipe(takeUntil(this.$destroyed))
-      .subscribe((categoriesSlug) => (this.slug = categoriesSlug));
-    this.Slideshow?.pipe(takeUntil(this.$destroyed)).subscribe((slideshow) => {
-      this.MaxStep = slideshow?.pages.length as number;
-    });
+    this.slideshowPageid =
+      this.route.firstChild?.snapshot.params['slideshowPageId'];
     this._breakpointObserver
       .observe(['(max-width: 450px)'])
       .subscribe((isMobile) => {
@@ -119,21 +88,12 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
       });
   }
 
-  ngOnDestroy(): void {
-    this.$destroyed.next(true);
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
   }
 
-  @Dispatch()
-  private load() {
-    return new LoadSlideshow();
-  }
-
-  @Dispatch()
   public goBack() {
-    if (this.slideshowCount === 1) {
-      return new Navigate([`${this.baseUrl}`]);
-    }
-    return new Navigate([`${this.baseUrl}`, this.slug]);
+    this.backButtonClick.emit();
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -141,31 +101,39 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
     if (event.key === KEY.LEFT_ARROW) {
       this.onPrevStepClick();
     } else if (event.key === KEY.RIGHT_ARROW) {
-      this.onNextStepClick(this.MaxStep);
+      this.onNextStepClick();
     }
   }
 
   public onPrevStepClick() {
-    if (this.page_index > 1) {
-      this.page_index--;
+    if (this.Stepper) {
       this.Stepper.previous();
+      this.page_index = this.Stepper.selectedIndex;
       this.scrollToTop();
+      this.router.navigate(
+        [`../${this.slideshow?.pages[this.page_index].id}`],
+        { relativeTo: this.route.firstChild }
+      );
     }
   }
 
-  public onNextStepClick(maxStep: number) {
-    if (this.page_index < maxStep) {
-      this.page_index++;
+  public onNextStepClick() {
+    if (this.Stepper) {
       this.Stepper.next();
+      this.page_index = this.Stepper.selectedIndex;
       this.scrollToTop();
+      this.router.navigate(
+        [`../${this.slideshow?.pages[this.page_index].id}`],
+        { relativeTo: this.route.firstChild }
+      );
     }
   }
 
-  public onPanEnd($event: any, maxStep: number) {
+  public onPanEnd($event: any) {
     if ($event.deltaX > 100) {
       this.onPrevStepClick();
     } else if ($event.deltaX < -100) {
-      this.onNextStepClick(maxStep);
+      this.onNextStepClick();
     }
   }
 
@@ -194,5 +162,9 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
     slideshowContainer.nativeElement.scrollTop = 0;
+  }
+
+  ngOnDestroy(): void {
+    this.$destroyed.next(true);
   }
 }

@@ -22,8 +22,15 @@
     height: 60px;
     position: relative;
     z-index: 999;
-    span {
+    span.appName {
       padding-left: 16px;
+    }
+
+    @media (max-width: 365px) {
+      span.appName {
+        padding-left: 9px;
+        padding-right: 5px;
+      }
     }
 
     .app-title-fixed {
@@ -63,7 +70,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    margin-top: 7px;
+    margin-top: 8px;
     margin-right: 0.3em;
     .button {
       background-color: white;
@@ -81,6 +88,12 @@
       height: 10px;
     }
   }
+
+  @media (max-width: 365px) {
+    .reportButton {
+      margin-right: 0;
+    }
+  }
 }
 
 img#Logo {
@@ -91,4 +104,11 @@ img#Logo {
 
 span.appName {
   cursor: pointer;
+}
+
+@media (max-width: 365px) {
+  img#Logo {
+    margin-left: 3px;
+    height: 20px;
+  }
 }

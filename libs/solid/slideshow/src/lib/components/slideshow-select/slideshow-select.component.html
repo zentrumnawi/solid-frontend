@@ -1,48 +1,50 @@
-<div
-  class="slideshows-container"
-  (scroll)="hideAndShowToolbar()"
-  #slideshow_select_container
->
-  <div
-    class="back-button-toolbar-container"
-    *ngIf="Categories | async as categories"
-    [class.nav-up]="toolbar_up"
-    [class.nav-down]="toolbar_down"
-    #toolbar
-  >
-    <div class="back-button-toolbar">
-      <button
-        *ngIf="!hasOnlyOneCategory"
-        mat-icon-button
-        class="button-back"
-        (click)="goBack()"
-      >
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-      <h2>{{ category_name }}</h2>
-    </div>
+<div class="container">
+  <div class="back-button-toolbar">
+    <button mat-icon-button class="button-back" routerLink="">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>{{ routingConfig.title }}</h2>
   </div>
-  <div class="spacer"></div>
-  <div class="mat-card-container">
-    <mat-card
-      *ngFor="let slideshow of Slideshows | async"
-      [routerLink]="[slideshow.id]"
-    >
-      <div class="mat-card-child">
-        <img
-          [src]="
-            slideshow.title_image
-              ? slideshow.title_image.img.thumbnail
-              : 'assets/icons/icon.svg'
-          "
-          [alt]="
-            slideshow.title_image
-              ? slideshow.title_image.img_alt
-              : 'Kein Bild vorhanden'
-          "
-        />
-        <span class="slideshowTitle">{{ slideshow.title }}</span>
-      </div>
-    </mat-card>
+  <div class="select-container">
+    <mat-accordion class="slideshow-select-container" multi>
+      <mat-expansion-panel
+        *ngFor="let category of Categories | async; let i = index"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ category.name }} </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div
+          *ngFor="let slideshowselect of SlideshowSelect | async"
+          class="mat-card-container"
+        >
+          <mat-card
+            *ngIf="slideshowselect.categories.includes(category.name)"
+            (click)="
+              SelectSlideshow(
+                category.slug,
+                slideshowselect.id,
+                slideshowselect.pages[0]
+              )
+            "
+          >
+            <div class="mat-card-child">
+              <img
+                [src]="
+                  slideshowselect.title_image
+                    ? slideshowselect.title_image.img.thumbnail
+                    : 'assets/icons/icon.svg'
+                "
+                [alt]="
+                  slideshowselect.title_image
+                    ? slideshowselect.title_image.img_alt
+                    : 'Kein Bild vorhanden'
+                "
+              />
+              <span class="slideshowTitle">{{ slideshowselect.title }}</span>
+            </div>
+          </mat-card>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>

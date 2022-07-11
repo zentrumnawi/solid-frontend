@@ -1,5 +1,7 @@
 @import 'lib/components/slideshow/slideshow.theme';
+@import 'lib/components/slideshow-select/slideshow-select.theme';
 
 @mixin solid-slideshow-theme($mat-theme) {
   @include solid-slideshow-component-theme($mat-theme);
+  @include solid-slideshow-select-component-theme($mat-theme);
 }

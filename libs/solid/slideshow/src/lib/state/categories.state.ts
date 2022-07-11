@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { GetSlideshowCategories } from './slideshow-categories.actions';
-import { SlideshowCategory } from './slideshow-categories.model';
+import { GetCategories } from './categories.actions';
+import { SlideshowCategory } from './categories.model';
 import { map, tap } from 'rxjs/operators';
 
 export type CategoriesStateModel = SlideshowCategory[];
@@ -16,8 +15,6 @@ export type CategoriesStateModel = SlideshowCategory[];
 @Injectable()
 export class CategoriesState {
   constructor(
-    router: Router,
-    private store: Store,
     private _http: HttpClient,
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig
   ) {}
@@ -33,8 +30,11 @@ export class CategoriesState {
     return fn();
   }
 
-  @Action(GetSlideshowCategories)
+  @Action(GetCategories)
   public GetSlideshowCategories(ctx: StateContext<CategoriesStateModel>) {
+    if (ctx.getState().length > 0) {
+      return;
+    }
     return this._http
       .get<SlideshowCategory[]>(`${this._config.apiUrl}/categories`)
       .pipe(
@@ -49,11 +49,7 @@ export class CategoriesState {
           return mapit(res);
         }),
         tap((res) => {
-          ctx.setState([
-            ...res.map((categories) => {
-              return categories;
-            }),
-          ]);
+          ctx.setState([...res.map((categories) => categories)]);
         })
       );
   }

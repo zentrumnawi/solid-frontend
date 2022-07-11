@@ -1,30 +1,24 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Inject,
   OnDestroy,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
-import { SlideshowState } from '../../state/slideshow.state';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { Slideshow } from '../../state/slideshow.model';
+import { Observable, Subject } from 'rxjs';
 import { Select } from '@ngxs/store';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { LoadSlideshow } from '../../state/slideshow.actions';
-import { Navigate } from '@ngxs/router-plugin';
-import { map, takeUntil } from 'rxjs/operators';
-import { SOLID_SLIDESHOW_BASE_URL } from '../../base-url';
-import { ActivatedRoute } from '@angular/router';
-
-export function __internal__selectCategories(s: any) {
-  return s.categories;
-}
-export interface SlideshowCategory {
-  id: number;
-  name: string;
-  slug: string;
-}
+import { GetSlideshowSelect } from '../../state/slideshow-select.actions';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CategoriesState } from '../../state/categories.state';
+import { SlideshowCategory } from '../../state/categories.model';
+import { GetCategories } from '../../state/categories.actions';
+import { SlideshowSelectState } from '../../state/slideshow-select.state';
+import { SOLID_SLIDESHOW_APP_ROUTING_CONFIG } from '../../app-config';
+import { SlideshowSelectApi } from '../../state/slideshow-select.model';
 
 @Component({
   selector: 'solid-slideshow-slideshow-select',
@@ -32,70 +26,50 @@ export interface SlideshowCategory {
   styleUrls: ['./slideshow-select.component.scss'],
 })
 export class SlideshowSelectComponent implements OnInit, OnDestroy {
-  private $destroyed = new Subject<boolean>();
-  public Slideshows?: Observable<Slideshow[]>;
-  @Select(__internal__selectCategories)
-  Categories!: Observable<SlideshowCategory[]>;
-  @Select(SlideshowState.getSlideshowByCategories)
-  categoriesSelector!: Observable<(categories: string) => []>;
+  private $destroyed = new Subject();
+
   @ViewChild('slideshow_select_container')
   public slideshow_select_container?: ElementRef;
   @ViewChild('toolbar') public Toolbar?: ElementRef;
+  @Select(CategoriesState.getSlideshowCategoriesItems)
+  public Categories!: Observable<SlideshowCategory[]>;
+  @Select(SlideshowSelectState.getSlideshowSelect)
+  public SlideshowSelect!: Observable<SlideshowSelectApi[]>;
+  @Output() selectSlideshow = new EventEmitter<any>();
+
   public lastScrollTop = 0;
   public toolbar_up = false;
   public toolbar_down = false;
   public hasOnlyOneCategory = false;
   public category_name?: string;
+  public step?: number;
 
   constructor(
-    @Inject(SOLID_SLIDESHOW_BASE_URL) public baseUrl: string,
-    private actRoute: ActivatedRoute
-  ) {
-    this.Slideshows = combineLatest([
-      this.categoriesSelector,
-      this.Categories,
-    ]).pipe(
-      map((val) => {
-        this.category_name = val[1].find(
-          (category: SlideshowCategory) =>
-            category.slug === this.actRoute.snapshot.params['categoriesSlug']
-        )?.name;
-        return val[0](this.category_name as string);
-      }),
-      takeUntil(this.$destroyed)
-    );
-  }
-
-  @Dispatch()
-  private load() {
-    return new LoadSlideshow();
-  }
-
-  @Dispatch()
-  private openSlideshow(id: number) {
-    return new Navigate([`${id}`], undefined, { relativeTo: this.actRoute });
-  }
+    @Inject(SOLID_SLIDESHOW_APP_ROUTING_CONFIG) public routingConfig: any,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.load();
-    this.Slideshows?.pipe(takeUntil(this.$destroyed)).subscribe(
-      (slideshows) => {
-        if (slideshows.length === 1) {
-          this.openSlideshow(slideshows[0].id);
-        }
-      }
-    );
-    this.Categories?.pipe(takeUntil(this.$destroyed)).subscribe(
-      (categories) => {
-        if (categories.length === 1) {
-          this.hasOnlyOneCategory = true;
-        }
-      }
-    );
+    this.GetSlideshowSelect();
+    this.GetSlideshowCategories();
   }
 
-  ngOnDestroy(): void {
-    this.$destroyed.next(true);
+  @Dispatch()
+  private async GetSlideshowSelect() {
+    return new GetSlideshowSelect();
+  }
+
+  @Dispatch()
+  private GetSlideshowCategories() {
+    return new GetCategories();
+  }
+
+  public SelectSlideshow(slug: string, slideshowid: number, pageid: number) {
+    this.selectSlideshow.emit({ slug, slideshowid, pageid });
+    this.router.navigate([slug, slideshowid, pageid], {
+      relativeTo: this.route,
+    });
   }
 
   public hideAndShowToolbar() {
@@ -118,8 +92,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
     this.lastScrollTop = scrollTop;
   }
 
-  @Dispatch()
-  public goBack() {
-    return new Navigate([`${this.baseUrl}`]);
+  ngOnDestroy(): void {
+    this.$destroyed.next(true);
   }
 }

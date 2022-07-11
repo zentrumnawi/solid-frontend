@@ -7,10 +7,10 @@ export interface Slideshow extends SlideshowApi {
 export interface SlideshowApi {
   id: number;
   title: string;
-  title_image: PhotographModel;
+  title_image?: PhotographModel;
   position: number;
   pages: SlideshowPageApi[];
-  categories: string;
+  categories: string[];
 }
 
 export interface SlideshowPage extends SlideshowPageApi {
@@ -23,6 +23,7 @@ export interface SlideshowPageApi {
   title: string;
   text: string;
   images: SlideshowImageApi[];
+  show: number;
 }
 
 export interface SlideshowImage extends SlideshowImageApi {
