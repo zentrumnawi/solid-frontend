@@ -44,10 +44,10 @@
     </div>
     <div class="config" *ngIf="expertModeStatus">
       <div class="row">
-        <div class="col-1" id="questionCount">
+        <div class="controlHeader" id="questionCount">
           <div class="mat-subheader">Fragenanzahl</div>
         </div>
-        <div class="col-2" id="questionCount">
+        <div class="controlElement" id="questionCount">
           <mat-slider
             min="1"
             max="30"
@@ -56,13 +56,13 @@
             [(ngModel)]="questionCount"
           >
           </mat-slider>
-          <p class="displayValueBox">
+          <div class="displayValueBox">
             {{ questionCount }}
-          </p>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-1" id="difficulty">
+        <div class="controlHeader" id="difficulty">
           <div class="mat-subheader">Difficulty</div>
           <button
             mat-icon-button
@@ -73,8 +73,9 @@
             <mat-icon>restart_alt</mat-icon>
           </button>
         </div>
-        <div class="col-2" id="difficulty">
+        <div class="controlElement" id="difficulty">
           <mat-button-toggle-group
+            class="difficulties"
             multiple
             (change)="onButtonToggleChange($event)"
             [(ngModel)]="chosenDifficulty"
@@ -88,7 +89,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-1" id="tag">
+        <div class="controlHeader" id="tag">
           <div class="mat-subheader">Tag</div>
           <button
             mat-icon-button
@@ -99,7 +100,7 @@
             <mat-icon>restart_alt</mat-icon>
           </button>
         </div>
-        <div class="col-2" id="tag">
+        <div class="controlElement" id="tag">
           <mat-chip-list
             selectable
             multiple

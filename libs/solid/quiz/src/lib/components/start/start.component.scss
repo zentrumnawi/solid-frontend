@@ -16,6 +16,12 @@ mat-card {
   }
 }
 
+@media (max-width: 440px) {
+  mat-card {
+    top: 62px;
+  }
+}
+
 mat-form-field {
   width: 20em;
   margin-left: 0.75em;
@@ -45,6 +51,7 @@ mat-form-field {
 mat-card-actions {
   padding: 0px;
   margin-left: 0px;
+  margin-right: 0px;
 }
 
 .content-container {
@@ -77,124 +84,53 @@ hr {
   border: solid 2px;
   padding: 6px;
   height: 35px;
-  width: 35px;
-  transform: translateY(6px);
+  width: 40px;
+  transform: translateY(-3px);
   font-weight: 500;
   margin-left: 4%;
   text-align: center;
   border-radius: 8px;
 }
 
-@media (min-width: 441px) {
-  .mat-slider {
-    width: 82%;
-  }
-
-  .mat-subheader {
-    font-size: 14px;
-  }
-
-  .col-1 {
-    display: flex;
-    float: left;
-    width: 100%;
-    padding: 4px;
-    margin-left: 22px;
-
-    &#questionCount {
-      margin-top: -8px;
-    }
-
-    &#difficulty {
-      padding: 0px 4px 20px;
-    }
-
-    &#tag {
-      padding: 2px 4px 8px;
-    }
-  }
-
-  .col-2 {
-    display: flex;
-    float: left;
-    width: 100%;
-    padding: 4px;
-    margin-left: 35px;
-  }
-
-  .content-container {
-    padding: 10px 0px 0px 42px;
-  }
-
-  .button-container {
-    .startBtn {
-      margin: 10px 0px !important;
-    }
-
-    .expBtn {
-      margin: 10px 0px 24px 42px;
-    }
-  }
+.mat-slider {
+  width: 100%;
+  margin: -10px;
 }
 
-@media (max-width: 440px) {
-  mat-card {
-    top: 62px;
+.mat-subheader {
+  font-size: 15px;
+  padding: 16px 0px;
+}
+
+.controlHeader {
+  float: left;
+  width: 100%;
+  display: flex;
+}
+
+.controlElement {
+  display: flex;
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.content-container {
+  padding: 10px 10px 0px 10px;
+}
+
+.button-container {
+  .startBtn {
+    margin: 10px 10px 20px 10px !important;
   }
 
-  .mat-slider {
-    width: 76%;
-  }
-
-  .mat-subheader {
-    font-size: 15px;
-  }
-
-  .col-1 {
-    float: left;
-    width: 96%;
-    padding: 4px;
-    display: flex;
-
-    &#questionCount {
-      margin-bottom: -5px;
-    }
-
-    &#difficulty {
-      margin-top: -5px;
-      margin-bottom: 5px;
-    }
-
-    &#tag {
-      margin-bottom: -5px;
-    }
-  }
-
-  .col-2 {
-    display: flex;
-    float: left;
-    width: 100%;
-    padding: 4px;
-    margin-left: 16px;
-  }
-
-  .content-container {
-    padding: 10px 0px 0px 21px;
-  }
-
-  .button-container {
-    .startBtn {
-      margin: 10px 0px 20px !important;
-    }
-
-    .expBtn {
-      margin: 10px 0px 20px 21px;
-    }
+  .expBtn {
+    margin: 10px 10px 20px 10px;
+    padding: 0px;
   }
 }
 
 .deselectAllBtn {
-  margin-left: -15px;
   color: orangered;
 
   .mat-icon {
@@ -210,16 +146,33 @@ hr {
 
 #difficulty {
   .mat-button-toggle-group {
-    width: 95%;
+    width: 100%;
     border: none;
+    margin-top: 10px;
+    justify-content: space-between;
   }
 
   .mat-button-toggle {
     width: 20%;
-    margin-right: 5%;
     border-radius: 7px;
     height: 39px;
     font-weight: 500;
+  }
+
+  @media (max-width: 440px) {
+    .mat-button-toggle {
+      margin-right: 10px;
+    }
+  }
+
+  @media (min-width: 441px) {
+    .mat-button-toggle {
+      margin-right: 20px;
+    }
+  }
+
+  .mat-button-toggle:last-child {
+    margin-right: 0px;
   }
 
   ::ng-deep.mat-button-toggle-label-content {
@@ -229,20 +182,31 @@ hr {
 
 #tag {
   ::ng-deep .mat-chip-list-wrapper {
-    width: 95%;
+    width: 100%;
     margin: 0;
+    justify-content: space-between;
   }
 
   .mat-chip {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin: 10px 0px 10px 0px;
-    width: 20%;
-    margin-right: 5%;
+    margin: 10px 0px;
     display: block;
-    padding: 5px;
+    padding: 5px 10px;
     text-align: center;
+  }
+
+  @media (max-width: 440px) {
+    .mat-chip {
+      width: 28%;
+    }
+  }
+
+  @media (min-width: 441px) {
+    .mat-chip {
+      width: 23%;
+    }
   }
 
   .mat-standard-chip:focus::after {
@@ -271,6 +235,7 @@ hr {
 
 .config {
   position: relative;
+  padding: 0px 10px;
 }
 
 ::ng-deep .mat-select-value-text {
