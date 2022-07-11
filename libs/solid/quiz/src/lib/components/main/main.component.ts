@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { QuizSession } from '../../state/quiz.model';
-import { LoadQuizQuestions, EndQuizSession } from '../../state/quiz.actions';
+import { EndQuizSession, LoadQuizMetadata } from '../../state/quiz.actions';
 import { QuizState } from '../../state/quiz.state';
 
 @Component({
@@ -16,7 +16,7 @@ export class MainComponent implements OnDestroy {
   stopQuiz = false;
 
   constructor(private store: Store) {
-    store.dispatch(new LoadQuizQuestions());
+    store.dispatch(new LoadQuizMetadata());
   }
 
   ngOnDestroy(): void {

@@ -99,5 +99,6 @@ export class AppModule {
     addIcon('feedback');
     addIcon('feedback_outline');
     addIcon('assistant');
+    addIcon('semicorrect');
   }
 }

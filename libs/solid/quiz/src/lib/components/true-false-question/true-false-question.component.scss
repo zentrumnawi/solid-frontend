@@ -1,0 +1,79 @@
+:host {
+  margin-left: -8px;
+}
+
+.button-container {
+  display: block;
+  margin: 0px 5px 16px;
+
+  .trueBtn {
+    border-radius: 5px;
+    min-height: 44px;
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    border: solid 2px lightgray;
+
+    &.correctUnselected {
+      border: solid 3px;
+    }
+
+    &.incorrectUnselected {
+      border: solid 2px;
+    }
+  }
+
+  .falseBtn {
+    border-radius: 5px;
+    min-height: 44px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 500;
+    border: solid 2px lightgray;
+
+    &.correctUnselected {
+      border: solid 3px;
+    }
+
+    &.incorrectUnselected {
+      border: solid 2px;
+    }
+  }
+}
+
+.feedback {
+  display: grid;
+  grid-template-columns: 0fr 10fr;
+  column-gap: 9px;
+  align-items: center;
+}
+
+.correctIcon {
+  justify-self: end;
+  font-weight: bold;
+}
+
+.incorrectIcon {
+  justify-self: end;
+  font-weight: bold;
+}
+
+span.feedback-text {
+  margin-top: 10px;
+  font-weight: 500;
+  text-align: justify;
+}
+
+.mat-typography p {
+  align-self: center;
+  margin: 0;
+}
+
+.showAnswerBtn {
+  margin-top: 10px;
+}
+
+.nextQuestionBtn {
+  margin-top: 10px;
+}

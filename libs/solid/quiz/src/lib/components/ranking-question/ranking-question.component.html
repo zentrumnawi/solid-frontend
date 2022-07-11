@@ -1,0 +1,77 @@
+<div
+  cdkDropList
+  class="ranking-list"
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListDisabled]="showAnswers"
+>
+  <div
+    class="ranking-box"
+    cdkDrag
+    [class.correctPosition]="isCorrectPosition(answer)"
+    [class.incorrectPosition]="isInCorrectPosition(answer)"
+    [class.subsequence]="
+      hasSubsequence &&
+      subsequence.includes(answer.correct_position) &&
+      correct === -1
+    "
+    *ngFor="let answer of answersList; let index = index"
+  >
+    {{ answer.text }}
+    <div class="feedback-icon" *ngIf="showAnswers">
+      <mat-icon
+        *ngIf="
+          (!subsequence.includes(answer.correct_position) &&
+            answer.correct_position === index + 1) ||
+          correct === 1
+        "
+        >check</mat-icon
+      >
+      <mat-icon
+        *ngIf="
+          !subsequence.includes(answer.correct_position) &&
+          answer.correct_position !== index + 1
+        "
+        >highlight_off</mat-icon
+      >
+      <mat-icon
+        *ngIf="
+          hasSubsequence &&
+          subsequence.includes(answer.correct_position) &&
+          correct === -1
+        "
+        svgIcon="semicorrect"
+      ></mat-icon>
+    </div>
+  </div>
+</div>
+<span
+  class="feedback"
+  markdown
+  *ngIf="showAnswers"
+  [data]="
+    correct === 1
+      ? this.question.answers[index].feedback_correct
+      : hasSubsequence
+      ? this.question.answers[index].feedback_subsequences
+      : this.question.answers[index].feedback_incorrect
+  "
+>
+</span>
+<button
+  (click)="onShowAnswersClick()"
+  *ngIf="!showAnswers"
+  color="primary"
+  mat-raised-button
+  class="showAnswerBtn"
+>
+  Lösungen anzeigen
+</button>
+<button
+  (click)="onNextQuestionClick()"
+  *ngIf="showAnswers"
+  color="primary"
+  mat-raised-button
+  class="nextQuestionBtn"
+>
+  {{ correct === 1 ? 'Richtig,' : ' Falsch,' }} nächste Frage
+</button>

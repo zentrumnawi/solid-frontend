@@ -1,0 +1,69 @@
+<div class="range-container">
+  <span
+    class="minTick"
+    [class.correct]="showAnswers && correct === 1"
+    [class.incorrect]="(showAnswers && correct === -1) || correct === 0"
+  ></span>
+  <p class="minLabel">{{ question.answers[0].range_min }}</p>
+  <div
+    id="correctThumb"
+    *ngIf="showAnswers"
+    [class.correct]="correct === 1"
+    [class.incorrect]="correct === -1 || correct === 0"
+  >
+    <p>{{ question.answers[0].range_value }}</p>
+  </div>
+  <mat-slider
+    id="slider"
+    thumbLabel
+    [disabled]="showAnswers"
+    [min]="question.answers[0].range_min"
+    [max]="question.answers[0].range_max"
+    [step]="question.answers[0].range_step"
+    [class.correctRange]="showAnswers && correct === 1"
+    [class.incorrectRange]="(showAnswers && correct === -1) || correct === 0"
+    [(ngModel)]="sliderPosition"
+    (change)="onSliderChange($event)"
+  >
+  </mat-slider>
+  <p class="maxLabel">{{ question.answers[0].range_max }}</p>
+  <span class="maxTick"></span>
+
+  <div class="feedback-container" *ngIf="showAnswers">
+    <mat-icon class="correctIcon" *ngIf="correct === 1"> check </mat-icon>
+    <mat-icon class="incorrectIcon" *ngIf="correct === -1 || correct === 0">
+      highlight_off
+    </mat-icon>
+    <span
+      class="feedback"
+      markdown
+      [data]="
+        correct === 1
+          ? this.question.answers[0].feedback_correct
+          : this.question.answers[0].feedback_incorrect
+      "
+    >
+    </span>
+  </div>
+</div>
+
+<div>
+  <button
+    (click)="onShowAnswersClick()"
+    *ngIf="!showAnswers"
+    color="primary"
+    mat-raised-button
+    class="showAnswerBtn"
+  >
+    Lösungen anzeigen
+  </button>
+  <button
+    (click)="onNextQuestionClick()"
+    *ngIf="showAnswers"
+    color="primary"
+    mat-raised-button
+    class="nextQuestionBtn"
+  >
+    {{ correct === 1 ? 'Richtig,' : ' Falsch,' }} nächste Frage
+  </button>
+</div>

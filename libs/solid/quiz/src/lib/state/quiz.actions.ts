@@ -1,5 +1,11 @@
 export class LoadQuizQuestions {
   static readonly type = '[Quiz] questions load';
+
+  constructor(
+    public questionCount: number,
+    public tags: string[],
+    public difficulty: number[]
+  ) {}
 }
 
 export class StartQuizSession {
@@ -15,5 +21,13 @@ export class EndQuizSession {
 export class QuizQuestionAnswered {
   static readonly type = '[Quiz] question answered';
 
-  constructor(public correct: boolean) {}
+  constructor(public correct: number) {}
+}
+
+export class LoadQuizMetadata {
+  static readonly type = '[Quiz] metadata load';
+}
+
+export class ToggleExpertMode {
+  static readonly type = '[Quiz] expert mode set';
 }

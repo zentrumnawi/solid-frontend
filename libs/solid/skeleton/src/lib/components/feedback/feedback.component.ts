@@ -67,12 +67,9 @@ export class FeedbackComponent implements OnInit, OnDestroy {
       ? FeedbackComponent.STORAGE_KEY_2
       : FeedbackComponent.STORAGE_KEY_1;
     sessionStorage.setItem(key, JSON.stringify(this.Form.value));
-    // if (this._sent) {
-    //   sessionStorage.removeItem(key);
-    // }
-
-    // for testing
-    sessionStorage.removeItem(key);
+    if (this._sent) {
+      sessionStorage.removeItem(key);
+    }
   }
 
   public ngOnInit(): void {

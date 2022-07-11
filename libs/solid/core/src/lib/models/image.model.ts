@@ -47,6 +47,7 @@ export class ImageModel {
 
   public getRawImage(size: 'thumbnail' | 'small' | 'medium' | 'large') {
     return this._photograph.img[size];
+    // return this._photograph.file[size]; // works but should it also be img for questions ?
   }
 
   public get deepZoomLink(): string | false {
