@@ -101,5 +101,6 @@ export class AppModule {
     addIcon('info_privacy');
     addIcon('feedback');
     addIcon('feedback_outline');
+    addIcon('semicorrect');
   }
 }

@@ -3,6 +3,11 @@ import { Route, RouterModule } from '@angular/router';
 import { StartComponent } from './components/start/start.component';
 import { MainComponent } from './components/main/main.component';
 import { QuestionComponent } from './components/question/question.component';
+import { SingleChoiceQuestionComponent } from './components/single-choice-question/single-choice-question.component';
+import { MultipleChoiceQuestionComponent } from './components/multiple-choice-question/multiple-choice-question.component';
+import { TrueFalseQuestionComponent } from './components/true-false-question/true-false-question.component';
+import { RankingQuestionComponent } from './components/ranking-question/ranking-question.component';
+import { RangeQuestionComponent } from './components/range-question/range-question.component';
 import { EndComponent } from './components/end/end.component';
 import { NgxsModule } from '@ngxs/store';
 import { QuizState } from './state/quiz.state';
@@ -16,6 +21,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 export const routes: Route[] = [
   { path: '', component: MainComponent, data: { title: 'Selbsttest' } },
@@ -32,6 +47,11 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MainComponent,
     QuestionComponent,
     EndComponent,
+    SingleChoiceQuestionComponent,
+    MultipleChoiceQuestionComponent,
+    TrueFalseQuestionComponent,
+    RankingQuestionComponent,
+    RangeQuestionComponent,
   ],
   imports: [
     SolidCoreModule,
@@ -46,6 +66,16 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     MatRadioModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    MatExpansionModule,
+    MatSliderModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatListModule,
+    MatSelectModule,
+    MatDialogModule,
+    DragDropModule,
+    MatButtonToggleModule,
+    MatSlideToggleModule,
   ],
 })
 export class SolidQuizModule {}

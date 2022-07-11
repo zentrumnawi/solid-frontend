@@ -2,102 +2,47 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
-  SimpleChanges,
+  TemplateRef,
+  ViewChild,
 } from '@angular/core';
 import {
-  QuizAnswer,
   QuizQuestion,
   QuizQuestionType,
+  QuizSession,
 } from '../../state/quiz.model';
-import { MatRadioChange } from '@angular/material/radio';
-import { MatCheckboxChange } from '@angular/material/checkbox';
-import { Store } from '@ngxs/store';
-import { QuizQuestionAnswered } from '../../state/quiz.actions';
+import { Select, Store } from '@ngxs/store';
+import { EndQuizSession, QuizQuestionAnswered } from '../../state/quiz.actions';
+import { QuizState } from '../../state/quiz.state';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'solid-quiz-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
 })
-export class QuestionComponent implements OnChanges {
-  @Input() public question?: QuizQuestion;
+export class QuestionComponent {
+  @Input() public question!: QuizQuestion;
+  @Output() stopQuiz = new EventEmitter<boolean>();
+
   public QuestionTypes = QuizQuestionType;
-  public SelectedAnswers: number[] = [];
-  public ShowAnswers = false;
-  public Correct?: boolean;
   public ImageIndex = 0;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
-  @Output() stopQuiz = new EventEmitter<boolean>();
+  @Select(QuizState.getSession)
+  QuizSession!: Observable<QuizSession | null>;
 
-  constructor(private _store: Store) {}
+  @ViewChild('backPopup', { read: TemplateRef }) backPopup!: TemplateRef<any>;
+  @ViewChild('skipPopup', { read: TemplateRef }) skipPopup!: TemplateRef<any>;
 
-  public onRadioChange(e: MatRadioChange) {
-    this.SelectedAnswers = [e.value];
-  }
+  constructor(private _store: Store, private dialog: MatDialog) {}
 
-  public onShowAnswersClick() {
-    this.ShowAnswers = true;
+  onNextQuestionClicked(correct: number) {
     if (this.question) {
-      this.Correct = true;
-      let correctAnswers = 0;
-      this.question.answers.forEach((answer) => {
-        if (answer.correct) {
-          correctAnswers++;
-          if (!this.SelectedAnswers.includes(answer.id)) {
-            this.Correct = false;
-          }
-        }
-      });
-      if (this.SelectedAnswers.length !== correctAnswers) {
-        this.Correct = false;
-      }
-    }
-  }
-
-  public trackByFn(index: number, item: QuizAnswer) {
-    return item.id;
-  }
-
-  onNextQuestionClick() {
-    if (this.question && this.Correct !== undefined) {
-      this._store.dispatch(new QuizQuestionAnswered(this.Correct));
+      this._store.dispatch(new QuizQuestionAnswered(correct));
     }
     this.ImageIndex = 0;
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.question.previousValue !== changes.question.currentValue) {
-      this.ShowAnswers = false;
-      this.SelectedAnswers = [];
-      this.Correct = undefined;
-    }
-  }
-
-  onSelectChange(e: MatCheckboxChange, answer: QuizAnswer) {
-    if (e.checked) {
-      this.SelectedAnswers.push(answer.id);
-    } else {
-      this.SelectedAnswers = this.SelectedAnswers.filter(
-        (id) => id !== answer.id
-      );
-    }
-  }
-
-  isAnswerCorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
-      return false;
-    }
-    return answer.correct; // && this.SelectedAnswers.includes(answer.id);
-  }
-
-  isAnswerIncorrect(answer: QuizAnswer) {
-    if (!this.ShowAnswers) {
-      return false;
-    }
-    return !answer.correct; // && this.SelectedAnswers.includes(answer.id);
   }
 
   swipe(
@@ -118,7 +63,19 @@ export class QuestionComponent implements OnChanges {
     }
   }
 
-  onCloseClick() {
+  onChartBtnClick() {
+    this.dialog.open(this.skipPopup, { panelClass: 'custom-dialog-container' });
+  }
+
+  onSkipToEnd() {
     this.stopQuiz.emit(true);
+  }
+
+  onBackBtnClick() {
+    this.dialog.open(this.backPopup, { panelClass: 'custom-dialog-container' });
+  }
+
+  onBackToStart() {
+    this._store.dispatch(new EndQuizSession());
   }
 }

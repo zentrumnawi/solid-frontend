@@ -1,5 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
+  QuizMetadata,
   QuizQuestion,
   QuizQuestionApi,
   QuizQuestionInSession,
@@ -10,26 +11,32 @@ import {
   StartQuizSession,
   EndQuizSession,
   QuizQuestionAnswered,
+  LoadQuizMetadata,
+  ToggleExpertMode,
 } from './quiz.actions';
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import {
   SOLID_CORE_CONFIG,
   SolidCoreConfig,
-  ImageModel,
+  MediaModel,
 } from '@zentrumnawi/solid-core';
 import { map, tap } from 'rxjs/operators';
 
 export interface QuizStateModel {
+  metadata: QuizMetadata | null;
   questions: QuizQuestion[];
   session: QuizSession | null;
+  expertMode: boolean | false;
 }
 
 @State<QuizStateModel>({
   name: 'quiz',
   defaults: {
+    metadata: null,
     questions: [],
     session: null,
+    expertMode: false,
   },
 })
 @Injectable()
@@ -38,22 +45,77 @@ export class QuizState {
   static getSession(state: QuizStateModel): QuizSession | null {
     return state.session;
   }
+
+  @Selector()
+  static getMeta(state: QuizStateModel): QuizMetadata | null {
+    return state.metadata;
+  }
+
+  @Selector()
+  static getExpertMode(state: QuizStateModel): boolean | false {
+    return state.expertMode;
+  }
+
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
     private _http: HttpClient
   ) {}
 
+  @Action(LoadQuizMetadata)
+  public setMeta(ctx: StateContext<QuizStateModel>) {
+    return this._http.get<QuizMetadata>(`${this._config.apiUrl}/quizmeta`).pipe(
+      tap((res) => {
+        ctx.patchState({
+          metadata: res,
+        });
+      })
+    );
+  }
+
+  @Action(ToggleExpertMode)
+  public setExpertMode(ctx: StateContext<QuizStateModel>) {
+    const state = ctx.getState();
+    ctx.setState({ ...state, expertMode: !state.expertMode });
+    return;
+  }
+
   @Action(LoadQuizQuestions)
-  public set(ctx: StateContext<QuizStateModel>) {
+  public set(
+    ctx: StateContext<QuizStateModel>,
+    { questionCount, tags, difficulty }: LoadQuizQuestions
+  ) {
+    let params;
+
+    if (tags == null) tags = [];
+
+    if (tags.length == 0 && difficulty.length == 0) {
+      params = new HttpParams().set('count', questionCount);
+    } else if (tags.length == 0) {
+      params = new HttpParams()
+        .set('count', questionCount)
+        .set('difficulty', difficulty.toString());
+    } else if (difficulty.length == 0) {
+      params = new HttpParams()
+        .set('count', questionCount)
+        .set('tags', JSON.stringify(tags));
+    } else {
+      params = new HttpParams()
+        .set('count', questionCount)
+        .set('tags', JSON.stringify(tags))
+        .set('difficulty', difficulty.toString());
+    }
+
     return this._http
-      .get<QuizQuestion[]>(`${this._config.apiUrl}/quizquestions`)
+      .get<QuizQuestion[]>(`${this._config.apiUrl}/quizsession`, {
+        params: params,
+      })
       .pipe(
         map((response) => {
           const mapit = (input: QuizQuestionApi[]): QuizQuestion[] => {
             return input.map((question) => {
               return {
                 ...question,
-                images: question.img.map((p) => new ImageModel(p)),
+                images: question.img.map((p) => new MediaModel(p)),
               };
             });
           };
@@ -68,12 +130,13 @@ export class QuizState {
   }
 
   @Action(StartQuizSession)
-  public startSession(
+  public startNewSession(
     { patchState, getState }: StateContext<QuizStateModel>,
     { questionCount }: StartQuizSession
   ) {
-    const questions = getState().questions;
     const sessionQuestions: QuizQuestionInSession[] = [];
+    const questions = getState().questions;
+
     questionCount =
       questionCount > questions.length ? questions.length : questionCount;
     for (let i = 0; i < questionCount; ) {
@@ -108,7 +171,7 @@ export class QuizState {
     const session = { ...(getState().session as QuizSession) };
     const answeredQuestion = {
       ...session.questions[session.currentQuestion],
-      answered: (correct ? 1 : -1) as 1 | -1,
+      answered: correct as 0 | -1 | 1,
     };
     patchState({
       session: {

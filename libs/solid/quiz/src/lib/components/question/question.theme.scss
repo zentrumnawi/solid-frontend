@@ -30,12 +30,16 @@
 
     mat-card-content.multiple-choice {
       mat-checkbox {
-        &.correctselected {
+        &.correctSelected {
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette($quiz-correct);
           }
+
+          .mat-checkbox-label {
+            color: black !important;
+          }
         }
-        &.correctunselected {
+        &.correctUnselected {
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette(
               $quiz-correct,
@@ -44,17 +48,26 @@
           }
         }
 
-        &.incorrectselected {
+        &.incorrectSelected {
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette($quiz-incorrect);
           }
+
+          .mat-checkbox-label {
+            color: black !important;
+          }
         }
-        &.incorrectunselected {
+        &.incorrectUnselected {
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette(
               $quiz-incorrect,
               lighter
             );
+          }
+          .mat-checkbox-mixedmark {
+            &:after {
+              color: mat.get-color-from-palette($quiz-incorrect, lighter);
+            }
           }
         }
       }
@@ -62,6 +75,169 @@
 
     span.feedback {
       color: mat.get-color-from-palette($foreground, text);
+    }
+
+    .cdk-drag {
+      &.correctPosition {
+        border-right: 9px solid mat.get-color-from-palette($quiz-correct) !important;
+      }
+
+      &.incorrectPosition {
+        border-right: 9px solid mat.get-color-from-palette($quiz-incorrect) !important;
+      }
+
+      &.subsequence {
+        border-right: 9px solid mat.get-color-from-palette($accent) !important;
+        border-left: 9px solid mat.get-color-from-palette($quiz-correct) !important;
+      }
+    }
+
+    .trueBtn {
+      &:focus {
+        background-color: mat.get-color-from-palette($app-primary);
+        border-color: white;
+        color: white;
+      }
+
+      &.correctUnselected {
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+        color: black !important;
+      }
+
+      &.incorrectUnselected {
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+        color: black !important;
+        opacity: 0.4;
+      }
+
+      &.correctSelected {
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+        background-color: mat.get-color-from-palette($quiz-correct) !important;
+        color: white !important;
+      }
+
+      &.incorrectSelected {
+        border-color: mat.get-color-from-palette($quiz-correct) !important;
+        background-color: mat.get-color-from-palette($quiz-correct) !important;
+        color: white !important;
+        opacity: 0.4;
+      }
+    }
+
+    .falseBtn {
+      &:focus {
+        background-color: mat.get-color-from-palette($app-primary);
+        border-color: white;
+        color: white;
+      }
+
+      &.correctUnselected {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        color: black !important;
+      }
+
+      &.incorrectUnselected {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        color: black !important;
+        opacity: 0.4;
+      }
+
+      &.correctSelected {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        background-color: mat.get-color-from-palette(
+          $quiz-incorrect
+        ) !important;
+        color: white !important;
+      }
+
+      &.incorrectSelected {
+        border-color: mat.get-color-from-palette($quiz-incorrect) !important;
+        background-color: mat.get-color-from-palette(
+          $quiz-incorrect
+        ) !important;
+        color: white !important;
+        opacity: 0.4;
+      }
+    }
+
+    .correctIcon {
+      color: mat.get-color-from-palette($quiz-correct);
+    }
+
+    .incorrectIcon {
+      color: mat.get-color-from-palette($quiz-incorrect);
+    }
+
+    mat-radio-button.mat-radio-disabled .mat-radio-inner-circle {
+      background-color: white !important;
+    }
+
+    .mat-checkbox-mixedmark {
+      &:after {
+        color: mat.get-color-from-palette($quiz-incorrect);
+      }
+    }
+
+    mat-slider:not(.mat-slider-disabled).cdk-focused.mat-slider-thumb-label-showing
+      .mat-slider-thumb {
+      border-color: mat.get-color-from-palette($accent) !important;
+      background-color: white !important;
+    }
+
+    mat-slider {
+      &.correctRange {
+        .mat-slider-track-fill {
+          background-color: mat.get-color-from-palette(
+            $quiz-correct
+          ) !important;
+        }
+        .mat-slider-thumb {
+          background-color: mat.get-color-from-palette(
+            $quiz-correct
+          ) !important;
+          border: none !important;
+        }
+      }
+
+      &.incorrectRange {
+        .mat-slider-track-fill {
+          background-color: mat.get-color-from-palette(
+            $quiz-incorrect
+          ) !important;
+        }
+        .mat-slider-thumb {
+          background-color: mat.get-color-from-palette(
+            $quiz-incorrect
+          ) !important;
+          border: none !important;
+        }
+      }
+    }
+
+    #correctThumb {
+      &.correct {
+        background-color: mat.get-color-from-palette($quiz-correct);
+      }
+
+      &.incorrect {
+        border: solid 2px mat.get-color-from-palette($quiz-correct);
+
+        p {
+          color: black !important;
+        }
+      }
+    }
+
+    .minTick {
+      background-color: mat.get-color-from-palette($accent);
+
+      &.correct {
+        background-color: mat.get-color-from-palette($quiz-correct);
+      }
+
+      &.incorrect {
+        background-color: mat.get-color-from-palette($quiz-incorrect);
+      }
     }
   }
 }
