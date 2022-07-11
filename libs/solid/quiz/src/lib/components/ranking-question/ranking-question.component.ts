@@ -6,14 +6,14 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
   selector: 'solid-quiz-ranking-question',
   templateUrl: './ranking-question.component.html',
-  styleUrls: ['./ranking-question.component.scss']
+  styleUrls: ['./ranking-question.component.scss'],
 })
 export class RankingQuestionComponent implements OnInit, OnChanges {
   @Input() public question!: QuizQuestion;
@@ -32,7 +32,7 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
     for (let i = 0; i < this.question.answers.length; ++i) {
       this.answersList.push({
         text: this.question.answers[i].text,
-        correct_position: this.question.answers[i].ranking_position
+        correct_position: this.question.answers[i].ranking_position,
       });
     }
   }

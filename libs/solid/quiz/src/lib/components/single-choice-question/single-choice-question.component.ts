@@ -4,7 +4,7 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
@@ -12,7 +12,7 @@ import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
 @Component({
   selector: 'solid-quiz-single-choice-question',
   templateUrl: './single-choice-question.component.html',
-  styleUrls: ['./single-choice-question.component.scss']
+  styleUrls: ['./single-choice-question.component.scss'],
 })
 export class SingleChoiceQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;

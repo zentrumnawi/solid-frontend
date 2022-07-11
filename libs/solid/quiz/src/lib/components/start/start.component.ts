@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import {
   LoadQuizQuestions,
   StartQuizSession,
-  ToggleExpertMode
+  ToggleExpertMode,
 } from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
 import { QuizState } from '../../state/quiz.state';
@@ -17,7 +17,7 @@ import { MatSliderChange } from '@angular/material/slider';
 @Component({
   selector: 'solid-quiz-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;

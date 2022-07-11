@@ -4,14 +4,14 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
   selector: 'solid-quiz-true-false-question',
   templateUrl: './true-false-question.component.html',
-  styleUrls: ['./true-false-question.component.scss']
+  styleUrls: ['./true-false-question.component.scss'],
 })
 export class TrueFalseQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;

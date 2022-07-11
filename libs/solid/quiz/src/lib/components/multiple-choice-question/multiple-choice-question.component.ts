@@ -4,7 +4,7 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
@@ -12,7 +12,7 @@ import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
 @Component({
   selector: 'solid-quiz-multiple-choice-question',
   templateUrl: './multiple-choice-question.component.html',
-  styleUrls: ['./multiple-choice-question.component.scss']
+  styleUrls: ['./multiple-choice-question.component.scss'],
 })
 export class MultipleChoiceQuestionComponent implements OnChanges {
   @Input() public question!: QuizQuestion;
