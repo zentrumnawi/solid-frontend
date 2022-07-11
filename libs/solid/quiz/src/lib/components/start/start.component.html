@@ -12,7 +12,8 @@
   <mat-card-content class="content-container">
     <p>
       Mit diesen Fragen kann der persönliche Wissensstand in verschiedenen
-      Teilbereichen überprüft werden.
+      Teilbereichen überprüft werden. Die Fragen werden zufällig aus unserem
+      Fragenpool ausgewählt.
     </p>
     <p>
       Das Feedback gibt genauere Hinweise darüber, warum die gegebenen Antworten
@@ -20,8 +21,11 @@
       auf.
     </p>
     <p>
-      Die Fragen werden zufällig aus unserem Fragenpool ausgewählt - die
-      Fragenanzahl kann hier festgelegt werden:
+      Das Quiz kann direkt mit einer Auswahl von 10 Fragen gestartet werden.
+    </p>
+    <p>
+      Im <em>Expertenmodus</em> können Fragenanzahl, Schwierigkeitsgrad und
+      Themengebiet genauer eingestellt werden.
     </p>
   </mat-card-content>
   <mat-card-actions *ngIf="metaData$ | async as meta; else quizLoading">
@@ -121,8 +125,8 @@
     </div>
     <div class="formInvalid" *ngIf="!isValid">
       <p>
-        Ooops in dieser Kombination gibt es keine Fragen, versuche eine andere
-        Kombination
+        Ooops - es gibt keine Fragen mit diesen Eigenschaften. Versuche eine
+        andere Kombination.
       </p>
     </div>
   </mat-card-actions>
