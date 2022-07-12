@@ -17,8 +17,7 @@
   [disabled]="showAnswers"
   [indeterminate]="isAnswerIncorrect(answer)"
   color="primary"
->
-  {{ answer.text }}
+  ><p markdown [data]="answer.text"></p>
   <span
     *ngIf="showAnswers && selectedAnswers.includes(answer.id)"
     [data]="
