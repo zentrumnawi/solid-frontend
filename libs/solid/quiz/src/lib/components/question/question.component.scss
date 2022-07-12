@@ -70,19 +70,16 @@ mat-card-content.single-choice {
 mat-card-content.multiple-choice {
   display: flex;
   flex-direction: column;
-  margin-left: 0.5rem;
 }
 
 mat-card-content.true-false {
   display: flex;
   flex-direction: column;
-  margin-left: 0.5rem;
 }
 
 mat-card-content.ranking {
   display: flex;
   flex-direction: column;
-  margin-left: 0.5rem;
 }
 
 @media (max-width: 999px) {

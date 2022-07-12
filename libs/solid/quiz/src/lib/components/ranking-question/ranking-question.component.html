@@ -16,7 +16,8 @@
     "
     *ngFor="let answer of answersList; let index = index"
   >
-    {{ answer.text }}
+    <p class="answerText" [data]="answer.text" markdown></p>
+    <!--p>{{ answer.text }}gg</p-->
     <div class="feedback-icon" *ngIf="showAnswers">
       <mat-icon
         *ngIf="
