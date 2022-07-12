@@ -5,7 +5,7 @@ import { QuizQuestion } from '../../state/quiz.model';
 @Component({
   selector: 'solid-quiz-range-question',
   templateUrl: './range-question.component.html',
-  styleUrls: ['./range-question.component.scss'],
+  styleUrls: ['./range-question.component.scss']
 })
 export class RangeQuestionComponent {
   @Input() public question!: QuizQuestion;
@@ -23,8 +23,7 @@ export class RangeQuestionComponent {
 
     if (this.correct != -2) {
       if (Math.abs(this.sliderPosition - value) <= tolerance) this.correct = 1;
-    }
-    this.correct = 0;
+    } else this.correct = 0;
 
     setTimeout(() => {
       const correctThumb = document.getElementById('correctThumb');
