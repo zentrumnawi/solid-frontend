@@ -10,7 +10,7 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'solid-quiz-end',
   templateUrl: './end.component.html',
-  styleUrls: ['./end.component.scss'],
+  styleUrls: ['./end.component.scss']
 })
 export class EndComponent implements OnDestroy {
   private $destroyed = new Subject<boolean>();
@@ -49,6 +49,8 @@ export class EndComponent implements OnDestroy {
             feedbacks = QuizFeedback.lt75;
           } else if (this.correctPercentage === 1) {
             feedbacks = QuizFeedback.e100;
+          } else if (isNaN(this.correctPercentage)) {
+            feedbacks = QuizFeedback.nan;
           } else {
             feedbacks = QuizFeedback.ge75;
           }
