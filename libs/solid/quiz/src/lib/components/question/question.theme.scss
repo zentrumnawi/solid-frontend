@@ -221,10 +221,30 @@
 
       &.incorrect {
         border: solid 2px mat.get-color-from-palette($quiz-correct);
+        background-color: white;
 
         p {
           color: black !important;
         }
+      }
+    }
+    #toleranceBar {
+      &.correct {
+        background-color: mat.get-color-from-palette($quiz-correct);
+      }
+
+      &.incorrect {
+        background-color: solid 2px mat.get-color-from-palette($quiz-correct);
+      }
+    }
+
+    #selectedThumb {
+      &.correct {
+        border: solid 2px mat.get-color-from-palette($quiz-correct);
+      }
+      &.incorrect {
+        border: solid 2px mat.get-color-from-palette($quiz-incorrect);
+        background-color: white;
       }
     }
 
