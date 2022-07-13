@@ -7,9 +7,9 @@ import { Component, HostBinding, Input } from '@angular/core';
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
-    class: 'md-rendered'
+    class: 'md-rendered',
   },
-  styleUrls: ['./markdown.component.scss']
+  styleUrls: ['./markdown.component.scss'],
 })
 export class MarkdownComponent {
   @Input() public set inline(value: boolean) {
