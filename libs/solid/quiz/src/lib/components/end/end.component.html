@@ -54,7 +54,7 @@
       </mat-icon>
       <div class="questionText">
         <span class="questionHeader">Frage {{ i + 1 }}: </span>
-        {{ question.text }}
+        <span [appendData]="question.text" markdown></span>
       </div>
     </div>
   </mat-expansion-panel>
