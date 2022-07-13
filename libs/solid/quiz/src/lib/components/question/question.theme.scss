@@ -229,13 +229,11 @@
       }
     }
     #toleranceBar {
-      &.correct {
-        background-color: mat.get-color-from-palette($quiz-correct);
-      }
-
-      &.incorrect {
-        background-color: solid 2px mat.get-color-from-palette($quiz-correct);
-      }
+      background-image: radial-gradient(
+        circle,
+        mat.get-color-from-palette($quiz-correct, 0.7),
+        rgba(255, 0, 0, 0)
+      );
     }
 
     #selectedThumb {
