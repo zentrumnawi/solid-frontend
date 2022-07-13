@@ -41,8 +41,15 @@ export class RangeQuestionComponent {
         const selectedPos = (this.sliderPosition - min) * scalingFactor;
 
         correctThumb.style.left = correctPos - 10 + 'px';
-        toleranceBar.style.width = toleranceWidth + 'px';
-        toleranceBar.style.left = correctPos - toleranceWidth / 2 + 'px';
+
+        console.log(this.correct, this.sliderPosition - correctValue);
+
+        if (this.correct === 1 && this.sliderPosition - correctValue !== 0) {
+          toleranceBar.style.width = toleranceWidth + 'px';
+          toleranceBar.style.left = correctPos - toleranceWidth / 2 + 'px';
+        } else {
+          toleranceBar.style.visibility = 'hidden';
+        }
 
         if (this.correct === 0 || this.sliderPosition - correctValue === 0) {
           selectedThumb.style.visibility = 'hidden';
