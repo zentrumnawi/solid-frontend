@@ -9,6 +9,7 @@ mat-checkbox {
         font-weight: bold;
       }
     }
+
     span.mat-checkbox-label {
       display: flex;
       flex-direction: column;
@@ -57,6 +58,14 @@ mat-checkbox {
         line-height: 10px;
         text-align: center;
       }
+    }
+  }
+}
+
+.answer {
+  ::ng-deep {
+    p {
+      margin-bottom: 0px;
     }
   }
 }

@@ -17,14 +17,15 @@
   [disabled]="showAnswers"
   [indeterminate]="isAnswerIncorrect(answer)"
   color="primary"
-  ><p markdown [data]="answer.text"></p>
+>
+  <span class="answer" markdown [data]="answer.text"></span>
   <span
+    class="feedback"
     *ngIf="showAnswers && selectedAnswers.includes(answer.id)"
     [data]="
       answer.correct ? answer.feedback_correct : answer.feedback_incorrect
     "
     markdown
-    class="feedback"
   ></span>
 </mat-checkbox>
 <button
