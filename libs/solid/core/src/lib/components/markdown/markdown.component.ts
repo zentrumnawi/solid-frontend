@@ -19,6 +19,7 @@ export class MarkdownComponent {
   @HostBinding('innerHTML') public innerHTML = '';
   private _data = '';
   private _inline = false;
+
   @HostBinding('class.md-inline') public inlineClass = () => this._inline;
   constructor(private _md: MarkdownService) {}
 
@@ -30,7 +31,9 @@ export class MarkdownComponent {
 
   @Input() public set appendData(value: string) {
     if (value !== null) {
-      this.innerHTML = this._md.compile(this._data, this._inline) + `${value}`;
+      this.innerHTML =
+        this._md.compile(this._data, this._inline) +
+        `<span class="media-object-title"> | ${value}<span>`;
     }
   }
 
