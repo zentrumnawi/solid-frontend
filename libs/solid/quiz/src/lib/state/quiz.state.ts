@@ -1,10 +1,11 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
+  QuizAnswer,
   QuizMetadata,
   QuizQuestion,
   QuizQuestionApi,
   QuizQuestionInSession,
-  QuizSession,
+  QuizSession
 } from './quiz.model';
 import {
   LoadQuizQuestions,
@@ -12,14 +13,14 @@ import {
   EndQuizSession,
   QuizQuestionAnswered,
   LoadQuizMetadata,
-  ToggleExpertMode,
+  ToggleExpertMode
 } from './quiz.actions';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import {
   SOLID_CORE_CONFIG,
   SolidCoreConfig,
-  MediaModel,
+  MediaModel
 } from '@zentrumnawi/solid-core';
 import { map, tap } from 'rxjs/operators';
 
@@ -36,8 +37,8 @@ export interface QuizStateModel {
     metadata: null,
     questions: [],
     session: null,
-    expertMode: false,
-  },
+    expertMode: false
+  }
 })
 @Injectable()
 export class QuizState {
@@ -66,7 +67,7 @@ export class QuizState {
     return this._http.get<QuizMetadata>(`${this._config.apiUrl}/quizmeta`).pipe(
       tap((res) => {
         ctx.patchState({
-          metadata: res,
+          metadata: res
         });
       })
     );
@@ -107,7 +108,7 @@ export class QuizState {
 
     return this._http
       .get<QuizQuestion[]>(`${this._config.apiUrl}/quizsession`, {
-        params: params,
+        params: params
       })
       .pipe(
         map((response) => {
@@ -115,7 +116,7 @@ export class QuizState {
             return input.map((question) => {
               return {
                 ...question,
-                images: question.img.map((p) => new MediaModel(p)),
+                images: question.img.map((p) => new MediaModel(p))
               };
             });
           };
@@ -123,7 +124,7 @@ export class QuizState {
         }),
         tap((res) => {
           ctx.patchState({
-            questions: res,
+            questions: res
           });
         })
       );
@@ -144,22 +145,37 @@ export class QuizState {
       if (sessionQuestions.find((q) => q.id === questions[rnd].id)) {
         continue;
       }
-      sessionQuestions.push({ answered: 0, ...questions[rnd] });
+      const newQuestions = { ...questions[rnd] };
+      newQuestions.answers = [];
+      for (let j = 0; j < questions[rnd].answers.length; ) {
+        const random = Math.floor(
+          Math.random() * questions[rnd].answers.length
+        );
+        if (
+          newQuestions.answers.find(
+            (a) => a.id === questions[rnd].answers[random].id
+          )
+        )
+          continue;
+        newQuestions.answers.push(questions[rnd].answers[random]);
+        j++;
+      }
+      sessionQuestions.push({ answered: 0, ...newQuestions });
       i++;
     }
     patchState({
       session: {
         progress: 0,
         currentQuestion: 0,
-        questions: sessionQuestions,
-      },
+        questions: sessionQuestions
+      }
     });
   }
 
   @Action(EndQuizSession)
   public endSession({ patchState }: StateContext<QuizStateModel>) {
     patchState({
-      session: null,
+      session: null
     });
   }
 
@@ -171,7 +187,7 @@ export class QuizState {
     const session = { ...(getState().session as QuizSession) };
     const answeredQuestion = {
       ...session.questions[session.currentQuestion],
-      answered: correct as 0 | -1 | 1,
+      answered: correct as 0 | -1 | 1
     };
     patchState({
       session: {
@@ -180,8 +196,8 @@ export class QuizState {
           (100.0 / session.questions.length) * (session.currentQuestion + 1),
         questions: session.questions.map((q) =>
           q.id === answeredQuestion.id ? answeredQuestion : q
-        ),
-      },
+        )
+      }
     });
   }
 }
