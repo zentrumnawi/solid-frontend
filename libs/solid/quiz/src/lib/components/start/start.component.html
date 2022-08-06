@@ -35,9 +35,16 @@
         (click)="onStartClick()"
         mat-raised-button
         color="primary"
+        [disabled]="!isValid"
       >
         Quiz starten
       </button>
+      <div class="formInvalid" *ngIf="!isValid">
+        <p>
+          Ooops - es gibt keine Fragen mit diesen Eigenschaften. Versuche eine
+          andere Kombination.
+        </p>
+      </div>
       <mat-slide-toggle
         class="expBtn"
         [checked]="expertModeStatus"
@@ -122,12 +129,6 @@
           </mat-chip-list>
         </div>
       </div>
-    </div>
-    <div class="formInvalid" *ngIf="!isValid">
-      <p>
-        Ooops - es gibt keine Fragen mit diesen Eigenschaften. Versuche eine
-        andere Kombination.
-      </p>
     </div>
   </mat-card-actions>
 </mat-card>
