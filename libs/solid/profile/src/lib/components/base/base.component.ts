@@ -12,7 +12,7 @@ import {
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../../state/profile.state';
 import { TreeNode, Profile } from '../../state/profile.model';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
@@ -55,7 +55,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @ViewChild('contentContainer', { static: false })
   public ContentContainer!: ElementRef;
   public SplitLayout = false;
-  public Filter = new FormControl('');
+  public Filter = new UntypedFormControl('');
   public FilterValue = new BehaviorSubject<string>('');
   public SelectedProfile: Profile | null = null;
   public SelectedNode: TreeNode | null = null;
