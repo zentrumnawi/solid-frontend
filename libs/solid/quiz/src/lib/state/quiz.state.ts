@@ -145,22 +145,22 @@ export class QuizState {
       if (sessionQuestions.find((q) => q.id === questions[rnd].id)) {
         continue;
       }
-      const newQuestions = { ...questions[rnd] };
-      newQuestions.answers = [];
+      const rndQuestions = { ...questions[rnd] };
+      rndQuestions.answers = [];
       for (let j = 0; j < questions[rnd].answers.length; ) {
         const random = Math.floor(
           Math.random() * questions[rnd].answers.length
         );
         if (
-          newQuestions.answers.find(
+          rndQuestions.answers.find(
             (a) => a.id === questions[rnd].answers[random].id
           )
         )
           continue;
-        newQuestions.answers.push(questions[rnd].answers[random]);
+        rndQuestions.answers.push(questions[rnd].answers[random]);
         j++;
       }
-      sessionQuestions.push({ answered: 0, ...newQuestions });
+      sessionQuestions.push({ answered: 0, ...rndQuestions });
       i++;
     }
     patchState({
