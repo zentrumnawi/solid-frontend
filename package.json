@@ -94,7 +94,7 @@
     "@types/openseadragon": "^3.0.2",
     "@types/punycode": "^2.1.0",
     "@types/swagger-schema-official": "^2.0.22",
-    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/eslint-plugin": "5.36.1",
     "@typescript-eslint/parser": "5.10.2",
     "canvas": "^2.9.2",
     "eslint": "8.18.0",
