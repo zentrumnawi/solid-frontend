@@ -26,7 +26,7 @@ export class BaseLayoutComponent implements OnInit {
   @ViewChild('mainmenu', { static: true }) MainMenu?: MatDrawer;
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
-  // noinspection JSUnusedLocalSymbols
+  //noinspection JSUnusedLocalSymbols
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
