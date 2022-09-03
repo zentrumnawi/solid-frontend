@@ -9,14 +9,14 @@ const routes: Routes = [
     children: [
       {
         path: ':categoriesSlug/:slideshowId/:slideshowPageId',
-        component: SlideshowSelectComponent
+        component: SlideshowSelectComponent,
       },
       {
         path: '**',
-        redirectTo: ''
-      }
-    ]
-  }
+        redirectTo: '',
+      },
+    ],
+  },
 ];
 
 export const SolidSlideshowRoutingModule = RouterModule.forChild(routes);
