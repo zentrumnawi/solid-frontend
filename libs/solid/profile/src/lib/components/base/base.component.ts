@@ -7,7 +7,7 @@ import {
   Inject,
   OnInit,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../../state/profile.state';
@@ -20,7 +20,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
   LoadDefinition,
   LoadDefinitionSwagger,
-  LoadProfiles,
+  LoadProfiles
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
@@ -31,13 +31,13 @@ export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
 }
 export enum APP {
-  DIVE = 'Div-e',
+  DIVE = 'Div-e'
 }
 
 @Component({
   selector: 'solid-profile-base',
   templateUrl: './base.component.html',
-  styleUrls: ['./base.component.scss'],
+  styleUrls: ['./base.component.scss']
 })
 export class BaseComponent implements OnInit, AfterViewInit {
   public APP_NAME_DIVE = APP.DIVE;
@@ -84,8 +84,8 @@ export class BaseComponent implements OnInit, AfterViewInit {
     this._store.dispatch([
       new LoadDefinition(),
       new LoadProfiles(),
-      //Load definitions from OpenAPI 2.0
-      new LoadDefinitionSwagger(),
+      // Load definitions from OpenAPI 2.0
+      new LoadDefinitionSwagger()
     ]);
   }
 
@@ -94,7 +94,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
       this.$routerParams,
       this.$profileAndCategorySelector,
       this.$profilesFlat,
-      this.FilterValue,
+      this.FilterValue
     ])
       .pipe(
         map((v) => {
@@ -102,7 +102,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
             params: v[0],
             selector: v[1],
             flat: v[2],
-            filterStr: v[3],
+            filterStr: v[3]
           };
 
           // select profile
@@ -131,7 +131,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
               selectedNode: null,
               profilesFlatFiltered,
               swipeRight: -1,
-              swipeLeft: -1,
+              swipeLeft: -1
             };
           }
           let swipeRight = -1;
@@ -174,7 +174,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
             selectedNode: profileAndNode.node,
             profilesFlatFiltered,
             swipeRight,
-            swipeLeft,
+            swipeLeft
           };
         })
       )
@@ -266,7 +266,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
         [
           `${this.baseUrl}`,
           this.View === 'tree' ? 'grid' : 'tree',
-          this.SelectedProfile.id,
+          this.SelectedProfile.id
         ],
         undefined,
         { replaceUrl: true }
