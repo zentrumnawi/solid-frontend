@@ -3171,10 +3171,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ngxs/store@3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.3.tgz#74e2878d527fc12dace343ce43fd79fa1a2645af"
-  integrity sha512-JjATXC7FsxxQu2SaayP/iLe4O+5/RkRov3/J7WkaQmV6/JWFNkkdOwbEa6pDbh/po0JO7DHHMk3huIUNpDu67g==
+"@ngxs/store@^3.7.5":
+  version "3.7.5"
+  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.5.tgz#5698e2d71751ed77922f50be5db41a466f74163a"
+  integrity sha512-SGM+m5EK+5Vy+j6jy5Vgyv7rl59/DsizNntgelPHh5LVfX+Ynm/YkkpHMh442k0bqbXbbsvCxkbEIL48n+H9/Q==
   dependencies:
     tslib "^1.9.0"
 
@@ -7166,10 +7166,10 @@ caniuse-lite@^1.0.30001335, caniuse-lite@^1.0.30001358:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001359.tgz#a1c1cbe1c2da9e689638813618b4219acbd4925e"
   integrity sha512-Xln/BAsPzEuiVLgJ2/45IaqD9jShtk3Y33anKb4+yLwQzws3+v6odKfpgES/cDEaZMLzSChpIGdbOYtH9MyuHw==
 
-canvas@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.9.2.tgz#7a088a548c9832df1a6d9711f8cd935ca1082224"
-  integrity sha512-ldUKpdUdGp0enZmLbevXBcOqUrcoXHmkjOCpk0kXxqYfjJyVMzeM613j/NHJmzKaDNaMhRBHegqmGInyhgA+Kg==
+canvas@^2.9.3:
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.9.3.tgz#8723c4f970442d4cdcedba5221579f9660a58bdb"
+  integrity sha512-WOUM7ghii5TV2rbhaZkh1youv/vW1/Canev6Yx6BG2W+1S07w8jKZqKkPnbiPpQEDsnJdN8ouDd7OvQEGXDcUw==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
     nan "^2.15.0"
