@@ -185,6 +185,7 @@
               "markdown-it-sub",
               "markdown-it-sup"
             ],
+
             "outputPath": "dist/apps/dive",
             "index": "apps/dive/src/index.html",
             "main": "apps/dive/src/main.ts",

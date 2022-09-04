@@ -9,7 +9,7 @@ import {
   SchematicContext,
   SchematicsException,
   Tree,
-  url,
+  url
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Schema } from './schema';
@@ -22,7 +22,7 @@ import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import {
   getEnvironmentExportName,
   insertImport,
-  addSymbolToNgModuleMetadata,
+  addSymbolToNgModuleMetadata
 } from '@schematics/angular/utility/ast-utils';
 import { DEPENDENCIES } from '../dependencies';
 import { normalize } from '@angular-devkit/core';
@@ -31,7 +31,7 @@ import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeSc
 const materialOptions = {
   theme: 'custom',
   typography: true,
-  animations: true,
+  animations: true
 };
 
 export function addBaseDependency() {
@@ -91,24 +91,24 @@ const modulesToImport: [string, string, string?][] = [
     '@ngxs/store',
     `NgxsModule.forRoot([], {
       developmentMode: !ENV_NAME.production
-    })`,
+    })`
   ],
   [
     'NgxsDispatchPluginModule',
     '@ngxs-labs/dispatch-decorator',
-    'NgxsDispatchPluginModule.forRoot()',
+    'NgxsDispatchPluginModule.forRoot()'
   ],
   [
     'NgxsRouterPluginModule',
     '@ngxs/router-plugin',
-    'NgxsRouterPluginModule.forRoot()',
+    'NgxsRouterPluginModule.forRoot()'
   ],
   [
     'NgxsReduxDevtoolsPluginModule',
     '@ngxs/devtools-plugin',
     `NgxsReduxDevtoolsPluginModule.forRoot({
       disabled: ENV_NAME.production
-    })`,
+    })`
   ],
   ['MatButtonModule', '@angular/material/button'],
   ['MatCardModule', '@angular/material/card'],
@@ -116,16 +116,16 @@ const modulesToImport: [string, string, string?][] = [
   [
     'RouterModule',
     '@angular/router',
-    "RouterModule.forRoot([], { onSameUrlNavigation: 'reload' })",
-  ],
+    "RouterModule.forRoot([], { onSameUrlNavigation: 'reload' })"
+  ]
 ];
 
 const componentsToImport: [string, string][] = [
   [
     'LandingBannerContentComponent',
-    './components/landing-banner-content/landing-banner-content.component',
+    './components/landing-banner-content/landing-banner-content.component'
   ],
-  ['PrivacyComponent', './components/privacy/privacy.component'],
+  ['PrivacyComponent', './components/privacy/privacy.component']
 ];
 
 export function addImportToNgModule(
@@ -135,7 +135,7 @@ export function addImportToNgModule(
   importPath: string,
   customImportFn?: string
 ) {
-  let moduleSource = getTsSourceFile(host, modulePath);
+  const moduleSource = getTsSourceFile(host, modulePath);
   {
     const change = insertImport(
       moduleSource,
@@ -177,7 +177,7 @@ export function updateAppModule(
 ): Rule {
   return (host: Tree) => {
     const modulePath = getAppModulePath(host, mainPath);
-    let moduleSource = getTsSourceFile(host, modulePath);
+    const moduleSource = getTsSourceFile(host, modulePath);
     for (const module of modulesToImport) {
       addImportToNgModule(
         host,
@@ -277,20 +277,18 @@ export default function ngAdd(options: Schema): Rule {
           ...options,
           environment,
           prefix: project.prefix,
-          relativePathToWorkspaceRoot: relativePathToWorkspaceRoot(
-            project.root
-          ),
+          relativePathToWorkspaceRoot: relativePathToWorkspaceRoot(project.root)
         }),
         move(
           normalize(
             getAppModulePath(tree, buildOptions.main as string) + '/../..'
           )
-        ),
+        )
       ]);
       return chain([
         mergeWith(templateSource),
-        updateAppModule(mainPath, environment),
+        updateAppModule(mainPath, environment)
       ]);
-    },
+    }
   ]);
 }

@@ -1,11 +1,11 @@
 import {
   SchematicTestRunner,
-  UnitTestTree,
+  UnitTestTree
 } from '@angular-devkit/schematics/testing';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 import {
   Schema as ApplicationOptions,
-  Style,
+  Style
 } from '@schematics/angular/application/schema';
 import { getFileContent } from '@nrwl/workspace/testing';
 import { DEPENDENCIES } from '../dependencies';
@@ -18,7 +18,7 @@ describe('ng-add', () => {
   const workspaceOptions: WorkspaceOptions = {
     name: 'workspace',
     newProjectRoot: 'projects',
-    version: '6.0.0',
+    version: '6.0.0'
   };
 
   describe('with project', () => {
@@ -29,7 +29,7 @@ describe('ng-add', () => {
       routing: false,
       style: Style.Scss,
       skipTests: false,
-      skipPackageJson: false,
+      skipPackageJson: false
     };
 
     let appTree: UnitTestTree;
@@ -53,7 +53,7 @@ describe('ng-add', () => {
         .runSchematicAsync(
           'ng-add',
           {
-            name: 'test',
+            name: 'test'
           },
           appTree
         )
@@ -72,7 +72,7 @@ describe('ng-add', () => {
           '/projects/bar/src/app/components/landing-banner-content/landing-banner-content.component.html',
           '/projects/bar/src/app/components/privacy/privacy.component.ts',
           '/projects/bar/src/app/components/privacy/privacy.component.scss',
-          '/projects/bar/src/app/components/privacy/privacy.component.html',
+          '/projects/bar/src/app/components/privacy/privacy.component.html'
         ])
       );
     });
