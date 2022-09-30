@@ -3213,10 +3213,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ngxs/store@^3.7.5-dev.master-17a1bb8":
-  version "3.7.5-dev.master-17a1bb8"
-  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.5-dev.master-17a1bb8.tgz#db3bfab14bbafe305d7633bcfa5eb552d2f5c045"
-  integrity sha512-Uq5wzDOb0/2rsL8UDQYd0dkX1DiF7m5EI7PGWmiV+kl5C9uYxsKWQrByc7dd1+rJM5MY5HI/k/IcqqHAePnEXA==
+"@ngxs/store@3.7.3":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.3.tgz#74e2878d527fc12dace343ce43fd79fa1a2645af"
+  integrity sha512-JjATXC7FsxxQu2SaayP/iLe4O+5/RkRov3/J7WkaQmV6/JWFNkkdOwbEa6pDbh/po0JO7DHHMk3huIUNpDu67g==
   dependencies:
     tslib "^1.9.0"
 
