@@ -16,6 +16,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
             "outputPath": "dist/apps/ais",
             "index": "apps/ais/src/index.html",
             "main": "apps/ais/src/main.ts",
@@ -173,6 +178,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
             "outputPath": "dist/apps/dive",
             "index": "apps/dive/src/index.html",
             "main": "apps/dive/src/main.ts",
@@ -329,6 +339,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
             "outputPath": "dist/apps/geomat",
             "index": "apps/geomat/src/index.html",
             "main": "apps/geomat/src/main.ts",
@@ -476,6 +491,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
             "outputPath": "dist/apps/planty",
             "index": "apps/planty/src/index.html",
             "main": "apps/planty/src/main.ts",
