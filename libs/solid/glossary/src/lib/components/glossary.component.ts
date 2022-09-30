@@ -8,7 +8,7 @@ import {
 import { LoadGLossary } from '../glossary.actions';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { RefDirective } from './link.directive';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { map, startWith, takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -18,7 +18,7 @@ import { map, startWith, takeUntil } from 'rxjs/operators';
 })
 export class GlossaryComponent implements OnDestroy {
   private $destroyed = new Subject<boolean>();
-  public Filter = new FormControl('');
+  public Filter = new UntypedFormControl('');
   @ViewChildren(RefDirective, { read: RefDirective })
   public refElements!: QueryList<RefDirective>;
   @Select(GlossaryState.state)
