@@ -16,7 +16,7 @@ export class TitleService {
   ) {
     actions
       .pipe(
-        ofActionSuccessful(RouterNavigation<RouterStateParams>),
+        ofActionSuccessful(RouterNavigation),
         map(
           (value: RouterNavigation<RouterStateParams>) =>
             value.routerState.routeData.title
