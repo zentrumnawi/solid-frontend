@@ -5174,7 +5174,7 @@
   resolved "https://registry.yarnpkg.com/@types/openapi-v3/-/openapi-v3-3.0.0.tgz#44f4db08b4f9e2f25a716f37eff239c9578f006c"
   integrity sha512-28rr3cSUMosJLVuCrAVM1HixzjaspZ/sO9aKhnGGSZhnsu+ecG4MhAWG7ou6b4TXsM3Uns5RPD4xsmjPbp6zdA==
 
-"@types/openseadragon@^3.0.2":
+"@types/openseadragon@^3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/openseadragon/-/openseadragon-3.0.3.tgz#a8ae0b84da721652a240d17db4c06b0bc43ddfff"
   integrity sha512-qh9LilysFrZvM407R9K4Von10hZWD9JjLq6nmHEPz5GCqCjVXueoQGZUTfFv2K3Fzi7DPLFNxkx3AgJYli2OpA==
@@ -13715,7 +13715,7 @@ opener@^1.5.1, opener@^1.5.2:
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.2.tgz#5d37e1f35077b9dcac4301372271afdeb2a13598"
   integrity sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==
 
-openseadragon@^3.0.0:
+openseadragon@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/openseadragon/-/openseadragon-3.1.0.tgz#152b1ed8b6b03296feeed4e0ddf084cea7d0c1f2"
   integrity sha512-0zCbRIWUbCto7xm1tv2ZLEiSl84cDU659W/sfs2zqqTqVRa4CRHzhy7i9nsv6dHA1DryFR8IzjStjmWOqRs9Rg==
