@@ -3213,10 +3213,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ngxs/store@3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.3.tgz#74e2878d527fc12dace343ce43fd79fa1a2645af"
-  integrity sha512-JjATXC7FsxxQu2SaayP/iLe4O+5/RkRov3/J7WkaQmV6/JWFNkkdOwbEa6pDbh/po0JO7DHHMk3huIUNpDu67g==
+"@ngxs/store@^3.7.5":
+  version "3.7.5"
+  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.5.tgz#5698e2d71751ed77922f50be5db41a466f74163a"
+  integrity sha512-SGM+m5EK+5Vy+j6jy5Vgyv7rl59/DsizNntgelPHh5LVfX+Ynm/YkkpHMh442k0bqbXbbsvCxkbEIL48n+H9/Q==
   dependencies:
     tslib "^1.9.0"
 
@@ -5175,9 +5175,9 @@
   integrity sha512-28rr3cSUMosJLVuCrAVM1HixzjaspZ/sO9aKhnGGSZhnsu+ecG4MhAWG7ou6b4TXsM3Uns5RPD4xsmjPbp6zdA==
 
 "@types/openseadragon@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@types/openseadragon/-/openseadragon-3.0.2.tgz#4720875a23c9a2a09c12b73695ca0b3f337b6834"
-  integrity sha512-j+ML3ybCbEyHWPJjX7GVsR8OJakg0BSmuUpjioZYG0sYhwB9A90W8wThODLWJco5tirUBYMIIko25Z36mz8Law==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@types/openseadragon/-/openseadragon-3.0.3.tgz#a8ae0b84da721652a240d17db4c06b0bc43ddfff"
+  integrity sha512-qh9LilysFrZvM407R9K4Von10hZWD9JjLq6nmHEPz5GCqCjVXueoQGZUTfFv2K3Fzi7DPLFNxkx3AgJYli2OpA==
 
 "@types/overlayscrollbars@^1.12.0":
   version "1.12.1"
@@ -7196,10 +7196,10 @@ caniuse-lite@^1.0.30001358:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001359.tgz#a1c1cbe1c2da9e689638813618b4219acbd4925e"
   integrity sha512-Xln/BAsPzEuiVLgJ2/45IaqD9jShtk3Y33anKb4+yLwQzws3+v6odKfpgES/cDEaZMLzSChpIGdbOYtH9MyuHw==
 
-canvas@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.9.2.tgz#7a088a548c9832df1a6d9711f8cd935ca1082224"
-  integrity sha512-ldUKpdUdGp0enZmLbevXBcOqUrcoXHmkjOCpk0kXxqYfjJyVMzeM613j/NHJmzKaDNaMhRBHegqmGInyhgA+Kg==
+canvas@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.10.1.tgz#fbfd4b1b3b106c3454481d79d363ebadf8811c08"
+  integrity sha512-29pIjn9uwTUsIgJUNd7GXxKk8sg4iyJwLm1wIilNIqX1mVzXSc2nUij9exW1LqNpis1d2ebMYfMqTWcokZ4pdA==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
     nan "^2.15.0"
@@ -13716,9 +13716,9 @@ opener@^1.5.1, opener@^1.5.2:
   integrity sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==
 
 openseadragon@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/openseadragon/-/openseadragon-3.0.0.tgz#efaf47514eac24637e27482217d2e9fc3a3441de"
-  integrity sha512-IIl90uMZ8mi+W4IWJ0W6/xyz2SCcHeEMT6U5dcAN7UYJYAXWLYbmu3diWzoz4KE0JvMXbXC5wjRoACdTVrgaog==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/openseadragon/-/openseadragon-3.1.0.tgz#152b1ed8b6b03296feeed4e0ddf084cea7d0c1f2"
+  integrity sha512-0zCbRIWUbCto7xm1tv2ZLEiSl84cDU659W/sfs2zqqTqVRa4CRHzhy7i9nsv6dHA1DryFR8IzjStjmWOqRs9Rg==
 
 optionator@^0.8.1:
   version "0.8.3"
