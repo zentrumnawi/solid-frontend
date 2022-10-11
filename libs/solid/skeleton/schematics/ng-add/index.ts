@@ -135,7 +135,7 @@ export function addImportToNgModule(
   importPath: string,
   customImportFn?: string
 ) {
-  let moduleSource = getTsSourceFile(host, modulePath);
+  const moduleSource = getTsSourceFile(host, modulePath);
   {
     const change = insertImport(
       moduleSource,
@@ -177,7 +177,7 @@ export function updateAppModule(
 ): Rule {
   return (host: Tree) => {
     const modulePath = getAppModulePath(host, mainPath);
-    let moduleSource = getTsSourceFile(host, modulePath);
+    const moduleSource = getTsSourceFile(host, modulePath);
     for (const module of modulesToImport) {
       addImportToNgModule(
         host,

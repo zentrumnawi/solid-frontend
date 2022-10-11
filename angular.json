@@ -860,7 +860,7 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/solid/skeleton/jest.config.ts",
-            "passWithNoTests": false
+            "passWithNoTests": true
           },
           "outputs": ["coverage/libs/solid/skeleton"]
         }
