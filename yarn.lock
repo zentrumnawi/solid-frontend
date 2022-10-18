@@ -4313,10 +4313,10 @@
   resolved "https://registry.yarnpkg.com/@types/openapi-v3/-/openapi-v3-3.0.0.tgz#44f4db08b4f9e2f25a716f37eff239c9578f006c"
   integrity sha512-28rr3cSUMosJLVuCrAVM1HixzjaspZ/sO9aKhnGGSZhnsu+ecG4MhAWG7ou6b4TXsM3Uns5RPD4xsmjPbp6zdA==
 
-"@types/openseadragon@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@types/openseadragon/-/openseadragon-3.0.2.tgz#4720875a23c9a2a09c12b73695ca0b3f337b6834"
-  integrity sha512-j+ML3ybCbEyHWPJjX7GVsR8OJakg0BSmuUpjioZYG0sYhwB9A90W8wThODLWJco5tirUBYMIIko25Z36mz8Law==
+"@types/openseadragon@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@types/openseadragon/-/openseadragon-3.0.4.tgz#a6fcb71cb84c1e3986251d737ec0a671f5df1d08"
+  integrity sha512-sr0E3jetyP+alv6KDTA1UkktUZx5NUX3iH0M0wGeEIcutMITSEn9xhDD4UaKFe3svlkZhfbPOlY02Dwrwrk+Fg==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"

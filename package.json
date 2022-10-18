@@ -91,7 +91,7 @@
     "@types/markdown-it": "^12.2.1",
     "@types/minimist": "^1.2.2",
     "@types/node": "18.0.0",
-    "@types/openseadragon": "^3.0.2",
+    "@types/openseadragon": "^3.0.4",
     "@types/punycode": "^2.1.0",
     "@types/swagger-schema-official": "^2.0.22",
     "@typescript-eslint/eslint-plugin": "5.29.0",
