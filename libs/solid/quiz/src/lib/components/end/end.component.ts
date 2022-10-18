@@ -5,7 +5,7 @@ import { EndQuizSession, StartQuizSession } from '../../state/quiz.actions';
 import { QuizFeedback } from './end-feedback';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'solid-quiz-end',
@@ -14,7 +14,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class EndComponent implements OnDestroy {
   private $destroyed = new Subject<boolean>();
-  questionCount = new FormControl(10, [Validators.min(1)]);
+  questionCount = new UntypedFormControl(10, [Validators.min(1)]);
   QuizSession: QuizSession | null = null;
   FeedbackText = '';
   correctQuestions = 0;

@@ -1,6 +1,7 @@
-module.exports = {
-  preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/apps/dive',
+/* eslint-disable */
+export default {
+  preset: '../../../jest.preset.js',
+  coverageDirectory: '../../../coverage/libs/solid/core',
 
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +10,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  displayName: 'dive',
+  displayName: 'solid-core',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

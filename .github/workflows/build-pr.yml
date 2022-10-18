@@ -46,4 +46,4 @@ jobs:
           name: nx-jest
 
       - name: build - staging
-        run: yarn nx affected --target=build --base=origin/dev --parallel -c=staging --with-deps
+        run: yarn nx affected --target=build --base=origin/dev --parallel --configuration=staging
