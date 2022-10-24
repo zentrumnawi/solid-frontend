@@ -31,7 +31,7 @@ import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeSc
 const materialOptions = {
   theme: 'custom',
   typography: true,
-  animations: true,
+  animations: 'true',
 };
 
 export function addBaseDependency() {
@@ -135,7 +135,7 @@ export function addImportToNgModule(
   importPath: string,
   customImportFn?: string
 ) {
-  let moduleSource = getTsSourceFile(host, modulePath);
+  const moduleSource = getTsSourceFile(host, modulePath);
   {
     const change = insertImport(
       moduleSource,
@@ -177,7 +177,7 @@ export function updateAppModule(
 ): Rule {
   return (host: Tree) => {
     const modulePath = getAppModulePath(host, mainPath);
-    let moduleSource = getTsSourceFile(host, modulePath);
+    const moduleSource = getTsSourceFile(host, modulePath);
     for (const module of modulesToImport) {
       addImportToNgModule(
         host,
@@ -250,7 +250,7 @@ export default function ngAdd(options: Schema): Rule {
     async (tree: Tree, context: SchematicContext) => {
       const workspace = await getWorkspace(tree);
       if (!options.project) {
-        options.project = workspace.extensions.defaultProject as string;
+        options.project = workspace.projects.keys().next().value;
       }
       const project = workspace.projects.get(options.project);
       if (!project) {
