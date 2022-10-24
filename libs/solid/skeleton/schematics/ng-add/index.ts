@@ -250,7 +250,6 @@ export default function ngAdd(options: Schema): Rule {
     async (tree: Tree, context: SchematicContext) => {
       const workspace = await getWorkspace(tree);
       if (!options.project) {
-        // options.project = workspace.extensions.defaultProject as string;
         options.project = workspace.projects.keys().next().value;
       }
       const project = workspace.projects.get(options.project);
