@@ -221,10 +221,28 @@
 
       &.incorrect {
         border: solid 2px mat.get-color-from-palette($quiz-correct);
+        background-color: white;
 
         p {
           color: black !important;
         }
+      }
+    }
+    #toleranceBar {
+      background-image: radial-gradient(
+        circle,
+        mat.get-color-from-palette($quiz-correct, 0.7),
+        rgba(255, 0, 0, 0)
+      );
+    }
+
+    #selectedThumb {
+      &.correct {
+        border: solid 2px mat.get-color-from-palette($quiz-correct);
+      }
+      &.incorrect {
+        border: solid 2px mat.get-color-from-palette($quiz-incorrect);
+        background-color: white;
       }
     }
 

@@ -27,12 +27,14 @@
   </div>
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{ question.text }}</mat-card-title>
+      <mat-card-title>
+        <p [data]="question.text" markdown></p>
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div *ngIf="question.images.length > 0" class="image-container">
         <button
-          mat-icon-button
+          mat-mini-fab
           class="button-before"
           color="accent"
           *ngIf="question.images.length > 1"
@@ -53,7 +55,7 @@
         <button
           class="button-next"
           color="accent"
-          mat-icon-button
+          mat-mini-fab
           *ngIf="question.images.length > 1"
           (click)="swipe(ImageIndex, question.images.length, SWIPE_ACTION.LEFT)"
         >

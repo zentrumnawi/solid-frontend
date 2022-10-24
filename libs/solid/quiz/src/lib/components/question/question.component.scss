@@ -44,20 +44,16 @@ solid-core-media {
 
   .button-before {
     position: absolute;
-    left: 0;
-    top: 42%;
+    left: 1em;
+    top: 50%;
     z-index: 999;
-    width: 50px;
-    height: 50px;
   }
 
   .button-next {
     position: absolute;
-    right: 0;
-    top: 42%;
+    right: 1rem;
+    top: 50%;
     z-index: 999;
-    width: 50px;
-    height: 50px;
   }
 }
 
@@ -70,19 +66,16 @@ mat-card-content.single-choice {
 mat-card-content.multiple-choice {
   display: flex;
   flex-direction: column;
-  margin-left: 0.5rem;
 }
 
 mat-card-content.true-false {
   display: flex;
   flex-direction: column;
-  margin-left: 0.5rem;
 }
 
 mat-card-content.ranking {
   display: flex;
   flex-direction: column;
-  margin-left: 0.5rem;
 }
 
 @media (max-width: 999px) {

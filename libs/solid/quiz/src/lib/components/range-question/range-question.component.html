@@ -1,10 +1,4 @@
-<div class="range-container">
-  <span
-    class="minTick"
-    [class.correct]="showAnswers && correct === 1"
-    [class.incorrect]="(showAnswers && correct === -1) || correct === 0"
-  ></span>
-  <p class="minLabel">{{ question.answers[0].range_min }}</p>
+<div class="visualFeedbackContainer">
   <div
     id="correctThumb"
     *ngIf="showAnswers"
@@ -13,6 +7,16 @@
   >
     <p>{{ question.answers[0].range_value }}</p>
   </div>
+  <div id="toleranceBar" *ngIf="showAnswers"></div>
+</div>
+<div class="range-container">
+  <span
+    class="minTick"
+    [class.correct]="showAnswers && correct === 1"
+    [class.incorrect]="(showAnswers && correct === -1) || correct === 0"
+  ></span>
+  <p class="minLabel">{{ question.answers[0].range_min }}</p>
+
   <mat-slider
     id="slider"
     thumbLabel
@@ -28,23 +32,34 @@
   </mat-slider>
   <p class="maxLabel">{{ question.answers[0].range_max }}</p>
   <span class="maxTick"></span>
+</div>
 
-  <div class="feedback-container" *ngIf="showAnswers">
-    <mat-icon class="correctIcon" *ngIf="correct === 1"> check </mat-icon>
-    <mat-icon class="incorrectIcon" *ngIf="correct === -1 || correct === 0">
-      highlight_off
-    </mat-icon>
-    <span
-      class="feedback"
-      markdown
-      [data]="
-        correct === 1
-          ? this.question.answers[0].feedback_correct
-          : this.question.answers[0].feedback_incorrect
-      "
-    >
-    </span>
+<div class="visualFeedbackContainer">
+  <div
+    id="selectedThumb"
+    [class.correct]="showAnswers && correct === 1"
+    [class.incorrect]="(showAnswers && correct === -1) || correct === 0"
+    *ngIf="showAnswers"
+  >
+    <p>{{ sliderPosition }}</p>
   </div>
+</div>
+
+<div class="feedback-container" *ngIf="showAnswers">
+  <mat-icon class="correctIcon" *ngIf="correct === 1"> check_circle </mat-icon>
+  <mat-icon class="incorrectIcon" *ngIf="correct === -1 || correct === 0">
+    highlight_off
+  </mat-icon>
+  <span
+    class="feedback"
+    markdown
+    [data]="
+      correct === 1
+        ? this.question.answers[0].feedback_correct
+        : this.question.answers[0].feedback_incorrect
+    "
+  >
+  </span>
 </div>
 
 <div>

@@ -29,4 +29,9 @@ export const QuizFeedback = {
     'Na, da kann man wohl nicht mehr viel beibringen.',
     'Na? Klappt es mit den 100% auch bei der nächsten Runde?',
   ],
+  nan: [
+    'Rock bottom, I hope for your sake you nuked that level!',
+    'Wenn gar keine Frage beantwortet wurde, gibt es auch keine Gummipunkte!',
+    'Ein verweigerter Selbsttest? Come on!',
+  ],
 };

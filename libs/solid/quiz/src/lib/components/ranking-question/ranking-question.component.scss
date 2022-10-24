@@ -1,5 +1,5 @@
 .ranking-list {
-  width: 500px;
+  width: 100%;
   max-width: 100%;
   border: solid 1px #ccc;
   min-height: 60px;
@@ -23,6 +23,35 @@
   background: white;
   font-size: 14px;
   max-height: 61px;
+
+  ::ng-deep {
+    p {
+      margin-bottom: 0px !important;
+    }
+  }
+}
+
+.feedback-container {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  display: flex;
+  justify-self: stretch;
+  margin: 0px 4px;
+
+  .correctIcon {
+    margin: 4px;
+    font-weight: 400;
+  }
+
+  .incorrectIcon {
+    margin: 4px;
+    font-weight: 400;
+  }
+
+  .feedback {
+    margin: 6px;
+  }
 }
 
 .cdk-drag-preview {
@@ -49,7 +78,7 @@
 }
 
 span.feedback {
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .showAnswerBtn {

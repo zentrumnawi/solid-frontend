@@ -11,7 +11,7 @@
     [class.incorrect]="isAnswerIncorrect(answer)"
     [value]="answer.id"
   >
-    <p class="answer">{{ answer.text }}</p>
+    <span class="answer" markdown [data]="answer.text"></span>
     <mat-icon class="correctIcon" *ngIf="showAnswers && answer.correct"
       >check_circle</mat-icon
     >

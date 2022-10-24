@@ -16,7 +16,8 @@
     "
     *ngFor="let answer of answersList; let index = index"
   >
-    {{ answer.text }}
+    <p class="answerText" [data]="answer.text" markdown></p>
+    <!--p>{{ answer.text }}gg</p-->
     <div class="feedback-icon" *ngIf="showAnswers">
       <mat-icon
         *ngIf="
@@ -44,19 +45,25 @@
     </div>
   </div>
 </div>
-<span
-  class="feedback"
-  markdown
-  *ngIf="showAnswers"
-  [data]="
-    correct === 1
-      ? this.question.answers[index].feedback_correct
-      : hasSubsequence
-      ? this.question.answers[index].feedback_subsequences
-      : this.question.answers[index].feedback_incorrect
-  "
->
-</span>
+<div class="feedback-container" *ngIf="showAnswers">
+  <mat-icon class="correctIcon" *ngIf="correct === 1"> check_circle </mat-icon>
+  <mat-icon class="incorrectIcon" *ngIf="correct === -1 || correct === 0">
+    highlight_off
+  </mat-icon>
+  <span
+    class="feedback"
+    markdown
+    *ngIf="showAnswers"
+    [data]="
+      correct === 1
+        ? this.question.answers[index].feedback_correct
+        : hasSubsequence
+        ? this.question.answers[index].feedback_subsequences
+        : this.question.answers[index].feedback_incorrect
+    "
+  >
+  </span>
+</div>
 <button
   (click)="onShowAnswersClick()"
   *ngIf="!showAnswers"

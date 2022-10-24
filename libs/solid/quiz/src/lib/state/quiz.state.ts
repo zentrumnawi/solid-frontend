@@ -1,5 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
+  QuizAnswer,
   QuizMetadata,
   QuizQuestion,
   QuizQuestionApi,
@@ -144,7 +145,22 @@ export class QuizState {
       if (sessionQuestions.find((q) => q.id === questions[rnd].id)) {
         continue;
       }
-      sessionQuestions.push({ answered: 0, ...questions[rnd] });
+      const rndQuestions = { ...questions[rnd] };
+      rndQuestions.answers = [];
+      for (let j = 0; j < questions[rnd].answers.length; ) {
+        const random = Math.floor(
+          Math.random() * questions[rnd].answers.length
+        );
+        if (
+          rndQuestions.answers.find(
+            (a) => a.id === questions[rnd].answers[random].id
+          )
+        )
+          continue;
+        rndQuestions.answers.push(questions[rnd].answers[random]);
+        j++;
+      }
+      sessionQuestions.push({ answered: 0, ...rndQuestions });
       i++;
     }
     patchState({

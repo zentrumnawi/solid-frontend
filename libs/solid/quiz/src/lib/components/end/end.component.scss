@@ -145,8 +145,8 @@ mat-form-field {
 }
 
 .answerDetails {
-  margin: 0 0 1.5em 0;
-  display: flex;
+  margin: 0 0.5em 1.5em 0;
+  display: -webkit-box;
 }
 
 .correctIcon {
@@ -170,6 +170,7 @@ mat-form-field {
 
 .questionHeader {
   font-weight: 500;
+  margin-bottom: 0.5em;
 }
 
 .resultText {

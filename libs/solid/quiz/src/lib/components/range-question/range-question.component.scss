@@ -3,8 +3,7 @@
   grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: auto;
   place-items: center;
-  margin-top: 10px;
-  margin-left: 4px;
+  margin: 0px 4px;
 }
 
 .minTick {
@@ -20,7 +19,7 @@
 .minLabel {
   grid-column-start: 1;
   justify-self: start;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   grid-row-start: 2;
   transform: translateX(2px);
@@ -29,7 +28,7 @@
 .maxLabel {
   grid-column-start: 3;
   justify-self: end;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   grid-row-start: 2;
   transform: translateX(-4px);
@@ -53,15 +52,16 @@
   grid-row-start: 3;
   display: flex;
   justify-self: stretch;
+  margin: 0px 4px;
 
   .correctIcon {
     margin: 4px;
-    font-weight: bold;
+    font-weight: 400;
   }
 
   .incorrectIcon {
     margin: 4px;
-    font-weight: bold;
+    font-weight: 400;
   }
 
   .feedback {
@@ -118,24 +118,64 @@
   }
 }
 
-#correctThumb {
-  border-radius: 50% 50% 0;
-  transform: rotate(45deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  top: 53px;
-  left: -50px;
+.visualFeedbackContainer {
+  height: 4px;
+  margin: 10px 4px 0px 4px;
 
-  p {
-    font-weight: bold;
-    font-size: 13px;
-    margin: 0px;
-    transform: rotate(-45deg);
-    color: white;
+  #correctThumb {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    top: -15px;
+    border-radius: 50% 50% 0;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+
+    p {
+      font-weight: 500;
+      font-size: 12px;
+      margin: 0px;
+      transform: rotate(-45deg);
+      color: white;
+    }
+  }
+
+  #toleranceBar {
+    position: relative;
+    width: 5px;
+    height: 15px;
+    top: -37px;
+  }
+
+  #selectedThumb {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    top: -45px;
+    border-radius: 0 50% 50%;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+
+    p {
+      font-weight: 500;
+      font-size: 12px;
+      margin: 0px;
+      transform: rotate(-45deg);
+      color: black;
+    }
+  }
+
+  #valueLabel {
+    position: relative;
+    font-size: 12px;
+    font-weight: 500;
+    top: -32px;
   }
 }
 

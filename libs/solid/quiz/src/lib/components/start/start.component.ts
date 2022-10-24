@@ -86,14 +86,17 @@ export class StartComponent implements OnDestroy, OnInit {
 
   onSliderChange(change: MatSliderChange) {
     if (change.value) this.questionCount = change.value;
+    this.isValid = true;
   }
 
   onButtonToggleChange(change: MatButtonToggleChange) {
     this.chosenDifficulty = change.value;
+    this.isValid = true;
   }
 
   onTagSelectionChange(change: MatChipListChange) {
     this.chosenTags = change.value;
+    this.isValid = true;
   }
 
   onDeselectAllTagClick() {

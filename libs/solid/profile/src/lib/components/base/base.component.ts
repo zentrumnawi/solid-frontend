@@ -84,7 +84,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
     this._store.dispatch([
       new LoadDefinition(),
       new LoadProfiles(),
-      //Load definitions from OpenAPI 2.0
+      // Load definitions from OpenAPI 2.0
       new LoadDefinitionSwagger(),
     ]);
   }
