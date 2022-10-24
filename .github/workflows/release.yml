@@ -49,7 +49,7 @@ jobs:
           name: nx-jest
 
       - name: build - production
-        run: yarn nx run-many --target=build --all --parallel -c=production
+        run: yarn nx run-many --target=build --all --parallel --configuration=production
 
       - name: Deploy dive-production
         uses: appleboy/scp-action@v0.0.10
