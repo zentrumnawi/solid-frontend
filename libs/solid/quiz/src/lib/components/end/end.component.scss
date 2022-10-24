@@ -145,8 +145,8 @@ mat-form-field {
 }
 
 .answerDetails {
-  margin: 0 0 1.5em 0;
-  display: flex;
+  margin: 0 0.5em 1.5em 0;
+  display: -webkit-inline-box;
 }
 
 .correctIcon {
