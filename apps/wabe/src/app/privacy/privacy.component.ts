@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ais-privacy',
+  selector: 'wabe-privacy',
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.scss'],
 })
