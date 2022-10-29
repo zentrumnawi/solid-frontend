@@ -1,0 +1,88 @@
+@use '@angular/material' as mat;
+@import 'glossary-theme';
+@import 'skeleton-theme';
+@import 'slideshow-theme';
+
+/* For use in src/lib/core/theming/_palette.scss */
+$ais-primary: (
+  50: #f1eeec,
+  100: #ddd4d0,
+  200: #c6b7b1,
+  300: #af9a92,
+  400: #9e847a,
+  500: #8d6e63,
+  600: #85665b,
+  700: #7a5b51,
+  800: #705147,
+  900: #5d3f35,
+  A100: #ffc1ae,
+  A200: #ff9a7b,
+  A400: #ff7248,
+  A700: #ff5f2f,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
+  ),
+);
+
+$ais-accent: (
+  50: #fffbf6,
+  100: #fff6e8,
+  200: #fff0d9,
+  300: #ffe9c9,
+  400: #ffe5be,
+  500: #ffe0b2,
+  600: #ffdcab,
+  700: #ffd8a2,
+  800: #ffd399,
+  900: #ffcb8a,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #ffffff,
+  A700: #ffffff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+// convenient Tool: http://mcg.mbitson.com/ (use Angular JS (Material 2) output format)
+
+$app-primary: mat.define-palette($ais-primary, 500);
+$app-accent: mat.define-palette($ais-accent, 500);
+
+$quiz-correct: mat.define-palette(mat.$light-green-palette, 600, 200, 600);
+$quiz-incorrect: mat.define-palette(mat.$red-palette, 700, 200, 600);
+
+// The warn palette is optional (defaults to red).
+$app-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);
