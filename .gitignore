@@ -43,6 +43,6 @@ Thumbs.db
 .travis/*.key
 .travis/*.key.pub
 
-**/environments/version.ts
+# **/environments/version.ts - comment out for testing
 
 .angular
