@@ -4,27 +4,27 @@
 @import 'slideshow-theme';
 
 /* For use in src/lib/core/theming/_palette.scss */
-$ais-primary: (
-  50: #f1eeec,
-  100: #ddd4d0,
-  200: #c6b7b1,
-  300: #af9a92,
-  400: #9e847a,
-  500: #8d6e63,
-  600: #85665b,
-  700: #7a5b51,
-  800: #705147,
-  900: #5d3f35,
-  A100: #ffc1ae,
-  A200: #ff9a7b,
-  A400: #ff7248,
-  A700: #ff5f2f,
+$wabe-primary: (
+  50: #edeaf1,
+  100: #d1cbdb,
+  200: #b3a9c3,
+  300: #9486ab,
+  400: #7d6c99,
+  500: #665287,
+  600: #5e4b7f,
+  700: #534174,
+  800: #49386a,
+  900: #382857,
+  A100: #bd9fff,
+  A200: #9a6cff,
+  A400: #7739ff,
+  A700: #651fff,
   contrast: (
     50: #000000,
     100: #000000,
     200: #000000,
     300: #000000,
-    400: #000000,
+    400: #ffffff,
     500: #ffffff,
     600: #ffffff,
     700: #ffffff,
@@ -32,22 +32,22 @@ $ais-primary: (
     900: #ffffff,
     A100: #000000,
     A200: #000000,
-    A400: #000000,
+    A400: #ffffff,
     A700: #ffffff,
   ),
 );
 
-$ais-accent: (
-  50: #fffbf6,
-  100: #fff6e8,
-  200: #fff0d9,
-  300: #ffe9c9,
-  400: #ffe5be,
-  500: #ffe0b2,
-  600: #ffdcab,
-  700: #ffd8a2,
-  800: #ffd399,
-  900: #ffcb8a,
+$wabe-accent: (
+  50: #fffefa,
+  100: #fffcf2,
+  200: #fffbe9,
+  300: #fef9e0,
+  400: #fef7d9,
+  500: #fef6d2,
+  600: #fef5cd,
+  700: #fef3c7,
+  800: #fef2c1,
+  900: #fdefb6,
   A100: #ffffff,
   A200: #ffffff,
   A400: #ffffff,
@@ -75,8 +75,8 @@ $ais-accent: (
 // hue. Available color palettes: https://material.io/design/color/
 // convenient Tool: http://mcg.mbitson.com/ (use Angular JS (Material 2) output format)
 
-$app-primary: mat.define-palette($ais-primary, 500);
-$app-accent: mat.define-palette($ais-accent, 500);
+$app-primary: mat.define-palette($wabe-primary, 500);
+$app-accent: mat.define-palette($wabe-accent, 500);
 
 $quiz-correct: mat.define-palette(mat.$light-green-palette, 600, 200, 600);
 $quiz-incorrect: mat.define-palette(mat.$red-palette, 700, 200, 600);

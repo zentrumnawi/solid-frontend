@@ -1,5 +1,4 @@
 import { version } from './version';
-// copy from environment.staging.ts of AIS
 
 export const environment = {
   preview: true,
