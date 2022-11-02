@@ -8,7 +8,9 @@ div.mat-dialog-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.1em 0.55em;
+  padding-left: 20px;
+  height: 42px;
+  margin: 0px;
 
   ::ng-deep {
     .mat-button-focus-overlay {
@@ -74,7 +76,7 @@ div.long-title-1 {
 div.mat-dialog-content {
   margin: 0;
   padding: 0;
-  max-height: calc(100% - 44px);
+  max-height: calc(100% - 64px);
   height: 100%;
   position: relative;
   display: flex;
@@ -110,14 +112,6 @@ img {
     max-height: 100%;
     height: auto;
     border-radius: inherit;
-  }
-}
-
-::ng-deep {
-  div.cdk-overlay-pane.solid-core-image-dialog {
-    mat-dialog-container {
-      padding: 0;
-    }
   }
 }
 
@@ -242,5 +236,17 @@ div.spacer {
   }
   .button-next {
     right: 0.85em;
+  }
+}
+
+.closeBtn {
+  width: 23px;
+  margin-top: 16px;
+  margin-right: 8px;
+
+  mat-icon {
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 600;
   }
 }

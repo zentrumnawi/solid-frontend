@@ -21,6 +21,25 @@
     background-color: tomato !important;
     z-index: 999;
   }
+
+  .mat-dialog-container {
+    overflow: auto;
+    padding: 24px;
+  }
+}
+
+::ng-deep .feedback-dialog {
+  .mat-dialog-container {
+    overflow: auto;
+    padding: 24px;
+  }
+}
+
+::ng-deep .privacy-dialog {
+  .mat-dialog-container {
+    overflow: auto;
+    padding: 24px;
+  }
 }
 
 @media (max-width: 420px) {
