@@ -122,12 +122,10 @@ img {
   margin: 0.3em 0;
 }
 
-::ng-deep {
-  div.cdk-overlay-container {
-    mat-dialog-container {
-      overflow: hidden;
-      padding: 0;
-    }
+::ng-deep .solid-core-media-dialog {
+  mat-dialog-container {
+    overflow: hidden;
+    padding: 0;
   }
 }
 
