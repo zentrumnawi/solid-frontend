@@ -40,6 +40,23 @@ export enum APP {
   styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent implements OnInit, AfterViewInit {
+  @ViewChild('title_container', { static: false })
+  public titleContainer?: ElementRef;
+  @ViewChild('contentContainer', { static: false })
+  public contentContainer!: ElementRef;
+  @ViewChild('spinnerContainer', { static: false }) set spinnerContainer(
+    element: ElementRef
+  ) {
+    if (element) {
+      const windowWidth = document.documentElement.clientWidth;
+      const position =
+        windowWidth >= 1000
+          ? (windowWidth - 115 - 300) / 2
+          : (windowWidth - 115) / 2;
+      element.nativeElement.style.left = position + 'px';
+    }
+  }
+
   public APP_NAME_DIVE = APP.DIVE;
   @Select(ProfileState.selectTree)
   public $profilesTree!: Observable<TreeNode[]>;
@@ -52,8 +69,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @Select(__internal__selectRouterStateParams)
   public $routerParams!: Observable<{ [key: string]: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
-  @ViewChild('contentContainer', { static: false })
-  public ContentContainer!: ElementRef;
   public SplitLayout = false;
   public Filter = new UntypedFormControl('');
   public FilterValue = new BehaviorSubject<string>('');
@@ -63,8 +78,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public SwipeRight = -1;
   public View = 'tree';
   public isSearchBarOpen = false;
-  @ViewChild('title_container', { static: false })
-  public title_container?: ElementRef;
   public title_container_width = 0;
   public title_width = 0;
   public firstMovingAnimation = true;
@@ -73,6 +86,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public timeOut_2: any;
   public collapseTree = false;
   @Output() profileTitle = new EventEmitter<string>();
+
+  @Select(ProfileState.selectProfile) profile$: Observable<any> | undefined;
+  isLoading = true;
 
   constructor(
     private _store: Store,
@@ -87,6 +103,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
       // Load definitions from OpenAPI 2.0
       new LoadDefinitionSwagger(),
     ]);
+    this.profile$?.subscribe((res) => {
+      if (res.length != 0) this.isLoading = false;
+    });
   }
 
   ngOnInit(): void {
@@ -248,10 +267,10 @@ export class BaseComponent implements OnInit, AfterViewInit {
       this.stopAnimation = false;
       this.firstMovingAnimation = true;
       this.title_container_width =
-        this.title_container?.nativeElement.offsetWidth;
+        this.titleContainer?.nativeElement.offsetWidth;
       this.title_width =
-        this.title_container?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
-      if (this.title_container?.nativeElement.firstElementChild) {
+        this.titleContainer?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
+      if (this.titleContainer?.nativeElement.firstElementChild) {
         this.timeOut_2 = setTimeout(() => {
           this.firstMovingAnimation = false;
         }, 10000);
@@ -321,7 +340,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   }
 
   private calculateLayout() {
-    const split = this.ContentContainer.nativeElement.clientWidth >= 800;
+    const split = this.contentContainer.nativeElement.clientWidth >= 800;
     if (split !== this.SplitLayout) {
       setTimeout(() => {
         this.SplitLayout = split;

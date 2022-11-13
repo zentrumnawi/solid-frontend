@@ -100,7 +100,7 @@
       </button>
     </div>
   </mat-toolbar>
-  <ng-container *ngIf="SplitLayout || !SelectedProfile">
+  <ng-container *ngIf="(SplitLayout || !SelectedProfile) && !isLoading">
     <ng-container [ngSwitch]="(View === 'tree' && Filter.value !== '') || View">
       <solid-profile-grid
         *ngSwitchCase="'grid'"
@@ -130,6 +130,16 @@
       ></solid-profile-list>
     </ng-container>
   </ng-container>
+  <div *ngIf="isLoading">
+    <mat-card-content #spinnerContainer>
+      <mat-spinner color="primary" [diameter]="115"></mat-spinner>
+    </mat-card-content>
+  </div>
+  <!-- <ng-template #profileLoading>
+    <mat-card-content>
+      <mat-spinner color="primary" [diameter]="110" #spinner></mat-spinner>
+    </mat-card-content>
+  </ng-template> -->
   <solid-profile-detail
     *ngIf="SelectedProfile && SelectedNode"
     cdkScrollable

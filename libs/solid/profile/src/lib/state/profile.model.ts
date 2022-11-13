@@ -1,9 +1,4 @@
-import {
-  ImageModel,
-  PhotographModel,
-  MediaObjectModel,
-  MediaModel,
-} from '@zentrumnawi/solid-core';
+import { MediaObjectModel, MediaModel } from '@zentrumnawi/solid-core';
 
 export interface TreeNode extends TreeNodeApi {
   type: 'category';
