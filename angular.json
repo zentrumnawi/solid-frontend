@@ -870,8 +870,7 @@
           "styleext": "scss",
           "style": "scss"
         }
-      },
-      "dependencies": ["tools"]
+      }
     },
     "solid-slideshow": {
       "projectType": "library",
