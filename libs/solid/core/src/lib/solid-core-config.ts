@@ -12,6 +12,7 @@ export interface SolidCoreConfig {
   error_report: boolean;
   guidedTour: any;
   profileTour: any;
+  expandProfileTree: boolean;
 }
 
 export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>(

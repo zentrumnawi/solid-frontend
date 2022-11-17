@@ -1029,7 +1029,6 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "outputs": ["{options.outputPath}"],
           "defaultConfiguration": ""
         },
         "serve": {
