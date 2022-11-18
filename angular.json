@@ -950,7 +950,10 @@
               "apps/wabe/src/assets",
               "apps/wabe/src/manifest.webmanifest"
             ],
-            "styles": ["apps/wabe/src/styles.scss"],
+            "styles": [
+              "apps/wabe/src/styles.scss",
+              "node_modules/intro.js/introjs.css"
+            ],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
