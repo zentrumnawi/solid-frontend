@@ -82,7 +82,7 @@
       },
       {
         "element": "#profile-media-container",
-        "intro": "Hier werden Schriftbeispiele zum ausgewählten Begriff angezeigt. Über die Thumbnails kannst du zwischen verschiedenen Bildern wechseln."
+        "intro": "Hier werden Schriftbeispiele zum ausgewählten Begriff angezeigt."
       },
       {
         "element": "#profile-detail-btn",
