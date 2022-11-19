@@ -1,0 +1,109 @@
+{
+  "landing": {
+    "location": "",
+    "steps": [
+      {
+        "intro": "Willkommen bei WABE! In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
+      },
+      {
+        "element": "#menu",
+        "intro": "Über das Menü erreichst du die verschiedenen Funktionen der App.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-0",
+        "intro": "Hier findest Du verschiedene Inhalte zu den sprachwissenschaftlichen Methoden und Literaturhinweise.",
+        "position": "left"
+      },
+      {
+        "element": "#menu-tile-1",
+        "intro": "Mit dem Selbsttest kannst du deinen bisherigen Kenntnisstand prüfen und dein Wissen über den mittelhochdeutschen Wortschatz festigen.",
+        "position": "right"
+      },
+      {
+        "element": "#menu-tile-2",
+        "intro": "Hier findest du den Grundwortschatz mit ausführlichen Informationen über Lautwandel, .",
+        "position": "left"
+      },
+      {
+        "element": "#menu-tile-3",
+        "intro": "Hier findest du allgemeine Informationen zu WABE und zum Projekt s.o.l.i.d. sowie unsere Datenschutzhinweise und einige Einstellungen.",
+        "position": "right"
+      },
+      {
+        "element": "#feedback",
+        "intro": "Über das Kontaktformular kannst du uns Feedback geben, uns auf technische Probleme hinweisen oder andere Fragen an unser Team richten.",
+        "position": "right"
+      },
+      {
+        "element": "#menu",
+        "intro": "Über das Listenmenü kannst du zu einer anderen Funktion wechseln oder wieder zurück zur Startseite gelangen.",
+        "position": "right"
+      },
+      {
+        "element": "#glossary",
+        "intro": "Hier findest du das WABE-Glossar mit wichtigen Fachbegriffen zum Nachschlagen und Lernen. Das Glossar kann aus jeder Ansicht heraus geöffnet werden."
+      },
+      {
+        "element": "#reportButton",
+        "intro": "Wenn Dir ein inhaltlicher Fehler auffällt, kannst Du den Fehler-Melden-Button nutzen, um uns darauf hinzuweisen."
+      },
+      {
+        "element": "#menu-tile-3",
+        "intro": "Wenn du die Tour nochmals ansehen willst, kannst du sie im Info-Bereich in den <i>Einstellungen</i> wieder aktivieren."
+      },
+      {
+        "intro": "Wir wünschen dir viel Freude beim Lernen und beim Entdecken von WABE!"
+      }
+    ],
+    "data": {
+      "settingTabIndex": 3
+    }
+  },
+
+  "profile": {
+    "location": {
+      "treeNode": "/grundwortschatz/tree/1",
+      "profileTree": "/grundwortschatz/tree/"
+    },
+    "steps": [
+      {
+        "element": "#profile",
+        "intro": "Willkommen im WABE-Grundwortschatz! In einer kurzen Tour möchten wir dir die verschiedenen Funktionen dieses Bereichs zeigen."
+      },
+      {
+        "element": "#profile-view",
+        "intro": "Hier kannst du zwischen zwei verschiedenen Ansichten des Wortschatzes wechseln.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-navigation",
+        "intro": "Hier kannst du zwischen den verschiedenen Einträgen wechseln oder den gerade offenen Wort-Steckbrief schließen bzw. zurück auf die Übersicht gelangen."
+      },
+      {
+        "element": "#profile-media-container",
+        "intro": "Hier werden Schriftbeispiele zum ausgewählten Begriff angezeigt."
+      },
+      {
+        "element": "#profile-detail-btn",
+        "intro": "Mit diesem Button öffnest du die Detailansicht. Dort gibt es eine Zoom-Funktion, Audiodateien oder kurze Beschreibungstexte zum Bild.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-copyright-btn",
+        "intro": "Mit diesem Button kannst du die Copyright- und Lizenzinformationen zu den Mediendateien anzeigen.",
+        "position": "right"
+      },
+      {
+        "element": "#profile-detail-info",
+        "intro": "In diesem Bereich sind die charakteristischen Eigenschaften des individuellen Begriffs übersichtlich dargestellt.",
+        "position": "right"
+      },
+      {
+        "element": "#profile",
+        "intro": "Wir wünschen dir viel Spaß beim Erkunden des Grundwortschatzes!"
+      }
+    ],
+    "data": ""
+  }
+}

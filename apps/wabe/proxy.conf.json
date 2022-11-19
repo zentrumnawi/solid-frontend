@@ -1,0 +1,16 @@
+{
+  "/api": {
+    "target": "http://solid-backend.uni-frankfurt.de",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": "/wabe/staging"
+    }
+  },
+  "/wabe/staging/dzi": {
+    "target": "https://cdn.geomat.uni-frankfurt.de",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

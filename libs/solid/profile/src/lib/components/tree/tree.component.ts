@@ -4,12 +4,14 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Inject,
   Input,
   OnChanges,
   OnInit,
   Output,
   QueryList,
   SimpleChanges,
+  ViewChild,
   ViewChildren,
 } from '@angular/core';
 import {
@@ -21,7 +23,12 @@ import { Profile, TreeNode } from '../../state/profile.model';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 import { SelectedDirective } from '../selected.directive';
-import { ImageModel, MediaModel } from '@zentrumnawi/solid-core';
+import {
+  ImageModel,
+  MediaModel,
+  SolidCoreConfig,
+  SOLID_CORE_CONFIG,
+} from '@zentrumnawi/solid-core';
 
 export type FlatTreeNode = EntryNode | CategoryNode;
 
@@ -58,6 +65,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() selectProfileTitle = new EventEmitter<string>();
   @Input() isDiveApp = false;
   @Input() collapseTree = false;
+  @ViewChild('profileTree') profileTree: any;
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<TreeNode | Profile, FlatTreeNode>;
@@ -72,7 +80,11 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   private _selectedNode: CategoryNode | EntryNode | null = null;
 
-  constructor(private _store: Store, private _route: ActivatedRoute) {
+  constructor(
+    private _store: Store,
+    private _route: ActivatedRoute,
+    @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig
+  ) {
     this._treeFlattener = new MatTreeFlattener(
       TreeComponent.transformer,
       TreeComponent.getLevel,
@@ -138,7 +150,17 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     this.profiles.subscribe((profiles) => {
       this.DataSource.data = profiles;
       this.expandSelectedNode();
+      if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
     });
+  }
+
+  public ngAfterViewInit(): void {
+    this.selectedElements.changes.subscribe((_) => this.scrollTo());
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.expandSelectedNode();
+    if (this.collapseTree) this.TreeControl.collapseAll();
   }
 
   /** Get whether the node has children or not. */
@@ -180,11 +202,6 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.expandSelectedNode();
-    if (this.collapseTree) this.TreeControl.collapseAll();
-  }
-
   private expandSelectedNode() {
     if (this.TreeControl.dataNodes) {
       this.TreeControl.dataNodes
@@ -211,10 +228,6 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         break;
       }
     }
-  }
-
-  public ngAfterViewInit(): void {
-    this.selectedElements.changes.subscribe((_) => this.scrollTo());
   }
 
   public scrollTo() {

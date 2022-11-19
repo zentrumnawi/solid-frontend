@@ -44,3 +44,5 @@ Thumbs.db
 .travis/*.key.pub
 
 **/environments/version.ts
+
+.angular

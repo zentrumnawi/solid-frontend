@@ -11,4 +11,5 @@ export const coreConfig: SolidCoreConfig = {
   profileTour: guidedTour.profile,
   glossaryLogo: 'assets/svg/glossary.svg',
   feedbackLogo: 'assets/svg/feedback.svg',
+  expandProfileTree: false,
 };

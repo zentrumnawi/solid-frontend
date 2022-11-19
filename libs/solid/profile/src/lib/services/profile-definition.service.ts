@@ -28,12 +28,13 @@ export class ProfileDefinitionService {
 
   //OpenAPI 3.0
   public loadDefinitions() {
-    //prevent AIS, Dive, Planty calling OpenAPI 3.0
+    //prevent AIS, Dive, Planty, Wabe calling OpenAPI 3.0
     //so we don't have duplicated data in profile
     if (
       this._config.appName === 'AIS' ||
       this._config.appName === 'Div-e' ||
-      this._config.appName === 'PLANTY2Learn'
+      this._config.appName === 'PLANTY2Learn' ||
+      this._config.appName === 'WABE'
     ) {
       return;
     }

@@ -918,6 +918,165 @@
           "styleext": "scss"
         }
       }
+    },
+    "wabe": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/wabe",
+      "sourceRoot": "apps/wabe/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
+            "outputPath": "dist/apps/wabe",
+            "index": "apps/wabe/src/index.html",
+            "main": "apps/wabe/src/main.ts",
+            "polyfills": "apps/wabe/src/polyfills.ts",
+            "tsConfig": "apps/wabe/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/wabe/src/favicon.ico",
+              "apps/wabe/src/assets",
+              "apps/wabe/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "apps/wabe/src/styles.scss",
+              "node_modules/intro.js/introjs.css"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/core/src",
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/slideshow/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            },
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/wabe/src/environments/environment.ts",
+                  "with": "apps/wabe/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/wabe/ngsw-config.json"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/wabe/src/environments/environment.ts",
+                  "with": "apps/wabe/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "wabe:build",
+            "proxyConfig": "./apps/wabe/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "wabe:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "wabe:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/wabe/**/*.ts", "apps/wabe/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/wabe/jest.config.ts",
+            "passWithNoTests": true,
+            "tsConfig": "apps/wabe/tsconfig.spec.json"
+          },
+          "outputs": ["{workspaceRoot}/coverage/apps/wabe"]
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "configuration": "staging",
+            "baseHref": "/solid-frontend/",
+            "name": "Github Actions",
+            "email": "github@example.com"
+          }
+        }
+      }
     }
   }
 }
