@@ -3,7 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="900px" height="400px" viewBox="0 0 900 400" enable-background="new 0 0 900 400" xml:space="preserve">
-<text transform="matrix(1 0 0 1 164.6721 354.1501)" opacity="0.4" enable-background="new" font-family="'Roboto-Regular'" font-size="29">Leider haben wir zu diesem Objekt kein Bild.</text>
+<text transform="matrix(1 0 0 1 164.6721 354.1501)" opacity="0.4" enable-background="new" font-family="'Roboto'" font-size="29">Leider haben wir zu diesem Objekt kein Bild.</text>
 <g id="XMLID_592_">
 	<g id="XMLID_572_">
 		<g id="XMLID_312_">
@@ -44,7 +44,7 @@
 		c0.124-0.229,0.262-8.681,0.262-18.811c0-16.304,0.063-18.351,0.477-18.002c0.415,0.339,0.488,3.123,0.488,21.695v21.309H487.352z"
 		/>
 </g>
-<path opacity="0.4" fill="#C1272D" enable-background="new    " d="M450,29.119c-74.381,0-134.896,60.514-134.896,134.896
+<path opacity="0.4" fill="#C1272D" enable-background="new" d="M450,29.119c-74.381,0-134.896,60.514-134.896,134.896
 	c0,74.381,60.516,134.896,134.896,134.896c74.382,0,134.896-60.515,134.896-134.896C584.894,89.633,524.382,29.119,450,29.119z
 	 M450,62.154c22.109,0,42.582,7.104,59.3,19.119l-142.04,142.04c-12.016-16.715-19.119-37.188-19.119-59.296
 	C348.139,107.848,393.834,62.154,450,62.154z M450,265.874c-22.153,0-42.661-7.131-59.396-19.188L532.671,104.62
