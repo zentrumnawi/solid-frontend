@@ -1,10 +1,4 @@
 <div class="landing-container" #landing>
-  <mat-card *ngIf="BannerComponent && ShowLanding">
-    <ng-container
-      *ngComponentOutlet="BannerComponent; injector: BannerInjector"
-    ></ng-container>
-  </mat-card>
-
   <div *ngIf="limitedMessages.length">
     <h2>Neuigkeiten</h2>
     <solid-skeleton-message-list

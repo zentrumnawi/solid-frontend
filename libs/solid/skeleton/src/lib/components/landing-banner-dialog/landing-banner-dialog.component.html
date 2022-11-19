@@ -1,0 +1,18 @@
+<div class="content-container" mat-dialog-content>
+  <ng-container
+    *ngComponentOutlet="LandingBannerContentComponent"
+  ></ng-container>
+  <div class="button-container">
+    <button class="closeBtn" mat-button color="accent" (click)="onCloseClick()">
+      Close
+    </button>
+    <button
+      class="notShowAgainBtn"
+      mat-raised-button
+      color="primary"
+      (click)="onNotShowAgainClick()"
+    >
+      Do Not Show Again
+    </button>
+  </div>
+</div>
