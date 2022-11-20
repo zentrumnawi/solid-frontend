@@ -5,7 +5,6 @@ import {
   EventEmitter,
   Inject,
   InjectionToken,
-  OnInit,
   ViewChild,
 } from '@angular/core';
 import { MenuState } from '../../state/menu.state';
@@ -22,7 +21,7 @@ import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { LandingBannerDialogComponent } from '../landing-banner-dialog/landing-banner-dialog.component';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
@@ -94,20 +93,24 @@ export class LandingComponent implements AfterViewInit {
         }
         return;
       });
-    }, 1000);
+    }, 500);
   }
 
   public ngAfterViewInit(): void {
-    if (localStorage.getItem('hide_landing_banner') == 'true')
-      this.startGuidedTour();
-    else
+    if (localStorage.getItem('hide_landing_banner') == 'false') {
       this.landingDialog
         .open(LandingBannerDialogComponent, {
           panelClass: 'landing-banner-dialog',
         })
         .afterClosed()
         .subscribe(() => {
-          this.startGuidedTour();
+          if (localStorage.getItem('hide_landing_tour') == 'false')
+            this.startGuidedTour();
         });
+    } else if (
+      localStorage.getItem('hide_landing_banner') == 'true' &&
+      localStorage.getItem('hide_landing_tour') == 'false'
+    )
+      this.startGuidedTour();
   }
 }

@@ -1,5 +1,7 @@
 import { Component, Inject, Type } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { EventEmitter } from 'stream';
 import {
   InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
@@ -19,14 +21,20 @@ export class LandingBannerDialogComponent {
   ) {
     _ref.disableClose = true;
     this.LandingBannerContentComponent = cfg.landingBannerContent;
+    localStorage.setItem('hide_landing_tour', 'false');
   }
 
   public onCloseClick() {
     this._ref.close();
   }
 
-  public onNotShowAgainClick() {
-    localStorage.setItem('hide_landing_banner', 'true');
-    this._ref.close();
+  public onNotShowAgainToggle(change: MatSlideToggleChange) {
+    if (change.checked) localStorage.setItem('hide_landing_banner', 'true');
+    else localStorage.setItem('hide_landing_banner', 'false');
+  }
+
+  public onStartTourToggle(change: MatSlideToggleChange) {
+    if (change.checked) localStorage.setItem('hide_landing_tour', 'false');
+    else localStorage.setItem('hide_landing_tour', 'true');
   }
 }

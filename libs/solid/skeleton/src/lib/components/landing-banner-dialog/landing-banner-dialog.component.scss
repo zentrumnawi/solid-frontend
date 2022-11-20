@@ -23,12 +23,16 @@
       font-size: 15px;
     }
 
+    .toggle-container {
+      font-size: 14px;
+
+      .notShowAgainToggle {
+        margin-right: 15px;
+      }
+    }
+
     .button-container {
       .closeBtn {
-        font-size: 13px;
-      }
-
-      .notShowAgainBtn {
         font-size: 13px;
       }
     }
@@ -56,9 +60,13 @@
       .closeBtn {
         font-size: 12px;
       }
+    }
 
-      .notShowAgainBtn {
-        font-size: 12px;
+    .toggle-container {
+      font-size: 13px;
+
+      .notShowAgainToggle {
+        margin-right: 13px;
       }
     }
   }
@@ -89,9 +97,14 @@
       .closeBtn {
         font-size: 11px;
       }
+    }
 
-      .notShowAgainBtn {
-        font-size: 11px;
+    .toggle-container {
+      font-size: 11px;
+      margin-bottom: 5px;
+
+      .notShowAgainToggle {
+        margin-right: 11px;
       }
     }
   }
