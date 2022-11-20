@@ -17,6 +17,7 @@ export class LandingBannerDialogComponent {
     private _ref: MatDialogRef<LandingBannerDialogComponent>,
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig
   ) {
+    _ref.disableClose = true;
     this.LandingBannerContentComponent = cfg.landingBannerContent;
   }
 
