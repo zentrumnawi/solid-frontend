@@ -1,7 +1,14 @@
 <div class="content-container" mat-dialog-content>
-  <ng-container
-    *ngComponentOutlet="LandingBannerContentComponent"
-  ></ng-container>
+  <mat-card-header>
+    <img mat-card-avatar [src]="landingInfo.header.image" />
+    <mat-card-title>{{ landingInfo.header.title }}</mat-card-title>
+    <mat-card-subtitle> {{ landingInfo.header.subtitle }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngFor="let content of landingInfo.content">
+    <p>
+      {{ content.p }}
+    </p>
+  </mat-card-content>
   <div class="toggle-container">
     <mat-slide-toggle
       class="notShowAgainToggle"

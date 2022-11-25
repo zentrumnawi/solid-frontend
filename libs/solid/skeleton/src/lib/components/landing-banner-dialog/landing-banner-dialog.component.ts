@@ -1,11 +1,7 @@
-import { Component, Inject, Type } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { EventEmitter } from 'stream';
-import {
-  InternalSolidSkeletonConfig,
-  SOLID_SKELETON_CONFIG,
-} from '../../solid-skeleton-config';
+import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 
 @Component({
   selector: 'solid-skeleton-landing-banner-dialog',
@@ -13,14 +9,14 @@ import {
   styleUrls: ['./landing-banner-dialog.component.scss'],
 })
 export class LandingBannerDialogComponent {
-  public LandingBannerContentComponent: Type<any>;
+  public landingInfo;
 
   constructor(
     private _ref: MatDialogRef<LandingBannerDialogComponent>,
-    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig
+    @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig
   ) {
     _ref.disableClose = true;
-    this.LandingBannerContentComponent = cfg.landingBannerContent;
+    this.landingInfo = coreConfig.landingContent;
     localStorage.setItem('hide_landing_tour', 'false');
   }
 

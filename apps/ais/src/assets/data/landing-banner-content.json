@@ -1,0 +1,16 @@
+{
+  "header": {
+    "image": "assets/icons/icon.svg",
+    "title": "Archäologie in Scherben",
+    "subtitle": "Tauche ein in die Diversität der Organismen"
+  },
+
+  "content": [
+    {
+      "p": "Keramikgefäße und ihre Scherben bilden die häufigste Fundgattung in der Archäologie. Sie helfen bei der zeitlichen Einordnung und liefern Informationen über unterschiedliche antike Lebensbereiche."
+    },
+    {
+      "p": "Dieses Selbstlerntool stellt Dir Grundbegriffe der Keramikforschung vor und gibt einen Überblick über Keramik aus verschiedenen Epochen und Regionen, wie sie am Institut für Archäologische Wissenschaften vertreten sind. In kurzen Quizzen kannst Du Deinen Wissensstand überprüfen."
+    }
+  ]
+}
