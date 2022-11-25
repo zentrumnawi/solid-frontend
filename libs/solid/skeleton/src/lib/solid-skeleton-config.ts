@@ -39,7 +39,6 @@ export interface SentryConfig {
 
 export interface InternalSolidSkeletonConfig {
   feedbackEnabled: boolean;
-  landingBannerContent: Type<any>;
   infoPageContent: Type<any>;
   privacyContent: Type<any>;
   glossary: {
@@ -52,7 +51,6 @@ export interface InternalSolidSkeletonConfig {
 }
 
 export interface RequiredExternalConfig {
-  landingBannerContent: Type<any>;
   infoPageContent: Type<any>;
   privacyContent: Type<any>;
   routingConfig: {
@@ -63,11 +61,7 @@ export interface RequiredExternalConfig {
   sentry?: SentryConfig;
 }
 
-type componentPropertyKeys =
-  | 'landingBannerContent'
-  | 'component'
-  | 'infoPageContent'
-  | 'privacyContent';
+type componentPropertyKeys = 'component' | 'infoPageContent' | 'privacyContent';
 
 export type PartialDeep<T> = {
   [P in Exclude<keyof T, componentPropertyKeys>]?: PartialDeep<T[P]>;
