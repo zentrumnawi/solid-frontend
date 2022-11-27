@@ -16,7 +16,7 @@ export class LandingBannerDialogComponent {
     @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig
   ) {
     _ref.disableClose = true;
-    this.landingInfo = coreConfig.landingContent;
+    this.landingInfo = coreConfig.landingBannerContent;
     localStorage.setItem('hide_landing_tour', 'false');
   }
 
