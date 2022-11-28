@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostListener,
   Inject,
   InjectionToken,
   ViewChild,
@@ -44,6 +45,11 @@ export class LandingComponent implements AfterViewInit {
   @ViewChild('landing') Landing?: ElementRef;
   public onGlossaryClick = new EventEmitter();
 
+  public landingInfo: any;
+  public innerWidth: any;
+  public showLanding: boolean;
+  public showTour: boolean;
+
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
@@ -53,6 +59,12 @@ export class LandingComponent implements AfterViewInit {
     private landingDialog: MatDialog
   ) {
     this.limitMessages();
+    this.landingInfo = coreConfig.landingBannerContent;
+    this.innerWidth = window.innerWidth;
+    this.showLanding =
+      localStorage.getItem('hide_landing_banner') == 'false' ? true : false;
+    this.showTour =
+      localStorage.getItem('hide_landing_tour') == 'false' ? true : false;
 
     iconRegistry.addSvgIcon(
       'glossary',
@@ -63,6 +75,11 @@ export class LandingComponent implements AfterViewInit {
       'feedback',
       sanitizer.bypassSecurityTrustResourceUrl(coreConfig.feedbackLogo)
     );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.innerWidth = window.innerWidth;
   }
 
   private limitMessages() {
@@ -96,21 +113,21 @@ export class LandingComponent implements AfterViewInit {
     }, 500);
   }
 
+  public onCloseClick() {
+    this.showLanding = false;
+    localStorage.setItem('hide_landing_banner', 'true');
+  }
+
   public ngAfterViewInit(): void {
-    if (localStorage.getItem('hide_landing_banner') == 'false') {
+    if (this.innerWidth < 700 && this.showLanding) {
       this.landingDialog
         .open(LandingBannerDialogComponent, {
           panelClass: 'landing-banner-dialog',
         })
         .afterClosed()
         .subscribe(() => {
-          if (localStorage.getItem('hide_landing_tour') == 'false')
-            this.startGuidedTour();
+          if (this.showTour) this.startGuidedTour();
         });
-    } else if (
-      localStorage.getItem('hide_landing_banner') == 'true' &&
-      localStorage.getItem('hide_landing_tour') == 'false'
-    )
-      this.startGuidedTour();
+    } else if (!this.showLanding && this.showTour) this.startGuidedTour();
   }
 }

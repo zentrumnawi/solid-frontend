@@ -1,4 +1,20 @@
 <div class="landing-container" #landing>
+  <mat-card *ngIf="innerWidth >= 700 && showLanding">
+    <mat-card-header>
+      <img mat-card-avatar [src]="landingInfo.header.image" />
+      <mat-card-title>{{ landingInfo.header.title }}</mat-card-title>
+      <mat-card-subtitle>{{ landingInfo.header.subtitle }}</mat-card-subtitle>
+      <div class="spacer"></div>
+      <button (click)="onCloseClick()" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content *ngFor="let content of landingInfo.content">
+      <p>
+        {{ content.p }}
+      </p>
+    </mat-card-content>
+  </mat-card>
   <div *ngIf="limitedMessages.length">
     <h2>Neuigkeiten</h2>
     <solid-skeleton-message-list

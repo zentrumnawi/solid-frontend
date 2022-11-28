@@ -6,50 +6,7 @@
   }
 
   .content-container {
-    @media (min-width: 890px) {
-      max-width: 800px !important;
-
-      .header {
-        margin-bottom: 14px;
-
-        .image {
-          height: 60px;
-          width: 60px;
-          margin-right: 20px;
-        }
-
-        .title {
-          font-size: 20px;
-          margin-bottom: 0;
-          margin-right: 8px;
-        }
-
-        .subtitle {
-          margin-top: 0;
-          margin-bottom: 0;
-        }
-      }
-
-      .content {
-        font-size: 15px;
-      }
-
-      .toggle-container {
-        font-size: 14px;
-
-        .notShowAgainToggle {
-          margin-right: 15px;
-        }
-      }
-
-      .button-container {
-        .closeBtn {
-          font-size: 13px;
-        }
-      }
-    }
-
-    @media (min-width: 570px) and (max-width: 889px) {
+    @media (min-width: 570px) and (max-width: 699px) {
       max-width: 500px !important;
 
       .header {
