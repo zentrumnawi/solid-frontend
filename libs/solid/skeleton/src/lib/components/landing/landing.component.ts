@@ -49,6 +49,7 @@ export class LandingComponent implements AfterViewInit {
   public innerWidth: any;
   public showLanding: boolean;
   public showTour: boolean;
+  public landingRef: any;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
@@ -80,6 +81,10 @@ export class LandingComponent implements AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.innerWidth = window.innerWidth;
+    if (this.innerWidth > 700 && this.landingRef) {
+      this.landingRef.close();
+      this.showTour = false;
+    }
   }
 
   private limitMessages() {
@@ -120,14 +125,12 @@ export class LandingComponent implements AfterViewInit {
 
   public ngAfterViewInit(): void {
     if (this.innerWidth < 700 && this.showLanding) {
-      this.landingDialog
-        .open(LandingBannerDialogComponent, {
-          panelClass: 'landing-banner-dialog',
-        })
-        .afterClosed()
-        .subscribe(() => {
-          if (this.showTour) this.startGuidedTour();
-        });
+      this.landingRef = this.landingDialog.open(LandingBannerDialogComponent, {
+        panelClass: 'landing-banner-dialog',
+      });
+      this.landingRef.afterClosed().subscribe(() => {
+        if (this.showTour) this.startGuidedTour();
+      });
     } else if (!this.showLanding && this.showTour) this.startGuidedTour();
   }
 }
