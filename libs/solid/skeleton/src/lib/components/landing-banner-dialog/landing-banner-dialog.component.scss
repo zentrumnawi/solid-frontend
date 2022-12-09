@@ -2,7 +2,9 @@
   border-radius: 15px;
 
   mat-dialog-container {
+    padding: 18px;
     border-radius: 10px;
+    overflow: hidden;
   }
 
   .content-container {
@@ -61,22 +63,26 @@
         }
 
         .title {
-          font-size: 13px !important;
+          font-size: 14px !important;
           margin-right: 5px;
         }
 
         .subtitle {
-          font-size: 10px;
+          font-size: 11px;
         }
       }
 
       .content {
-        font-size: 12px;
+        font-size: 13px;
       }
 
       .toggle-container {
         font-size: 11px;
         margin-bottom: 5px;
+
+        .mat-slide-toggle-bar {
+          transform: scale(0.9);
+        }
 
         .notShowAgainToggle {
           margin-right: 11px;
@@ -85,7 +91,7 @@
 
       .button-container {
         .closeBtn {
-          font-size: 10px;
+          font-size: 11px;
         }
       }
     }
@@ -115,6 +121,10 @@
         margin-bottom: 0;
       }
     }
+  }
+
+  .toggle-container {
+    display: flex;
   }
 
   .button-container {
