@@ -39,6 +39,13 @@
     background-color: white;
   }
 
+  .button-container {
+    .closeBtn {
+      border: 2px solid mat.get-color-from-palette($app-primary, 600);
+      color: mat.get-color-from-palette($app-accent, 600);
+    }
+  }
+
   @include base-layout-component($mat-theme);
   @include main-menu-component($mat-theme);
   @include solid-skeleton-landing-component-theme($mat-theme);
