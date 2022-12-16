@@ -9,9 +9,7 @@
     >
   </mat-card-header>
   <mat-card-content class="content" *ngFor="let content of landingInfo.content">
-    <p>
-      {{ content.p }}
-    </p>
+    <p [data]="content.p" markdown></p>
   </mat-card-content>
   <div class="toggle-container">
     <mat-slide-toggle
