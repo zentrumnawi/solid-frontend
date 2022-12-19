@@ -15,25 +15,35 @@
       </p>
     </mat-card-content>
   </mat-card>
-  <div *ngIf="limitedMessages.length">
+  <!-- <div *ngIf="limitedMessages.length">
     <h2>Neuigkeiten</h2>
     <solid-skeleton-message-list
       [limitedMessages]="limitedMessages"
     ></solid-skeleton-message-list>
-  </div>
+  </div> -->
 
   <mat-grid-list id="menu-grid-list" cols="2" gutterSize="1rem" rowHeight="1:1">
     <mat-grid-tile
       *ngFor="let menuItem of MenuItems | async; let index = index"
       class="mat-elevation-z2"
       [routerLink]="menuItem.route"
+      [queryParams]="{ directTo: msgNumber > 0 ? 'news' : undefined }"
       id="menu-tile-{{ index }}"
     >
       <mat-icon
-        *ngIf="menuItem.svgIcon"
+        *ngIf="menuItem.svgIcon && menuItem.route !== 'info'"
         [svgIcon]="menuItem.svgIcon"
       ></mat-icon>
-      <mat-icon *ngIf="!menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
+      <mat-icon *ngIf="!menuItem.svgIcon && menuItem.route !== 'info'">{{
+        menuItem.icon
+      }}</mat-icon>
+      <mat-icon
+        *ngIf="menuItem.svgIcon && menuItem.route === 'info'"
+        [svgIcon]="menuItem.svgIcon"
+        [matBadge]="msgNumber"
+        [matBadgeHidden]="msgNumber === 0"
+        matBadgeSize="large"
+      ></mat-icon>
       <span class="navTitle">{{ menuItem.title }}</span>
     </mat-grid-tile>
     <mat-grid-tile

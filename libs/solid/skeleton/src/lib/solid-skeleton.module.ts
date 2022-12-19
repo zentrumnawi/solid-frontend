@@ -53,6 +53,7 @@ import { deepMerge } from './utils/deep-merge';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PrivacyDialogComponent } from './components/privacy-dialog/privacy-dialog.component';
 import { LandingBannerDialogComponent } from './components/landing-banner-dialog/landing-banner-dialog.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
@@ -96,6 +97,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
     ngxsFeatureModule,
     MatExpansionModule,
     MatSlideToggleModule,
+    MatBadgeModule,
   ],
   declarations: [
     BaseLayoutComponent,

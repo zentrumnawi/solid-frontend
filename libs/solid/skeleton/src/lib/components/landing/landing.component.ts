@@ -6,6 +6,7 @@ import {
   HostListener,
   Inject,
   InjectionToken,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import { MenuState } from '../../state/menu.state';
@@ -34,7 +35,7 @@ export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
 })
-export class LandingComponent implements AfterViewInit {
+export class LandingComponent implements OnInit, AfterViewInit {
   @Select(MenuState.getLandingItems)
   public MenuItems!: Observable<MenuItem[]>;
 
@@ -50,6 +51,8 @@ export class LandingComponent implements AfterViewInit {
   public showLanding: boolean;
   public showTour: boolean;
   public landingRef: any;
+  private messages: any;
+  public msgNumber: number;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
@@ -66,6 +69,8 @@ export class LandingComponent implements AfterViewInit {
       localStorage.getItem('hide_landing_banner') == 'false' ? true : false;
     this.showTour =
       localStorage.getItem('hide_landing_tour') == 'false' ? true : false;
+    this.messages = localStorage.getItem('solid_skeleton_messages');
+    this.msgNumber = 0;
 
     iconRegistry.addSvgIcon(
       'glossary',
@@ -121,6 +126,13 @@ export class LandingComponent implements AfterViewInit {
   public onCloseClick() {
     this.showLanding = false;
     localStorage.setItem('hide_landing_banner', 'true');
+  }
+
+  public ngOnInit(): void {
+    const msgObj = JSON.parse(this.messages);
+    msgObj?.forEach((msg: any) => {
+      if (msg.unread && msg.type != 'CL') this.msgNumber++;
+    });
   }
 
   public ngAfterViewInit(): void {

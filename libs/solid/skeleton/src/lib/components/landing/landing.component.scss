@@ -28,6 +28,15 @@ mat-grid-tile {
       flex-direction: column;
       align-content: center;
     }
+
+    .mat-badge-content {
+      color: white;
+      background-color: #e41e3f;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 18px;
+    }
   }
 
   mat-icon {

@@ -1,4 +1,11 @@
-import { Component, ElementRef, Inject, Type, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  Type,
+  ViewChild,
+} from '@angular/core';
 import {
   InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
@@ -7,16 +14,20 @@ import { MessageState } from '../../state/message.state';
 import { Select } from '@ngxs/store';
 import { MessageModel } from '../../state/message.model';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'solid-skeleton-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],
 })
-export class InfoComponent {
+export class InfoComponent implements OnInit {
   public tourLandingChecked = false;
   public tourProfileChecked = false;
   public landingChecked = false;
+  public route;
+
+  private messages: any;
 
   public InfoPageContentComponent: Type<any>;
   public PrivacyContentComponent: Type<any>;
@@ -29,7 +40,10 @@ export class InfoComponent {
   tabIndex = 0;
   @ViewChild('info_container') public info_container?: ElementRef;
 
-  constructor(@Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig) {
+  constructor(
+    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
+    route: ActivatedRoute
+  ) {
     this.InfoPageContentComponent = cfg.infoPageContent;
     this.PrivacyContentComponent = cfg.privacyContent;
     this.ProfileTitle = cfg.routingConfig.profile.title;
@@ -39,6 +53,8 @@ export class InfoComponent {
       localStorage.getItem('hide_landing_tour') === 'false';
     this.tourProfileChecked =
       localStorage.getItem('hide_profile_tour') === 'false';
+    this.route = route;
+    this.messages = localStorage.getItem('solid_skeleton_messages');
   }
 
   moveTabToPrivacy(event: any) {
@@ -64,5 +80,17 @@ export class InfoComponent {
     if (this.landingChecked)
       localStorage.setItem('hide_landing_banner', 'false');
     else localStorage.setItem('hide_landing_banner', 'true');
+  }
+
+  ngOnInit(): void {
+    const directTo = this.route.snapshot.queryParams.directTo;
+    if (directTo === 'news') {
+      this.tabIndex = 2;
+      const msgObj = JSON.parse(this.messages);
+      msgObj.forEach((msg: any) => {
+        if (msg.unread && msg.type != 'CL') msg.unread = false;
+      });
+      localStorage.setItem('solid_skeleton_messages', JSON.stringify(msgObj));
+    }
   }
 }
