@@ -219,44 +219,48 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    if (
-      localStorage.getItem('hide_profile_tour') == 'false' ||
-      localStorage.getItem('hide_profile_tour') == null
-    ) {
-      setTimeout(() => {
-        this.introService.profileTour((_targetElement: any) => {
-          try {
-            const id = _targetElement.id;
-            const treeNodeLocation =
-              this.coreConfig.profileTour.location.treeNode;
-            const treeLocation =
-              this.coreConfig.profileTour.location.profileTree;
-            this.collapseTree = false;
-            setTimeout(() => {
-              this.introService.introProfile.refresh(true);
-            }, 365);
-            if (id == '') {
-              if (this._route.url == treeLocation)
-                this.navigateTo(treeNodeLocation);
-              else this.navigateTo(treeLocation);
-            } else if (id == 'profile-view' || id == 'profile') {
-              if (this._route.url != treeLocation)
-                this.navigateTo(treeLocation);
-              this.collapseTree = true;
-            } else {
-              if (this._route.url != treeNodeLocation)
-                this.navigateTo(treeNodeLocation);
-            }
-            setTimeout(() => {
-              this.introService.introProfile.refresh(true);
-            }, 0.1);
-          } catch (error) {
-            return;
-          }
-          return;
-        });
-      }, 2000);
-    }
+    this.profile$?.subscribe((res) => {
+      if (res.length != 0)
+        if (
+          localStorage.getItem('hide_profile_tour') == 'false' ||
+          localStorage.getItem('hide_profile_tour') == null
+        ) {
+          setTimeout(() => {
+            this.introService.profileTour((_targetElement: any) => {
+              try {
+                const id = _targetElement.id;
+                const treeNodeLocation =
+                  this.coreConfig.profileTour.location.treeNode;
+                const treeLocation =
+                  this.coreConfig.profileTour.location.profileTree;
+                this.collapseTree = false;
+                if (id != 'profile')
+                  setTimeout(() => {
+                    this.introService.introProfile.refresh(true);
+                  }, 365);
+                if (id == '') {
+                  if (this._route.url == treeLocation)
+                    this.navigateTo(treeNodeLocation);
+                  else this.navigateTo(treeLocation);
+                } else if (id == 'profile-view' || id == 'profile') {
+                  if (this._route.url != treeLocation)
+                    this.navigateTo(treeLocation);
+                  this.collapseTree = true;
+                } else {
+                  if (this._route.url != treeNodeLocation)
+                    this.navigateTo(treeNodeLocation);
+                }
+                setTimeout(() => {
+                  this.introService.introProfile.refresh(true);
+                }, 0.1);
+              } catch (error) {
+                return;
+              }
+              return;
+            });
+          }, 800);
+        }
+    });
   }
 
   public handleLongTitle() {
