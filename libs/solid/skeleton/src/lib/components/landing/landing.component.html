@@ -15,13 +15,6 @@
       </p>
     </mat-card-content>
   </mat-card>
-  <!-- <div *ngIf="limitedMessages.length">
-    <h2>Neuigkeiten</h2>
-    <solid-skeleton-message-list
-      [limitedMessages]="limitedMessages"
-    ></solid-skeleton-message-list>
-  </div> -->
-
   <mat-grid-list id="menu-grid-list" cols="2" gutterSize="1rem" rowHeight="1:1">
     <mat-grid-tile
       *ngFor="let menuItem of MenuItems | async; let index = index"

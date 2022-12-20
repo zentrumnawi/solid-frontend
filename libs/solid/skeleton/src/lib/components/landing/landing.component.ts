@@ -13,8 +13,6 @@ import { MenuState } from '../../state/menu.state';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../../state/menu.model';
 import { Select } from '@ngxs/store';
-import { MessageState } from '../../state/message.state';
-import { MessageModel } from '../../state/message.model';
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -39,10 +37,6 @@ export class LandingComponent implements OnInit, AfterViewInit {
   @Select(MenuState.getLandingItems)
   public MenuItems!: Observable<MenuItem[]>;
 
-  @Select(MessageState.getNoticesAndSeries)
-  public Notices!: Observable<MessageModel[]>;
-  limitedMessages!: MessageModel[];
-
   @ViewChild('landing') Landing?: ElementRef;
   public onGlossaryClick = new EventEmitter();
 
@@ -62,7 +56,6 @@ export class LandingComponent implements OnInit, AfterViewInit {
     private introService: IntroService,
     private landingDialog: MatDialog
   ) {
-    this.limitMessages();
     this.landingInfo = coreConfig.landingBannerContent;
     this.innerWidth = window.innerWidth;
     this.showLanding =
@@ -90,13 +83,6 @@ export class LandingComponent implements OnInit, AfterViewInit {
       this.landingRef.close();
       this.showTour = false;
     }
-  }
-
-  private limitMessages() {
-    this.Notices.subscribe((message) => {
-      this.limitedMessages = message.slice(0, 2);
-      return this.limitedMessages;
-    });
   }
 
   private startGuidedTour(): void {
