@@ -10,11 +10,11 @@ import {
   InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
 } from '../../solid-skeleton-config';
-import { MessageState } from '../../state/message.state';
+import { ActivatedRoute } from '@angular/router';
 import { Select } from '@ngxs/store';
+import { MessageState } from '../../state/message.state';
 import { MessageModel } from '../../state/message.model';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'solid-skeleton-info',
@@ -27,16 +27,17 @@ export class InfoComponent implements OnInit {
   public landingChecked = false;
   public route;
 
+  @Select(MessageState.getNoticesAndSeries)
+  public notices!: Observable<MessageModel[]>;
+
   private messages: any;
+  public changeLogMsg: any[] = [];
+  public newsMsg: any[] = [];
 
   public InfoPageContentComponent: Type<any>;
   public PrivacyContentComponent: Type<any>;
   public ProfileTitle;
-  @Select(MessageState.getChangelog)
-  public Changelog!: Observable<MessageModel[]>;
 
-  @Select(MessageState.getNoticesAndSeries)
-  public Notices!: Observable<MessageModel[]>;
   tabIndex = 0;
   @ViewChild('info_container') public info_container?: ElementRef;
 
@@ -84,13 +85,11 @@ export class InfoComponent implements OnInit {
 
   ngOnInit(): void {
     const directTo = this.route.snapshot.queryParams.directTo;
-    if (directTo === 'news') {
-      this.tabIndex = 2;
-      const msgObj = JSON.parse(this.messages);
-      msgObj.forEach((msg: any) => {
-        if (msg.unread && msg.type != 'CL') msg.unread = false;
-      });
-      localStorage.setItem('solid_skeleton_messages', JSON.stringify(msgObj));
-    }
+    const msgObj = JSON.parse(this.messages);
+    msgObj.forEach((msg: any) => {
+      if (msg.type != 'CL') this.newsMsg.push(msg);
+      else this.changeLogMsg.push(msg);
+    });
+    if (directTo === 'news') this.tabIndex = 2;
   }
 }
