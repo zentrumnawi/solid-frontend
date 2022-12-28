@@ -57,3 +57,17 @@ mat-grid-tile {
   height: calc(100vh - 60px);
   padding: 1rem;
 }
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+
+  a {
+    text-decoration: none;
+  }
+
+  a:not(:last-child):after {
+    content: '|';
+  }
+}

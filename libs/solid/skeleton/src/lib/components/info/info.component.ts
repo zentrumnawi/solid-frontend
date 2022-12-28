@@ -90,6 +90,18 @@ export class InfoComponent implements OnInit {
       if (msg.type != 'CL') this.newsMsg.push(msg);
       else this.changeLogMsg.push(msg);
     });
-    if (directTo === 'news') this.tabIndex = 2;
+    switch (directTo) {
+      case 'privacy':
+        this.tabIndex = 1;
+        break;
+
+      case 'news':
+        this.tabIndex = 2;
+        break;
+
+      default:
+        this.tabIndex = 0;
+        break;
+    }
   }
 }

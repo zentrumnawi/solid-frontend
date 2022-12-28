@@ -26,4 +26,11 @@
       padding-bottom: -1rem;
     }
   }
+
+  .footer-container {
+    color: mat-color($app-primary);
+    a {
+      color: mat-color($app-primary);
+    }
+  }
 }
