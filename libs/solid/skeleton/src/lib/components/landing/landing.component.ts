@@ -47,6 +47,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
   public landingRef: any;
   private messages: any;
   public msgNumber: number;
+  public columns: any;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
@@ -83,6 +84,9 @@ export class LandingComponent implements OnInit, AfterViewInit {
       this.landingRef.close();
       this.showTour = false;
     }
+    if (this.innerWidth > 1600) this.columns = 7;
+    else if (this.innerWidth > 700 && this.innerWidth < 1600) this.columns = 4;
+    else this.columns = 2;
   }
 
   private startGuidedTour(): void {
@@ -115,6 +119,9 @@ export class LandingComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit(): void {
+    if (this.innerWidth > 1600) this.columns = 7;
+    else if (this.innerWidth > 700 && this.innerWidth < 1600) this.columns = 4;
+    else this.columns = 2;
     const msgObj = JSON.parse(this.messages);
     msgObj?.forEach((msg: any) => {
       if (msg.unread && msg.type != 'CL') this.msgNumber++;

@@ -15,7 +15,12 @@
       </p>
     </mat-card-content>
   </mat-card>
-  <mat-grid-list id="menu-grid-list" cols="2" gutterSize="1rem" rowHeight="1:1">
+  <mat-grid-list
+    id="menu-grid-list"
+    [cols]="columns"
+    gutterSize="1rem"
+    rowHeight="1:1"
+  >
     <mat-grid-tile
       *ngFor="let menuItem of MenuItems | async; let index = index"
       class="mat-elevation-z2"

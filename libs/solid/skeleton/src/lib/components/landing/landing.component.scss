@@ -10,8 +10,35 @@ mat-list {
   padding-top: 0 !important;
 }
 
+@media (min-width: 1601px) {
+  mat-grid-list {
+    width: 89rem;
+    margin-top: 4vh;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1600px) {
+  mat-grid-list {
+    width: 50rem;
+    margin-top: 1vh;
+  }
+}
+
+@media (max-width: 700px) {
+  mat-grid-list {
+    width: 23rem;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: center;
+    position: static !important;
+    margin-top: 10vh;
+    margin-bottom: -0.9rem;
+  }
+}
+
 mat-grid-list {
-  width: 23rem;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -59,12 +86,13 @@ mat-grid-tile {
 }
 
 .footer-container {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 0;
   font-weight: 400;
   font-size: 12px;
-  margin-top: 10vh;
-  margin-bottom: -0.9rem;
 
   a {
     text-decoration: none;
