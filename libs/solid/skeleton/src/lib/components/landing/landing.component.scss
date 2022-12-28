@@ -53,7 +53,7 @@ mat-grid-tile {
 }
 
 .landing-container {
-  overflow: hidden;
+  overflow: auto;
   height: calc(100vh - 60px);
   padding: 1rem;
 }
@@ -63,6 +63,8 @@ mat-grid-tile {
   justify-content: center;
   font-weight: 400;
   font-size: 12px;
+  margin-top: 10vh;
+  margin-bottom: -0.9rem;
 
   a {
     text-decoration: none;
