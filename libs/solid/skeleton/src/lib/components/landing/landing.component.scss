@@ -10,34 +10,6 @@ mat-list {
   padding-top: 0 !important;
 }
 
-@media (min-width: 1601px) {
-  mat-grid-list {
-    width: 89rem;
-    margin-top: 4vh;
-  }
-}
-
-@media (min-width: 701px) and (max-width: 1600px) {
-  mat-grid-list {
-    width: 50rem;
-    margin-top: 1vh;
-  }
-}
-
-@media (max-width: 700px) {
-  mat-grid-list {
-    width: 23rem;
-  }
-
-  .footer-container {
-    display: flex;
-    justify-content: center;
-    position: static !important;
-    margin-top: 10vh;
-    margin-bottom: -0.9rem;
-  }
-}
-
 mat-grid-list {
   max-width: 100%;
   margin-left: auto;
@@ -83,6 +55,16 @@ mat-grid-tile {
   overflow: auto;
   height: calc(100vh - 60px);
   padding: 1rem;
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    display: flex;
+    justify-content: center;
+    position: static !important;
+    margin-top: 10vh;
+    margin-bottom: -0.9rem;
+  }
 }
 
 .footer-container {
