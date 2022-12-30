@@ -24,7 +24,15 @@ export class IntroService {
       this.introJS
         .setOptions({
           tooltipClass: 'customTooltip',
-          steps: this.config.guidedTour.steps,
+          steps: this.config.guidedTour.steps.filter(function (step: any) {
+            if (step.element) {
+              const id = step.element.slice(1, step.element.length);
+              const element = document.getElementById(id);
+              if (element != null || id == 'welcome' || id == 'end-tour') {
+                return step.element;
+              }
+            }
+          }),
           exitOnOverlayClick: false,
           hidePrev: true,
           hideNext: true,
