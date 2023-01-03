@@ -7,6 +7,7 @@
   </div>
   <solid-core-media
     *ngIf="profile.mediaObjects.length > 0; else noImage"
+    id="profile-media-container"
     (swipeleft)="swipe(ImageSelected, $event.type)"
     (swiperight)="swipe(ImageSelected, $event.type)"
     [mediaObject]="profile.mediaObjects[ImageSelected]"
@@ -19,7 +20,7 @@
     [hasNavigationInDialog]="MediaObjectsOnlyImages.length > 1"
   ></solid-core-media>
   <ng-template #noImage>
-    <div class="no-img-container">
+    <div class="no-img-container" id="profile-media-container">
       <img class="no-img" src="assets/profile/no_image.svg" />
     </div>
   </ng-template>
@@ -27,7 +28,6 @@
     <div
       *ngIf="profile.mediaObjects.length > 1"
       class="img-toolbar"
-      id="profile-media-container"
       #thumbnails
     >
       <ng-container

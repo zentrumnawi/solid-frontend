@@ -98,3 +98,15 @@ jobs:
           source: 'dist/apps/geomat'
           target: '${{ secrets.GEOMAT_PRODUCTION_DIRECTORY }}'
           strip_components: 3
+
+      - name: Deploy wabe-production
+        uses: appleboy/scp-action@v0.0.10
+        if: startsWith(github.ref, 'refs/tags/wabe-v')
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: 'dist/apps/wabe'
+          target: '${{ secrets.WABE_PRODUCTION_DIRECTORY }}'
+          strip_components: 3

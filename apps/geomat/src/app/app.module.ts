@@ -5,7 +5,7 @@ import {
   HammerGestureConfig,
   HammerModule,
 } from '@angular/platform-browser';
-import { ErrorHandler, Injectable, NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
