@@ -241,14 +241,21 @@ export class BaseComponent implements OnInit, AfterViewInit {
                 if (id == '') {
                   if (this._route.url == treeLocation)
                     this.navigateTo(treeNodeLocation);
-                  else this.navigateTo(treeLocation);
+                  if (this._route.url == treeNodeLocation) {
+                    const steps = this.coreConfig.profileTour.steps;
+                    const currentStep =
+                      this.introService.introProfile._currentStep;
+                    steps.splice(currentStep, 1);
+                    setTimeout(() => {
+                      this.introService.introProfile
+                        .goToStep(currentStep)
+                        .start();
+                    }, 0.1);
+                  }
                 } else if (id == 'profile-view' || id == 'profile') {
                   if (this._route.url != treeLocation)
                     this.navigateTo(treeLocation);
                   this.collapseTree = true;
-                } else {
-                  if (this._route.url != treeNodeLocation)
-                    this.navigateTo(treeNodeLocation);
                 }
                 setTimeout(() => {
                   this.introService.introProfile.refresh(true);
