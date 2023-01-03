@@ -3,7 +3,6 @@ import { Profile, TreeNode, TreeNodeApi } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  ImageModel,
   SOLID_CORE_CONFIG,
   SolidCoreConfig,
   MediaModel,
@@ -74,6 +73,11 @@ export class ProfileState {
 
   static __internal__selectProfileAndNode(profileId?: number) {
     return null;
+  }
+
+  @Selector()
+  static selectProfile(state: ProfileStateModel) {
+    return state.profiles;
   }
 
   @Selector()
