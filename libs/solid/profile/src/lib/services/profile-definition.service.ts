@@ -28,13 +28,13 @@ export class ProfileDefinitionService {
 
   //OpenAPI 3.0
   public loadDefinitions() {
-    //prevent AIS, Dive, Planty, Wabe calling OpenAPI 3.0
+    //prevent AIS, Dive, Planty calling OpenAPI 3.0
     //so we don't have duplicated data in profile
     if (
       this._config.appName === 'AIS' ||
       this._config.appName === 'Div-e' ||
-      this._config.appName === 'PLANTY2Learn' ||
-      this._config.appName === 'WABE'
+      this._config.appName === 'PLANTY2Learn' /*||
+      this._config.appName === 'WABE'*/
     ) {
       return;
     }
@@ -67,6 +67,7 @@ export class ProfileDefinitionService {
       swagger.components?.schemas && swagger.components?.schemas[parts[3]]
         ? swagger.components?.schemas[parts[3]]
         : null;
+    console.log(def);
     if (!def) {
       throw new Error('Invalid swaggerfile');
     }
@@ -181,9 +182,9 @@ export class ProfileDefinitionService {
 
   //OpenAPI Version 2.0
   public loadDefinitions_swagger() {
-    //prevent GeoMat calling OpenAPI 2.0
+    //prevent GeoMat, WABE calling OpenAPI 2.0
     //so we don't have duplicated data in profile
-    if (this._config.appName === 'GeoMat') {
+    if (this._config.appName === 'GeoMat' || this._config.appName === 'WABE') {
       return;
     }
     return this.http
