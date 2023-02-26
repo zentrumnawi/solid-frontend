@@ -33,8 +33,7 @@ export class ProfileDefinitionService {
     if (
       this._config.appName === 'AIS' ||
       this._config.appName === 'Div-e' ||
-      this._config.appName === 'PLANTY2Learn' /*||
-      this._config.appName === 'WABE'*/
+      this._config.appName === 'PLANTY2Learn'
     ) {
       return;
     }
@@ -67,7 +66,6 @@ export class ProfileDefinitionService {
       swagger.components?.schemas && swagger.components?.schemas[parts[3]]
         ? swagger.components?.schemas[parts[3]]
         : null;
-    console.log(def);
     if (!def) {
       throw new Error('Invalid swaggerfile');
     }
@@ -117,7 +115,11 @@ export class ProfileDefinitionService {
     key: string,
     schema: OpenApiSchema
   ): ProfileProperty | null {
-    const { title, type } = schema;
+    const { title, type, format } = schema;
+    const formatType =
+      format?.toString() == 'mdstring'
+        ? ProfilePropertyType.Mdstring
+        : ProfilePropertyType.Colstring;
     const required = parent.required?.includes(key) ?? false;
     switch (type as ParameterType | 'colstring' | 'mdstring') {
       case 'string':
@@ -126,7 +128,7 @@ export class ProfileDefinitionService {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
           required,
-          type: ProfilePropertyType.String,
+          type: format ? formatType : ProfilePropertyType.String,
         };
       case 'array':
         if (Array.isArray(schema.items)) {
@@ -152,22 +154,6 @@ export class ProfileDefinitionService {
           key,
           required,
           type: ProfilePropertyType.Boolean,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          title: title!,
-        };
-      case 'mdstring':
-        return {
-          key,
-          required,
-          type: ProfilePropertyType.Mdstring,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          title: title!,
-        };
-      case 'colstring':
-        return {
-          key,
-          required,
-          type: ProfilePropertyType.Colstring,
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
         };

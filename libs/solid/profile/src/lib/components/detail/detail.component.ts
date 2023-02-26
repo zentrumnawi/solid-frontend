@@ -106,6 +106,8 @@ export class DetailComponent {
       case ProfilePropertyType.String:
       case ProfilePropertyType.Integer:
       case ProfilePropertyType.Boolean:
+      case ProfilePropertyType.Mdstring:
+      case ProfilePropertyType.Colstring:
         return val !== undefined && val !== '';
     }
   }
