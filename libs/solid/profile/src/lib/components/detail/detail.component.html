@@ -78,7 +78,7 @@
         <ng-container *ngIf="property.type !== PropertyTypes.Group">
           <ng-container
             *ngTemplateOutlet="
-              propertyTemplate;
+              propertyTemplate_swagger;
               context: { profile_obj: profile, property: property }
             "
           ></ng-container>
@@ -98,7 +98,7 @@
         <ng-container *ngFor="let childProperty of property.properties">
           <ng-container
             *ngTemplateOutlet="
-              propertyTemplate;
+              propertyTemplate_swagger;
               context: {
                 profile_obj: profile[property.key],
                 property: childProperty
@@ -111,7 +111,7 @@
   </mat-accordion>
 </ng-container>
 <ng-template
-  #propertyTemplate
+  #propertyTemplate_swagger
   let-profile_obj="profile_obj"
   let-property="property"
 >
@@ -222,7 +222,7 @@
     *ngIf="shouldDisplayProperty(property, profile_obj)"
     [ngSwitch]="property.type"
   >
-    <p class="heading">{{ property.title }}</p>
+    <p class="heading">{{ property.title ? property.title : property.key }}</p>
     <ng-container *ngSwitchCase="PropertyTypes.String">
       <p
         *ngIf="

@@ -115,7 +115,7 @@ export class ProfileDefinitionService {
     key: string,
     schema: OpenApiSchema
   ): ProfileProperty | null {
-    // format is used to store custom types
+    // format is used to declare custom types
     const { title, type, format } = schema;
     const required = parent.required?.includes(key) ?? false;
 
