@@ -115,13 +115,21 @@ export class ProfileDefinitionService {
     key: string,
     schema: OpenApiSchema
   ): ProfileProperty | null {
+    // format is used to store custom types
     const { title, type, format } = schema;
-    const formatType =
-      format?.toString() == 'mdstring'
-        ? ProfilePropertyType.Mdstring
-        : ProfilePropertyType.Colstring;
     const required = parent.required?.includes(key) ?? false;
-    switch (type as ParameterType | 'colstring' | 'mdstring') {
+
+    let formatType = ProfilePropertyType.String;
+    switch (format?.toString()) {
+      case 'mdstring':
+        formatType = ProfilePropertyType.Mdstring;
+        break;
+      case 'colstring':
+        formatType = ProfilePropertyType.Colstring;
+        break;
+    }
+
+    switch (type as ParameterType) {
       case 'string':
         return {
           key: key,
@@ -139,13 +147,13 @@ export class ProfileDefinitionService {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
           required,
-          type: ProfilePropertyType.List,
+          type: format ? formatType : ProfilePropertyType.List,
         };
       case 'integer':
         return {
           key,
           required,
-          type: ProfilePropertyType.Integer,
+          type: format ? formatType : ProfilePropertyType.Integer,
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
         };
