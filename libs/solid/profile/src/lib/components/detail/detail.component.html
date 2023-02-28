@@ -196,7 +196,9 @@
         "
       >
         <mat-expansion-panel-header>
-          <mat-panel-title>{{ property.title }}</mat-panel-title>
+          <mat-panel-title>{{
+            property.title ? property.title : property.key
+          }}</mat-panel-title>
         </mat-expansion-panel-header>
         <ng-container *ngFor="let childProperty of property.properties">
           <ng-container
