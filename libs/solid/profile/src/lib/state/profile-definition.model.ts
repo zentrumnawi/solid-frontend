@@ -5,6 +5,7 @@ export interface ProfilePropertyBase {
 }
 
 export interface ProfilePropertySimple extends ProfilePropertyBase {
+  // all custom types (mdstring, ...) can be retrieved from the property format (schema)
   type:
     | ProfilePropertyType.String
     | ProfilePropertyType.Integer

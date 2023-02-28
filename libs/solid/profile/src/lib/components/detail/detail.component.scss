@@ -9,6 +9,10 @@ p {
     margin-bottom: 0.5em;
     margin-top: 1em;
   }
+
+  &.heading::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 solid-core-media {
@@ -27,7 +31,12 @@ solid-core-media {
 mat-expansion-panel {
   mat-expansion-panel-header {
     mat-panel-title {
+      display: block;
       font-weight: 500;
+    }
+
+    mat-panel-title::first-letter {
+      text-transform: uppercase;
     }
   }
   mat-expansion-panel-header.mat-expanded {
