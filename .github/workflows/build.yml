@@ -47,7 +47,7 @@ jobs:
           name: nx-jest
 
       - name: build - staging
-        run: yarn nx run-many --target=build --all --parallel -c=staging
+        run: yarn nx run-many --target=build --all --parallel --configuration=staging
 
       - name: Deploy geomat-staging
         uses: appleboy/scp-action@v0.0.10
@@ -60,6 +60,17 @@ jobs:
           target: '${{ secrets.GEOMAT_STAGING_DIRECTORY }}'
           strip_components: 3
 
+      - name: Deploy wabe-staging
+        uses: appleboy/scp-action@v0.0.10
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: 'dist/apps/wabe'
+          target: '${{ secrets.WABE_STAGING_DIRECTORY }}'
+          strip_components: 3
+
       - name: Deploy planty-staging
         uses: appleboy/scp-action@v0.0.10
         with:
@@ -69,26 +80,4 @@ jobs:
           rm: true
           source: 'dist/apps/planty'
           target: '${{ secrets.PLANTY_STAGING_DIRECTORY }}'
-          strip_components: 3
-
-      - name: Deploy ais-staging
-        uses: appleboy/scp-action@v0.0.10
-        with:
-          host: ${{ secrets.SERVER }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          rm: true
-          source: 'dist/apps/ais'
-          target: '${{ secrets.AIS_STAGING_DIRECTORY }}'
-          strip_components: 3
-
-      - name: Deploy dive-staging
-        uses: appleboy/scp-action@v0.0.10
-        with:
-          host: ${{ secrets.SERVER }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          rm: true
-          source: 'dist/apps/dive'
-          target: '${{ secrets.DIVE_STAGING_DIRECTORY }}'
           strip_components: 3

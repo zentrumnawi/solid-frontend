@@ -1,19 +1,40 @@
-<ng-container *ngIf="question">
+<ng-container *ngIf="question && QuizSession | async as quizSession">
+  <div class="toolbar-container" #toolbar>
+    <div class="toolbar">
+      <button mat-icon-button class="button-back" (click)="onBackBtnClick()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button mat-icon-button class="button-close" (click)="onChartBtnClick()">
+        <mat-icon>bar_chart</mat-icon>
+      </button>
+      <div class="step-actions">
+        <div class="title">
+          <h2>
+            Fragen {{ quizSession.currentQuestion + 1 }} von
+            {{ quizSession.questions.length }}
+          </h2>
+          <span
+            >Tags: {{ question.tags.join(' ') }} | Schwierigkeit:
+            {{ question.difficulty }}</span
+          >
+        </div>
+      </div>
+    </div>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="quizSession.progress + 100 / quizSession.questions.length"
+    ></mat-progress-bar>
+  </div>
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{ question.tags.join(' ') }}</mat-card-title>
-      <mat-card-subtitle markdown [data]="question.text"></mat-card-subtitle>
-      <div class="spacer"></div>
-      <div class="close-btn">
-        <button mat-icon-button (click)="onCloseClick()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
+      <mat-card-title>
+        <p [data]="question.text" markdown></p>
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div *ngIf="question.images.length > 0" class="image-container">
         <button
-          mat-icon-button
+          mat-mini-fab
           class="button-before"
           color="accent"
           *ngIf="question.images.length > 1"
@@ -26,7 +47,7 @@
         <solid-core-media
           (swiperight)="swipe(ImageIndex, question.images.length, $event.type)"
           (swipeleft)="swipe(ImageIndex, question.images.length, $event.type)"
-          [image]="question.images[ImageIndex]"
+          [mediaObject]="question.images[ImageIndex]"
           [hasDialog]="true"
           [hasAudio]="false"
           [hasAttributions]="true"
@@ -34,118 +55,112 @@
         <button
           class="button-next"
           color="accent"
-          mat-icon-button
+          mat-mini-fab
           *ngIf="question.images.length > 1"
           (click)="swipe(ImageIndex, question.images.length, SWIPE_ACTION.LEFT)"
         >
           <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
         </button>
       </div>
-
       <ng-container [ngSwitch]="question.type">
         <mat-card-content
           *ngSwitchCase="QuestionTypes.SingleChoice"
           class="single-choice"
         >
-          <mat-radio-group
-            (change)="onRadioChange($event)"
-            [disabled]="ShowAnswers"
-            aria-label="Wähle ein Antwort aus"
-            color="primary"
+          <solid-quiz-single-choice-question
+            [question]="question"
+            (nextQuestionClicked)="onNextQuestionClicked($event)"
           >
-            <mat-radio-button
-              *ngFor="let answer of question.answers; trackBy: trackByFn"
-              [class.correct]="isAnswerCorrect(answer)"
-              [class.incorrect]="isAnswerIncorrect(answer)"
-              [value]="answer.id"
-            >
-              <span
-                markdown
-                [data]="
-                  !ShowAnswers
-                    ? answer.text
-                    : answer.text + (answer.correct ? ' &#10004;' : ' &#10008;')
-                "
-                [class.selected]="
-                  ShowAnswers && SelectedAnswers.includes(answer.id)
-                "
-              ></span>
-              <span
-                *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
-                [data]="
-                  answer.correct
-                    ? answer.feedback_correct
-                    : answer.feedback_incorrect
-                "
-                markdown
-                class="feedback"
-              ></span>
-            </mat-radio-button>
-          </mat-radio-group>
+          </solid-quiz-single-choice-question>
         </mat-card-content>
+
         <mat-card-content
           *ngSwitchCase="QuestionTypes.MultipleChoice"
           class="multiple-choice"
         >
-          <mat-checkbox
-            (change)="onSelectChange($event, answer)"
-            *ngFor="let answer of question.answers; trackBy: trackByFn"
-            [checked]="isAnswerCorrect(answer)"
-            [class.correctselected]="
-              isAnswerCorrect(answer) && SelectedAnswers.includes(answer.id)
-            "
-            [class.incorrectselected]="
-              isAnswerIncorrect(answer) && SelectedAnswers.includes(answer.id)
-            "
-            [class.correctunselected]="
-              isAnswerCorrect(answer) && !SelectedAnswers.includes(answer.id)
-            "
-            [class.incorrectunselected]="
-              isAnswerIncorrect(answer) && !SelectedAnswers.includes(answer.id)
-            "
-            [disabled]="ShowAnswers"
-            [indeterminate]="isAnswerIncorrect(answer)"
-            color="primary"
+          <solid-quiz-multiple-choice-question
+            [question]="question"
+            (nextQuestionClicked)="onNextQuestionClicked($event)"
           >
-            <span
-              markdown
-              [data]="answer.text"
-              [class.selected]="
-                ShowAnswers && SelectedAnswers.includes(answer.id)
-              "
-            ></span>
-            <span
-              *ngIf="ShowAnswers && SelectedAnswers.includes(answer.id)"
-              [data]="
-                answer.correct
-                  ? answer.feedback_correct
-                  : answer.feedback_incorrect
-              "
-              markdown
-              class="feedback"
-            ></span>
-          </mat-checkbox>
+          </solid-quiz-multiple-choice-question>
         </mat-card-content>
-        <mat-card-actions>
-          <button
-            (click)="onShowAnswersClick()"
-            *ngIf="!ShowAnswers"
-            color="primary"
-            mat-raised-button
-            class="ShowAnswerBtn"
+
+        <mat-card-content
+          *ngSwitchCase="QuestionTypes.TrueFalse"
+          class="true-false"
+        >
+          <solid-quiz-true-false-question
+            [question]="question"
+            (nextQuestionClicked)="onNextQuestionClicked($event)"
           >
-            Lösungen anzeigen
-          </button>
-          <button
-            (click)="onNextQuestionClick()"
-            *ngIf="ShowAnswers"
-            color="primary"
-            mat-raised-button
+          </solid-quiz-true-false-question>
+        </mat-card-content>
+
+        <mat-card-content *ngSwitchCase="QuestionTypes.Ranking" class="ranking">
+          <solid-quiz-ranking-question
+            [question]="question"
+            (nextQuestionClicked)="onNextQuestionClicked($event)"
           >
-            {{ Correct ? 'Richtig,' : ' Falsch,' }} nächste Frage
-          </button>
-        </mat-card-actions>
+          </solid-quiz-ranking-question>
+        </mat-card-content>
+
+        <mat-card-content *ngSwitchCase="QuestionTypes.Range" class="range">
+          <solid-quiz-range-question
+            [question]="question"
+            (nextQuestionClicked)="onNextQuestionClicked($event)"
+          >
+          </solid-quiz-range-question>
+        </mat-card-content>
       </ng-container>
     </mat-card-content>
   </mat-card>
+  <ng-template #backPopup>
+    <div class="closeDialog">
+      <p class="closeDialogTitle">Quiz abbrechen</p>
+      <button class="popUpCloseBtn" mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-dialog-content>
+      <p>Möchtest Du dieses Quiz abbrechen ?</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        class="backBtn"
+        mat-button
+        [mat-dialog-close]="true"
+        (click)="onBackToStart()"
+      >
+        Ja
+      </button>
+      <button class="cancelBtn" mat-button mat-dialog-close cdkFocusInitial>
+        Nein
+      </button>
+    </mat-dialog-actions>
+  </ng-template>
+
+  <ng-template #skipPopup>
+    <div class="closeDialog">
+      <p class="closeDialogTitle">Quiz beenden</p>
+      <button class="popUpCloseBtn" mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-dialog-content>
+      <p>Möchtest Du dieses Quiz beenden und zur Auswertung springen?</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        class="backBtn"
+        mat-button
+        [mat-dialog-close]="true"
+        (click)="onSkipToEnd()"
+      >
+        Ja
+      </button>
+      <button class="cancelBtn" mat-button mat-dialog-close cdkFocusInitial>
+        Nein
+      </button>
+    </mat-dialog-actions>
+  </ng-template>
 </ng-container>

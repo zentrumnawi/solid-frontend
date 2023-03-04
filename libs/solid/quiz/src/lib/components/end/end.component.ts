@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { QuizSession } from '../../state/quiz.model';
-import { StartQuizSession } from '../../state/quiz.actions';
+import { EndQuizSession, StartQuizSession } from '../../state/quiz.actions';
 import { QuizFeedback } from './end-feedback';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'solid-quiz-end',
@@ -14,7 +14,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class EndComponent implements OnDestroy {
   private $destroyed = new Subject<boolean>();
-  questionCount = new FormControl(10, [Validators.min(1)]);
+  questionCount = new UntypedFormControl(10, [Validators.min(1)]);
   QuizSession: QuizSession | null = null;
   FeedbackText = '';
   correctQuestions = 0;
@@ -49,6 +49,8 @@ export class EndComponent implements OnDestroy {
             feedbacks = QuizFeedback.lt75;
           } else if (this.correctPercentage === 1) {
             feedbacks = QuizFeedback.e100;
+          } else if (isNaN(this.correctPercentage)) {
+            feedbacks = QuizFeedback.nan;
           } else {
             feedbacks = QuizFeedback.ge75;
           }
@@ -62,12 +64,22 @@ export class EndComponent implements OnDestroy {
       });
   }
 
-  onStartClick() {
+  onRestartClick() {
     this._store.dispatch(new StartQuizSession(this.questionCount.value));
+    this.stopQuiz.emit(false);
+  }
+
+  onStartClick() {
+    this._store.dispatch(new EndQuizSession());
     this.stopQuiz.emit(false);
   }
 
   ngOnDestroy(): void {
     this.$destroyed.next(true);
+  }
+
+  onBackBtnClick() {
+    this._store.dispatch(new EndQuizSession());
+    this.stopQuiz.emit(false);
   }
 }

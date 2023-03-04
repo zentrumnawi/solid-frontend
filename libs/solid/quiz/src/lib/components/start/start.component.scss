@@ -1,21 +1,292 @@
 :host {
-  padding: 1em;
   display: block;
 }
 
 mat-card {
   margin-left: auto;
   margin-right: auto;
-  max-width: 30em;
+  max-width: 60em;
+  top: 67px;
+}
+
+@media (max-width: 1141px) {
+  mat-card {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 440px) {
+  mat-card {
+    top: 62px;
+  }
 }
 
 mat-form-field {
+  width: 20em;
   margin-left: 0.75em;
+}
+
+mat-card-title {
+  font-size: 20px;
+  padding-left: 20px;
 }
 
 mat-card-content {
   mat-spinner {
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+mat-list {
+  margin-left: 2px;
+}
+
+mat-form-field {
+  width: 85%;
+  padding-left: 3%;
+}
+
+mat-card-actions {
+  padding: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.content-container {
+  text-align: left;
+  font-size: 15px;
+}
+
+.mat-standard-chip .mat-chip-remove {
+  color: white;
+}
+
+.formInvalid {
+  box-sizing: border-box;
+  font-size: 11px;
+  color: red;
+  font-style: italic;
+  text-align: center;
+  padding: 0px 8%;
+}
+
+hr {
+  margin: 15px;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+.displayValueBox {
+  border: solid 2px;
+  padding: 6px;
+  height: 35px;
+  width: 40px;
+  transform: translateY(-3px);
+  font-weight: 500;
+  margin-left: 4%;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.mat-slider {
+  width: 100%;
+  margin: -10px;
+}
+
+.mat-subheader {
+  font-size: 15px;
+  padding: 16px 0px;
+}
+
+.controlHeader {
+  float: left;
+  width: 100%;
+  display: flex;
+}
+
+.controlElement {
+  display: flex;
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.content-container {
+  padding: 10px 10px 0px 10px;
+}
+
+.button-container {
+  .startBtn {
+    margin: 10px 10px 20px 10px !important;
+    border-radius: 7px;
+  }
+
+  .expBtn {
+    margin: 10px 10px 20px 10px;
+    padding: 0px;
+  }
+}
+
+.deselectAllBtn {
+  color: orangered;
+
+  .mat-icon {
+    line-height: 34px;
+  }
+}
+
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+#difficulty {
+  .mat-button-toggle-group {
+    width: 100%;
+    border: none;
+    margin-top: 10px;
+    justify-content: space-between;
+  }
+
+  .mat-button-toggle {
+    width: 20%;
+    border-radius: 7px;
+    height: 39px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 440px) {
+    .mat-button-toggle {
+      margin-right: 10px;
+    }
+  }
+
+  @media (min-width: 441px) {
+    .mat-button-toggle {
+      margin-right: 20px;
+    }
+  }
+
+  .mat-button-toggle:last-child {
+    margin-right: 0px;
+  }
+
+  ::ng-deep.mat-button-toggle-label-content {
+    line-height: 35px;
+  }
+}
+
+#tag {
+  ::ng-deep .mat-chip-list-wrapper {
+    width: 100%;
+    margin: 0;
+    justify-content: space-between;
+  }
+
+  .mat-chip {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 10px 0px;
+    display: block;
+    padding: 5px 10px;
+    text-align: center;
+  }
+
+  @media (max-width: 440px) {
+    .mat-chip {
+      width: 28%;
+    }
+  }
+
+  @media (min-width: 441px) {
+    .mat-chip {
+      width: 23%;
+    }
+  }
+
+  .mat-standard-chip:focus::after {
+    opacity: 0;
+  }
+}
+
+.mat-subheader {
+  font-weight: 500;
+}
+
+.button-container {
+  text-align: center;
+  position: relative;
+
+  .startBtn {
+    font-size: 15px;
+    width: 35%;
+  }
+
+  .expBtn {
+    display: block;
+    font-weight: 500;
+  }
+}
+
+.config {
+  position: relative;
+  padding: 0px 10px;
+}
+
+::ng-deep .mat-select-value-text {
+  display: none;
+}
+
+@media (max-width: 999px) {
+  .toolbar-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .toolbar-container {
+    width: calc(100% - 300px);
+  }
+}
+
+.toolbar-container {
+  position: fixed;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
+  transition: top 0.7s ease-in-out;
+}
+
+.toolbar {
+  width: 100%;
+  position: relative;
+  min-height: 52px;
+
+  .button-back {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-45%);
+    z-index: 999;
+    cursor: pointer;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    grid-area: header;
+
+    h2 {
+      font-size: 21px;
+      transform: translateY(12px);
+      margin-bottom: -2px;
+    }
   }
 }

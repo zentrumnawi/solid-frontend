@@ -5,7 +5,7 @@ import {
   HammerGestureConfig,
   HammerModule,
 } from '@angular/platform-browser';
-import { ErrorHandler, Injectable, NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -101,5 +101,6 @@ export class AppModule {
     addIcon('info_privacy');
     addIcon('feedback');
     addIcon('feedback_outline');
+    addIcon('semicorrect');
   }
 }

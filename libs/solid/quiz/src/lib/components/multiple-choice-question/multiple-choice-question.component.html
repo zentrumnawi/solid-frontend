@@ -1,0 +1,48 @@
+<mat-checkbox
+  (change)="onSelectChange($event, answer)"
+  *ngFor="let answer of question.answers; trackBy: trackByFn"
+  [checked]="isAnswerCorrect(answer)"
+  [class.correctSelected]="
+    isAnswerCorrect(answer) && selectedAnswers.includes(answer.id)
+  "
+  [class.incorrectSelected]="
+    isAnswerIncorrect(answer) && selectedAnswers.includes(answer.id)
+  "
+  [class.correctUnselected]="
+    isAnswerCorrect(answer) && !selectedAnswers.includes(answer.id)
+  "
+  [class.incorrectUnselected]="
+    isAnswerIncorrect(answer) && !selectedAnswers.includes(answer.id)
+  "
+  [disabled]="showAnswers"
+  [indeterminate]="isAnswerIncorrect(answer)"
+  color="primary"
+>
+  <span class="answer" markdown [data]="answer.text"></span>
+  <span
+    class="feedback"
+    *ngIf="showAnswers && selectedAnswers.includes(answer.id)"
+    [data]="
+      answer.correct ? answer.feedback_correct : answer.feedback_incorrect
+    "
+    markdown
+  ></span>
+</mat-checkbox>
+<button
+  (click)="onShowAnswersClick()"
+  *ngIf="!showAnswers"
+  color="primary"
+  mat-raised-button
+  class="showAnswerBtn"
+>
+  Lösungen anzeigen
+</button>
+<button
+  (click)="onNextQuestionClick()"
+  *ngIf="showAnswers"
+  color="primary"
+  mat-raised-button
+  class="nextQuestionBtn"
+>
+  {{ correct === 1 ? 'Richtig,' : ' Falsch,' }} nächste Frage
+</button>

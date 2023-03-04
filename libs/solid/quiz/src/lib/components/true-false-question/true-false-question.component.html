@@ -1,0 +1,80 @@
+<div class="button-container">
+  <button
+    class="trueBtn"
+    [disabled]="showAnswers"
+    mat-stroked-button
+    [class.correctUnselected]="showAnswers && question.answers[0].correct"
+    [class.incorrectUnselected]="showAnswers && !question.answers[0].correct"
+    [class.correctSelected]="
+      showAnswers && question.answers[0].correct && selectedAnswer
+    "
+    [class.incorrectSelected]="
+      showAnswers && !question.answers[0].correct && selectedAnswer
+    "
+    (click)="onTrueClick()"
+  >
+    Wahr
+  </button>
+  <button
+    class="falseBtn"
+    [disabled]="showAnswers"
+    mat-stroked-button
+    [class.correctUnselected]="showAnswers && !question.answers[0].correct"
+    [class.incorrectUnselected]="showAnswers && question.answers[0].correct"
+    [class.correctSelected]="
+      showAnswers && !question.answers[0].correct && !selectedAnswer
+    "
+    [class.incorrectSelected]="
+      showAnswers && question.answers[0].correct && !selectedAnswer
+    "
+    (click)="onFalseClick()"
+  >
+    Falsch
+  </button>
+</div>
+
+<div class="feedback" *ngIf="showAnswers">
+  <mat-icon
+    class="correctIcon"
+    *ngIf="question.answers[0].correct === selectedAnswer && showAnswers"
+  >
+    check
+  </mat-icon>
+  <mat-icon
+    class="incorrectIcon"
+    *ngIf="question.answers[0].correct !== selectedAnswer && showAnswers"
+  >
+    highlight_off
+  </mat-icon>
+  <span
+    class="feedback-text"
+    markdown
+    [data]="
+      selectedAnswer === question.answers[0].correct
+        ? question.answers[0].feedback_correct
+        : question.answers[0].feedback_incorrect
+    "
+  ></span>
+</div>
+
+<div>
+  <button
+    [disabled]="selectedAnswer === undefined"
+    (click)="onShowAnswersClick()"
+    *ngIf="!showAnswers"
+    color="primary"
+    mat-raised-button
+    class="showAnswerBtn"
+  >
+    Lösungen anzeigen
+  </button>
+  <button
+    (click)="onNextQuestionClick()"
+    *ngIf="showAnswers"
+    color="primary"
+    mat-raised-button
+    class="nextQuestionBtn"
+  >
+    {{ correct === 1 ? 'Richtig,' : ' Falsch,' }} nächste Frage
+  </button>
+</div>

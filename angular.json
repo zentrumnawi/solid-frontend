@@ -16,6 +16,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
             "outputPath": "dist/apps/ais",
             "index": "apps/ais/src/index.html",
             "main": "apps/ais/src/main.ts",
@@ -142,11 +147,11 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/ais/jest.config.js",
+            "jestConfig": "apps/ais/jest.config.ts",
             "passWithNoTests": true,
             "tsConfig": "apps/ais/tsconfig.spec.json"
           },
-          "outputs": ["coverage/apps/ais"]
+          "outputs": ["{workspaceRoot}/coverage/apps/ais"]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -173,6 +178,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
             "outputPath": "dist/apps/dive",
             "index": "apps/dive/src/index.html",
             "main": "apps/dive/src/main.ts",
@@ -299,10 +309,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/dive/jest.config.js",
+            "jestConfig": "apps/dive/jest.config.ts",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/dive"]
+          "outputs": ["{workspaceRoot}/coverage/apps/dive"]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -329,6 +339,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
             "outputPath": "dist/apps/geomat",
             "index": "apps/geomat/src/index.html",
             "main": "apps/geomat/src/main.ts",
@@ -455,10 +470,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/geomat/jest.config.js",
+            "jestConfig": "apps/geomat/jest.config.ts",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/geomat"]
+          "outputs": ["{workspaceRoot}/coverage/apps/geomat"]
         }
       }
     },
@@ -476,6 +491,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
             "outputPath": "dist/apps/planty",
             "index": "apps/planty/src/index.html",
             "main": "apps/planty/src/main.ts",
@@ -602,11 +622,11 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/planty/jest.config.js",
+            "jestConfig": "apps/planty/jest.config.ts",
             "passWithNoTests": true,
             "tsConfig": "apps/planty/tsconfig.spec.json"
           },
-          "outputs": ["coverage/apps/planty"]
+          "outputs": ["{workspaceRoot}/coverage/apps/planty"]
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
@@ -653,10 +673,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/solid/core/jest.config.js",
+            "jestConfig": "libs/solid/core/jest.config.ts",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/core"]
+          "outputs": ["{workspaceRoot}/coverage/libs/solid/core"]
         }
       },
       "schematics": {
@@ -699,10 +719,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/solid/glossary/jest.config.js",
+            "jestConfig": "libs/solid/glossary/jest.config.ts",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/glossary"]
+          "outputs": ["{workspaceRoot}/coverage/libs/solid/glossary"]
         }
       },
       "schematics": {
@@ -745,10 +765,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/solid/profile/jest.config.js",
+            "jestConfig": "libs/solid/profile/jest.config.ts",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/profile"]
+          "outputs": ["{workspaceRoot}/coverage/libs/solid/profile"]
         }
       },
       "schematics": {
@@ -791,10 +811,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/solid/quiz/jest.config.js",
+            "jestConfig": "libs/solid/quiz/jest.config.ts",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/quiz"]
+          "outputs": ["{workspaceRoot}/coverage/libs/solid/quiz"]
         }
       },
       "schematics": {
@@ -839,10 +859,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/solid/skeleton/jest.config.js",
+            "jestConfig": "libs/solid/skeleton/jest.config.ts",
             "passWithNoTests": false
           },
-          "outputs": ["coverage/libs/solid/skeleton"]
+          "outputs": ["{workspaceRoot}/coverage/libs/solid/skeleton"]
         }
       },
       "schematics": {
@@ -850,8 +870,7 @@
           "styleext": "scss",
           "style": "scss"
         }
-      },
-      "dependencies": ["tools"]
+      }
     },
     "solid-slideshow": {
       "projectType": "library",
@@ -887,15 +906,174 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/solid/slideshow/jest.config.js",
+            "jestConfig": "libs/solid/slideshow/jest.config.ts",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/solid/slideshow"]
+          "outputs": ["{workspaceRoot}/coverage/libs/solid/slideshow"]
         }
       },
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
+        }
+      }
+    },
+    "wabe": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/wabe",
+      "sourceRoot": "apps/wabe/src",
+      "prefix": "zentrumnawi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "allowedCommonJsDependencies": [
+              "openseadragon",
+              "markdown-it-sub",
+              "markdown-it-sup"
+            ],
+            "outputPath": "dist/apps/wabe",
+            "index": "apps/wabe/src/index.html",
+            "main": "apps/wabe/src/main.ts",
+            "polyfills": "apps/wabe/src/polyfills.ts",
+            "tsConfig": "apps/wabe/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/wabe/src/favicon.ico",
+              "apps/wabe/src/assets",
+              "apps/wabe/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "apps/wabe/src/styles.scss",
+              "node_modules/intro.js/introjs.css"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/solid/core/src",
+                "libs/solid/glossary/src",
+                "libs/solid/skeleton/src",
+                "libs/solid/slideshow/src",
+                "libs/solid/quiz/src",
+                "libs/solid/profile/src"
+              ]
+            },
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/wabe/src/environments/environment.ts",
+                  "with": "apps/wabe/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/wabe/ngsw-config.json"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/wabe/src/environments/environment.ts",
+                  "with": "apps/wabe/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "wabe:build",
+            "proxyConfig": "./apps/wabe/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "wabe:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "wabe:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/wabe/**/*.ts", "apps/wabe/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/wabe/jest.config.ts",
+            "passWithNoTests": true,
+            "tsConfig": "apps/wabe/tsconfig.spec.json"
+          },
+          "outputs": ["{workspaceRoot}/coverage/apps/wabe"]
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "configuration": "staging",
+            "baseHref": "/solid-frontend/",
+            "name": "Github Actions",
+            "email": "github@example.com"
+          }
         }
       }
     }

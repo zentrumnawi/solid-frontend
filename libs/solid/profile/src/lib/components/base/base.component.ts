@@ -12,7 +12,7 @@ import {
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../../state/profile.state';
 import { TreeNode, Profile } from '../../state/profile.model';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
@@ -40,6 +40,23 @@ export enum APP {
   styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent implements OnInit, AfterViewInit {
+  @ViewChild('title_container', { static: false })
+  public titleContainer?: ElementRef;
+  @ViewChild('contentContainer', { static: false })
+  public contentContainer!: ElementRef;
+  @ViewChild('spinnerContainer', { static: false }) set spinnerContainer(
+    element: ElementRef
+  ) {
+    if (element) {
+      const windowWidth = document.documentElement.clientWidth;
+      const position =
+        windowWidth >= 1000
+          ? (windowWidth - 115 - 300) / 2
+          : (windowWidth - 115) / 2;
+      element.nativeElement.style.left = position + 'px';
+    }
+  }
+
   public APP_NAME_DIVE = APP.DIVE;
   @Select(ProfileState.selectTree)
   public $profilesTree!: Observable<TreeNode[]>;
@@ -52,10 +69,8 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @Select(__internal__selectRouterStateParams)
   public $routerParams!: Observable<{ [key: string]: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
-  @ViewChild('contentContainer', { static: false })
-  public ContentContainer!: ElementRef;
   public SplitLayout = false;
-  public Filter = new FormControl('');
+  public Filter = new UntypedFormControl('');
   public FilterValue = new BehaviorSubject<string>('');
   public SelectedProfile: Profile | null = null;
   public SelectedNode: TreeNode | null = null;
@@ -63,8 +78,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public SwipeRight = -1;
   public View = 'tree';
   public isSearchBarOpen = false;
-  @ViewChild('title_container', { static: false })
-  public title_container?: ElementRef;
   public title_container_width = 0;
   public title_width = 0;
   public firstMovingAnimation = true;
@@ -73,6 +86,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public timeOut_2: any;
   public collapseTree = false;
   @Output() profileTitle = new EventEmitter<string>();
+
+  @Select(ProfileState.selectProfile) profile$: Observable<any> | undefined;
+  isLoading = true;
 
   constructor(
     private _store: Store,
@@ -84,9 +100,12 @@ export class BaseComponent implements OnInit, AfterViewInit {
     this._store.dispatch([
       new LoadDefinition(),
       new LoadProfiles(),
-      //Load definitions from OpenAPI 2.0
+      // Load definitions from OpenAPI 2.0
       new LoadDefinitionSwagger(),
     ]);
+    this.profile$?.subscribe((res) => {
+      if (res.length != 0) this.isLoading = false;
+    });
   }
 
   ngOnInit(): void {
@@ -200,44 +219,55 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    if (
-      localStorage.getItem('hide_profile_tour') == 'false' ||
-      localStorage.getItem('hide_profile_tour') == null
-    ) {
-      setTimeout(() => {
-        this.introService.profileTour((_targetElement: any) => {
-          try {
-            const id = _targetElement.id;
-            const treeNodeLocation =
-              this.coreConfig.profileTour.location.treeNode;
-            const treeLocation =
-              this.coreConfig.profileTour.location.profileTree;
-            this.collapseTree = false;
-            setTimeout(() => {
-              this.introService.introProfile.refresh(true);
-            }, 365);
-            if (id == '') {
-              if (this._route.url == treeLocation)
-                this.navigateTo(treeNodeLocation);
-              else this.navigateTo(treeLocation);
-            } else if (id == 'profile-view' || id == 'profile') {
-              if (this._route.url != treeLocation)
-                this.navigateTo(treeLocation);
-              this.collapseTree = true;
-            } else {
-              if (this._route.url != treeNodeLocation)
-                this.navigateTo(treeNodeLocation);
-            }
-            setTimeout(() => {
-              this.introService.introProfile.refresh(true);
-            }, 0.1);
-          } catch (error) {
-            return;
-          }
-          return;
-        });
-      }, 2000);
-    }
+    this.profile$?.subscribe((res) => {
+      if (res.length != 0)
+        if (
+          localStorage.getItem('hide_profile_tour') == 'false' ||
+          localStorage.getItem('hide_profile_tour') == null
+        ) {
+          setTimeout(() => {
+            this.introService.profileTour((_targetElement: any) => {
+              try {
+                const id = _targetElement.id;
+                const treeNodeLocation =
+                  this.coreConfig.profileTour.location.treeNode;
+                const treeLocation =
+                  this.coreConfig.profileTour.location.profileTree;
+                this.collapseTree = false;
+                if (id != 'profile')
+                  setTimeout(() => {
+                    this.introService.introProfile.refresh(true);
+                  }, 365);
+                if (id == '') {
+                  if (this._route.url == treeLocation)
+                    this.navigateTo(treeNodeLocation);
+                  if (this._route.url == treeNodeLocation) {
+                    const steps = this.coreConfig.profileTour.steps;
+                    const currentStep =
+                      this.introService.introProfile._currentStep;
+                    steps.splice(currentStep, 1);
+                    setTimeout(() => {
+                      this.introService.introProfile
+                        .goToStep(currentStep)
+                        .start();
+                    }, 0.1);
+                  }
+                } else if (id == 'profile-view' || id == 'profile') {
+                  if (this._route.url != treeLocation)
+                    this.navigateTo(treeLocation);
+                  this.collapseTree = true;
+                }
+                setTimeout(() => {
+                  this.introService.introProfile.refresh(true);
+                }, 0.1);
+              } catch (error) {
+                return;
+              }
+              return;
+            });
+          }, 800);
+        }
+    });
   }
 
   public handleLongTitle() {
@@ -248,10 +278,10 @@ export class BaseComponent implements OnInit, AfterViewInit {
       this.stopAnimation = false;
       this.firstMovingAnimation = true;
       this.title_container_width =
-        this.title_container?.nativeElement.offsetWidth;
+        this.titleContainer?.nativeElement.offsetWidth;
       this.title_width =
-        this.title_container?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
-      if (this.title_container?.nativeElement.firstElementChild) {
+        this.titleContainer?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
+      if (this.titleContainer?.nativeElement.firstElementChild) {
         this.timeOut_2 = setTimeout(() => {
           this.firstMovingAnimation = false;
         }, 10000);
@@ -321,7 +351,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   }
 
   private calculateLayout() {
-    const split = this.ContentContainer.nativeElement.clientWidth >= 800;
+    const split = this.contentContainer.nativeElement.clientWidth >= 800;
     if (split !== this.SplitLayout) {
       setTimeout(() => {
         this.SplitLayout = split;

@@ -1,0 +1,84 @@
+:host {
+  margin-left: -3px;
+}
+
+mat-radio-group {
+  margin-top: 7px;
+  display: flex;
+  flex-direction: column;
+
+  mat-radio-button {
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+    ::ng-deep {
+      label.mat-radio-label {
+        vertical-align: top;
+
+        .mat-radio-container {
+          margin-bottom: auto;
+        }
+
+        &.correct {
+          font-weight: bold;
+        }
+      }
+
+      .mat-radio-label-content {
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: auto 20px;
+        white-space: normal;
+      }
+
+      .mat-radio-inner-circle {
+        z-index: 0;
+      }
+    }
+  }
+}
+
+.answer {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  ::ng-deep {
+    p {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.correctIcon {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  transform: translateX(-30px) translateY(-2px);
+  opacity: 1;
+  z-index: 9999;
+}
+
+.incorrectIcon {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  transform: translateX(-30px) translateY(-2px);
+  opacity: 1;
+  z-index: 9999;
+}
+
+span.feedback {
+  grid-column-start: 1;
+  font-weight: normal;
+  margin-top: 5px;
+  margin-bottom: -12px;
+}
+
+.showAnswerBtn {
+  margin-top: 23px;
+}
+
+.nextQuestionBtn {
+  margin-top: 23px;
+}
+
+::ng-deep .mat-radio-button.mat-radio-disabled .mat-radio-outer-circle {
+  display: none;
+}

@@ -1,0 +1,31 @@
+@import '@angular/material/theming';
+
+@mixin solid-slideshow-select-component-theme($mat-theme) {
+  $accent: map-get($mat-theme, accent);
+  $background: map-get($mat-theme, background);
+
+  solid-slideshow-slideshow-select {
+    .slideshow-select-container {
+      .mat-expansion-panel-header {
+        border-left: 9px solid mat-color($app-primary, 600);
+      }
+    }
+    .mat-expansion-panel-header {
+      background-color: mat.get-color-from-palette($background, status-bar);
+    }
+
+    .mat-expansion-panel:not(.mat-expanded):not([aria-disabled='true'])
+      .mat-expansion-panel-header:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .mat-expansion-panel-header.mat-expanded,
+    .mat-expansion-panel-header.mat-expanded:focus,
+    .mat-expansion-panel-header.mat-expanded:hover {
+      background-color: mat.get-color-from-palette(
+        $background,
+        status-bar
+      ) !important;
+    }
+  }
+}

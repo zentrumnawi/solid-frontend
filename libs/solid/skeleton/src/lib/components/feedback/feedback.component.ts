@@ -1,5 +1,9 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -21,14 +25,14 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   private static STORAGE_KEY_1 = 'FEEDBACK';
   private static STORAGE_KEY_2 = 'ERROR_REPORT';
   private _sent = false;
-  public Form: FormGroup;
+  public Form: UntypedFormGroup;
   public formTitle: string;
   public privacyChecked = false;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     private _ref: MatDialogRef<FeedbackComponent>,
     private _dialog: MatDialog,
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
@@ -67,12 +71,9 @@ export class FeedbackComponent implements OnInit, OnDestroy {
       ? FeedbackComponent.STORAGE_KEY_2
       : FeedbackComponent.STORAGE_KEY_1;
     sessionStorage.setItem(key, JSON.stringify(this.Form.value));
-    // if (this._sent) {
-    //   sessionStorage.removeItem(key);
-    // }
-
-    // for testing
-    sessionStorage.removeItem(key);
+    if (this._sent) {
+      sessionStorage.removeItem(key);
+    }
   }
 
   public ngOnInit(): void {
