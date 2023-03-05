@@ -16,6 +16,10 @@
   }
 }
 
+::ng-deep .mat-button-focus-overlay {
+  background-color: transparent;
+}
+
 ::ng-deep .report-dialog {
   .header-container {
     background-color: tomato !important;
