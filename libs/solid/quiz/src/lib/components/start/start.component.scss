@@ -185,6 +185,10 @@ hr {
     justify-content: space-between;
   }
 
+  .mat-chip-list {
+    width: 100%;
+  }
+
   .mat-chip {
     overflow: hidden;
     white-space: nowrap;
@@ -196,8 +200,12 @@ hr {
   }
 
   @media (max-width: 440px) {
-    .mat-chip {
+    .mat-chip-small {
       width: 28%;
+    }
+
+    .mat-chip-big {
+      width: 48%;
     }
   }
 

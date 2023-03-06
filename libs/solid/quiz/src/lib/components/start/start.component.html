@@ -123,6 +123,7 @@
               *ngFor="let tag of tags"
               [value]="tag"
               (click)="c.toggleSelected(true)"
+              [ngClass]="tags.length > 6 ? 'mat-chip-small' : 'mat-chip-big'"
             >
               {{ tag }}
             </mat-chip>
