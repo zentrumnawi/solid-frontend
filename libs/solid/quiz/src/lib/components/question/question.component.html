@@ -13,7 +13,10 @@
             Fragen {{ quizSession.currentQuestion + 1 }} von
             {{ quizSession.questions.length }}
           </h2>
-          <p *ngIf="question.tags.length !== 0; else withoutTags">
+          <p
+            class="question-info"
+            *ngIf="question.tags.length !== 0; else withoutTags"
+          >
             Tags: {{ question.tags.join(' ') }} | Schwierigkeit:
             {{ question.difficulty }}
           </p>
