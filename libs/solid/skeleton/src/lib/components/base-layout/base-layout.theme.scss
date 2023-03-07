@@ -36,11 +36,4 @@
   .privacy-link {
     color: mat.get-color-from-palette($app-primary);
   }
-
-  .landing-banner-dialog {
-    border: solid 5px mat.get-color-from-palette($app-primary);
-    mat-dialog-container {
-      border: solid 4px mat.get-color-from-palette($app-accent);
-    }
-  }
 }
