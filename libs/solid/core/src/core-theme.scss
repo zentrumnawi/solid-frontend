@@ -5,7 +5,7 @@
   @include solid-core-media-toolbar-theme($mat-theme);
   @include solid-core-audio-icon-theme($mat-theme);
 
-  div.mat-dialog-title {
+  div.mat-media-dialog-title {
     background-color: mat.get-color-from-palette($app-primary);
     border-bottom: solid 3px mat.get-color-from-palette($app-accent);
     color: white;

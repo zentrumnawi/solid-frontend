@@ -74,7 +74,7 @@
       </div>
       <div class="row">
         <div class="controlHeader" id="difficulty">
-          <div class="mat-subheader">Difficulty</div>
+          <div class="mat-subheader">Schwierigkeitsgrad</div>
           <button
             mat-icon-button
             class="deselectAllBtn"
@@ -99,9 +99,9 @@
           </mat-button-toggle-group>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="tags.length !== 0">
         <div class="controlHeader" id="tag">
-          <div class="mat-subheader">Tag</div>
+          <div class="mat-subheader">Tags</div>
           <button
             mat-icon-button
             class="deselectAllBtn"
@@ -123,6 +123,7 @@
               *ngFor="let tag of tags"
               [value]="tag"
               (click)="c.toggleSelected(true)"
+              [ngClass]="tags.length > 6 ? 'mat-chip-small' : 'mat-chip-large'"
             >
               {{ tag }}
             </mat-chip>
