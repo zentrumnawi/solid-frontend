@@ -37,7 +37,8 @@
     z-index: 999;
   }
 
-  ::ng-deep {
+  ::ng-deep .report-dialog,
+  ::ng-deep .feedback-dialog {
     .mat-dialog-container {
       margin: 0px 0px !important;
       width: 100vw;
