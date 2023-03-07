@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+@import '../../theme';
+
+$accent: map-get($app-theme, accent);
+
+:host {
+  display: block;
+  padding: 1rem;
+}
+
+.info-link,
+.info-link:link,
+.info-link:visited {
+  text-decoration: underline;
+  cursor: pointer;
+  color: mat.get-color-from-palette($app-primary, 600);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.solid-logo {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logos {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 1400px) {
+    justify-content: center;
+  }
+}

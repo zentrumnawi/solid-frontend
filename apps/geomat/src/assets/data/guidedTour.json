@@ -3,6 +3,7 @@
     "location": "",
     "steps": [
       {
+        "element": "#welcome",
         "intro": "Willkommen bei GeoMat! In einer kurzen Tour möchten wir dir die wesentlichen Funktionen zeigen."
       },
       {
@@ -58,6 +59,7 @@
         "intro": "Wenn du die Tour nochmals ansehen willst, kannst du sie im Info-Bereich in den <i>Einstellungen</i> wieder aktivieren."
       },
       {
+        "element": "#end-tour",
         "intro": "Wir wünschen dir viel Freude beim Lernen und beim Entdecken der GeoMat-App!"
       }
     ],

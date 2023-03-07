@@ -19,4 +19,5 @@ export const coreConfig: SolidCoreConfig = {
   glossaryLogo: 'assets/svg/glossary.svg',
   feedbackLogo: 'assets/svg/feedback.svg',
   landingBannerContent: landingBannerContent,
+  expandProfileTree: false,
 };

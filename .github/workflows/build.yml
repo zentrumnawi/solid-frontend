@@ -59,3 +59,25 @@ jobs:
           source: 'dist/apps/geomat'
           target: '${{ secrets.GEOMAT_STAGING_DIRECTORY }}'
           strip_components: 3
+
+      - name: Deploy wabe-staging
+        uses: appleboy/scp-action@v0.0.10
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: 'dist/apps/wabe'
+          target: '${{ secrets.WABE_STAGING_DIRECTORY }}'
+          strip_components: 3
+
+      - name: Deploy planty-staging
+        uses: appleboy/scp-action@v0.0.10
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: 'dist/apps/planty'
+          target: '${{ secrets.PLANTY_STAGING_DIRECTORY }}'
+          strip_components: 3

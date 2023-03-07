@@ -115,16 +115,28 @@ export class ProfileDefinitionService {
     key: string,
     schema: OpenApiSchema
   ): ProfileProperty | null {
-    const { title, type } = schema;
+    // format is used to declare custom types
+    const { title, type, format } = schema;
     const required = parent.required?.includes(key) ?? false;
-    switch (type as ParameterType | 'colstring' | 'mdstring') {
+
+    let formatType = ProfilePropertyType.String;
+    switch (format?.toString()) {
+      case 'mdstring':
+        formatType = ProfilePropertyType.Mdstring;
+        break;
+      case 'colstring':
+        formatType = ProfilePropertyType.Colstring;
+        break;
+    }
+
+    switch (type as ParameterType) {
       case 'string':
         return {
           key: key,
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
           required,
-          type: ProfilePropertyType.String,
+          type: format ? formatType : ProfilePropertyType.String,
         };
       case 'array':
         if (Array.isArray(schema.items)) {
@@ -135,13 +147,13 @@ export class ProfileDefinitionService {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
           required,
-          type: ProfilePropertyType.List,
+          type: format ? formatType : ProfilePropertyType.List,
         };
       case 'integer':
         return {
           key,
           required,
-          type: ProfilePropertyType.Integer,
+          type: format ? formatType : ProfilePropertyType.Integer,
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
         };
@@ -150,22 +162,6 @@ export class ProfileDefinitionService {
           key,
           required,
           type: ProfilePropertyType.Boolean,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          title: title!,
-        };
-      case 'mdstring':
-        return {
-          key,
-          required,
-          type: ProfilePropertyType.Mdstring,
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          title: title!,
-        };
-      case 'colstring':
-        return {
-          key,
-          required,
-          type: ProfilePropertyType.Colstring,
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           title: title!,
         };
@@ -180,9 +176,9 @@ export class ProfileDefinitionService {
 
   //OpenAPI Version 2.0
   public loadDefinitions_swagger() {
-    //prevent GeoMat calling OpenAPI 2.0
+    //prevent GeoMat, WABE calling OpenAPI 2.0
     //so we don't have duplicated data in profile
-    if (this._config.appName === 'GeoMat') {
+    if (this._config.appName === 'GeoMat' || this._config.appName === 'WABE') {
       return;
     }
     return this.http

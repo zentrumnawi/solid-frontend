@@ -7,6 +7,7 @@
   </div>
   <solid-core-media
     *ngIf="profile.mediaObjects.length > 0; else noImage"
+    id="profile-media-container"
     (swipeleft)="swipe(ImageSelected, $event.type)"
     (swiperight)="swipe(ImageSelected, $event.type)"
     [mediaObject]="profile.mediaObjects[ImageSelected]"
@@ -19,7 +20,7 @@
     [hasNavigationInDialog]="MediaObjectsOnlyImages.length > 1"
   ></solid-core-media>
   <ng-template #noImage>
-    <div class="no-img-container">
+    <div class="no-img-container" id="profile-media-container">
       <img class="no-img" src="assets/profile/no_image.svg" />
     </div>
   </ng-template>
@@ -27,7 +28,6 @@
     <div
       *ngIf="profile.mediaObjects.length > 1"
       class="img-toolbar"
-      id="profile-media-container"
       #thumbnails
     >
       <ng-container
@@ -78,7 +78,7 @@
         <ng-container *ngIf="property.type !== PropertyTypes.Group">
           <ng-container
             *ngTemplateOutlet="
-              propertyTemplate;
+              propertyTemplate_swagger;
               context: { profile_obj: profile, property: property }
             "
           ></ng-container>
@@ -98,7 +98,7 @@
         <ng-container *ngFor="let childProperty of property.properties">
           <ng-container
             *ngTemplateOutlet="
-              propertyTemplate;
+              propertyTemplate_swagger;
               context: {
                 profile_obj: profile[property.key],
                 property: childProperty
@@ -111,7 +111,7 @@
   </mat-accordion>
 </ng-container>
 <ng-template
-  #propertyTemplate
+  #propertyTemplate_swagger
   let-profile_obj="profile_obj"
   let-property="property"
 >
@@ -196,7 +196,9 @@
         "
       >
         <mat-expansion-panel-header>
-          <mat-panel-title>{{ property.title }}</mat-panel-title>
+          <mat-panel-title>{{
+            property.title ? property.title : property.key
+          }}</mat-panel-title>
         </mat-expansion-panel-header>
         <ng-container *ngFor="let childProperty of property.properties">
           <ng-container
@@ -222,7 +224,7 @@
     *ngIf="shouldDisplayProperty(property, profile_obj)"
     [ngSwitch]="property.type"
   >
-    <p class="heading">{{ property.title }}</p>
+    <p class="heading">{{ property.title ? property.title : property.key }}</p>
     <ng-container *ngSwitchCase="PropertyTypes.String">
       <p
         *ngIf="

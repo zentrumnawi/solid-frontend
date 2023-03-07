@@ -13,6 +13,7 @@ export interface SolidCoreConfig {
   guidedTour: any;
   profileTour: any;
   landingBannerContent: any;
+  expandProfileTree: boolean;
 }
 
 export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>(
