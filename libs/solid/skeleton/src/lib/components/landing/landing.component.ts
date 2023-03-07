@@ -6,6 +6,7 @@ import {
   HostListener,
   Inject,
   InjectionToken,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -23,6 +24,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { LandingBannerDialogComponent } from '../landing-banner-dialog/landing-banner-dialog.component';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   'solid-skeleton-hacky-injection'
@@ -33,7 +35,7 @@ export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
 })
-export class LandingComponent implements OnInit, AfterViewInit {
+export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(MenuState.getLandingItems)
   public MenuItems!: Observable<MenuItem[]>;
 
@@ -61,7 +63,9 @@ export class LandingComponent implements OnInit, AfterViewInit {
     this.showLanding =
       localStorage.getItem('hide_landing_banner') == 'false' ? true : false;
     this.showTour =
-      localStorage.getItem('hide_landing_tour') == 'false' ? true : false;
+      localStorage.getItem('hide_landing_tour') == 'false' || this.showLanding
+        ? true
+        : false;
     this.messages = localStorage.getItem('solid_skeleton_messages');
     this.msgNumber = 0;
 
@@ -109,9 +113,24 @@ export class LandingComponent implements OnInit, AfterViewInit {
     }, 500);
   }
 
+  public onNotShowAgainToggle(change: MatSlideToggleChange) {
+    if (change.checked) localStorage.setItem('hide_landing_banner', 'true');
+    else localStorage.setItem('hide_landing_banner', 'false');
+  }
+
+  public onStartTourToggle(change: MatSlideToggleChange) {
+    this.showTour = !this.showTour;
+    if (change.checked) localStorage.setItem('hide_landing_tour', 'false');
+    else localStorage.setItem('hide_landing_tour', 'true');
+  }
+
   public onCloseClick() {
     this.showLanding = false;
     localStorage.setItem('hide_landing_banner', 'true');
+    if (this.showTour) {
+      localStorage.setItem('hide_landing_tour', 'false');
+      this.startGuidedTour();
+    }
   }
 
   public ngOnInit(): void {
@@ -130,5 +149,9 @@ export class LandingComponent implements OnInit, AfterViewInit {
         if (this.showTour) this.startGuidedTour();
       });
     } else if (!this.showLanding && this.showTour) this.startGuidedTour();
+  }
+
+  public ngOnDestroy(): void {
+    if (this.showTour) localStorage.setItem('hide_landing_tour', 'false');
   }
 }

@@ -73,3 +73,24 @@ mat-grid-tile {
     content: '\00a0|\00a0';
   }
 }
+
+.toggle-container {
+  display: flex;
+  font-size: 13px;
+
+  .notShowAgainToggle {
+    margin-right: 13px;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 19px;
+
+  .closeBtn {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+}

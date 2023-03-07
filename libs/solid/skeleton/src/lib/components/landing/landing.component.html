@@ -4,16 +4,36 @@
       <img mat-card-avatar [src]="landingInfo.header.image" />
       <mat-card-title>{{ landingInfo.header.title }}</mat-card-title>
       <mat-card-subtitle>{{ landingInfo.header.subtitle }}</mat-card-subtitle>
-      <div class="spacer"></div>
-      <button (click)="onCloseClick()" mat-icon-button>
-        <mat-icon>close</mat-icon>
-      </button>
     </mat-card-header>
     <mat-card-content *ngFor="let content of landingInfo.content">
       <p>
         {{ content.p }}
       </p>
     </mat-card-content>
+    <div class="toggle-container">
+      <mat-slide-toggle
+        class="notShowAgainToggle"
+        (change)="onNotShowAgainToggle($event)"
+        >Nicht mehr zeigen</mat-slide-toggle
+      >
+      <mat-slide-toggle
+        class="startTourToggle"
+        checked="true"
+        (change)="onStartTourToggle($event)"
+      >
+        Tour starten
+      </mat-slide-toggle>
+    </div>
+    <div class="button-container">
+      <button
+        class="closeBtn"
+        mat-stroked-button
+        color="primary"
+        (click)="onCloseClick()"
+      >
+        Schließen
+      </button>
+    </div>
   </mat-card>
   <mat-grid-list
     id="menu-grid-list"
