@@ -1,6 +1,7 @@
 import { SolidCoreConfig } from '@zentrumnawi/solid-core';
 import { environment } from '../environments/environment';
 import guidedTour from '../assets/data/guidedTour.json';
+import landingBannerContent from '../assets/data/landing-banner-content.json';
 
 export const coreConfig: SolidCoreConfig = {
   ...environment,
@@ -11,5 +12,6 @@ export const coreConfig: SolidCoreConfig = {
   profileTour: guidedTour.profile,
   glossaryLogo: 'assets/svg/glossary2.svg',
   feedbackLogo: 'assets/svg/feedback.svg',
+  landingBannerContent: landingBannerContent,
   expandProfileTree: true,
 };
