@@ -42,7 +42,7 @@
   .button-container {
     .closeBtn {
       border: 2px solid mat.get-color-from-palette($app-primary, 600);
-      color: mat.get-color-from-palette($app-accent, 600);
+      color: mat.get-color-from-palette($app-primary, 600);
     }
   }
 
