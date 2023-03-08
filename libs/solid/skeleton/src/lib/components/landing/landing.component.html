@@ -1,29 +1,67 @@
 <div class="landing-container" #landing>
-  <mat-card *ngIf="BannerComponent && ShowLanding">
-    <ng-container
-      *ngComponentOutlet="BannerComponent; injector: BannerInjector"
-    ></ng-container>
+  <mat-card *ngIf="innerWidth >= 700 && showLanding">
+    <mat-card-header>
+      <img mat-card-avatar [src]="landingInfo.header.image" />
+      <mat-card-title>{{ landingInfo.header.title }}</mat-card-title>
+      <mat-card-subtitle>{{ landingInfo.header.subtitle }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngFor="let content of landingInfo.content">
+      <p>
+        {{ content.p }}
+      </p>
+    </mat-card-content>
+    <div class="toggle-container">
+      <mat-slide-toggle
+        class="notShowAgainToggle"
+        (change)="onNotShowAgainToggle($event)"
+        >Nicht mehr zeigen</mat-slide-toggle
+      >
+      <mat-slide-toggle
+        class="startTourToggle"
+        checked="true"
+        (change)="onStartTourToggle($event)"
+      >
+        Tour starten
+      </mat-slide-toggle>
+    </div>
+    <div class="button-container">
+      <button
+        class="closeBtn"
+        mat-stroked-button
+        color="primary"
+        (click)="onCloseClick()"
+      >
+        Schließen
+      </button>
+    </div>
   </mat-card>
-
-  <div *ngIf="limitedMessages.length">
-    <h2>Neuigkeiten</h2>
-    <solid-skeleton-message-list
-      [limitedMessages]="limitedMessages"
-    ></solid-skeleton-message-list>
-  </div>
-
-  <mat-grid-list id="menu-grid-list" cols="2" gutterSize="1rem" rowHeight="1:1">
+  <mat-grid-list
+    id="menu-grid-list"
+    [solidSkeletonGridCols]="{ xs: 2, sm: 4, md: 4, lg: 4, xl: 7 }"
+    gutterSize="1rem"
+    rowHeight="1:1"
+  >
     <mat-grid-tile
       *ngFor="let menuItem of MenuItems | async; let index = index"
       class="mat-elevation-z2"
       [routerLink]="menuItem.route"
+      [queryParams]="{ directTo: msgNumber > 0 ? 'news' : undefined }"
       id="menu-tile-{{ index }}"
     >
       <mat-icon
-        *ngIf="menuItem.svgIcon"
+        *ngIf="menuItem.svgIcon && menuItem.route !== 'info'"
         [svgIcon]="menuItem.svgIcon"
       ></mat-icon>
-      <mat-icon *ngIf="!menuItem.svgIcon">{{ menuItem.icon }}</mat-icon>
+      <mat-icon *ngIf="!menuItem.svgIcon && menuItem.route !== 'info'">{{
+        menuItem.icon
+      }}</mat-icon>
+      <mat-icon
+        *ngIf="menuItem.svgIcon && menuItem.route === 'info'"
+        [svgIcon]="menuItem.svgIcon"
+        [matBadge]="msgNumber"
+        [matBadgeHidden]="msgNumber === 0"
+        matBadgeSize="large"
+      ></mat-icon>
       <span class="navTitle">{{ menuItem.title }}</span>
     </mat-grid-tile>
     <mat-grid-tile
@@ -41,4 +79,10 @@
       <span class="navTitle">Kontakt</span>
     </mat-grid-tile>
   </mat-grid-list>
+  <div class="footer-container">
+    <a routerLink="info">Impressum</a>
+    <a routerLink="info" [queryParams]="{ directTo: 'privacy' }">
+      Datenschutz</a
+    >
+  </div>
 </div>

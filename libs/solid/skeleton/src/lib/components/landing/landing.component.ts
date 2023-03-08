@@ -3,22 +3,17 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostListener,
   Inject,
   InjectionToken,
-  Injector,
-  Type,
+  OnDestroy,
+  OnInit,
   ViewChild,
 } from '@angular/core';
-import {
-  SOLID_SKELETON_CONFIG,
-  InternalSolidSkeletonConfig,
-} from '../../solid-skeleton-config';
 import { MenuState } from '../../state/menu.state';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../../state/menu.model';
 import { Select } from '@ngxs/store';
-import { MessageState } from '../../state/message.state';
-import { MessageModel } from '../../state/message.model';
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -27,6 +22,9 @@ import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
+import { LandingBannerDialogComponent } from '../landing-banner-dialog/landing-banner-dialog.component';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   'solid-skeleton-hacky-injection'
@@ -37,44 +35,39 @@ export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
 })
-export class LandingComponent implements AfterViewInit {
-  public BannerComponent?: Type<any>;
-  public BannerInjector: Injector;
-  public ShowLanding = false;
-
+export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(MenuState.getLandingItems)
   public MenuItems!: Observable<MenuItem[]>;
-
-  @Select(MessageState.getNoticesAndSeries)
-  public Notices!: Observable<MessageModel[]>;
-  limitedMessages!: MessageModel[];
 
   @ViewChild('landing') Landing?: ElementRef;
   public onGlossaryClick = new EventEmitter();
 
+  public landingInfo: any;
+  public innerWidth: any;
+  public showLanding: boolean;
+  public showTour: boolean;
+  public landingRef: any;
+  private messages: any;
+  public msgNumber: number;
+
   constructor(
-    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
-    injector: Injector,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
-    private introService: IntroService
+    private introService: IntroService,
+    private landingDialog: MatDialog
   ) {
-    this.BannerComponent = cfg.landingBannerContent;
-    this.BannerInjector = Injector.create({
-      providers: [
-        {
-          provide: SOLID_SKELETON_HACKY_INJECTION,
-          useValue: () => this.onCloseClick(),
-        },
-      ],
-      parent: injector,
-    });
-    if (localStorage.getItem('hide_landing_banner') !== 'true') {
-      this.ShowLanding = true;
-    }
-    this.limitMessages();
+    this.landingInfo = coreConfig.landingBannerContent;
+    this.innerWidth = window.innerWidth;
+    this.showLanding =
+      localStorage.getItem('hide_landing_banner') == 'false' ? true : false;
+    this.showTour =
+      localStorage.getItem('hide_landing_tour') == 'false' || this.showLanding
+        ? true
+        : false;
+    this.messages = localStorage.getItem('solid_skeleton_messages');
+    this.msgNumber = 0;
 
     iconRegistry.addSvgIcon(
       'glossary',
@@ -87,19 +80,16 @@ export class LandingComponent implements AfterViewInit {
     );
   }
 
-  private onCloseClick() {
-    this.ShowLanding = false;
-    localStorage.setItem('hide_landing_banner', 'true');
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth > 700 && this.landingRef) {
+      this.landingRef.close();
+      this.showTour = false;
+    }
   }
 
-  private limitMessages() {
-    this.Notices.subscribe((message) => {
-      this.limitedMessages = message.slice(0, 2);
-      return this.limitedMessages;
-    });
-  }
-
-  public ngAfterViewInit(): void {
+  private startGuidedTour(): void {
     setTimeout(() => {
       this.introService.guidedTour((_targetElement: any) => {
         try {
@@ -120,6 +110,48 @@ export class LandingComponent implements AfterViewInit {
         }
         return;
       });
-    }, 1000);
+    }, 500);
+  }
+
+  public onNotShowAgainToggle(change: MatSlideToggleChange) {
+    if (change.checked) localStorage.setItem('hide_landing_banner', 'true');
+    else localStorage.setItem('hide_landing_banner', 'false');
+  }
+
+  public onStartTourToggle(change: MatSlideToggleChange) {
+    this.showTour = !this.showTour;
+    if (change.checked) localStorage.setItem('hide_landing_tour', 'false');
+    else localStorage.setItem('hide_landing_tour', 'true');
+  }
+
+  public onCloseClick() {
+    this.showLanding = false;
+    localStorage.setItem('hide_landing_banner', 'true');
+    if (this.showTour) {
+      localStorage.setItem('hide_landing_tour', 'false');
+      this.startGuidedTour();
+    }
+  }
+
+  public ngOnInit(): void {
+    const msgObj = JSON.parse(this.messages);
+    msgObj?.forEach((msg: any) => {
+      if (msg.unread && msg.type != 'CL') this.msgNumber++;
+    });
+  }
+
+  public ngAfterViewInit(): void {
+    if (this.innerWidth < 700 && this.showLanding) {
+      this.landingRef = this.landingDialog.open(LandingBannerDialogComponent, {
+        panelClass: 'landing-banner-dialog',
+      });
+      this.landingRef.afterClosed().subscribe(() => {
+        if (this.showTour) this.startGuidedTour();
+      });
+    } else if (!this.showLanding && this.showTour) this.startGuidedTour();
+  }
+
+  public ngOnDestroy(): void {
+    if (this.showTour) localStorage.setItem('hide_landing_tour', 'false');
   }
 }

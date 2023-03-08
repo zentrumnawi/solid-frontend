@@ -12,6 +12,7 @@ export interface SolidCoreConfig {
   error_report: boolean;
   guidedTour: any;
   profileTour: any;
+  landingBannerContent: any;
   expandProfileTree: boolean;
 }
 

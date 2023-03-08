@@ -1,10 +1,18 @@
-import { Component, ElementRef, Inject, Type, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  Type,
+  ViewChild,
+} from '@angular/core';
 import {
   InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
 } from '../../solid-skeleton-config';
-import { MessageState } from '../../state/message.state';
+import { ActivatedRoute } from '@angular/router';
 import { Select } from '@ngxs/store';
+import { MessageState } from '../../state/message.state';
 import { MessageModel } from '../../state/message.model';
 import { Observable } from 'rxjs';
 
@@ -13,23 +21,30 @@ import { Observable } from 'rxjs';
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],
 })
-export class InfoComponent {
+export class InfoComponent implements OnInit {
   public tourLandingChecked = false;
   public tourProfileChecked = false;
   public landingChecked = false;
+  public route;
+
+  @Select(MessageState.getNoticesAndSeries)
+  public notices!: Observable<MessageModel[]>;
+
+  private messages: any;
+  public changeLogMsg: any[] = [];
+  public newsMsg: any[] = [];
 
   public InfoPageContentComponent: Type<any>;
   public PrivacyContentComponent: Type<any>;
   public ProfileTitle;
-  @Select(MessageState.getChangelog)
-  public Changelog!: Observable<MessageModel[]>;
 
-  @Select(MessageState.getNoticesAndSeries)
-  public Notices!: Observable<MessageModel[]>;
   tabIndex = 0;
   @ViewChild('info_container') public info_container?: ElementRef;
 
-  constructor(@Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig) {
+  constructor(
+    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
+    route: ActivatedRoute
+  ) {
     this.InfoPageContentComponent = cfg.infoPageContent;
     this.PrivacyContentComponent = cfg.privacyContent;
     this.ProfileTitle = cfg.routingConfig.profile.title;
@@ -39,6 +54,8 @@ export class InfoComponent {
       localStorage.getItem('hide_landing_tour') === 'false';
     this.tourProfileChecked =
       localStorage.getItem('hide_profile_tour') === 'false';
+    this.route = route;
+    this.messages = localStorage.getItem('solid_skeleton_messages');
   }
 
   moveTabToPrivacy(event: any) {
@@ -64,5 +81,27 @@ export class InfoComponent {
     if (this.landingChecked)
       localStorage.setItem('hide_landing_banner', 'false');
     else localStorage.setItem('hide_landing_banner', 'true');
+  }
+
+  ngOnInit(): void {
+    const directTo = this.route.snapshot.queryParams.directTo;
+    const msgObj = JSON.parse(this.messages);
+    msgObj.forEach((msg: any) => {
+      if (msg.type != 'CL') this.newsMsg.push(msg);
+      else this.changeLogMsg.push(msg);
+    });
+    switch (directTo) {
+      case 'privacy':
+        this.tabIndex = 1;
+        break;
+
+      case 'news':
+        this.tabIndex = 2;
+        break;
+
+      default:
+        this.tabIndex = 0;
+        break;
+    }
   }
 }

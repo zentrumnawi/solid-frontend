@@ -1,57 +1,27 @@
 <mat-list>
-  <ng-container *ngIf="messages">
-    <mat-list-item *ngFor="let msg of messages | async; trackBy: trackByFn">
-      <h3 matLine>
-        {{ msg.title
-        }}<span *ngIf="msg.valid_from"
-          >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
-        >
-        <span *ngIf="msg.valid_to"
-          >&nbsp;- {{ msg.valid_to | date: 'dd.MM.yyyy' }}</span
-        >
-      </h3>
-      <div class="content-container">
-        <img
-          *ngIf="msg.img"
-          [src]="msg.img.img.thumbnail"
-          [alt]="msg.img.img_alt"
-        />
-        <div
-          class="text"
-          *ngIf="msg.text !== ''"
-          [data]="msg.text"
-          markdown
-          matLine
-        ></div>
-      </div>
-    </mat-list-item>
-  </ng-container>
-
-  <ng-container *ngIf="limitedMessages">
-    <mat-list-item *ngFor="let msg of limitedMessages">
-      <h3 matLine>
-        {{ msg.title
-        }}<span *ngIf="msg.valid_from"
-          >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
-        >
-        <span *ngIf="msg.valid_to"
-          >&nbsp;- {{ msg.valid_to | date: 'dd.MM.yyyy' }}</span
-        >
-      </h3>
-      <div class="content-container">
-        <img
-          *ngIf="msg.img"
-          [src]="msg.img.img.thumbnail"
-          [alt]="msg.img.img_alt"
-        />
-        <div
-          class="text"
-          *ngIf="msg.text !== ''"
-          [data]="msg.text"
-          markdown
-          matLine
-        ></div>
-      </div>
-    </mat-list-item>
-  </ng-container>
+  <mat-list-item *ngFor="let msg of messages.reverse()">
+    <h3 matLine [ngStyle]="{ fontWeight: msg.unread ? '500' : 'normal' }">
+      {{ msg.title
+      }}<span *ngIf="msg.valid_from"
+        >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
+      >
+      <span *ngIf="msg.valid_to"
+        >&nbsp;- {{ msg.valid_to | date: 'dd.MM.yyyy' }}</span
+      >
+    </h3>
+    <div class="content-container">
+      <img
+        *ngIf="msg.img"
+        [src]="msg.img.img.thumbnail"
+        [alt]="msg.img.img_alt"
+      />
+      <div
+        class="text"
+        *ngIf="msg.text !== ''"
+        [data]="msg.text"
+        markdown
+        matLine
+      ></div>
+    </div>
+  </mat-list-item>
 </mat-list>

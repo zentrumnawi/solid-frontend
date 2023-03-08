@@ -11,10 +11,10 @@ mat-list {
 }
 
 mat-grid-list {
-  width: 23rem;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10vh;
 }
 
 mat-grid-tile {
@@ -27,6 +27,17 @@ mat-grid-tile {
       display: inline-flex;
       flex-direction: column;
       align-content: center;
+    }
+
+    .mat-badge-content {
+      top: -7px !important;
+      right: -0px !important;
+      color: white;
+      background-color: #e41e3f;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 18px;
     }
   }
 
@@ -45,4 +56,41 @@ mat-grid-tile {
   overflow: auto;
   height: calc(100vh - 60px);
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-container {
+  margin-bottom: -16px;
+  margin-top: auto;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  a:not(:last-child):after {
+    content: '\00a0|\00a0';
+  }
+}
+
+.toggle-container {
+  display: flex;
+  font-size: 13px;
+
+  .notShowAgainToggle {
+    margin-right: 13px;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 19px;
+
+  .closeBtn {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 13px;
+  }
 }
