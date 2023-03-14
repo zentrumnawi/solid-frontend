@@ -1,5 +1,5 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Profile, TreeNode, TreeNodeApi } from './profile.model';
+import { Profile, ProfileApi, TreeNode, TreeNodeApi } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -20,7 +20,12 @@ export interface ProfileStateModel {
   profiles: Profile[];
   nodes: TreeNode[];
   definition: ProfileProperty[];
-  definition_swagger: ProfileProperty[];
+  definition_swagger: MultiProfiles[];
+}
+
+export interface MultiProfiles {
+  name: string | undefined;
+  properties: ProfileProperty[];
 }
 
 function b() {
@@ -39,6 +44,7 @@ function a() {
     nodes: [],
     definition: [],
     definition_swagger: [],
+    // definition_swagger: [{ name: 'default', properties: [] }],
   },
 })
 @Injectable()
@@ -86,7 +92,7 @@ export class ProfileState {
   }
 
   @Selector()
-  static selectDefinition_swagger(state: ProfileStateModel): ProfileProperty[] {
+  static selectDefinition_swagger(state: ProfileStateModel): MultiProfiles[] {
     return state.definition_swagger;
   }
 
@@ -130,20 +136,46 @@ export class ProfileState {
       .pipe(
         map((response) => {
           const mapit = (input: TreeNodeApi[]): TreeNode[] => {
-            return input.map((node) => {
+            return input.map((node: any) => {
+              // needed to be changed
+              const multi_profiles = (node: any[]): any[] => {
+                const list: any[] = [];
+                for (const property in node) {
+                  if (
+                    property != 'name' &&
+                    property != 'info' &&
+                    property != 'children'
+                  ) {
+                    node[property].map((profile: any) => {
+                      list.push({
+                        ...profile,
+                        type: 'profile',
+                        mediaObjects: profile.media_objects.map(
+                          (m: any) => new MediaModel(m)
+                        ),
+                        def_type: property.split('_')[0],
+                      });
+                    });
+                  }
+                }
+                return list;
+              };
+
               return {
                 type: 'category',
                 name: node.name,
                 info: node.info,
                 children: mapit(node.children),
-                profiles: node.profiles.map((profile) => ({
-                  ...profile,
-                  type: 'profile',
-                  // images: profile.photographs.map((p) => new ImageModel(p)),
-                  mediaObjects: profile.media_objects.map(
-                    (m) => new MediaModel(m)
-                  ),
-                })),
+                profiles: node.profiles
+                  ? node.profiles.map((profile: any) => ({
+                      ...profile,
+                      type: 'profile',
+                      // images: profile.photographs.map((p) => new ImageModel(p)),
+                      mediaObjects: profile.media_objects.map(
+                        (m: any) => new MediaModel(m)
+                      ),
+                    }))
+                  : multi_profiles(node),
               };
             });
           };
@@ -182,6 +214,7 @@ export class ProfileState {
     if (ctx.getState().definition_swagger.length !== 0) {
       return;
     }
+
     return this._defService.loadDefinitions_swagger()?.pipe(
       tap((definition_swagger) => {
         ctx.patchState({

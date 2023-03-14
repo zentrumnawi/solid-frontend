@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
-import { ProfileState } from '../../state/profile.state';
+import { MultiProfiles, ProfileState } from '../../state/profile.state';
 import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
 import {
@@ -21,10 +21,10 @@ export class DetailComponent {
   @ViewChild('thumbnails') thumbnails: ElementRef | undefined;
   public PropertyTypes = ProfilePropertyType;
   @Select(ProfileState.selectDefinition)
-  $ProfileDefinition!: Observable<ProfileProperty[]>;
+  $ProfileDefinitions!: Observable<ProfileProperty[]>;
   //Load definitions from OpenAPI 2.0
   @Select(ProfileState.selectDefinition_swagger)
-  $ProfileDefinition_Swagger!: Observable<ProfileProperty[]>;
+  $ProfileDefinition_Swagger!: Observable<MultiProfiles[]>;
   @Input() public node!: TreeNode;
   public ImageLoaded = [false];
   public ImageSelected = 0;
@@ -50,6 +50,17 @@ export class DetailComponent {
       (x) => x.mediaType === 'image'
     );
     this.onImageSelect(0);
+  }
+
+  public getDefinitionTypeIndex(profile: Profile): number {
+    // needed to be changed
+    let index = 1000000;
+    this.$ProfileDefinition_Swagger.subscribe((defs) => {
+      defs.forEach((def: MultiProfiles) => {
+        if (def.name == profile.def_type) index = defs.indexOf(def);
+      });
+    });
+    return index;
   }
 
   public onImageLoaded(index: number) {

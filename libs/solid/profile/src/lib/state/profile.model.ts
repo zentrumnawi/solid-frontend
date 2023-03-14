@@ -18,6 +18,7 @@ export interface Profile extends ProfileApi {
   // images: ImageModel[];
   mediaObjects: MediaModel[];
   [key: string]: any;
+  def_type: string;
 }
 
 export interface ProfileApi {

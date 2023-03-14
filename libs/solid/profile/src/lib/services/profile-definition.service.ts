@@ -186,10 +186,20 @@ export class ProfileDefinitionService {
       .pipe(
         map((swagger) => {
           const definitions = swagger.definitions || {};
-          const topLevelRef =
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            (definitions.TreeNode.properties!.profiles!.items as Schema).$ref;
-          return this.definitionToGroup_swagger(swagger, topLevelRef);
+          const properties = definitions.TreeNode.properties;
+          // needed to be changed
+          const listOfGroups = [];
+          for (const p in properties) {
+            if (p !== 'children' && p !== 'info' && p !== 'name') {
+              const ref = (properties[p].items as Schema).$ref;
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              listOfGroups.push({
+                name: ref?.split('/')[2].toLowerCase(),
+                properties: this.definitionToGroup_swagger(swagger, ref),
+              });
+            }
+          }
+          return listOfGroups;
         })
       );
   }
