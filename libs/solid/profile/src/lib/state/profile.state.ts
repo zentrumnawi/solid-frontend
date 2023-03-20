@@ -1,11 +1,12 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Profile, ProfileApi, TreeNode, TreeNodeApi } from './profile.model';
+import { Profile, TreeNode, TreeNodeApi } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   SOLID_CORE_CONFIG,
   SolidCoreConfig,
   MediaModel,
+  MediaObjectModel,
 } from '@zentrumnawi/solid-core';
 import {
   LoadDefinition,
@@ -137,6 +138,36 @@ export class ProfileState {
         map((response) => {
           const mapit = (input: TreeNodeApi[]): TreeNode[] => {
             return input.map((node: any) => {
+              // media models - for testing before endpoint is finished
+              const mediaObj: MediaObjectModel = {
+                id: 448,
+                file: {
+                  large:
+                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.large.jpeg',
+                  medium:
+                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.medium.jpeg',
+                  small:
+                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.small.jpeg',
+                  thumbnail:
+                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.thumbnail.jpeg',
+                  original:
+                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.JPG',
+                },
+                dzi_file: null,
+                profile_position: 1,
+                media_format: 'image',
+                img_original_width: 3264,
+                img_original_height: 2448,
+                img_original_scale: 0,
+                img_alt: 'DunkelfelderRebe',
+                description: 'Das ist eine Description!',
+                audio: 'null',
+                title: 'Dunkelfelder Blatt',
+                date: new Date(2021, 7, 31),
+                author: 'Name Vorname',
+                license: 'CC_BY-SA',
+              };
+              const media_list = [new MediaModel(mediaObj)];
               // needed to be changed
               const multi_profiles = (node: any[]): any[] => {
                 const list: any[] = [];
@@ -144,15 +175,19 @@ export class ProfileState {
                   if (
                     property != 'name' &&
                     property != 'info' &&
-                    property != 'children'
+                    property != 'children' &&
+                    node[property].length != 0
                   ) {
                     node[property].map((profile: any) => {
                       list.push({
+                        name: profile.name ? profile.name : 'A Tree',
                         ...profile,
                         type: 'profile',
-                        mediaObjects: profile.media_objects.map(
-                          (m: any) => new MediaModel(m)
-                        ),
+                        mediaObjects: profile.media_objects
+                          ? profile.media_objects.map(
+                              (m: any) => new MediaModel(m)
+                            )
+                          : media_list,
                         def_type: property.split('_')[0],
                       });
                     });

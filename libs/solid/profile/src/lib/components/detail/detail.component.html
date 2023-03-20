@@ -60,12 +60,9 @@
 </ng-container>
 
 <!-- Load definitions from OpenAPI 2.0 -->
-<ng-container
-  *ngIf="$ProfileDefinition_Swagger | async as profileDefinitions_swagger"
->
+<ng-container *ngIf="definitions.length !== 0">
   <mat-accordion
     id="profile-detail-info"
-    *ngIf="profileDefinitions_swagger.length !== 0"
     [multi]="false"
     displayMode="flat"
     #expansion
@@ -74,13 +71,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title>Allgemein</mat-panel-title>
       </mat-expansion-panel-header>
-      <ng-container
-        *ngFor="
-          let property of profileDefinitions_swagger[
-            getDefinitionTypeIndex(profile)
-          ].properties
-        "
-      >
+      <ng-container *ngFor="let property of getProperties(profile)">
         <ng-container *ngIf="property.type !== PropertyTypes.Group">
           <ng-container
             *ngTemplateOutlet="
@@ -91,13 +82,7 @@
         </ng-container>
       </ng-container>
     </mat-expansion-panel>
-    <ng-container
-      *ngFor="
-        let property of profileDefinitions_swagger[
-          getDefinitionTypeIndex(profile)
-        ].properties
-      "
-    >
+    <ng-container *ngFor="let property of getProperties(profile)">
       <mat-expansion-panel
         *ngIf="
           property.type === PropertyTypes.Group &&

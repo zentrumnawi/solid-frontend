@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
 import { MultiProfiles, ProfileState } from '../../state/profile.state';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ import { MediaModel } from '@zentrumnawi/solid-core';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })
-export class DetailComponent {
+export class DetailComponent implements OnInit {
   @ViewChild('expansion', { static: false, read: MatAccordion })
   expansion?: MatAccordion;
   @ViewChild('thumbnails') thumbnails: ElementRef | undefined;
@@ -36,6 +36,7 @@ export class DetailComponent {
   public hasDescription!: boolean;
   public hasDescriptionToggle = false;
   public MediaObjectsOnlyImages!: MediaModel[];
+  public definitions!: MultiProfiles[];
 
   public get profile() {
     return this._profile;
@@ -52,15 +53,17 @@ export class DetailComponent {
     this.onImageSelect(0);
   }
 
-  public getDefinitionTypeIndex(profile: Profile): number {
-    // needed to be changed
-    let index = 1000000;
+  ngOnInit(): void {
     this.$ProfileDefinition_Swagger.subscribe((defs) => {
-      defs.forEach((def: MultiProfiles) => {
-        if (def.name == profile.def_type) index = defs.indexOf(def);
-      });
+      this.definitions = defs;
     });
-    return index;
+  }
+
+  public getProperties(profile: Profile) {
+    const definition = this.definitions.filter(
+      (def) => def.name === profile.def_type
+    );
+    return definition[0].properties;
   }
 
   public onImageLoaded(index: number) {
