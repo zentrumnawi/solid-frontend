@@ -15,18 +15,13 @@ import {
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
-import { ProfileProperty } from './profile-definition.model';
+import { MultiProfiles, ProfileProperty } from './profile-definition.model';
 
 export interface ProfileStateModel {
   profiles: Profile[];
   nodes: TreeNode[];
   definition: ProfileProperty[];
   definition_swagger: MultiProfiles[];
-}
-
-export interface MultiProfiles {
-  name: string | undefined;
-  properties: ProfileProperty[];
 }
 
 function b() {
@@ -45,7 +40,6 @@ function a() {
     nodes: [],
     definition: [],
     definition_swagger: [],
-    // definition_swagger: [{ name: 'default', properties: [] }],
   },
 })
 @Injectable()
@@ -168,33 +162,30 @@ export class ProfileState {
                 license: 'CC_BY-SA',
               };
               const media_list = [new MediaModel(mediaObj)];
-              // needed to be changed
-              const multi_profiles = (node: any[]): any[] => {
-                const list: any[] = [];
-                for (const property in node) {
+
+              const multi_profiles = Object.entries(node)
+                .filter((property: any) => {
                   if (
-                    property != 'name' &&
-                    property != 'info' &&
-                    property != 'children' &&
-                    node[property].length != 0
-                  ) {
-                    node[property].map((profile: any) => {
-                      list.push({
-                        name: profile.name ? profile.name : 'A Tree',
-                        ...profile,
-                        type: 'profile',
-                        mediaObjects: profile.media_objects
-                          ? profile.media_objects.map(
-                              (m: any) => new MediaModel(m)
-                            )
-                          : media_list,
-                        def_type: property.split('_')[0],
-                      });
-                    });
-                  }
-                }
-                return list;
-              };
+                    property[0].search('related') !== -1 &&
+                    node[property[0]].length !== 0
+                  )
+                    return property;
+                })
+                .map((profiles: any) => {
+                  return profiles[1].map((profile: any) => {
+                    return {
+                      name: profile.name ? profile.name : 'A Tree',
+                      ...profile,
+                      type: 'profile',
+                      mediaObjects: profile.media_objects
+                        ? profile.media_objects.map(
+                            (m: any) => new MediaModel(m)
+                          )
+                        : media_list,
+                      def_type: profiles[0].split('_')[0],
+                    };
+                  });
+                });
 
               return {
                 type: 'category',
@@ -210,7 +201,9 @@ export class ProfileState {
                         (m: any) => new MediaModel(m)
                       ),
                     }))
-                  : multi_profiles(node),
+                  : multi_profiles[0]
+                  ? multi_profiles[0]
+                  : [],
               };
             });
           };

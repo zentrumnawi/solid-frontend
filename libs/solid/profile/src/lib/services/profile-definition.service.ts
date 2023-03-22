@@ -187,8 +187,8 @@ export class ProfileDefinitionService {
         map((swagger) => {
           const definitions = swagger.definitions || {};
           const properties = definitions.TreeNode.properties;
-          // needed to be changed
           const listOfGroups = [];
+
           for (const p in properties) {
             if (p !== 'children' && p !== 'info' && p !== 'name') {
               const ref = (properties[p].items as Schema).$ref;
@@ -199,6 +199,7 @@ export class ProfileDefinitionService {
               });
             }
           }
+
           return listOfGroups;
         })
       );

@@ -1,9 +1,10 @@
 import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
-import { MultiProfiles, ProfileState } from '../../state/profile.state';
+import { ProfileState } from '../../state/profile.state';
 import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
 import {
+  MultiProfiles,
   ProfileProperty,
   ProfilePropertyType,
 } from '../../state/profile-definition.model';

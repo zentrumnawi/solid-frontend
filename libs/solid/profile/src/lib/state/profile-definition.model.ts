@@ -30,4 +30,9 @@ export enum ProfilePropertyType {
   Group,
 }
 
+export interface MultiProfiles {
+  name: string | undefined;
+  properties: ProfileProperty[];
+}
+
 export type ProfileProperty = ProfilePropertySimple | ProfilePropertyGroup;
