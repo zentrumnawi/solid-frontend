@@ -190,7 +190,7 @@ export class ProfileDefinitionService {
           const listOfGroups = [];
 
           for (const p in properties) {
-            if (p !== 'children' && p !== 'info' && p !== 'name') {
+            if (p.search('related') !== -1) {
               const ref = (properties[p].items as Schema).$ref;
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               listOfGroups.push({
