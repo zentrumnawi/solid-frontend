@@ -89,7 +89,7 @@ export class AppModule {
     addIcon('crystalsystem');
     addIcon('profile');
     addIcon('quiz');
-    addIcon('glossary');
+    addIcon('glossary_generic');
     addIcon('info');
     addIcon('privacy');
     addIcon('info_privacy');

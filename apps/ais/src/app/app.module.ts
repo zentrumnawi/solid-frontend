@@ -86,7 +86,7 @@ export class AppModule {
     addIcon('properties');
     addIcon('slideshow');
     addIcon('icon');
-    addIcon('glossary');
+    addIcon('glossary_generic');
     addIcon('info');
     addIcon('privacy');
     addIcon('info_privacy');
