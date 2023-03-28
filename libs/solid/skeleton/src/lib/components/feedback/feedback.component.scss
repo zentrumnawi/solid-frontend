@@ -1,4 +1,8 @@
 ::ng-deep {
+  .mat-dialog-container {
+    border-radius: 6px;
+  }
+
   .feedback-content {
     overflow: unset;
     margin-top: 28px;
@@ -28,26 +32,27 @@
 }
 
 @media (max-width: 420px) {
-  .send-btn {
-    margin-left: 0 !important;
-  }
-
-  .header-container {
-    width: 100% !important;
-    z-index: 999;
-  }
-
   ::ng-deep .report-dialog,
   ::ng-deep .feedback-dialog {
     .mat-dialog-container {
       margin: 0px 0px !important;
       width: 100vw;
       height: 100vh;
+      border-radius: 0px;
     }
 
-    textarea.mat-input-element {
-      min-height: 320px !important;
-      max-height: 320px;
+    @media (min-height: 741px) {
+      textarea.mat-input-element {
+        min-height: 320px !important;
+        max-height: 320px;
+      }
+    }
+
+    @media (max-height: 740px) {
+      textarea.mat-input-element {
+        min-height: 200px !important;
+        max-height: 200px;
+      }
     }
 
     mat-checkbox {
@@ -56,14 +61,15 @@
       }
     }
   }
-}
+  .send-btn {
+    margin-left: 0 !important;
+  }
 
-@media (max-height: 740px) {
-  ::ng-deep {
-    textarea.mat-input-element {
-      min-height: 200px !important;
-      max-height: 200px;
-    }
+  .header-container {
+    width: 100% !important;
+    z-index: 999;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
   }
 }
 
