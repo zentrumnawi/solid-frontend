@@ -43,7 +43,7 @@ jobs:
         run: yarn nx run-many --target=test --all --parallel
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           file: ./coverage/**/clover.xml
           name: nx-jest
