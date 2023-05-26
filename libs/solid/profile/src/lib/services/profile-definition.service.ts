@@ -28,13 +28,9 @@ export class ProfileDefinitionService {
 
   //OpenAPI 3.0
   public loadDefinitions() {
-    //prevent AIS, Dive, Planty calling OpenAPI 3.0
+    //prevent AIS, Dive calling OpenAPI 3.0
     //so we don't have duplicated data in profile
-    if (
-      this._config.appName === 'AIS' ||
-      this._config.appName === 'Div-e' ||
-      this._config.appName === 'PLANTY2Learn'
-    ) {
+    if (this._config.appName === 'AIS' || this._config.appName === 'Div-e') {
       return;
     }
     return this.http.get<OpenApi>(`${this._config.apiUrl}/api/schema`).pipe(
@@ -176,9 +172,13 @@ export class ProfileDefinitionService {
 
   //OpenAPI Version 2.0
   public loadDefinitions_swagger() {
-    //prevent GeoMat, WABE calling OpenAPI 2.0
+    //prevent GeoMat, WABE, PLANTY calling OpenAPI 2.0
     //so we don't have duplicated data in profile
-    if (this._config.appName === 'GeoMat' || this._config.appName === 'WABE') {
+    if (
+      this._config.appName === 'GeoMat' ||
+      this._config.appName === 'WABE' ||
+      this._config.appName === 'PLANTY2Learn'
+    ) {
       return;
     }
     return this.http
