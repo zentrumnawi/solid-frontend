@@ -38,9 +38,22 @@ export class ProfileDefinitionService {
         const schemas = openapi.components?.schemas || {};
         const treeNode = schemas.TreeNode as OpenApiSchema;
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const profiles = treeNode.properties!.profiles! as OpenApiSchema;
-        const topLevelRef = (profiles.items as OpenApiReference).$ref;
-        return this.definitionToGroup(openapi, topLevelRef);
+        const properties = treeNode.properties!;
+
+        const listOfGroups = [];
+
+        for (const p in properties) {
+          if (p.search('related') !== -1) {
+            const related = properties[p] as OpenApiSchema;
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const ref = (related!.items! as OpenApiReference).$ref;
+            listOfGroups.push({
+              name: ref?.split('/')[3].toLowerCase(),
+              properties: this.definitionToGroup(openapi, ref),
+            });
+          }
+        }
+        return listOfGroups;
       })
     );
   }

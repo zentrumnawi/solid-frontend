@@ -15,12 +15,12 @@ import {
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
-import { MultiProfiles, ProfileProperty } from './profile-definition.model';
+import { MultiProfiles } from './profile-definition.model';
 
 export interface ProfileStateModel {
   profiles: Profile[];
   nodes: TreeNode[];
-  definition: ProfileProperty[];
+  definition: MultiProfiles[];
   definition_swagger: MultiProfiles[];
 }
 
@@ -82,7 +82,7 @@ export class ProfileState {
   }
 
   @Selector()
-  static selectDefinition(state: ProfileStateModel): ProfileProperty[] {
+  static selectDefinition(state: ProfileStateModel): MultiProfiles[] {
     return state.definition;
   }
 
@@ -229,7 +229,7 @@ export class ProfileState {
       return;
     }
     return this._defService.loadDefinitions()?.pipe(
-      tap((definition) => {
+      tap((definition: MultiProfiles[]) => {
         ctx.patchState({
           definition,
         });
@@ -244,7 +244,7 @@ export class ProfileState {
     }
 
     return this._defService.loadDefinitions_swagger()?.pipe(
-      tap((definition_swagger) => {
+      tap((definition_swagger: MultiProfiles[]) => {
         ctx.patchState({
           definition_swagger,
         });

@@ -1,7 +1,14 @@
-import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
 import { ProfileState } from '../../state/profile.state';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Select } from '@ngxs/store';
 import {
   MultiProfiles,
@@ -16,13 +23,14 @@ import { MediaModel } from '@zentrumnawi/solid-core';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
   @ViewChild('expansion', { static: false, read: MatAccordion })
   expansion?: MatAccordion;
   @ViewChild('thumbnails') thumbnails: ElementRef | undefined;
   public PropertyTypes = ProfilePropertyType;
+  //Load definitions from OpenAPI 3.0
   @Select(ProfileState.selectDefinition)
-  $ProfileDefinitions!: Observable<ProfileProperty[]>;
+  $ProfileDefinitions!: Observable<MultiProfiles[]>;
   //Load definitions from OpenAPI 2.0
   @Select(ProfileState.selectDefinition_swagger)
   $ProfileDefinition_Swagger!: Observable<MultiProfiles[]>;
@@ -37,7 +45,12 @@ export class DetailComponent implements OnInit {
   public hasDescription!: boolean;
   public hasDescriptionToggle = false;
   public MediaObjectsOnlyImages!: MediaModel[];
-  public definitions!: MultiProfiles[];
+
+  public definitions: MultiProfiles[] = [];
+  public definitions_swagger: MultiProfiles[] = [];
+
+  public profileDefinitionSub!: Subscription;
+  public profileDefinitionSwaggerSub!: Subscription;
 
   public get profile() {
     return this._profile;
@@ -55,9 +68,19 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.$ProfileDefinition_Swagger.subscribe((defs) => {
+    this.profileDefinitionSwaggerSub =
+      this.$ProfileDefinition_Swagger.subscribe((defs) => {
+        this.definitions_swagger = defs;
+      });
+
+    this.profileDefinitionSub = this.$ProfileDefinitions.subscribe((defs) => {
       this.definitions = defs;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.profileDefinitionSwaggerSub.unsubscribe();
+    this.profileDefinitionSub.unsubscribe();
   }
 
   public getProperties(profile: Profile) {
