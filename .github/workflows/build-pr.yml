@@ -44,7 +44,7 @@ jobs:
       - name: Upload coverage
         uses: codecov/codecov-action@v3
         with:
-          file: ./coverage/**/clover.xml
+          file: ./clover.xml
           name: nx-jest
 
       - name: build - staging
