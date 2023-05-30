@@ -41,11 +41,11 @@ jobs:
       - name: test
         run: yarn nx affected --target=test --base=origin/dev --parallel
 
-      - name: Upload coverage
-        uses: codecov/codecov-action@v3
-        with:
-          file: ./clover.xml
-          name: nx-jest
+      # - name: Upload coverage
+      #   uses: codecov/codecov-action@v3
+      #   with:
+      #     file: ./clover.xml
+      #     name: nx-jest
 
       - name: build - staging
         run: yarn nx affected --target=build --base=origin/dev --parallel --configuration=staging
