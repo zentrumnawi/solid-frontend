@@ -13,6 +13,14 @@ p {
   &.heading::first-letter {
     text-transform: uppercase;
   }
+
+  &.sub-property-heading {
+    margin-left: 24px;
+  }
+
+  &.sub-property-content {
+    margin-left: 24px;
+  }
 }
 
 solid-core-media {

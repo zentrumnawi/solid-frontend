@@ -204,7 +204,8 @@
               propertyTemplate;
               context: {
                 profile_obj: profile[property.key],
-                property: childProperty
+                property: childProperty,
+                level: 1
               }
             "
           ></ng-container>
@@ -217,52 +218,92 @@
   #propertyTemplate
   let-profile_obj="profile_obj"
   let-property="property"
+  let-level="level"
 >
   <ng-container
     *ngIf="shouldDisplayProperty(property, profile_obj)"
     [ngSwitch]="property.type"
   >
-    <p class="heading">{{ property.title ? property.title : property.key }}</p>
+    <p
+      class="heading"
+      [ngClass]="level > 1 ? 'sub-property-heading' : 'property-heading'"
+    >
+      {{ property.title ? property.title : property.key }}
+    </p>
     <ng-container *ngSwitchCase="PropertyTypes.String">
       <p
         *ngIf="
           !(profile_obj[property.key].indexOf('http') === 0);
           else httpString
         "
+        [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'"
       >
         {{ profile_obj[property.key] }}
       </p>
       <ng-template #httpString>
-        <p>
+        <p [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'">
           <a [href]="profile_obj[property.key]" target="_blank">
             {{ profile_obj[property.key] }}
           </a>
         </p>
       </ng-template>
     </ng-container>
-    <p *ngSwitchCase="PropertyTypes.Integer">
+    <p
+      *ngSwitchCase="PropertyTypes.Integer"
+      [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'"
+    >
       {{ profile_obj[property.key] }}
     </p>
-    <p *ngSwitchCase="PropertyTypes.Boolean">
+    <p
+      *ngSwitchCase="PropertyTypes.Boolean"
+      [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'"
+    >
       {{ profile_obj[property.key] }}
     </p>
     <p
       *ngSwitchCase="PropertyTypes.Mdstring"
+      [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'"
       markdown
       [data]="profile_obj[property.key]"
     ></p>
-    <ng-container *ngSwitchCase="PropertyTypes.Colstring">
+    <ng-container
+      *ngSwitchCase="PropertyTypes.Colstring"
+      [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'"
+    >
       <p
         *ngIf="profile_obj[property.key].indexOf('#') === 0; else notColString"
         id="normal_color"
         [style.background-color]="profile_obj[property.key]"
       ></p>
       <ng-template #notColString>
-        <p>{{ profile_obj[property.key] }}</p>
+        <p [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'">
+          {{ profile_obj[property.key] }}
+        </p>
       </ng-template>
     </ng-container>
     <ng-container *ngSwitchCase="PropertyTypes.List">
-      <p *ngFor="let val of profile_obj[property.key]">{{ val }}</p>
+      <p
+        [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'"
+        *ngFor="let val of profile_obj[property.key]"
+      >
+        {{ val }}
+      </p>
+    </ng-container>
+    <ng-container *ngSwitchCase="PropertyTypes.Group">
+      <ng-container *ngFor="let childProperty of property.properties">
+        <ng-container *ngIf="profile_obj">
+          <ng-container
+            *ngTemplateOutlet="
+              propertyTemplate;
+              context: {
+                profile_obj: profile_obj[property.key],
+                property: childProperty,
+                level: 2
+              }
+            "
+          ></ng-container>
+        </ng-container>
+      </ng-container>
     </ng-container>
   </ng-container>
 </ng-template>
