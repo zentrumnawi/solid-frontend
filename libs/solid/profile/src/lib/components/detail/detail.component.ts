@@ -84,10 +84,25 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   public getProperties(profile: Profile) {
-    const definition = this.definitions.filter(
+    const generalInfoKey = 'general_information';
+
+    const def_property = this.definitions.filter(
       (def) => def.name === profile.def_type
+    )[0].properties;
+
+    const generalInfo = def_property.find(
+      (prop) => prop.key === generalInfoKey
     );
-    return definition[0].properties;
+
+    if (generalInfo) {
+      const filter_def = def_property.filter(
+        (prop) => prop.key !== generalInfoKey
+      );
+      filter_def.unshift(generalInfo);
+      return filter_def;
+    } else {
+      return def_property;
+    }
   }
 
   public onImageLoaded(index: number) {

@@ -218,7 +218,7 @@
     <ng-container *ngSwitchCase="PropertyTypes.String">
       <p
         *ngIf="
-          !(profile_obj[property.key].indexOf('http') === 0);
+          !(profile_obj[property.key]?.indexOf('http') === 0);
           else httpString
         "
         [ngClass]="level > 1 ? 'sub-property-content' : 'property-content'"
