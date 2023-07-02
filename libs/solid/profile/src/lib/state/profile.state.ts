@@ -24,15 +24,6 @@ export interface ProfileStateModel {
   definition_swagger: MultiProfiles[];
 }
 
-function b() {
-  return null;
-}
-
-function a() {
-  const bb = b;
-  return b;
-}
-
 @State<ProfileStateModel>({
   name: 'profile',
   defaults: {
@@ -69,11 +60,6 @@ export class ProfileState {
       return null;
     };
     return fn;
-    // return ProfileState.__internal__selectProfileAndNode;
-  }
-
-  static __internal__selectProfileAndNode(profileId?: number) {
-    return null;
   }
 
   @Selector()
@@ -132,37 +118,6 @@ export class ProfileState {
         map((response) => {
           const mapit = (input: TreeNodeApi[]): TreeNode[] => {
             return input.map((node: any) => {
-              // media models - for testing before endpoint is finished
-              const mediaObj: MediaObjectModel = {
-                id: 448,
-                file: {
-                  large:
-                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.large.jpeg',
-                  medium:
-                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.medium.jpeg',
-                  small:
-                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.small.jpeg',
-                  thumbnail:
-                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.thumbnail.jpeg',
-                  original:
-                    'https://cdn.geomat.uni-frankfurt.de/planty/staging/media_object/Dunkelfelder_Blatt_01.09.2020_Geisenheim_Lumix_DMC-TZ10_w_12.JPG',
-                },
-                dzi_file: null,
-                profile_position: 1,
-                media_format: 'image',
-                img_original_width: 3264,
-                img_original_height: 2448,
-                img_original_scale: 0,
-                img_alt: 'DunkelfelderRebe',
-                description: 'Das ist eine Description!',
-                audio: 'null',
-                title: 'Dunkelfelder Blatt',
-                date: new Date(2021, 7, 31),
-                author: 'Name Vorname',
-                license: 'CC_BY-SA',
-              };
-              const media_list = [new MediaModel(mediaObj)];
-
               const multi_profiles = Object.entries(node)
                 .filter((property: any) => {
                   if (
@@ -173,15 +128,14 @@ export class ProfileState {
                 })
                 .map((profiles: any) => {
                   return profiles[1].map((profile: any) => {
+                    const profileName = profile.general_information?.name;
                     return {
-                      name: profile.name ? profile.name : 'A Tree',
+                      name: profileName ? profileName : 'Keine Name vorhanden',
                       ...profile,
                       type: 'profile',
-                      mediaObjects: profile.media_objects
-                        ? profile.media_objects.map(
-                            (m: any) => new MediaModel(m)
-                          )
-                        : media_list,
+                      mediaObjects: profile.media_objects.map(
+                        (m: MediaObjectModel) => new MediaModel(m)
+                      ),
                       def_type: profiles[0].split('_')[0],
                     };
                   });
@@ -196,9 +150,8 @@ export class ProfileState {
                   ? node.profiles.map((profile: any) => ({
                       ...profile,
                       type: 'profile',
-                      // images: profile.photographs.map((p) => new ImageModel(p)),
                       mediaObjects: profile.media_objects.map(
-                        (m: any) => new MediaModel(m)
+                        (m: MediaObjectModel) => new MediaModel(m)
                       ),
                     }))
                   : multi_profiles[0]
