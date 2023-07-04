@@ -37,7 +37,6 @@ export interface EntryNode {
   subtitle: string;
   type: 'entry';
   level: number;
-  // images: ImageModel[];
   mediaObjects: MediaModel[];
   expandable: false;
   id: number;
