@@ -2,9 +2,13 @@
   *ngFor="let profile of profiles | async; let i = index; trackBy: trackByFn"
 >
   <div
-    *ngIf="selectedProfileId === profile.id"
+    *ngIf="
+      selectedProfileId === profile.id &&
+      selectedProfileType === profile.def_type
+    "
     (click)="
-      selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)
+      selectProfile.emit({ id: profile.id, type: profile.def_type });
+      selectProfileTitle.emit(profile.name)
     "
     class="card mat-elevation-z2 selected"
     solidProfileSelected
@@ -16,7 +20,8 @@
   <div
     *ngIf="selectedProfileId !== profile.id"
     (click)="
-      selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)
+      selectProfile.emit({ id: profile.id, type: profile.def_type });
+      selectProfileTitle.emit(profile.name)
     "
     class="card mat-elevation-z2"
   >

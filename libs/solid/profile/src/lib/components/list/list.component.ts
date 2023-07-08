@@ -9,9 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class ListComponent {
   @Input() profiles!: Observable<Profile[]>;
-  @Output() selectProfile = new EventEmitter<number>();
+  @Output() selectProfile = new EventEmitter<
+    number | { id: number; type: string }
+  >();
   @Output() selectProfileTitle = new EventEmitter<string>();
   @Input() selectedProfileId?: number;
+  @Input() selectedProfileType?: string;
   @Input() isDiveApp = false;
 
   public trackByFn(index: number, profile: Profile) {

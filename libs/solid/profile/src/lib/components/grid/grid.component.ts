@@ -22,7 +22,10 @@ export class GridComponent implements AfterViewInit {
   public selectedElements!: QueryList<ElementRef>;
   @Input() profiles!: Observable<Profile[]>;
   @Input() selectedProfileId?: number;
-  @Output() selectProfile = new EventEmitter<number>();
+  @Input() selectedProfileType?: string;
+  @Output() selectProfile = new EventEmitter<
+    number | { id: number; type: string }
+  >();
   @Input() isDiveApp = false;
   @Output() selectProfileTitle = new EventEmitter<string>();
   public hasControlPanel!: boolean;
@@ -31,7 +34,9 @@ export class GridComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.selectedElements.changes.subscribe((_) => this.scrollTo());
+    this.selectedElements.changes.subscribe(() => {
+      this.scrollTo();
+    });
     this.scrollTo();
   }
 

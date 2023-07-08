@@ -24,7 +24,6 @@ import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 import { SelectedDirective } from '../selected.directive';
 import {
-  ImageModel,
   MediaModel,
   SolidCoreConfig,
   SOLID_CORE_CONFIG,
@@ -40,6 +39,7 @@ export interface EntryNode {
   mediaObjects: MediaModel[];
   expandable: false;
   id: number;
+  def_type: string;
 }
 
 export interface CategoryNode {
@@ -59,8 +59,11 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChildren(SelectedDirective, { read: ElementRef })
   public selectedElements!: QueryList<ElementRef>;
   @Input() selectedProfileId?: number;
+  @Input() selectedProfileType?: string;
   @Input() profiles!: Observable<TreeNode[]>;
-  @Output() selectProfile = new EventEmitter<number>();
+  @Output() selectProfile = new EventEmitter<
+    number | { id: number; type: string }
+  >();
   @Output() selectProfileTitle = new EventEmitter<string>();
   @Input() isDiveApp = false;
   @Input() collapseTree = false;
@@ -113,15 +116,14 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       };
     } else {
       return {
-        // title: node.variety ? node.variety : node.mineralName,
         title: node.name,
         subtitle: node.trivial_name,
         id: node.id,
         type: 'entry',
         level: level,
         expandable: false,
-        // images: [],
         mediaObjects: node.mediaObjects,
+        def_type: node.def_type,
       };
     }
   }
@@ -146,7 +148,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public ngOnInit(): void {
-    this.profiles.subscribe((profiles) => {
+    this.profiles.subscribe((profiles: any) => {
       this.DataSource.data = profiles;
       this.expandSelectedNode();
       if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
@@ -207,7 +209,10 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         .filter((n) => n.type === 'entry')
         .forEach((node) => {
           const profileNode = node as EntryNode;
-          if (profileNode.id === this.selectedProfileId) {
+          if (
+            profileNode.id === this.selectedProfileId &&
+            profileNode.def_type === this.selectedProfileType
+          ) {
             this.expandParents(node);
           }
         });

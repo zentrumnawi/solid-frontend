@@ -25,7 +25,7 @@ import {
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -64,10 +64,14 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public $profilesFlat!: Observable<Profile[]>;
   @Select(ProfileState.selectProfileAndNode)
   public $profileAndCategorySelector!: Observable<
-    (profileId?: number) => { profile: Profile; node: TreeNode } | null
+    (
+      profileId?: number,
+      profileType?: string
+    ) => { profile: Profile; node: TreeNode } | null
   >;
   @Select(__internal__selectRouterStateParams)
   public $routerParams!: Observable<{ [key: string]: string }>;
+  public $queryParams!: Observable<{ type: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
   public SplitLayout = false;
   public Filter = new UntypedFormControl('');
@@ -95,8 +99,12 @@ export class BaseComponent implements OnInit, AfterViewInit {
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
     private introService: IntroService,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
-    private _route: Router
+    private _route: Router,
+    private _activatedRoute: ActivatedRoute
   ) {
+    this.$queryParams = _activatedRoute.queryParams as Observable<{
+      type: string;
+    }>;
     this._store.dispatch([
       new LoadDefinition(),
       new LoadProfiles(),
@@ -111,17 +119,19 @@ export class BaseComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     combineLatest([
       this.$routerParams,
+      this.$queryParams,
       this.$profileAndCategorySelector,
       this.$profilesFlat,
       this.FilterValue,
     ])
       .pipe(
         map((v) => {
-          const { params, selector, flat, filterStr } = {
-            params: v[0],
-            selector: v[1],
-            flat: v[2],
-            filterStr: v[3],
+          const { params, queryParams, selector, flat, filterStr } = {
+            params: v[0], // view, id
+            queryParams: v[1], // type
+            selector: v[2],
+            flat: v[3],
+            filterStr: v[4],
           };
 
           // select profile
@@ -129,7 +139,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
             params.id !== undefined && params.id !== ''
               ? parseInt(params.id, 10)
               : undefined;
-          const profileAndNode = selector(profileId);
+          const profileAndNode = selector(profileId, queryParams.type);
 
           // filter profiles
           const regExp = new RegExp(filterStr, 'i');
@@ -298,7 +308,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
           this.View === 'tree' ? 'grid' : 'tree',
           this.SelectedProfile.id,
         ],
-        undefined,
+        this.SelectedProfile.def_type !== 'wine'
+          ? { type: this.SelectedProfile.def_type }
+          : undefined,
         { replaceUrl: true }
       );
     }
@@ -310,11 +322,23 @@ export class BaseComponent implements OnInit, AfterViewInit {
   }
 
   @Dispatch()
-  public selectProfile(profileId?: number) {
-    if (profileId) {
+  public selectProfile(profileId?: number | { id: number; type: string }) {
+    if (!profileId) {
+      return new Navigate([`${this.baseUrl}`, this.View]);
+    }
+
+    if (typeof profileId !== 'number') {
+      if (profileId.type === 'wine') {
+        // temporary workaround for PLANTY - type wine_related doesn't have a type in the URL
+        return new Navigate([`${this.baseUrl}`, this.View, profileId.id]);
+      } else {
+        return new Navigate([`${this.baseUrl}`, this.View, profileId.id], {
+          type: profileId.type,
+        });
+      }
+    } else {
       return new Navigate([`${this.baseUrl}`, this.View, profileId]);
     }
-    return new Navigate([`${this.baseUrl}`, this.View]);
   }
 
   public swipeLeft() {
