@@ -1,6 +1,7 @@
 p {
   padding: 0 0.5em 0 0.5em;
   margin-bottom: 0;
+  font-weight: 200;
 
   &.heading {
     padding: 0.5em;
@@ -14,12 +15,21 @@ p {
     text-transform: uppercase;
   }
 
-  &.sub-property-heading {
+  &.property-heading-level-2 {
     margin-left: 24px;
   }
 
-  &.sub-property-content {
+  &.property-content-level-2 {
     margin-left: 24px;
+  }
+
+  &.property-heading-level-3 {
+    margin-left: 48px;
+    font-weight: 400;
+  }
+
+  &.property-content-level-3 {
+    margin-left: 48px;
   }
 }
 

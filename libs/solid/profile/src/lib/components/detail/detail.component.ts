@@ -203,4 +203,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.ImageSelected =
       this.MediaObjectsOnlyImages[this.ImageIndex].getProfilePosition - 1;
   }
+
+  getClass(level: number, type: string): string {
+    return `property-${type}-level-${level}`;
+  }
 }
