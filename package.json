@@ -1,6 +1,6 @@
 {
   "name": "zentrumnawi",
-  "version": "3.5.0",
+  "version": "4.0.0",
   "scripts": {
     "ng": "nx",
     "start": "node web-server.js",
