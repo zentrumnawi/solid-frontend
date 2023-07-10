@@ -46,11 +46,11 @@ export class ProfileState {
     state: ProfileStateModel
   ): (
     profileId?: number,
-    profileType?: string
+    profileType?: string | null
   ) => { profile: Profile; node: TreeNode } | null {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
-    const fn = function (profileId?: number, profileType?: string) {
+    const fn = function (profileId?: number, profileType?: string | null) {
       if (!profileId) {
         return null;
       }
@@ -95,7 +95,7 @@ export class ProfileState {
   private static findProfileDeep(
     node: TreeNode,
     profileId: number,
-    profileType?: string
+    profileType?: string | null
   ): { profile: Profile; node: TreeNode } | null {
     const profile = profileType
       ? node.profiles.find(

@@ -96,7 +96,7 @@ export const defaultSkeletonConfig: Omit<
       enabled: true,
       showOnLandingPage: true,
       showInMenu: true,
-      url: 'profile',
+      url: 'profiles',
       title: 'Steckbriefe',
       order: 1,
       matIcon: 'list',

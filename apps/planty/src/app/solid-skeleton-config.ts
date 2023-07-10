@@ -11,7 +11,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
     },
     profile: {
       svgIcon: 'profile',
-      url: 'profile',
+      url: 'profiles',
     },
     quiz: {
       svgIcon: 'quiz',

@@ -25,7 +25,7 @@ import {
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -66,12 +66,11 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public $profileAndCategorySelector!: Observable<
     (
       profileId?: number,
-      profileType?: string
+      profileType?: string | null
     ) => { profile: Profile; node: TreeNode } | null
   >;
-  @Select(__internal__selectRouterStateParams)
-  public $routerParams!: Observable<{ [key: string]: string }>;
-  public $queryParams!: Observable<{ type: string }>;
+  public $paramMap: Observable<ParamMap>;
+  public $queryParams: Observable<{ view: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
   public SplitLayout = false;
   public Filter = new UntypedFormControl('');
@@ -102,8 +101,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
     private _route: Router,
     private _activatedRoute: ActivatedRoute
   ) {
+    this.$paramMap = _activatedRoute.paramMap as Observable<ParamMap>;
     this.$queryParams = _activatedRoute.queryParams as Observable<{
-      type: string;
+      view: string;
     }>;
     this._store.dispatch([
       new LoadDefinition(),
@@ -118,7 +118,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     combineLatest([
-      this.$routerParams,
+      this.$paramMap,
       this.$queryParams,
       this.$profileAndCategorySelector,
       this.$profilesFlat,
@@ -127,19 +127,27 @@ export class BaseComponent implements OnInit, AfterViewInit {
       .pipe(
         map((v) => {
           const { params, queryParams, selector, flat, filterStr } = {
-            params: v[0], // view, id
-            queryParams: v[1], // type
+            params: v[0],
+            queryParams: v[1],
             selector: v[2],
             flat: v[3],
             filterStr: v[4],
           };
 
+          const id = params.get('id');
+          const type = params.get('type') ? params.get('type') : undefined;
+
+          // temporary workaround for planty since the view is still in the URL
+          const view =
+            this.getProfileType(type) === 'wine' ? type : queryParams['view'];
+          this.View = view ? view : 'tree';
+
           // select profile
           const profileId =
-            params.id !== undefined && params.id !== ''
-              ? parseInt(params.id, 10)
-              : undefined;
-          const profileAndNode = selector(profileId, queryParams.type);
+            id !== undefined && id !== '' && id ? parseInt(id, 10) : undefined;
+          const profileType = this.getProfileType(type);
+
+          const profileAndNode = selector(profileId, profileType);
 
           // filter profiles
           const regExp = new RegExp(filterStr, 'i');
@@ -155,7 +163,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
           // no profile selected
           if (!profileId || !profileAndNode) {
             return {
-              view: params.view,
               selectedProfile: null,
               selectedNode: null,
               profilesFlatFiltered,
@@ -165,7 +172,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
           }
           let swipeRight = -1;
           let swipeLeft = -1;
-          if (params.view === 'grid' || filterStr !== '') {
+          if (this.View === 'grid' || filterStr !== '') {
             const flatIndex = profilesFlatFiltered.findIndex(
               (p) => p.id === profileId
             );
@@ -198,7 +205,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
           this.handleLongTitle();
 
           return {
-            view: params.view,
             selectedProfile: profileAndNode.profile,
             selectedNode: profileAndNode.node,
             profilesFlatFiltered,
@@ -208,7 +214,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
         })
       )
       .subscribe((v) => {
-        this.View = v.view;
         this.SelectedProfile = v.selectedProfile;
         this.SelectedNode = v.selectedNode;
         this.ProfilesFlatFiltered.next(v.profilesFlatFiltered);
@@ -301,22 +306,25 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   @Dispatch()
   public toggleGridTree() {
+    this.View = this.View === 'tree' ? 'grid' : 'tree';
     if (this.SelectedProfile) {
       return new Navigate(
         [
           `${this.baseUrl}`,
-          this.View === 'tree' ? 'grid' : 'tree',
+          this.SelectedProfile.def_type !== 'wine'
+            ? this.SelectedProfile.def_type + '_related'
+            : this.View,
           this.SelectedProfile.id,
         ],
-        this.SelectedProfile.def_type !== 'wine'
-          ? { type: this.SelectedProfile.def_type }
-          : undefined,
-        { replaceUrl: true }
+        {
+          view:
+            this.SelectedProfile.def_type !== 'wine' ? this.View : undefined,
+        }
       );
     }
     return new Navigate(
-      [`${this.baseUrl}`, this.View === 'tree' ? 'grid' : 'tree'],
-      undefined,
+      [`${this.baseUrl}`],
+      { view: this.View },
       { replaceUrl: true }
     );
   }
@@ -324,7 +332,7 @@ export class BaseComponent implements OnInit, AfterViewInit {
   @Dispatch()
   public selectProfile(profileId?: number | { id: number; type: string }) {
     if (!profileId) {
-      return new Navigate([`${this.baseUrl}`, this.View]);
+      return new Navigate([`${this.baseUrl}`]);
     }
 
     if (typeof profileId !== 'number') {
@@ -332,8 +340,9 @@ export class BaseComponent implements OnInit, AfterViewInit {
         // temporary workaround for PLANTY - type wine_related doesn't have a type in the URL
         return new Navigate([`${this.baseUrl}`, this.View, profileId.id]);
       } else {
-        return new Navigate([`${this.baseUrl}`, this.View, profileId.id], {
-          type: profileId.type,
+        const profileType = profileId.type + '_related';
+        return new Navigate([`${this.baseUrl}`, profileType, profileId.id], {
+          view: this.View,
         });
       }
     } else {
@@ -385,5 +394,20 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   public selectProfileTitle(title: string): void {
     if (title) this.profileTitle.emit(title);
+  }
+
+  public getProfileType(type: string | undefined | null): string {
+    if (!type) {
+      return '';
+    }
+    if (type === 'tree' || type === 'grid') {
+      return 'wine';
+    } else {
+      const index = type.indexOf('_');
+      if (index !== -1) {
+        return type.slice(0, index);
+      }
+      return '';
+    }
   }
 }
