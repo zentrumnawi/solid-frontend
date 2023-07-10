@@ -124,7 +124,8 @@ export class ProfileDefinitionService {
     key: string,
     schema: OpenApiSchema
   ): ProfileProperty | null {
-    if (schema.oneOf) (schema.type as ParameterType) = 'string'; // for enums
+    // TODO: Get enum field type from $ref in oneOf[0]
+    if (schema.oneOf) (schema.type as ParameterType) = 'string'; // workaround for enums
 
     // format is used to declare custom types
     const { title, type, format } = schema;
@@ -187,11 +188,12 @@ export class ProfileDefinitionService {
 
   //OpenAPI Version 2.0
   public loadDefinitions_swagger() {
-    //prevent GeoMat, WABE, PLANTY calling OpenAPI 2.0
+    //prevent GeoMat, WABE, PLANTY & AIS from calling OpenAPI 2.0
     //so we don't have duplicated data in profile
     if (
       this._config.appName === 'GeoMat' ||
       this._config.appName === 'WABE' ||
+      this._config.appName === 'AIS' ||
       this._config.appName === 'PLANTY2Learn'
     ) {
       return;
