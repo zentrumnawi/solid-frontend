@@ -18,17 +18,14 @@ export const skeletonConfig: SolidSkeletonConfig = {
       url: 'selbsttest',
     },
     info: {
-      svgIcon: 'info_privacy',
+      svgIcon: 'info_news',
+      title: 'Info | News',
+      url: 'info',
     },
     slideshow: {
       svgIcon: 'slideshow',
       title: 'Wissensgalerie',
       url: 'wissensgalerie',
     },
-    // privacy: {
-    //   component: PrivacyComponent,
-    //   svgIcon: 'privacy',
-    //   url: 'datenschutz',
-    // },
   },
 };

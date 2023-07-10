@@ -84,6 +84,7 @@ export class AppModule {
     addIcon('profile');
     addIcon('icon');
     addIcon('info');
+    addIcon('info_news');
     addIcon('privacy');
     addIcon('info_privacy');
     addIcon('glossary');
