@@ -83,7 +83,7 @@ export class AppModule {
     addIcon('quiz');
     addIcon('profile');
     addIcon('icon');
-    addIcon('glossary');
+    addIcon('glossary_generic');
     addIcon('info');
     addIcon('privacy');
     addIcon('info_privacy');
