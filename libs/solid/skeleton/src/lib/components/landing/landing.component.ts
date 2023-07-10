@@ -70,13 +70,8 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     this.msgNumber = 0;
 
     iconRegistry.addSvgIcon(
-      'glossary',
+      'glossary_custom',
       sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossaryLogo)
-    );
-
-    iconRegistry.addSvgIcon(
-      'feedback',
-      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.feedbackLogo)
     );
   }
 

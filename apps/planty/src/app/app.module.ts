@@ -87,8 +87,8 @@ export class AppModule {
     addIcon('info_news');
     addIcon('privacy');
     addIcon('info_privacy');
-    addIcon('glossary');
-    addIcon('glossary2');
+    addIcon('glossary_generic');
+    addIcon('glossary_custom');
     addIcon('contact');
     addIcon('feedback');
     addIcon('feedback_outline');

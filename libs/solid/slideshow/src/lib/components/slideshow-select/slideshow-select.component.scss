@@ -83,6 +83,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      .slideshowImg {
+        width: 100px;
+        height: 100px;
+      }
     }
   }
   mat-card:hover {

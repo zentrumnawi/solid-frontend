@@ -30,7 +30,10 @@
       </div>
       <div id="glossary">
         <button (click)="Glossary?.toggle()" mat-icon-button>
-          <mat-icon aria-label="Glossar öffnen" svgIcon="glossary"></mat-icon>
+          <mat-icon
+            aria-label="Glossar öffnen"
+            svgIcon="glossary_generic"
+          ></mat-icon>
         </button>
       </div>
     </ng-container>
@@ -77,7 +80,10 @@
         (click)="Glossary?.toggle(); MainMenu?.close()"
         mat-icon-button
       >
-        <mat-icon aria-label="Glossar öffnen" svgIcon="glossary"></mat-icon>
+        <mat-icon
+          aria-label="Glossar öffnen"
+          svgIcon="glossary_generic"
+        ></mat-icon>
       </button>
     </ng-container>
   </mat-toolbar>
