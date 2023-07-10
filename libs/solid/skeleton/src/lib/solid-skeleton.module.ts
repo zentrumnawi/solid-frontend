@@ -150,7 +150,7 @@ export class SolidSkeletonModule {
         },
         {
           provide: SOLID_PROFILE_BASE_URL,
-          useValue: cfg.routingConfig.profile?.url ?? 'profiles',
+          useValue: cfg.routingConfig.profile?.url ?? 'profile',
         },
         {
           provide: SOLID_SLIDESHOW_APP_ROUTING_CONFIG,
