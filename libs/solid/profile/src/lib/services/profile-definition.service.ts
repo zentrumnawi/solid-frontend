@@ -124,7 +124,7 @@ export class ProfileDefinitionService {
     key: string,
     schema: OpenApiSchema
   ): ProfileProperty | null {
-    // if (schema.oneOf) (schema.type as ParameterType) = 'string'; // for enums
+    if (schema.oneOf) (schema.type as ParameterType) = 'string'; // for enums
 
     // format is used to declare custom types
     const { title, type, format } = schema;
