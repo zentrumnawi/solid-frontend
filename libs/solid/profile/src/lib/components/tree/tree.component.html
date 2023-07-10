@@ -1,7 +1,10 @@
 <!--suppress AngularInvalidExpressionResultType -->
 <mat-tree [dataSource]="DataSource" [treeControl]="TreeControl">
   <mat-tree-node
-    (click)="selectProfile.emit(node.id); selectProfileTitle.emit(node.title)"
+    (click)="
+      selectProfile.emit({ id: node.id, type: node.def_type });
+      selectProfileTitle.emit(node.title)
+    "
     *matTreeNodeDef="let node; when: hasNoChild"
     class="profile-link"
     matTreeNodePadding
@@ -17,7 +20,11 @@
       class="thumbnail"
     />
     <div class="profile-title">
-      <ng-container *ngIf="selectedProfileId === node.id">
+      <ng-container
+        *ngIf="
+          selectedProfileId === node.id && selectedProfileType === node.def_type
+        "
+      >
         <span
           *ngIf="isDiveApp"
           solidProfileSelected
@@ -33,7 +40,13 @@
         ></span>
         <span class="selected">{{ node.subtitle }}</span>
       </ng-container>
-      <ng-container *ngIf="selectedProfileId !== node.id">
+      <ng-container
+        *ngIf="
+          selectedProfileId !== node.id ||
+          (selectedProfileId === node.id &&
+            selectedProfileType !== node.def_type)
+        "
+      >
         <span
           *ngIf="isDiveApp"
           class="title-not-selected"

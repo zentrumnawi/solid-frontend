@@ -28,13 +28,9 @@ export class ProfileDefinitionService {
 
   //OpenAPI 3.0
   public loadDefinitions() {
-    //prevent AIS, Dive, Planty calling OpenAPI 3.0
+    //prevent AIS, Dive calling OpenAPI 3.0
     //so we don't have duplicated data in profile
-    if (
-      this._config.appName === 'AIS' ||
-      this._config.appName === 'Div-e' ||
-      this._config.appName === 'PLANTY2Learn'
-    ) {
+    if (this._config.appName === 'AIS' || this._config.appName === 'Div-e') {
       return;
     }
     return this.http.get<OpenApi>(`${this._config.apiUrl}/api/schema`).pipe(
@@ -42,9 +38,22 @@ export class ProfileDefinitionService {
         const schemas = openapi.components?.schemas || {};
         const treeNode = schemas.TreeNode as OpenApiSchema;
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const profiles = treeNode.properties!.profiles! as OpenApiSchema;
-        const topLevelRef = (profiles.items as OpenApiReference).$ref;
-        return this.definitionToGroup(openapi, topLevelRef);
+        const properties = treeNode.properties!;
+
+        const listOfGroups = [];
+
+        for (const p in properties) {
+          if (p.search('related') !== -1) {
+            const related = properties[p] as OpenApiSchema;
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const ref = (related!.items! as OpenApiReference).$ref;
+            listOfGroups.push({
+              name: ref?.split('/')[3].toLowerCase(),
+              properties: this.definitionToGroup(openapi, ref),
+            });
+          }
+        }
+        return listOfGroups;
       })
     );
   }
@@ -115,6 +124,9 @@ export class ProfileDefinitionService {
     key: string,
     schema: OpenApiSchema
   ): ProfileProperty | null {
+    // TODO: Get enum field type from $ref in oneOf[0]
+    if (schema.oneOf) (schema.type as ParameterType) = 'string'; // workaround for enums
+
     // format is used to declare custom types
     const { title, type, format } = schema;
     const required = parent.required?.includes(key) ?? false;
@@ -176,9 +188,14 @@ export class ProfileDefinitionService {
 
   //OpenAPI Version 2.0
   public loadDefinitions_swagger() {
-    //prevent GeoMat, WABE calling OpenAPI 2.0
+    //prevent GeoMat, WABE, PLANTY & AIS from calling OpenAPI 2.0
     //so we don't have duplicated data in profile
-    if (this._config.appName === 'GeoMat' || this._config.appName === 'WABE') {
+    if (
+      this._config.appName === 'GeoMat' ||
+      this._config.appName === 'WABE' ||
+      this._config.appName === 'AIS' ||
+      this._config.appName === 'PLANTY2Learn'
+    ) {
       return;
     }
     return this.http
@@ -186,10 +203,21 @@ export class ProfileDefinitionService {
       .pipe(
         map((swagger) => {
           const definitions = swagger.definitions || {};
-          const topLevelRef =
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            (definitions.TreeNode.properties!.profiles!.items as Schema).$ref;
-          return this.definitionToGroup_swagger(swagger, topLevelRef);
+          const properties = definitions.TreeNode.properties;
+          const listOfGroups = [];
+
+          for (const p in properties) {
+            if (p.search('related') !== -1) {
+              const ref = (properties[p].items as Schema).$ref;
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              listOfGroups.push({
+                name: ref?.split('/')[2].toLowerCase(),
+                properties: this.definitionToGroup_swagger(swagger, ref),
+              });
+            }
+          }
+
+          return listOfGroups;
         })
       );
   }

@@ -37,6 +37,6 @@ export class MainMenuComponent implements OnInit {
   }
 
   public onMenuItemSelected(item: string) {
-    if (item == 'info') this.msgNumber = 0;
+    if (item === 'info') this.msgNumber = 0;
   }
 }

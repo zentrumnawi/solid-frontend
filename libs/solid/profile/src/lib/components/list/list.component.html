@@ -2,22 +2,17 @@
   <ng-container *ngIf="profiles | async as profilesArr">
     <mat-list-item
       (click)="
-        selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)
+        selectProfile.emit({ id: profile.id, type: profile.def_type });
+        selectProfileTitle.emit(profile.name)
       "
       *ngFor="let profile of profilesArr; trackBy: trackByFn"
     >
-      <!-- <img
-        [alt]="profile.name"
-        [src]="
-          profile.images.length > 0
-            ? profile.images[0].getRawImage('thumbnail')
-            : 'assets/profile/no_thumbnail.svg'
-        "
-        class="thumbnail"
-      /> -->
       <div
         class="profile-title"
-        [class.selected]="selectedProfileId === profile.id"
+        [class.selected]="
+          selectedProfileId === profile.id &&
+          selectedProfileType === profile.def_type
+        "
       >
         <span
           *ngIf="isDiveApp"
