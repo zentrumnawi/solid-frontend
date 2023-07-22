@@ -92,8 +92,11 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() profileTitle = new EventEmitter<string>();
 
   @Select(ProfileState.selectProfile) profile$!: Observable<any>;
-  public profileSubscription!: Subscription;
   isLoading = true;
+
+  public mainSubscription!: Subscription;
+  public filterSubscription!: Subscription;
+  public profileSubscription!: Subscription;
 
   constructor(
     private _store: Store,
@@ -127,7 +130,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    combineLatest([
+    this.mainSubscription = combineLatest([
       this.$paramMap,
       this.$queryParams,
       this.$profileAndCategorySelector,
@@ -231,7 +234,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.Filter.valueChanges.subscribe((_) =>
+    this.filterSubscription = this.Filter.valueChanges.subscribe((_) =>
       this.FilterValue.next(this.Filter.value)
     );
   }
@@ -292,6 +295,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
+    this.mainSubscription.unsubscribe();
+    this.filterSubscription.unsubscribe();
     this.profileSubscription.unsubscribe();
   }
 
