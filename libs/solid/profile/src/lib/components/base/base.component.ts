@@ -155,8 +155,8 @@ export class BaseComponent implements OnInit, AfterViewInit {
             if (p.name.match(regExp)) {
               return true;
             }
-            if (p.trivial_name) {
-              return !!p.trivial_name.match(regExp);
+            if (p.sub_name) {
+              return !!p.sub_name.match(regExp);
             }
           });
 

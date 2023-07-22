@@ -21,7 +21,7 @@
           markdown
         ></span>
         <span *ngIf="!isDiveApp" class="name" [innerHTML]="profile.name"></span>
-        <span>{{ profile.trivial_name }}</span>
+        <span>{{ profile.sub_name }}</span>
       </div>
     </mat-list-item>
     <mat-list-item *ngIf="profilesArr.length === 0"

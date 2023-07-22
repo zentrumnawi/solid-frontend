@@ -12,7 +12,7 @@ import {
 const ignoredProperties = [
   'id',
   'name',
-  'trivial_name',
+  'sub_name',
   'short_description',
   'tree_node',
   'photographs',
