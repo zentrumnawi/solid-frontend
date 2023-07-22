@@ -5,6 +5,7 @@ import {
   EventEmitter,
   HostListener,
   Inject,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
@@ -15,7 +16,7 @@ import { TreeNode, Profile } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
   LoadDefinition,
@@ -39,7 +40,7 @@ export enum APP {
   templateUrl: './base.component.html',
   styleUrls: ['./base.component.scss'],
 })
-export class BaseComponent implements OnInit, AfterViewInit {
+export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('title_container', { static: false })
   public titleContainer?: ElementRef;
   @ViewChild('contentContainer', { static: false })
@@ -90,7 +91,8 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public collapseTree = false;
   @Output() profileTitle = new EventEmitter<string>();
 
-  @Select(ProfileState.selectProfile) profile$: Observable<any> | undefined;
+  @Select(ProfileState.selectProfile) profile$!: Observable<any>;
+  public profileSubscription!: Subscription;
   isLoading = true;
 
   constructor(
@@ -101,19 +103,27 @@ export class BaseComponent implements OnInit, AfterViewInit {
     private _route: Router,
     private _activatedRoute: ActivatedRoute
   ) {
-    this.$paramMap = _activatedRoute.paramMap as Observable<ParamMap>;
-    this.$queryParams = _activatedRoute.queryParams as Observable<{
+    this.$paramMap = this._activatedRoute.paramMap as Observable<ParamMap>;
+    this.$queryParams = this._activatedRoute.queryParams as Observable<{
       view: string;
     }>;
+
     this._store.dispatch([
       new LoadDefinition(),
       new LoadProfiles(),
       // Load definitions from OpenAPI 2.0
       new LoadDefinitionSwagger(),
     ]);
-    this.profile$?.subscribe((res) => {
+
+    this.profileSubscription = this.profile$?.subscribe((res) => {
       if (res.length != 0) this.isLoading = false;
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  public onResize() {
+    this.calculateLayout();
+    this.handleLongTitle();
   }
 
   ngOnInit(): void {
@@ -225,17 +235,11 @@ export class BaseComponent implements OnInit, AfterViewInit {
     );
   }
 
-  @HostListener('window:resize', ['$event'])
-  public onResize() {
-    this.calculateLayout();
-    this.handleLongTitle();
-  }
-
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    this.profile$?.subscribe((res) => {
-      if (res.length != 0)
+    this.profileSubscription = this.profile$.subscribe((res) => {
+      if (res.length != 0) {
         if (
           localStorage.getItem('hide_profile_tour') == 'false' ||
           localStorage.getItem('hide_profile_tour') == null
@@ -282,26 +286,12 @@ export class BaseComponent implements OnInit, AfterViewInit {
             });
           }, 800);
         }
+      }
     });
   }
 
-  public handleLongTitle() {
-    this.stopAnimation = true;
-    clearTimeout(this.timeOut_1);
-    clearTimeout(this.timeOut_2);
-    this.timeOut_1 = setTimeout(() => {
-      this.stopAnimation = false;
-      this.firstMovingAnimation = true;
-      this.title_container_width =
-        this.titleContainer?.nativeElement.offsetWidth;
-      this.title_width =
-        this.titleContainer?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
-      if (this.titleContainer?.nativeElement.firstElementChild) {
-        this.timeOut_2 = setTimeout(() => {
-          this.firstMovingAnimation = false;
-        }, 10000);
-      }
-    }, 0);
+  public ngOnDestroy(): void {
+    this.profileSubscription.unsubscribe();
   }
 
   @Dispatch()
@@ -334,7 +324,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
     if (!profileId) {
       return new Navigate([`${this.baseUrl}`]);
     }
-
     if (typeof profileId !== 'number') {
       if (profileId.type === 'wine') {
         // temporary workaround for PLANTY - type wine_related doesn't have a type in the URL
@@ -357,11 +346,6 @@ export class BaseComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.profileTitle.emit(this.SelectedProfile?.name);
     }, 10);
-  }
-
-  @Dispatch()
-  public async navigateTo(url: string) {
-    return new Navigate([url]);
   }
 
   public swipeRight() {
@@ -409,5 +393,29 @@ export class BaseComponent implements OnInit, AfterViewInit {
       }
       return '';
     }
+  }
+
+  @Dispatch()
+  public async navigateTo(url: string) {
+    return new Navigate([url]);
+  }
+
+  public handleLongTitle() {
+    this.stopAnimation = true;
+    clearTimeout(this.timeOut_1);
+    clearTimeout(this.timeOut_2);
+    this.timeOut_1 = setTimeout(() => {
+      this.stopAnimation = false;
+      this.firstMovingAnimation = true;
+      this.title_container_width =
+        this.titleContainer?.nativeElement.offsetWidth;
+      this.title_width =
+        this.titleContainer?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
+      if (this.titleContainer?.nativeElement.firstElementChild) {
+        this.timeOut_2 = setTimeout(() => {
+          this.firstMovingAnimation = false;
+        }, 10000);
+      }
+    }, 0);
   }
 }
