@@ -29,3 +29,8 @@ export interface ProfileApi {
   sub_name: string;
   short_description?: string;
 }
+
+export interface ProfileShort {
+  id: number;
+  type?: string;
+}

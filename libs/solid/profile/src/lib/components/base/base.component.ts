@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../../state/profile.state';
-import { TreeNode, Profile } from '../../state/profile.model';
+import { TreeNode, Profile, ProfileShort } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
@@ -78,8 +78,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public FilterValue = new BehaviorSubject<string>('');
   public SelectedProfile: Profile | null = null;
   public SelectedNode: TreeNode | null = null;
-  public SwipeLeft = -1;
-  public SwipeRight = -1;
+  public SwipeLeft: ProfileShort = { id: -1 };
+  public SwipeRight: ProfileShort = { id: -1 };
   public View = 'tree';
   public isSearchBarOpen = false;
   public title_container_width = 0;
@@ -145,7 +145,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           };
 
           const id = params.get('id');
-          const type = params.get('type') ? params.get('type') : undefined;
+          const type = params.get('type');
 
           // temporary workaround for planty since the view is still in the URL
           const view =
@@ -153,8 +153,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           this.View = view ? view : 'tree';
 
           // select profile
-          const profileId =
-            id !== undefined && id !== '' && id ? parseInt(id, 10) : undefined;
+          const profileId = id ? parseInt(id, 10) : undefined;
           const profileType = this.getProfileType(type);
 
           const profileAndNode = selector(profileId, profileType);
@@ -176,40 +175,42 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
               selectedProfile: null,
               selectedNode: null,
               profilesFlatFiltered,
-              swipeRight: -1,
-              swipeLeft: -1,
+              swipeRight: { id: -1 },
+              swipeLeft: { id: -1 },
             };
           }
-          let swipeRight = -1;
-          let swipeLeft = -1;
+          let swipeRight: ProfileShort = {
+            id: -1,
+          };
+          let swipeLeft: ProfileShort = {
+            id: -1,
+          };
           if (this.View === 'grid' || filterStr !== '') {
             const flatIndex = profilesFlatFiltered.findIndex(
-              (p) => p.id === profileId
+              (p) => p.id === profileId && p.def_type === profileType
             );
             if (flatIndex !== 0) {
-              swipeLeft = profilesFlatFiltered[flatIndex - 1]?.id || -1;
+              const profile = profilesFlatFiltered[flatIndex - 1];
+              swipeLeft = this.getProfileShort(profile);
             }
             if (flatIndex !== profilesFlatFiltered.length - 1) {
-              swipeRight = profilesFlatFiltered[flatIndex + 1]?.id || -1;
+              const profile = profilesFlatFiltered[flatIndex + 1];
+              swipeRight = this.getProfileShort(profile);
             }
           } else {
-            // TODO: Handle indices for mixed leaf nodes and categories
             const index = profileAndNode.node.profiles.indexOf(
               profileAndNode.profile
             );
             if (!this.Filter.value) {
-              swipeLeft =
-                (
-                  profileAndNode.node.profiles.find(
-                    (p, i) => i === index - 1
-                  ) as Profile | undefined
-                )?.id || -1;
-              swipeRight =
-                (
-                  profileAndNode.node.profiles.find((p, i) => i > index) as
-                    | Profile
-                    | undefined
-                )?.id || -1;
+              const profileLeft = profileAndNode.node.profiles.find(
+                (p, i) => i === index - 1
+              ) as Profile | undefined;
+              swipeLeft = this.getProfileShort(profileLeft);
+
+              const profileRight = profileAndNode.node.profiles.find(
+                (p, i) => i > index
+              ) as Profile | undefined;
+              swipeRight = this.getProfileShort(profileRight);
             }
           }
           this.handleLongTitle();
@@ -320,27 +321,29 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   @Dispatch()
-  public selectProfile(profileId?: number | { id: number; type: string }) {
-    if (!profileId) {
-      return new Navigate([`${this.baseUrl}`]);
+  public selectProfile(profile?: number | ProfileShort) {
+    if (!profile) {
+      return new Navigate([`${this.baseUrl}`], {
+        view: this.View ? this.View : undefined,
+      });
     }
-    if (typeof profileId !== 'number') {
-      if (profileId.type === 'wine') {
+    if (typeof profile !== 'number' && profile.type) {
+      if (profile.type === 'wine') {
         // temporary workaround for PLANTY - type wine_related doesn't have a type in the URL
-        return new Navigate([`${this.baseUrl}`, this.View, profileId.id]);
+        return new Navigate([`${this.baseUrl}`, this.View, profile.id]);
       } else {
-        const profileType = profileId.type + '_related';
-        return new Navigate([`${this.baseUrl}`, profileType, profileId.id], {
+        const profileType = profile.type + '_related';
+        return new Navigate([`${this.baseUrl}`, profileType, profile.id], {
           view: this.View,
         });
       }
     } else {
-      return new Navigate([`${this.baseUrl}`, this.View, profileId]);
+      return new Navigate([`${this.baseUrl}`, this.View, profile]);
     }
   }
 
   public swipeLeft() {
-    if (this.SwipeLeft > 0) {
+    if (this.SwipeLeft.id > 0) {
       this.selectProfile(this.SwipeLeft);
     }
     setTimeout(() => {
@@ -349,7 +352,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public swipeRight() {
-    if (this.SwipeRight > 0) {
+    if (this.SwipeRight.id > 0) {
       this.selectProfile(this.SwipeRight);
     }
     setTimeout(() => {
@@ -385,7 +388,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       return '';
     }
     if (type === 'tree' || type === 'grid') {
-      return 'wine';
+      return 'wine'; // temporary for PLANTY
     } else {
       const index = type.indexOf('_');
       if (index !== -1) {
@@ -393,6 +396,12 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       return '';
     }
+  }
+
+  public getProfileShort(profile: any): ProfileShort {
+    const profileId = profile?.id || -1;
+    const profileType = profile?.def_type;
+    return { id: profileId, type: profileType };
   }
 
   @Dispatch()

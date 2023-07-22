@@ -46,18 +46,18 @@ export class ProfileState {
     state: ProfileStateModel
   ): (
     profileId?: number,
-    profileType?: string | null
+    profileType?: string
   ) => { profile: Profile; node: TreeNode } | null {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
-    const fn = function (profileId?: number, profileType?: string | null) {
+    const fn = function (profileId?: number, profileType?: string) {
       if (!profileId) {
         return null;
       }
       for (const node of state.nodes) {
         const childSearch = profileType
           ? ProfileState.findProfileDeep(node, profileId, profileType)
-          : ProfileState.findProfileDeep(node, profileId);
+          : ProfileState.findProfileDeep(node, profileId); // temporary for PLANTY
         if (childSearch !== null) {
           return childSearch;
         }
@@ -95,13 +95,13 @@ export class ProfileState {
   private static findProfileDeep(
     node: TreeNode,
     profileId: number,
-    profileType?: string | null
+    profileType?: string
   ): { profile: Profile; node: TreeNode } | null {
     const profile = profileType
       ? node.profiles.find(
           (p) => p.id === profileId && p.def_type === profileType
         )
-      : node.profiles.find((p) => p.id === profileId);
+      : node.profiles.find((p) => p.id === profileId); // temporary for PLANTY
     if (profile) {
       return {
         profile,
@@ -111,7 +111,7 @@ export class ProfileState {
     for (const leafNode of node.children) {
       const childSearch = profileType
         ? ProfileState.findProfileDeep(leafNode, profileId, profileType)
-        : ProfileState.findProfileDeep(leafNode, profileId);
+        : ProfileState.findProfileDeep(leafNode, profileId); // temporary for PLANTY
       if (childSearch !== null) {
         return childSearch;
       }
