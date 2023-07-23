@@ -38,9 +38,9 @@ export const ngxsFeatureModule = NgxsModule.forFeature([ProfileState]);
   ],
   imports: [
     SolidCoreModule,
-    MatTabsModule,
     SolidCoreModule,
     SolidProfileRoutingModule,
+    MatTabsModule,
     ngxsFeatureModule,
     MatButtonModule,
     MatExpansionModule,
