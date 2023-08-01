@@ -308,7 +308,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         [
           `${this.baseUrl}`,
           this.SelectedProfile.def_type !== 'wine'
-            ? this.SelectedProfile.def_type + '_related'
+            ? this.SelectedProfile.def_type
             : this.View,
           this.SelectedProfile.id,
         ],
@@ -337,7 +337,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         // temporary workaround for PLANTY - type wine_related doesn't have a type in the URL
         return new Navigate([`${this.baseUrl}`, this.View, profile.id]);
       } else {
-        const profileType = profile.type + '_related';
+        const profileType = profile.type;
         return new Navigate([`${this.baseUrl}`, profileType, profile.id], {
           view: this.View,
         });
@@ -395,11 +395,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     if (type === 'tree' || type === 'grid') {
       return 'wine'; // temporary for PLANTY
     } else {
-      const index = type.indexOf('_');
-      if (index !== -1) {
-        return type.slice(0, index);
-      }
-      return '';
+      return type;
     }
   }
 

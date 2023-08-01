@@ -10,27 +10,16 @@ const routes: Routes = [
         return { consumed: [baseUrlSegment] };
       }
 
-      const firstUrlSegment = url[0]?.path; // type: *_related
-      const regExFirstSegment = new RegExp(/\W*(_related)\W*/);
+      const firstUrlSegment = url[0]?.path;
+      const secondUrlSegment = url[1]?.path;
 
-      const secondUrlSegment = url[1]?.path; // id
-      const regExSecondSegment = new RegExp(/^\d+$/);
-
-      const isValid =
-        (firstUrlSegment === 'tree' || // (tree, grid - temporary for PLANTY)
-          firstUrlSegment === 'grid' ||
-          regExFirstSegment.test(firstUrlSegment)) &&
-        regExSecondSegment.test(secondUrlSegment);
-
-      return isValid
-        ? {
-            consumed: url,
-            posParams: {
-              type: new UrlSegment(firstUrlSegment, {}),
-              id: new UrlSegment(secondUrlSegment, {}),
-            },
-          }
-        : { consumed: [baseUrlSegment] };
+      return {
+        consumed: url,
+        posParams: {
+          type: new UrlSegment(firstUrlSegment, {}),
+          id: new UrlSegment(secondUrlSegment, {}),
+        },
+      };
     },
     component: BaseComponent,
   },
