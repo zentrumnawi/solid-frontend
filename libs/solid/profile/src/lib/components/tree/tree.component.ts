@@ -117,7 +117,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     } else {
       return {
         title: node.name,
-        subtitle: node.trivial_name,
+        subtitle: node.sub_name,
         id: node.id,
         type: 'entry',
         level: level,

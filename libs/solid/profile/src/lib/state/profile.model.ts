@@ -26,6 +26,11 @@ export interface ProfileApi {
   name: string;
   // photographs: PhotographModel[];
   media_objects: MediaObjectModel[];
-  trivial_name: string;
+  sub_name: string;
   short_description?: string;
+}
+
+export interface ProfileShort {
+  id: number;
+  type?: string;
 }

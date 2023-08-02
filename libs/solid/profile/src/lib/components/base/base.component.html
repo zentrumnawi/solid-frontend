@@ -80,12 +80,16 @@
           {{ SelectedProfile.name }}
         </div>
       </div>
-      <span *ngIf="SelectedProfile.trivial_name">{{
-        SelectedProfile.trivial_name
+      <span *ngIf="SelectedProfile.sub_name">{{
+        SelectedProfile.sub_name
       }}</span>
     </div>
     <div id="profile-detail-navigation">
-      <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
+      <button
+        (click)="swipeLeft()"
+        [disabled]="SwipeLeft.id < 0"
+        mat-icon-button
+      >
         <mat-icon>navigate_before</mat-icon>
       </button>
       <button (click)="selectProfile(undefined)" mat-icon-button>
@@ -93,7 +97,7 @@
       </button>
       <button
         (click)="swipeRight()"
-        [disabled]="SwipeRight < 0"
+        [disabled]="SwipeRight.id < 0"
         mat-icon-button
       >
         <mat-icon>navigate_next</mat-icon>

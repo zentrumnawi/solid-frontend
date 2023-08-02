@@ -12,7 +12,7 @@ import {
 const ignoredProperties = [
   'id',
   'name',
-  'trivial_name',
+  'sub_name',
   'short_description',
   'tree_node',
   'photographs',
@@ -28,9 +28,9 @@ export class ProfileDefinitionService {
 
   //OpenAPI 3.0
   public loadDefinitions() {
-    //prevent AIS, Dive calling OpenAPI 3.0
+    //prevent Dive calling OpenAPI 3.0
     //so we don't have duplicated data in profile
-    if (this._config.appName === 'AIS' || this._config.appName === 'Div-e') {
+    if (this._config.appName === 'Div-e') {
       return;
     }
     return this.http.get<OpenApi>(`${this._config.apiUrl}/api/schema`).pipe(
