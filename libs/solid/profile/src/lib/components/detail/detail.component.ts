@@ -99,6 +99,7 @@ export class DetailComponent implements OnInit, OnDestroy {
         (prop) => prop.key !== generalInfoKey
       );
       filter_def.unshift(generalInfo);
+      // console.log('filter def: ', filter_def);
       return filter_def;
     } else {
       return def_property;
@@ -161,6 +162,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       case ProfilePropertyType.Boolean:
       case ProfilePropertyType.Mdstring:
       case ProfilePropertyType.Colstring:
+      case ProfilePropertyType.Enum:
         return val !== undefined && val !== '';
     }
   }
@@ -206,5 +208,10 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   getClass(level: number, type: string): string {
     return `property-${type}-level-${level}`;
+  }
+
+  getEnumValue(profile: any, property: any) {
+    // console.log('profile ', profile);
+    // console.log('property ', property);
   }
 }

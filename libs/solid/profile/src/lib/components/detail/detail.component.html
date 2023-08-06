@@ -212,6 +212,9 @@
     <p class="heading" [ngClass]="getClass(level, 'heading')">
       {{ property.title ? property.title : property.key }}
     </p>
+    <ng-container *ngSwitchCase="PropertyTypes.Enum">
+      <p>{{ profile_obj[property.key] }}</p>
+    </ng-container>
     <ng-container *ngSwitchCase="PropertyTypes.String">
       <p
         *ngIf="
