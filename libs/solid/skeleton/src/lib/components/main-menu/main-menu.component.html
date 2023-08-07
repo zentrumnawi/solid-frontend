@@ -9,8 +9,10 @@
         <h3 matLine>Glossar</h3>
       </mat-list-item>
       <mat-list-item
-        (click)="navigateTo(item.route)"
+        (click)="selectMenuEntry.emit(); onMenuItemSelected(item.route)"
         [class.active]="item.active"
+        [routerLink]="item.route"
+        [queryParams]="{ directTo: msgNumber > 0 ? 'news' : undefined }"
       >
         <h3 matLine>
           {{ item.title }}

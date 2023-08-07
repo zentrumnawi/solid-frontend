@@ -1,0 +1,14 @@
+{
+  "header": {
+    "image": "assets/icons/icon.svg",
+    "title": "Pflanzenlernportal der Hochschule Geisenheim",
+    "subtitle": "Herzlich willkommen bei PLANTY2Learn!"
+  },
+
+  "content": [
+    {
+      "p": "In unserem Lernportal finden Sie alle Informationen, die zum Erlernen von Pflanzen und ihrer Besonderheiten wichtig sind. Mit Hilfe der Steckbriefe lernen Sie die wichtigsten bestimmungsrelevanten Merkmale kennen. Die Wissensgalerie gibt Ihnen zusätzlich nützliches Hintergrundwissen an die Hand. Die Selbsttests können Sie zum Überprüfen Ihrer Kenntnisse nutzen."
+    },
+    { "p": "Viel Spaß beim Lernen!" }
+  ]
+}

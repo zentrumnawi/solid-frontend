@@ -178,7 +178,7 @@ const testSwagger = {
         'fruit',
         'blossom',
         'name',
-        'trivial_name',
+        'sub_name',
         'bloom',
         'nodule',
       ],
@@ -190,8 +190,8 @@ const testSwagger = {
         // 'fruit': { '$ref': '#/definitions/Fruit' },
         // 'blossom': { '$ref': '#/definitions/Blossom' },
         name: { title: 'Art', type: 'string', maxLength: 100, minLength: 1 },
-        trivial_name: {
-          title: 'Trivialname',
+        sub_name: {
+          title: 'Subname',
           type: 'string',
           maxLength: 100,
           minLength: 1,

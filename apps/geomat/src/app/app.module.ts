@@ -22,7 +22,6 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { coreConfig } from './solid-core-config';
@@ -42,12 +41,7 @@ export class MyHammerConfig extends HammerGestureConfig {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PrivacyComponent,
-    LandingBannerContentComponent,
-    InfoPageContentComponent,
-  ],
+  declarations: [AppComponent, PrivacyComponent, InfoPageContentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -95,7 +89,7 @@ export class AppModule {
     addIcon('crystalsystem');
     addIcon('profile');
     addIcon('quiz');
-    addIcon('glossary');
+    addIcon('glossary_generic');
     addIcon('info');
     addIcon('privacy');
     addIcon('info_privacy');

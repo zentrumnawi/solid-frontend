@@ -80,20 +80,24 @@
           {{ SelectedProfile.name }}
         </div>
       </div>
-      <span *ngIf="SelectedProfile.trivial_name">{{
-        SelectedProfile.trivial_name
+      <span *ngIf="SelectedProfile.sub_name">{{
+        SelectedProfile.sub_name
       }}</span>
     </div>
     <div id="profile-detail-navigation">
-      <button (click)="swipeLeft()" [disabled]="SwipeLeft < 0" mat-icon-button>
+      <button
+        (click)="swipeLeft()"
+        [disabled]="SwipeLeft.id < 0"
+        mat-icon-button
+      >
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button (click)="selectProfile()" mat-icon-button>
+      <button (click)="selectProfile(undefined)" mat-icon-button>
         <mat-icon>{{ SplitLayout ? 'close' : 'expand_less' }}</mat-icon>
       </button>
       <button
         (click)="swipeRight()"
-        [disabled]="SwipeRight < 0"
+        [disabled]="SwipeRight.id < 0"
         mat-icon-button
       >
         <mat-icon>navigate_next</mat-icon>
@@ -108,6 +112,9 @@
         [class.full-width]="!SelectedProfile"
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [selectedProfileType]="
+          SelectedProfile ? SelectedProfile.def_type : undefined
+        "
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
         (selectProfileTitle)="selectProfileTitle($event)"
       ></solid-profile-grid>
@@ -117,6 +124,9 @@
         (selectProfileTitle)="selectProfileTitle($event)"
         [profiles]="$profilesTree"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [selectedProfileType]="
+          SelectedProfile ? SelectedProfile.def_type : undefined
+        "
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
         [collapseTree]="collapseTree"
       ></solid-profile-tree>
@@ -126,6 +136,9 @@
         (selectProfileTitle)="selectProfileTitle($event)"
         [profiles]="ProfilesFlatFiltered.asObservable()"
         [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [selectedProfileType]="
+          SelectedProfile ? SelectedProfile.def_type : undefined
+        "
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
       ></solid-profile-list>
     </ng-container>

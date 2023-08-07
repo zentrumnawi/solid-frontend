@@ -9,13 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v1
+      - uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -24,7 +26,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
 
@@ -39,12 +41,6 @@ jobs:
 
       - name: test
         run: yarn nx run-many --target=test --all --parallel
-
-      - name: Upload coverage
-        uses: codecov/codecov-action@v1
-        with:
-          file: ./coverage/**/clover.xml
-          name: nx-jest
 
       - name: build - staging
         run: yarn nx run-many --target=build --all --parallel --configuration=staging

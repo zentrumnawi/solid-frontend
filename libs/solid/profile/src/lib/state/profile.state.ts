@@ -6,6 +6,7 @@ import {
   SOLID_CORE_CONFIG,
   SolidCoreConfig,
   MediaModel,
+  MediaObjectModel,
 } from '@zentrumnawi/solid-core';
 import {
   LoadDefinition,
@@ -14,22 +15,13 @@ import {
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
-import { ProfileProperty } from './profile-definition.model';
+import { MultiProfiles } from './profile-definition.model';
 
 export interface ProfileStateModel {
   profiles: Profile[];
   nodes: TreeNode[];
-  definition: ProfileProperty[];
-  definition_swagger: ProfileProperty[];
-}
-
-function b() {
-  return null;
-}
-
-function a() {
-  const bb = b;
-  return b;
+  definition: MultiProfiles[];
+  definition_swagger: MultiProfiles[];
 }
 
 @State<ProfileStateModel>({
@@ -52,15 +44,20 @@ export class ProfileState {
   @Selector()
   static selectProfileAndNode(
     state: ProfileStateModel
-  ): (profileId?: number) => { profile: Profile; node: TreeNode } | null {
+  ): (
+    profileId?: number,
+    profileType?: string
+  ) => { profile: Profile; node: TreeNode } | null {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
-    const fn = function (profileId?: number) {
+    const fn = function (profileId?: number, profileType?: string) {
       if (!profileId) {
         return null;
       }
       for (const node of state.nodes) {
-        const childSearch = ProfileState.findProfileDeep(node, profileId);
+        const childSearch = profileType
+          ? ProfileState.findProfileDeep(node, profileId, profileType)
+          : ProfileState.findProfileDeep(node, profileId); // temporary for PLANTY
         if (childSearch !== null) {
           return childSearch;
         }
@@ -68,11 +65,6 @@ export class ProfileState {
       return null;
     };
     return fn;
-    // return ProfileState.__internal__selectProfileAndNode;
-  }
-
-  static __internal__selectProfileAndNode(profileId?: number) {
-    return null;
   }
 
   @Selector()
@@ -81,12 +73,12 @@ export class ProfileState {
   }
 
   @Selector()
-  static selectDefinition(state: ProfileStateModel): ProfileProperty[] {
+  static selectDefinition(state: ProfileStateModel): MultiProfiles[] {
     return state.definition;
   }
 
   @Selector()
-  static selectDefinition_swagger(state: ProfileStateModel): ProfileProperty[] {
+  static selectDefinition_swagger(state: ProfileStateModel): MultiProfiles[] {
     return state.definition_swagger;
   }
 
@@ -102,9 +94,14 @@ export class ProfileState {
 
   private static findProfileDeep(
     node: TreeNode,
-    profileId: number
+    profileId: number,
+    profileType?: string
   ): { profile: Profile; node: TreeNode } | null {
-    const profile = node.profiles.find((p) => p.id === profileId);
+    const profile = profileType
+      ? node.profiles.find(
+          (p) => p.id === profileId && p.def_type === profileType
+        )
+      : node.profiles.find((p) => p.id === profileId); // temporary for PLANTY
     if (profile) {
       return {
         profile,
@@ -112,7 +109,9 @@ export class ProfileState {
       };
     }
     for (const leafNode of node.children) {
-      const childSearch = ProfileState.findProfileDeep(leafNode, profileId);
+      const childSearch = profileType
+        ? ProfileState.findProfileDeep(leafNode, profileId, profileType)
+        : ProfileState.findProfileDeep(leafNode, profileId); // temporary for PLANTY
       if (childSearch !== null) {
         return childSearch;
       }
@@ -130,20 +129,49 @@ export class ProfileState {
       .pipe(
         map((response) => {
           const mapit = (input: TreeNodeApi[]): TreeNode[] => {
-            return input.map((node) => {
+            return input.map((node: any) => {
+              const multi_profiles = Object.entries(node)
+                .filter((property: any) => {
+                  if (
+                    property[0].search('related') !== -1 &&
+                    node[property[0]].length !== 0
+                  )
+                    return property;
+                })
+                .map((profiles: any) => {
+                  return profiles[1].map((profile: any) => {
+                    const profileName = profile.general_information?.name;
+                    const profileSubName =
+                      profile.general_information?.sub_name;
+                    return {
+                      ...profile,
+                      name: profileName ? profileName : 'Kein Name vorhanden',
+                      sub_name: profileSubName,
+                      type: 'profile',
+                      mediaObjects: profile.media_objects.map(
+                        (m: MediaObjectModel) => new MediaModel(m)
+                      ),
+                      def_type: profiles[0].split('_')[0],
+                    };
+                  });
+                });
+
               return {
                 type: 'category',
                 name: node.name,
                 info: node.info,
                 children: mapit(node.children),
-                profiles: node.profiles.map((profile) => ({
-                  ...profile,
-                  type: 'profile',
-                  // images: profile.photographs.map((p) => new ImageModel(p)),
-                  mediaObjects: profile.media_objects.map(
-                    (m) => new MediaModel(m)
-                  ),
-                })),
+                profiles: node.profiles
+                  ? node.profiles.map((profile: any) => ({
+                      ...profile,
+                      type: 'profile',
+                      mediaObjects: profile.media_objects.map(
+                        (m: MediaObjectModel) => new MediaModel(m)
+                      ),
+                    }))
+                  : multi_profiles[0]
+                  ? multi_profiles[0]
+                  : [],
               };
             });
           };
@@ -169,7 +197,7 @@ export class ProfileState {
       return;
     }
     return this._defService.loadDefinitions()?.pipe(
-      tap((definition) => {
+      tap((definition: MultiProfiles[]) => {
         ctx.patchState({
           definition,
         });
@@ -182,8 +210,9 @@ export class ProfileState {
     if (ctx.getState().definition_swagger.length !== 0) {
       return;
     }
+
     return this._defService.loadDefinitions_swagger()?.pipe(
-      tap((definition_swagger) => {
+      tap((definition_swagger: MultiProfiles[]) => {
         ctx.patchState({
           definition_swagger,
         });

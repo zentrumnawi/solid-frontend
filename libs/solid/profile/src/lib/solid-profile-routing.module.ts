@@ -1,13 +1,28 @@
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { BaseComponent } from './components/base/base.component';
 
+const baseUrlSegment = new UrlSegment('', {});
+
 const routes: Routes = [
-  { path: ':view', redirectTo: ':view/' },
   {
-    path: ':view/:id',
+    matcher: (url: UrlSegment[]) => {
+      if (url.length !== 2) {
+        return { consumed: [baseUrlSegment] };
+      }
+
+      const firstUrlSegment = url[0]?.path;
+      const secondUrlSegment = url[1]?.path;
+
+      return {
+        consumed: url,
+        posParams: {
+          type: new UrlSegment(firstUrlSegment, {}),
+          id: new UrlSegment(secondUrlSegment, {}),
+        },
+      };
+    },
     component: BaseComponent,
   },
-  { path: '', pathMatch: 'full', redirectTo: 'tree/' },
 ];
 
 export const SolidProfileRoutingModule = RouterModule.forChild(routes);

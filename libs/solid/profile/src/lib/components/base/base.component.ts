@@ -5,17 +5,18 @@ import {
   EventEmitter,
   HostListener,
   Inject,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../../state/profile.state';
-import { TreeNode, Profile } from '../../state/profile.model';
+import { TreeNode, Profile, ProfileShort } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
   LoadDefinition,
@@ -25,7 +26,7 @@ import {
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -39,7 +40,7 @@ export enum APP {
   templateUrl: './base.component.html',
   styleUrls: ['./base.component.scss'],
 })
-export class BaseComponent implements OnInit, AfterViewInit {
+export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('title_container', { static: false })
   public titleContainer?: ElementRef;
   @ViewChild('contentContainer', { static: false })
@@ -64,18 +65,21 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public $profilesFlat!: Observable<Profile[]>;
   @Select(ProfileState.selectProfileAndNode)
   public $profileAndCategorySelector!: Observable<
-    (profileId?: number) => { profile: Profile; node: TreeNode } | null
+    (
+      profileId?: number,
+      profileType?: string | null
+    ) => { profile: Profile; node: TreeNode } | null
   >;
-  @Select(__internal__selectRouterStateParams)
-  public $routerParams!: Observable<{ [key: string]: string }>;
+  public $paramMap: Observable<ParamMap>;
+  public $queryParams: Observable<{ view: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
   public SplitLayout = false;
   public Filter = new UntypedFormControl('');
   public FilterValue = new BehaviorSubject<string>('');
   public SelectedProfile: Profile | null = null;
   public SelectedNode: TreeNode | null = null;
-  public SwipeLeft = -1;
-  public SwipeRight = -1;
+  public SwipeLeft: ProfileShort = { id: -1 };
+  public SwipeRight: ProfileShort = { id: -1 };
   public View = 'tree';
   public isSearchBarOpen = false;
   public title_container_width = 0;
@@ -87,49 +91,75 @@ export class BaseComponent implements OnInit, AfterViewInit {
   public collapseTree = false;
   @Output() profileTitle = new EventEmitter<string>();
 
-  @Select(ProfileState.selectProfile) profile$: Observable<any> | undefined;
+  @Select(ProfileState.selectProfile) profile$!: Observable<any>;
   isLoading = true;
+
+  public mainSubscription!: Subscription;
+  public filterSubscription!: Subscription;
+  public profileSubscription!: Subscription;
 
   constructor(
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
     private introService: IntroService,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
-    private _route: Router
+    private _route: Router,
+    private _activatedRoute: ActivatedRoute
   ) {
+    this.$paramMap = this._activatedRoute.paramMap as Observable<ParamMap>;
+    this.$queryParams = this._activatedRoute.queryParams as Observable<{
+      view: string;
+    }>;
+
     this._store.dispatch([
       new LoadDefinition(),
       new LoadProfiles(),
       // Load definitions from OpenAPI 2.0
       new LoadDefinitionSwagger(),
     ]);
-    this.profile$?.subscribe((res) => {
+
+    this.profileSubscription = this.profile$?.subscribe((res) => {
       if (res.length != 0) this.isLoading = false;
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  public onResize() {
+    this.calculateLayout();
+    this.handleLongTitle();
+  }
+
   ngOnInit(): void {
-    combineLatest([
-      this.$routerParams,
+    this.mainSubscription = combineLatest([
+      this.$paramMap,
+      this.$queryParams,
       this.$profileAndCategorySelector,
       this.$profilesFlat,
       this.FilterValue,
     ])
       .pipe(
         map((v) => {
-          const { params, selector, flat, filterStr } = {
+          const { params, queryParams, selector, flat, filterStr } = {
             params: v[0],
-            selector: v[1],
-            flat: v[2],
-            filterStr: v[3],
+            queryParams: v[1],
+            selector: v[2],
+            flat: v[3],
+            filterStr: v[4],
           };
 
+          const id = params.get('id');
+          const type = params.get('type');
+
+          // temporary workaround for planty since the view is still in the URL
+          const view =
+            this.getProfileType(type) === 'wine' ? type : queryParams['view'];
+          this.View = view ? view : 'tree';
+
           // select profile
-          const profileId =
-            params.id !== undefined && params.id !== ''
-              ? parseInt(params.id, 10)
-              : undefined;
-          const profileAndNode = selector(profileId);
+          const profileId = id ? parseInt(id, 10) : undefined;
+          const profileType = this.getProfileType(type);
+
+          const profileAndNode = selector(profileId, profileType);
 
           // filter profiles
           const regExp = new RegExp(filterStr, 'i');
@@ -137,58 +167,58 @@ export class BaseComponent implements OnInit, AfterViewInit {
             if (p.name.match(regExp)) {
               return true;
             }
-            if (p.trivial_name) {
-              return !!p.trivial_name.match(regExp);
+            if (p.sub_name) {
+              return !!p.sub_name.match(regExp);
             }
           });
 
           // no profile selected
           if (!profileId || !profileAndNode) {
             return {
-              view: params.view,
               selectedProfile: null,
               selectedNode: null,
               profilesFlatFiltered,
-              swipeRight: -1,
-              swipeLeft: -1,
+              swipeRight: { id: -1 },
+              swipeLeft: { id: -1 },
             };
           }
-          let swipeRight = -1;
-          let swipeLeft = -1;
-          if (params.view === 'grid' || filterStr !== '') {
+          let swipeRight: ProfileShort = {
+            id: -1,
+          };
+          let swipeLeft: ProfileShort = {
+            id: -1,
+          };
+          if (this.View === 'grid' || filterStr !== '') {
             const flatIndex = profilesFlatFiltered.findIndex(
-              (p) => p.id === profileId
+              (p) => p.id === profileId && p.def_type === profileType
             );
             if (flatIndex !== 0) {
-              swipeLeft = profilesFlatFiltered[flatIndex - 1]?.id || -1;
+              const profile = profilesFlatFiltered[flatIndex - 1];
+              swipeLeft = this.getProfileShort(profile);
             }
             if (flatIndex !== profilesFlatFiltered.length - 1) {
-              swipeRight = profilesFlatFiltered[flatIndex + 1]?.id || -1;
+              const profile = profilesFlatFiltered[flatIndex + 1];
+              swipeRight = this.getProfileShort(profile);
             }
           } else {
-            // TODO: Handle indices for mixed leaf nodes and categories
             const index = profileAndNode.node.profiles.indexOf(
               profileAndNode.profile
             );
             if (!this.Filter.value) {
-              swipeLeft =
-                (
-                  profileAndNode.node.profiles.find(
-                    (p, i) => i === index - 1
-                  ) as Profile | undefined
-                )?.id || -1;
-              swipeRight =
-                (
-                  profileAndNode.node.profiles.find((p, i) => i > index) as
-                    | Profile
-                    | undefined
-                )?.id || -1;
+              const profileLeft = profileAndNode.node.profiles.find(
+                (p, i) => i === index - 1
+              ) as Profile | undefined;
+              swipeLeft = this.getProfileShort(profileLeft);
+
+              const profileRight = profileAndNode.node.profiles.find(
+                (p, i) => i > index
+              ) as Profile | undefined;
+              swipeRight = this.getProfileShort(profileRight);
             }
           }
           this.handleLongTitle();
 
           return {
-            view: params.view,
             selectedProfile: profileAndNode.profile,
             selectedNode: profileAndNode.node,
             profilesFlatFiltered,
@@ -198,29 +228,22 @@ export class BaseComponent implements OnInit, AfterViewInit {
         })
       )
       .subscribe((v) => {
-        this.View = v.view;
         this.SelectedProfile = v.selectedProfile;
         this.SelectedNode = v.selectedNode;
         this.ProfilesFlatFiltered.next(v.profilesFlatFiltered);
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.Filter.valueChanges.subscribe((_) =>
+    this.filterSubscription = this.Filter.valueChanges.subscribe((_) =>
       this.FilterValue.next(this.Filter.value)
     );
-  }
-
-  @HostListener('window:resize', ['$event'])
-  public onResize() {
-    this.calculateLayout();
-    this.handleLongTitle();
   }
 
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    this.profile$?.subscribe((res) => {
-      if (res.length != 0)
+    this.profileSubscription = this.profile$.subscribe((res) => {
+      if (res.length != 0) {
         if (
           localStorage.getItem('hide_profile_tour') == 'false' ||
           localStorage.getItem('hide_profile_tour') == null
@@ -267,58 +290,65 @@ export class BaseComponent implements OnInit, AfterViewInit {
             });
           }, 800);
         }
+      }
     });
   }
 
-  public handleLongTitle() {
-    this.stopAnimation = true;
-    clearTimeout(this.timeOut_1);
-    clearTimeout(this.timeOut_2);
-    this.timeOut_1 = setTimeout(() => {
-      this.stopAnimation = false;
-      this.firstMovingAnimation = true;
-      this.title_container_width =
-        this.titleContainer?.nativeElement.offsetWidth;
-      this.title_width =
-        this.titleContainer?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
-      if (this.titleContainer?.nativeElement.firstElementChild) {
-        this.timeOut_2 = setTimeout(() => {
-          this.firstMovingAnimation = false;
-        }, 10000);
-      }
-    }, 0);
+  public ngOnDestroy(): void {
+    this.mainSubscription.unsubscribe();
+    this.filterSubscription.unsubscribe();
+    this.profileSubscription.unsubscribe();
   }
 
   @Dispatch()
   public toggleGridTree() {
+    this.View = this.View === 'tree' ? 'grid' : 'tree';
     if (this.SelectedProfile) {
       return new Navigate(
         [
           `${this.baseUrl}`,
-          this.View === 'tree' ? 'grid' : 'tree',
+          this.SelectedProfile.def_type !== 'wine'
+            ? this.SelectedProfile.def_type
+            : this.View,
           this.SelectedProfile.id,
         ],
-        undefined,
-        { replaceUrl: true }
+        {
+          view:
+            this.SelectedProfile.def_type !== 'wine' ? this.View : undefined,
+        }
       );
     }
     return new Navigate(
-      [`${this.baseUrl}`, this.View === 'tree' ? 'grid' : 'tree'],
-      undefined,
+      [`${this.baseUrl}`],
+      { view: this.View },
       { replaceUrl: true }
     );
   }
 
   @Dispatch()
-  public selectProfile(profileId?: number) {
-    if (profileId) {
-      return new Navigate([`${this.baseUrl}`, this.View, profileId]);
+  public selectProfile(profile?: number | ProfileShort) {
+    if (!profile) {
+      return new Navigate([`${this.baseUrl}`], {
+        view: this.View ? this.View : undefined,
+      });
     }
-    return new Navigate([`${this.baseUrl}`, this.View]);
+    if (typeof profile !== 'number' && profile.type) {
+      if (profile.type === 'wine') {
+        // temporary workaround for PLANTY - type wine_related doesn't have a type in the URL
+        return new Navigate([`${this.baseUrl}`, this.View, profile.id]);
+      } else {
+        const profileType = profile.type;
+        return new Navigate([`${this.baseUrl}`, profileType, profile.id], {
+          view: this.View,
+        });
+      }
+    } else {
+      return new Navigate([`${this.baseUrl}`, this.View, profile]);
+    }
   }
 
   public swipeLeft() {
-    if (this.SwipeLeft > 0) {
+    if (this.SwipeLeft.id > 0) {
       this.selectProfile(this.SwipeLeft);
     }
     setTimeout(() => {
@@ -326,13 +356,8 @@ export class BaseComponent implements OnInit, AfterViewInit {
     }, 10);
   }
 
-  @Dispatch()
-  public async navigateTo(url: string) {
-    return new Navigate([url]);
-  }
-
   public swipeRight() {
-    if (this.SwipeRight > 0) {
+    if (this.SwipeRight.id > 0) {
       this.selectProfile(this.SwipeRight);
     }
     setTimeout(() => {
@@ -361,5 +386,46 @@ export class BaseComponent implements OnInit, AfterViewInit {
 
   public selectProfileTitle(title: string): void {
     if (title) this.profileTitle.emit(title);
+  }
+
+  public getProfileType(type: string | undefined | null): string {
+    if (!type) {
+      return '';
+    }
+    if (type === 'tree' || type === 'grid') {
+      return 'wine'; // temporary for PLANTY
+    } else {
+      return type;
+    }
+  }
+
+  public getProfileShort(profile: any): ProfileShort {
+    const profileId = profile?.id || -1;
+    const profileType = profile?.def_type;
+    return { id: profileId, type: profileType };
+  }
+
+  @Dispatch()
+  public async navigateTo(url: string) {
+    return new Navigate([url]);
+  }
+
+  public handleLongTitle() {
+    this.stopAnimation = true;
+    clearTimeout(this.timeOut_1);
+    clearTimeout(this.timeOut_2);
+    this.timeOut_1 = setTimeout(() => {
+      this.stopAnimation = false;
+      this.firstMovingAnimation = true;
+      this.title_container_width =
+        this.titleContainer?.nativeElement.offsetWidth;
+      this.title_width =
+        this.titleContainer?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
+      if (this.titleContainer?.nativeElement.firstElementChild) {
+        this.timeOut_2 = setTimeout(() => {
+          this.firstMovingAnimation = false;
+        }, 10000);
+      }
+    }, 0);
   }
 }

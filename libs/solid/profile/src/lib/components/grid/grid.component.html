@@ -2,9 +2,13 @@
   *ngFor="let profile of profiles | async; let i = index; trackBy: trackByFn"
 >
   <div
-    *ngIf="selectedProfileId === profile.id"
+    *ngIf="
+      selectedProfileId === profile.id &&
+      selectedProfileType === profile.def_type
+    "
     (click)="
-      selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)
+      selectProfile.emit({ id: profile.id, type: profile.def_type });
+      selectProfileTitle.emit(profile.name)
     "
     class="card mat-elevation-z2 selected"
     solidProfileSelected
@@ -16,7 +20,8 @@
   <div
     *ngIf="selectedProfileId !== profile.id"
     (click)="
-      selectProfile.emit(profile.id); selectProfileTitle.emit(profile.name)
+      selectProfile.emit({ id: profile.id, type: profile.def_type });
+      selectProfileTitle.emit(profile.name)
     "
     class="card mat-elevation-z2"
   >
@@ -29,7 +34,7 @@
 <ng-template #cardContent let-profile="profile">
   <div *ngIf="isDiveApp" class="title" [data]="profile.name" markdown></div>
   <div *ngIf="!isDiveApp" class="title" [innerHTML]="profile.name"></div>
-  <div class="subtitle">{{ profile.trivial_name }}</div>
+  <div class="subtitle">{{ profile.sub_name }}</div>
   <solid-core-media
     *ngIf="profile.mediaObjects.length > 0; else noImage"
     [mediaObject]="profile.mediaObjects[0]"

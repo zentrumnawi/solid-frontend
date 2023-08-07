@@ -165,6 +165,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
         title: 'Fehler',
         content: 'Audiodatei konnte nicht geladen werden.',
       },
+      panelClass: 'solid-core-media-error-dialog',
     });
     return;
   }

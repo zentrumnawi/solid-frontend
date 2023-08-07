@@ -42,8 +42,6 @@ export class RangeQuestionComponent {
 
         correctThumb.style.left = correctPos - 10 + 'px';
 
-        console.log(this.correct, this.sliderPosition - correctValue);
-
         if (this.correct === 1 && this.sliderPosition - correctValue !== 0) {
           toleranceBar.style.width = toleranceWidth + 'px';
           toleranceBar.style.left = correctPos - toleranceWidth / 2 + 'px';

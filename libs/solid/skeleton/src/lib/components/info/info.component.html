@@ -23,19 +23,19 @@
           *ngComponentOutlet="PrivacyContentComponent"
         ></ng-container>
       </mat-tab>
-      <ng-container *ngIf="Notices | async as notices">
-        <mat-tab label="News" *ngIf="notices.length > 0">
-          <solid-skeleton-message-list
-            [messages]="Notices"
-          ></solid-skeleton-message-list>
-        </mat-tab>
-      </ng-container>
-      <ng-container *ngIf="Changelog | async as changelog">
-        <mat-tab label="Changelog" *ngIf="changelog.length > 0">
-          <solid-skeleton-message-list [messages]="Changelog">
-          </solid-skeleton-message-list>
-        </mat-tab>
-      </ng-container>
+      <mat-tab label="News" *ngIf="newsMsg.length > 0">
+        <solid-skeleton-message-list
+          [messages]="newsMsg"
+          [tabIndex]="tabIndex"
+        ></solid-skeleton-message-list>
+      </mat-tab>
+      <mat-tab label="Changelog" *ngIf="changeLogMsg.length > 0">
+        <solid-skeleton-message-list
+          [messages]="changeLogMsg"
+          [tabIndex]="tabIndex"
+        >
+        </solid-skeleton-message-list>
+      </mat-tab>
       <mat-tab label="Einstellungen">
         <div class="setting-container">
           <div mat-subheader class="hint">

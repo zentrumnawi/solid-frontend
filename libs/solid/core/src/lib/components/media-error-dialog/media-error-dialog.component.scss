@@ -1,14 +1,41 @@
-div.mat-dialog-title {
+::ng-deep .solid-core-media-error-dialog {
+  mat-dialog-container {
+    overflow: hidden;
+    padding: 0;
+  }
+}
+
+div.mat-error-dialog-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.1em 0.55em;
+  padding-left: 15px;
+  margin: 0;
+  background-color: lightgray;
+  color: white;
+  font-weight: 400;
+
+  @media (max-width: 400px) {
+    font-size: 18px;
+  }
 }
 
-div.mat-dialog-content {
-  margin: 0.1em 0.55em;
+div.mat-error-dialog-content {
+  margin: 0rem 1.3rem 1.4rem;
   padding: 0;
   max-height: calc(100% - 44px);
   height: 100%;
+  width: fit-content;
   position: relative;
+  font-weight: 200;
+
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
+}
+
+::ng-deep {
+  .mat-button-focus-overlay {
+    background-color: transparent !important;
+  }
 }

@@ -1,10 +1,8 @@
 import { SolidSkeletonConfig } from '@zentrumnawi/solid-skeleton';
 import { PrivacyComponent } from './privacy/privacy.component';
-import { LandingBannerContentComponent } from './landing-banner-content/landing-banner-content.component';
 import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
 
 export const skeletonConfig: SolidSkeletonConfig = {
-  landingBannerContent: LandingBannerContentComponent,
   infoPageContent: InfoPageContentComponent,
   privacyContent: PrivacyComponent,
   routingConfig: {
@@ -20,17 +18,14 @@ export const skeletonConfig: SolidSkeletonConfig = {
       url: 'selbsttest',
     },
     info: {
-      svgIcon: 'info_privacy',
+      svgIcon: 'info_news',
+      title: 'Info | News',
+      url: 'info',
     },
     slideshow: {
       svgIcon: 'slideshow',
       title: 'Wissensgalerie',
       url: 'wissensgalerie',
     },
-    // privacy: {
-    //   component: PrivacyComponent,
-    //   svgIcon: 'privacy',
-    //   url: 'datenschutz',
-    // },
   },
 };

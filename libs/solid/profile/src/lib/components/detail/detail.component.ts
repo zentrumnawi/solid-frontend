@@ -1,9 +1,17 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
 import { ProfileState } from '../../state/profile.state';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Select } from '@ngxs/store';
 import {
+  MultiProfiles,
   ProfileProperty,
   ProfilePropertyType,
 } from '../../state/profile-definition.model';
@@ -15,16 +23,17 @@ import { MediaModel } from '@zentrumnawi/solid-core';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })
-export class DetailComponent {
+export class DetailComponent implements OnInit, OnDestroy {
   @ViewChild('expansion', { static: false, read: MatAccordion })
   expansion?: MatAccordion;
   @ViewChild('thumbnails') thumbnails: ElementRef | undefined;
   public PropertyTypes = ProfilePropertyType;
+  //Load definitions from OpenAPI 3.0
   @Select(ProfileState.selectDefinition)
-  $ProfileDefinition!: Observable<ProfileProperty[]>;
+  $ProfileDefinitions!: Observable<MultiProfiles[]>;
   //Load definitions from OpenAPI 2.0
   @Select(ProfileState.selectDefinition_swagger)
-  $ProfileDefinition_Swagger!: Observable<ProfileProperty[]>;
+  $ProfileDefinition_Swagger!: Observable<MultiProfiles[]>;
   @Input() public node!: TreeNode;
   public ImageLoaded = [false];
   public ImageSelected = 0;
@@ -36,6 +45,12 @@ export class DetailComponent {
   public hasDescription!: boolean;
   public hasDescriptionToggle = false;
   public MediaObjectsOnlyImages!: MediaModel[];
+
+  public definitions: MultiProfiles[] = [];
+  public definitions_swagger: MultiProfiles[] = [];
+
+  public profileDefinitionSub!: Subscription;
+  public profileDefinitionSwaggerSub!: Subscription;
 
   public get profile() {
     return this._profile;
@@ -50,6 +65,44 @@ export class DetailComponent {
       (x) => x.mediaType === 'image'
     );
     this.onImageSelect(0);
+  }
+
+  ngOnInit(): void {
+    this.profileDefinitionSwaggerSub =
+      this.$ProfileDefinition_Swagger.subscribe((defs) => {
+        this.definitions_swagger = defs;
+      });
+
+    this.profileDefinitionSub = this.$ProfileDefinitions.subscribe((defs) => {
+      this.definitions = defs;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.profileDefinitionSwaggerSub.unsubscribe();
+    this.profileDefinitionSub.unsubscribe();
+  }
+
+  public getProperties(profile: Profile) {
+    const generalInfoKey = 'general_information';
+
+    const def_property = this.definitions.filter(
+      (def) => def.name === profile.def_type
+    )[0].properties;
+
+    const generalInfo = def_property.find(
+      (prop) => prop.key === generalInfoKey
+    );
+
+    if (generalInfo) {
+      const filter_def = def_property.filter(
+        (prop) => prop.key !== generalInfoKey
+      );
+      filter_def.unshift(generalInfo);
+      return filter_def;
+    } else {
+      return def_property;
+    }
   }
 
   public onImageLoaded(index: number) {
@@ -149,5 +202,9 @@ export class DetailComponent {
     }
     this.ImageSelected =
       this.MediaObjectsOnlyImages[this.ImageIndex].getProfilePosition - 1;
+  }
+
+  getClass(level: number, type: string): string {
+    return `property-${type}-level-${level}`;
   }
 }

@@ -47,21 +47,19 @@
 }
 
 .feedback-container {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
   display: flex;
-  justify-self: stretch;
   margin: 0px 4px;
 
   .correctIcon {
     margin: 4px;
     font-weight: 400;
+    overflow: visible;
   }
 
   .incorrectIcon {
     margin: 4px;
     font-weight: 400;
+    overflow: visible;
   }
 
   .feedback {
