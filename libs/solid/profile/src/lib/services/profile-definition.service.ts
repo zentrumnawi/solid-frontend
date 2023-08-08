@@ -5,7 +5,6 @@ import { ParameterType, Schema, Spec } from 'swagger-schema-official';
 import { OpenApi, OpenApiReference, OpenApiSchema } from 'openapi-v3';
 import { map } from 'rxjs/operators';
 import {
-  EnumType,
   ProfileProperty,
   ProfilePropertyType,
 } from '../state/profile-definition.model';
@@ -91,7 +90,6 @@ export class ProfileDefinitionService {
         continue;
       }
       if ((value as OpenApiReference).$ref) {
-        // called if we got a normal ref
         const schema = this.resolveRef(
           swagger,
           (value as OpenApiReference).$ref
@@ -108,12 +106,10 @@ export class ProfileDefinitionService {
           ),
         });
       } else {
-        // called if we got a property
         const pp = this.schemaToProperty(
           groupSchema,
           key,
-          value as OpenApiSchema,
-          swagger
+          value as OpenApiSchema
         );
         if (pp) {
           properties.push(pp);
@@ -123,77 +119,17 @@ export class ProfileDefinitionService {
     return properties;
   }
 
-  public handleEnum(
-    enumSchema: OpenApiSchema,
-    key: string,
-    title: string | undefined,
-    required: boolean
-  ): ProfileProperty | null {
-    // TODO: turn value from enum schema to key-value pair to extract the info later
-    // TODO: 1st solution to save enum properties: call handleEnum in schemaToProperty and return the enum property
-    // TODO: create another model or add new properties to Profile definition model
-    // TODO: change the detail.component.html to handle PropertyType === Enum
-
-    if (!enumSchema) {
-      return null;
-    }
-    const description = enumSchema.description;
-    const enums = enumSchema.enum;
-    const type = enumSchema.type;
-    let profileType = ProfilePropertyType.String;
-
-    switch (type) {
-      case 'integer':
-        profileType = ProfilePropertyType.Integer;
-        break;
-      default:
-        profileType = ProfilePropertyType.String;
-    }
-
-    const desArr = description?.split('\n');
-    const keyValue: EnumType[] | undefined = desArr?.map((item, i) => {
-      const index = item.indexOf('-') + 1;
-      const str = item.slice(index, item.length);
-      return { enum: (i + 1).toString(), value: str.trim() };
-    });
-
-    const returnValue: ProfileProperty = {
-      key: key,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      title: title!,
-      required: required,
-      type: ProfilePropertyType.Enum,
-      valueType: profileType,
-      values: keyValue ?? [],
-    };
-    return returnValue;
-  }
-
   public schemaToProperty(
     parent: OpenApiSchema,
     key: string,
-    schema: OpenApiSchema,
-    swagger: OpenApi
+    schema: OpenApiSchema
   ): ProfileProperty | null {
-    // format is used to declare custom types
-    const { title, type, format, items } = schema;
-    const required = parent.required?.includes(key) ?? false;
+    // TODO: Get enum field type from $ref in oneOf[0]
+    if (schema.oneOf) (schema.type as ParameterType) = 'string'; // workaround for enums
 
-    if (items) {
-      const enumRef =
-        ((items as OpenApiSchema).oneOf as OpenApiReference[])[0].$ref || null;
-      if (enumRef) {
-        // console.log(enumRef);
-        const enumSchema = this.resolveRef(swagger, enumRef) as OpenApiSchema;
-        return this.handleEnum(enumSchema, key, title, required) ?? null;
-      }
-    } else if (schema.oneOf) {
-      const enumRef = (schema.oneOf[0] as OpenApiReference).$ref || null;
-      if (enumRef) {
-        const enumSchema = this.resolveRef(swagger, enumRef) as OpenApiSchema;
-        return this.handleEnum(enumSchema, key, title, required) ?? null;
-      }
-    }
+    // format is used to declare custom types
+    const { title, type, format } = schema;
+    const required = parent.required?.includes(key) ?? false;
 
     let formatType = ProfilePropertyType.String;
     switch (format?.toString()) {

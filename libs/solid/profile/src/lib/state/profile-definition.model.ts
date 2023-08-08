@@ -20,17 +20,6 @@ export interface ProfilePropertyGroup extends ProfilePropertyBase {
   properties: ProfileProperty[];
 }
 
-export interface EnumType {
-  enum: string;
-  value: string;
-}
-
-export interface ProfilePropertyEnum extends ProfilePropertyBase {
-  type: ProfilePropertyType.Enum;
-  valueType: ProfilePropertyType;
-  values: EnumType[];
-}
-
 export enum ProfilePropertyType {
   String,
   Integer,
@@ -39,7 +28,6 @@ export enum ProfilePropertyType {
   Mdstring,
   Colstring,
   Group,
-  Enum,
 }
 
 export interface MultiProfiles {
@@ -47,7 +35,4 @@ export interface MultiProfiles {
   properties: ProfileProperty[];
 }
 
-export type ProfileProperty =
-  | ProfilePropertySimple
-  | ProfilePropertyGroup
-  | ProfilePropertyEnum;
+export type ProfileProperty = ProfilePropertySimple | ProfilePropertyGroup;
