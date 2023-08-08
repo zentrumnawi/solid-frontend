@@ -25,6 +25,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { LandingBannerDialogComponent } from '../landing-banner-dialog/landing-banner-dialog.component';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { GridColumns } from '../../directives/grid-cols.directive';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
   'solid-skeleton-hacky-injection'
@@ -37,18 +38,30 @@ export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
 })
 export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(MenuState.getLandingItems)
-  public MenuItems!: Observable<MenuItem[]>;
+  public menuItems$!: Observable<MenuItem[]>;
 
   @ViewChild('landing') Landing?: ElementRef;
   public onGlossaryClick = new EventEmitter();
 
+  private landingBannerKey = 'hide_landing_banner';
+  private landingTourKey = 'hide_landing_tour';
+  private messageKey = 'solid_skeleton_messages';
+
+  public showLanding =
+    localStorage.getItem(this.landingBannerKey) == 'false' ? true : false;
+  public showTour =
+    localStorage.getItem(this.landingTourKey) == 'false' || this.showLanding
+      ? true
+      : false;
+  public messages = localStorage.getItem(this.messageKey);
+  public msgNumber = 0;
+
+  public innerWidth = window.innerWidth;
+  public menuItems = 0;
+  public gridColumns: GridColumns = { xs: 2, sm: 3, md: 3, lg: 3, xl: 6 };
+
   public landingInfo: any;
-  public innerWidth: any;
-  public showLanding: boolean;
-  public showTour: boolean;
   public landingRef: any;
-  private messages: any;
-  public msgNumber: number;
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
@@ -58,17 +71,6 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     private introService: IntroService,
     private landingDialog: MatDialog
   ) {
-    this.landingInfo = coreConfig.landingBannerContent;
-    this.innerWidth = window.innerWidth;
-    this.showLanding =
-      localStorage.getItem('hide_landing_banner') == 'false' ? true : false;
-    this.showTour =
-      localStorage.getItem('hide_landing_tour') == 'false' || this.showLanding
-        ? true
-        : false;
-    this.messages = localStorage.getItem('solid_skeleton_messages');
-    this.msgNumber = 0;
-
     iconRegistry.addSvgIcon(
       'glossary_custom',
       sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossaryLogo)
@@ -109,27 +111,33 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public onNotShowAgainToggle(change: MatSlideToggleChange) {
-    if (change.checked) localStorage.setItem('hide_landing_banner', 'true');
-    else localStorage.setItem('hide_landing_banner', 'false');
+    if (change.checked) localStorage.setItem(this.landingBannerKey, 'true');
+    else localStorage.setItem(this.landingBannerKey, 'false');
   }
 
   public onStartTourToggle(change: MatSlideToggleChange) {
     this.showTour = !this.showTour;
-    if (change.checked) localStorage.setItem('hide_landing_tour', 'false');
-    else localStorage.setItem('hide_landing_tour', 'true');
+    if (change.checked) localStorage.setItem(this.landingTourKey, 'false');
+    else localStorage.setItem(this.landingTourKey, 'true');
   }
 
   public onCloseClick() {
     this.showLanding = false;
-    localStorage.setItem('hide_landing_banner', 'true');
+    localStorage.setItem(this.landingBannerKey, 'true');
     if (this.showTour) {
-      localStorage.setItem('hide_landing_tour', 'false');
+      localStorage.setItem(this.landingTourKey, 'false');
       this.startGuidedTour();
     }
   }
 
   public ngOnInit(): void {
-    const msgObj = JSON.parse(this.messages);
+    this.landingInfo = this.coreConfig.landingBannerContent;
+    this.gridColumns =
+      this.coreConfig.appName === 'GeoMat'
+        ? { xs: 2, sm: 4, md: 4, lg: 4, xl: 7 }
+        : this.gridColumns;
+
+    const msgObj = this.messages ? JSON.parse(this.messages) : null;
     msgObj?.forEach((msg: any) => {
       if (msg.unread && msg.type != 'CL') this.msgNumber++;
     });
@@ -147,6 +155,6 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.showTour) localStorage.setItem('hide_landing_tour', 'false');
+    if (this.showTour) localStorage.setItem(this.landingTourKey, 'false');
   }
 }

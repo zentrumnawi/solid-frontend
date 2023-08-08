@@ -37,12 +37,12 @@
   </mat-card>
   <mat-grid-list
     id="menu-grid-list"
-    [solidSkeletonGridCols]="{ xs: 2, sm: 4, md: 4, lg: 4, xl: 7 }"
+    [solidSkeletonGridCols]="gridColumns"
     gutterSize="1rem"
     rowHeight="1:1"
   >
     <mat-grid-tile
-      *ngFor="let menuItem of MenuItems | async; let index = index"
+      *ngFor="let menuItem of menuItems$ | async; let index = index"
       class="mat-elevation-z2"
       [routerLink]="menuItem.route"
       [queryParams]="{ directTo: msgNumber > 0 ? 'news' : undefined }"

@@ -57,17 +57,17 @@ export class GridColsDirective implements OnInit {
         }
         if (result.breakpoints[Breakpoints.Small]) {
           this.grid.cols = this.gridCols.sm;
-          this.gridWidth = '50rem';
+          this.gridWidth = this.grid.cols === 3 ? '40rem' : '50rem';
           this.gridMarginTop = '1vh';
         }
         if (result.breakpoints[Breakpoints.Medium]) {
           this.grid.cols = this.gridCols.md;
-          this.gridWidth = '50rem';
+          this.gridWidth = this.grid.cols === 3 ? '40rem' : '50rem';
           this.gridMarginTop = '1vh';
         }
         if (result.breakpoints[Breakpoints.Large]) {
           this.grid.cols = this.gridCols.lg;
-          this.gridWidth = '50rem';
+          this.gridWidth = this.grid.cols === 3 ? '40rem' : '50rem';
           this.gridMarginTop = '1vh';
         }
         if (result.breakpoints[Breakpoints.XLarge]) {

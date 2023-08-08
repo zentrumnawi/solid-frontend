@@ -11,8 +11,6 @@ export interface MenuStateModel {
   items: MenuItem[];
 }
 
-// export type CategoryStateModel = SlideshowCategory[];
-
 const isActive = (routerUrl: string, routeUrl: string) =>
   routeUrl === ''
     ? routerUrl === '/'
