@@ -31,3 +31,4 @@ writeFileSync('apps/geomat/src/environments/version.ts', versionInfo);
 writeFileSync('apps/dive/src/environments/version.ts', versionInfo);
 writeFileSync('apps/ais/src/environments/version.ts', versionInfo);
 writeFileSync('apps/planty/src/environments/version.ts', versionInfo);
+writeFileSync('apps/wabe/src/environments/version.ts', versionInfo);
