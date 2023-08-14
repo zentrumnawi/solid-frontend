@@ -9,6 +9,7 @@
     class="profile-link"
     matTreeNodePadding
     matTreeNodeToggle
+    [matTreeNodePaddingIndent]="30"
   >
     <img
       [alt]="node.title"
@@ -67,6 +68,8 @@
     (click)="onNodeClick(node)"
     *matTreeNodeDef="let node; when: hasChild"
     matTreeNodePadding
+    [matTreeNodePaddingIndent]="30"
+    #hasChildTreeNode
   >
     <button [attr.aria-label]="'toggle ' + node.title" mat-icon-button>
       <mat-icon class="mat-icon-rtl-mirror">
@@ -74,7 +77,9 @@
       </mat-icon>
     </button>
     <div>
-      <span class="category">{{ node.title }}</span
+      <span [class]="getClassName(hasChildTreeNode.ariaLevel)">{{
+        node.title
+      }}</span
       ><br />
       <span *ngIf="TreeControl.isExpanded(node) && node.info" class="info">{{
         node.info
