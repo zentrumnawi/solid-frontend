@@ -57,8 +57,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   public msgNumber = 0;
 
   public innerWidth = window.innerWidth;
-  public menuItems = 0;
-  public gridColumns: GridColumns = { xs: 2, sm: 3, md: 3, lg: 3, xl: 6 };
+  public gridColumns!: GridColumns;
 
   public landingInfo: any;
   public landingRef: any;
@@ -69,7 +68,8 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     private introService: IntroService,
-    private landingDialog: MatDialog
+    private landingDialog: MatDialog,
+    private menuState: MenuState
   ) {
     iconRegistry.addSvgIcon(
       'glossary_custom',
@@ -131,11 +131,10 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    const itemsNum = this.menuState.getItemsNum();
+    this.gridColumns = { xs: 2, sm: 3, md: 3, lg: 3, xl: itemsNum + 2 };
+
     this.landingInfo = this.coreConfig.landingBannerContent;
-    this.gridColumns =
-      this.coreConfig.appName === 'GeoMat'
-        ? { xs: 2, sm: 4, md: 4, lg: 4, xl: 7 }
-        : this.gridColumns;
 
     const msgObj = this.messages ? JSON.parse(this.messages) : null;
     msgObj?.forEach((msg: any) => {

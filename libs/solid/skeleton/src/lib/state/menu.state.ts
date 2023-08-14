@@ -24,6 +24,8 @@ const isActive = (routerUrl: string, routeUrl: string) =>
 })
 @Injectable()
 export class MenuState {
+  private items: MenuItem[];
+
   @Selector()
   public static getLandingItems(state: MenuStateModel): MenuItem[] {
     const filter = function (item: MenuItem) {
@@ -39,7 +41,6 @@ export class MenuState {
     };
     return state.items.filter(filter);
   }
-
   constructor(
     router: Router,
     private store: Store,
@@ -61,7 +62,15 @@ export class MenuState {
         name: route.data?.name,
       });
     }
+    this.items = items;
     setTimeout(() => this.store.dispatch(new SetMenuEntries(items)));
+  }
+
+  public getItemsNum(): number {
+    const filter = function (item: MenuItem) {
+      return item.showOnLanding;
+    };
+    return this.items.filter(filter).length;
   }
 
   @Action(SetMenuEntries)
