@@ -122,7 +122,7 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.0.0",
     "ng-packagr": "14.2.2",
-    "nx": "15.0.0",
+    "nx": "16.7.0",
     "postcss": "^8.4.14",
     "postcss-import": "15.1.0",
     "postcss-preset-env": "8.0.1",
