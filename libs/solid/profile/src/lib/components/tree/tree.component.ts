@@ -246,4 +246,8 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       });
     });
   }
+
+  public getClassName(level: string | null) {
+    return `category level-${level}`;
+  }
 }

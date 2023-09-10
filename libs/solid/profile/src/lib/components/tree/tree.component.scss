@@ -7,7 +7,8 @@
   height: 2em;
   width: 2em;
   border-radius: 50%;
-  margin-right: 0.5em;
+  margin-right: 0.7em;
+  margin-left: 12px;
 }
 
 mat-tree.mat-tree {
@@ -59,10 +60,13 @@ mat-tree-node {
 div.profile-title {
   display: flex;
   flex-direction: column;
+  font-style: italic;
+  font-size: 13px;
 }
 
 .selected {
   font-weight: bold;
+  font-size: 14px;
   ::ng-deep p {
     margin-bottom: 0;
   }
@@ -79,7 +83,30 @@ span.hidden {
 }
 
 .category {
-  font-weight: 500;
+  &.level-1 {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &.level-2 {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  &.level-3 {
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  &.level-4 {
+    font-size: 13px;
+    font-weight: 200;
+  }
+}
+
+.info {
+  font-size: 12px;
+  font-style: italic;
 }
 
 :host {

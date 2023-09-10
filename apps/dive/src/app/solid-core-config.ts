@@ -14,4 +14,5 @@ export const coreConfig: SolidCoreConfig = {
   feedbackLogo: 'assets/svg/feedback.svg',
   landingBannerContent: landingBannerContent,
   expandProfileTree: false,
+  expandAllgemein: false,
 };

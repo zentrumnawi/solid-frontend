@@ -111,9 +111,11 @@
         (selectProfile)="selectProfile($event)"
         [class.full-width]="!SelectedProfile"
         [profiles]="ProfilesFlatFiltered.asObservable()"
-        [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [selectedProfileId]="
+          SelectedProfile ? SelectedProfile.id : SelectedProfileShort.id
+        "
         [selectedProfileType]="
-          SelectedProfile ? SelectedProfile.def_type : undefined
+          SelectedProfile ? SelectedProfile.def_type : SelectedProfileShort.type
         "
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
         (selectProfileTitle)="selectProfileTitle($event)"
@@ -123,9 +125,11 @@
         (selectProfile)="selectProfile($event)"
         (selectProfileTitle)="selectProfileTitle($event)"
         [profiles]="$profilesTree"
-        [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [selectedProfileId]="
+          SelectedProfile ? SelectedProfile.id : SelectedProfileShort.id
+        "
         [selectedProfileType]="
-          SelectedProfile ? SelectedProfile.def_type : undefined
+          SelectedProfile ? SelectedProfile.def_type : SelectedProfileShort.type
         "
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
         [collapseTree]="collapseTree"
@@ -135,9 +139,11 @@
         (selectProfile)="selectProfile($event)"
         (selectProfileTitle)="selectProfileTitle($event)"
         [profiles]="ProfilesFlatFiltered.asObservable()"
-        [selectedProfileId]="SelectedProfile ? SelectedProfile.id : undefined"
+        [selectedProfileId]="
+          SelectedProfile ? SelectedProfile.id : SelectedProfileShort.id
+        "
         [selectedProfileType]="
-          SelectedProfile ? SelectedProfile.def_type : undefined
+          SelectedProfile ? SelectedProfile.def_type : SelectedProfileShort.type
         "
         [isDiveApp]="coreConfig.appName === this.APP_NAME_DIVE"
       ></solid-profile-list>
