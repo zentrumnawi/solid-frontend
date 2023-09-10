@@ -77,7 +77,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public Filter = new UntypedFormControl('');
   public FilterValue = new BehaviorSubject<string>('');
   public SelectedProfile: Profile | null = null;
-  public SelectedProfileShort : ProfileShort = { id : -1, type : undefined};
+  public SelectedProfileShort: ProfileShort = { id: -1, type: undefined };
   public SelectedNode: TreeNode | null = null;
   public SwipeLeft: ProfileShort = { id: -1 };
   public SwipeRight: ProfileShort = { id: -1 };
