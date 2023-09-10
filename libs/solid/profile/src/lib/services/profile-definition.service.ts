@@ -125,7 +125,7 @@ export class ProfileDefinitionService {
     schema: OpenApiSchema
   ): ProfileProperty | null {
     // TODO: Get enum field type from $ref in oneOf[0]
-    if (schema.oneOf) (schema.type as ParameterType) = 'string'; // workaround for enums
+    if (schema.oneOf || schema.allOf) (schema.type as ParameterType) = 'string'; // workaround for enums
 
     // format is used to declare custom types
     const { title, type, format } = schema;
