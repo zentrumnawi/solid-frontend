@@ -43,6 +43,7 @@ export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };
 export interface QuizSession {
   progress: number;
   currentQuestion: number;
+  currentQuestionId: number;
   questions: QuizQuestionInSession[];
 }
 
