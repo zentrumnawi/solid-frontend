@@ -378,7 +378,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private calculateLayout() {
-    const split = this.contentContainer.nativeElement.clientWidth >= 800;
+    const split = this.contentContainer.nativeElement.clientWidth >= 900;
     if (split !== this.SplitLayout) {
       setTimeout(() => {
         this.SplitLayout = split;
