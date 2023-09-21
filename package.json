@@ -48,7 +48,7 @@
     "@ngxs/store": "^3.8.1",
     "@sentry/angular": "^6.19.6",
     "@storybook/builder-webpack5": "6.5.12",
-    "@storybook/core-server": "~6.4.12",
+    "@storybook/core-server": "~7.4.3",
     "@storybook/manager-webpack5": "6.5.12",
     "@types/intro.js": "^3.0.2",
     "@types/openapi-v3": "^3.0.0",
