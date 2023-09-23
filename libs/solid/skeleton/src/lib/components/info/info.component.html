@@ -1,11 +1,14 @@
-<div class="container">
+<div class="container" *ngIf="!isFetching">
   <div class="info-container" #info_container>
     <div class="button-back-container">
       <button id="backBtn" mat-icon-button class="button-back" routerLink="">
         <mat-icon>arrow_back</mat-icon>
       </button>
     </div>
-    <mat-tab-group [(selectedIndex)]="tabIndex">
+    <mat-tab-group
+      [(selectedIndex)]="tabIndex"
+      (selectedIndexChange)="onSelectedIndexChange($event)"
+    >
       <mat-tab label="Info">
         <ng-container
           *ngComponentOutlet="InfoPageContentComponent"
@@ -63,7 +66,7 @@
             <div mat-subheader class="hint" *ngIf="tourLandingChecked">
               Die Tour wird beim nächsten Besuch der Startseite angezeigt.
             </div>
-            <div mat-subheader>{{ ProfileTitle }}</div>
+            <div mat-subheader>{{ profileTitle }}</div>
             <mat-list-item>
               <mat-slide-toggle
                 (change)="toggleChange()"
@@ -74,7 +77,7 @@
             </mat-list-item>
             <div mat-subheader class="hint" *ngIf="tourProfileChecked">
               Die Tour wird beim nächsten Besuch der
-              {{ ProfileTitle }} angezeigt.
+              {{ profileTitle }} angezeigt.
             </div>
           </mat-list>
         </div>

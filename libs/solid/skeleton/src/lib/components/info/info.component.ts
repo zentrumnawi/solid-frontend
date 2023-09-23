@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   Inject,
+  OnDestroy,
   OnInit,
   Type,
   ViewChild,
@@ -11,43 +12,46 @@ import {
   SOLID_SKELETON_CONFIG,
 } from '../../solid-skeleton-config';
 import { ActivatedRoute } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { MessageState } from '../../state/message.state';
-import { MessageModel } from '../../state/message.model';
-import { Observable } from 'rxjs';
+import { MessageModel, MessageType } from '../../models/message.model';
+import { Subject, takeUntil } from 'rxjs';
+import { MessagesService } from '../../services/messages.service';
 
 @Component({
   selector: 'solid-skeleton-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],
 })
-export class InfoComponent implements OnInit {
+export class InfoComponent implements OnInit, OnDestroy {
+  public destroy$: Subject<void> = new Subject();
+
   public tourLandingChecked = false;
   public tourProfileChecked = false;
   public landingChecked = false;
-  public route;
+  public isFetching = true;
 
-  @Select(MessageState.getNoticesAndSeries)
-  public notices!: Observable<MessageModel[]>;
+  public route: ActivatedRoute;
+  public profileTitle = '';
 
-  private messages: any;
-  public changeLogMsg: any[] = [];
-  public newsMsg: any[] = [];
+  public changeLogMsg: MessageModel[] = [];
+  public newsMsg: MessageModel[] = [];
+  public messages: MessageModel[] = [];
+
+  public prevTab = -1;
 
   public InfoPageContentComponent: Type<any>;
   public PrivacyContentComponent: Type<any>;
-  public ProfileTitle;
 
   tabIndex = 0;
   @ViewChild('info_container') public info_container?: ElementRef;
 
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
-    route: ActivatedRoute
+    route: ActivatedRoute,
+    private msgService: MessagesService
   ) {
     this.InfoPageContentComponent = cfg.infoPageContent;
     this.PrivacyContentComponent = cfg.privacyContent;
-    this.ProfileTitle = cfg.routingConfig.profile.title;
+    this.profileTitle = cfg.routingConfig.profile.title;
     this.landingChecked =
       localStorage.getItem('hide_landing_banner') === 'false';
     this.tourLandingChecked =
@@ -55,7 +59,25 @@ export class InfoComponent implements OnInit {
     this.tourProfileChecked =
       localStorage.getItem('hide_profile_tour') === 'false';
     this.route = route;
-    this.messages = localStorage.getItem('solid_skeleton_messages');
+  }
+
+  ngOnInit(): void {
+    this.getMessages();
+    this.navigateTab();
+
+    if (this.tabIndex === 2) {
+      this.prevTab = 2;
+      this.updateMessages(MessageType.Notice);
+    } else if (this.tabIndex === 3) {
+      this.prevTab = 3;
+      this.updateMessages(MessageType.Changelog);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    this.msgService.updateMessageState(this.messages);
   }
 
   moveTabToPrivacy(event: any) {
@@ -83,13 +105,37 @@ export class InfoComponent implements OnInit {
     else localStorage.setItem('hide_landing_banner', 'true');
   }
 
-  ngOnInit(): void {
+  public onSelectedIndexChange(index: number) {
+    if (this.prevTab === 2 || this.prevTab === 3) {
+      this.msgService.updateMessageState(this.messages);
+    }
+
+    if (index === 2) {
+      this.updateMessages(MessageType.Notice);
+    } else if (index === 3) {
+      this.updateMessages(MessageType.Changelog);
+    }
+    this.prevTab = index;
+  }
+
+  public getMessages() {
+    this.isFetching = true;
+    this.msgService.messages$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((msgs) => {
+        this.newsMsg = msgs.filter((msg: MessageModel) => {
+          return msg.type !== MessageType.Changelog;
+        });
+        this.changeLogMsg = msgs.filter((msg: MessageModel) => {
+          return msg.type === MessageType.Changelog;
+        });
+        this.messages = msgs;
+        this.isFetching = false;
+      });
+  }
+
+  public navigateTab() {
     const directTo = this.route.snapshot.queryParams.directTo;
-    const msgObj = JSON.parse(this.messages);
-    msgObj.forEach((msg: any) => {
-      if (msg.type != 'CL') this.newsMsg.push(msg);
-      else this.changeLogMsg.push(msg);
-    });
     switch (directTo) {
       case 'privacy':
         this.tabIndex = 1;
@@ -102,6 +148,32 @@ export class InfoComponent implements OnInit {
       default:
         this.tabIndex = 0;
         break;
+    }
+  }
+
+  public updateMessages(type: MessageType) {
+    switch (type) {
+      case MessageType.Changelog:
+        this.messages = this.messages.map((msg: MessageModel) => {
+          if (msg.type === MessageType.Changelog) {
+            return { ...msg, unread: false };
+          } else {
+            return msg;
+          }
+        });
+        break;
+      case MessageType.Notice:
+      case MessageType.Series:
+        this.messages = this.messages.map((msg: MessageModel) => {
+          if (msg.type !== MessageType.Changelog) {
+            return { ...msg, unread: false };
+          } else {
+            return msg;
+          }
+        });
+        break;
+      default:
+        return;
     }
   }
 }
