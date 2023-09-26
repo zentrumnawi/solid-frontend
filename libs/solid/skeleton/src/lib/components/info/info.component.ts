@@ -27,7 +27,7 @@ export class InfoComponent implements OnInit, OnDestroy {
   public tourLandingChecked = false;
   public tourProfileChecked = false;
   public landingChecked = false;
-  public isFetching = true;
+  public messagesLoading = true;
 
   public route: ActivatedRoute;
   public profileTitle = '';
@@ -119,7 +119,7 @@ export class InfoComponent implements OnInit, OnDestroy {
   }
 
   public getMessages() {
-    this.isFetching = true;
+    this.messagesLoading = true;
     this.msgService.messages$
       .pipe(takeUntil(this.destroy$))
       .subscribe((msgs) => {
@@ -130,7 +130,7 @@ export class InfoComponent implements OnInit, OnDestroy {
           return msg.type === MessageType.Changelog;
         });
         this.messages = msgs;
-        this.isFetching = false;
+        this.messagesLoading = false;
       });
   }
 

@@ -52,7 +52,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private messages: MessageModel[] = [];
   public msgNumber = 0;
-  public isFetching = true;
+  public messagesLoading = true;
 
   public showLanding =
     localStorage.getItem(this.landingBannerKey) == 'false' ? true : false;
@@ -168,7 +168,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
           return msg.unread && msg.type !== MessageType.Changelog;
         });
         this.msgNumber = this.messages.length;
-        this.isFetching = false;
+        this.messagesLoading = false;
       });
   }
 }
