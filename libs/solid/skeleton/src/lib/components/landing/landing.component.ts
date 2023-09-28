@@ -51,7 +51,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   private landingTourKey = 'hide_landing_tour';
 
   private messages: MessageModel[] = [];
-  public msgNumber = 0;
+  public msgCount = 0;
   public messagesLoading = true;
 
   public showLanding =
@@ -93,9 +93,9 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.getNewMessagesNumber();
-    const itemsNum = this.menuState.getItemsNum();
-    this.gridColumns = { xs: 2, sm: 3, md: 3, lg: 3, xl: itemsNum + 2 };
+    this.getNewMessagesCount();
+    const itemsCount = this.menuState.getItemsCount();
+    this.gridColumns = { xs: 2, sm: 3, md: 3, lg: 3, xl: itemsCount + 2 };
     this.landingInfo = this.coreConfig.landingBannerContent;
   }
 
@@ -160,14 +160,14 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public getNewMessagesNumber() {
+  public getNewMessagesCount() {
     this.messagesService.messages$
       .pipe(takeUntil(this.destroy$))
       .subscribe((msgs: MessageModel[]) => {
         this.messages = msgs.filter((msg: MessageModel) => {
           return msg.unread && msg.type !== MessageType.Changelog;
         });
-        this.msgNumber = this.messages.length;
+        this.msgCount = this.messages.length;
         this.messagesLoading = false;
       });
   }

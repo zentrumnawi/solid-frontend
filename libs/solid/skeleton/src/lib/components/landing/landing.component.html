@@ -45,7 +45,7 @@
       *ngFor="let menuItem of menuItems$ | async; let index = index"
       class="mat-elevation-z2"
       [routerLink]="menuItem.route"
-      [queryParams]="{ directTo: msgNumber > 0 ? 'news' : undefined }"
+      [queryParams]="{ directTo: msgCount > 0 ? 'news' : undefined }"
       id="menu-tile-{{ index }}"
     >
       <mat-icon
@@ -58,8 +58,8 @@
       <mat-icon
         *ngIf="menuItem.svgIcon && menuItem.route === 'info'"
         [svgIcon]="menuItem.svgIcon"
-        [matBadge]="msgNumber"
-        [matBadgeHidden]="msgNumber === 0"
+        [matBadge]="msgCount"
+        [matBadgeHidden]="msgCount === 0"
         matBadgeSize="large"
       ></mat-icon>
       <span class="navTitle">{{ menuItem.title }}</span>
