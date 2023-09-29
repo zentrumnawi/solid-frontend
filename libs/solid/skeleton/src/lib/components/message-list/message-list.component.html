@@ -1,5 +1,5 @@
 <mat-list>
-  <mat-list-item *ngFor="let msg of messages.reverse()">
+  <mat-list-item *ngFor="let msg of messages">
     <h3 matLine [ngStyle]="{ fontWeight: msg.unread ? '500' : 'normal' }">
       {{ msg.title
       }}<span *ngIf="msg.valid_from"

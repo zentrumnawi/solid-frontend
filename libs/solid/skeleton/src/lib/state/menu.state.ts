@@ -66,7 +66,7 @@ export class MenuState {
     setTimeout(() => this.store.dispatch(new SetMenuEntries(items)));
   }
 
-  public getItemsNum(): number {
+  public getItemsCount(): number {
     const filter = function (item: MenuItem) {
       return item.showOnLanding;
     };
