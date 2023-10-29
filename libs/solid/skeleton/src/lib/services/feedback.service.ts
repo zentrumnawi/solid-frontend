@@ -44,12 +44,12 @@ export class FeedbackService {
     });
   }
 
-  public submitFeedback(value: any): Observable<boolean> {
+  public submitFeedback(value: unknown): Observable<boolean> {
     return this._http
       .post<unknown>(`${this._config.apiUrl}/contact`, value)
       .pipe(
-        map((_) => true),
-        catchError((err) => of(false))
+        map(() => true),
+        catchError(() => of(false))
       );
   }
 }

@@ -2,9 +2,9 @@
   height: 100%;
   overflow: hidden;
 
-  mat-tab-group {
+  mat-tab-group.tab-container {
     ::ng-deep {
-      .mat-tab-header {
+      .mat-mdc-tab-header {
         box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
         height: 56px;
         border-bottom: 0;
@@ -14,10 +14,15 @@
         width: calc(100% - 56px);
         z-index: 999;
       }
-      .mat-tab-label {
+      .mat-mdc-tab-labels {
         height: 56px;
+
+        .mat-mdc-tab.mdc-tab {
+          height: 56px;
+          flex-grow: 0.1;
+        }
       }
-      .mat-tab-body-wrapper {
+      .mat-mdc-tab-body-wrapper {
         position: relative;
         margin-top: 40px;
         .mat-list {
@@ -53,17 +58,31 @@
   padding: 0 1rem 1rem 1rem;
 }
 
-.setting-container {
-  padding: 0.8rem 1rem 1rem 1rem;
-}
+.setting {
+  &-container {
+    padding: 0.8rem 1rem 1rem 1rem;
+  }
 
-.setting-container mat-slide-toggle {
-  margin: 7px 0;
-  display: block;
-  font-size: 14px;
+  &-header {
+    font-size: 14px;
+    margin: 10px 15px;
+    color: grey;
+    font-weight: 500;
+  }
+
+  &-list {
+    ::ng-deep {
+      .mdc-label {
+        font-size: 13px;
+        margin-left: 5px;
+      }
+    }
+  }
 }
 
 .hint {
   font-style: italic;
   font-size: 12px;
+  color: grey;
+  margin: 16px;
 }

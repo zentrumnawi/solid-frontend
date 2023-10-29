@@ -14,9 +14,8 @@
         config.appName
       }}</span>
       <div class="spacer"></div>
-      <div class="reportButton" *ngIf="this.config.error_report">
+      <div class="report-button-container" *ngIf="this.config.error_report">
         <button
-          id="reportButton"
           class="button"
           (click)="reportError()"
           mat-icon-button
@@ -61,9 +60,8 @@
         >{{ config.appName }}</span
       >
       <div class="spacer"></div>
-      <div class="reportButton" *ngIf="this.config.error_report">
+      <div class="report-button-container" *ngIf="this.config.error_report">
         <button
-          id="reportButton"
           class="button"
           (click)="reportError()"
           mat-icon-button

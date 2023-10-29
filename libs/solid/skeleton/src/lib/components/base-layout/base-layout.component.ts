@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { UpdateService } from '../../services/update.service';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '@zentrumnawi/solid-core';
 import {
   FeedbackService,
@@ -31,7 +30,6 @@ export class BaseLayoutComponent implements OnInit {
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
     @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig,
-    update: UpdateService,
     private _breakpointObserver: BreakpointObserver,
     private _router: Router
   ) {}
@@ -87,7 +85,7 @@ export class BaseLayoutComponent implements OnInit {
     this.title = '';
   }
 
-  public onLandingGlossaryClick(ref: any) {
+  public onLandingGlossaryClick(ref: unknown) {
     if (!(ref instanceof LandingComponent)) {
       return;
     }
@@ -110,7 +108,7 @@ export class BaseLayoutComponent implements OnInit {
     return new Navigate([url]);
   }
 
-  public profileTitle(ref: any): void {
+  public profileTitle(ref: unknown): void {
     if (!(ref instanceof BaseComponent)) {
       return;
     }

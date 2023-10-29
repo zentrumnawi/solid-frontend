@@ -16,13 +16,10 @@ $accent: map-get($app-theme, accent);
   color: mat.get-color-from-palette($app-primary, 900);
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-weight: 500;
-  margin-bottom: 8px;
-  margin-top: 16px;
+
+
+p {
+  font-size: 14px;
 }
 
 .solid-logo {

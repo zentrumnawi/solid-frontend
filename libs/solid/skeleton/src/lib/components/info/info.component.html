@@ -8,6 +8,7 @@
     <mat-tab-group
       [(selectedIndex)]="tabIndex"
       (selectedIndexChange)="onSelectedIndexChange($event)"
+      class="tab-container"
     >
       <mat-tab label="Info">
         <ng-container
@@ -41,12 +42,12 @@
       </mat-tab>
       <mat-tab label="Einstellungen">
         <div class="setting-container">
-          <div mat-subheader class="hint">
+          <div class="hint">
             Hinweis: Alle Einstellungen werden nur auf diesem Gerät gespeichert.
           </div>
 
           <mat-list id="setting" class="setting-list">
-            <div mat-subheader>Startseite</div>
+            <div class="setting-header">Startseite</div>
             <mat-list-item>
               <mat-slide-toggle
                 (change)="toggleChange()"
@@ -63,10 +64,10 @@
                 Tour anzeigen
               </mat-slide-toggle>
             </mat-list-item>
-            <div mat-subheader class="hint" *ngIf="tourLandingChecked">
+            <div class="hint" *ngIf="tourLandingChecked">
               Die Tour wird beim nächsten Besuch der Startseite angezeigt.
             </div>
-            <div mat-subheader>{{ profileTitle }}</div>
+            <div class="setting-header">{{ profileTitle }}</div>
             <mat-list-item>
               <mat-slide-toggle
                 (change)="toggleChange()"

@@ -23,7 +23,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
   feedbackServiceFactory,
   SOLID_SKELETON_FEEDBACK_SERVICE,
-} from './services/feedback.service';
+} from './services/feedback.service';                  
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {
@@ -116,7 +116,7 @@ export class SolidSkeletonModule {
   public static forRoot(
     cfg: SolidSkeletonConfig
   ): ModuleWithProviders<SolidSkeletonModule> {
-    const errHandler = createErrorHandler(cfg.sentry?.errorHandlerOptions);
+    // const errHandler = createErrorHandler(cfg.sentry?.errorHandlerOptions);
     return {
       ngModule: SolidSkeletonModule,
       providers: [

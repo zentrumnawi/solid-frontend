@@ -10,70 +10,57 @@ mat-checkbox {
       }
     }
 
-    span.mat-checkbox-label {
+    .mdc-form-field {
       display: flex;
-      flex-direction: column;
-      width: calc(100% - 24px);
-      white-space: normal;
-      line-height: 28px;
+      flex-direction: row;
+      align-items: flex-start;
     }
 
-    label.mat-checkbox-layout {
-      vertical-align: top;
-      width: 100%;
+    .mdc-label {
+      padding: 11px 5px;
     }
 
-    span.mat-checkbox-inner-container {
-      margin-top: 4px;
-      margin-bottom: auto;
-      margin-right: 10px;
+    .mdc-checkbox .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark {
+      color: white;
     }
 
-    .mat-checkbox-frame {
-      border-radius: 20px;
-      height: 20px;
-      width: 20px;
-    }
-
-    .mat-checkbox-background {
-      border-radius: 20px;
-      height: 20px;
-      width: 20px;
-    }
-
-    .mat-checkbox-mixedmark {
-      height: 16px;
-      width: 16px;
-      background-color: white;
-      border-radius: 20px;
-      position: relative;
-      &:after {
-        position: absolute;
-        top: 3px;
-        left: 0;
-        right: 0;
-        content: '×';
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 10px;
-        text-align: center;
-      }
-    }
+    // .mat-mdc-checkbox-mixedmark {
+    //   height: 16px;
+    //   width: 16px;
+    //   background-color: white;
+    //   border-radius: 20px;
+    //   position: relative;
+    //   &:after {
+    //     position: absolute;
+    //     top: 3px;
+    //     left: 0;
+    //     right: 0;
+    //     content: '×';
+    //     font-size: 16px;
+    //     font-weight: bold;
+    //     line-height: 10px;
+    //     text-align: center;
+    //   }
+    // }
   }
 }
 
 .answer {
   ::ng-deep {
     p {
-      margin-bottom: 0px;
+      margin: 0;
     }
   }
 }
 
 span.feedback {
-  font-weight: normal;
-  margin-top: 6px;
-  margin-bottom: -12px;
+  ::ng-deep {
+    p {
+      padding: 0;
+      margin: 30px 0 0;
+      font-weight: 500;
+    }
+  }
 }
 
 .showAnswerBtn {

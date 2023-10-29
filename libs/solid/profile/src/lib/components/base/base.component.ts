@@ -119,8 +119,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       new LoadDefinitionSwagger(),
     ]);
 
-    this.profileSubscription = this.profile$?.subscribe((res) => {
-      if (res.length != 0) this.isLoading = false;
+    this.profileSubscription = this.profile$?.subscribe((res : any) => {
+      if (Array.isArray(res) && res.length != 0) this.isLoading = false;
     });
   }
 
@@ -244,13 +244,13 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.calculateLayout();
 
     this.profileSubscription = this.profile$.subscribe((res) => {
-      if (res.length != 0) {
+      if (Array.isArray(res) && res.length != 0) {
         if (
           localStorage.getItem('hide_profile_tour') == 'false' ||
           localStorage.getItem('hide_profile_tour') == null
         ) {
           setTimeout(() => {
-            this.introService.profileTour((_targetElement: any) => {
+            this.introService.profileTour((_targetElement: Element) => {
               try {
                 const id = _targetElement.id;
                 const treeNodeLocation =
@@ -429,5 +429,9 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         }, 10000);
       }
     }, 0);
+  }
+
+  public openSearchBar() {
+    this.isSearchBarOpen = true;
   }
 }
