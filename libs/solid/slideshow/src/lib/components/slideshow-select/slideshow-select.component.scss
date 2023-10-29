@@ -9,7 +9,7 @@
   .back-button-toolbar {
     background-color: white;
     box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
-    height: 56px;
+    min-height: 56px;
     display: grid;
     grid-template-areas: 'front middle last';
     grid-template-columns: 40px auto 40px;
@@ -17,8 +17,7 @@
     padding: 0 16px;
 
     h2 {
-      font-size: 21px;
-      font-weight: 500;
+      margin-bottom: 0;
     }
   }
 
@@ -79,6 +78,8 @@
     justify-content: center;
 
     .mat-card-child {
+      margin-top: auto;
+      margin-bottom: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -86,10 +87,6 @@
       .slideshowImg {
         width: 100px;
         height: 100px;
-      }
-
-      .slideshowTitle {
-        margin: 15px 0 0px;
       }
     }
   }

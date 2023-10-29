@@ -1,52 +1,88 @@
 <div class="landing-container" #landing>
-  <mat-card class="landing-banner-container" *ngIf="innerWidth >= 700 && showLanding && !messagesLoading">
+  <mat-card *ngIf="innerWidth >= 700 && showLanding && !messagesLoading">
     <mat-card-header>
       <img mat-card-avatar [src]="landingInfo.header.image" />
       <mat-card-title>{{ landingInfo.header.title }}</mat-card-title>
       <mat-card-subtitle>{{ landingInfo.header.subtitle }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content *ngFor="let content of landingInfo.content">
-      <p class="landing-banner-content">
+      <p>
         {{ content.p }}
       </p>
     </mat-card-content>
     <div class="toggle-container">
-      <mat-slide-toggle (change)="onNotShowAgainToggle($event)"><span class="toggleBtn">Nicht mehr
-          zeigen</span></mat-slide-toggle>
-      <mat-slide-toggle checked="true" (change)="onStartTourToggle($event)">
-        <span class="toggleBtn">Tour starten</span>
+      <mat-slide-toggle
+        class="notShowAgainToggle"
+        (change)="onNotShowAgainToggle($event)"
+        >Nicht mehr zeigen</mat-slide-toggle
+      >
+      <mat-slide-toggle
+        class="startTourToggle"
+        checked="true"
+        (change)="onStartTourToggle($event)"
+      >
+        Tour starten
       </mat-slide-toggle>
     </div>
     <div class="button-container">
-      <button class="closeBtn" mat-stroked-button color="primary" (click)="onCloseClick()">
+      <button
+        class="closeBtn"
+        mat-stroked-button
+        color="primary"
+        (click)="onCloseClick()"
+      >
         Schließen
       </button>
     </div>
   </mat-card>
-  <mat-grid-list id="menu-grid-list" [solidSkeletonGridCols]="gridColumns" gutterSize="1rem" rowHeight="1:1">
-    <mat-grid-tile *ngFor="let menuItem of menuItems$ | async; let index = index" class="mat-elevation-z2"
-      [routerLink]="menuItem.route" [queryParams]="{ directTo: msgCount > 0 ? 'news' : undefined }"
-      id="menu-tile-{{ index }}">
-      <mat-icon *ngIf="menuItem.svgIcon && menuItem.route !== 'info'" [svgIcon]="menuItem.svgIcon"></mat-icon>
+  <mat-grid-list
+    id="menu-grid-list"
+    [solidSkeletonGridCols]="gridColumns"
+    gutterSize="1rem"
+    rowHeight="1:1"
+  >
+    <mat-grid-tile
+      *ngFor="let menuItem of menuItems$ | async; let index = index"
+      class="mat-elevation-z2"
+      [routerLink]="menuItem.route"
+      [queryParams]="{ directTo: msgCount > 0 ? 'news' : undefined }"
+      id="menu-tile-{{ index }}"
+    >
+      <mat-icon
+        *ngIf="menuItem.svgIcon && menuItem.route !== 'info'"
+        [svgIcon]="menuItem.svgIcon"
+      ></mat-icon>
       <mat-icon *ngIf="!menuItem.svgIcon && menuItem.route !== 'info'">{{
         menuItem.icon
-        }}</mat-icon>
-      <mat-icon aria-hidden="false" *ngIf="menuItem.svgIcon && menuItem.route === 'info'" [svgIcon]="menuItem.svgIcon" [matBadge]="msgCount"
-        [matBadgeHidden]="msgCount === 0" matBadgeSize="large"></mat-icon>
+      }}</mat-icon>
+      <mat-icon
+        *ngIf="menuItem.svgIcon && menuItem.route === 'info'"
+        [svgIcon]="menuItem.svgIcon"
+        [matBadge]="msgCount"
+        [matBadgeHidden]="msgCount === 0"
+        matBadgeSize="large"
+      ></mat-icon>
       <span class="navTitle">{{ menuItem.title }}</span>
     </mat-grid-tile>
-    <mat-grid-tile id="glossary" (click)="onGlossaryClick.emit()" class="mat-elevation-z2"><mat-icon matListIcon
-        svgIcon="glossary_custom"></mat-icon>
+    <mat-grid-tile
+      id="glossary"
+      (click)="onGlossaryClick.emit()"
+      class="mat-elevation-z2"
+      ><mat-icon matListIcon svgIcon="glossary_custom"></mat-icon>
       <span class="navTitle">Glossar</span>
     </mat-grid-tile>
-    <mat-grid-tile id="feedback" (click)="feedback.showDialog()" class="mat-elevation-z2"><mat-icon matListIcon
-        svgIcon="feedback"></mat-icon>
+    <mat-grid-tile
+      id="feedback"
+      (click)="feedback.showDialog()"
+      class="mat-elevation-z2"
+      ><mat-icon matListIcon svgIcon="feedback"></mat-icon>
       <span class="navTitle">Kontakt</span>
     </mat-grid-tile>
   </mat-grid-list>
   <div class="footer-container">
     <a routerLink="info">Impressum</a>
     <a routerLink="info" [queryParams]="{ directTo: 'privacy' }">
-      Datenschutz</a>
+      Datenschutz</a
+    >
   </div>
 </div>

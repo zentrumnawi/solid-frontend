@@ -15,9 +15,14 @@
           </h2>
           <p
             class="question-info"
+            *ngIf="question.tags.length !== 0; else withoutTags"
           >
-            {{ getQuestionInfo(question) }}
+            Tags: {{ question.tags.join(' ') }} | Schwierigkeit:
+            {{ question.difficulty }}
           </p>
+          <ng-template #withoutTags
+            >Schwierigkeit: {{ question.difficulty }}</ng-template
+          >
         </div>
       </div>
     </div>
@@ -29,7 +34,7 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>
-        <p class="question-title" [data]="question.text" markdown></p>
+        <p [data]="question.text" markdown></p>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>

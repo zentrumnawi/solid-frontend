@@ -1,7 +1,4 @@
 @use '@angular/material' as mat;
-
-@include mat.core();
-
 @import 'glossary-theme';
 @import 'skeleton-theme';
 @import 'slideshow-theme';
@@ -89,14 +86,5 @@ $quiz-incorrect: mat.define-palette(mat.$red-palette, 700, 200, 600);
 // The warn palette is optional (defaults to red).
 $app-warn: mat.define-palette(mat.$red-palette);
 
-
-// Create the theme object (a Sass map containing all of the palettes) - changed since Angular 15
-$app-theme: mat.define-light-theme((
-    color: (
-      primary: $app-primary,
-      accent: $app-accent,
-      warn: $app-warn
-    ),
-    typography: mat.define-typography-config(),
-    density: 0,
-));
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);

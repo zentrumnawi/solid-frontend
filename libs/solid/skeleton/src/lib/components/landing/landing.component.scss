@@ -66,7 +66,6 @@ mat-grid-tile {
   text-align: center;
 
   a {
-    font-size: 14px;
     text-decoration: none;
   }
 
@@ -75,34 +74,12 @@ mat-grid-tile {
   }
 }
 
-.landing-banner-container {
-  padding: 16px 12px;
-
-  mat-card-header {
-    padding: 0 16px;
-
-    mat-card-subtitle {
-      font-weight: 400;
-      font-size: 13px;
-    }
-  }
-
-  mat-card-content {
-    .landing-banner-content {
-      font-size: 14px;
-      margin: 10px 0;
-    }
-  }
-}
-
 .toggle-container {
   display: flex;
-  margin: 12px 14px;
-  
-  span.toggleBtn {
-    font-size: 13px;
-    margin-left: 6px;
-    margin-right: 20px;
+  font-size: 13px;
+
+  .notShowAgainToggle {
+    margin-right: 13px;
   }
 }
 
@@ -112,8 +89,8 @@ mat-grid-tile {
   margin-top: 19px;
 
   .closeBtn {
-    width: 98%;
+    width: 100%;
     border-radius: 5px;
-    font-size : 13px;
+    font-size: 13px;
   }
 }

@@ -49,14 +49,14 @@ mat-form-field {
 }
 
 mat-card-actions {
-  justify-content: center;
-  flex-direction: column;
+  padding: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .content-container {
   text-align: left;
   font-size: 15px;
-  padding: 16px 40px;
 }
 
 .mat-standard-chip .mat-chip-remove {
@@ -83,16 +83,18 @@ hr {
 .displayValueBox {
   border: solid 2px;
   padding: 6px;
+  height: 35px;
   width: 40px;
-  font-size: 15px;
+  transform: translateY(-3px);
   font-weight: 500;
-  margin-left: 15px;
+  margin-left: 4%;
   text-align: center;
   border-radius: 8px;
 }
 
-mat-slider {
+.mat-slider {
   width: 100%;
+  margin: -10px;
 }
 
 .mat-subheader {
@@ -112,35 +114,21 @@ mat-slider {
   float: left;
   width: 100%;
   margin-bottom: 10px;
-  align-items: center;
+}
+
+.content-container {
+  padding: 10px 10px 0px 10px;
 }
 
 .button-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-
   .startBtn {
     margin: 10px 10px 20px 10px !important;
     border-radius: 7px;
-    font-size: 15px;
-    width: 30%;
-    font-weight: 500;
   }
 
   .expBtn {
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-left: 30px;
+    margin: 10px 10px 20px 10px;
     padding: 0px;
-
-    .title {
-      font-size: 14px;
-      font-weight: 500;
-      margin-left: 6px;
-    }
   }
 }
 
@@ -167,7 +155,6 @@ mat-slider {
     border-radius: 7px;
     height: 39px;
     font-weight: 500;
-    font-size: 14px;
   }
 
   @media (max-width: 440px) {
@@ -192,17 +179,17 @@ mat-slider {
 }
 
 #tag {
-  ::ng-deep .mdc-evolution-chip-set__chips {
+  ::ng-deep .mat-chip-list-wrapper {
     width: 100%;
     margin: 0;
     justify-content: space-between;
   }
 
-  mat-chip-listbox {
+  .mat-chip-list {
     width: 100%;
   }
 
-  mat-chip-option {
+  .mat-chip {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -210,27 +197,26 @@ mat-slider {
     display: block;
     padding: 5px 10px;
     text-align: center;
-
   }
 
   @media (max-width: 440px) {
-    .mat-chip-option-small {
+    .mat-chip-small {
       width: 28%;
     }
 
-    .mat-chip-option-large {
+    .mat-chip-large {
       width: 48%;
     }
   }
 
   @media (min-width: 441px) {
-    mat-chip-option {
+    .mat-chip {
       width: 23%;
     }
   }
 
-  ::ng-deep .mat-mdc-chip-focus-overlay {
-    opacity: 0 !important;
+  .mat-standard-chip:focus::after {
+    opacity: 0;
   }
 }
 
@@ -238,8 +224,23 @@ mat-slider {
   font-weight: 500;
 }
 
-.config-container {
-  width: 95%;
+.button-container {
+  text-align: center;
+  position: relative;
+
+  .startBtn {
+    font-size: 15px;
+    width: 35%;
+  }
+
+  .expBtn {
+    display: block;
+    font-weight: 500;
+  }
+}
+
+.config {
+  position: relative;
   padding: 0px 10px;
 }
 
@@ -289,8 +290,8 @@ mat-slider {
 
     h2 {
       font-size: 21px;
+      transform: translateY(12px);
       margin-bottom: -2px;
-      font-weight: 500;
     }
   }
 }

@@ -1,14 +1,25 @@
 mat-list {
   padding: 0.8rem 1rem 1rem 1rem;
 }
-mat-list-item.message {
+mat-list-item {
   margin-top: 0;
-  height: fit-content;
-
-  .message-title {
-    margin-bottom: 0;
+  ::ng-deep {
+    p {
+      margin-block-end: 0;
+    }
+    h3.mat-line {
+      padding-bottom: 0.5em;
+    }
+    .mat-list-item-content {
+      padding: 0 !important;
+      flex-direction: column !important;
+      align-items: baseline !important;
+    }
+    .mat-line.md-rendered {
+      padding-left: 0.22rem !important;
+      white-space: normal !important;
+    }
   }
-
   img {
     float: left;
     margin: 5px 10px 1px 5px;
@@ -20,4 +31,12 @@ mat-list-item.message {
     overflow: inherit;
     font-size: 14px !important;
   }
+}
+mat-list-item:not(:first-child) {
+  h3 {
+    padding-top: 0.5em;
+  }
+}
+mat-list-item:not(:last-child) {
+  padding-bottom: 0.8em !important;
 }

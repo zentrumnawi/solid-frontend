@@ -12,8 +12,11 @@
     [value]="answer.id"
   >
     <span class="answer" markdown [data]="answer.text"></span>
-    <mat-icon [ngClass]="getIconClass(answer)" *ngIf="showAnswers"
-      >{{ answer.correct ? 'check_circle' : 'highlight_off' }}</mat-icon
+    <mat-icon class="correctIcon" *ngIf="showAnswers && answer.correct"
+      >check_circle</mat-icon
+    >
+    <mat-icon class="incorrectIcon" *ngIf="showAnswers && !answer.correct"
+      >highlight_off</mat-icon
     >
     <span
       *ngIf="showAnswers && selectedAnswer === answer.id"

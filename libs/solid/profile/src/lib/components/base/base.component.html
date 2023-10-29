@@ -17,7 +17,7 @@
       floatLabel="auto"
       [class.openSearchBar]="isSearchBarOpen"
     >
-      <mat-label *ngIf="isSearchBarOpen">Suche</mat-label>
+      <mat-label>Suche</mat-label>
       <input
         [formControl]="Filter"
         matInput
@@ -30,7 +30,8 @@
         "
         (focus)="isSearchBarOpen = true"
       />
-      <button class="searchBtn" mat-icon-button matSuffix (click)="Filter.setValue('')">
+      <button mat-icon-button matSuffix (click)="Filter.setValue('')">
+        <!--mat-icon *ngIf="Filter.value == ''" matSuffix>search</mat-icon-->
         <mat-icon>
           {{ Filter.value === '' ? 'search' : 'close' }}
         </mat-icon>

@@ -27,15 +27,11 @@
       min="0"
       [max]="duration"
       step="1"
+      [value]="playPosition"
       [disabled]="!audioLoaded"
+      (input)="onPositionChangeEnd($event)"
       class="playingSlider"
-    >
-      <input
-        [value]="playPosition"
-        (valueChange)="onPositionChangeEnd($event)"
-        matSliderThumb
-      />
-    </mat-slider>
+    ></mat-slider>
     <button
       mat-icon-button
       [disabled]="!audioLoaded"
@@ -48,15 +44,12 @@
       min="0"
       max="1"
       step="0.1"
+      [value]="volume"
       [disabled]="!audioLoaded"
+      (input)="onVolumeChangeEnd($event)"
       class="volumeSlider"
       [class.disappear]="isIOS() || isMobile"
     >
-      <input
-        [value]="volume"
-        (valueChange)="onVolumeChangeEnd($event)"
-        matSliderThumb
-      />
     </mat-slider>
   </div>
 </ng-container>

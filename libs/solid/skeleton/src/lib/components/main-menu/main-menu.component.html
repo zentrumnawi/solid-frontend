@@ -6,7 +6,7 @@
         *ngIf="item.route === 'info'"
         (click)="openGlossaryClick.emit()"
       >
-        <h3 matListItemTitle>Glossar</h3>
+        <h3 matLine>Glossar</h3>
       </mat-list-item>
       <mat-list-item
         (click)="selectMenuEntry.emit(); onMenuItemSelected(item.route)"
@@ -14,13 +14,13 @@
         [routerLink]="item.route"
         [queryParams]="{ directTo: msgNumber > 0 ? 'news' : undefined }"
       >
-        <h3 matListItemTitle>
+        <h3 matLine>
           {{ item.title }}
         </h3>
       </mat-list-item>
     </ng-container>
     <mat-list-item (click)="feedback.showDialog()" *ngIf="feedback">
-      <h3 matListItemTitle>Kontakt</h3>
+      <h3 matLine>Kontakt</h3>
     </mat-list-item>
   </mat-nav-list>
 </div>

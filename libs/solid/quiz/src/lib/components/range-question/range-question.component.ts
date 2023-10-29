@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatSliderChange } from '@angular/material/slider';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
   selector: 'solid-quiz-range-question',
   templateUrl: './range-question.component.html',
-  styleUrls: ['./range-question.component.scss']
+  styleUrls: ['./range-question.component.scss'],
 })
 export class RangeQuestionComponent {
   @Input() public question!: QuizQuestion;
@@ -57,7 +58,7 @@ export class RangeQuestionComponent {
     }, 5);
   }
 
-  onSliderChange(value: number) {
+  onSliderChange(change: MatSliderChange) {
     this.correct = -1;
   }
 

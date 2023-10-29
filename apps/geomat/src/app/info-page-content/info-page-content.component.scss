@@ -14,10 +14,13 @@
   color: mat.get-color-from-palette($app-primary);
 }
 
-
-
-p {
-  font-size: 14px;
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 16px;
 }
 
 .solid-logo {

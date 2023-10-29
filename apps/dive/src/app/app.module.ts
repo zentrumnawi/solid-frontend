@@ -3,7 +3,7 @@ import {
   DomSanitizer,
   HAMMER_GESTURE_CONFIG,
   HammerGestureConfig,
-  HammerModule
+  HammerModule,
 } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
 
@@ -30,11 +30,11 @@ import { InfoPageContentComponent } from './info-page-content/info-page-content.
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
     pan: {
-      direction: 6
+      direction: 6,
     },
     pinch: { enable: false },
     rotate: { enable: false },
-    swipe: { enable: true, direction: Hammer.DIRECTION_HORIZONTAL }
+    swipe: { enable: true, direction: Hammer.DIRECTION_HORIZONTAL },
   };
 }
 
@@ -44,33 +44,34 @@ export class MyHammerConfig extends HammerGestureConfig {
     BrowserModule,
     BrowserAnimationsModule,
     NgxsModule.forRoot([], {
-      developmentMode: !environment.production
+      developmentMode: !environment.production,
     }),
     NgxsDispatchPluginModule.forRoot(),
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
-      disabled: environment.production
+      disabled: environment.production,
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot(skeletonConfig),
     RouterModule.forRoot([], {
-      onSameUrlNavigation: 'reload'
+      onSameUrlNavigation: 'reload',
+      relativeLinkResolution: 'legacy',
     }),
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    HammerModule
+    HammerModule,
   ],
   providers: [
     {
       provide: HAMMER_GESTURE_CONFIG,
-      useClass: MyHammerConfig
-    }
+      useClass: MyHammerConfig,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(registry: MatIconRegistry, url: DomSanitizer) {

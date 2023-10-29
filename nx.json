@@ -14,16 +14,16 @@
   },
   "defaultProject": "geomat",
   "generators": {
-    "@nx/angular:application": {
+    "@nrwl/angular:application": {
       "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nx/angular:library": {
+    "@nrwl/angular:library": {
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nx/angular:component": {
+    "@nrwl/angular:component": {
       "style": "scss"
     }
   },
@@ -55,8 +55,7 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/src/test-setup.[jt]s"
+      "!{projectRoot}/.eslintrc.json"
     ]
   }
 }

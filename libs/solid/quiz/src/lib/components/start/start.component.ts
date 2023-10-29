@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import {
   LoadQuizQuestions,
   StartQuizSession,
-  ToggleExpertMode
+  ToggleExpertMode,
 } from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
 import { QuizState } from '../../state/quiz.state';
@@ -11,20 +11,19 @@ import { QuizMetadata } from '../../state/quiz.model';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatChipListboxChange } from '@angular/material/chips';
+import { MatChipListChange } from '@angular/material/chips';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'solid-quiz-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
   @Select(QuizState.getExpertMode) expertMode!: boolean | false;
-  
   private $destroyed = new Subject();
-  
-  expertModeStatus = false;
+  expertModeStatus: boolean;
   questionCount = 10;
   chosenTags = [];
   chosenDifficulty: number[] = [];
@@ -33,6 +32,7 @@ export class StartComponent implements OnDestroy, OnInit {
   difficulties: number[] = [];
 
   constructor(private _store: Store) {
+    this.expertModeStatus = false;
   }
 
   public onStartClick() {
@@ -84,8 +84,8 @@ export class StartComponent implements OnDestroy, OnInit {
     this.navigateTo('/');
   }
 
-  onSliderChange(value: number) {
-    if (value) this.questionCount = value;
+  onSliderChange(change: MatSliderChange) {
+    if (change.value) this.questionCount = change.value;
     this.isValid = true;
   }
 
@@ -94,7 +94,7 @@ export class StartComponent implements OnDestroy, OnInit {
     this.isValid = true;
   }
 
-  onTagSelectionChange(change: MatChipListboxChange) {
+  onTagSelectionChange(change: MatChipListChange) {
     this.chosenTags = change.value;
     this.isValid = true;
   }

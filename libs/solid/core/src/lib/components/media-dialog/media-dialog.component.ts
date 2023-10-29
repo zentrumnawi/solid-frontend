@@ -37,18 +37,15 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   expandUpDown = false;
   audioCollapsed = false;
   dziInitialized = false;
-  
   public onNextEmitter = new EventEmitter();
   public onPrevEmitter = new EventEmitter();
-
+  @ViewChild('title_container', { static: false })
+  public title_container?: ElementRef;
   title_container_width = 0;
   title_width = 0;
   public firstMovingAnimation = true;
   public timeOut_1: any;
   public timeOut_2: any;
-
-  @ViewChild('title_container', { static: false })
-  public title_container?: ElementRef;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
