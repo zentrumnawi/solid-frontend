@@ -2,11 +2,23 @@
   display: block;
 }
 
+.end-container {
+  mat-card-actions {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 mat-card {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
   max-width: 60em;
-  top: 67px;
+  top: 70px;
 }
 
 @media (max-width: 1141px) {
@@ -29,7 +41,7 @@ mat-form-field {
 
 @media (max-width: 999px) {
   mat-card {
-    top: 62px;
+    top: 68px;
   }
 
   .toolbar-container {
@@ -73,32 +85,31 @@ mat-form-field {
 
     h2 {
       font-size: 21px;
-      transform: translateY(12px);
-      margin-bottom: -2px;
     }
   }
 }
 
 @media (min-width: 441px) {
   mat-expansion-panel {
-    width: 95%;
+    width: 88%;
     margin: auto;
   }
 
   .button-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    width: 90%;
 
     .startBtn {
       margin: 7px 0px !important;
       font-size: 15px;
-      width: 45%;
+      width: 48%;
     }
 
     .restartBtn {
       margin: 7px 0px !important;
       font-size: 15px;
-      width: 45%;
+      width: 48%;
     }
   }
 }
@@ -141,7 +152,9 @@ mat-form-field {
 }
 
 .quizEval {
-  margin: 1em;
+  margin: 1em 1em 0;
+  padding-top: 0;
+  width: 91%;
 }
 
 .answerDetails {
@@ -176,6 +189,10 @@ mat-form-field {
 .resultText {
   font-weight: 500;
   font-size: 15px;
+}
+
+.feedbackText {
+  font-size: 14px;
 }
 
 .footnote {

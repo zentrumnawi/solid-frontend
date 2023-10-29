@@ -8,13 +8,13 @@
     </div>
   </div>
 </div>
-<mat-card *ngIf="QuizSession">
+<mat-card class="end-container" *ngIf="QuizSession">
   <mat-card-content class="quizEval">
     <p class="resultText">
       {{ correctQuestions }} von {{ answeredQuestions }} Fragen wurden richtig
       beantwortet.
     </p>
-    <p [data]="FeedbackText" markdown></p>
+    <p class="feedbackText" [data]="FeedbackText" markdown></p>
   </mat-card-content>
   <mat-card-actions>
     <div class="button-container">

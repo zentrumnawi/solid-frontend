@@ -78,4 +78,14 @@ export class QuestionComponent {
   onBackToStart() {
     this._store.dispatch(new EndQuizSession());
   }
+
+  getQuestionInfo(question : QuizQuestion) : string {
+    const tagsLength = question?.tags?.length;
+
+    if (tagsLength > 0) {
+      return `Tags: ${question?.tags.join(' ')} | Schwierigkeit: ${question?.difficulty}`;
+    }
+
+    return `Schwierigkeit: ${ question?.difficulty }`;
+  }
 }

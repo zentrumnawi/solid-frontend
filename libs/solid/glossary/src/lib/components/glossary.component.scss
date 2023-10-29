@@ -9,11 +9,14 @@ mat-list {
   h3 {
     margin: 0;
     padding: 4px 16px;
+    font-weight: 500;
+    font-size: 16px;
   }
 
-  mat-list-item {
-    padding: 4px;
+  mat-list-item.entry {
+    height: initial !important;
     transition: background-color linear 300ms;
+    padding: 6px 16px;
 
     .entry-header {
       font-weight: 500;
@@ -37,25 +40,26 @@ mat-list {
       }
     }
   }
-}
 
-::ng-deep .mat-list .mat-list-item .mat-line {
-  word-wrap: break-word;
-  white-space: pre-wrap;
-}
-
-::ng-deep .mat-list .mat-list-item {
-  height: initial !important;
+  ::ng-deep .mdc-list-item__primary-text {
+    font-size: 14px !important;
+    word-wrap: break-word;
+    white-space: pre-wrap !important;
+  }
 }
 
 mat-form-field {
   width: 100%;
-  margin-top: 0.5em;
+
   ::ng-deep {
     div.mat-form-field-wrapper {
       padding: 0;
     }
     div.mat-form-field-underline {
+      display: none;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper {
       display: none;
     }
   }

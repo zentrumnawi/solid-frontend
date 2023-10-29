@@ -10,25 +10,27 @@
 
   .mat-button-toggle {
     border: solid 2px mat.get-color-from-palette($app-primary) !important;
-    color: mat.get-color-from-palette($app-primary);
+    color: mat.get-color-from-palette($app-primary) !important;
   }
 
   .mat-button-toggle-checked {
-    background-color: mat.get-color-from-palette($app-primary);
+    background-color: mat.get-color-from-palette($app-primary) !important;
     color: white !important;
   }
 
   #tag {
-    .mat-chip {
-      background-color: white;
+    mat-chip-option {
+      background-color: white !important;
       border: solid 2px mat.get-color-from-palette($app-primary) !important;
-      color: mat.get-color-from-palette($app-primary);
     }
 
-    .mat-chip-selected {
-      background-color: mat.get-color-from-palette($accent);
-      border-color: transparent !important;
-      color: white !important;
+    .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
+      color: mat.get-color-from-palette($app-primary) !important;
+      font-weight: 500;
+    }
+    
+    .mat-mdc-standard-chip .mdc-evolution-chip__checkmark {
+      color: mat.get-color-from-palette($app-primary) !important;
     }
   }
 

@@ -9,6 +9,7 @@
   <ng-container *ngFor="let kvp of state.sections">
     <h3 mat-subeader>{{ kvp[0] }}</h3>
     <mat-list-item
+      class="entry"
       *ngFor="let entryId of kvp[1]"
       solidGlossaryEntry
       [refId]="entryId"

@@ -7,7 +7,7 @@ import {
   Schema as ApplicationOptions,
   Style,
 } from '@schematics/angular/application/schema';
-import { getFileContent } from '@nrwl/workspace/testing';
+import { getFileContent } from '@nx/workspace/testing';
 import { DEPENDENCIES } from '../dependencies';
 
 const collectionPath = require.resolve('../collection.json');

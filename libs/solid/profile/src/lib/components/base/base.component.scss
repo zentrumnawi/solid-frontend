@@ -4,48 +4,35 @@
 }
 
 mat-form-field {
-  width: 0;
+  margin-bottom: -20px;
+  margin-left: -13px;
+  width: 60px;
   transition: 0.5s ease-in-out;
   ::ng-deep {
-    div.mat-form-field-wrapper {
+    div.mat-mdc-text-field-wrapper {
       padding: 0;
-      div.mat-form-field-flex {
-        //we should try to avoid this in the future
-        //but "appearance: fill" simply doesn't cut it
-        background-color: rgba(0, 0, 0, 0);
-        padding-bottom: 2.5px;
-        padding-left: 0;
-        margin-left: 10px;
-
-        div.mat-form-field-suffix {
-          margin-left: -0.75em;
-        }
+      div.mat-mdc-form-field-flex {
+        background-color: white;
       }
     }
 
-    div.mat-form-field-underline {
-      display: none;
+    div.mdc-text-field--filled {
+      --mdc-filled-text-field-active-indicator-height: 0px;
+    }
+
+    .mat-mdc-form-field-focus-overlay {
+      background-color: white;
     }
   }
 }
 
 .openSearchBar {
+  margin-left: 0;
   width: 328px;
 }
 
-mat-form-field flex {
-  max-width: 20em;
-  padding-top: 0;
-
-  ::ng-deep {
-    div.mat-form-field-wrapper {
-      padding: 0;
-    }
-
-    div.mat-form-field-underline {
-      display: none;
-    }
-  }
+.searchBtn {
+  transform: scale(1.2);
 }
 
 mat-icon.clear-filter {

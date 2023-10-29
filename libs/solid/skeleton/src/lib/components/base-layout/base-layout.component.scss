@@ -26,8 +26,9 @@
       padding-left: 16px;
     }
 
-    @media (max-width: 365px) {
+    @media (max-width: 390px) {
       span.appName {
+        font-size: 19px;
         padding-left: 9px;
         padding-right: 5px;
       }
@@ -65,20 +66,21 @@
     }
   }
 
-  .reportButton {
+  .report-button-container {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     margin-top: 8px;
     margin-right: 0.3em;
+    
     .button {
       background-color: white;
       border-radius: 10px 10px 0 0;
+      
       ::ng-deep {
         .mat-icon {
-          height: 40px;
-          width: 40px;
+          transform: scale(1.5);
           color: rgb(0, 0, 0, 0.7);
         }
       }
@@ -106,7 +108,7 @@ span.appName {
   cursor: pointer;
 }
 
-@media (max-width: 365px) {
+@media (max-width: 390px) {
   img#Logo {
     margin-left: 3px;
     height: 20px;

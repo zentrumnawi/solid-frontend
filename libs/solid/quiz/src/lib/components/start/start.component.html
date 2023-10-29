@@ -47,25 +47,20 @@
       </div>
       <mat-slide-toggle
         class="expBtn"
-        [checked]="expertModeStatus"
+        [(ngModel)]="expertModeStatus"
         (change)="expertModeToggle()"
       >
-        Expertenmodus aktivieren
+        <span class="title">Expertenmodus aktivieren</span>
       </mat-slide-toggle>
     </div>
-    <div class="config" *ngIf="expertModeStatus">
+    <div class="config-container" *ngIf="expertModeStatus">
       <div class="row">
         <div class="controlHeader" id="questionCount">
           <div class="mat-subheader">Fragenanzahl</div>
         </div>
         <div class="controlElement" id="questionCount">
-          <mat-slider
-            min="1"
-            max="30"
-            step="1"
-            (input)="onSliderChange($event)"
-            [(ngModel)]="questionCount"
-          >
+          <mat-slider min="1" max="30" step="1">
+            <input matSliderThumb [value]="questionCount" (valueChange)="onSliderChange($event)">
           </mat-slider>
           <div class="displayValueBox">
             {{ questionCount }}
@@ -112,22 +107,20 @@
           </button>
         </div>
         <div class="controlElement" id="tag">
-          <mat-chip-list
-            selectable
-            multiple
+          <mat-chip-listbox
+            selectable="true"
+            multiple="true"
             (change)="onTagSelectionChange($event)"
             [(ngModel)]="chosenTags"
           >
-            <mat-chip
-              #c="matChip"
+            <mat-chip-option
               *ngFor="let tag of tags"
               [value]="tag"
-              (click)="c.toggleSelected(true)"
-              [ngClass]="tags.length > 6 ? 'mat-chip-small' : 'mat-chip-large'"
+              [ngClass]="tags.length > 6 ? 'mat-chip-option-small' : 'mat-chip-option-large'"
             >
               {{ tag }}
-            </mat-chip>
-          </mat-chip-list>
+            </mat-chip-option>
+          </mat-chip-listbox>
         </div>
       </div>
     </div>

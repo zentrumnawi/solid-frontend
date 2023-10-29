@@ -4,10 +4,13 @@ mat-card {
   max-width: 60em;
   top: 71px;
 
-  .mat-card-header .mat-card-title {
+  mat-card-header {
+    padding: 16px 40px 0;
+  }
+
+  mat-card-title {
     font-size: 16px;
     font-weight: 500;
-    margin: 5px 0px 20px -14px;
   }
 }
 
@@ -157,12 +160,13 @@ mat-card-content.ranking {
     grid-area: header;
 
     h2 {
-      margin-bottom: -2px;
-      font-size: 19px;
+      margin: 4px 0px 0px;
+      font-size: 17px;
     }
 
     p.question-info {
-      margin-bottom: 0;
+      font-size: 14px;
+      margin: 4px 0 0;
     }
   }
 }
@@ -181,23 +185,8 @@ mat-progress-bar {
   }
 }
 
-.title {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  grid-area: header;
-
-  h2 {
-    margin-bottom: -2px;
-  }
-
-  span {
-    margin-bottom: 0;
-  }
-}
-
 ::ng-deep .custom-dialog-container {
-  .mat-dialog-container {
+  .mat-mdc-dialog-container {
     width: 330px;
     min-height: 165px;
     padding: 5px;
@@ -210,7 +199,7 @@ mat-progress-bar {
   }
 
   .closeDialogTitle {
-    font-size: 14;
+    font-size: 15px;
     font-weight: 500;
     margin-left: 15px;
   }
@@ -220,20 +209,25 @@ mat-progress-bar {
     margin-top: 2px;
   }
 
-  .mat-dialog-content {
+  mat-dialog-content {
     padding: 0 1em 0 1em;
     margin: 5px;
 
     p {
       margin-top: 15px;
-      font-size: 15px;
+      font-size: 14px;
     }
   }
 
-  .mat-dialog-actions {
+  mat-dialog-actions {
     justify-content: space-between;
     padding: 0 8px;
     min-height: 42px;
     margin-bottom: 2px;
   }
+}
+
+.questionTitle {
+  padding: 0;
+  margin: 0;
 }
