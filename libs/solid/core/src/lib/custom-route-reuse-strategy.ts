@@ -13,7 +13,7 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
 
   store(
     route: ActivatedRouteSnapshot,
-    detachedTree: DetachedRouteHandle
+    detachedTree: DetachedRouteHandle,
     // eslint-disable-next-line @typescript-eslint/no-empty-function
   ): void {}
 
@@ -27,7 +27,7 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
 
   shouldReuseRoute(
     future: ActivatedRouteSnapshot,
-    curr: ActivatedRouteSnapshot
+    curr: ActivatedRouteSnapshot,
   ): boolean {
     const reuse = future.routeConfig === curr.routeConfig;
     if (reuse && future.data.noReuse) {

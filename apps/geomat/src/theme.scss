@@ -89,14 +89,15 @@ $quiz-incorrect: mat.define-palette(mat.$red-palette, 700, 200, 600);
 // The warn palette is optional (defaults to red).
 $app-warn: mat.define-palette(mat.$red-palette);
 
-
 // Create the theme object (a Sass map containing all of the palettes) - changed since Angular 15
-$app-theme: mat.define-light-theme((
+$app-theme: mat.define-light-theme(
+  (
     color: (
       primary: $app-primary,
       accent: $app-accent,
-      warn: $app-warn
+      warn: $app-warn,
     ),
     typography: mat.define-typography-config(),
     density: 0,
-));
+  )
+);

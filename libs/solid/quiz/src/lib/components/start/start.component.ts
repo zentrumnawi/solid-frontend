@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import {
   LoadQuizQuestions,
   StartQuizSession,
-  ToggleExpertMode
+  ToggleExpertMode,
 } from '../../state/quiz.actions';
 import { Observable, Subject } from 'rxjs';
 import { QuizState } from '../../state/quiz.state';
@@ -16,14 +16,14 @@ import { MatChipListboxChange } from '@angular/material/chips';
 @Component({
   selector: 'solid-quiz-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
   @Select(QuizState.getExpertMode) expertMode!: boolean | false;
-  
+
   private $destroyed = new Subject();
-  
+
   expertModeStatus = false;
   questionCount = 10;
   chosenTags = [];
@@ -32,16 +32,15 @@ export class StartComponent implements OnDestroy, OnInit {
   tags: string[] = [];
   difficulties: number[] = [];
 
-  constructor(private _store: Store) {
-  }
+  constructor(private _store: Store) {}
 
   public onStartClick() {
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
         this.questionCount,
         this.chosenTags,
-        this.chosenDifficulty
-      )
+        this.chosenDifficulty,
+      ),
     );
     quizLoaded.subscribe((res) => {
       if (res.quiz.questions.length > 0) {

@@ -66,8 +66,8 @@ export class SingleChoiceQuestionComponent implements OnChanges {
     this.nextQuestionClicked.emit(this.correct);
   }
 
-  public getIconClass(answer : QuizAnswer) {
-    if(this.showAnswers) {
+  public getIconClass(answer: QuizAnswer) {
+    if (this.showAnswers) {
       return answer.correct ? 'correctIcon' : 'incorrectIcon';
     }
 

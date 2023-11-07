@@ -23,7 +23,7 @@ mat-radio-group {
         opacity: 0;
       }
 
-      .mdc-radio--disabled+label {
+      .mdc-radio--disabled + label {
         padding: 0 5px;
       }
     }

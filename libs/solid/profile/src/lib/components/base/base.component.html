@@ -30,7 +30,12 @@
         "
         (focus)="isSearchBarOpen = true"
       />
-      <button class="searchBtn" mat-icon-button matSuffix (click)="Filter.setValue('')">
+      <button
+        class="searchBtn"
+        mat-icon-button
+        matSuffix
+        (click)="Filter.setValue('')"
+      >
         <mat-icon>
           {{ Filter.value === '' ? 'search' : 'close' }}
         </mat-icon>

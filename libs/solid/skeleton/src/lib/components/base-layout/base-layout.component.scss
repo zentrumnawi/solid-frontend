@@ -73,11 +73,11 @@
     justify-content: flex-end;
     margin-top: 8px;
     margin-right: 0.3em;
-    
+
     .button {
       background-color: white;
       border-radius: 10px 10px 0 0;
-      
+
       ::ng-deep {
         .mat-icon {
           transform: scale(1.5);

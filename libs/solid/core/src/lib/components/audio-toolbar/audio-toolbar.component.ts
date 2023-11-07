@@ -8,7 +8,7 @@ import {
   OnChanges,
   OnInit,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
@@ -17,7 +17,7 @@ import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dia
 @Component({
   selector: 'solid-core-audio-toolbar',
   templateUrl: './audio-toolbar.component.html',
-  styleUrls: ['./audio-toolbar.component.scss']
+  styleUrls: ['./audio-toolbar.component.scss'],
 })
 export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   @Input() public audiosrc!: string;
@@ -43,7 +43,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     private _dialog: MatDialog,
-    private _breakpointObsever: BreakpointObserver
+    private _breakpointObsever: BreakpointObserver,
   ) {}
 
   ngOnInit(): void {
@@ -66,7 +66,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
         'iPod Simulator',
         'iPad',
         'iPhone',
-        'iPod'
+        'iPod',
       ].includes(navigator.platform) ||
       navigator.userAgent.includes('iPad') ||
       navigator.userAgent.includes('iPhone') ||
@@ -163,9 +163,9 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
     this._dialog.open(MediaErrorDialogComponent, {
       data: {
         title: 'Fehler',
-        content: 'Audiodatei konnte nicht geladen werden.'
+        content: 'Audiodatei konnte nicht geladen werden.',
       },
-      panelClass: 'solid-core-media-error-dialog'
+      panelClass: 'solid-core-media-error-dialog',
     });
     return;
   }

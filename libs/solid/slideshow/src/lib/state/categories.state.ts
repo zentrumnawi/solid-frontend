@@ -16,7 +16,7 @@ export type CategoriesStateModel = SlideshowCategory[];
 export class CategoriesState {
   constructor(
     private _http: HttpClient,
-    @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
   ) {}
 
   @Selector()
@@ -50,7 +50,7 @@ export class CategoriesState {
         }),
         tap((res) => {
           ctx.setState([...res.map((categories) => categories)]);
-        })
+        }),
       );
   }
 }

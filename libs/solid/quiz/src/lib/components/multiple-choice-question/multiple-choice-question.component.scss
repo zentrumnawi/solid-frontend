@@ -20,7 +20,10 @@ mat-checkbox {
       padding: 11px 5px;
     }
 
-    .mdc-checkbox .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark {
+    .mdc-checkbox
+      .mdc-checkbox__native-control:enabled
+      ~ .mdc-checkbox__background
+      .mdc-checkbox__checkmark {
       color: white;
     }
 

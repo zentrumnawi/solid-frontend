@@ -21,23 +21,45 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Nachricht</mat-label>
-        <textarea cdkAutosizeMinRows="20" cdkTextareaAutosize formControlName="message" matInput></textarea>
+        <textarea
+          cdkAutosizeMinRows="20"
+          cdkTextareaAutosize
+          formControlName="message"
+          matInput
+        ></textarea>
       </mat-form-field>
     </form>
   </mat-dialog-content>
   <div class="additional-container">
-    <mat-label class="location" *ngIf="getLocation()">Fehler gefunden in: {{ getLocation() }}</mat-label>
+    <mat-label class="location" *ngIf="getLocation()"
+      >Fehler gefunden in: {{ getLocation() }}</mat-label
+    >
     <mat-checkbox [(ngModel)]="privacyChecked">
-      <p class="privacy-text"> Hiermit nehme ich die
-        <a class="privacy-link" (click)="onPrivacyClick()">Datenschutzerklärung</a>
-        zur Kenntnis und stimme der Speicherung der in diesem Formular angegebenen
-        Daten zu.
+      <p class="privacy-text">
+        Hiermit nehme ich die
+        <a class="privacy-link" (click)="onPrivacyClick()"
+          >Datenschutzerklärung</a
+        >
+        zur Kenntnis und stimme der Speicherung der in diesem Formular
+        angegebenen Daten zu.
       </p>
     </mat-checkbox>
   </div>
   <mat-dialog-actions class="button-container">
-    <button class="cancelBtn" type="submit" (click)="onCancelClick()" mat-button>Abbrechen</button>
-    <button class="sendBtn" [disabled]="!privacyChecked" (click)="onOkClick()" mat-button>
+    <button
+      class="cancelBtn"
+      type="submit"
+      (click)="onCancelClick()"
+      mat-button
+    >
+      Abbrechen
+    </button>
+    <button
+      class="sendBtn"
+      [disabled]="!privacyChecked"
+      (click)="onOkClick()"
+      mat-button
+    >
       Absenden
     </button>
   </mat-dialog-actions>

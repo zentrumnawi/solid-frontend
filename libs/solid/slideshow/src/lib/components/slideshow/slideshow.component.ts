@@ -55,7 +55,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
       setTimeout(() => {
         if (this.Stepper) {
           const pagePosition = this.slideshow?.pages.findIndex(
-            (page) => page.id === Number.parseInt(this.slideshowPageid)
+            (page) => page.id === Number.parseInt(this.slideshowPageid),
           );
           if (pagePosition !== -1) {
             this.Stepper.selectedIndex = pagePosition;
@@ -71,7 +71,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
     @Inject(SOLID_SLIDESHOW_APP_ROUTING_CONFIG) public routingConfig: any,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -112,7 +112,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
       this.scrollToTop();
       this.router.navigate(
         [`../${this.slideshow?.pages[this.page_index].id}`],
-        { relativeTo: this.route.firstChild }
+        { relativeTo: this.route.firstChild },
       );
     }
   }
@@ -124,7 +124,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
       this.scrollToTop();
       this.router.navigate(
         [`../${this.slideshow?.pages[this.page_index].id}`],
-        { relativeTo: this.route.firstChild }
+        { relativeTo: this.route.firstChild },
       );
     }
   }

@@ -61,9 +61,7 @@
         opacity: 0;
       }
     }
-
   }
-
 
   .additional-container {
     display: flex;
@@ -116,7 +114,7 @@
       border-top-left-radius: 0px !important;
       border-top-right-radius: 0px !important;
     }
-  
+
     .button-container {
       padding-bottom: 25px;
     }
@@ -131,7 +129,7 @@
         }
       }
     }
-  
+
     @media (min-height: 741px) {
       .feedback-content {
         ::ng-deep {

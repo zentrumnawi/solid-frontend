@@ -38,15 +38,15 @@ export class ProfileState {
   constructor(
     private http: HttpClient,
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
-    private _defService: ProfileDefinitionService
+    private _defService: ProfileDefinitionService,
   ) {}
 
   @Selector()
   static selectProfileAndNode(
-    state: ProfileStateModel
+    state: ProfileStateModel,
   ): (
     profileId?: number,
-    profileType?: string
+    profileType?: string,
   ) => { profile: Profile; node: TreeNode } | null {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
@@ -95,11 +95,11 @@ export class ProfileState {
   private static findProfileDeep(
     node: TreeNode,
     profileId: number,
-    profileType?: string
+    profileType?: string,
   ): { profile: Profile; node: TreeNode } | null {
     const profile = profileType
       ? node.profiles.find(
-          (p) => p.id === profileId && p.def_type === profileType
+          (p) => p.id === profileId && p.def_type === profileType,
         )
       : node.profiles.find((p) => p.id === profileId); // temporary for PLANTY
     if (profile) {
@@ -149,7 +149,7 @@ export class ProfileState {
                       sub_name: profileSubName,
                       type: 'profile',
                       mediaObjects: profile.media_objects.map(
-                        (m: MediaObjectModel) => new MediaModel(m)
+                        (m: MediaObjectModel) => new MediaModel(m),
                       ),
                       def_type: profiles[0].split('_')[0],
                     };
@@ -166,7 +166,7 @@ export class ProfileState {
                       ...profile,
                       type: 'profile',
                       mediaObjects: profile.media_objects.map(
-                        (m: MediaObjectModel) => new MediaModel(m)
+                        (m: MediaObjectModel) => new MediaModel(m),
                       ),
                     }))
                   : multi_profiles[0]
@@ -187,7 +187,7 @@ export class ProfileState {
           };
           const flat = mapIt([], nodes);
           ctx.patchState({ nodes, profiles: flat });
-        })
+        }),
       );
   }
 
@@ -201,7 +201,7 @@ export class ProfileState {
         ctx.patchState({
           definition,
         });
-      })
+      }),
     );
   }
 
@@ -216,7 +216,7 @@ export class ProfileState {
         ctx.patchState({
           definition_swagger,
         });
-      })
+      }),
     );
   }
 }

@@ -23,7 +23,7 @@ export class MainMenuComponent implements OnInit {
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
-    public feedback: FeedbackService
+    public feedback: FeedbackService,
   ) {
     this.messages = localStorage.getItem('solid_skeleton_messages');
     this.msgNumber = 0;

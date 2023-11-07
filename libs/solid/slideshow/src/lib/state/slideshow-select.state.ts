@@ -16,7 +16,7 @@ export type SlideshowSelectStateModel = SlideshowSelectApi[];
 export class SlideshowSelectState {
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
-    private _http: HttpClient
+    private _http: HttpClient,
   ) {}
 
   @Selector()
@@ -54,7 +54,7 @@ export class SlideshowSelectState {
         }),
         tap((res) => {
           ctx.setState([...res].sort((a, b) => a.position - b.position));
-        })
+        }),
       );
   }
 }

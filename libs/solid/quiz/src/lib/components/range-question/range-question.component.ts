@@ -4,7 +4,7 @@ import { QuizQuestion } from '../../state/quiz.model';
 @Component({
   selector: 'solid-quiz-range-question',
   templateUrl: './range-question.component.html',
-  styleUrls: ['./range-question.component.scss']
+  styleUrls: ['./range-question.component.scss'],
 })
 export class RangeQuestionComponent {
   @Input() public question!: QuizQuestion;

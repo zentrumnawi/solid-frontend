@@ -60,7 +60,11 @@
         </div>
         <div class="controlElement" id="questionCount">
           <mat-slider min="1" max="30" step="1">
-            <input matSliderThumb [value]="questionCount" (valueChange)="onSliderChange($event)">
+            <input
+              matSliderThumb
+              [value]="questionCount"
+              (valueChange)="onSliderChange($event)"
+            />
           </mat-slider>
           <div class="displayValueBox">
             {{ questionCount }}
@@ -116,7 +120,11 @@
             <mat-chip-option
               *ngFor="let tag of tags"
               [value]="tag"
-              [ngClass]="tags.length > 6 ? 'mat-chip-option-small' : 'mat-chip-option-large'"
+              [ngClass]="
+                tags.length > 6
+                  ? 'mat-chip-option-small'
+                  : 'mat-chip-option-large'
+              "
             >
               {{ tag }}
             </mat-chip-option>

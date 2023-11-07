@@ -31,7 +31,7 @@ export class BaseLayoutComponent implements OnInit {
     public feedback: FeedbackService,
     @Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig,
     private _breakpointObserver: BreakpointObserver,
-    private _router: Router
+    private _router: Router,
   ) {}
 
   public ngOnInit() {
