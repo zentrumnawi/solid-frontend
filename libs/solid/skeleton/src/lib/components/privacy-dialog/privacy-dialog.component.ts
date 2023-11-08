@@ -11,7 +11,7 @@ import {
   styleUrls: ['./privacy-dialog.component.scss'],
 })
 export class PrivacyDialogComponent {
-  public PrivacyContentComponent: Type<any>;
+  public PrivacyContentComponent: Type<unknown>;
 
   constructor(
     private _ref: MatDialogRef<PrivacyDialogComponent>,

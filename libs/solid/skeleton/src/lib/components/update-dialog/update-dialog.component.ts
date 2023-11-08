@@ -13,6 +13,7 @@ export class UpdateDialogComponent {
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
     // callback is defined as any to prevent ng-packagr issues
     // { cb: () => void }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Inject(MAT_DIALOG_DATA) data: any,
   ) {
     this.cb = data.cb;

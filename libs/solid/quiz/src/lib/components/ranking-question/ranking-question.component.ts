@@ -10,6 +10,11 @@ import {
 } from '@angular/core';
 import { QuizQuestion } from '../../state/quiz.model';
 
+interface Answer {
+  text: string;
+  correct_position: number;
+}
+
 @Component({
   selector: 'solid-quiz-ranking-question',
   templateUrl: './ranking-question.component.html',
@@ -23,7 +28,7 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
   public correct = 0;
   public index!: number;
 
-  public answersList: any[] = [];
+  public answersList: Answer[] = [];
 
   public hasSubsequence = false;
   public subsequence: number[] = [];
@@ -44,7 +49,7 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
     }
   }
 
-  drop(event: CdkDragDrop<any[]>) {
+  drop(event: CdkDragDrop<Answer[]>) {
     this.correct = -1;
     moveItemInArray(this.answersList, event.previousIndex, event.currentIndex);
   }
@@ -83,14 +88,14 @@ export class RankingQuestionComponent implements OnInit, OnChanges {
     this.hasSubsequence = maxLength < 3 ? false : true;
   }
 
-  public isCorrectPosition(answer: any) {
+  public isCorrectPosition(answer: Answer) {
     if (!this.showAnswers) {
       return false;
     }
     return this.answersList.indexOf(answer) + 1 == answer.correct_position;
   }
 
-  public isInCorrectPosition(answer: any) {
+  public isInCorrectPosition(answer: Answer) {
     if (!this.showAnswers) {
       return false;
     }

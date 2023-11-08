@@ -36,7 +36,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('toolbar') public Toolbar?: ElementRef;
   @ViewChild('navigation') public Navigation?: ElementRef;
   @ViewChild('slideshow_container') public slideshow_container?: ElementRef;
-  @Output() backButtonClick = new EventEmitter<any>();
+  @Output() backButtonClick = new EventEmitter<void>();
 
   public slideshow!: Slideshow | null;
   public page_index = 0;
@@ -68,6 +68,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Inject(SOLID_SLIDESHOW_APP_ROUTING_CONFIG) public routingConfig: any,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
@@ -129,6 +130,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public onPanEnd($event: any) {
     if ($event.deltaX > 100) {
       this.onPrevStepClick();

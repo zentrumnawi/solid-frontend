@@ -71,7 +71,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   @Input()
   public set profile(profile: Profile) {
     this._profile = profile;
-    this.ImageLoaded = profile.mediaObjects.map((_) => false);
+    this.ImageLoaded = profile.mediaObjects.map(() => false);
     if (this.shouldExpandAllgemein) {
       this.expansionPanel?.open(); // expand the category-panel even if it was closed in other profile
     }
@@ -147,7 +147,10 @@ export class DetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  public shouldDisplayProperty(property: ProfileProperty, profile_obj: any) {
+  public shouldDisplayProperty(
+    property: ProfileProperty,
+    profile_obj: Profile,
+  ) {
     if (property.required) {
       return true;
     }

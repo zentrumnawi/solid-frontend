@@ -67,6 +67,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() selectProfileTitle = new EventEmitter<string>();
   @Input() isDiveApp = false;
   @Input() collapseTree = false;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @ViewChild('profileTree') profileTree: any;
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
@@ -148,7 +149,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public ngOnInit(): void {
-    this.profiles.subscribe((profiles: any) => {
+    this.profiles.subscribe((profiles: TreeNode[]) => {
       this.DataSource.data = profiles;
       this.expandSelectedNode();
       if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
@@ -156,12 +157,14 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.selectedElements.changes.subscribe((_) => this.scrollTo());
+    this.selectedElements.changes.subscribe(() => this.scrollTo());
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    this.expandSelectedNode();
-    if (this.collapseTree) this.TreeControl.collapseAll();
+    if (changes) {
+      this.expandSelectedNode();
+      if (this.collapseTree) this.TreeControl.collapseAll();
+    }
   }
 
   /** Get whether the node has children or not. */

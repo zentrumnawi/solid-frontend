@@ -1,6 +1,5 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
-  QuizAnswer,
   QuizMetadata,
   QuizQuestion,
   QuizQuestionApi,

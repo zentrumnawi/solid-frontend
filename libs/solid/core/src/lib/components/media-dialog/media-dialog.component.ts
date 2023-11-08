@@ -14,6 +14,7 @@ import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { Viewer } from 'openseadragon';
 import OpenSeadragon from 'openseadragon';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { ImageModel, MediaModel } from '../../models';
 
 export enum APP {
   DIVE = 'Div-e',
@@ -44,14 +45,21 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   title_container_width = 0;
   title_width = 0;
   public firstMovingAnimation = true;
-  public timeOut_1: any;
-  public timeOut_2: any;
+  public timeOut_1?: number;
+  public timeOut_2?: number;
 
   @ViewChild('title_container', { static: false })
   public title_container?: ElementRef;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      mediaObject: MediaModel;
+      name: string;
+      type: string;
+      image: ImageModel;
+      hasNavigationInDialog: boolean;
+    },
     @Inject(MAT_DIALOG_DATA) public name: string,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     private _breakpointObserver: BreakpointObserver,
@@ -81,7 +89,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       if (this.data.type === 'mediaObject') {
-        let dzi = this.data.mediaObject.deepZoomLink;
+        let dzi = this.data.mediaObject.deepZoomLink as string;
         if (this.dziInitialized) {
           this._viewer?.open(dzi);
         } else {
@@ -154,14 +162,14 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
   public handleLongTitle() {
     clearTimeout(this.timeOut_1);
     clearTimeout(this.timeOut_2);
-    this.timeOut_1 = setTimeout(() => {
+    this.timeOut_1 = window.setTimeout(() => {
       this.firstMovingAnimation = true;
       this.title_container_width =
         this.title_container?.nativeElement.offsetWidth;
       this.title_width =
         this.title_container?.nativeElement.firstElementChild.offsetWidth;
       if (this.title_container?.nativeElement.firstElementChild) {
-        this.timeOut_2 = setTimeout(() => {
+        this.timeOut_2 = window.setTimeout(() => {
           this.firstMovingAnimation = false;
         }, 10500);
       }

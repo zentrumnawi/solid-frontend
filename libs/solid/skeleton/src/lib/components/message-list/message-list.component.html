@@ -16,8 +16,8 @@
     <div class="content-container">
       <img
         *ngIf="msg.img"
-        [src]="msg.img.img.thumbnail"
-        [alt]="msg.img.img_alt"
+        [src]="msg.img.getRawImage('thumbnail')"
+        [alt]="msg.img.alt"
       />
       <div
         class="text"

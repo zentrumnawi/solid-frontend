@@ -1,6 +1,8 @@
+import { ImageModel } from '@zentrumnawi/solid-core';
+
 export interface MessageModel {
   id: number;
-  img: any;
+  img: ImageModel;
   type: MessageType;
   title: string;
   text: string;

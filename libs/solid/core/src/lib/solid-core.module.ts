@@ -60,7 +60,7 @@ import { MEDIA_DIALOG_TOKEN } from './media-dialog-token';
 })
 export class SolidCoreModule {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor(title: TitleService) {}
+  constructor() {}
 
   public static forRoot(
     config: SolidCoreConfig,

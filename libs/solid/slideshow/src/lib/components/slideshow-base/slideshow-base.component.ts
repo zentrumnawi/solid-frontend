@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { SlideshowState } from '../../state/slideshow.state';
 import { Observable, Subject } from 'rxjs';

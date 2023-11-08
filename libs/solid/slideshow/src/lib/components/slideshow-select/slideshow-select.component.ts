@@ -35,7 +35,11 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   public Categories!: Observable<SlideshowCategory[]>;
   @Select(SlideshowSelectState.getSlideshowSelect)
   public SlideshowSelect!: Observable<SlideshowSelectApi[]>;
-  @Output() selectSlideshow = new EventEmitter<any>();
+  @Output() selectSlideshow = new EventEmitter<{
+    slug: string;
+    slideshowid: number;
+    pageid: number;
+  }>();
 
   public lastScrollTop = 0;
   public toolbar_up = false;
@@ -45,6 +49,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   public step?: number;
 
   constructor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Inject(SOLID_SLIDESHOW_APP_ROUTING_CONFIG) public routingConfig: any,
     private route: ActivatedRoute,
     private router: Router,

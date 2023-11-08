@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ProfileDefinitionService } from './profile-definition.service';
 import {
   HttpClientTestingModule,
-  HttpTestingController,
+  // HttpTestingController,
 } from '@angular/common/http/testing';
 import { SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { Schema } from 'swagger-schema-official';
@@ -15,7 +15,7 @@ import {
 
 describe('ProfileDefinitionService', () => {
   let service: ProfileDefinitionService;
-  let httpMock: HttpTestingController;
+  // let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,7 +31,7 @@ describe('ProfileDefinitionService', () => {
       ],
     });
     service = TestBed.inject(ProfileDefinitionService);
-    httpMock = TestBed.inject(HttpTestingController);
+    // httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -128,6 +128,7 @@ describe('ProfileDefinitionService', () => {
             properties: { leaf: testSwagger.definitions.Plant.properties.leaf },
           },
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
       '#/definitions/Plant',
     );

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   AfterViewInit,
   Component,
@@ -85,10 +86,12 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    this.innerWidth = window.innerWidth;
-    if (this.innerWidth > 700 && this.landingRef) {
-      this.landingRef.close();
-      this.showTour = false;
+    if (event) {
+      this.innerWidth = window.innerWidth;
+      if (this.innerWidth > 700 && this.landingRef) {
+        this.landingRef.close();
+        this.showTour = false;
+      }
     }
   }
 

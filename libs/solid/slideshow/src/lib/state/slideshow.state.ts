@@ -201,7 +201,7 @@ export class SlideshowState {
     if (currentState.some((sl) => sl.id === Number.parseInt(payload))) {
       // if slideshow is existed in the state
       // to see the data is taken from state
-      console.log('slideshow not call api');
+      //console.log('slideshow not call api');
       return;
     }
     return this._http

@@ -38,8 +38,8 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   public prevTab = -1;
 
-  public InfoPageContentComponent: Type<any>;
-  public PrivacyContentComponent: Type<any>;
+  public InfoPageContentComponent: Type<unknown>;
+  public PrivacyContentComponent: Type<unknown>;
 
   tabIndex = 0;
   @ViewChild('info_container') public info_container?: ElementRef;
@@ -80,7 +80,7 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.msgService.updateMessageState(this.messages);
   }
 
-  moveTabToPrivacy(event: any) {
+  moveTabToPrivacy(event: MouseEvent) {
     event.preventDefault();
     this.tabIndex = 1;
   }

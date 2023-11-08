@@ -18,7 +18,7 @@ export class MarkdownService {
     this._markdownIt = md;
   }
 
-  public compile(data: string, inline: boolean): any {
+  public compile(data: string, inline: boolean): string | null {
     return this._domSanitizer.sanitize(
       SecurityContext.HTML,
       inline

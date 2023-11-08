@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ErrorHandler,

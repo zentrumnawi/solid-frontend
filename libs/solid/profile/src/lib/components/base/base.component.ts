@@ -28,6 +28,7 @@ import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
 }
@@ -87,12 +88,12 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public title_width = 0;
   public firstMovingAnimation = true;
   public stopAnimation = true;
-  public timeOut_1: any;
-  public timeOut_2: any;
+  public timeOut_1?: number;
+  public timeOut_2?: number;
   public collapseTree = false;
   @Output() profileTitle = new EventEmitter<string>();
 
-  @Select(ProfileState.selectProfile) profile$!: Observable<any>;
+  @Select(ProfileState.selectProfile) profile$!: Observable<Profile[]>;
   isLoading = true;
 
   public mainSubscription!: Subscription;
@@ -119,7 +120,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       new LoadDefinitionSwagger(),
     ]);
 
-    this.profileSubscription = this.profile$?.subscribe((res: any) => {
+    this.profileSubscription = this.profile$?.subscribe((res: Profile[]) => {
       if (Array.isArray(res) && res.length != 0) this.isLoading = false;
     });
   }
@@ -235,7 +236,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.filterSubscription = this.Filter.valueChanges.subscribe((_) =>
+    this.filterSubscription = this.Filter.valueChanges.subscribe(() =>
       this.FilterValue.next(this.Filter.value),
     );
   }
@@ -243,13 +244,13 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    this.profileSubscription = this.profile$.subscribe((res) => {
+    this.profileSubscription = this.profile$.subscribe((res: Profile[]) => {
       if (Array.isArray(res) && res.length != 0) {
         if (
           localStorage.getItem('hide_profile_tour') == 'false' ||
           localStorage.getItem('hide_profile_tour') == null
         ) {
-          setTimeout(() => {
+          window.setTimeout(() => {
             this.introService.profileTour((_targetElement: Element) => {
               try {
                 const id = _targetElement.id;
@@ -259,7 +260,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
                   this.coreConfig.profileTour.location.profileTree;
                 this.collapseTree = false;
                 if (id != 'profile')
-                  setTimeout(() => {
+                  window.setTimeout(() => {
                     this.introService.introProfile.refresh(true);
                   }, 365);
                 if (id == '') {
@@ -270,7 +271,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
                     const currentStep =
                       this.introService.introProfile._currentStep;
                     steps.splice(currentStep, 1);
-                    setTimeout(() => {
+                    window.setTimeout(() => {
                       this.introService.introProfile
                         .goToStep(currentStep)
                         .start();
@@ -281,7 +282,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
                     this.navigateTo(treeLocation);
                   this.collapseTree = true;
                 }
-                setTimeout(() => {
+                window.setTimeout(() => {
                   this.introService.introProfile.refresh(true);
                 }, 0.1);
               } catch (error) {
@@ -353,7 +354,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.SwipeLeft.id > 0) {
       this.selectProfile(this.SwipeLeft);
     }
-    setTimeout(() => {
+    window.setTimeout(() => {
       this.profileTitle.emit(this.SelectedProfile?.name);
     }, 10);
   }
@@ -362,25 +363,15 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.SwipeRight.id > 0) {
       this.selectProfile(this.SwipeRight);
     }
-    setTimeout(() => {
+    window.setTimeout(() => {
       this.profileTitle.emit(this.SelectedProfile?.name);
     }, 10);
-  }
-
-  public onPanEnd($event: any) {
-    if ($event.deltaX > 100 && this.SwipeLeft) {
-      $event.preventDefault();
-      this.swipeLeft();
-    } else if ($event.deltaX < -100 && this.SwipeRight) {
-      $event.preventDefault();
-      this.swipeRight();
-    }
   }
 
   private calculateLayout() {
     const split = this.contentContainer.nativeElement.clientWidth >= 900;
     if (split !== this.SplitLayout) {
-      setTimeout(() => {
+      window.setTimeout(() => {
         this.SplitLayout = split;
       }, 0);
     }
@@ -401,7 +392,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public getProfileShort(profile: any): ProfileShort {
+  public getProfileShort(profile: Profile | undefined): ProfileShort {
     const profileId = profile?.id || -1;
     const profileType = profile?.def_type;
     return { id: profileId, type: profileType };
@@ -416,7 +407,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.stopAnimation = true;
     clearTimeout(this.timeOut_1);
     clearTimeout(this.timeOut_2);
-    this.timeOut_1 = setTimeout(() => {
+    this.timeOut_1 = window.setTimeout(() => {
       this.stopAnimation = false;
       this.firstMovingAnimation = true;
       this.title_container_width =
@@ -425,7 +416,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.titleContainer?.nativeElement.firstElementChild.firstElementChild
           .offsetWidth;
       if (this.titleContainer?.nativeElement.firstElementChild) {
-        this.timeOut_2 = setTimeout(() => {
+        this.timeOut_2 = window.setTimeout(() => {
           this.firstMovingAnimation = false;
         }, 10000);
       }

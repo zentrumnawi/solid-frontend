@@ -58,7 +58,9 @@ export class RangeQuestionComponent {
   }
 
   onSliderChange(value: number) {
-    this.correct = -1;
+    if (value) {
+      this.correct = -1;
+    }
   }
 
   public onNextQuestionClick() {

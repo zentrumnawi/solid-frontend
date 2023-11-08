@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Profile, TreeNode, TreeNodeApi } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
