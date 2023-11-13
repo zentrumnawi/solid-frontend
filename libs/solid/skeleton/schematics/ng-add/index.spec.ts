@@ -44,17 +44,16 @@ describe('ng-add', () => {
         appOptions,
         appTree,
       );
-      appTree = await testRunner.runSchematic(
-        'ng-add',
-        {
-          name: 'test',
-        },
-        appTree,
-      );
     });
 
     it('files created', async () => {
-      expect(appTree.files).toEqual(
+      const tree = await testRunner.runSchematic(
+        'ng-add',
+        { name: 'test' },
+        appTree,
+      );
+
+      expect(tree.files).toEqual(
         expect.arrayContaining([
           '/projects/bar/src/styles.scss',
           '/projects/bar/src/theme.scss',
