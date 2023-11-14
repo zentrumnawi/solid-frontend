@@ -117,7 +117,6 @@ export class SolidSkeletonModule {
   public static forRoot(
     cfg: SolidSkeletonConfig,
   ): ModuleWithProviders<SolidSkeletonModule> {
-    // const errHandler = createErrorHandler(cfg.sentry?.errorHandlerOptions);
     return {
       ngModule: SolidSkeletonModule,
       providers: [
