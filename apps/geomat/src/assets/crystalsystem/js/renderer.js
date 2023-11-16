@@ -41,7 +41,7 @@ function init() {
     50,
     window.innerWidth / window.innerHeight,
     1,
-    1000,
+    1000
   );
   scene.add(perspectivecam);
   perspectivecam.position.set(15, 20, 30);
@@ -53,7 +53,7 @@ function init() {
     window.innerHeight / 50,
     window.innerHeight / -50,
     1,
-    1000,
+    1000
   );
   scene.add(isocam);
   isocam.position.set(15, 20, 30);
@@ -74,7 +74,7 @@ function init() {
 
   perspectivecontrols = new THREE.OrbitControls(
     perspectivecam,
-    renderer.domElement,
+    renderer.domElement
   );
   perspectivecontrols.minDistance = 20;
   perspectivecontrols.maxDistance = 50;

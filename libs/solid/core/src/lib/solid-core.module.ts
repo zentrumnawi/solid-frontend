@@ -63,7 +63,7 @@ export class SolidCoreModule {
   constructor() {}
 
   public static forRoot(
-    config: SolidCoreConfig,
+    config: SolidCoreConfig
   ): ModuleWithProviders<SolidCoreModule> {
     return {
       ngModule: SolidCoreModule,

@@ -47,7 +47,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('contentContainer', { static: false })
   public contentContainer!: ElementRef;
   @ViewChild('spinnerContainer', { static: false }) set spinnerContainer(
-    element: ElementRef,
+    element: ElementRef
   ) {
     if (element) {
       const windowWidth = document.documentElement.clientWidth;
@@ -68,7 +68,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public $profileAndCategorySelector!: Observable<
     (
       profileId?: number,
-      profileType?: string | null,
+      profileType?: string | null
     ) => { profile: Profile; node: TreeNode } | null
   >;
   public $paramMap: Observable<ParamMap>;
@@ -106,7 +106,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     private introService: IntroService,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     private _route: Router,
-    private _activatedRoute: ActivatedRoute,
+    private _activatedRoute: ActivatedRoute
   ) {
     this.$paramMap = this._activatedRoute.paramMap as Observable<ParamMap>;
     this.$queryParams = this._activatedRoute.queryParams as Observable<{
@@ -192,7 +192,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           };
           if (this.View === 'grid' || filterStr !== '') {
             const flatIndex = profilesFlatFiltered.findIndex(
-              (p) => p.id === profileId && p.def_type === profileType,
+              (p) => p.id === profileId && p.def_type === profileType
             );
             if (flatIndex !== 0) {
               const profile = profilesFlatFiltered[flatIndex - 1];
@@ -204,16 +204,16 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             const index = profileAndNode.node.profiles.indexOf(
-              profileAndNode.profile,
+              profileAndNode.profile
             );
             if (!this.Filter.value) {
               const profileLeft = profileAndNode.node.profiles.find(
-                (p, i) => i === index - 1,
+                (p, i) => i === index - 1
               ) as Profile | undefined;
               swipeLeft = this.getProfileShort(profileLeft);
 
               const profileRight = profileAndNode.node.profiles.find(
-                (p, i) => i > index,
+                (p, i) => i > index
               ) as Profile | undefined;
               swipeRight = this.getProfileShort(profileRight);
             }
@@ -227,7 +227,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             swipeRight,
             swipeLeft,
           };
-        }),
+        })
       )
       .subscribe((v) => {
         this.SelectedProfile = v.selectedProfile;
@@ -237,7 +237,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.SwipeRight = v.swipeRight;
       });
     this.filterSubscription = this.Filter.valueChanges.subscribe(() =>
-      this.FilterValue.next(this.Filter.value),
+      this.FilterValue.next(this.Filter.value)
     );
   }
 
@@ -317,13 +317,13 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           view:
             this.SelectedProfile.def_type !== 'wine' ? this.View : undefined,
-        },
+        }
       );
     }
     return new Navigate(
       [`${this.baseUrl}`],
       { view: this.View },
-      { replaceUrl: true },
+      { replaceUrl: true }
     );
   }
 
@@ -413,8 +413,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       this.title_container_width =
         this.titleContainer?.nativeElement.offsetWidth;
       this.title_width =
-        this.titleContainer?.nativeElement.firstElementChild.firstElementChild
-          .offsetWidth;
+        this.titleContainer?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
       if (this.titleContainer?.nativeElement.firstElementChild) {
         this.timeOut_2 = window.setTimeout(() => {
           this.firstMovingAnimation = false;

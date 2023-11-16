@@ -53,7 +53,7 @@ export class MediaModel {
   }
 
   public getRawImage(
-    size: 'thumbnail' | 'small' | 'medium' | 'large' | 'original',
+    size: 'thumbnail' | 'small' | 'medium' | 'large' | 'original'
   ) {
     if (this.mediaType === 'image') {
       return this._mediaObject.file[size];

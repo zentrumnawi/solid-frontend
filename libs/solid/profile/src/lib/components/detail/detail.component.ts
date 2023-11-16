@@ -76,7 +76,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.expansionPanel?.open(); // expand the category-panel even if it was closed in other profile
     }
     this.MediaObjectsOnlyImages = this.profile.mediaObjects.filter(
-      (x) => x.mediaType === 'image',
+      (x) => x.mediaType === 'image'
     );
     this.onImageSelect(0);
   }
@@ -103,16 +103,16 @@ export class DetailComponent implements OnInit, OnDestroy {
     const generalInfoKey = 'general_information';
 
     const def_property = this.definitions.filter(
-      (def) => def.name === profile.def_type,
+      (def) => def.name === profile.def_type
     )[0].properties;
 
     const generalInfo = def_property.find(
-      (prop) => prop.key === generalInfoKey,
+      (prop) => prop.key === generalInfoKey
     );
 
     if (generalInfo) {
       const filter_def = def_property.filter(
-        (prop) => prop.key !== generalInfoKey,
+        (prop) => prop.key !== generalInfoKey
       );
       filter_def.unshift(generalInfo);
       return filter_def;
@@ -128,7 +128,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   public onImageSelect(index: number) {
     this.ImageSelected = index;
     this.ImageIndex = this.MediaObjectsOnlyImages.findIndex(
-      (media) => media.getProfilePosition - 1 === index,
+      (media) => media.getProfilePosition - 1 === index
     );
     if (this.profile.mediaObjects.length !== 0) {
       if (this.profile.mediaObjects[index].mediaType === 'audio') {
@@ -149,7 +149,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   public shouldDisplayProperty(
     property: ProfileProperty,
-    profile_obj: Profile,
+    profile_obj: Profile
   ) {
     if (property.required) {
       return true;

@@ -12,6 +12,6 @@ export class MediaErrorDialogComponent {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(MAT_DIALOG_DATA) public name: string,
-    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
   ) {}
 }

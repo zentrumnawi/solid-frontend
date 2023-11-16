@@ -14,7 +14,7 @@ export class UpdateDialogComponent {
     // callback is defined as any to prevent ng-packagr issues
     // { cb: () => void }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    @Inject(MAT_DIALOG_DATA) data: any,
+    @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.cb = data.cb;
   }

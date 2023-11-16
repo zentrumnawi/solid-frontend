@@ -35,7 +35,7 @@ export interface GlossaryStateModel {
 export class GlossaryState {
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
-    private _http: HttpClient,
+    private _http: HttpClient
   ) {}
 
   @Selector()
@@ -61,8 +61,8 @@ export class GlossaryState {
           });
           Object.keys(sections).forEach((sectionKey) =>
             sections[sectionKey].sort((a, b) =>
-              entries[a].term.localeCompare(entries[b].term),
-            ),
+              entries[a].term.localeCompare(entries[b].term)
+            )
           );
           const sectionArr = Object.entries(sections);
           sectionArr.sort((a, b) => a[0].localeCompare(b[0]));
@@ -70,7 +70,7 @@ export class GlossaryState {
         }),
         tap((v) => {
           ctx.patchState(v);
-        }),
+        })
       );
   }
 }

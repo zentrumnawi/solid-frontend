@@ -47,7 +47,7 @@ export class InfoComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
     route: ActivatedRoute,
-    private msgService: MessagesService,
+    private msgService: MessagesService
   ) {
     this.InfoPageContentComponent = cfg.infoPageContent;
     this.PrivacyContentComponent = cfg.privacyContent;

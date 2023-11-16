@@ -9,7 +9,7 @@ export class MarkdownService {
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) _config: SolidCoreConfig,
-    private _domSanitizer: DomSanitizer,
+    private _domSanitizer: DomSanitizer
   ) {
     const md = new MarkdownIt({
       html: true,
@@ -23,7 +23,7 @@ export class MarkdownService {
       SecurityContext.HTML,
       inline
         ? this._markdownIt.renderInline(data)
-        : this._markdownIt.render(data),
+        : this._markdownIt.render(data)
     );
   }
 }

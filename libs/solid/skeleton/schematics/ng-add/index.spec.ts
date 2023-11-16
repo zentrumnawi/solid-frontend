@@ -36,13 +36,13 @@ describe('ng-add', () => {
       appTree = await testRunner.runExternalSchematic(
         '@schematics/angular',
         'workspace',
-        workspaceOptions,
+        workspaceOptions
       );
       appTree = await testRunner.runExternalSchematic(
         '@schematics/angular',
         'application',
         appOptions,
-        appTree,
+        appTree
       );
     });
 
@@ -50,7 +50,7 @@ describe('ng-add', () => {
       const tree = await testRunner.runSchematic(
         'ng-add',
         { name: 'test' },
-        appTree,
+        appTree
       );
 
       expect(tree.files).toEqual(
@@ -65,7 +65,7 @@ describe('ng-add', () => {
           '/projects/bar/src/app/components/privacy/privacy.component.ts',
           '/projects/bar/src/app/components/privacy/privacy.component.scss',
           '/projects/bar/src/app/components/privacy/privacy.component.html',
-        ]),
+        ])
       );
     });
 

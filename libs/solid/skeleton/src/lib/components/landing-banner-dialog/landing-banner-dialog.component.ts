@@ -13,7 +13,7 @@ export class LandingBannerDialogComponent {
 
   constructor(
     private _ref: MatDialogRef<LandingBannerDialogComponent>,
-    @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig,
+    @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig
   ) {
     _ref.disableClose = true;
     this.landingInfo = coreConfig.landingBannerContent;

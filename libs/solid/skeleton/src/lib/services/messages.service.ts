@@ -21,7 +21,7 @@ export class MessagesService {
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
-    private _http: HttpClient,
+    private _http: HttpClient
   ) {
     this.getMessages().subscribe();
   }
@@ -59,7 +59,7 @@ export class MessagesService {
         }),
         tap((res) => {
           this.updateMessageState(res);
-        }),
+        })
       );
   }
 

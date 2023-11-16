@@ -35,7 +35,7 @@ export class SlideshowBaseComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(SOLID_SLIDESHOW_APP_ROUTING_CONFIG) public routingConfig: any,
     private store: Store,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

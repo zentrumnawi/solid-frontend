@@ -23,7 +23,7 @@ const ignoredProperties = [
 export class ProfileDefinitionService {
   constructor(
     private http: HttpClient,
-    @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
+    @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig
   ) {}
 
   //OpenAPI 3.0
@@ -54,7 +54,7 @@ export class ProfileDefinitionService {
           }
         }
         return listOfGroups;
-      }),
+      })
     );
   }
 
@@ -92,7 +92,7 @@ export class ProfileDefinitionService {
       if ((value as OpenApiReference).$ref) {
         const schema = this.resolveRef(
           swagger,
-          (value as OpenApiReference).$ref,
+          (value as OpenApiReference).$ref
         );
         properties.push({
           key,
@@ -102,14 +102,14 @@ export class ProfileDefinitionService {
           title: (schema as OpenApiSchema).title!,
           properties: this.definitionToGroup(
             swagger,
-            (value as OpenApiReference).$ref,
+            (value as OpenApiReference).$ref
           ),
         });
       } else {
         const pp = this.schemaToProperty(
           groupSchema,
           key,
-          value as OpenApiSchema,
+          value as OpenApiSchema
         );
         if (pp) {
           properties.push(pp);
@@ -122,7 +122,7 @@ export class ProfileDefinitionService {
   public schemaToProperty(
     parent: OpenApiSchema,
     key: string,
-    schema: OpenApiSchema,
+    schema: OpenApiSchema
   ): ProfileProperty | null {
     // TODO: Get enum field type from $ref in oneOf[0]
     if (schema.oneOf || schema.allOf) (schema.type as ParameterType) = 'string'; // workaround for enums
@@ -218,7 +218,7 @@ export class ProfileDefinitionService {
           }
 
           return listOfGroups;
-        }),
+        })
       );
   }
 
@@ -271,7 +271,7 @@ export class ProfileDefinitionService {
   public schemaToProperty_swagger(
     parent: Schema,
     key: string,
-    schema: Schema,
+    schema: Schema
   ): ProfileProperty | null {
     const { title, type } = schema;
     const required = parent.required?.includes(key) ?? false;

@@ -57,7 +57,7 @@ export class GlossaryComponent implements OnDestroy {
           });
         return { sections: filteredSections, entries: state.entries };
       }),
-      takeUntil(this.$destroyed),
+      takeUntil(this.$destroyed)
     );
   }
 

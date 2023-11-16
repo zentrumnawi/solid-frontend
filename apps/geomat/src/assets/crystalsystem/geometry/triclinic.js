@@ -8,7 +8,7 @@ function generate() {
   const a4 = new THREE.Vector3(
     (-2 - 2 + 1) * 1.5,
     (-4.5 + 3) * 1.5,
-    -3.5 * 1.5,
+    -3.5 * 1.5
   );
 
   //upper square

@@ -14,7 +14,7 @@ export function feedbackServiceFactory(
   http: HttpClient,
   dialog: MatDialog,
   coreConfig: SolidCoreConfig,
-  skeletonConfig: InternalSolidSkeletonConfig,
+  skeletonConfig: InternalSolidSkeletonConfig
 ) {
   if (skeletonConfig.feedbackEnabled) {
     return new FeedbackService(http, dialog, coreConfig);
@@ -26,7 +26,7 @@ export class FeedbackService {
   constructor(
     private _http: HttpClient,
     private _dialog: MatDialog,
-    private _config: SolidCoreConfig,
+    private _config: SolidCoreConfig
   ) {}
 
   public showDialog(location?: string, title?: string) {
@@ -49,7 +49,7 @@ export class FeedbackService {
       .post<unknown>(`${this._config.apiUrl}/contact`, value)
       .pipe(
         map(() => true),
-        catchError(() => of(false)),
+        catchError(() => of(false))
       );
   }
 }

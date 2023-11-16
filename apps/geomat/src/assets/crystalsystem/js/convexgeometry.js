@@ -29,7 +29,7 @@
 
     if (THREE.QuickHull === undefined) {
       console.error(
-        'THREE.ConvexBufferGeometry: ConvexBufferGeometry relies on THREE.QuickHull',
+        'THREE.ConvexBufferGeometry: ConvexBufferGeometry relies on THREE.QuickHull'
       );
     }
 
@@ -59,13 +59,13 @@
 
     this.addAttribute(
       'position',
-      new THREE.Float32BufferAttribute(vertices, 3),
+      new THREE.Float32BufferAttribute(vertices, 3)
     );
     this.addAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
   }
 
   ConvexBufferGeometry.prototype = Object.create(
-    THREE.BufferGeometry.prototype,
+    THREE.BufferGeometry.prototype
   );
   ConvexBufferGeometry.prototype.constructor = ConvexBufferGeometry;
 

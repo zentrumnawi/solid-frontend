@@ -39,7 +39,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     /* type is defined as any to prevent ng-packagr issues
      (data: any) => Observable<boolean> */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    @Inject(MAT_DIALOG_DATA) private _submitFeedback: any,
+    @Inject(MAT_DIALOG_DATA) private _submitFeedback: any
   ) {
     this.formTitle = _submitFeedback.title;
 

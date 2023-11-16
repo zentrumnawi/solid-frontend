@@ -18,6 +18,6 @@ export class InfoPageContentComponent {
       : undefined;
 
   constructor(
-    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService,
+    @Inject(SOLID_SKELETON_FEEDBACK_SERVICE) public feedback: FeedbackService
   ) {}
 }
