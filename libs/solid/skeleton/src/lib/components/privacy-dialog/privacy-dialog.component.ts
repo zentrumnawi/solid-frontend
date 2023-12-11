@@ -15,7 +15,7 @@ export class PrivacyDialogComponent {
 
   constructor(
     private _ref: MatDialogRef<PrivacyDialogComponent>,
-    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig
+    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
   ) {
     this.PrivacyContentComponent = cfg.privacyContent;
   }

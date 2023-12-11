@@ -30,7 +30,7 @@ try {
   output = require('@nx/workspace').output;
 } catch (e) {
   console.warn(
-    'Angular CLI could not be decorated to enable computation caching. Please ensure @nx/workspace is installed.'
+    'Angular CLI could not be decorated to enable computation caching. Please ensure @nx/workspace is installed.',
   );
   process.exit(0);
 }
@@ -68,7 +68,7 @@ function symlinkNgCLItoNxCLI() {
 
 try {
   symlinkNgCLItoNxCLI();
-  require('@nrwl/cli/lib/decorate-cli').decorateCli();
+  require('nx/src/adapter/decorate-cli').decorateCli();
   output.log({
     title: 'Angular CLI has been decorated to enable computation caching.',
   });

@@ -24,7 +24,7 @@ export class MainMenuComponent implements OnInit {
 
   constructor(
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
-    public feedback: FeedbackService
+    public feedback: FeedbackService,
   ) {}
 
   public ngOnInit(): void {

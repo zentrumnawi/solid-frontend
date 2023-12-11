@@ -7,10 +7,10 @@
     >
       {{ msg.title
       }}<span *ngIf="msg.valid_from"
-        >&nbsp;|&nbsp;{{ msg.valid_from | date : 'dd.MM.yyyy' }}</span
+        >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
       >
       <span *ngIf="msg.valid_to"
-        >&nbsp;- {{ msg.valid_to | date : 'dd.MM.yyyy' }}</span
+        >&nbsp;- {{ msg.valid_to | date: 'dd.MM.yyyy' }}</span
       >
     </h3>
     <div class="content-container">

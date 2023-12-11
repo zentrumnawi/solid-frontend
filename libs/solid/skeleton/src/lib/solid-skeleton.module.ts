@@ -61,7 +61,7 @@ import { GridColsDirective } from './directives/grid-cols.directive';
 export const ngxsFeatureModule = NgxsModule.forFeature([MenuState]);
 
 export function configFactory(
-  cfg: SolidSkeletonConfig
+  cfg: SolidSkeletonConfig,
 ): () => () => InternalSolidSkeletonConfig {
   const fn = function () {
     return deepMerge(defaultSkeletonConfig, cfg);
@@ -115,7 +115,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
 })
 export class SolidSkeletonModule {
   public static forRoot(
-    cfg: SolidSkeletonConfig
+    cfg: SolidSkeletonConfig,
   ): ModuleWithProviders<SolidSkeletonModule> {
     return {
       ngModule: SolidSkeletonModule,

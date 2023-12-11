@@ -39,8 +39,8 @@ export class StartComponent implements OnDestroy, OnInit {
       new LoadQuizQuestions(
         this.questionCount,
         this.chosenTags,
-        this.chosenDifficulty
-      )
+        this.chosenDifficulty,
+      ),
     );
     quizLoaded.subscribe((res) => {
       if (res.quiz.questions.length > 0) {

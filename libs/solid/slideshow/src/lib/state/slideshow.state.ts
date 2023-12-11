@@ -20,7 +20,7 @@ export type SlideshowStateModel = Slideshow[];
 export class SlideshowState {
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
-    private _http: HttpClient
+    private _http: HttpClient,
   ) {}
 
   // @Selector()
@@ -195,7 +195,7 @@ export class SlideshowState {
   @Action(AddSlideshow)
   public addSlideshow(
     ctx: StateContext<SlideshowStateModel>,
-    { payload }: AddSlideshow
+    { payload }: AddSlideshow,
   ) {
     const currentState = ctx.getState();
     if (currentState.some((sl) => sl.id === Number.parseInt(payload))) {
@@ -231,9 +231,9 @@ export class SlideshowState {
         tap((res) => {
           res.pages.sort((a, b) => a.position - b.position);
           ctx.setState(
-            [...currentState, res].sort((a, b) => a.position - b.position)
+            [...currentState, res].sort((a, b) => a.position - b.position),
           );
-        })
+        }),
       );
   }
 }
