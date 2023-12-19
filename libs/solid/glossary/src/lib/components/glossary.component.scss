@@ -8,9 +8,8 @@ mat-list {
 
   h3 {
     margin: 0;
-    padding: 4px 16px;
-    font-weight: 500;
-    font-size: 16px;
+    padding: 8px 16px;
+    font-weight: normal;
   }
 
   mat-list-item.entry {
@@ -20,6 +19,7 @@ mat-list {
 
     .entry-header {
       font-weight: 500;
+      font-size: 15px;
     }
 
     sup {
@@ -42,9 +42,10 @@ mat-list {
   }
 
   ::ng-deep .mdc-list-item__primary-text {
-    font-size: 14px !important;
+    font-size: 13.4px !important;
     word-wrap: break-word;
     white-space: pre-wrap !important;
+    line-height: 20px;
   }
 }
 
