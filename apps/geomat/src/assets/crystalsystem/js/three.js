@@ -18551,7 +18551,7 @@
           var h = !!g[2];
           g = g[3];
           g = decodeURIComponent(g);
-          h && (g = atob(g));
+          h && (g = Buffer.from(g, 'base64').toString());
           try {
             var k = (this.responseType || '').toLowerCase();
             switch (k) {
