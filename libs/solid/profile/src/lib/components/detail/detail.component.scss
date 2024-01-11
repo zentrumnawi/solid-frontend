@@ -137,3 +137,15 @@ mat-tooltip.custom-tooltip {
   color: pink;
   font-size: 14px !important;
 }
+
+div.profileLink {
+  padding: 0 0.7em 0 0.7em;
+  margin-bottom: 0em;
+  font-weight: 200;
+  img {
+    position: relative;
+    top: 5px;
+    height: 18px;
+    margin-left: 2px;
+  }
+}

@@ -268,10 +268,18 @@
       </ng-container>
       <ng-template #compounds>
         <div *ngFor="let val of profile_obj[property.key]">
-          <p>
+          <div
+            (click)="
+              val.id
+                ? selectProfile.emit({ id: val.id, type: 'mineraltype' })
+                : ''
+            "
+            class="profileLink"
+          >
             {{ val.name }}
             <span *ngIf="val.sub_name !== ''">({{ val.sub_name }})</span>
-          </p>
+            <img *ngIf="val.id" src="assets/icons/icon.svg" />
+          </div>
         </div>
       </ng-template>
     </ng-container>
