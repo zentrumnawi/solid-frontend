@@ -157,14 +157,6 @@ export class ProfileState {
                 })
                 .map((profiles: any) => {
                   return profiles[1].map((profile: any) => {
-                    //Preliminary fix for mineral compounds (see function above)
-                    if (profile.composition) {
-                      profile.composition.compounds =
-                        ProfileState.composeMineralCompounds(
-                          profile.composition.compounds,
-                          profile.composition.mineraltype_compounds
-                        );
-                    }
                     const profileName = profile.general_information?.name;
                     const profileSubName =
                       profile.general_information?.sub_name;

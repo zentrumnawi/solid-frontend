@@ -148,10 +148,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   public shouldDisplayProperty(property: ProfileProperty, profile_obj: any) {
-    // Preliminary workaround to exclude mineraltype_compounds property from rendering
-    if (property.key == 'mineraltype_compounds') {
-      return false;
-    }
     if (property.required) {
       return true;
     }
