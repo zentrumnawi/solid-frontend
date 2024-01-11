@@ -205,21 +205,32 @@
       {{ property.title ? property.title : property.key }}
     </p>
     <ng-container *ngSwitchCase="PropertyTypes.String">
-      <p
-        *ngIf="
-          !(profile_obj[property.key]?.indexOf('http') === 0);
-          else httpString
-        "
-        [ngClass]="getClass(level, 'content')"
-      >
-        {{ profile_obj[property.key] }}
-      </p>
-      <ng-template #httpString>
-        <p [ngClass]="getClass(level, 'content')">
-          <a [href]="profile_obj[property.key]" target="_blank">
-            {{ profile_obj[property.key] }}
-          </a>
+      <ng-container *ngIf="property.key !== 'compounds'; else compounds">
+        <p
+          *ngIf="
+            !(profile_obj[property.key]?.indexOf('http') === 0);
+            else httpString
+          "
+          [ngClass]="getClass(level, 'content')"
+        >
+          {{ profile_obj[property.key] }}
         </p>
+        <ng-template #httpString>
+          <p [ngClass]="getClass(level, 'content')">
+            <a [href]="profile_obj[property.key]" target="_blank">
+              {{ profile_obj[property.key] }}
+            </a>
+          </p>
+        </ng-template>
+      </ng-container>
+      <ng-template #compounds>
+        <ng-container *ngFor="let val of profile_obj[property.key]">
+          <p>
+            {{
+              val.name + (val.sub_name !== '' ? ' (' + val.sub_name + ')' : '')
+            }}
+          </p>
+        </ng-container>
       </ng-template>
     </ng-container>
     <p
