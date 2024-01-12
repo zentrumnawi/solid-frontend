@@ -3,8 +3,10 @@ import {
   Input,
   ViewChild,
   ElementRef,
+  EventEmitter,
   OnInit,
   OnDestroy,
+  Output,
   Inject,
 } from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
@@ -40,6 +42,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   @Select(ProfileState.selectDefinition_swagger)
   $ProfileDefinition_Swagger!: Observable<MultiProfiles[]>;
   @Input() public node!: TreeNode;
+  @Output() selectProfile = new EventEmitter<
+    number | { id: number; type: string }
+  >();
   public ImageLoaded = [false];
   public ImageSelected = 0;
   public ImageIndex = 0;
@@ -148,10 +153,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   public shouldDisplayProperty(property: ProfileProperty, profile_obj: any) {
-    // Preliminary workaround to exclude mineraltype_compounds property from rendering
-    if (property.key == 'mineraltype_compounds') {
-      return false;
-    }
     if (property.required) {
       return true;
     }

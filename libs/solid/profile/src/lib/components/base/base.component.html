@@ -156,6 +156,7 @@
   </div>
   <solid-profile-detail
     *ngIf="SelectedProfile && SelectedNode"
+    (selectProfile)="selectProfile($event)"
     cdkScrollable
     [node]="SelectedNode"
     [profile]="SelectedProfile"

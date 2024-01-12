@@ -205,32 +205,21 @@
       {{ property.title ? property.title : property.key }}
     </p>
     <ng-container *ngSwitchCase="PropertyTypes.String">
-      <ng-container *ngIf="property.key !== 'compounds'; else compounds">
-        <p
-          *ngIf="
-            !(profile_obj[property.key]?.indexOf('http') === 0);
-            else httpString
-          "
-          [ngClass]="getClass(level, 'content')"
-        >
-          {{ profile_obj[property.key] }}
+      <p
+        *ngIf="
+          !(profile_obj[property.key]?.indexOf('http') === 0);
+          else httpString
+        "
+        [ngClass]="getClass(level, 'content')"
+      >
+        {{ profile_obj[property.key] }}
+      </p>
+      <ng-template #httpString>
+        <p [ngClass]="getClass(level, 'content')">
+          <a [href]="profile_obj[property.key]" target="_blank">
+            {{ profile_obj[property.key] }}
+          </a>
         </p>
-        <ng-template #httpString>
-          <p [ngClass]="getClass(level, 'content')">
-            <a [href]="profile_obj[property.key]" target="_blank">
-              {{ profile_obj[property.key] }}
-            </a>
-          </p>
-        </ng-template>
-      </ng-container>
-      <ng-template #compounds>
-        <ng-container *ngFor="let val of profile_obj[property.key]">
-          <p>
-            {{
-              val.name + (val.sub_name !== '' ? ' (' + val.sub_name + ')' : '')
-            }}
-          </p>
-        </ng-container>
       </ng-template>
     </ng-container>
     <p
@@ -267,12 +256,32 @@
       </ng-template>
     </ng-container>
     <ng-container *ngSwitchCase="PropertyTypes.List">
-      <p
-        [ngClass]="getClass(level, 'content')"
-        *ngFor="let val of profile_obj[property.key]"
+      <ng-container
+        *ngIf="property.key !== 'mineraltype_compounds'; else compounds"
       >
-        {{ val }}
-      </p>
+        <p
+          [ngClass]="getClass(level, 'content')"
+          *ngFor="let val of profile_obj[property.key]"
+        >
+          {{ val }}
+        </p>
+      </ng-container>
+      <ng-template #compounds>
+        <div *ngFor="let val of profile_obj[property.key]">
+          <div
+            (click)="
+              val.id
+                ? selectProfile.emit({ id: val.id, type: 'mineraltype' })
+                : ''
+            "
+            class="profileLink"
+          >
+            {{ val.name }}
+            <span *ngIf="val.variety !== ''">({{ val.variety }})</span>
+            <img *ngIf="val.id" src="assets/icons/icon.svg" />
+          </div>
+        </div>
+      </ng-template>
     </ng-container>
     <ng-container *ngSwitchCase="PropertyTypes.Group">
       <ng-container *ngFor="let childProperty of property.properties">
