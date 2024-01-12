@@ -13,8 +13,8 @@ export interface GridColumns {
   selector: '[solidSkeletonGridCols]',
 })
 export class GridColsDirective implements OnInit {
-  @HostBinding('style.width') gridWidth: any;
-  @HostBinding('style.marginTop') gridMarginTop: any;
+  @HostBinding('style.width') gridWidth?: string;
+  @HostBinding('style.marginTop') gridMarginTop?: string;
 
   private gridCols: GridColumns = { xs: 1, sm: 2, md: 4, lg: 6, xl: 7 };
 
@@ -57,22 +57,22 @@ export class GridColsDirective implements OnInit {
         }
         if (result.breakpoints[Breakpoints.Small]) {
           this.grid.cols = this.gridCols.sm;
-          this.gridWidth = '50rem';
+          this.gridWidth = '34rem';
           this.gridMarginTop = '1vh';
         }
         if (result.breakpoints[Breakpoints.Medium]) {
           this.grid.cols = this.gridCols.md;
-          this.gridWidth = '50rem';
+          this.gridWidth = '34rem';
           this.gridMarginTop = '1vh';
         }
         if (result.breakpoints[Breakpoints.Large]) {
           this.grid.cols = this.gridCols.lg;
-          this.gridWidth = '50rem';
+          this.gridWidth = '34rem';
           this.gridMarginTop = '1vh';
         }
         if (result.breakpoints[Breakpoints.XLarge]) {
           this.grid.cols = this.gridCols.xl;
-          this.gridWidth = '89rem';
+          this.gridWidth = this.grid.cols > 6 ? '80rem ' : '70rem';
           this.gridMarginTop = '4vh';
         }
       });

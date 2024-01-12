@@ -3,8 +3,11 @@ import {
   Input,
   ViewChild,
   ElementRef,
+  EventEmitter,
   OnInit,
   OnDestroy,
+  Output,
+  Inject,
 } from '@angular/core';
 import { Profile, TreeNode } from '../../state/profile.model';
 import { ProfileState } from '../../state/profile.state';
@@ -15,8 +18,12 @@ import {
   ProfileProperty,
   ProfilePropertyType,
 } from '../../state/profile-definition.model';
-import { MatAccordion } from '@angular/material/expansion';
-import { MediaModel } from '@zentrumnawi/solid-core';
+import { MatExpansionPanel } from '@angular/material/expansion';
+import {
+  MediaModel,
+  SOLID_CORE_CONFIG,
+  SolidCoreConfig,
+} from '@zentrumnawi/solid-core';
 
 @Component({
   selector: 'solid-profile-detail',
@@ -24,8 +31,8 @@ import { MediaModel } from '@zentrumnawi/solid-core';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  @ViewChild('expansion', { static: false, read: MatAccordion })
-  expansion?: MatAccordion;
+  @ViewChild('expansionPanel', { static: false, read: MatExpansionPanel })
+  expansionPanel?: MatExpansionPanel;
   @ViewChild('thumbnails') thumbnails: ElementRef | undefined;
   public PropertyTypes = ProfilePropertyType;
   //Load definitions from OpenAPI 3.0
@@ -35,6 +42,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   @Select(ProfileState.selectDefinition_swagger)
   $ProfileDefinition_Swagger!: Observable<MultiProfiles[]>;
   @Input() public node!: TreeNode;
+  @Output() selectProfile = new EventEmitter<
+    number | { id: number; type: string }
+  >();
   public ImageLoaded = [false];
   public ImageSelected = 0;
   public ImageIndex = 0;
@@ -52,6 +62,13 @@ export class DetailComponent implements OnInit, OnDestroy {
   public profileDefinitionSub!: Subscription;
   public profileDefinitionSwaggerSub!: Subscription;
 
+  public shouldExpandAllgemein = this.config.expandAllgemein;
+  public shouldExpandCategories = [
+    'allgemein',
+    'informatives',
+    'general information',
+  ];
+
   public get profile() {
     return this._profile;
   }
@@ -60,12 +77,16 @@ export class DetailComponent implements OnInit, OnDestroy {
   public set profile(profile: Profile) {
     this._profile = profile;
     this.ImageLoaded = profile.mediaObjects.map((_) => false);
-    this.expansion?._headers.forEach((panel) => panel?.panel.close());
+    if (this.shouldExpandAllgemein) {
+      this.expansionPanel?.open(); // expand the category-panel even if it was closed in other profile
+    }
     this.MediaObjectsOnlyImages = this.profile.mediaObjects.filter(
       (x) => x.mediaType === 'image'
     );
     this.onImageSelect(0);
   }
+
+  constructor(@Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig) {}
 
   ngOnInit(): void {
     this.profileDefinitionSwaggerSub =
@@ -114,17 +135,6 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.ImageIndex = this.MediaObjectsOnlyImages.findIndex(
       (media) => media.getProfilePosition - 1 === index
     );
-    // if (index < 3) {
-    //   this.ImageStartIndex = 0;
-    //   this.ImageEndIndex = index + 3 + (3 - index);
-    // } else if (index > this.profile.mediaObjects.length - 4) {
-    //   this.ImageEndIndex = this.profile.mediaObjects.length - 1;
-    //   this.ImageStartIndex =
-    //     index - 3 - (3 - (this.profile.mediaObjects.length - index - 1));
-    // } else {
-    //   this.ImageStartIndex = index - 3;
-    //   this.ImageEndIndex = index + 3;
-    // }
     if (this.profile.mediaObjects.length !== 0) {
       if (this.profile.mediaObjects[index].mediaType === 'audio') {
         this.hasDialog = false;
@@ -206,5 +216,12 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   getClass(level: number, type: string): string {
     return `property-${type}-level-${level}`;
+  }
+
+  shouldExpand(title: string) {
+    return (
+      this.shouldExpandAllgemein &&
+      this.shouldExpandCategories.includes(title.toLocaleLowerCase())
+    );
   }
 }

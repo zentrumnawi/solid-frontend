@@ -77,6 +77,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public Filter = new UntypedFormControl('');
   public FilterValue = new BehaviorSubject<string>('');
   public SelectedProfile: Profile | null = null;
+  public SelectedProfileShort: ProfileShort = { id: -1, type: undefined };
   public SelectedNode: TreeNode | null = null;
   public SwipeLeft: ProfileShort = { id: -1 };
   public SwipeRight: ProfileShort = { id: -1 };
@@ -333,6 +334,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
     if (typeof profile !== 'number' && profile.type) {
+      this.SelectedProfileShort = profile;
       if (profile.type === 'wine') {
         // temporary workaround for PLANTY - type wine_related doesn't have a type in the URL
         return new Navigate([`${this.baseUrl}`, this.View, profile.id]);
@@ -376,7 +378,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private calculateLayout() {
-    const split = this.contentContainer.nativeElement.clientWidth >= 800;
+    const split = this.contentContainer.nativeElement.clientWidth >= 900;
     if (split !== this.SplitLayout) {
       setTimeout(() => {
         this.SplitLayout = split;

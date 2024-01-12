@@ -15,4 +15,5 @@ export const coreConfig: SolidCoreConfig = {
   profileTour: guidedTour.profile,
   landingBannerContent: landingBannerContent,
   expandProfileTree: false,
+  expandAllgemein: false,
 };

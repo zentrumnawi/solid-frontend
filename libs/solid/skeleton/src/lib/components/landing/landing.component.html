@@ -1,5 +1,5 @@
 <div class="landing-container" #landing>
-  <mat-card *ngIf="innerWidth >= 700 && showLanding">
+  <mat-card *ngIf="innerWidth >= 700 && showLanding && !messagesLoading">
     <mat-card-header>
       <img mat-card-avatar [src]="landingInfo.header.image" />
       <mat-card-title>{{ landingInfo.header.title }}</mat-card-title>
@@ -37,15 +37,15 @@
   </mat-card>
   <mat-grid-list
     id="menu-grid-list"
-    [solidSkeletonGridCols]="{ xs: 2, sm: 4, md: 4, lg: 4, xl: 7 }"
+    [solidSkeletonGridCols]="gridColumns"
     gutterSize="1rem"
     rowHeight="1:1"
   >
     <mat-grid-tile
-      *ngFor="let menuItem of MenuItems | async; let index = index"
+      *ngFor="let menuItem of menuItems$ | async; let index = index"
       class="mat-elevation-z2"
       [routerLink]="menuItem.route"
-      [queryParams]="{ directTo: msgNumber > 0 ? 'news' : undefined }"
+      [queryParams]="{ directTo: msgCount > 0 ? 'news' : undefined }"
       id="menu-tile-{{ index }}"
     >
       <mat-icon
@@ -58,8 +58,8 @@
       <mat-icon
         *ngIf="menuItem.svgIcon && menuItem.route === 'info'"
         [svgIcon]="menuItem.svgIcon"
-        [matBadge]="msgNumber"
-        [matBadgeHidden]="msgNumber === 0"
+        [matBadge]="msgCount"
+        [matBadgeHidden]="msgCount === 0"
         matBadgeSize="large"
       ></mat-icon>
       <span class="navTitle">{{ menuItem.title }}</span>

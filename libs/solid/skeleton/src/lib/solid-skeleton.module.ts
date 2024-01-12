@@ -43,7 +43,6 @@ import { generateRoutes } from './skeleton-routing';
 import { createErrorHandler } from '@sentry/angular';
 import { InfoComponent } from './components/info/info.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MessageState } from './state/message.state';
 import { MessageListComponent } from './components/message-list/message-list.component';
 import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
 import { SOLID_SLIDESHOW_APP_ROUTING_CONFIG } from '@zentrumnawi/solid-slideshow';
@@ -58,10 +57,7 @@ import { GridColsDirective } from './directives/grid-cols.directive';
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
 // https://github.com/ng-packagr/ng-packagr/issues/767
-export const ngxsFeatureModule = NgxsModule.forFeature([
-  MenuState,
-  MessageState,
-]);
+export const ngxsFeatureModule = NgxsModule.forFeature([MenuState]);
 
 export function configFactory(
   cfg: SolidSkeletonConfig

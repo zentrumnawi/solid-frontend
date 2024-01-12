@@ -119,6 +119,23 @@ export class ProfileState {
     return null;
   }
 
+  // Preliminary Workaround for GeoMat to merge unknown rock compounds with minerals from geomat db
+  private static composeMineralCompounds(
+    compounds: string,
+    geoMatContent: object[]
+  ) {
+    const compundArray = compounds
+      .split(', ')
+      .splice(-geoMatContent.length)
+      .map((value) => ({
+        id: null,
+        name: value,
+        sub_name: '',
+      }));
+    const cmp = [...compundArray, ...geoMatContent];
+    return cmp;
+  }
+
   @Action(LoadProfiles)
   public set(ctx: StateContext<ProfileStateModel>) {
     if (ctx.getState().profiles.length !== 0) {

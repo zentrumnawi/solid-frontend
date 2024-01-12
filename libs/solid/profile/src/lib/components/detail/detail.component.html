@@ -61,12 +61,7 @@
 
 <!-- Load definitions from OpenAPI 2.0 -->
 <ng-container *ngIf="definitions_swagger.length !== 0">
-  <mat-accordion
-    id="profile-detail-info"
-    [multi]="false"
-    displayMode="flat"
-    #expansion
-  >
+  <mat-accordion id="profile-detail-info" multi="false" displayMode="flat">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>Allgemein</mat-panel-title>
@@ -165,18 +160,15 @@
 
 <!-- Load definitions from OpenAPI 3.0 -->
 <ng-container *ngIf="definitions.length !== 0">
-  <mat-accordion
-    id="profile-detail-info"
-    [multi]="false"
-    displayMode="flat"
-    #expansion
-  >
+  <mat-accordion id="profile-detail-info" multi="false" displayMode="flat">
     <ng-container *ngFor="let property of getProperties(profile)">
       <mat-expansion-panel
         *ngIf="
           property.type === PropertyTypes.Group &&
           (property.required || profile[property.key])
         "
+        [expanded]="shouldExpand(property.title)"
+        #expansionPanel
       >
         <mat-expansion-panel-header>
           <mat-panel-title>{{
@@ -264,12 +256,32 @@
       </ng-template>
     </ng-container>
     <ng-container *ngSwitchCase="PropertyTypes.List">
-      <p
-        [ngClass]="getClass(level, 'content')"
-        *ngFor="let val of profile_obj[property.key]"
+      <ng-container
+        *ngIf="property.key !== 'mineraltype_compounds'; else compounds"
       >
-        {{ val }}
-      </p>
+        <p
+          [ngClass]="getClass(level, 'content')"
+          *ngFor="let val of profile_obj[property.key]"
+        >
+          {{ val }}
+        </p>
+      </ng-container>
+      <ng-template #compounds>
+        <div *ngFor="let val of profile_obj[property.key]">
+          <div
+            (click)="
+              val.id
+                ? selectProfile.emit({ id: val.id, type: 'mineraltype' })
+                : ''
+            "
+            class="profileLink"
+          >
+            {{ val.name }}
+            <span *ngIf="val.variety !== ''">({{ val.variety }})</span>
+            <img *ngIf="val.id" src="assets/icons/icon.svg" />
+          </div>
+        </div>
+      </ng-template>
     </ng-container>
     <ng-container *ngSwitchCase="PropertyTypes.Group">
       <ng-container *ngFor="let childProperty of property.properties">
