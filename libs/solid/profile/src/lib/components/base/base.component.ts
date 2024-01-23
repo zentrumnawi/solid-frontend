@@ -28,6 +28,7 @@ import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
 }
@@ -46,7 +47,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('contentContainer', { static: false })
   public contentContainer!: ElementRef;
   @ViewChild('spinnerContainer', { static: false }) set spinnerContainer(
-    element: ElementRef
+    element: ElementRef,
   ) {
     if (element) {
       const windowWidth = document.documentElement.clientWidth;
@@ -67,7 +68,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public $profileAndCategorySelector!: Observable<
     (
       profileId?: number,
-      profileType?: string | null
+      profileType?: string | null,
     ) => { profile: Profile; node: TreeNode } | null
   >;
   public $paramMap: Observable<ParamMap>;
@@ -87,12 +88,12 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public title_width = 0;
   public firstMovingAnimation = true;
   public stopAnimation = true;
-  public timeOut_1: any;
-  public timeOut_2: any;
+  public timeOut_1?: number;
+  public timeOut_2?: number;
   public collapseTree = false;
   @Output() profileTitle = new EventEmitter<string>();
 
-  @Select(ProfileState.selectProfile) profile$!: Observable<any>;
+  @Select(ProfileState.selectProfile) profile$!: Observable<Profile[]>;
   isLoading = true;
 
   public mainSubscription!: Subscription;
@@ -105,7 +106,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     private introService: IntroService,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     private _route: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
   ) {
     this.$paramMap = this._activatedRoute.paramMap as Observable<ParamMap>;
     this.$queryParams = this._activatedRoute.queryParams as Observable<{
@@ -119,8 +120,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       new LoadDefinitionSwagger(),
     ]);
 
-    this.profileSubscription = this.profile$?.subscribe((res) => {
-      if (res.length != 0) this.isLoading = false;
+    this.profileSubscription = this.profile$?.subscribe((res: Profile[]) => {
+      if (Array.isArray(res) && res.length != 0) this.isLoading = false;
     });
   }
 
@@ -191,7 +192,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           };
           if (this.View === 'grid' || filterStr !== '') {
             const flatIndex = profilesFlatFiltered.findIndex(
-              (p) => p.id === profileId && p.def_type === profileType
+              (p) => p.id === profileId && p.def_type === profileType,
             );
             if (flatIndex !== 0) {
               const profile = profilesFlatFiltered[flatIndex - 1];
@@ -203,16 +204,16 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           } else {
             const index = profileAndNode.node.profiles.indexOf(
-              profileAndNode.profile
+              profileAndNode.profile,
             );
             if (!this.Filter.value) {
               const profileLeft = profileAndNode.node.profiles.find(
-                (p, i) => i === index - 1
+                (p, i) => i === index - 1,
               ) as Profile | undefined;
               swipeLeft = this.getProfileShort(profileLeft);
 
               const profileRight = profileAndNode.node.profiles.find(
-                (p, i) => i > index
+                (p, i) => i > index,
               ) as Profile | undefined;
               swipeRight = this.getProfileShort(profileRight);
             }
@@ -226,7 +227,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             swipeRight,
             swipeLeft,
           };
-        })
+        }),
       )
       .subscribe((v) => {
         this.SelectedProfile = v.selectedProfile;
@@ -235,22 +236,22 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.filterSubscription = this.Filter.valueChanges.subscribe((_) =>
-      this.FilterValue.next(this.Filter.value)
+    this.filterSubscription = this.Filter.valueChanges.subscribe(() =>
+      this.FilterValue.next(this.Filter.value),
     );
   }
 
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    this.profileSubscription = this.profile$.subscribe((res) => {
-      if (res.length != 0) {
+    this.profileSubscription = this.profile$.subscribe((res: Profile[]) => {
+      if (Array.isArray(res) && res.length != 0) {
         if (
           localStorage.getItem('hide_profile_tour') == 'false' ||
           localStorage.getItem('hide_profile_tour') == null
         ) {
-          setTimeout(() => {
-            this.introService.profileTour((_targetElement: any) => {
+          window.setTimeout(() => {
+            this.introService.profileTour((_targetElement: Element) => {
               try {
                 const id = _targetElement.id;
                 const treeNodeLocation =
@@ -259,7 +260,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
                   this.coreConfig.profileTour.location.profileTree;
                 this.collapseTree = false;
                 if (id != 'profile')
-                  setTimeout(() => {
+                  window.setTimeout(() => {
                     this.introService.introProfile.refresh(true);
                   }, 365);
                 if (id == '') {
@@ -270,7 +271,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
                     const currentStep =
                       this.introService.introProfile._currentStep;
                     steps.splice(currentStep, 1);
-                    setTimeout(() => {
+                    window.setTimeout(() => {
                       this.introService.introProfile
                         .goToStep(currentStep)
                         .start();
@@ -281,7 +282,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
                     this.navigateTo(treeLocation);
                   this.collapseTree = true;
                 }
-                setTimeout(() => {
+                window.setTimeout(() => {
                   this.introService.introProfile.refresh(true);
                 }, 0.1);
               } catch (error) {
@@ -316,13 +317,13 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           view:
             this.SelectedProfile.def_type !== 'wine' ? this.View : undefined,
-        }
+        },
       );
     }
     return new Navigate(
       [`${this.baseUrl}`],
       { view: this.View },
-      { replaceUrl: true }
+      { replaceUrl: true },
     );
   }
 
@@ -353,7 +354,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.SwipeLeft.id > 0) {
       this.selectProfile(this.SwipeLeft);
     }
-    setTimeout(() => {
+    window.setTimeout(() => {
       this.profileTitle.emit(this.SelectedProfile?.name);
     }, 10);
   }
@@ -362,25 +363,15 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.SwipeRight.id > 0) {
       this.selectProfile(this.SwipeRight);
     }
-    setTimeout(() => {
+    window.setTimeout(() => {
       this.profileTitle.emit(this.SelectedProfile?.name);
     }, 10);
-  }
-
-  public onPanEnd($event: any) {
-    if ($event.deltaX > 100 && this.SwipeLeft) {
-      $event.preventDefault();
-      this.swipeLeft();
-    } else if ($event.deltaX < -100 && this.SwipeRight) {
-      $event.preventDefault();
-      this.swipeRight();
-    }
   }
 
   private calculateLayout() {
     const split = this.contentContainer.nativeElement.clientWidth >= 900;
     if (split !== this.SplitLayout) {
-      setTimeout(() => {
+      window.setTimeout(() => {
         this.SplitLayout = split;
       }, 0);
     }
@@ -401,7 +392,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public getProfileShort(profile: any): ProfileShort {
+  public getProfileShort(profile: Profile | undefined): ProfileShort {
     const profileId = profile?.id || -1;
     const profileType = profile?.def_type;
     return { id: profileId, type: profileType };
@@ -416,18 +407,23 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.stopAnimation = true;
     clearTimeout(this.timeOut_1);
     clearTimeout(this.timeOut_2);
-    this.timeOut_1 = setTimeout(() => {
+    this.timeOut_1 = window.setTimeout(() => {
       this.stopAnimation = false;
       this.firstMovingAnimation = true;
       this.title_container_width =
         this.titleContainer?.nativeElement.offsetWidth;
       this.title_width =
-        this.titleContainer?.nativeElement.firstElementChild.firstElementChild.offsetWidth;
+        this.titleContainer?.nativeElement.firstElementChild.firstElementChild
+          .offsetWidth;
       if (this.titleContainer?.nativeElement.firstElementChild) {
-        this.timeOut_2 = setTimeout(() => {
+        this.timeOut_2 = window.setTimeout(() => {
           this.firstMovingAnimation = false;
         }, 10000);
       }
     }, 0);
+  }
+
+  public openSearchBar() {
+    this.isSearchBarOpen = true;
   }
 }

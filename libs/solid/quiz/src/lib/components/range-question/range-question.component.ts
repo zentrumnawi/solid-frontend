@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatSliderChange } from '@angular/material/slider';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
@@ -58,8 +57,10 @@ export class RangeQuestionComponent {
     }, 5);
   }
 
-  onSliderChange(change: MatSliderChange) {
-    this.correct = -1;
+  onSliderChange(value: number) {
+    if (value) {
+      this.correct = -1;
+    }
   }
 
   public onNextQuestionClick() {

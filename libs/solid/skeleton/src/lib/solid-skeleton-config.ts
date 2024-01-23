@@ -14,7 +14,9 @@ export interface RouteConfig {
   name?: string;
 }
 
-export type RouteConfigWithComponent = RouteConfig & { component: Type<any> };
+export type RouteConfigWithComponent = RouteConfig & {
+  component: Type<unknown>;
+};
 
 export type RouteConfigFromModule = RouteConfig & {
   moduleImport: LoadChildren;
@@ -39,8 +41,8 @@ export interface SentryConfig {
 
 export interface InternalSolidSkeletonConfig {
   feedbackEnabled: boolean;
-  infoPageContent: Type<any>;
-  privacyContent: Type<any>;
+  infoPageContent: Type<unknown>;
+  privacyContent: Type<unknown>;
   glossary: {
     enabled: boolean;
     svgIcon?: string;
@@ -51,8 +53,8 @@ export interface InternalSolidSkeletonConfig {
 }
 
 export interface RequiredExternalConfig {
-  infoPageContent: Type<any>;
-  privacyContent: Type<any>;
+  infoPageContent: Type<unknown>;
+  privacyContent: Type<unknown>;
   routingConfig: {
     // privacy: {
     //   component: Type<any>;
@@ -71,6 +73,7 @@ type Pick<T, K extends keyof T> = {
   [P in K]: Omit<T[P], componentPropertyKeys>;
 };
 type Exclude<T, U> = T extends U ? never : T;
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
 
 export const defaultSkeletonConfig: Omit<
@@ -124,7 +127,7 @@ export const defaultSkeletonConfig: Omit<
       matIcon: 'help',
       moduleImport: () =>
         import('@zentrumnawi/solid-slideshow').then(
-          (m) => m.SolidSlideshowModule
+          (m) => m.SolidSlideshowModule,
         ),
     },
     info: {

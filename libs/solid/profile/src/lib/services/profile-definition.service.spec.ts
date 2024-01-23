@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ProfileDefinitionService } from './profile-definition.service';
 import {
   HttpClientTestingModule,
-  HttpTestingController,
+  // HttpTestingController,
 } from '@angular/common/http/testing';
 import { SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { Schema } from 'swagger-schema-official';
@@ -15,7 +15,7 @@ import {
 
 describe('ProfileDefinitionService', () => {
   let service: ProfileDefinitionService;
-  let httpMock: HttpTestingController;
+  // let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,7 +31,7 @@ describe('ProfileDefinitionService', () => {
       ],
     });
     service = TestBed.inject(ProfileDefinitionService);
-    httpMock = TestBed.inject(HttpTestingController);
+    // httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -42,7 +42,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'name',
-      testSwagger.definitions.Plant.properties.name as Schema
+      testSwagger.definitions.Plant.properties.name as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('name');
@@ -58,7 +58,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'interaction',
-      testSwagger.definitions.Plant.properties.interaction as Schema
+      testSwagger.definitions.Plant.properties.interaction as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('interaction');
@@ -74,7 +74,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'habitat',
-      testSwagger.definitions.Plant.properties.habitat as Schema
+      testSwagger.definitions.Plant.properties.habitat as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('habitat');
@@ -90,7 +90,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'cnt_germ',
-      testSwagger.definitions.Plant.properties.cnt_germ as Schema
+      testSwagger.definitions.Plant.properties.cnt_germ as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('cnt_germ');
@@ -106,7 +106,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'arr_special',
-      testSwagger.definitions.Plant.properties.arr_special as Schema
+      testSwagger.definitions.Plant.properties.arr_special as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('arr_special');
@@ -128,8 +128,9 @@ describe('ProfileDefinitionService', () => {
             properties: { leaf: testSwagger.definitions.Plant.properties.leaf },
           },
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
-      '#/definitions/Plant'
+      '#/definitions/Plant',
     );
     if (defs) {
       expect(defs.length).toBe(1);

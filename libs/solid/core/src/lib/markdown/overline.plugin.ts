@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Process $overline$
 
 // same as UNESCAPE_MD_RE plus a space

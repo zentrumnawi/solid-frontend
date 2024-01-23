@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ErrorHandler,
@@ -60,7 +61,7 @@ import { GridColsDirective } from './directives/grid-cols.directive';
 export const ngxsFeatureModule = NgxsModule.forFeature([MenuState]);
 
 export function configFactory(
-  cfg: SolidSkeletonConfig
+  cfg: SolidSkeletonConfig,
 ): () => () => InternalSolidSkeletonConfig {
   const fn = function () {
     return deepMerge(defaultSkeletonConfig, cfg);
@@ -114,9 +115,8 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
 })
 export class SolidSkeletonModule {
   public static forRoot(
-    cfg: SolidSkeletonConfig
+    cfg: SolidSkeletonConfig,
   ): ModuleWithProviders<SolidSkeletonModule> {
-    const errHandler = createErrorHandler(cfg.sentry?.errorHandlerOptions);
     return {
       ngModule: SolidSkeletonModule,
       providers: [

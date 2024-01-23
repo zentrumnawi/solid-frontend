@@ -17,6 +17,7 @@ export interface Profile extends ProfileApi {
   type: 'profile';
   // images: ImageModel[];
   mediaObjects: MediaModel[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
   def_type: string;
 }

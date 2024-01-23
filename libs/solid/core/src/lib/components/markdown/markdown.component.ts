@@ -39,7 +39,7 @@ export class MarkdownComponent {
 
   public onDataChange() {
     if (this._data) {
-      this.innerHTML = this._md.compile(this._data, this._inline);
+      this.innerHTML = this._md.compile(this._data, this._inline) ?? '';
     } else {
       this.innerHTML = '';
     }

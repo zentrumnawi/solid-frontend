@@ -9,8 +9,9 @@ import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 })
 export class MediaErrorDialogComponent {
   constructor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(MAT_DIALOG_DATA) public name: string,
-    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
   ) {}
 }

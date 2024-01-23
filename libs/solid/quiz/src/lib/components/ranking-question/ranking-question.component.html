@@ -17,7 +17,6 @@
     *ngFor="let answer of answersList; let index = index"
   >
     <p class="answerText" [data]="answer.text" markdown></p>
-    <!--p>{{ answer.text }}gg</p-->
     <div class="feedback-icon" *ngIf="showAnswers">
       <mat-icon
         *ngIf="
@@ -58,8 +57,8 @@
       correct === 1
         ? this.question.answers[index].feedback_correct
         : hasSubsequence
-        ? this.question.answers[index].feedback_subsequences
-        : this.question.answers[index].feedback_incorrect
+          ? this.question.answers[index].feedback_subsequences
+          : this.question.answers[index].feedback_incorrect
     "
   >
   </span>

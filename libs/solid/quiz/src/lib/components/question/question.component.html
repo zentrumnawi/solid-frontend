@@ -13,16 +13,9 @@
             Fragen {{ quizSession.currentQuestion + 1 }} von
             {{ quizSession.questions.length }}
           </h2>
-          <p
-            class="question-info"
-            *ngIf="question.tags.length !== 0; else withoutTags"
-          >
-            Tags: {{ question.tags.join(' ') }} | Schwierigkeit:
-            {{ question.difficulty }}
+          <p class="question-info">
+            {{ getQuestionInfo(question) }}
           </p>
-          <ng-template #withoutTags
-            >Schwierigkeit: {{ question.difficulty }}</ng-template
-          >
         </div>
       </div>
     </div>
@@ -34,7 +27,7 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>
-        <p [data]="question.text" markdown></p>
+        <p class="question-title" [data]="question.text" markdown></p>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>

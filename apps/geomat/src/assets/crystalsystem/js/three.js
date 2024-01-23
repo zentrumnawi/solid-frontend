@@ -3,8 +3,8 @@
   'object' === typeof exports && 'undefined' !== typeof module
     ? ta(exports)
     : 'function' === typeof define && define.amd
-    ? define(['exports'], ta)
-    : ((l = l || self), ta((l.THREE = {})));
+      ? define(['exports'], ta)
+      : ((l = l || self), ta((l.THREE = {})));
 })(this, function (l) {
   function ta() {}
 
@@ -30,7 +30,7 @@
     this.elements = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     0 < arguments.length &&
       console.error(
-        'THREE.Matrix3: the constructor no longer reads arguments. use .set() instead.'
+        'THREE.Matrix3: the constructor no longer reads arguments. use .set() instead.',
       );
   }
 
@@ -87,7 +87,7 @@
       c.format,
       c.type,
       c.anisotropy,
-      c.encoding
+      c.encoding,
     );
     this.texture.generateMipmaps =
       void 0 !== c.generateMipmaps ? c.generateMipmaps : !1;
@@ -145,7 +145,7 @@
     this.elements = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
     0 < arguments.length &&
       console.error(
-        'THREE.Matrix4: the constructor no longer reads arguments. use .set() instead.'
+        'THREE.Matrix4: the constructor no longer reads arguments. use .set() instead.',
       );
   }
 
@@ -166,8 +166,8 @@
           e.isTexture)
           ? (b[c][d] = e.clone())
           : Array.isArray(e)
-          ? (b[c][d] = e.slice())
-          : (b[c][d] = e);
+            ? (b[c][d] = e.slice())
+            : (b[c][d] = e);
       }
     }
     return b;
@@ -222,20 +222,20 @@
       d instanceof Float32Array
         ? (c = 5126)
         : d instanceof Float64Array
-        ? console.warn(
-            'THREE.WebGLAttributes: Unsupported data buffer format: Float64Array.'
-          )
-        : d instanceof Uint16Array
-        ? (c = 5123)
-        : d instanceof Int16Array
-        ? (c = 5122)
-        : d instanceof Uint32Array
-        ? (c = 5125)
-        : d instanceof Int32Array
-        ? (c = 5124)
-        : d instanceof Int8Array
-        ? (c = 5120)
-        : d instanceof Uint8Array && (c = 5121);
+          ? console.warn(
+              'THREE.WebGLAttributes: Unsupported data buffer format: Float64Array.',
+            )
+          : d instanceof Uint16Array
+            ? (c = 5123)
+            : d instanceof Int16Array
+              ? (c = 5122)
+              : d instanceof Uint32Array
+                ? (c = 5125)
+                : d instanceof Int32Array
+                  ? (c = 5124)
+                  : d instanceof Int8Array
+                    ? (c = 5120)
+                    : d instanceof Uint8Array && (c = 5121);
       return {
         buffer: h,
         type: c,
@@ -267,17 +267,17 @@
           !1 === g.dynamic
             ? a.bufferData(e, h, 35044)
             : -1 === k.count
-            ? a.bufferSubData(e, 0, h)
-            : 0 === k.count
-            ? console.error(
-                'THREE.WebGLObjects.updateBuffer: dynamic THREE.BufferAttribute marked as needsUpdate but updateRange.count is 0, ensure you are using set methods or updating manually.'
-              )
-            : (a.bufferSubData(
-                e,
-                k.offset * h.BYTES_PER_ELEMENT,
-                h.subarray(k.offset, k.offset + k.count)
-              ),
-              (k.count = -1));
+              ? a.bufferSubData(e, 0, h)
+              : 0 === k.count
+                ? console.error(
+                    'THREE.WebGLObjects.updateBuffer: dynamic THREE.BufferAttribute marked as needsUpdate but updateRange.count is 0, ensure you are using set methods or updating manually.',
+                  )
+                : (a.bufferSubData(
+                    e,
+                    k.offset * h.BYTES_PER_ELEMENT,
+                    h.subarray(k.offset, k.offset + k.count),
+                  ),
+                  (k.count = -1));
           f.version = d.version;
         }
       },
@@ -372,7 +372,7 @@
   function S(a, b, c) {
     if (Array.isArray(a))
       throw new TypeError(
-        'THREE.BufferAttribute: array should be a Typed Array.'
+        'THREE.BufferAttribute: array should be a Typed Array.',
       );
     this.name = '';
     this.array = a;
@@ -671,7 +671,7 @@
     void 0 !== a &&
       (void 0 !== a.attributes &&
         console.error(
-          'THREE.ShaderMaterial: attributes should now be defined in THREE.BufferGeometry instead.'
+          'THREE.ShaderMaterial: attributes should now be defined in THREE.BufferGeometry instead.',
         ),
       this.setValues(a));
   }
@@ -767,7 +767,7 @@
                 depthTest: !1,
                 depthWrite: !1,
                 fog: !1,
-              })
+              }),
             )),
             k.geometry.removeAttribute('normal'),
             k.geometry.removeAttribute('uv'),
@@ -799,7 +799,7 @@
                 depthTest: !1,
                 depthWrite: !1,
                 fog: !1,
-              })
+              }),
             )),
             h.geometry.removeAttribute('normal'),
             Object.defineProperty(h.material, 'map', {
@@ -832,7 +832,7 @@
       if (d.isWebGL2) var k = a;
       else if (((k = b.get('ANGLE_instanced_arrays')), null === k)) {
         console.error(
-          'THREE.WebGLBufferRenderer: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.'
+          'THREE.WebGLBufferRenderer: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.',
         );
         return;
       }
@@ -840,7 +840,7 @@
         e,
         g,
         h,
-        f.maxInstancedCount
+        f.maxInstancedCount,
       );
       c.update(h, e, f.maxInstancedCount);
     };
@@ -875,7 +875,7 @@
         g,
         'not supported, using',
         h,
-        'instead.'
+        'instead.',
       ),
       (g = h));
     c = !0 === c.logarithmicDepthBuffer;
@@ -1021,7 +1021,7 @@
         }
         null === d &&
           console.warn(
-            'THREE.WebGLRenderer: ' + c + ' extension not supported.'
+            'THREE.WebGLRenderer: ' + c + ' extension not supported.',
           );
         return (b[c] = d);
       },
@@ -1111,7 +1111,7 @@
       if (d.isWebGL2) var p = a;
       else if (((p = b.get('ANGLE_instanced_arrays')), null === p)) {
         console.error(
-          'THREE.WebGLIndexedBufferRenderer: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.'
+          'THREE.WebGLIndexedBufferRenderer: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.',
         );
         return;
       }
@@ -1120,7 +1120,7 @@
         m,
         f,
         k * g,
-        h.maxInstancedCount
+        h.maxInstancedCount,
       );
       c.update(m, e, h.maxInstancedCount);
     };
@@ -1245,7 +1245,7 @@
       void 0 !== g ? g : 1022,
       h,
       k,
-      m
+      m,
     );
     this.flipY = !1;
   }
@@ -1618,7 +1618,7 @@
         'THREE.WebGLShader: gl.getShaderInfoLog()',
         35633 === b ? 'vertex' : 'fragment',
         a.getShaderInfoLog(d),
-        Mg(c)
+        Mg(c),
       );
     return d;
   }
@@ -1741,7 +1741,7 @@
       .replace(/NUM_CLIPPING_PLANES/g, b.numClippingPlanes)
       .replace(
         /UNION_CLIPPING_PLANES/g,
-        b.numClippingPlanes - b.numClipIntersection
+        b.numClippingPlanes - b.numClipIntersection,
       );
   }
 
@@ -1761,7 +1761,7 @@
         for (c = parseInt(c); c < parseInt(d); c++)
           a += e.replace(/\[ i \]/g, '[ ' + c + ' ]');
         return a;
-      }
+      },
     );
   }
 
@@ -2028,7 +2028,7 @@
           'gl.getProgramInfoLog',
           f,
           g,
-          v
+          v,
         );
     else if ('' !== f)
       console.warn('THREE.WebGLProgram: gl.getProgramInfoLog()', f);
@@ -2077,7 +2077,7 @@
       attributes: {
         get: function () {
           console.warn(
-            'THREE.WebGLProgram: .attributes is now .getAttributes().'
+            'THREE.WebGLProgram: .attributes is now .getAttributes().',
           );
           return this.getAttributes();
         },
@@ -2100,7 +2100,7 @@
           ? (c = a.encoding)
           : a.isWebGLRenderTarget &&
             (console.warn(
-              "THREE.WebGLPrograms.getTextureEncodingFromMap: don't use render targets as textures. Use their .texture property instead."
+              "THREE.WebGLPrograms.getTextureEncodingFromMap: don't use render targets as textures. Use their .texture property instead.",
             ),
             (c = a.texture.encoding));
       else var c = 3e3;
@@ -2128,7 +2128,7 @@
       },
       h =
         'precision supportsVertexTextures map mapEncoding matcap matcapEncoding envMap envMapMode envMapEncoding lightMap aoMap emissiveMap emissiveMapEncoding bumpMap normalMap objectSpaceNormalMap displacementMap specularMap roughnessMap metalnessMap gradientMap alphaMap combine vertexColors vertexTangents fog useFog fogExp flatShading sizeAttenuation logarithmicDepthBuffer skinning maxBones useVertexTexture morphTargets morphNormals maxMorphTargets maxMorphNormals premultipliedAlpha numDirLights numPointLights numSpotLights numHemiLights numRectAreaLights shadowMapEnabled shadowMapType toneMapping physicallyCorrectLights alphaTest doubleSided flipSided numClippingPlanes numClipIntersection depthPacking dithering'.split(
-          ' '
+          ' ',
         );
     this.getParameters = function (b, d, f, h, v, l, r) {
       var k = g[b.type];
@@ -2138,7 +2138,7 @@
         else {
           var p = Math.min(
             Math.floor((c.maxVertexUniforms - 20) / 4),
-            m.length
+            m.length,
           );
           p < m.length
             ? (console.warn(
@@ -2146,7 +2146,7 @@
                   m.length +
                   ' bones. This GPU supports ' +
                   p +
-                  '.'
+                  '.',
               ),
               (m = 0))
             : (m = p);
@@ -2161,7 +2161,7 @@
             b.precision,
             'not supported, using',
             p,
-            'instead.'
+            'instead.',
           ));
       var q = a.getRenderTarget();
       return {
@@ -2287,24 +2287,24 @@
     return a.groupOrder !== b.groupOrder
       ? a.groupOrder - b.groupOrder
       : a.renderOrder !== b.renderOrder
-      ? a.renderOrder - b.renderOrder
-      : a.program !== b.program
-      ? a.program.id - b.program.id
-      : a.material.id !== b.material.id
-      ? a.material.id - b.material.id
-      : a.z !== b.z
-      ? a.z - b.z
-      : a.id - b.id;
+        ? a.renderOrder - b.renderOrder
+        : a.program !== b.program
+          ? a.program.id - b.program.id
+          : a.material.id !== b.material.id
+            ? a.material.id - b.material.id
+            : a.z !== b.z
+              ? a.z - b.z
+              : a.id - b.id;
   }
 
   function Wg(a, b) {
     return a.groupOrder !== b.groupOrder
       ? a.groupOrder - b.groupOrder
       : a.renderOrder !== b.renderOrder
-      ? a.renderOrder - b.renderOrder
-      : a.z !== b.z
-      ? b.z - a.z
-      : a.id - b.id;
+        ? a.renderOrder - b.renderOrder
+        : a.z !== b.z
+          ? b.z - a.z
+          : a.id - b.id;
   }
 
   function lf() {
@@ -2698,7 +2698,7 @@
             !1 === c.skinning &&
             console.warn(
               'THREE.WebGLShadowMap: THREE.SkinnedMesh with material.skinning set to false:',
-              b
+              b,
             ),
           (b = b.isSkinnedMesh && c.skinning),
           (h = 0),
@@ -2741,7 +2741,7 @@
         ) {
           c.modelViewMatrix.multiplyMatrices(
             h.matrixWorldInverse,
-            c.matrixWorld
+            c.matrixWorld,
           );
           var m = b.update(c),
             q = c.material;
@@ -2874,7 +2874,7 @@
                   0,
                   0,
                   0,
-                  1
+                  1,
                 ),
                 y.multiply(Q.projectionMatrix),
                 y.multiply(Q.matrixWorldInverse));
@@ -2985,7 +2985,7 @@
             c.convert(e),
             c.convert(f),
             c.convert(m),
-            c.convert(p)
+            c.convert(p),
           ),
             (E = e),
             (fa = f),
@@ -3007,8 +3007,8 @@
             (1 === b
               ? a.cullFace(1029)
               : 2 === b
-              ? a.cullFace(1028)
-              : a.cullFace(1032)))
+                ? a.cullFace(1028)
+                : a.cullFace(1032)))
         : h(2884);
       ce = b;
     }
@@ -3237,7 +3237,7 @@
               a.blendEquationAlpha,
               a.blendSrcAlpha,
               a.blendDstAlpha,
-              a.premultipliedAlpha
+              a.premultipliedAlpha,
             );
         r.setFunc(a.depthFunc);
         r.setTest(a.depthTest);
@@ -3339,7 +3339,7 @@
                 b +
                 'x' +
                 e +
-                ').'
+                ').',
             ),
             c
           );
@@ -3349,7 +3349,7 @@
               a.width +
               'x' +
               a.height +
-              ').'
+              ').',
           );
       }
       return a;
@@ -3389,7 +3389,7 @@
         ? b.get('EXT_color_buffer_float')
         : (34843 === d || 34837 === d) &&
           console.warn(
-            'THREE.WebGLRenderer: Floating point textures with RGB format not supported. Please use RGBA instead.'
+            'THREE.WebGLRenderer: Floating point textures with RGB format not supported. Please use RGBA instead.',
           );
       return d;
     }
@@ -3440,11 +3440,11 @@
       if (0 < a.version && e.__version !== a.version)
         if (((f = a.image), void 0 === f))
           console.warn(
-            'THREE.WebGLRenderer: Texture marked for update but image is undefined'
+            'THREE.WebGLRenderer: Texture marked for update but image is undefined',
           );
         else if (!1 === f.complete)
           console.warn(
-            'THREE.WebGLRenderer: Texture marked for update but image is incomplete'
+            'THREE.WebGLRenderer: Texture marked for update but image is incomplete',
           );
         else {
           J(e, a, b);
@@ -3493,10 +3493,10 @@
                           X.width,
                           X.height,
                           0,
-                          X.data
+                          X.data,
                         )
                       : console.warn(
-                          'THREE.WebGLRenderer: Attempt to load unsupported compressed texture format in .setTextureCube()'
+                          'THREE.WebGLRenderer: Attempt to load unsupported compressed texture format in .setTextureCube()',
                         )
                     : c.texImage2D(
                         34069 + r,
@@ -3507,7 +3507,7 @@
                         0,
                         x,
                         w,
-                        X.data
+                        X.data,
                       );
             else
               l
@@ -3520,7 +3520,7 @@
                     0,
                     x,
                     w,
-                    t[r].data
+                    t[r].data,
                   )
                 : c.texImage2D(34069 + r, 0, Q, x, w, t[r]);
           h.__maxMipLevel = g ? J.length - 1 : 0;
@@ -3549,14 +3549,14 @@
           (32879 !== c && 35866 !== c) || a.texParameteri(c, 32882, 33071),
           (1001 === g.wrapS && 1001 === g.wrapT) ||
             console.warn(
-              'THREE.WebGLRenderer: Texture is not power of two. Texture.wrapS and Texture.wrapT should be set to THREE.ClampToEdgeWrapping.'
+              'THREE.WebGLRenderer: Texture is not power of two. Texture.wrapS and Texture.wrapT should be set to THREE.ClampToEdgeWrapping.',
             ),
           a.texParameteri(c, 10240, l(g.magFilter)),
           a.texParameteri(c, 10241, l(g.minFilter)),
           1003 !== g.minFilter &&
             1006 !== g.minFilter &&
             console.warn(
-              'THREE.WebGLRenderer: Texture is not power of two. Texture.minFilter should be set to THREE.NearestFilter or THREE.LinearFilter.'
+              'THREE.WebGLRenderer: Texture is not power of two. Texture.minFilter should be set to THREE.NearestFilter or THREE.LinearFilter.',
             ));
       !(h = b.get('EXT_texture_filter_anisotropic')) ||
         (1015 === g.type && null === b.get('OES_texture_float_linear')) ||
@@ -3566,7 +3566,7 @@
         (a.texParameterf(
           c,
           h.TEXTURE_MAX_ANISOTROPY_EXT,
-          Math.min(g.anisotropy, e.getMaxAnisotropy())
+          Math.min(g.anisotropy, e.getMaxAnisotropy()),
         ),
         (d.get(g).__currentAnisotropy = g.anisotropy));
     }
@@ -3614,7 +3614,7 @@
           1012 !== d.type &&
           1014 !== d.type &&
           (console.warn(
-            'THREE.WebGLRenderer: Use UnsignedShortType or UnsignedIntType for DepthFormat DepthTexture.'
+            'THREE.WebGLRenderer: Use UnsignedShortType or UnsignedIntType for DepthFormat DepthTexture.',
           ),
           (d.type = 1012),
           (t = f.convert(d.type)));
@@ -3622,7 +3622,7 @@
           ((u = 34041),
           1020 !== d.type &&
             (console.warn(
-              'THREE.WebGLRenderer: Use UnsignedInt248Type for DepthStencilFormat DepthTexture.'
+              'THREE.WebGLRenderer: Use UnsignedInt248Type for DepthStencilFormat DepthTexture.',
             ),
             (d.type = 1020),
             (t = f.convert(d.type))));
@@ -3650,10 +3650,10 @@
                     h.width,
                     h.height,
                     0,
-                    h.data
+                    h.data,
                   )
                 : console.warn(
-                    'THREE.WebGLRenderer: Attempt to load unsupported compressed texture format in .uploadTexture()'
+                    'THREE.WebGLRenderer: Attempt to load unsupported compressed texture format in .uploadTexture()',
                   )
               : c.texImage2D(3553, x, u, h.width, h.height, 0, r, t, h.data);
         b.__maxMipLevel = n.length - 1;
@@ -3695,7 +3695,7 @@
               d,
               33189,
               c.width,
-              c.height
+              c.height,
             ))
           : a.renderbufferStorage(36161, 33189, c.width, c.height),
           a.framebufferRenderbuffer(36160, 36096, 36161, b);
@@ -3707,7 +3707,7 @@
               d,
               34041,
               c.width,
-              c.height
+              c.height,
             ))
           : a.renderbufferStorage(36161, 34041, c.width, c.height),
           a.framebufferRenderbuffer(36160, 33306, 36161, b);
@@ -3742,7 +3742,7 @@
           'THREE.WebGLTextures: Trying to use ' +
             a +
             ' texture units while this GPU supports only ' +
-            e.maxTextures
+            e.maxTextures,
         );
       z += 1;
       return a;
@@ -3792,7 +3792,7 @@
             36160,
             36064,
             36161,
-            h.__webglColorRenderbuffer
+            h.__webglColorRenderbuffer,
           );
           a.bindRenderbuffer(36161, null);
           b.depthBuffer &&
@@ -3801,7 +3801,7 @@
           a.bindFramebuffer(36160, null);
         } else
           console.warn(
-            'THREE.WebGLRenderer: WebGLMultisampleRenderTarget can only be used with WebGL2.'
+            'THREE.WebGLRenderer: WebGLMultisampleRenderTarget can only be used with WebGL2.',
           );
       if (l) {
         c.bindTexture(34067, k.__webglTexture);
@@ -3822,16 +3822,16 @@
         if (b.depthTexture) {
           if (k)
             throw Error(
-              'target.depthTexture not supported in Cube render targets'
+              'target.depthTexture not supported in Cube render targets',
             );
           if (b && b.isWebGLRenderTargetCube)
             throw Error(
-              'Depth Texture with cube render targets is not supported'
+              'Depth Texture with cube render targets is not supported',
             );
           a.bindFramebuffer(36160, h.__webglFramebuffer);
           if (!b.depthTexture || !b.depthTexture.isDepthTexture)
             throw Error(
-              'renderTarget.depthTexture must be an instance of THREE.DepthTexture'
+              'renderTarget.depthTexture must be an instance of THREE.DepthTexture',
             );
           (d.get(b.depthTexture).__webglTexture &&
             b.depthTexture.image.width === b.width &&
@@ -3883,7 +3883,7 @@
           a.blitFramebuffer(0, 0, c, f, 0, 0, c, f, g, 9728);
         } else
           console.warn(
-            'THREE.WebGLRenderer: WebGLMultisampleRenderTarget can only be used with WebGL2.'
+            'THREE.WebGLRenderer: WebGLMultisampleRenderTarget can only be used with WebGL2.',
           );
     };
     this.safeSetTexture2D = function (a, b) {
@@ -3891,7 +3891,7 @@
         a.isWebGLRenderTarget &&
         (!1 === G &&
           (console.warn(
-            "THREE.WebGLTextures.safeSetTexture2D: don't use render targets as textures. Use their .texture property instead."
+            "THREE.WebGLTextures.safeSetTexture2D: don't use render targets as textures. Use their .texture property instead.",
           ),
           (G = !0)),
         (a = a.texture));
@@ -3902,7 +3902,7 @@
         a.isWebGLRenderTargetCube &&
         (!1 === I &&
           (console.warn(
-            "THREE.WebGLTextures.safeSetTextureCube: don't use cube render targets as textures. Use their .texture property instead."
+            "THREE.WebGLTextures.safeSetTextureCube: don't use cube render targets as textures. Use their .texture property instead.",
           ),
           (I = !0)),
         (a = a.texture));
@@ -4081,7 +4081,7 @@
       ((h * c) / g) * b,
       ((k * c) / g) * b,
       b,
-      g
+      g,
     );
   }
 
@@ -4099,7 +4099,8 @@
         a.getSize(w);
         a.setDrawingBufferSize(2 * f, c, 1);
         J.start();
-      } else d.enabled && a.setDrawingBufferSize(w.width, w.height, y), J.stop();
+      } else
+        d.enabled && a.setDrawingBufferSize(w.width, w.height, y), J.stop();
     }
 
     var d = this,
@@ -4417,7 +4418,7 @@
     this.dispose = function () {};
     this.getStandingMatrix = function () {
       console.warn(
-        'THREE.WebXRManager: getStandingMatrix() is no longer needed.'
+        'THREE.WebXRManager: getStandingMatrix() is no longer needed.',
       );
       return new P();
     };
@@ -4551,7 +4552,7 @@
               else {
                 var t = r.bounds;
                 ca.viewport(
-                  R.set(t.x * Ea, t.y * U, t.z * Ea, t.w * U).multiplyScalar(H)
+                  R.set(t.x * Ea, t.y * U, t.z * Ea, t.w * U).multiplyScalar(H),
                 );
               }
               z.setupLights(r);
@@ -4590,7 +4591,7 @@
         b,
         aa.numPlanes,
         aa.numIntersection,
-        c
+        c,
       );
       var m = la.getProgramCode(a, c),
         p = d.program,
@@ -4689,26 +4690,26 @@
           c.clipShadows,
           a,
           e,
-          a === S && c.id === Q
+          a === S && c.id === Q,
         );
       !1 === c.needsUpdate &&
         (void 0 === e.program
           ? (c.needsUpdate = !0)
           : c.fog && e.fog !== b
-          ? (c.needsUpdate = !0)
-          : !c.lights ||
-            (f.stateID === g.stateID &&
-              f.directionalLength === g.directionalLength &&
-              f.pointLength === g.pointLength &&
-              f.spotLength === g.spotLength &&
-              f.rectAreaLength === g.rectAreaLength &&
-              f.hemiLength === g.hemiLength &&
-              f.shadowsLength === g.shadowsLength)
-          ? void 0 === e.numClippingPlanes ||
-            (e.numClippingPlanes === aa.numPlanes &&
-              e.numIntersection === aa.numIntersection) ||
-            (c.needsUpdate = !0)
-          : (c.needsUpdate = !0));
+            ? (c.needsUpdate = !0)
+            : !c.lights ||
+                (f.stateID === g.stateID &&
+                  f.directionalLength === g.directionalLength &&
+                  f.pointLength === g.pointLength &&
+                  f.spotLength === g.spotLength &&
+                  f.rectAreaLength === g.rectAreaLength &&
+                  f.hemiLength === g.hemiLength &&
+                  f.shadowsLength === g.shadowsLength)
+              ? void 0 === e.numClippingPlanes ||
+                (e.numClippingPlanes === aa.numPlanes &&
+                  e.numIntersection === aa.numIntersection) ||
+                (c.needsUpdate = !0)
+              : (c.needsUpdate = !0));
       c.needsUpdate && (q(c, b, d), (c.needsUpdate = !1));
       var h = !1,
         k = !1,
@@ -4782,91 +4783,94 @@
         c.isMeshBasicMaterial
           ? t(p, c)
           : c.isMeshLambertMaterial
-          ? (t(p, c), c.emissiveMap && (p.emissiveMap.value = c.emissiveMap))
-          : c.isMeshPhongMaterial
-          ? (t(p, c),
-            c.isMeshToonMaterial
-              ? (r(p, c),
-                c.gradientMap && (p.gradientMap.value = c.gradientMap))
-              : r(p, c))
-          : c.isMeshStandardMaterial
-          ? (t(p, c),
-            c.isMeshPhysicalMaterial
-              ? (u(p, c),
-                (p.reflectivity.value = c.reflectivity),
-                (p.clearCoat.value = c.clearCoat),
-                (p.clearCoatRoughness.value = c.clearCoatRoughness))
-              : u(p, c))
-          : c.isMeshMatcapMaterial
-          ? (t(p, c),
-            c.matcap && (p.matcap.value = c.matcap),
-            c.bumpMap &&
-              ((p.bumpMap.value = c.bumpMap),
-              (p.bumpScale.value = c.bumpScale),
-              1 === c.side && (p.bumpScale.value *= -1)),
-            c.normalMap &&
-              ((p.normalMap.value = c.normalMap),
-              p.normalScale.value.copy(c.normalScale),
-              1 === c.side && p.normalScale.value.negate()),
-            c.displacementMap &&
-              ((p.displacementMap.value = c.displacementMap),
-              (p.displacementScale.value = c.displacementScale),
-              (p.displacementBias.value = c.displacementBias)))
-          : c.isMeshDepthMaterial
-          ? (t(p, c),
-            c.displacementMap &&
-              ((p.displacementMap.value = c.displacementMap),
-              (p.displacementScale.value = c.displacementScale),
-              (p.displacementBias.value = c.displacementBias)))
-          : c.isMeshDistanceMaterial
-          ? (t(p, c),
-            c.displacementMap &&
-              ((p.displacementMap.value = c.displacementMap),
-              (p.displacementScale.value = c.displacementScale),
-              (p.displacementBias.value = c.displacementBias)),
-            p.referencePosition.value.copy(c.referencePosition),
-            (p.nearDistance.value = c.nearDistance),
-            (p.farDistance.value = c.farDistance))
-          : c.isMeshNormalMaterial
-          ? (t(p, c),
-            c.bumpMap &&
-              ((p.bumpMap.value = c.bumpMap),
-              (p.bumpScale.value = c.bumpScale),
-              1 === c.side && (p.bumpScale.value *= -1)),
-            c.normalMap &&
-              ((p.normalMap.value = c.normalMap),
-              p.normalScale.value.copy(c.normalScale),
-              1 === c.side && p.normalScale.value.negate()),
-            c.displacementMap &&
-              ((p.displacementMap.value = c.displacementMap),
-              (p.displacementScale.value = c.displacementScale),
-              (p.displacementBias.value = c.displacementBias)))
-          : c.isLineBasicMaterial
-          ? ((p.diffuse.value = c.color),
-            (p.opacity.value = c.opacity),
-            c.isLineDashedMaterial &&
-              ((p.dashSize.value = c.dashSize),
-              (p.totalSize.value = c.dashSize + c.gapSize),
-              (p.scale.value = c.scale)))
-          : c.isPointsMaterial
-          ? ((p.diffuse.value = c.color),
-            (p.opacity.value = c.opacity),
-            (p.size.value = c.size * H),
-            (p.scale.value = 0.5 * U),
-            (p.map.value = c.map),
-            null !== c.map &&
-              (!0 === c.map.matrixAutoUpdate && c.map.updateMatrix(),
-              p.uvTransform.value.copy(c.map.matrix)))
-          : c.isSpriteMaterial
-          ? ((p.diffuse.value = c.color),
-            (p.opacity.value = c.opacity),
-            (p.rotation.value = c.rotation),
-            (p.map.value = c.map),
-            null !== c.map &&
-              (!0 === c.map.matrixAutoUpdate && c.map.updateMatrix(),
-              p.uvTransform.value.copy(c.map.matrix)))
-          : c.isShadowMaterial &&
-            ((p.color.value = c.color), (p.opacity.value = c.opacity)),
+            ? (t(p, c), c.emissiveMap && (p.emissiveMap.value = c.emissiveMap))
+            : c.isMeshPhongMaterial
+              ? (t(p, c),
+                c.isMeshToonMaterial
+                  ? (r(p, c),
+                    c.gradientMap && (p.gradientMap.value = c.gradientMap))
+                  : r(p, c))
+              : c.isMeshStandardMaterial
+                ? (t(p, c),
+                  c.isMeshPhysicalMaterial
+                    ? (u(p, c),
+                      (p.reflectivity.value = c.reflectivity),
+                      (p.clearCoat.value = c.clearCoat),
+                      (p.clearCoatRoughness.value = c.clearCoatRoughness))
+                    : u(p, c))
+                : c.isMeshMatcapMaterial
+                  ? (t(p, c),
+                    c.matcap && (p.matcap.value = c.matcap),
+                    c.bumpMap &&
+                      ((p.bumpMap.value = c.bumpMap),
+                      (p.bumpScale.value = c.bumpScale),
+                      1 === c.side && (p.bumpScale.value *= -1)),
+                    c.normalMap &&
+                      ((p.normalMap.value = c.normalMap),
+                      p.normalScale.value.copy(c.normalScale),
+                      1 === c.side && p.normalScale.value.negate()),
+                    c.displacementMap &&
+                      ((p.displacementMap.value = c.displacementMap),
+                      (p.displacementScale.value = c.displacementScale),
+                      (p.displacementBias.value = c.displacementBias)))
+                  : c.isMeshDepthMaterial
+                    ? (t(p, c),
+                      c.displacementMap &&
+                        ((p.displacementMap.value = c.displacementMap),
+                        (p.displacementScale.value = c.displacementScale),
+                        (p.displacementBias.value = c.displacementBias)))
+                    : c.isMeshDistanceMaterial
+                      ? (t(p, c),
+                        c.displacementMap &&
+                          ((p.displacementMap.value = c.displacementMap),
+                          (p.displacementScale.value = c.displacementScale),
+                          (p.displacementBias.value = c.displacementBias)),
+                        p.referencePosition.value.copy(c.referencePosition),
+                        (p.nearDistance.value = c.nearDistance),
+                        (p.farDistance.value = c.farDistance))
+                      : c.isMeshNormalMaterial
+                        ? (t(p, c),
+                          c.bumpMap &&
+                            ((p.bumpMap.value = c.bumpMap),
+                            (p.bumpScale.value = c.bumpScale),
+                            1 === c.side && (p.bumpScale.value *= -1)),
+                          c.normalMap &&
+                            ((p.normalMap.value = c.normalMap),
+                            p.normalScale.value.copy(c.normalScale),
+                            1 === c.side && p.normalScale.value.negate()),
+                          c.displacementMap &&
+                            ((p.displacementMap.value = c.displacementMap),
+                            (p.displacementScale.value = c.displacementScale),
+                            (p.displacementBias.value = c.displacementBias)))
+                        : c.isLineBasicMaterial
+                          ? ((p.diffuse.value = c.color),
+                            (p.opacity.value = c.opacity),
+                            c.isLineDashedMaterial &&
+                              ((p.dashSize.value = c.dashSize),
+                              (p.totalSize.value = c.dashSize + c.gapSize),
+                              (p.scale.value = c.scale)))
+                          : c.isPointsMaterial
+                            ? ((p.diffuse.value = c.color),
+                              (p.opacity.value = c.opacity),
+                              (p.size.value = c.size * H),
+                              (p.scale.value = 0.5 * U),
+                              (p.map.value = c.map),
+                              null !== c.map &&
+                                (!0 === c.map.matrixAutoUpdate &&
+                                  c.map.updateMatrix(),
+                                p.uvTransform.value.copy(c.map.matrix)))
+                            : c.isSpriteMaterial
+                              ? ((p.diffuse.value = c.color),
+                                (p.opacity.value = c.opacity),
+                                (p.rotation.value = c.rotation),
+                                (p.map.value = c.map),
+                                null !== c.map &&
+                                  (!0 === c.map.matrixAutoUpdate &&
+                                    c.map.updateMatrix(),
+                                  p.uvTransform.value.copy(c.map.matrix)))
+                              : c.isShadowMaterial &&
+                                ((p.color.value = c.color),
+                                (p.opacity.value = c.opacity)),
         void 0 !== p.ltc_1 && (p.ltc_1.value = G.LTC_1),
         void 0 !== p.ltc_2 && (p.ltc_2.value = G.LTC_2),
         hb.upload(L, e.uniformsList, p, ba));
@@ -4905,18 +4909,18 @@
         b.specularMap
           ? (c = b.specularMap)
           : b.displacementMap
-          ? (c = b.displacementMap)
-          : b.normalMap
-          ? (c = b.normalMap)
-          : b.bumpMap
-          ? (c = b.bumpMap)
-          : b.roughnessMap
-          ? (c = b.roughnessMap)
-          : b.metalnessMap
-          ? (c = b.metalnessMap)
-          : b.alphaMap
-          ? (c = b.alphaMap)
-          : b.emissiveMap && (c = b.emissiveMap);
+            ? (c = b.displacementMap)
+            : b.normalMap
+              ? (c = b.normalMap)
+              : b.bumpMap
+                ? (c = b.bumpMap)
+                : b.roughnessMap
+                  ? (c = b.roughnessMap)
+                  : b.metalnessMap
+                    ? (c = b.metalnessMap)
+                    : b.alphaMap
+                      ? (c = b.alphaMap)
+                      : b.emissiveMap && (c = b.emissiveMap);
       void 0 !== c &&
         (c.isWebGLRenderTarget && (c = c.texture),
         !0 === c.matrixAutoUpdate && c.updateMatrix(),
@@ -5038,7 +5042,7 @@
       if (null === L) {
         if (null !== x.getContext('webgl'))
           throw Error(
-            'Error creating WebGL context with your selected attributes.'
+            'Error creating WebGL context with your selected attributes.',
           );
         throw Error('Error creating WebGL context.');
       }
@@ -5080,7 +5084,7 @@
     this.getSize = function (a) {
       void 0 === a &&
         (console.warn(
-          'WebGLRenderer: .getsize() now requires a Vector2 as an argument'
+          'WebGLRenderer: .getsize() now requires a Vector2 as an argument',
         ),
         (a = new B()));
       return a.set(Ea, U);
@@ -5088,7 +5092,7 @@
     this.setSize = function (a, b, c) {
       ka.isPresenting()
         ? console.warn(
-            "THREE.WebGLRenderer: Can't change size while VR device is presenting."
+            "THREE.WebGLRenderer: Can't change size while VR device is presenting.",
           )
         : ((Ea = a),
           (U = b),
@@ -5100,7 +5104,7 @@
     this.getDrawingBufferSize = function (a) {
       void 0 === a &&
         (console.warn(
-          'WebGLRenderer: .getdrawingBufferSize() now requires a Vector2 as an argument'
+          'WebGLRenderer: .getdrawingBufferSize() now requires a Vector2 as an argument',
         ),
         (a = new B()));
       return a.set(Ea * H, U * H);
@@ -5116,7 +5120,7 @@
     this.getCurrentViewport = function (a) {
       void 0 === a &&
         (console.warn(
-          'WebGLRenderer: .getCurrentViewport() now requires a Vector4 as an argument'
+          'WebGLRenderer: .getCurrentViewport() now requires a Vector4 as an argument',
         ),
         (a = new Y()));
       return a.copy(R);
@@ -5237,7 +5241,7 @@
           null === na.get('ANGLE_instanced_arrays')
         )
           console.error(
-            'THREE.WebGLRenderer.setupVertexAttributes: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.'
+            'THREE.WebGLRenderer.setupVertexAttributes: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.',
           );
         else {
           ca.initAttributes();
@@ -5306,11 +5310,11 @@
         Math.min(
           q,
           h + d.drawRange.count * c,
-          p + (null !== g ? g.count * c : Infinity)
+          p + (null !== g ? g.count * c : Infinity),
         ) -
           1 -
           D +
-          1
+          1,
       );
       if (0 !== g) {
         if (f.isMesh)
@@ -5336,11 +5340,11 @@
               f.isLineSegments
                 ? a.setMode(1)
                 : f.isLineLoop
-                ? a.setMode(2)
-                : a.setMode(3))
+                  ? a.setMode(2)
+                  : a.setMode(3))
             : f.isPoints
-            ? a.setMode(0)
-            : f.isSprite && a.setMode(4);
+              ? a.setMode(0)
+              : f.isSprite && a.setMode(4);
         d && d.isInstancedBufferGeometry
           ? 0 < d.maxInstancedCount && a.renderInstances(d, D, g)
           : a.render(D, g);
@@ -5375,13 +5379,13 @@
     this.render = function (a, c, d, e) {
       if (void 0 !== d) {
         console.warn(
-          'THREE.WebGLRenderer.render(): the renderTarget argument has been removed. Use .setRenderTarget() instead.'
+          'THREE.WebGLRenderer.render(): the renderTarget argument has been removed. Use .setRenderTarget() instead.',
         );
         var f = d;
       }
       if (void 0 !== e) {
         console.warn(
-          'THREE.WebGLRenderer.render(): the forceClear argument has been removed. Use .clear() instead.'
+          'THREE.WebGLRenderer.render(): the forceClear argument has been removed. Use .clear() instead.',
         );
         var g = e;
       }
@@ -5430,7 +5434,7 @@
           ka.enabled && ka.submitFrame(),
           (z = C = null))
         : console.error(
-            'THREE.WebGLRenderer.render: camera is not an instance of THREE.Camera.'
+            'THREE.WebGLRenderer.render: camera is not an instance of THREE.Camera.',
           );
     };
     this.setFramebuffer = function (a) {
@@ -5467,7 +5471,7 @@
           36064,
           34069 + (b || 0),
           a.__webglTexture,
-          c || 0
+          c || 0,
         ));
     };
     this.readRenderTargetPixels = function (a, b, c, d, e, f) {
@@ -5482,37 +5486,37 @@
               p = k.type;
             1023 !== m && ia.convert(m) !== L.getParameter(35739)
               ? console.error(
-                  'THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not in RGBA or implementation defined format.'
+                  'THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not in RGBA or implementation defined format.',
                 )
               : 1009 === p ||
-                ia.convert(p) === L.getParameter(35738) ||
-                (1015 === p &&
-                  (Aa.isWebGL2 ||
-                    na.get('OES_texture_float') ||
-                    na.get('WEBGL_color_buffer_float'))) ||
-                (1016 === p &&
-                  (Aa.isWebGL2
-                    ? na.get('EXT_color_buffer_float')
-                    : na.get('EXT_color_buffer_half_float')))
-              ? 36053 === L.checkFramebufferStatus(36160)
-                ? 0 <= b &&
-                  b <= a.width - d &&
-                  0 <= c &&
-                  c <= a.height - e &&
-                  L.readPixels(b, c, d, e, ia.convert(m), ia.convert(p), f)
+                  ia.convert(p) === L.getParameter(35738) ||
+                  (1015 === p &&
+                    (Aa.isWebGL2 ||
+                      na.get('OES_texture_float') ||
+                      na.get('WEBGL_color_buffer_float'))) ||
+                  (1016 === p &&
+                    (Aa.isWebGL2
+                      ? na.get('EXT_color_buffer_float')
+                      : na.get('EXT_color_buffer_half_float')))
+                ? 36053 === L.checkFramebufferStatus(36160)
+                  ? 0 <= b &&
+                    b <= a.width - d &&
+                    0 <= c &&
+                    c <= a.height - e &&
+                    L.readPixels(b, c, d, e, ia.convert(m), ia.convert(p), f)
+                  : console.error(
+                      'THREE.WebGLRenderer.readRenderTargetPixels: readPixels from renderTarget failed. Framebuffer not complete.',
+                    )
                 : console.error(
-                    'THREE.WebGLRenderer.readRenderTargetPixels: readPixels from renderTarget failed. Framebuffer not complete.'
-                  )
-              : console.error(
-                  'THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not in UnsignedByteType or implementation defined type.'
-                );
+                    'THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not in UnsignedByteType or implementation defined type.',
+                  );
           } finally {
             h && L.bindFramebuffer(36160, X);
           }
         }
       } else
         console.error(
-          'THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not THREE.WebGLRenderTarget.'
+          'THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not THREE.WebGLRenderTarget.',
         );
     };
     this.copyFramebufferToTexture = function (a, b, c) {
@@ -5611,7 +5615,7 @@
     a &&
       a.isGeometry &&
       console.error(
-        'THREE.SkinnedMesh no longer supports THREE.Geometry. Use THREE.BufferGeometry instead.'
+        'THREE.SkinnedMesh no longer supports THREE.Geometry. Use THREE.BufferGeometry instead.',
       );
     va.call(this, a, b);
     this.type = 'SkinnedMesh';
@@ -5656,7 +5660,7 @@
   function oa(a, b, c) {
     1 === c &&
       console.error(
-        'THREE.Line: parameter THREE.LinePieces no longer supported. Use THREE.LineSegments instead.'
+        'THREE.Line: parameter THREE.LinePieces no longer supported. Use THREE.LineSegments instead.',
       );
     C.call(this);
     this.type = 'Line';
@@ -5718,7 +5722,7 @@
     m = void 0 !== m ? m : 1026;
     if (1026 !== m && 1027 !== m)
       throw Error(
-        'DepthTexture format must be either THREE.DepthFormat or THREE.DepthStencilFormat'
+        'DepthTexture format must be either THREE.DepthFormat or THREE.DepthStencilFormat',
       );
     void 0 === c && 1026 === m && (c = 1012);
     void 0 === c && 1027 === m && (c = 1020);
@@ -5827,7 +5831,7 @@
       t;
     3 > a.length &&
       console.error(
-        'THREE.ParametricGeometry: Function must now modify a Vector3 as third parameter.'
+        'THREE.ParametricGeometry: Function must now modify a Vector3 as third parameter.',
       );
     var r = b + 1;
     for (l = 0; l <= c; l++) {
@@ -5943,7 +5947,7 @@
             Math.atan2(a.z, -a.x) / 2 / Math.PI + 0.5,
             1 -
               (Math.atan2(-a.y, Math.sqrt(a.x * a.x + a.z * a.z)) / Math.PI +
-                0.5)
+                0.5),
           );
       a = new n();
       b = new n();
@@ -6001,7 +6005,7 @@
       [1, 1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1],
       [2, 1, 0, 0, 3, 2, 1, 3, 0, 2, 3, 1],
       a,
-      b
+      b,
     );
     this.type = 'TetrahedronBufferGeometry';
     this.parameters = { radius: a, detail: b };
@@ -6021,7 +6025,7 @@
       [1, 0, 0, -1, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 1, 0, 0, -1],
       [0, 2, 4, 0, 4, 3, 0, 3, 5, 0, 5, 2, 1, 2, 5, 1, 5, 3, 1, 3, 4, 1, 4, 2],
       a,
-      b
+      b,
     );
     this.type = 'OctahedronBufferGeometry';
     this.parameters = { radius: a, detail: b };
@@ -6083,7 +6087,7 @@
         4, 9, 5, 2, 4, 11, 6, 2, 10, 8, 6, 7, 9, 8, 1,
       ],
       a,
-      b
+      b,
     );
     this.type = 'IcosahedronBufferGeometry';
     this.parameters = { radius: a, detail: b };
@@ -6173,7 +6177,7 @@
         5, 1, 5, 9,
       ],
       a,
-      b
+      b,
     );
     this.type = 'DodecahedronBufferGeometry';
     this.parameters = { radius: a, detail: b };
@@ -6279,7 +6283,7 @@
     };
     void 0 !== g &&
       console.warn(
-        'THREE.TorusKnotGeometry: heightScale has been deprecated. Use .scale( x, y, z ) instead.'
+        'THREE.TorusKnotGeometry: heightScale has been deprecated. Use .scale( x, y, z ) instead.',
       );
     this.fromBufferGeometry(new dc(a, b, c, d, e, f));
     this.mergeVertices();
@@ -6512,7 +6516,7 @@
                 p.y < q.y ? (p.y < t.y ? p.y : t.y) : q.y < t.y ? q.y : t.y,
                 l,
                 x,
-                A
+                A,
               );
               l = je(w, y, l, x, A);
               for (x = r.nextZ; x && x.z <= l; ) {
@@ -6827,7 +6831,16 @@
           e = f * f + d * d;
           if (2 >= e) return new B(f, d);
           e = Math.sqrt(e / 2);
-        } else (a = !1), d > Number.EPSILON ? f > Number.EPSILON && (a = !0) : d < -Number.EPSILON ? f < -Number.EPSILON && (a = !0) : Math.sign(e) === Math.sign(g) && (a = !0), a ? ((f = -e), (e = Math.sqrt(h))) : ((f = d), (d = e), (e = Math.sqrt(h / 2)));
+        } else
+          (a = !1),
+            d > Number.EPSILON
+              ? f > Number.EPSILON && (a = !0)
+              : d < -Number.EPSILON
+                ? f < -Number.EPSILON && (a = !0)
+                : Math.sign(e) === Math.sign(g) && (a = !0),
+            a
+              ? ((f = -e), (e = Math.sqrt(h)))
+              : ((f = d), (d = e), (e = Math.sqrt(h / 2)));
         return new B(f / e, d / e);
       }
 
@@ -6902,7 +6915,7 @@
         E = void 0 !== b.UVGenerator ? b.UVGenerator : hh;
       void 0 !== b.amount &&
         (console.warn(
-          'THREE.ExtrudeBufferGeometry: amount has been renamed to depth.'
+          'THREE.ExtrudeBufferGeometry: amount has been renamed to depth.',
         ),
         (y = b.amount));
       var G = !1;
@@ -7062,7 +7075,7 @@
     if (!c || !c.isFont)
       return (
         console.error(
-          'THREE.TextGeometry: font parameter is not an instance of THREE.Font.'
+          'THREE.TextGeometry: font parameter is not an instance of THREE.Font.',
         ),
         new N()
       );
@@ -8225,7 +8238,7 @@
   function re(a) {
     'undefined' === typeof createImageBitmap &&
       console.warn(
-        'THREE.ImageBitmapLoader: createImageBitmap() not supported.'
+        'THREE.ImageBitmapLoader: createImageBitmap() not supported.',
       );
     'undefined' === typeof fetch &&
       console.warn('THREE.ImageBitmapLoader: fetch() not supported.');
@@ -8513,7 +8526,7 @@
       ((d = c),
       (c = !1),
       console.error(
-        'THREE.InstancedBufferAttribute: The constructor now expects normalized as the third argument.'
+        'THREE.InstancedBufferAttribute: The constructor now expects normalized as the third argument.',
       ));
     S.call(this, a, b, c);
     this.meshPerAttribute = d || 1;
@@ -8534,7 +8547,7 @@
       PointCloud: {
         get: function () {
           console.warn(
-            'THREE.Raycaster: params.PointCloud has been renamed to params.Points.'
+            'THREE.Raycaster: params.PointCloud has been renamed to params.Points.',
           );
           return this.Points;
         },
@@ -8687,7 +8700,7 @@
     a = new z();
     a.addAttribute(
       'position',
-      new E([1, 1, 0, -1, 1, 0, -1, -1, 0, 1, -1, 0, 1, 1, 0], 3)
+      new E([1, 1, 0, -1, 1, 0, -1, -1, 0, 1, -1, 0, 1, 1, 0], 3),
     );
     a.computeBoundingSphere();
     b = new R({ fog: !1 });
@@ -8695,7 +8708,7 @@
     a = new z();
     a.addAttribute(
       'position',
-      new E([1, 1, 0, -1, 1, 0, -1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0], 3)
+      new E([1, 1, 0, -1, 1, 0, -1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0], 3),
     );
     a.computeBoundingSphere();
     this.add(new va(a, new Da({ side: 1, fog: !1 })));
@@ -8798,7 +8811,7 @@
     this.divisionsOuterAngle = d || 2;
     a = new z();
     b = new Float32Array(
-      3 * (3 * (this.divisionsInnerAngle + 2 * this.divisionsOuterAngle) + 3)
+      3 * (3 * (this.divisionsInnerAngle + 2 * this.divisionsOuterAngle) + 3),
     );
     a.addAttribute('position', new S(b, 3));
     b = new R({ color: 65280 });
@@ -8816,7 +8829,7 @@
     (c = this.object.geometry) && c.isGeometry
       ? (b = c.faces.length)
       : console.warn(
-          'THREE.FaceNormalsHelper: only THREE.Geometry is supported. Use THREE.VertexNormalsHelper, instead.'
+          'THREE.FaceNormalsHelper: only THREE.Geometry is supported. Use THREE.VertexNormalsHelper, instead.',
         );
     c = new z();
     b = new E(6 * b, 3);
@@ -8837,7 +8850,7 @@
     a = new z();
     a.addAttribute(
       'position',
-      new E([-b, b, 0, b, b, 0, b, -b, 0, -b, -b, 0, -b, b, 0], 3)
+      new E([-b, b, 0, b, b, 0, b, -b, 0, -b, -b, 0, -b, b, 0], 3),
     );
     b = new R({ fog: !1 });
     this.lightPlane = new oa(a, b);
@@ -8939,8 +8952,8 @@
           1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, -1, -1, -1,
           -1, 1, -1, -1,
         ],
-        3
-      )
+        3,
+      ),
     );
     V.call(this, c, new R({ color: a }));
     this.geometry.computeBoundingSphere();
@@ -8959,22 +8972,22 @@
           1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1,
           1, 1, 1, 0, 0, 1, 0, 0, 0,
         ],
-        3
-      )
+        3,
+      ),
     );
     b.computeBoundingSphere();
     oa.call(this, b, new R({ color: a }));
     b = new z();
     b.addAttribute(
       'position',
-      new E([1, 1, 1, -1, 1, 1, -1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1], 3)
+      new E([1, 1, 1, -1, 1, 1, -1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1], 3),
     );
     b.computeBoundingSphere();
     this.add(
       new va(
         b,
-        new Da({ color: a, opacity: 0.2, transparent: !0, depthWrite: !1 })
-      )
+        new Da({ color: a, opacity: 0.2, transparent: !0, depthWrite: !1 }),
+      ),
     );
   }
 
@@ -9009,7 +9022,7 @@
     a.addAttribute('position', new E(b, 3));
     a.addAttribute(
       'color',
-      new E([1, 0, 0, 1, 0.6, 0, 0, 1, 0, 0.6, 1, 0, 0, 0, 1, 0, 0.6, 1], 3)
+      new E([1, 0, 0, 1, 0.6, 0, 0, 1, 0, 0.6, 1, 0, 0, 0, 1, 0, 0.6, 1], 3),
     );
     b = new R({ vertexColors: 2 });
     V.call(this, a, b);
@@ -9017,7 +9030,7 @@
 
   function Qf(a) {
     console.warn(
-      'THREE.ClosedSplineCurve3 has been deprecated. Use THREE.CatmullRomCurve3 instead.'
+      'THREE.ClosedSplineCurve3 has been deprecated. Use THREE.CatmullRomCurve3 instead.',
     );
     qa.call(this, a);
     this.type = 'catmullrom';
@@ -9026,7 +9039,7 @@
 
   function Rf(a) {
     console.warn(
-      'THREE.SplineCurve3 has been deprecated. Use THREE.CatmullRomCurve3 instead.'
+      'THREE.SplineCurve3 has been deprecated. Use THREE.CatmullRomCurve3 instead.',
     );
     qa.call(this, a);
     this.type = 'catmullrom';
@@ -9034,7 +9047,7 @@
 
   function Je(a) {
     console.warn(
-      'THREE.Spline has been removed. Use THREE.CatmullRomCurve3 instead.'
+      'THREE.Spline has been removed. Use THREE.CatmullRomCurve3 instead.',
     );
     qa.call(this, a);
     this.type = 'catmullrom';
@@ -9253,7 +9266,7 @@
       if (void 0 !== b)
         return (
           console.warn(
-            'THREE.Vector2: .add() now only accepts one argument. Use .addVectors( a, b ) instead.'
+            'THREE.Vector2: .add() now only accepts one argument. Use .addVectors( a, b ) instead.',
           ),
           this.addVectors(a, b)
         );
@@ -9280,7 +9293,7 @@
       if (void 0 !== b)
         return (
           console.warn(
-            'THREE.Vector2: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.'
+            'THREE.Vector2: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.',
           ),
           this.subVectors(a, b)
         );
@@ -9351,7 +9364,7 @@
     clampLength: function (a, b) {
       var c = this.length();
       return this.divideScalar(c || 1).multiplyScalar(
-        Math.max(a, Math.min(b, c))
+        Math.max(a, Math.min(b, c)),
       );
     },
     floor: function () {
@@ -9443,7 +9456,7 @@
     fromBufferAttribute: function (a, b, c) {
       void 0 !== c &&
         console.warn(
-          'THREE.Vector2: offset has been removed from .fromBufferAttribute().'
+          'THREE.Vector2: offset has been removed from .fromBufferAttribute().',
         );
       this.x = a.getX(b);
       this.y = a.getY(b);
@@ -9562,7 +9575,7 @@
     setFromEuler: function (a, b) {
       if (!a || !a.isEuler)
         throw Error(
-          'THREE.Quaternion: .setFromEuler() now expects an Euler rotation rather than a Vector3 and order.'
+          'THREE.Quaternion: .setFromEuler() now expects an Euler rotation rather than a Vector3 and order.',
         );
       var c = a._x,
         d = a._y,
@@ -9582,30 +9595,30 @@
           (this._z = h * k * e + c * d * f),
           (this._w = h * k * f - c * d * e))
         : 'YXZ' === a
-        ? ((this._x = c * k * f + h * d * e),
-          (this._y = h * d * f - c * k * e),
-          (this._z = h * k * e - c * d * f),
-          (this._w = h * k * f + c * d * e))
-        : 'ZXY' === a
-        ? ((this._x = c * k * f - h * d * e),
-          (this._y = h * d * f + c * k * e),
-          (this._z = h * k * e + c * d * f),
-          (this._w = h * k * f - c * d * e))
-        : 'ZYX' === a
-        ? ((this._x = c * k * f - h * d * e),
-          (this._y = h * d * f + c * k * e),
-          (this._z = h * k * e - c * d * f),
-          (this._w = h * k * f + c * d * e))
-        : 'YZX' === a
-        ? ((this._x = c * k * f + h * d * e),
-          (this._y = h * d * f + c * k * e),
-          (this._z = h * k * e - c * d * f),
-          (this._w = h * k * f - c * d * e))
-        : 'XZY' === a &&
-          ((this._x = c * k * f - h * d * e),
-          (this._y = h * d * f - c * k * e),
-          (this._z = h * k * e + c * d * f),
-          (this._w = h * k * f + c * d * e));
+          ? ((this._x = c * k * f + h * d * e),
+            (this._y = h * d * f - c * k * e),
+            (this._z = h * k * e - c * d * f),
+            (this._w = h * k * f + c * d * e))
+          : 'ZXY' === a
+            ? ((this._x = c * k * f - h * d * e),
+              (this._y = h * d * f + c * k * e),
+              (this._z = h * k * e + c * d * f),
+              (this._w = h * k * f - c * d * e))
+            : 'ZYX' === a
+              ? ((this._x = c * k * f - h * d * e),
+                (this._y = h * d * f + c * k * e),
+                (this._z = h * k * e - c * d * f),
+                (this._w = h * k * f + c * d * e))
+              : 'YZX' === a
+                ? ((this._x = c * k * f + h * d * e),
+                  (this._y = h * d * f + c * k * e),
+                  (this._z = h * k * e - c * d * f),
+                  (this._w = h * k * f - c * d * e))
+                : 'XZY' === a &&
+                  ((this._x = c * k * f - h * d * e),
+                  (this._y = h * d * f - c * k * e),
+                  (this._z = h * k * e + c * d * f),
+                  (this._w = h * k * f + c * d * e));
       if (!1 !== b) this.onChangeCallback();
       return this;
     },
@@ -9638,22 +9651,22 @@
           (this._y = (d - h) * c),
           (this._z = (e - a) * c))
         : c > f && c > b
-        ? ((c = 2 * Math.sqrt(1 + c - f - b)),
-          (this._w = (k - g) / c),
-          (this._x = 0.25 * c),
-          (this._y = (a + e) / c),
-          (this._z = (d + h) / c))
-        : f > b
-        ? ((c = 2 * Math.sqrt(1 + f - c - b)),
-          (this._w = (d - h) / c),
-          (this._x = (a + e) / c),
-          (this._y = 0.25 * c),
-          (this._z = (g + k) / c))
-        : ((c = 2 * Math.sqrt(1 + b - c - f)),
-          (this._w = (e - a) / c),
-          (this._x = (d + h) / c),
-          (this._y = (g + k) / c),
-          (this._z = 0.25 * c));
+          ? ((c = 2 * Math.sqrt(1 + c - f - b)),
+            (this._w = (k - g) / c),
+            (this._x = 0.25 * c),
+            (this._y = (a + e) / c),
+            (this._z = (d + h) / c))
+          : f > b
+            ? ((c = 2 * Math.sqrt(1 + f - c - b)),
+              (this._w = (d - h) / c),
+              (this._x = (a + e) / c),
+              (this._y = 0.25 * c),
+              (this._z = (g + k) / c))
+            : ((c = 2 * Math.sqrt(1 + b - c - f)),
+              (this._w = (e - a) / c),
+              (this._x = (d + h) / c),
+              (this._y = (g + k) / c),
+              (this._z = 0.25 * c));
       this.onChangeCallback();
       return this;
     },
@@ -9705,7 +9718,7 @@
         this._x * this._x +
           this._y * this._y +
           this._z * this._z +
-          this._w * this._w
+          this._w * this._w,
       );
     },
     normalize: function () {
@@ -9723,7 +9736,7 @@
     multiply: function (a, b) {
       return void 0 !== b
         ? (console.warn(
-            'THREE.Quaternion: .multiply() now only accepts one argument. Use .multiplyQuaternions( a, b ) instead.'
+            'THREE.Quaternion: .multiply() now only accepts one argument. Use .multiplyQuaternions( a, b ) instead.',
           ),
           this.multiplyQuaternions(a, b))
         : this.multiplyQuaternions(this, a);
@@ -9882,7 +9895,7 @@
       if (void 0 !== b)
         return (
           console.warn(
-            'THREE.Vector3: .add() now only accepts one argument. Use .addVectors( a, b ) instead.'
+            'THREE.Vector3: .add() now only accepts one argument. Use .addVectors( a, b ) instead.',
           ),
           this.addVectors(a, b)
         );
@@ -9913,7 +9926,7 @@
       if (void 0 !== b)
         return (
           console.warn(
-            'THREE.Vector3: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.'
+            'THREE.Vector3: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.',
           ),
           this.subVectors(a, b)
         );
@@ -9938,7 +9951,7 @@
       if (void 0 !== b)
         return (
           console.warn(
-            'THREE.Vector3: .multiply() now only accepts one argument. Use .multiplyVectors( a, b ) instead.'
+            'THREE.Vector3: .multiply() now only accepts one argument. Use .multiplyVectors( a, b ) instead.',
           ),
           this.multiplyVectors(a, b)
         );
@@ -9964,7 +9977,7 @@
       return function (b) {
         (b && b.isEuler) ||
           console.error(
-            'THREE.Vector3: .applyEuler() now expects an Euler rotation rather than a Vector3 and order.'
+            'THREE.Vector3: .applyEuler() now expects an Euler rotation rather than a Vector3 and order.',
           );
         return this.applyQuaternion(a.setFromEuler(b));
       };
@@ -10015,12 +10028,12 @@
     },
     project: function (a) {
       return this.applyMatrix4(a.matrixWorldInverse).applyMatrix4(
-        a.projectionMatrix
+        a.projectionMatrix,
       );
     },
     unproject: function (a) {
       return this.applyMatrix4(a.projectionMatrixInverse).applyMatrix4(
-        a.matrixWorld
+        a.matrixWorld,
       );
     },
     transformDirection: function (a) {
@@ -10072,7 +10085,7 @@
     clampLength: function (a, b) {
       var c = this.length();
       return this.divideScalar(c || 1).multiplyScalar(
-        Math.max(a, Math.min(b, c))
+        Math.max(a, Math.min(b, c)),
       );
     },
     floor: function () {
@@ -10135,7 +10148,7 @@
     cross: function (a, b) {
       return void 0 !== b
         ? (console.warn(
-            'THREE.Vector3: .cross() now only accepts one argument. Use .crossVectors( a, b ) instead.'
+            'THREE.Vector3: .cross() now only accepts one argument. Use .crossVectors( a, b ) instead.',
           ),
           this.crossVectors(a, b))
         : this.crossVectors(this, a);
@@ -10246,7 +10259,7 @@
     fromBufferAttribute: function (a, b, c) {
       void 0 !== c &&
         console.warn(
-          'THREE.Vector3: offset has been removed from .fromBufferAttribute().'
+          'THREE.Vector3: offset has been removed from .fromBufferAttribute().',
         );
       this.x = a.getX(b);
       this.y = a.getY(b);
@@ -10378,7 +10391,7 @@
       a &&
         a.isMatrix4 &&
         console.error(
-          'THREE.Matrix3: .getInverse() no longer takes a Matrix4 argument.'
+          'THREE.Matrix3: .getInverse() no longer takes a Matrix4 argument.',
         );
       var c = a.elements;
       a = this.elements;
@@ -10398,10 +10411,10 @@
       if (0 === r) {
         if (!0 === b)
           throw Error(
-            "THREE.Matrix3: .getInverse() can't invert matrix, determinant is 0"
+            "THREE.Matrix3: .getInverse() can't invert matrix, determinant is 0",
           );
         console.warn(
-          "THREE.Matrix3: .getInverse() can't invert matrix, determinant is 0"
+          "THREE.Matrix3: .getInverse() can't invert matrix, determinant is 0",
         );
         return this.identity();
       }
@@ -10458,7 +10471,7 @@
         -d * (-e * f + h * g) + g + b,
         0,
         0,
-        1
+        1,
       );
     },
     scale: function (a, b) {
@@ -10534,7 +10547,7 @@
           void 0 === wc &&
             (wc = document.createElementNS(
               'http://www.w3.org/1999/xhtml',
-              'canvas'
+              'canvas',
             ));
           wc.width = a.width;
           wc.height = a.height;
@@ -10563,7 +10576,7 @@
         this.repeat.y,
         this.rotation,
         this.center.x,
-        this.center.y
+        this.center.y,
       );
     },
     clone: function () {
@@ -10756,7 +10769,7 @@
       if (void 0 !== b)
         return (
           console.warn(
-            'THREE.Vector4: .add() now only accepts one argument. Use .addVectors( a, b ) instead.'
+            'THREE.Vector4: .add() now only accepts one argument. Use .addVectors( a, b ) instead.',
           ),
           this.addVectors(a, b)
         );
@@ -10791,7 +10804,7 @@
       if (void 0 !== b)
         return (
           console.warn(
-            'THREE.Vector4: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.'
+            'THREE.Vector4: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.',
           ),
           this.subVectors(a, b)
         );
@@ -10880,12 +10893,12 @@
             ? ((k = 0), (c = h = 0.707106781))
             : ((k = Math.sqrt(b)), (h = c / k), (c = d / k))
           : f > m
-          ? 0.01 > f
-            ? ((k = 0.707106781), (h = 0), (c = 0.707106781))
-            : ((h = Math.sqrt(f)), (k = c / h), (c = g / h))
-          : 0.01 > m
-          ? ((h = k = 0.707106781), (c = 0))
-          : ((c = Math.sqrt(m)), (k = d / c), (h = g / c));
+            ? 0.01 > f
+              ? ((k = 0.707106781), (h = 0), (c = 0.707106781))
+              : ((h = Math.sqrt(f)), (k = c / h), (c = g / h))
+            : 0.01 > m
+              ? ((h = k = 0.707106781), (c = 0))
+              : ((c = Math.sqrt(m)), (k = d / c), (h = g / c));
         this.set(k, h, c, a);
         return this;
       }
@@ -10930,7 +10943,7 @@
     clampLength: function (a, b) {
       var c = this.length();
       return this.divideScalar(c || 1).multiplyScalar(
-        Math.max(a, Math.min(b, c))
+        Math.max(a, Math.min(b, c)),
       );
     },
     floor: function () {
@@ -10978,7 +10991,7 @@
     },
     length: function () {
       return Math.sqrt(
-        this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w
+        this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w,
       );
     },
     manhattanLength: function () {
@@ -11030,7 +11043,7 @@
     fromBufferAttribute: function (a, b, c) {
       void 0 !== c &&
         console.warn(
-          'THREE.Vector4: offset has been removed from .fromBufferAttribute().'
+          'THREE.Vector4: offset has been removed from .fromBufferAttribute().',
         );
       this.x = a.getX(b);
       this.y = a.getY(b);
@@ -11262,7 +11275,7 @@
       return b.set(
         (a.x - this.min.x) / (this.max.x - this.min.x),
         (a.y - this.min.y) / (this.max.y - this.min.y),
-        (a.z - this.min.z) / (this.max.z - this.min.z)
+        (a.z - this.min.z) / (this.max.z - this.min.z),
       );
     },
     intersectsBox: function (a) {
@@ -11385,7 +11398,7 @@
       return function (b) {
         void 0 === b &&
           console.error(
-            'THREE.Box3: .getBoundingSphere() target is now required'
+            'THREE.Box3: .getBoundingSphere() target is now required',
           );
         this.getCenter(b.center);
         b.radius = 0.5 * this.getSize(a).length();
@@ -11795,7 +11808,7 @@
         0,
         0,
         0,
-        1
+        1,
       );
       return this;
     },
@@ -11829,7 +11842,7 @@
     makeRotationFromEuler: function (a) {
       (a && a.isEuler) ||
         console.error(
-          'THREE.Matrix4: .makeRotationFromEuler() now expects a Euler rotation rather than a Vector3 and order.'
+          'THREE.Matrix4: .makeRotationFromEuler() now expects a Euler rotation rather than a Vector3 and order.',
         );
       var b = this.elements,
         c = a.x,
@@ -11871,61 +11884,61 @@
             (b[6] = p + a * c),
             (b[10] = f * g))
           : 'ZXY' === a.order
-          ? ((a = g * h),
-            (k = g * e),
-            (m = d * h),
-            (p = d * e),
-            (b[0] = a - p * c),
-            (b[4] = -f * e),
-            (b[8] = m + k * c),
-            (b[1] = k + m * c),
-            (b[5] = f * h),
-            (b[9] = p - a * c),
-            (b[2] = -f * d),
-            (b[6] = c),
-            (b[10] = f * g))
-          : 'ZYX' === a.order
-          ? ((a = f * h),
-            (k = f * e),
-            (m = c * h),
-            (p = c * e),
-            (b[0] = g * h),
-            (b[4] = m * d - k),
-            (b[8] = a * d + p),
-            (b[1] = g * e),
-            (b[5] = p * d + a),
-            (b[9] = k * d - m),
-            (b[2] = -d),
-            (b[6] = c * g),
-            (b[10] = f * g))
-          : 'YZX' === a.order
-          ? ((a = f * g),
-            (k = f * d),
-            (m = c * g),
-            (p = c * d),
-            (b[0] = g * h),
-            (b[4] = p - a * e),
-            (b[8] = m * e + k),
-            (b[1] = e),
-            (b[5] = f * h),
-            (b[9] = -c * h),
-            (b[2] = -d * h),
-            (b[6] = k * e + m),
-            (b[10] = a - p * e))
-          : 'XZY' === a.order &&
-            ((a = f * g),
-            (k = f * d),
-            (m = c * g),
-            (p = c * d),
-            (b[0] = g * h),
-            (b[4] = -e),
-            (b[8] = d * h),
-            (b[1] = a * e + p),
-            (b[5] = f * h),
-            (b[9] = k * e - m),
-            (b[2] = m * e - k),
-            (b[6] = c * h),
-            (b[10] = p * e + a));
+            ? ((a = g * h),
+              (k = g * e),
+              (m = d * h),
+              (p = d * e),
+              (b[0] = a - p * c),
+              (b[4] = -f * e),
+              (b[8] = m + k * c),
+              (b[1] = k + m * c),
+              (b[5] = f * h),
+              (b[9] = p - a * c),
+              (b[2] = -f * d),
+              (b[6] = c),
+              (b[10] = f * g))
+            : 'ZYX' === a.order
+              ? ((a = f * h),
+                (k = f * e),
+                (m = c * h),
+                (p = c * e),
+                (b[0] = g * h),
+                (b[4] = m * d - k),
+                (b[8] = a * d + p),
+                (b[1] = g * e),
+                (b[5] = p * d + a),
+                (b[9] = k * d - m),
+                (b[2] = -d),
+                (b[6] = c * g),
+                (b[10] = f * g))
+              : 'YZX' === a.order
+                ? ((a = f * g),
+                  (k = f * d),
+                  (m = c * g),
+                  (p = c * d),
+                  (b[0] = g * h),
+                  (b[4] = p - a * e),
+                  (b[8] = m * e + k),
+                  (b[1] = e),
+                  (b[5] = f * h),
+                  (b[9] = -c * h),
+                  (b[2] = -d * h),
+                  (b[6] = k * e + m),
+                  (b[10] = a - p * e))
+                : 'XZY' === a.order &&
+                  ((a = f * g),
+                  (k = f * d),
+                  (m = c * g),
+                  (p = c * d),
+                  (b[0] = g * h),
+                  (b[4] = -e),
+                  (b[8] = d * h),
+                  (b[1] = a * e + p),
+                  (b[5] = f * h),
+                  (b[9] = k * e - m),
+                  (b[2] = m * e - k),
+                  (b[6] = c * h),
+                  (b[10] = p * e + a));
       b[3] = 0;
       b[7] = 0;
       b[11] = 0;
@@ -11973,7 +11986,7 @@
     multiply: function (a, b) {
       return void 0 !== b
         ? (console.warn(
-            'THREE.Matrix4: .multiply() now only accepts one argument. Use .multiplyMatrices( a, b ) instead.'
+            'THREE.Matrix4: .multiply() now only accepts one argument. Use .multiplyMatrices( a, b ) instead.',
           ),
           this.multiplyMatrices(a, b))
         : this.multiplyMatrices(this, a);
@@ -12172,10 +12185,10 @@
       if (0 === B) {
         if (!0 === b)
           throw Error(
-            "THREE.Matrix4: .getInverse() can't invert matrix, determinant is 0"
+            "THREE.Matrix4: .getInverse() can't invert matrix, determinant is 0",
           );
         console.warn(
-          "THREE.Matrix4: .getInverse() can't invert matrix, determinant is 0"
+          "THREE.Matrix4: .getInverse() can't invert matrix, determinant is 0",
         );
         return this.identity();
       }
@@ -12307,8 +12320,8 @@
         Math.max(
           a[0] * a[0] + a[1] * a[1] + a[2] * a[2],
           a[4] * a[4] + a[5] * a[5] + a[6] * a[6],
-          a[8] * a[8] + a[9] * a[9] + a[10] * a[10]
-        )
+          a[8] * a[8] + a[9] * a[9] + a[10] * a[10],
+        ),
       );
     },
     makeTranslation: function (a, b, c) {
@@ -12358,7 +12371,7 @@
         0,
         0,
         0,
-        1
+        1,
       );
       return this;
     },
@@ -12444,7 +12457,7 @@
     makePerspective: function (a, b, c, d, e, f) {
       void 0 === f &&
         console.warn(
-          'THREE.Matrix4: .makePerspective() has been redefined and has a new signature. Please check the docs.'
+          'THREE.Matrix4: .makePerspective() has been redefined and has a new signature. Please check the docs.',
         );
       var g = this.elements;
       g[0] = (2 * e) / (b - a);
@@ -12913,8 +12926,8 @@
       a && a.isColor
         ? this.copy(a)
         : 'number' === typeof a
-        ? this.setHex(a)
-        : 'string' === typeof a && this.setStyle(a);
+          ? this.setHex(a)
+          : 'string' === typeof a && this.setStyle(a);
       return this;
     },
     setScalar: function (a) {
@@ -12941,10 +12954,10 @@
         return d < 1 / 6
           ? a + 6 * (c - a) * d
           : 0.5 > d
-          ? c
-          : d < 2 / 3
-          ? a + 6 * (c - a) * (2 / 3 - d)
-          : a;
+            ? c
+            : d < 2 / 3
+              ? a + 6 * (c - a) * (2 / 3 - d)
+              : a;
       }
 
       return function (b, c, d) {
@@ -12966,7 +12979,7 @@
         void 0 !== b &&
           1 > parseFloat(b) &&
           console.warn(
-            'THREE.Color: Alpha component of ' + a + ' will be ignored.'
+            'THREE.Color: Alpha component of ' + a + ' will be ignored.',
           );
       }
 
@@ -12979,7 +12992,7 @@
             if (
               (c =
                 /^(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
-                  d
+                  d,
                 ))
             )
               return (
@@ -12992,7 +13005,7 @@
             if (
               (c =
                 /^(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
-                  d
+                  d,
                 ))
             )
               return (
@@ -13008,7 +13021,7 @@
             if (
               (c =
                 /^([0-9]*\.?[0-9]+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([0-9]*\.?[0-9]+)\s*)?$/.exec(
-                  d
+                  d,
                 ))
             ) {
               d = parseFloat(c[1]) / 360;
@@ -13641,34 +13654,36 @@
             ? ((this._x = Math.atan2(-m, e)), (this._z = Math.atan2(-f, a)))
             : ((this._x = Math.atan2(q, k)), (this._z = 0)))
         : 'YXZ' === b
-        ? ((this._x = Math.asin(-d(m, -1, 1))),
-          0.99999 > Math.abs(m)
-            ? ((this._y = Math.atan2(g, e)), (this._z = Math.atan2(h, k)))
-            : ((this._y = Math.atan2(-l, a)), (this._z = 0)))
-        : 'ZXY' === b
-        ? ((this._x = Math.asin(d(q, -1, 1))),
-          0.99999 > Math.abs(q)
-            ? ((this._y = Math.atan2(-l, e)), (this._z = Math.atan2(-f, k)))
-            : ((this._y = 0), (this._z = Math.atan2(h, a))))
-        : 'ZYX' === b
-        ? ((this._y = Math.asin(-d(l, -1, 1))),
-          0.99999 > Math.abs(l)
-            ? ((this._x = Math.atan2(q, e)), (this._z = Math.atan2(h, a)))
-            : ((this._x = 0), (this._z = Math.atan2(-f, k))))
-        : 'YZX' === b
-        ? ((this._z = Math.asin(d(h, -1, 1))),
-          0.99999 > Math.abs(h)
-            ? ((this._x = Math.atan2(-m, k)), (this._y = Math.atan2(-l, a)))
-            : ((this._x = 0), (this._y = Math.atan2(g, e))))
-        : 'XZY' === b
-        ? ((this._z = Math.asin(-d(f, -1, 1))),
-          0.99999 > Math.abs(f)
-            ? ((this._x = Math.atan2(q, k)), (this._y = Math.atan2(g, a)))
-            : ((this._x = Math.atan2(-m, e)), (this._y = 0)))
-        : console.warn(
-            'THREE.Euler: .setFromRotationMatrix() given unsupported order: ' +
-              b
-          );
+          ? ((this._x = Math.asin(-d(m, -1, 1))),
+            0.99999 > Math.abs(m)
+              ? ((this._y = Math.atan2(g, e)), (this._z = Math.atan2(h, k)))
+              : ((this._y = Math.atan2(-l, a)), (this._z = 0)))
+          : 'ZXY' === b
+            ? ((this._x = Math.asin(d(q, -1, 1))),
+              0.99999 > Math.abs(q)
+                ? ((this._y = Math.atan2(-l, e)), (this._z = Math.atan2(-f, k)))
+                : ((this._y = 0), (this._z = Math.atan2(h, a))))
+            : 'ZYX' === b
+              ? ((this._y = Math.asin(-d(l, -1, 1))),
+                0.99999 > Math.abs(l)
+                  ? ((this._x = Math.atan2(q, e)), (this._z = Math.atan2(h, a)))
+                  : ((this._x = 0), (this._z = Math.atan2(-f, k))))
+              : 'YZX' === b
+                ? ((this._z = Math.asin(d(h, -1, 1))),
+                  0.99999 > Math.abs(h)
+                    ? ((this._x = Math.atan2(-m, k)),
+                      (this._y = Math.atan2(-l, a)))
+                    : ((this._x = 0), (this._y = Math.atan2(g, e))))
+                : 'XZY' === b
+                  ? ((this._z = Math.asin(-d(f, -1, 1))),
+                    0.99999 > Math.abs(f)
+                      ? ((this._x = Math.atan2(q, k)),
+                        (this._y = Math.atan2(g, a)))
+                      : ((this._x = Math.atan2(-m, e)), (this._y = 0)))
+                  : console.warn(
+                      'THREE.Euler: .setFromRotationMatrix() given unsupported order: ' +
+                        b,
+                    );
       this._order = b;
       if (!1 !== c) this.onChangeCallback();
       return this;
@@ -13869,7 +13884,7 @@
         return (
           console.error(
             "THREE.Object3D.add: object can't be added as a child of itself.",
-            a
+            a,
           ),
           this
         );
@@ -13880,7 +13895,7 @@
           this.children.push(a))
         : console.error(
             'THREE.Object3D.add: object not an instance of THREE.Object3D.',
-            a
+            a,
           );
       return this;
     },
@@ -13912,7 +13927,7 @@
     getWorldPosition: function (a) {
       void 0 === a &&
         (console.warn(
-          'THREE.Object3D: .getWorldPosition() target is now required'
+          'THREE.Object3D: .getWorldPosition() target is now required',
         ),
         (a = new n()));
       this.updateMatrixWorld(!0);
@@ -13924,7 +13939,7 @@
       return function (c) {
         void 0 === c &&
           (console.warn(
-            'THREE.Object3D: .getWorldQuaternion() target is now required'
+            'THREE.Object3D: .getWorldQuaternion() target is now required',
           ),
           (c = new aa()));
         this.updateMatrixWorld(!0);
@@ -13938,7 +13953,7 @@
       return function (c) {
         void 0 === c &&
           (console.warn(
-            'THREE.Object3D: .getWorldScale() target is now required'
+            'THREE.Object3D: .getWorldScale() target is now required',
           ),
           (c = new n()));
         this.updateMatrixWorld(!0);
@@ -13949,7 +13964,7 @@
     getWorldDirection: function (a) {
       void 0 === a &&
         (console.warn(
-          'THREE.Object3D: .getWorldDirection() target is now required'
+          'THREE.Object3D: .getWorldDirection() target is now required',
         ),
         (a = new n()));
       this.updateMatrixWorld(!0);
@@ -13984,7 +13999,7 @@
           ? this.matrixWorld.copy(this.matrix)
           : this.matrixWorld.multiplyMatrices(
               this.parent.matrixWorld,
-              this.matrix
+              this.matrix,
             ),
           (this.matrixWorldNeedsUpdate = !1),
           (a = !0);
@@ -13999,7 +14014,7 @@
         ? this.matrixWorld.copy(this.matrix)
         : this.matrixWorld.multiplyMatrices(
             this.parent.matrixWorld,
-            this.matrix
+            this.matrix,
           );
       if (!0 === b)
         for (a = this.children, b = 0, c = a.length; b < c; b++)
@@ -14276,7 +14291,7 @@
         0,
         0,
         0,
-        1
+        1,
       );
       this.applyMatrix(c);
       return this;
@@ -14470,7 +14485,7 @@
       } else
         console.error(
           'THREE.Geometry.merge(): geometry not an instance of THREE.Geometry.',
-          a
+          a,
         );
     },
     mergeMesh: function (a) {
@@ -14479,7 +14494,7 @@
           this.merge(a.geometry, a.matrix))
         : console.error(
             'THREE.Geometry.mergeMesh(): mesh not an instance of THREE.Mesh.',
-            a
+            a,
           );
     },
     mergeVertices: function () {
@@ -14763,7 +14778,7 @@
     setArray: function (a) {
       if (Array.isArray(a))
         throw new TypeError(
-          'THREE.BufferAttribute: array should be a Typed Array.'
+          'THREE.BufferAttribute: array should be a Typed Array.',
         );
       this.count = void 0 !== a ? a.length / this.itemSize : 0;
       this.array = a;
@@ -14799,7 +14814,7 @@
         void 0 === f &&
           (console.warn(
             'THREE.BufferAttribute.copyColorsArray(): color is undefined',
-            d
+            d,
           ),
           (f = new M()));
         b[c++] = f.r;
@@ -14814,7 +14829,7 @@
         void 0 === f &&
           (console.warn(
             'THREE.BufferAttribute.copyVector2sArray(): vector is undefined',
-            d
+            d,
           ),
           (f = new B()));
         b[c++] = f.x;
@@ -14828,7 +14843,7 @@
         void 0 === f &&
           (console.warn(
             'THREE.BufferAttribute.copyVector3sArray(): vector is undefined',
-            d
+            d,
           ),
           (f = new n()));
         b[c++] = f.x;
@@ -14843,7 +14858,7 @@
         void 0 === f &&
           (console.warn(
             'THREE.BufferAttribute.copyVector4sArray(): vector is undefined',
-            d
+            d,
           ),
           (f = new Y()));
         b[c++] = f.x;
@@ -14976,7 +14991,7 @@
       0 < c.length &&
         0 === b.length &&
         console.error(
-          'THREE.DirectGeometry: Faceless geometries are not supported.'
+          'THREE.DirectGeometry: Faceless geometries are not supported.',
         );
       for (m = 0; m < b.length; m++) {
         var A = b[m];
@@ -14995,7 +15010,7 @@
             ? this.uvs.push(w[0], w[1], w[2])
             : (console.warn(
                 'THREE.DirectGeometry.fromGeometry(): Undefined vertexUv ',
-                m
+                m,
               ),
               this.uvs.push(new B(), new B(), new B())));
         !0 === f &&
@@ -15004,7 +15019,7 @@
             ? this.uvs2.push(w[0], w[1], w[2])
             : (console.warn(
                 'THREE.DirectGeometry.fromGeometry(): Undefined vertexUv2 ',
-                m
+                m,
               ),
               this.uvs2.push(new B(), new B(), new B())));
         for (w = 0; w < h; w++) {
@@ -15043,14 +15058,14 @@
       )
         return (
           console.warn(
-            'THREE.BufferGeometry: .addAttribute() now expects ( name, attribute ).'
+            'THREE.BufferGeometry: .addAttribute() now expects ( name, attribute ).',
           ),
           this.addAttribute(a, new S(b, c))
         );
       if ('index' === a)
         return (
           console.warn(
-            'THREE.BufferGeometry.addAttribute: Use .setIndex() for index attribute.'
+            'THREE.BufferGeometry.addAttribute: Use .setIndex() for index attribute.',
           ),
           this.setIndex(b),
           this
@@ -15284,7 +15299,7 @@
           isNaN(this.boundingBox.min.z)) &&
           console.error(
             'THREE.BufferGeometry.computeBoundingBox: Computed min/max have NaN values. The "position" attribute is likely to have NaN values.',
-            this
+            this,
           );
       };
     })(),
@@ -15324,7 +15339,7 @@
           isNaN(this.boundingSphere.radius) &&
             console.error(
               'THREE.BufferGeometry.computeBoundingSphere(): Computed radius is NaN. The "position" attribute is likely to have NaN values.',
-              this
+              this,
             );
         }
       };
@@ -15395,7 +15410,7 @@
         void 0 === b &&
           ((b = 0),
           console.warn(
-            'THREE.BufferGeometry.merge(): Overwriting original geometry, starting at offset=0. Use BufferGeometryUtils.mergeBufferGeometries() for lossless merge.'
+            'THREE.BufferGeometry.merge(): Overwriting original geometry, starting at offset=0. Use BufferGeometryUtils.mergeBufferGeometries() for lossless merge.',
           ));
         var c = this.attributes,
           d;
@@ -15411,7 +15426,7 @@
       }
       console.error(
         'THREE.BufferGeometry.merge(): geometry not an instance of THREE.BufferGeometry.',
-        a
+        a,
       );
     },
     normalizeNormals: (function () {
@@ -15447,7 +15462,7 @@
       if (null === this.index)
         return (
           console.warn(
-            'THREE.BufferGeometry.toNonIndexed(): Geometry is already non-indexed.'
+            'THREE.BufferGeometry.toNonIndexed(): Geometry is already non-indexed.',
           ),
           this
         );
@@ -15603,7 +15618,7 @@
             console.warn(
               'THREE.' +
                 this.type +
-                ': .shading has been removed. Use the boolean .flatShading instead.'
+                ': .shading has been removed. Use the boolean .flatShading instead.',
             ),
               (this.flatShading = 1 === c ? !0 : !1);
           else {
@@ -15614,13 +15629,13 @@
                     this.type +
                     ": '" +
                     b +
-                    "' is not a property of this material."
+                    "' is not a property of this material.",
                 )
               : d && d.isColor
-              ? d.set(c)
-              : d && d.isVector3 && c && c.isVector3
-              ? d.copy(c)
-              : (this[b] = c);
+                ? d.set(c)
+                : d && d.isVector3 && c && c.isVector3
+                  ? d.copy(c)
+                  : (this[b] = c);
           }
         }
     },
@@ -15831,30 +15846,30 @@
         d && d.isTexture
           ? { type: 't', value: d.toJSON(a).uuid }
           : d && d.isColor
-          ? {
-              type: 'c',
-              value: d.getHex(),
-            }
-          : d && d.isVector2
-          ? { type: 'v2', value: d.toArray() }
-          : d && d.isVector3
-          ? {
-              type: 'v3',
-              value: d.toArray(),
-            }
-          : d && d.isVector4
-          ? {
-              type: 'v4',
-              value: d.toArray(),
-            }
-          : d && d.isMatrix3
-          ? { type: 'm3', value: d.toArray() }
-          : d && d.isMatrix4
-          ? {
-              type: 'm4',
-              value: d.toArray(),
-            }
-          : { value: d };
+            ? {
+                type: 'c',
+                value: d.getHex(),
+              }
+            : d && d.isVector2
+              ? { type: 'v2', value: d.toArray() }
+              : d && d.isVector3
+                ? {
+                    type: 'v3',
+                    value: d.toArray(),
+                  }
+                : d && d.isVector4
+                  ? {
+                      type: 'v4',
+                      value: d.toArray(),
+                    }
+                  : d && d.isMatrix3
+                    ? { type: 'm3', value: d.toArray() }
+                    : d && d.isMatrix4
+                      ? {
+                          type: 'm4',
+                          value: d.toArray(),
+                        }
+                      : { value: d };
     }
     0 < Object.keys(this.defines).length && (b.defines = this.defines);
     b.vertexShader = this.vertexShader;
@@ -15898,7 +15913,7 @@
     closestPointToPoint: function (a, b) {
       void 0 === b &&
         (console.warn(
-          'THREE.Ray: .closestPointToPoint() target is now required'
+          'THREE.Ray: .closestPointToPoint() target is now required',
         ),
         (b = new n()));
       b.subVectors(a, this.origin);
@@ -15951,16 +15966,16 @@
                 (d = Math.max(0, -(k * e + m))),
                 (k = -d * d + e * (e + 2 * l) + n))
             : e <= -t
-            ? ((d = Math.max(0, -(-k * h + m))),
-              (e = 0 < d ? -h : Math.min(Math.max(-h, -l), h)),
-              (k = -d * d + e * (e + 2 * l) + n))
-            : e <= t
-            ? ((d = 0),
-              (e = Math.min(Math.max(-h, -l), h)),
-              (k = e * (e + 2 * l) + n))
-            : ((d = Math.max(0, -(k * h + m))),
-              (e = 0 < d ? h : Math.min(Math.max(-h, -l), h)),
-              (k = -d * d + e * (e + 2 * l) + n));
+              ? ((d = Math.max(0, -(-k * h + m))),
+                (e = 0 < d ? -h : Math.min(Math.max(-h, -l), h)),
+                (k = -d * d + e * (e + 2 * l) + n))
+              : e <= t
+                ? ((d = 0),
+                  (e = Math.min(Math.max(-h, -l), h)),
+                  (k = e * (e + 2 * l) + n))
+                : ((d = Math.max(0, -(k * h + m))),
+                  (e = 0 < d ? h : Math.min(Math.max(-h, -l), h)),
+                  (k = -d * d + e * (e + 2 * l) + n));
         } else
           (e = 0 < k ? -h : h),
             (d = Math.max(0, -(k * e + m))),
@@ -16094,7 +16109,7 @@
         var m = d * k - e * e;
         void 0 === h &&
           (console.warn(
-            'THREE.Triangle: .getBarycoord() target is now required'
+            'THREE.Triangle: .getBarycoord() target is now required',
           ),
           (h = new n()));
         if (0 === m) return h.set(-2, -1, -1);
@@ -16194,7 +16209,7 @@
       return function (g, h) {
         void 0 === h &&
           (console.warn(
-            'THREE.Triangle: .closestPointToPoint() target is now required'
+            'THREE.Triangle: .closestPointToPoint() target is now required',
           ),
           (h = new n()));
         var k = this.a,
@@ -16276,7 +16291,7 @@
       void 0 !== a.morphTargetDictionary &&
         (this.morphTargetDictionary = Object.assign(
           {},
-          a.morphTargetDictionary
+          a.morphTargetDictionary,
         ));
       return this;
     },
@@ -16306,7 +16321,7 @@
           void 0 !== a &&
             0 < a.length &&
             console.error(
-              'THREE.Mesh.updateMorphTargets() no longer supports THREE.Geometry. Use THREE.BufferGeometry instead.'
+              'THREE.Mesh.updateMorphTargets() no longer supports THREE.Geometry. Use THREE.BufferGeometry instead.',
             );
     },
     raycast: (function () {
@@ -16629,7 +16644,7 @@
     getWorldDirection: function (a) {
       void 0 === a &&
         (console.warn(
-          'THREE.Camera: .getWorldDirection() target is now required'
+          'THREE.Camera: .getWorldDirection() target is now required',
         ),
         (a = new n()));
       this.updateMatrixWorld(!0);
@@ -16809,7 +16824,7 @@
     setArray: function (a) {
       if (Array.isArray(a))
         throw new TypeError(
-          'THREE.BufferAttribute: array should be a Typed Array.'
+          'THREE.BufferAttribute: array should be a Typed Array.',
         );
       this.count = void 0 !== a ? a.length / this.stride : 0;
       this.array = a;
@@ -17099,10 +17114,10 @@
       'attached' === this.bindMode
         ? this.bindMatrixInverse.getInverse(this.matrixWorld)
         : 'detached' === this.bindMode
-        ? this.bindMatrixInverse.getInverse(this.bindMatrix)
-        : console.warn(
-            'THREE.SkinnedMesh: Unrecognized bindMode: ' + this.bindMode
-          );
+          ? this.bindMatrixInverse.getInverse(this.bindMatrix)
+          : console.warn(
+              'THREE.SkinnedMesh: Unrecognized bindMode: ' + this.bindMode,
+            );
     },
     clone: function () {
       return new this.constructor(this.geometry, this.material).copy(this);
@@ -17197,7 +17212,7 @@
             c.addAttribute('lineDistance', new E(e, 1));
           } else
             console.warn(
-              'THREE.Line.computeLineDistances(): Computation only possible with non-indexed BufferGeometry.'
+              'THREE.Line.computeLineDistances(): Computation only possible with non-indexed BufferGeometry.',
             );
         else if (c.isGeometry)
           for (
@@ -17319,7 +17334,7 @@
             c.addAttribute('lineDistance', new E(e, 1));
           } else
             console.warn(
-              'THREE.LineSegments.computeLineDistances(): Computation only possible with non-indexed BufferGeometry.'
+              'THREE.LineSegments.computeLineDistances(): Computation only possible with non-indexed BufferGeometry.',
             );
         else if (c.isGeometry)
           for (
@@ -17890,8 +17905,8 @@
         return !a || (!c && a.constructor === b)
           ? a
           : 'number' === typeof b.BYTES_PER_ELEMENT
-          ? new b(a)
-          : Array.prototype.slice.call(a);
+            ? new b(a)
+            : Array.prototype.slice.call(a);
       },
       isTypedArray: function (a) {
         return ArrayBuffer.isView(a) && !(a instanceof DataView);
@@ -18203,7 +18218,7 @@
       0 !== b - Math.floor(b) &&
         (console.error(
           'THREE.KeyframeTrack: Invalid value size in track.',
-          this
+          this,
         ),
         (a = !1));
       var c = this.times;
@@ -18218,7 +18233,7 @@
             'THREE.KeyframeTrack: Time is not a valid number.',
             this,
             f,
-            g
+            g,
           );
           a = !1;
           break;
@@ -18229,7 +18244,7 @@
             this,
             f,
             g,
-            e
+            e,
           );
           a = !1;
           break;
@@ -18243,7 +18258,7 @@
               'THREE.KeyframeTrack: Value is not a valid number.',
               this,
               f,
-              d
+              d,
             );
             a = !1;
             break;
@@ -18382,7 +18397,9 @@
         k = pa.sortedArray(k, 1, m);
         d || 0 !== h[0] || (h.push(e), k.push(k[0]));
         f.push(
-          new lc('.morphTargetInfluences[' + b[g].name + ']', h, k).scale(1 / c)
+          new lc('.morphTargetInfluences[' + b[g].name + ']', h, k).scale(
+            1 / c,
+          ),
         );
       }
       return new Ia(a, -1, f);
@@ -18416,7 +18433,7 @@
       if (!a)
         return (
           console.error(
-            'THREE.AnimationClip: No animation in JSONLoader data.'
+            'THREE.AnimationClip: No animation in JSONLoader data.',
           ),
           null
         );
@@ -18534,7 +18551,7 @@
           var h = !!g[2];
           g = g[3];
           g = decodeURIComponent(g);
-          h && (g = atob(g));
+          h && (g = Buffer.from(g, 'base64').toString());
           try {
             var k = (this.responseType || '').toLowerCase();
             switch (k) {
@@ -18592,7 +18609,7 @@
               }
               e.manager.itemEnd(a);
             },
-            !1
+            !1,
           );
           n.addEventListener(
             'progress',
@@ -18602,7 +18619,7 @@
                 if (f.onProgress) f.onProgress(b);
               }
             },
-            !1
+            !1,
           );
           n.addEventListener(
             'error',
@@ -18616,7 +18633,7 @@
               e.manager.itemError(a);
               e.manager.itemEnd(a);
             },
-            !1
+            !1,
           );
           n.addEventListener(
             'abort',
@@ -18630,14 +18647,14 @@
               e.manager.itemError(a);
               e.manager.itemEnd(a);
             },
-            !1
+            !1,
           );
           void 0 !== this.responseType && (n.responseType = this.responseType);
           void 0 !== this.withCredentials &&
             (n.withCredentials = this.withCredentials);
           n.overrideMimeType &&
             n.overrideMimeType(
-              void 0 !== this.mimeType ? this.mimeType : 'text/plain'
+              void 0 !== this.mimeType ? this.mimeType : 'text/plain',
             );
           for (h in this.requestHeader)
             n.setRequestHeader(h, this.requestHeader[h]);
@@ -18679,7 +18696,7 @@
           b(e.parse(JSON.parse(a)));
         },
         c,
-        d
+        d,
       );
     },
     parse: function (a) {
@@ -18715,7 +18732,7 @@
               b && b(h));
           },
           c,
-          d
+          d,
         );
       }
 
@@ -18756,7 +18773,7 @@
             b && b(h);
           },
           c,
-          d
+          d,
         );
       return h;
     },
@@ -18795,7 +18812,7 @@
               b && b(f, a);
         },
         c,
-        d
+        d,
       );
       return f;
     },
@@ -18868,7 +18885,7 @@
             6 === h && ((f.needsUpdate = !0), b && b(f));
           },
           void 0,
-          d
+          d,
         );
       }
 
@@ -18908,7 +18925,7 @@
           void 0 !== b && b(e);
         },
         c,
-        d
+        d,
       );
       return e;
     },
@@ -19256,7 +19273,7 @@
     b.set(
       kd(a, c.x, d.x, e.x, f.x),
       kd(a, c.y, d.y, e.y, f.y),
-      kd(a, c.z, d.z, e.z, f.z)
+      kd(a, c.z, d.z, e.z, f.z),
     );
     return b;
   };
@@ -19519,10 +19536,10 @@
           f && f.isEllipseCurve
             ? 2 * a
             : f && (f.isLineCurve || f.isLineCurve3)
-            ? 1
-            : f && f.isSplineCurve
-            ? a * f.points.length
-            : a
+              ? 1
+              : f && f.isSplineCurve
+                ? a * f.points.length
+                : a,
         );
         for (var g = 0; g < f.length; g++) {
           var h = f[g];
@@ -19586,7 +19603,7 @@
         this.currentPoint.clone(),
         new B(a, b),
         new B(c, d),
-        new B(e, f)
+        new B(e, f),
       );
       this.curves.push(a);
       this.currentPoint.set(e, f);
@@ -19612,7 +19629,7 @@
         e,
         f,
         g,
-        h
+        h,
       );
     },
     absellipse: function (a, b, c, d, e, f, g, h) {
@@ -19885,7 +19902,7 @@
           b(e.parse(JSON.parse(a)));
         },
         c,
-        d
+        d,
       );
     },
     parse: function (a) {
@@ -20046,7 +20063,7 @@
           b(e.parse(JSON.parse(a)));
         },
         c,
-        d
+        d,
       );
     },
     parse: function (a) {
@@ -20126,7 +20143,7 @@
             void 0 !== d && d(k);
             console.error(
               "THREE:ObjectLoader: Can't parse " + a + '.',
-              k.message
+              k.message,
             );
             return;
           }
@@ -20138,7 +20155,7 @@
             : e.parse(f, b);
         },
         c,
-        d
+        d,
       );
     },
     setPath: function (a) {
@@ -20187,7 +20204,7 @@
                 g.width,
                 g.height,
                 g.widthSegments,
-                g.heightSegments
+                g.heightSegments,
               );
               break;
             case 'BoxGeometry':
@@ -20199,7 +20216,7 @@
                 g.depth,
                 g.widthSegments,
                 g.heightSegments,
-                g.depthSegments
+                g.depthSegments,
               );
               break;
             case 'CircleGeometry':
@@ -20208,7 +20225,7 @@
                 g.radius,
                 g.segments,
                 g.thetaStart,
-                g.thetaLength
+                g.thetaLength,
               );
               break;
             case 'CylinderGeometry':
@@ -20221,7 +20238,7 @@
                 g.heightSegments,
                 g.openEnded,
                 g.thetaStart,
-                g.thetaLength
+                g.thetaLength,
               );
               break;
             case 'ConeGeometry':
@@ -20233,7 +20250,7 @@
                 g.heightSegments,
                 g.openEnded,
                 g.thetaStart,
-                g.thetaLength
+                g.thetaLength,
               );
               break;
             case 'SphereGeometry':
@@ -20245,7 +20262,7 @@
                 g.phiStart,
                 g.phiLength,
                 g.thetaStart,
-                g.thetaLength
+                g.thetaLength,
               );
               break;
             case 'DodecahedronGeometry':
@@ -20266,7 +20283,7 @@
                 g.thetaSegments,
                 g.phiSegments,
                 g.thetaStart,
-                g.thetaLength
+                g.thetaLength,
               );
               break;
             case 'TorusGeometry':
@@ -20276,7 +20293,7 @@
                 g.tube,
                 g.radialSegments,
                 g.tubularSegments,
-                g.arc
+                g.arc,
               );
               break;
             case 'TorusKnotGeometry':
@@ -20287,7 +20304,7 @@
                 g.tubularSegments,
                 g.radialSegments,
                 g.p,
-                g.q
+                g.q,
               );
               break;
             case 'TubeGeometry':
@@ -20297,7 +20314,7 @@
                 g.tubularSegments,
                 g.radius,
                 g.radialSegments,
-                g.closed
+                g.closed,
               );
               break;
             case 'LatheGeometry':
@@ -20335,15 +20352,17 @@
               'THREE' in window && 'LegacyJSONLoader' in THREE
                 ? (h = new THREE.LegacyJSONLoader().parse(
                     g,
-                    this.resourcePath
+                    this.resourcePath,
                   ).geometry)
                 : console.error(
-                    'THREE.ObjectLoader: You have to import LegacyJSONLoader in order load geometry data of type "Geometry".'
+                    'THREE.ObjectLoader: You have to import LegacyJSONLoader in order load geometry data of type "Geometry".',
                   );
               break;
             default:
               console.warn(
-                'THREE.ObjectLoader: Unsupported geometry type "' + g.type + '"'
+                'THREE.ObjectLoader: Unsupported geometry type "' +
+                  g.type +
+                  '"',
               );
               continue;
           }
@@ -20400,7 +20419,7 @@
           function () {
             d.manager.itemError(a);
             d.manager.itemEnd(a);
-          }
+          },
         );
       }
 
@@ -20435,7 +20454,7 @@
         if ('number' === typeof a) return a;
         console.warn(
           'THREE.ObjectLoader.parseTexture: Constant should be in numeric form.',
-          a
+          a,
         );
         return b[a];
       }
@@ -20447,7 +20466,7 @@
           void 0 === g.image &&
             console.warn(
               'THREE.ObjectLoader: No "image" specified for',
-              g.uuid
+              g.uuid,
             );
           void 0 === b[g.image] &&
             console.warn('THREE.ObjectLoader: Undefined image', g.image);
@@ -20547,7 +20566,7 @@
             a.distance,
             a.angle,
             a.penumbra,
-            a.decay
+            a.decay,
           );
           break;
         case 'HemisphereLight':
@@ -20555,7 +20574,7 @@
           break;
         case 'SkinnedMesh':
           console.warn(
-            'THREE.ObjectLoader.parseObject() does not support SkinnedMesh yet.'
+            'THREE.ObjectLoader.parseObject() does not support SkinnedMesh yet.',
           );
         case 'Mesh':
           f = d(a.geometry);
@@ -20897,7 +20916,7 @@
             var c = JSON.parse(a);
           } catch (k) {
             console.warn(
-              'THREE.FontLoader: typeface.js support is being deprecated. Use typeface.json instead.'
+              'THREE.FontLoader: typeface.js support is being deprecated. Use typeface.json instead.',
             ),
               (c = JSON.parse(a.substring(65, a.length - 2)));
           }
@@ -20905,7 +20924,7 @@
           b && b(a);
         },
         c,
-        d
+        d,
       );
     },
     parse: function (a) {
@@ -20994,7 +21013,7 @@
               console.warn(
                 'THREE.Loader.createMaterial:',
                 n,
-                'is no longer supported.'
+                'is no longer supported.',
               );
               break;
             case 'colorDiffuse':
@@ -21021,7 +21040,7 @@
                 e.mapDiffuseRepeat,
                 e.mapDiffuseOffset,
                 e.mapDiffuseWrap,
-                e.mapDiffuseAnisotropy
+                e.mapDiffuseAnisotropy,
               );
               break;
             case 'mapDiffuseRepeat':
@@ -21035,7 +21054,7 @@
                 e.mapEmissiveRepeat,
                 e.mapEmissiveOffset,
                 e.mapEmissiveWrap,
-                e.mapEmissiveAnisotropy
+                e.mapEmissiveAnisotropy,
               );
               break;
             case 'mapEmissiveRepeat':
@@ -21049,7 +21068,7 @@
                 e.mapLightRepeat,
                 e.mapLightOffset,
                 e.mapLightWrap,
-                e.mapLightAnisotropy
+                e.mapLightAnisotropy,
               );
               break;
             case 'mapLightRepeat':
@@ -21063,7 +21082,7 @@
                 e.mapAORepeat,
                 e.mapAOOffset,
                 e.mapAOWrap,
-                e.mapAOAnisotropy
+                e.mapAOAnisotropy,
               );
               break;
             case 'mapAORepeat':
@@ -21077,7 +21096,7 @@
                 e.mapBumpRepeat,
                 e.mapBumpOffset,
                 e.mapBumpWrap,
-                e.mapBumpAnisotropy
+                e.mapBumpAnisotropy,
               );
               break;
             case 'mapBumpScale':
@@ -21094,7 +21113,7 @@
                 e.mapNormalRepeat,
                 e.mapNormalOffset,
                 e.mapNormalWrap,
-                e.mapNormalAnisotropy
+                e.mapNormalAnisotropy,
               );
               break;
             case 'mapNormalFactor':
@@ -21111,7 +21130,7 @@
                 e.mapSpecularRepeat,
                 e.mapSpecularOffset,
                 e.mapSpecularWrap,
-                e.mapSpecularAnisotropy
+                e.mapSpecularAnisotropy,
               );
               break;
             case 'mapSpecularRepeat':
@@ -21125,7 +21144,7 @@
                 e.mapMetalnessRepeat,
                 e.mapMetalnessOffset,
                 e.mapMetalnessWrap,
-                e.mapMetalnessAnisotropy
+                e.mapMetalnessAnisotropy,
               );
               break;
             case 'mapMetalnessRepeat':
@@ -21139,7 +21158,7 @@
                 e.mapRoughnessRepeat,
                 e.mapRoughnessOffset,
                 e.mapRoughnessWrap,
-                e.mapRoughnessAnisotropy
+                e.mapRoughnessAnisotropy,
               );
               break;
             case 'mapRoughnessRepeat':
@@ -21153,7 +21172,7 @@
                 e.mapAlphaRepeat,
                 e.mapAlphaOffset,
                 e.mapAlphaWrap,
-                e.mapAlphaAnisotropy
+                e.mapAlphaAnisotropy,
               );
               break;
             case 'mapAlphaRepeat':
@@ -21169,7 +21188,7 @@
               break;
             case 'transparency':
               console.warn(
-                'THREE.Loader.createMaterial: transparency has been renamed to opacity'
+                'THREE.Loader.createMaterial: transparency has been renamed to opacity',
               );
               l.opacity = q;
               break;
@@ -21224,7 +21243,7 @@
           });
         },
         c,
-        d
+        d,
       );
     },
     setPath: function (a) {
@@ -21483,7 +21502,7 @@
             this.source.detune.setTargetAtTime(
               this.detune,
               this.context.currentTime,
-              0.01
+              0.01,
             ),
           this
         );
@@ -21507,7 +21526,7 @@
             this.source.playbackRate.setTargetAtTime(
               this.playbackRate,
               this.context.currentTime,
-              0.01
+              0.01,
             ),
           this
         );
@@ -21723,7 +21742,7 @@
       a = /(WCOD+)?/.source.replace('WCOD', a);
       var c = /(?:\.(WC+)(?:\[(.+)\])?)?/.source.replace(
           'WC',
-          '[^\\[\\]\\.:\\/]'
+          '[^\\[\\]\\.:\\/]',
         ),
         d = /\.(WC+)(?:\[(.+)\])?/.source.replace('WC', '[^\\[\\]\\.:\\/]'),
         e = new RegExp('^' + b + a + c + d + '$'),
@@ -21746,7 +21765,7 @@
         }
         if (null === b.propertyName || 0 === b.propertyName.length)
           throw Error(
-            'PropertyBinding: can not parse propertyName from trackName: ' + a
+            'PropertyBinding: can not parse propertyName from trackName: ' + a,
           );
         return b;
       };
@@ -21888,14 +21907,14 @@
               if (!a.material) {
                 console.error(
                   'THREE.PropertyBinding: Can not bind to material as node does not have a material.',
-                  this
+                  this,
                 );
                 return;
               }
               if (!a.material.materials) {
                 console.error(
                   'THREE.PropertyBinding: Can not bind to material.materials as node.material does not have a materials array.',
-                  this
+                  this,
                 );
                 return;
               }
@@ -21905,7 +21924,7 @@
               if (!a.skeleton) {
                 console.error(
                   'THREE.PropertyBinding: Can not bind to bones as node does not have a skeleton.',
-                  this
+                  this,
                 );
                 return;
               }
@@ -21920,7 +21939,7 @@
               if (void 0 === a[c]) {
                 console.error(
                   'THREE.PropertyBinding: Can not bind to objectName of node undefined.',
-                  this
+                  this,
                 );
                 return;
               }
@@ -21931,7 +21950,7 @@
               console.error(
                 'THREE.PropertyBinding: Trying to bind to objectIndex of objectName, but is undefined.',
                 this,
-                a
+                a,
               );
               return;
             }
@@ -21946,7 +21965,7 @@
               '.' +
               d +
               " but it wasn't found.",
-            a
+            a,
           );
         else {
           b = this.Versioning.None;
@@ -21961,7 +21980,7 @@
               if (!a.geometry) {
                 console.error(
                   'THREE.PropertyBinding: Can not bind to morphTargetInfluences because node does not have a geometry.',
-                  this
+                  this,
                 );
                 return;
               }
@@ -21969,7 +21988,7 @@
                 if (!a.geometry.morphAttributes) {
                   console.error(
                     'THREE.PropertyBinding: Can not bind to morphTargetInfluences because node does not have a geometry.morphAttributes.',
-                    this
+                    this,
                   );
                   return;
                 }
@@ -21986,7 +22005,7 @@
                 if (!a.geometry.morphTargets) {
                   console.error(
                     'THREE.PropertyBinding: Can not bind to morphTargetInfluences because node does not have a geometry.morphTargets.',
-                    this
+                    this,
                   );
                   return;
                 }
@@ -22005,9 +22024,9 @@
               ? ((c = this.BindingType.HasFromToArray),
                 (this.resolvedProperty = f))
               : Array.isArray(f)
-              ? ((c = this.BindingType.EntireArray),
-                (this.resolvedProperty = f))
-              : (this.propertyName = d);
+                ? ((c = this.BindingType.EntireArray),
+                  (this.resolvedProperty = f))
+                : (this.propertyName = d);
           this.getValue = this.GetterByBindingType[c];
           this.setValue = this.SetterByBindingTypeAndVersioning[c][b];
         }
@@ -22015,7 +22034,7 @@
         console.error(
           'THREE.PropertyBinding: Trying to update node for track: ' +
             this.path +
-            " but it wasn't found."
+            " but it wasn't found.",
         );
     },
     unbind: function () {
@@ -22074,7 +22093,7 @@
         } else
           a[t] !== k &&
             console.error(
-              'THREE.AnimationObjectGroup: Different objects with the same UUID detected. Clean the caches or recreate your infrastructure when reloading scenes.'
+              'THREE.AnimationObjectGroup: Different objects with the same UUID detected. Clean the caches or recreate your infrastructure when reloading scenes.',
             );
       }
       this.nCachedObjects_ = c;
@@ -22472,7 +22491,7 @@
           q = new Ae(
             ma.create(c, n, b && b._propertyBindings[h].binding.parsedPath),
             l.ValueTypeName,
-            l.getValueSize()
+            l.getValueSize(),
           );
           ++q.referenceCount;
           this._addInactiveBinding(q, g, n);
@@ -22671,7 +22690,7 @@
           new Float32Array(2),
           new Float32Array(2),
           1,
-          this._controlInterpolantsResultBuffer
+          this._controlInterpolantsResultBuffer,
         )),
         (c.__cacheIndex = b),
         (a[b] = c));
@@ -22791,7 +22810,7 @@
   });
   Ud.prototype.clone = function () {
     return new Ud(
-      void 0 === this.value.clone ? this.value : this.value.clone()
+      void 0 === this.value.clone ? this.value : this.value.clone(),
     );
   };
   Ce.prototype = Object.assign(Object.create(z.prototype), {
@@ -22838,11 +22857,11 @@
             .sub(this.ray.origin)
             .normalize())
         : b && b.isOrthographicCamera
-        ? (this.ray.origin
-            .set(a.x, a.y, (b.near + b.far) / (b.near - b.far))
-            .unproject(b),
-          this.ray.direction.set(0, 0, -1).transformDirection(b.matrixWorld))
-        : console.error('THREE.Raycaster: Unsupported camera type.');
+          ? (this.ray.origin
+              .set(a.x, a.y, (b.near + b.far) / (b.near - b.far))
+              .unproject(b),
+            this.ray.direction.set(0, 0, -1).transformDirection(b.matrixWorld))
+          : console.error('THREE.Raycaster: Unsupported camera type.');
     },
     intersectObject: function (a, b, c) {
       c = c || [];
@@ -22855,7 +22874,7 @@
       if (!1 === Array.isArray(a))
         return (
           console.warn(
-            'THREE.Raycaster.intersectObjects: objects is not an Array.'
+            'THREE.Raycaster.intersectObjects: objects is not an Array.',
           ),
           c
         );
@@ -23009,7 +23028,7 @@
         (b = new B()));
       return b.set(
         (a.x - this.min.x) / (this.max.x - this.min.x),
-        (a.y - this.min.y) / (this.max.y - this.min.y)
+        (a.y - this.min.y) / (this.max.y - this.min.y),
       );
     },
     intersectsBox: function (a) {
@@ -23105,7 +23124,7 @@
       a = this.closestPointToPointParameter(a, b);
       void 0 === c &&
         (console.warn(
-          'THREE.Line3: .closestPointToPoint() target is now required'
+          'THREE.Line3: .closestPointToPoint() target is now required',
         ),
         (c = new n()));
       return this.delta(c).multiplyScalar(a).add(this.start);
@@ -23308,7 +23327,7 @@
             q + 1,
             Math.sin(Math.min(n + d, b)) * c,
             0,
-            Math.cos(Math.min(n + d, b)) * c
+            Math.cos(Math.min(n + d, b)) * c,
           ),
           t.setXYZ(q + 2, 0, 0, 0),
           (l += 3);
@@ -23524,10 +23543,10 @@
       0.99999 < c.y
         ? this.quaternion.set(0, 0, 0, 1)
         : -0.99999 > c.y
-        ? this.quaternion.set(1, 0, 0, 0)
-        : (a.set(c.z, 0, -c.x).normalize(),
-          (b = Math.acos(c.y)),
-          this.quaternion.setFromAxisAngle(a, b));
+          ? this.quaternion.set(1, 0, 0, 0)
+          : (a.set(c.z, 0, -c.x).normalize(),
+            (b = Math.acos(c.y)),
+            this.quaternion.setFromAxisAngle(a, b));
     };
   })();
   gb.prototype.setLength = function (a, b, c) {
@@ -23564,21 +23583,21 @@
   Object.assign(eb.prototype, {
     createPointsGeometry: function (a) {
       console.warn(
-        'THREE.CurvePath: .createPointsGeometry() has been removed. Use new THREE.Geometry().setFromPoints( points ) instead.'
+        'THREE.CurvePath: .createPointsGeometry() has been removed. Use new THREE.Geometry().setFromPoints( points ) instead.',
       );
       a = this.getPoints(a);
       return this.createGeometry(a);
     },
     createSpacedPointsGeometry: function (a) {
       console.warn(
-        'THREE.CurvePath: .createSpacedPointsGeometry() has been removed. Use new THREE.Geometry().setFromPoints( points ) instead.'
+        'THREE.CurvePath: .createSpacedPointsGeometry() has been removed. Use new THREE.Geometry().setFromPoints( points ) instead.',
       );
       a = this.getSpacedPoints(a);
       return this.createGeometry(a);
     },
     createGeometry: function (a) {
       console.warn(
-        'THREE.CurvePath: .createGeometry() has been removed. Use new THREE.Geometry().setFromPoints( points ) instead.'
+        'THREE.CurvePath: .createGeometry() has been removed. Use new THREE.Geometry().setFromPoints( points ) instead.',
       );
       for (var b = new N(), c = 0, d = a.length; c < d; c++) {
         var e = a[c];
@@ -23590,7 +23609,7 @@
   Object.assign(Ra.prototype, {
     fromPoints: function (a) {
       console.warn(
-        'THREE.Path: .fromPoints() has been renamed to .setFromPoints().'
+        'THREE.Path: .fromPoints() has been renamed to .setFromPoints().',
       );
       this.setFromPoints(a);
     },
@@ -23607,24 +23626,24 @@
     },
     reparametrizeByArcLength: function () {
       console.error(
-        'THREE.Spline: .reparametrizeByArcLength() has been removed.'
+        'THREE.Spline: .reparametrizeByArcLength() has been removed.',
       );
     },
   });
   Vd.prototype.setColors = function () {
     console.error(
-      'THREE.GridHelper: setColors() has been deprecated, pass them in the constructor instead.'
+      'THREE.GridHelper: setColors() has been deprecated, pass them in the constructor instead.',
     );
   };
   qc.prototype.update = function () {
     console.error(
-      'THREE.SkeletonHelper: update() no longer needs to be called.'
+      'THREE.SkeletonHelper: update() no longer needs to be called.',
     );
   };
   Object.assign(md.prototype, {
     extractUrlBase: function (a) {
       console.warn(
-        'THREE.Loader: .extractUrlBase() has been deprecated. Use THREE.LoaderUtils.extractUrlBase() instead.'
+        'THREE.Loader: .extractUrlBase() has been deprecated. Use THREE.LoaderUtils.extractUrlBase() instead.',
       );
       return Oe.extractUrlBase(a);
     },
@@ -23632,7 +23651,7 @@
   Object.assign(qe.prototype, {
     setTexturePath: function (a) {
       console.warn(
-        'THREE.ObjectLoader: .setTexturePath() has been renamed to .setResourcePath().'
+        'THREE.ObjectLoader: .setTexturePath() has been renamed to .setResourcePath().',
       );
       return this.setResourcePath(a);
     },
@@ -23648,7 +23667,7 @@
     },
     isIntersectionBox: function (a) {
       console.warn(
-        'THREE.Box2: .isIntersectionBox() has been renamed to .intersectsBox().'
+        'THREE.Box2: .isIntersectionBox() has been renamed to .intersectsBox().',
       );
       return this.intersectsBox(a);
     },
@@ -23668,13 +23687,13 @@
     },
     isIntersectionBox: function (a) {
       console.warn(
-        'THREE.Box3: .isIntersectionBox() has been renamed to .intersectsBox().'
+        'THREE.Box3: .isIntersectionBox() has been renamed to .intersectsBox().',
       );
       return this.intersectsBox(a);
     },
     isIntersectionSphere: function (a) {
       console.warn(
-        'THREE.Box3: .isIntersectionSphere() has been renamed to .intersectsSphere().'
+        'THREE.Box3: .isIntersectionSphere() has been renamed to .intersectsSphere().',
       );
       return this.intersectsSphere(a);
     },
@@ -23690,19 +23709,19 @@
   Object.assign(K, {
     random16: function () {
       console.warn(
-        'THREE.Math: .random16() has been deprecated. Use Math.random() instead.'
+        'THREE.Math: .random16() has been deprecated. Use Math.random() instead.',
       );
       return Math.random();
     },
     nearestPowerOfTwo: function (a) {
       console.warn(
-        'THREE.Math: .nearestPowerOfTwo() has been renamed to .floorPowerOfTwo().'
+        'THREE.Math: .nearestPowerOfTwo() has been renamed to .floorPowerOfTwo().',
       );
       return K.floorPowerOfTwo(a);
     },
     nextPowerOfTwo: function (a) {
       console.warn(
-        'THREE.Math: .nextPowerOfTwo() has been renamed to .ceilPowerOfTwo().'
+        'THREE.Math: .nextPowerOfTwo() has been renamed to .ceilPowerOfTwo().',
       );
       return K.ceilPowerOfTwo(a);
     },
@@ -23710,13 +23729,13 @@
   Object.assign(ba.prototype, {
     flattenToArrayOffset: function (a, b) {
       console.warn(
-        'THREE.Matrix3: .flattenToArrayOffset() has been deprecated. Use .toArray() instead.'
+        'THREE.Matrix3: .flattenToArrayOffset() has been deprecated. Use .toArray() instead.',
       );
       return this.toArray(a, b);
     },
     multiplyVector3: function (a) {
       console.warn(
-        'THREE.Matrix3: .multiplyVector3() has been removed. Use vector.applyMatrix3( matrix ) instead.'
+        'THREE.Matrix3: .multiplyVector3() has been removed. Use vector.applyMatrix3( matrix ) instead.',
       );
       return a.applyMatrix3(this);
     },
@@ -23725,7 +23744,7 @@
     },
     applyToBuffer: function (a) {
       console.warn(
-        'THREE.Matrix3: .applyToBuffer() has been removed. Use matrix.applyToBufferAttribute( attribute ) instead.'
+        'THREE.Matrix3: .applyToBuffer() has been removed. Use matrix.applyToBufferAttribute( attribute ) instead.',
       );
       return this.applyToBufferAttribute(a);
     },
@@ -23736,13 +23755,13 @@
   Object.assign(P.prototype, {
     extractPosition: function (a) {
       console.warn(
-        'THREE.Matrix4: .extractPosition() has been renamed to .copyPosition().'
+        'THREE.Matrix4: .extractPosition() has been renamed to .copyPosition().',
       );
       return this.copyPosition(a);
     },
     flattenToArrayOffset: function (a, b) {
       console.warn(
-        'THREE.Matrix4: .flattenToArrayOffset() has been deprecated. Use .toArray() instead.'
+        'THREE.Matrix4: .flattenToArrayOffset() has been deprecated. Use .toArray() instead.',
       );
       return this.toArray(a, b);
     },
@@ -23751,14 +23770,14 @@
       return function () {
         void 0 === a && (a = new n());
         console.warn(
-          'THREE.Matrix4: .getPosition() has been removed. Use Vector3.setFromMatrixPosition( matrix ) instead.'
+          'THREE.Matrix4: .getPosition() has been removed. Use Vector3.setFromMatrixPosition( matrix ) instead.',
         );
         return a.setFromMatrixColumn(this, 3);
       };
     })(),
     setRotationFromQuaternion: function (a) {
       console.warn(
-        'THREE.Matrix4: .setRotationFromQuaternion() has been renamed to .makeRotationFromQuaternion().'
+        'THREE.Matrix4: .setRotationFromQuaternion() has been renamed to .makeRotationFromQuaternion().',
       );
       return this.makeRotationFromQuaternion(a);
     },
@@ -23767,13 +23786,13 @@
     },
     multiplyVector3: function (a) {
       console.warn(
-        'THREE.Matrix4: .multiplyVector3() has been removed. Use vector.applyMatrix4( matrix ) instead.'
+        'THREE.Matrix4: .multiplyVector3() has been removed. Use vector.applyMatrix4( matrix ) instead.',
       );
       return a.applyMatrix4(this);
     },
     multiplyVector4: function (a) {
       console.warn(
-        'THREE.Matrix4: .multiplyVector4() has been removed. Use vector.applyMatrix4( matrix ) instead.'
+        'THREE.Matrix4: .multiplyVector4() has been removed. Use vector.applyMatrix4( matrix ) instead.',
       );
       return a.applyMatrix4(this);
     },
@@ -23782,13 +23801,13 @@
     },
     rotateAxis: function (a) {
       console.warn(
-        'THREE.Matrix4: .rotateAxis() has been removed. Use Vector3.transformDirection( matrix ) instead.'
+        'THREE.Matrix4: .rotateAxis() has been removed. Use Vector3.transformDirection( matrix ) instead.',
       );
       a.transformDirection(this);
     },
     crossVector: function (a) {
       console.warn(
-        'THREE.Matrix4: .crossVector() has been removed. Use vector.applyMatrix4( matrix ) instead.'
+        'THREE.Matrix4: .crossVector() has been removed. Use vector.applyMatrix4( matrix ) instead.',
       );
       return a.applyMatrix4(this);
     },
@@ -23809,7 +23828,7 @@
     },
     applyToBuffer: function (a) {
       console.warn(
-        'THREE.Matrix4: .applyToBuffer() has been removed. Use matrix.applyToBufferAttribute( attribute ) instead.'
+        'THREE.Matrix4: .applyToBuffer() has been removed. Use matrix.applyToBufferAttribute( attribute ) instead.',
       );
       return this.applyToBufferAttribute(a);
     },
@@ -23818,39 +23837,39 @@
     },
     makeFrustum: function (a, b, c, d, e, f) {
       console.warn(
-        'THREE.Matrix4: .makeFrustum() has been removed. Use .makePerspective( left, right, top, bottom, near, far ) instead.'
+        'THREE.Matrix4: .makeFrustum() has been removed. Use .makePerspective( left, right, top, bottom, near, far ) instead.',
       );
       return this.makePerspective(a, b, d, c, e, f);
     },
   });
   Va.prototype.isIntersectionLine = function (a) {
     console.warn(
-      'THREE.Plane: .isIntersectionLine() has been renamed to .intersectsLine().'
+      'THREE.Plane: .isIntersectionLine() has been renamed to .intersectsLine().',
     );
     return this.intersectsLine(a);
   };
   aa.prototype.multiplyVector3 = function (a) {
     console.warn(
-      'THREE.Quaternion: .multiplyVector3() has been removed. Use is now vector.applyQuaternion( quaternion ) instead.'
+      'THREE.Quaternion: .multiplyVector3() has been removed. Use is now vector.applyQuaternion( quaternion ) instead.',
     );
     return a.applyQuaternion(this);
   };
   Object.assign(wb.prototype, {
     isIntersectionBox: function (a) {
       console.warn(
-        'THREE.Ray: .isIntersectionBox() has been renamed to .intersectsBox().'
+        'THREE.Ray: .isIntersectionBox() has been renamed to .intersectsBox().',
       );
       return this.intersectsBox(a);
     },
     isIntersectionPlane: function (a) {
       console.warn(
-        'THREE.Ray: .isIntersectionPlane() has been renamed to .intersectsPlane().'
+        'THREE.Ray: .isIntersectionPlane() has been renamed to .intersectsPlane().',
       );
       return this.intersectsPlane(a);
     },
     isIntersectionSphere: function (a) {
       console.warn(
-        'THREE.Ray: .isIntersectionSphere() has been renamed to .intersectsSphere().'
+        'THREE.Ray: .isIntersectionSphere() has been renamed to .intersectsSphere().',
       );
       return this.intersectsSphere(a);
     },
@@ -23862,19 +23881,19 @@
     },
     barycoordFromPoint: function (a, b) {
       console.warn(
-        'THREE.Triangle: .barycoordFromPoint() has been renamed to .getBarycoord().'
+        'THREE.Triangle: .barycoordFromPoint() has been renamed to .getBarycoord().',
       );
       return this.getBarycoord(a, b);
     },
     midpoint: function (a) {
       console.warn(
-        'THREE.Triangle: .midpoint() has been renamed to .getMidpoint().'
+        'THREE.Triangle: .midpoint() has been renamed to .getMidpoint().',
       );
       return this.getMidpoint(a);
     },
     normal: function (a) {
       console.warn(
-        'THREE.Triangle: .normal() has been renamed to .getNormal().'
+        'THREE.Triangle: .normal() has been renamed to .getNormal().',
       );
       return this.getNormal(a);
     },
@@ -23886,13 +23905,13 @@
   Object.assign(ra, {
     barycoordFromPoint: function (a, b, c, d, e) {
       console.warn(
-        'THREE.Triangle: .barycoordFromPoint() has been renamed to .getBarycoord().'
+        'THREE.Triangle: .barycoordFromPoint() has been renamed to .getBarycoord().',
       );
       return ra.getBarycoord(a, b, c, d, e);
     },
     normal: function (a, b, c, d) {
       console.warn(
-        'THREE.Triangle: .normal() has been renamed to .getNormal().'
+        'THREE.Triangle: .normal() has been renamed to .getNormal().',
       );
       return ra.getNormal(a, b, c, d);
     },
@@ -23900,19 +23919,19 @@
   Object.assign(nb.prototype, {
     extractAllPoints: function (a) {
       console.warn(
-        'THREE.Shape: .extractAllPoints() has been removed. Use .extractPoints() instead.'
+        'THREE.Shape: .extractAllPoints() has been removed. Use .extractPoints() instead.',
       );
       return this.extractPoints(a);
     },
     extrude: function (a) {
       console.warn(
-        'THREE.Shape: .extrude() has been removed. Use ExtrudeGeometry() instead.'
+        'THREE.Shape: .extrude() has been removed. Use ExtrudeGeometry() instead.',
       );
       return new Bb(this, a);
     },
     makeGeometry: function (a) {
       console.warn(
-        'THREE.Shape: .makeGeometry() has been removed. Use ShapeGeometry() instead.'
+        'THREE.Shape: .makeGeometry() has been removed. Use ShapeGeometry() instead.',
       );
       return new Db(this, a);
     },
@@ -23920,19 +23939,19 @@
   Object.assign(B.prototype, {
     fromAttribute: function (a, b, c) {
       console.warn(
-        'THREE.Vector2: .fromAttribute() has been renamed to .fromBufferAttribute().'
+        'THREE.Vector2: .fromAttribute() has been renamed to .fromBufferAttribute().',
       );
       return this.fromBufferAttribute(a, b, c);
     },
     distanceToManhattan: function (a) {
       console.warn(
-        'THREE.Vector2: .distanceToManhattan() has been renamed to .manhattanDistanceTo().'
+        'THREE.Vector2: .distanceToManhattan() has been renamed to .manhattanDistanceTo().',
       );
       return this.manhattanDistanceTo(a);
     },
     lengthManhattan: function () {
       console.warn(
-        'THREE.Vector2: .lengthManhattan() has been renamed to .manhattanLength().'
+        'THREE.Vector2: .lengthManhattan() has been renamed to .manhattanLength().',
       );
       return this.manhattanLength();
     },
@@ -23940,53 +23959,53 @@
   Object.assign(n.prototype, {
     setEulerFromRotationMatrix: function () {
       console.error(
-        'THREE.Vector3: .setEulerFromRotationMatrix() has been removed. Use Euler.setFromRotationMatrix() instead.'
+        'THREE.Vector3: .setEulerFromRotationMatrix() has been removed. Use Euler.setFromRotationMatrix() instead.',
       );
     },
     setEulerFromQuaternion: function () {
       console.error(
-        'THREE.Vector3: .setEulerFromQuaternion() has been removed. Use Euler.setFromQuaternion() instead.'
+        'THREE.Vector3: .setEulerFromQuaternion() has been removed. Use Euler.setFromQuaternion() instead.',
       );
     },
     getPositionFromMatrix: function (a) {
       console.warn(
-        'THREE.Vector3: .getPositionFromMatrix() has been renamed to .setFromMatrixPosition().'
+        'THREE.Vector3: .getPositionFromMatrix() has been renamed to .setFromMatrixPosition().',
       );
       return this.setFromMatrixPosition(a);
     },
     getScaleFromMatrix: function (a) {
       console.warn(
-        'THREE.Vector3: .getScaleFromMatrix() has been renamed to .setFromMatrixScale().'
+        'THREE.Vector3: .getScaleFromMatrix() has been renamed to .setFromMatrixScale().',
       );
       return this.setFromMatrixScale(a);
     },
     getColumnFromMatrix: function (a, b) {
       console.warn(
-        'THREE.Vector3: .getColumnFromMatrix() has been renamed to .setFromMatrixColumn().'
+        'THREE.Vector3: .getColumnFromMatrix() has been renamed to .setFromMatrixColumn().',
       );
       return this.setFromMatrixColumn(b, a);
     },
     applyProjection: function (a) {
       console.warn(
-        'THREE.Vector3: .applyProjection() has been removed. Use .applyMatrix4( m ) instead.'
+        'THREE.Vector3: .applyProjection() has been removed. Use .applyMatrix4( m ) instead.',
       );
       return this.applyMatrix4(a);
     },
     fromAttribute: function (a, b, c) {
       console.warn(
-        'THREE.Vector3: .fromAttribute() has been renamed to .fromBufferAttribute().'
+        'THREE.Vector3: .fromAttribute() has been renamed to .fromBufferAttribute().',
       );
       return this.fromBufferAttribute(a, b, c);
     },
     distanceToManhattan: function (a) {
       console.warn(
-        'THREE.Vector3: .distanceToManhattan() has been renamed to .manhattanDistanceTo().'
+        'THREE.Vector3: .distanceToManhattan() has been renamed to .manhattanDistanceTo().',
       );
       return this.manhattanDistanceTo(a);
     },
     lengthManhattan: function () {
       console.warn(
-        'THREE.Vector3: .lengthManhattan() has been renamed to .manhattanLength().'
+        'THREE.Vector3: .lengthManhattan() has been renamed to .manhattanLength().',
       );
       return this.manhattanLength();
     },
@@ -23994,13 +24013,13 @@
   Object.assign(Y.prototype, {
     fromAttribute: function (a, b, c) {
       console.warn(
-        'THREE.Vector4: .fromAttribute() has been renamed to .fromBufferAttribute().'
+        'THREE.Vector4: .fromAttribute() has been renamed to .fromBufferAttribute().',
       );
       return this.fromBufferAttribute(a, b, c);
     },
     lengthManhattan: function () {
       console.warn(
-        'THREE.Vector4: .lengthManhattan() has been renamed to .manhattanLength().'
+        'THREE.Vector4: .lengthManhattan() has been renamed to .manhattanLength().',
       );
       return this.manhattanLength();
     },
@@ -24011,31 +24030,31 @@
     },
     computeLineDistances: function () {
       console.error(
-        'THREE.Geometry: .computeLineDistances() has been removed. Use THREE.Line.computeLineDistances() instead.'
+        'THREE.Geometry: .computeLineDistances() has been removed. Use THREE.Line.computeLineDistances() instead.',
       );
     },
   });
   Object.assign(C.prototype, {
     getChildByName: function (a) {
       console.warn(
-        'THREE.Object3D: .getChildByName() has been renamed to .getObjectByName().'
+        'THREE.Object3D: .getChildByName() has been renamed to .getObjectByName().',
       );
       return this.getObjectByName(a);
     },
     renderDepth: function () {
       console.warn(
-        'THREE.Object3D: .renderDepth has been removed. Use .renderOrder, instead.'
+        'THREE.Object3D: .renderDepth has been removed. Use .renderOrder, instead.',
       );
     },
     translate: function (a, b) {
       console.warn(
-        'THREE.Object3D: .translate() has been removed. Use .translateOnAxis( axis, distance ) instead.'
+        'THREE.Object3D: .translate() has been removed. Use .translateOnAxis( axis, distance ) instead.',
       );
       return this.translateOnAxis(b, a);
     },
     getWorldRotation: function () {
       console.error(
-        'THREE.Object3D: .getWorldRotation() has been removed. Use THREE.Object3D.getWorldQuaternion( target ) instead.'
+        'THREE.Object3D: .getWorldRotation() has been removed. Use THREE.Object3D.getWorldQuaternion( target ) instead.',
       );
     },
   });
@@ -24053,12 +24072,12 @@
     useQuaternion: {
       get: function () {
         console.warn(
-          'THREE.Object3D: .useQuaternion has been removed. The library now uses quaternions by default.'
+          'THREE.Object3D: .useQuaternion has been removed. The library now uses quaternions by default.',
         );
       },
       set: function () {
         console.warn(
-          'THREE.Object3D: .useQuaternion has been removed. The library now uses quaternions by default.'
+          'THREE.Object3D: .useQuaternion has been removed. The library now uses quaternions by default.',
         );
       },
     },
@@ -24085,20 +24104,20 @@
   Object.defineProperty(I.prototype, '__arcLengthDivisions', {
     get: function () {
       console.warn(
-        'THREE.Curve: .__arcLengthDivisions is now .arcLengthDivisions.'
+        'THREE.Curve: .__arcLengthDivisions is now .arcLengthDivisions.',
       );
       return this.arcLengthDivisions;
     },
     set: function (a) {
       console.warn(
-        'THREE.Curve: .__arcLengthDivisions is now .arcLengthDivisions.'
+        'THREE.Curve: .__arcLengthDivisions is now .arcLengthDivisions.',
       );
       this.arcLengthDivisions = a;
     },
   });
   ja.prototype.setLens = function (a, b) {
     console.warn(
-      'THREE.PerspectiveCamera.setLens is deprecated. Use .setFocalLength and .filmGauge for a photographic setup.'
+      'THREE.PerspectiveCamera.setLens is deprecated. Use .setFocalLength and .filmGauge for a photographic setup.',
     );
     void 0 !== b && (this.filmGauge = b);
     this.setFocalLength(a);
@@ -24112,7 +24131,7 @@
     shadowCameraFov: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowCameraFov is now .shadow.camera.fov.'
+          'THREE.Light: .shadowCameraFov is now .shadow.camera.fov.',
         );
         this.shadow.camera.fov = a;
       },
@@ -24120,7 +24139,7 @@
     shadowCameraLeft: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowCameraLeft is now .shadow.camera.left.'
+          'THREE.Light: .shadowCameraLeft is now .shadow.camera.left.',
         );
         this.shadow.camera.left = a;
       },
@@ -24128,7 +24147,7 @@
     shadowCameraRight: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowCameraRight is now .shadow.camera.right.'
+          'THREE.Light: .shadowCameraRight is now .shadow.camera.right.',
         );
         this.shadow.camera.right = a;
       },
@@ -24136,7 +24155,7 @@
     shadowCameraTop: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowCameraTop is now .shadow.camera.top.'
+          'THREE.Light: .shadowCameraTop is now .shadow.camera.top.',
         );
         this.shadow.camera.top = a;
       },
@@ -24144,7 +24163,7 @@
     shadowCameraBottom: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowCameraBottom is now .shadow.camera.bottom.'
+          'THREE.Light: .shadowCameraBottom is now .shadow.camera.bottom.',
         );
         this.shadow.camera.bottom = a;
       },
@@ -24152,7 +24171,7 @@
     shadowCameraNear: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowCameraNear is now .shadow.camera.near.'
+          'THREE.Light: .shadowCameraNear is now .shadow.camera.near.',
         );
         this.shadow.camera.near = a;
       },
@@ -24160,7 +24179,7 @@
     shadowCameraFar: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowCameraFar is now .shadow.camera.far.'
+          'THREE.Light: .shadowCameraFar is now .shadow.camera.far.',
         );
         this.shadow.camera.far = a;
       },
@@ -24168,7 +24187,7 @@
     shadowCameraVisible: {
       set: function () {
         console.warn(
-          'THREE.Light: .shadowCameraVisible has been removed. Use new THREE.CameraHelper( light.shadow.camera ) instead.'
+          'THREE.Light: .shadowCameraVisible has been removed. Use new THREE.CameraHelper( light.shadow.camera ) instead.',
         );
       },
     },
@@ -24186,7 +24205,7 @@
     shadowMapWidth: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowMapWidth is now .shadow.mapSize.width.'
+          'THREE.Light: .shadowMapWidth is now .shadow.mapSize.width.',
         );
         this.shadow.mapSize.width = a;
       },
@@ -24194,7 +24213,7 @@
     shadowMapHeight: {
       set: function (a) {
         console.warn(
-          'THREE.Light: .shadowMapHeight is now .shadow.mapSize.height.'
+          'THREE.Light: .shadowMapHeight is now .shadow.mapSize.height.',
         );
         this.shadow.mapSize.height = a;
       },
@@ -24204,41 +24223,41 @@
     length: {
       get: function () {
         console.warn(
-          'THREE.BufferAttribute: .length has been deprecated. Use .count instead.'
+          'THREE.BufferAttribute: .length has been deprecated. Use .count instead.',
         );
         return this.array.length;
       },
     },
     copyIndicesArray: function () {
       console.error(
-        'THREE.BufferAttribute: .copyIndicesArray() has been removed.'
+        'THREE.BufferAttribute: .copyIndicesArray() has been removed.',
       );
     },
   });
   Object.assign(z.prototype, {
     addIndex: function (a) {
       console.warn(
-        'THREE.BufferGeometry: .addIndex() has been renamed to .setIndex().'
+        'THREE.BufferGeometry: .addIndex() has been renamed to .setIndex().',
       );
       this.setIndex(a);
     },
     addDrawCall: function (a, b, c) {
       void 0 !== c &&
         console.warn(
-          'THREE.BufferGeometry: .addDrawCall() no longer supports indexOffset.'
+          'THREE.BufferGeometry: .addDrawCall() no longer supports indexOffset.',
         );
       console.warn('THREE.BufferGeometry: .addDrawCall() is now .addGroup().');
       this.addGroup(a, b);
     },
     clearDrawCalls: function () {
       console.warn(
-        'THREE.BufferGeometry: .clearDrawCalls() is now .clearGroups().'
+        'THREE.BufferGeometry: .clearDrawCalls() is now .clearGroups().',
       );
       this.clearGroups();
     },
     computeTangents: function () {
       console.warn(
-        'THREE.BufferGeometry: .computeTangents() has been removed.'
+        'THREE.BufferGeometry: .computeTangents() has been removed.',
       );
     },
     computeOffsets: function () {
@@ -24249,7 +24268,7 @@
     drawcalls: {
       get: function () {
         console.error(
-          'THREE.BufferGeometry: .drawcalls has been renamed to .groups.'
+          'THREE.BufferGeometry: .drawcalls has been renamed to .groups.',
         );
         return this.groups;
       },
@@ -24257,7 +24276,7 @@
     offsets: {
       get: function () {
         console.warn(
-          'THREE.BufferGeometry: .offsets has been renamed to .groups.'
+          'THREE.BufferGeometry: .offsets has been renamed to .groups.',
         );
         return this.groups;
       },
@@ -24266,17 +24285,17 @@
   Object.assign(Ya.prototype, {
     getArrays: function () {
       console.error(
-        'THREE.ExtrudeBufferGeometry: .getArrays() has been removed.'
+        'THREE.ExtrudeBufferGeometry: .getArrays() has been removed.',
       );
     },
     addShapeList: function () {
       console.error(
-        'THREE.ExtrudeBufferGeometry: .addShapeList() has been removed.'
+        'THREE.ExtrudeBufferGeometry: .addShapeList() has been removed.',
       );
     },
     addShape: function () {
       console.error(
-        'THREE.ExtrudeBufferGeometry: .addShape() has been removed.'
+        'THREE.ExtrudeBufferGeometry: .addShape() has been removed.',
       );
     },
   });
@@ -24284,14 +24303,14 @@
     dynamic: {
       set: function () {
         console.warn(
-          'THREE.Uniform: .dynamic has been removed. Use object.onBeforeRender() instead.'
+          'THREE.Uniform: .dynamic has been removed. Use object.onBeforeRender() instead.',
         );
       },
     },
     onUpdate: {
       value: function () {
         console.warn(
-          'THREE.Uniform: .onUpdate() has been removed. Use object.onBeforeRender() instead.'
+          'THREE.Uniform: .onUpdate() has been removed. Use object.onBeforeRender() instead.',
         );
         return this;
       },
@@ -24325,14 +24344,14 @@
         console.error(
           'THREE.' +
             this.type +
-            ': .shading has been removed. Use the boolean .flatShading instead.'
+            ': .shading has been removed. Use the boolean .flatShading instead.',
         );
       },
       set: function (a) {
         console.warn(
           'THREE.' +
             this.type +
-            ': .shading has been removed. Use the boolean .flatShading instead.'
+            ': .shading has been removed. Use the boolean .flatShading instead.',
         );
         this.flatShading = 1 === a;
       },
@@ -24342,13 +24361,13 @@
     metal: {
       get: function () {
         console.warn(
-          'THREE.MeshPhongMaterial: .metal has been removed. Use THREE.MeshStandardMaterial instead.'
+          'THREE.MeshPhongMaterial: .metal has been removed. Use THREE.MeshStandardMaterial instead.',
         );
         return !1;
       },
       set: function () {
         console.warn(
-          'THREE.MeshPhongMaterial: .metal has been removed. Use THREE.MeshStandardMaterial instead'
+          'THREE.MeshPhongMaterial: .metal has been removed. Use THREE.MeshStandardMaterial instead',
         );
       },
     },
@@ -24357,13 +24376,13 @@
     derivatives: {
       get: function () {
         console.warn(
-          'THREE.ShaderMaterial: .derivatives has been moved to .extensions.derivatives.'
+          'THREE.ShaderMaterial: .derivatives has been moved to .extensions.derivatives.',
         );
         return this.extensions.derivatives;
       },
       set: function (a) {
         console.warn(
-          'THREE. ShaderMaterial: .derivatives has been moved to .extensions.derivatives.'
+          'THREE. ShaderMaterial: .derivatives has been moved to .extensions.derivatives.',
         );
         this.extensions.derivatives = a;
       },
@@ -24372,92 +24391,92 @@
   Object.assign(ge.prototype, {
     clearTarget: function (a, b, c, d) {
       console.warn(
-        'THREE.WebGLRenderer: .clearTarget() has been deprecated. Use .setRenderTarget() and .clear() instead.'
+        'THREE.WebGLRenderer: .clearTarget() has been deprecated. Use .setRenderTarget() and .clear() instead.',
       );
       this.setRenderTarget(a);
       this.clear(b, c, d);
     },
     animate: function (a) {
       console.warn(
-        'THREE.WebGLRenderer: .animate() is now .setAnimationLoop().'
+        'THREE.WebGLRenderer: .animate() is now .setAnimationLoop().',
       );
       this.setAnimationLoop(a);
     },
     getCurrentRenderTarget: function () {
       console.warn(
-        'THREE.WebGLRenderer: .getCurrentRenderTarget() is now .getRenderTarget().'
+        'THREE.WebGLRenderer: .getCurrentRenderTarget() is now .getRenderTarget().',
       );
       return this.getRenderTarget();
     },
     getMaxAnisotropy: function () {
       console.warn(
-        'THREE.WebGLRenderer: .getMaxAnisotropy() is now .capabilities.getMaxAnisotropy().'
+        'THREE.WebGLRenderer: .getMaxAnisotropy() is now .capabilities.getMaxAnisotropy().',
       );
       return this.capabilities.getMaxAnisotropy();
     },
     getPrecision: function () {
       console.warn(
-        'THREE.WebGLRenderer: .getPrecision() is now .capabilities.precision.'
+        'THREE.WebGLRenderer: .getPrecision() is now .capabilities.precision.',
       );
       return this.capabilities.precision;
     },
     resetGLState: function () {
       console.warn(
-        'THREE.WebGLRenderer: .resetGLState() is now .state.reset().'
+        'THREE.WebGLRenderer: .resetGLState() is now .state.reset().',
       );
       return this.state.reset();
     },
     supportsFloatTextures: function () {
       console.warn(
-        "THREE.WebGLRenderer: .supportsFloatTextures() is now .extensions.get( 'OES_texture_float' )."
+        "THREE.WebGLRenderer: .supportsFloatTextures() is now .extensions.get( 'OES_texture_float' ).",
       );
       return this.extensions.get('OES_texture_float');
     },
     supportsHalfFloatTextures: function () {
       console.warn(
-        "THREE.WebGLRenderer: .supportsHalfFloatTextures() is now .extensions.get( 'OES_texture_half_float' )."
+        "THREE.WebGLRenderer: .supportsHalfFloatTextures() is now .extensions.get( 'OES_texture_half_float' ).",
       );
       return this.extensions.get('OES_texture_half_float');
     },
     supportsStandardDerivatives: function () {
       console.warn(
-        "THREE.WebGLRenderer: .supportsStandardDerivatives() is now .extensions.get( 'OES_standard_derivatives' )."
+        "THREE.WebGLRenderer: .supportsStandardDerivatives() is now .extensions.get( 'OES_standard_derivatives' ).",
       );
       return this.extensions.get('OES_standard_derivatives');
     },
     supportsCompressedTextureS3TC: function () {
       console.warn(
-        "THREE.WebGLRenderer: .supportsCompressedTextureS3TC() is now .extensions.get( 'WEBGL_compressed_texture_s3tc' )."
+        "THREE.WebGLRenderer: .supportsCompressedTextureS3TC() is now .extensions.get( 'WEBGL_compressed_texture_s3tc' ).",
       );
       return this.extensions.get('WEBGL_compressed_texture_s3tc');
     },
     supportsCompressedTexturePVRTC: function () {
       console.warn(
-        "THREE.WebGLRenderer: .supportsCompressedTexturePVRTC() is now .extensions.get( 'WEBGL_compressed_texture_pvrtc' )."
+        "THREE.WebGLRenderer: .supportsCompressedTexturePVRTC() is now .extensions.get( 'WEBGL_compressed_texture_pvrtc' ).",
       );
       return this.extensions.get('WEBGL_compressed_texture_pvrtc');
     },
     supportsBlendMinMax: function () {
       console.warn(
-        "THREE.WebGLRenderer: .supportsBlendMinMax() is now .extensions.get( 'EXT_blend_minmax' )."
+        "THREE.WebGLRenderer: .supportsBlendMinMax() is now .extensions.get( 'EXT_blend_minmax' ).",
       );
       return this.extensions.get('EXT_blend_minmax');
     },
     supportsVertexTextures: function () {
       console.warn(
-        'THREE.WebGLRenderer: .supportsVertexTextures() is now .capabilities.vertexTextures.'
+        'THREE.WebGLRenderer: .supportsVertexTextures() is now .capabilities.vertexTextures.',
       );
       return this.capabilities.vertexTextures;
     },
     supportsInstancedArrays: function () {
       console.warn(
-        "THREE.WebGLRenderer: .supportsInstancedArrays() is now .extensions.get( 'ANGLE_instanced_arrays' )."
+        "THREE.WebGLRenderer: .supportsInstancedArrays() is now .extensions.get( 'ANGLE_instanced_arrays' ).",
       );
       return this.extensions.get('ANGLE_instanced_arrays');
     },
     enableScissorTest: function (a) {
       console.warn(
-        'THREE.WebGLRenderer: .enableScissorTest() is now .setScissorTest().'
+        'THREE.WebGLRenderer: .enableScissorTest() is now .setScissorTest().',
       );
       this.setScissorTest(a);
     },
@@ -24478,7 +24497,7 @@
     },
     allocTextureUnit: function () {
       console.warn(
-        'THREE.WebGLRenderer: .allocTextureUnit() has been removed.'
+        'THREE.WebGLRenderer: .allocTextureUnit() has been removed.',
       );
     },
     setTexture: function () {
@@ -24498,7 +24517,7 @@
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMapEnabled is now .shadowMap.enabled.'
+          'THREE.WebGLRenderer: .shadowMapEnabled is now .shadowMap.enabled.',
         );
         this.shadowMap.enabled = a;
       },
@@ -24509,7 +24528,7 @@
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMapType is now .shadowMap.type.'
+          'THREE.WebGLRenderer: .shadowMapType is now .shadowMap.type.',
         );
         this.shadowMap.type = a;
       },
@@ -24517,12 +24536,12 @@
     shadowMapCullFace: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMapCullFace has been removed. Set Material.shadowSide instead.'
+          'THREE.WebGLRenderer: .shadowMapCullFace has been removed. Set Material.shadowSide instead.',
         );
       },
       set: function () {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMapCullFace has been removed. Set Material.shadowSide instead.'
+          'THREE.WebGLRenderer: .shadowMapCullFace has been removed. Set Material.shadowSide instead.',
         );
       },
     },
@@ -24531,36 +24550,36 @@
     cullFace: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMap.cullFace has been removed. Set Material.shadowSide instead.'
+          'THREE.WebGLRenderer: .shadowMap.cullFace has been removed. Set Material.shadowSide instead.',
         );
       },
       set: function () {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMap.cullFace has been removed. Set Material.shadowSide instead.'
+          'THREE.WebGLRenderer: .shadowMap.cullFace has been removed. Set Material.shadowSide instead.',
         );
       },
     },
     renderReverseSided: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMap.renderReverseSided has been removed. Set Material.shadowSide instead.'
+          'THREE.WebGLRenderer: .shadowMap.renderReverseSided has been removed. Set Material.shadowSide instead.',
         );
       },
       set: function () {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMap.renderReverseSided has been removed. Set Material.shadowSide instead.'
+          'THREE.WebGLRenderer: .shadowMap.renderReverseSided has been removed. Set Material.shadowSide instead.',
         );
       },
     },
     renderSingleSided: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMap.renderSingleSided has been removed. Set Material.shadowSide instead.'
+          'THREE.WebGLRenderer: .shadowMap.renderSingleSided has been removed. Set Material.shadowSide instead.',
         );
       },
       set: function () {
         console.warn(
-          'THREE.WebGLRenderer: .shadowMap.renderSingleSided has been removed. Set Material.shadowSide instead.'
+          'THREE.WebGLRenderer: .shadowMap.renderSingleSided has been removed. Set Material.shadowSide instead.',
         );
       },
     },
@@ -24569,14 +24588,14 @@
     activeCubeFace: {
       set: function () {
         console.warn(
-          'THREE.WebGLRenderTargetCube: .activeCubeFace has been removed. It is now the second parameter of WebGLRenderer.setRenderTarget().'
+          'THREE.WebGLRenderTargetCube: .activeCubeFace has been removed. It is now the second parameter of WebGLRenderer.setRenderTarget().',
         );
       },
     },
     activeMipMapLevel: {
       set: function () {
         console.warn(
-          'THREE.WebGLRenderTargetCube: .activeMipMapLevel has been removed. It is now the third parameter of WebGLRenderer.setRenderTarget().'
+          'THREE.WebGLRenderTargetCube: .activeMipMapLevel has been removed. It is now the third parameter of WebGLRenderer.setRenderTarget().',
         );
       },
     },
@@ -24605,13 +24624,13 @@
     magFilter: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderTarget: .magFilter is now .texture.magFilter.'
+          'THREE.WebGLRenderTarget: .magFilter is now .texture.magFilter.',
         );
         return this.texture.magFilter;
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderTarget: .magFilter is now .texture.magFilter.'
+          'THREE.WebGLRenderTarget: .magFilter is now .texture.magFilter.',
         );
         this.texture.magFilter = a;
       },
@@ -24619,13 +24638,13 @@
     minFilter: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderTarget: .minFilter is now .texture.minFilter.'
+          'THREE.WebGLRenderTarget: .minFilter is now .texture.minFilter.',
         );
         return this.texture.minFilter;
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderTarget: .minFilter is now .texture.minFilter.'
+          'THREE.WebGLRenderTarget: .minFilter is now .texture.minFilter.',
         );
         this.texture.minFilter = a;
       },
@@ -24633,13 +24652,13 @@
     anisotropy: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderTarget: .anisotropy is now .texture.anisotropy.'
+          'THREE.WebGLRenderTarget: .anisotropy is now .texture.anisotropy.',
         );
         return this.texture.anisotropy;
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderTarget: .anisotropy is now .texture.anisotropy.'
+          'THREE.WebGLRenderTarget: .anisotropy is now .texture.anisotropy.',
         );
         this.texture.anisotropy = a;
       },
@@ -24647,13 +24666,13 @@
     offset: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderTarget: .offset is now .texture.offset.'
+          'THREE.WebGLRenderTarget: .offset is now .texture.offset.',
         );
         return this.texture.offset;
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderTarget: .offset is now .texture.offset.'
+          'THREE.WebGLRenderTarget: .offset is now .texture.offset.',
         );
         this.texture.offset = a;
       },
@@ -24661,13 +24680,13 @@
     repeat: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderTarget: .repeat is now .texture.repeat.'
+          'THREE.WebGLRenderTarget: .repeat is now .texture.repeat.',
         );
         return this.texture.repeat;
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderTarget: .repeat is now .texture.repeat.'
+          'THREE.WebGLRenderTarget: .repeat is now .texture.repeat.',
         );
         this.texture.repeat = a;
       },
@@ -24675,13 +24694,13 @@
     format: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderTarget: .format is now .texture.format.'
+          'THREE.WebGLRenderTarget: .format is now .texture.format.',
         );
         return this.texture.format;
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderTarget: .format is now .texture.format.'
+          'THREE.WebGLRenderTarget: .format is now .texture.format.',
         );
         this.texture.format = a;
       },
@@ -24699,13 +24718,13 @@
     generateMipmaps: {
       get: function () {
         console.warn(
-          'THREE.WebGLRenderTarget: .generateMipmaps is now .texture.generateMipmaps.'
+          'THREE.WebGLRenderTarget: .generateMipmaps is now .texture.generateMipmaps.',
         );
         return this.texture.generateMipmaps;
       },
       set: function (a) {
         console.warn(
-          'THREE.WebGLRenderTarget: .generateMipmaps is now .texture.generateMipmaps.'
+          'THREE.WebGLRenderTarget: .generateMipmaps is now .texture.generateMipmaps.',
         );
         this.texture.generateMipmaps = a;
       },
@@ -24725,7 +24744,7 @@
   });
   oc.prototype.load = function (a) {
     console.warn(
-      'THREE.Audio: .load has been deprecated. Use THREE.AudioLoader instead.'
+      'THREE.Audio: .load has been deprecated. Use THREE.AudioLoader instead.',
     );
     var b = this;
     new ue().load(a, function (a) {
@@ -24744,7 +24763,7 @@
   ob.crossOrigin = void 0;
   ob.loadTexture = function (a, b, c, d) {
     console.warn(
-      'THREE.ImageUtils.loadTexture has been deprecated. Use THREE.TextureLoader() instead.'
+      'THREE.ImageUtils.loadTexture has been deprecated. Use THREE.TextureLoader() instead.',
     );
     var e = new Kd();
     e.setCrossOrigin(this.crossOrigin);
@@ -24754,7 +24773,7 @@
   };
   ob.loadTextureCube = function (a, b, c, d) {
     console.warn(
-      'THREE.ImageUtils.loadTextureCube has been deprecated. Use THREE.CubeTextureLoader() instead.'
+      'THREE.ImageUtils.loadTextureCube has been deprecated. Use THREE.CubeTextureLoader() instead.',
     );
     var e = new ne();
     e.setCrossOrigin(this.crossOrigin);
@@ -24764,12 +24783,12 @@
   };
   ob.loadCompressedTexture = function () {
     console.error(
-      'THREE.ImageUtils.loadCompressedTexture has been removed. Use THREE.DDSLoader instead.'
+      'THREE.ImageUtils.loadCompressedTexture has been removed. Use THREE.DDSLoader instead.',
     );
   };
   ob.loadCompressedTextureCube = function () {
     console.error(
-      'THREE.ImageUtils.loadCompressedTextureCube has been removed. Use THREE.DDSLoader instead.'
+      'THREE.ImageUtils.loadCompressedTextureCube has been removed. Use THREE.DDSLoader instead.',
     );
   };
   l.WebGLMultisampleRenderTarget = $d;
@@ -25146,7 +25165,7 @@
   l.ObjectSpaceNormalMap = 1;
   l.Face4 = function (a, b, c, d, e, f, g) {
     console.warn(
-      'THREE.Face4 has been removed. A THREE.Face3 will be created instead.'
+      'THREE.Face4 has been removed. A THREE.Face3 will be created instead.',
     );
     return new Qb(a, b, c, e, f, g);
   };
@@ -25154,7 +25173,7 @@
   l.LinePieces = 1;
   l.MeshFaceMaterial = function (a) {
     console.warn(
-      'THREE.MeshFaceMaterial has been removed. Use an Array instead.'
+      'THREE.MeshFaceMaterial has been removed. Use an Array instead.',
     );
     return a;
   };
@@ -25182,19 +25201,19 @@
   };
   l.PointCloudMaterial = function (a) {
     console.warn(
-      'THREE.PointCloudMaterial has been renamed to THREE.PointsMaterial.'
+      'THREE.PointCloudMaterial has been renamed to THREE.PointsMaterial.',
     );
     return new Ka(a);
   };
   l.ParticleBasicMaterial = function (a) {
     console.warn(
-      'THREE.ParticleBasicMaterial has been renamed to THREE.PointsMaterial.'
+      'THREE.ParticleBasicMaterial has been renamed to THREE.PointsMaterial.',
     );
     return new Ka(a);
   };
   l.ParticleSystemMaterial = function (a) {
     console.warn(
-      'THREE.ParticleSystemMaterial has been renamed to THREE.PointsMaterial.'
+      'THREE.ParticleSystemMaterial has been renamed to THREE.PointsMaterial.',
     );
     return new Ka(a);
   };
@@ -25204,61 +25223,61 @@
   };
   l.DynamicBufferAttribute = function (a, b) {
     console.warn(
-      'THREE.DynamicBufferAttribute has been removed. Use new THREE.BufferAttribute().setDynamic( true ) instead.'
+      'THREE.DynamicBufferAttribute has been removed. Use new THREE.BufferAttribute().setDynamic( true ) instead.',
     );
     return new S(a, b).setDynamic(!0);
   };
   l.Int8Attribute = function (a, b) {
     console.warn(
-      'THREE.Int8Attribute has been removed. Use new THREE.Int8BufferAttribute() instead.'
+      'THREE.Int8Attribute has been removed. Use new THREE.Int8BufferAttribute() instead.',
     );
     return new xc(a, b);
   };
   l.Uint8Attribute = function (a, b) {
     console.warn(
-      'THREE.Uint8Attribute has been removed. Use new THREE.Uint8BufferAttribute() instead.'
+      'THREE.Uint8Attribute has been removed. Use new THREE.Uint8BufferAttribute() instead.',
     );
     return new yc(a, b);
   };
   l.Uint8ClampedAttribute = function (a, b) {
     console.warn(
-      'THREE.Uint8ClampedAttribute has been removed. Use new THREE.Uint8ClampedBufferAttribute() instead.'
+      'THREE.Uint8ClampedAttribute has been removed. Use new THREE.Uint8ClampedBufferAttribute() instead.',
     );
     return new zc(a, b);
   };
   l.Int16Attribute = function (a, b) {
     console.warn(
-      'THREE.Int16Attribute has been removed. Use new THREE.Int16BufferAttribute() instead.'
+      'THREE.Int16Attribute has been removed. Use new THREE.Int16BufferAttribute() instead.',
     );
     return new Ac(a, b);
   };
   l.Uint16Attribute = function (a, b) {
     console.warn(
-      'THREE.Uint16Attribute has been removed. Use new THREE.Uint16BufferAttribute() instead.'
+      'THREE.Uint16Attribute has been removed. Use new THREE.Uint16BufferAttribute() instead.',
     );
     return new sb(a, b);
   };
   l.Int32Attribute = function (a, b) {
     console.warn(
-      'THREE.Int32Attribute has been removed. Use new THREE.Int32BufferAttribute() instead.'
+      'THREE.Int32Attribute has been removed. Use new THREE.Int32BufferAttribute() instead.',
     );
     return new Bc(a, b);
   };
   l.Uint32Attribute = function (a, b) {
     console.warn(
-      'THREE.Uint32Attribute has been removed. Use new THREE.Uint32BufferAttribute() instead.'
+      'THREE.Uint32Attribute has been removed. Use new THREE.Uint32BufferAttribute() instead.',
     );
     return new tb(a, b);
   };
   l.Float32Attribute = function (a, b) {
     console.warn(
-      'THREE.Float32Attribute has been removed. Use new THREE.Float32BufferAttribute() instead.'
+      'THREE.Float32Attribute has been removed. Use new THREE.Float32BufferAttribute() instead.',
     );
     return new E(a, b);
   };
   l.Float64Attribute = function (a, b) {
     console.warn(
-      'THREE.Float64Attribute has been removed. Use new THREE.Float64BufferAttribute() instead.'
+      'THREE.Float64Attribute has been removed. Use new THREE.Float64BufferAttribute() instead.',
     );
     return new Cc(a, b);
   };
@@ -25271,26 +25290,26 @@
   };
   l.BoundingBoxHelper = function (a, b) {
     console.warn(
-      'THREE.BoundingBoxHelper has been deprecated. Creating a THREE.BoxHelper instead.'
+      'THREE.BoundingBoxHelper has been deprecated. Creating a THREE.BoxHelper instead.',
     );
     return new fb(a, b);
   };
   l.EdgesHelper = function (a, b) {
     console.warn(
-      'THREE.EdgesHelper has been removed. Use THREE.EdgesGeometry instead.'
+      'THREE.EdgesHelper has been removed. Use THREE.EdgesGeometry instead.',
     );
     return new V(
       new ic(a.geometry),
-      new R({ color: void 0 !== b ? b : 16777215 })
+      new R({ color: void 0 !== b ? b : 16777215 }),
     );
   };
   l.WireframeHelper = function (a, b) {
     console.warn(
-      'THREE.WireframeHelper has been removed. Use THREE.WireframeGeometry instead.'
+      'THREE.WireframeHelper has been removed. Use THREE.WireframeGeometry instead.',
     );
     return new V(
       new Zb(a.geometry),
-      new R({ color: void 0 !== b ? b : 16777215 })
+      new R({ color: void 0 !== b ? b : 16777215 }),
     );
   };
   l.XHRLoader = function (a) {
@@ -25299,14 +25318,14 @@
   };
   l.BinaryTextureLoader = function (a) {
     console.warn(
-      'THREE.BinaryTextureLoader has been renamed to THREE.DataTextureLoader.'
+      'THREE.BinaryTextureLoader has been renamed to THREE.DataTextureLoader.',
     );
     return new me(a);
   };
   l.GeometryUtils = {
     merge: function (a, b, c) {
       console.warn(
-        'THREE.GeometryUtils: .merge() has been moved to Geometry. Use geometry.merge( geometry2, matrix, materialIndexOffset ) instead.'
+        'THREE.GeometryUtils: .merge() has been moved to Geometry. Use geometry.merge( geometry2, matrix, materialIndexOffset ) instead.',
       );
       if (b.isMesh) {
         b.matrixAutoUpdate && b.updateMatrix();
@@ -25317,30 +25336,30 @@
     },
     center: function (a) {
       console.warn(
-        'THREE.GeometryUtils: .center() has been moved to Geometry. Use geometry.center() instead.'
+        'THREE.GeometryUtils: .center() has been moved to Geometry. Use geometry.center() instead.',
       );
       return a.center();
     },
   };
   l.Projector = function () {
     console.error(
-      'THREE.Projector has been moved to /examples/js/renderers/Projector.js.'
+      'THREE.Projector has been moved to /examples/js/renderers/Projector.js.',
     );
     this.projectVector = function (a, b) {
       console.warn(
-        'THREE.Projector: .projectVector() is now vector.project().'
+        'THREE.Projector: .projectVector() is now vector.project().',
       );
       a.project(b);
     };
     this.unprojectVector = function (a, b) {
       console.warn(
-        'THREE.Projector: .unprojectVector() is now vector.unproject().'
+        'THREE.Projector: .unprojectVector() is now vector.unproject().',
       );
       a.unproject(b);
     };
     this.pickingRay = function () {
       console.error(
-        'THREE.Projector: .pickingRay() is now raycaster.setFromCamera().'
+        'THREE.Projector: .pickingRay() is now raycaster.setFromCamera().',
       );
     };
   };
@@ -25353,23 +25372,23 @@
   l.SceneUtils = {
     createMultiMaterialObject: function () {
       console.error(
-        'THREE.SceneUtils has been moved to /examples/js/utils/SceneUtils.js'
+        'THREE.SceneUtils has been moved to /examples/js/utils/SceneUtils.js',
       );
     },
     detach: function () {
       console.error(
-        'THREE.SceneUtils has been moved to /examples/js/utils/SceneUtils.js'
+        'THREE.SceneUtils has been moved to /examples/js/utils/SceneUtils.js',
       );
     },
     attach: function () {
       console.error(
-        'THREE.SceneUtils has been moved to /examples/js/utils/SceneUtils.js'
+        'THREE.SceneUtils has been moved to /examples/js/utils/SceneUtils.js',
       );
     },
   };
   l.LensFlare = function () {
     console.error(
-      'THREE.LensFlare has been moved to /examples/js/objects/Lensflare.js'
+      'THREE.LensFlare has been moved to /examples/js/objects/Lensflare.js',
     );
   };
   Object.defineProperty(l, '__esModule', { value: !0 });

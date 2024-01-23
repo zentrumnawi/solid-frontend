@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Component,
   EventEmitter,
-  HostListener,
   Inject,
   Input,
   NgZone,
@@ -67,17 +67,17 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
     private ngZone: NgZone,
     private _breakpointObserver: BreakpointObserver,
     @Inject(MEDIA_DIALOG_TOKEN)
-    private matDialogComponent: ComponentType<MediaDialogComponent>
+    private matDialogComponent: ComponentType<MediaDialogComponent>,
   ) {
     this.attributionsScrollStrategy = new CloseScrollStrategy(
       scrollDispatcher,
       ngZone,
-      viewportRuler
+      viewportRuler,
     );
     this.descriptionScrollStrategy = new CloseScrollStrategy(
       scrollDispatcher,
       ngZone,
-      viewportRuler
+      viewportRuler,
     );
   }
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { SlideshowState } from '../../state/slideshow.state';
 import { Observable, Subject } from 'rxjs';
@@ -34,7 +35,7 @@ export class SlideshowBaseComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(SOLID_SLIDESHOW_APP_ROUTING_CONFIG) public routingConfig: any,
     private store: Store,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {

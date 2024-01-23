@@ -1,6 +1,10 @@
 <mat-list>
-  <mat-list-item *ngFor="let msg of messages">
-    <h3 matLine [ngStyle]="{ fontWeight: msg.unread ? '500' : 'normal' }">
+  <mat-list-item class="message" *ngFor="let msg of messages">
+    <h3
+      class="message-title"
+      matLine
+      [ngStyle]="{ fontWeight: msg.unread ? '500' : 'normal' }"
+    >
       {{ msg.title
       }}<span *ngIf="msg.valid_from"
         >&nbsp;|&nbsp;{{ msg.valid_from | date: 'dd.MM.yyyy' }}</span
@@ -12,8 +16,8 @@
     <div class="content-container">
       <img
         *ngIf="msg.img"
-        [src]="msg.img.img.thumbnail"
-        [alt]="msg.img.img_alt"
+        [src]="msg.img.getRawImage('thumbnail')"
+        [alt]="msg.img.alt"
       />
       <div
         class="text"

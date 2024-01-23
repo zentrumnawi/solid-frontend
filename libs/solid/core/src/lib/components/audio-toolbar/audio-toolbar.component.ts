@@ -43,7 +43,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     private _dialog: MatDialog,
-    private _breakpointObsever: BreakpointObserver
+    private _breakpointObsever: BreakpointObserver,
   ) {}
 
   ngOnInit(): void {
@@ -126,18 +126,18 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
     this.playPosition = 0;
   }
 
-  public onPositionChangeEnd(change: any) {
+  public onPositionChangeEnd(value: number) {
     if (this.player) {
-      this.player.nativeElement.currentTime = change.value;
+      this.player.nativeElement.currentTime = value;
     }
   }
 
-  public onVolumeChangeEnd(change: any) {
+  public onVolumeChangeEnd(value: number) {
     if (this.player) {
       this.isMuted = false;
-      this.player.nativeElement.volume = change.value;
-      this.volume = change.value;
-      if (change.value === 0) {
+      this.player.nativeElement.volume = value;
+      this.volume = value;
+      if (value === 0) {
         this.isMuted = true;
       }
     }

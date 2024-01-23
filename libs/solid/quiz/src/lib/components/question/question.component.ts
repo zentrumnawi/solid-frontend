@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Component,
   EventEmitter,
@@ -36,7 +37,10 @@ export class QuestionComponent {
   @ViewChild('backPopup', { read: TemplateRef }) backPopup!: TemplateRef<any>;
   @ViewChild('skipPopup', { read: TemplateRef }) skipPopup!: TemplateRef<any>;
 
-  constructor(private _store: Store, private dialog: MatDialog) {}
+  constructor(
+    private _store: Store,
+    private dialog: MatDialog,
+  ) {}
 
   onNextQuestionClicked(correct: number) {
     if (this.question) {
@@ -48,7 +52,7 @@ export class QuestionComponent {
   swipe(
     currentIndex: number,
     imageLength: number,
-    action: string = this.SWIPE_ACTION.RIGHT
+    action: string = this.SWIPE_ACTION.RIGHT,
   ) {
     if (currentIndex > imageLength || currentIndex < 0) {
       return;
@@ -77,5 +81,17 @@ export class QuestionComponent {
 
   onBackToStart() {
     this._store.dispatch(new EndQuizSession());
+  }
+
+  getQuestionInfo(question: QuizQuestion): string {
+    const tagsLength = question?.tags?.length;
+
+    if (tagsLength > 0) {
+      return `Tags: ${question?.tags.join(
+        ' ',
+      )} | Schwierigkeit: ${question?.difficulty}`;
+    }
+
+    return `Schwierigkeit: ${question?.difficulty}`;
   }
 }

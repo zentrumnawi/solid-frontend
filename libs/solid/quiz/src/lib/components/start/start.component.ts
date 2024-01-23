@@ -11,8 +11,7 @@ import { QuizMetadata } from '../../state/quiz.model';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatChipListChange } from '@angular/material/chips';
-import { MatSliderChange } from '@angular/material/slider';
+import { MatChipListboxChange } from '@angular/material/chips';
 
 @Component({
   selector: 'solid-quiz-start',
@@ -22,8 +21,10 @@ import { MatSliderChange } from '@angular/material/slider';
 export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getMeta) metaData$!: Observable<QuizMetadata> | null;
   @Select(QuizState.getExpertMode) expertMode!: boolean | false;
+
   private $destroyed = new Subject();
-  expertModeStatus: boolean;
+
+  expertModeStatus = false;
   questionCount = 10;
   chosenTags = [];
   chosenDifficulty: number[] = [];
@@ -31,17 +32,15 @@ export class StartComponent implements OnDestroy, OnInit {
   tags: string[] = [];
   difficulties: number[] = [];
 
-  constructor(private _store: Store) {
-    this.expertModeStatus = false;
-  }
+  constructor(private _store: Store) {}
 
   public onStartClick() {
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
         this.questionCount,
         this.chosenTags,
-        this.chosenDifficulty
-      )
+        this.chosenDifficulty,
+      ),
     );
     quizLoaded.subscribe((res) => {
       if (res.quiz.questions.length > 0) {
@@ -84,8 +83,8 @@ export class StartComponent implements OnDestroy, OnInit {
     this.navigateTo('/');
   }
 
-  onSliderChange(change: MatSliderChange) {
-    if (change.value) this.questionCount = change.value;
+  onSliderChange(value: number) {
+    if (value) this.questionCount = value;
     this.isValid = true;
   }
 
@@ -94,7 +93,7 @@ export class StartComponent implements OnDestroy, OnInit {
     this.isValid = true;
   }
 
-  onTagSelectionChange(change: MatChipListChange) {
+  onTagSelectionChange(change: MatChipListboxChange) {
     this.chosenTags = change.value;
     this.isValid = true;
   }

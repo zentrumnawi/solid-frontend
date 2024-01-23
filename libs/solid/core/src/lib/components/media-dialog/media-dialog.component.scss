@@ -8,9 +8,7 @@ div.mat-media-dialog-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 20px;
   height: 42px;
-  margin: 0px;
 
   ::ng-deep {
     .mat-button-focus-overlay {
@@ -23,6 +21,7 @@ div.mat-media-dialog-title {
     white-space: nowrap;
     flex: 1;
     margin-right: 0.5em;
+    margin-top: 10px;
   }
 
   div.title {
@@ -73,7 +72,7 @@ div.long-title-1 {
   }
 }
 
-div.mat-dialog-content {
+div.mat-mdc-dialog-content {
   margin: 0;
   padding: 0;
   max-height: calc(100% - 64px);
@@ -238,9 +237,8 @@ div.spacer {
 }
 
 .closeBtn {
-  width: 23px;
-  margin-top: 16px;
-  margin-right: 8px;
+  margin-top: 10px;
+  margin-right: -26px;
 
   mat-icon {
     vertical-align: top;

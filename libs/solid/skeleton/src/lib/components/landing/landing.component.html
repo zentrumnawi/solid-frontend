@@ -1,27 +1,24 @@
 <div class="landing-container" #landing>
-  <mat-card *ngIf="innerWidth >= 700 && showLanding && !messagesLoading">
+  <mat-card
+    class="landing-banner-container"
+    *ngIf="innerWidth >= 700 && showLanding && !messagesLoading"
+  >
     <mat-card-header>
       <img mat-card-avatar [src]="landingInfo.header.image" />
       <mat-card-title>{{ landingInfo.header.title }}</mat-card-title>
       <mat-card-subtitle>{{ landingInfo.header.subtitle }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content *ngFor="let content of landingInfo.content">
-      <p>
+      <p class="landing-banner-content">
         {{ content.p }}
       </p>
     </mat-card-content>
     <div class="toggle-container">
-      <mat-slide-toggle
-        class="notShowAgainToggle"
-        (change)="onNotShowAgainToggle($event)"
-        >Nicht mehr zeigen</mat-slide-toggle
+      <mat-slide-toggle (change)="onNotShowAgainToggle($event)"
+        ><span class="toggleBtn">Nicht mehr zeigen</span></mat-slide-toggle
       >
-      <mat-slide-toggle
-        class="startTourToggle"
-        checked="true"
-        (change)="onStartTourToggle($event)"
-      >
-        Tour starten
+      <mat-slide-toggle checked="true" (change)="onStartTourToggle($event)">
+        <span class="toggleBtn">Tour starten</span>
       </mat-slide-toggle>
     </div>
     <div class="button-container">
@@ -56,6 +53,7 @@
         menuItem.icon
       }}</mat-icon>
       <mat-icon
+        aria-hidden="false"
         *ngIf="menuItem.svgIcon && menuItem.route === 'info'"
         [svgIcon]="menuItem.svgIcon"
         [matBadge]="msgCount"

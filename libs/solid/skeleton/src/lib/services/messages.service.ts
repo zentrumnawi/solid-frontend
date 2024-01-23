@@ -21,7 +21,7 @@ export class MessagesService {
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
-    private _http: HttpClient
+    private _http: HttpClient,
   ) {
     this.getMessages().subscribe();
   }
@@ -42,10 +42,8 @@ export class MessagesService {
               return {
                 ...message,
                 valid_to:
-                  message.valid_to === null
-                    ? null
-                    : new Date(message.valid_to as any),
-                valid_from: new Date(message.valid_from as any),
+                  message.valid_to === null ? null : new Date(message.valid_to),
+                valid_from: new Date(message.valid_from),
                 unread:
                   localMessages.find((msg) => msg.id === message.id)?.unread ??
                   true,
@@ -61,7 +59,7 @@ export class MessagesService {
         }),
         tap((res) => {
           this.updateMessageState(res);
-        })
+        }),
       );
   }
 

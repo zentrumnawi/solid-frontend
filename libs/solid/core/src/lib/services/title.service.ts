@@ -30,7 +30,7 @@ export class TitleService {
   /**
    * Sets the title of the app for the lifetime of a dialog.
    */
-  setDialogTitle(dialogRef: MatDialogRef<any>, title: string) {
+  setDialogTitle(dialogRef: MatDialogRef<unknown>, title: string) {
     const oldTitle = this._title.getTitle();
     this._title.setTitle(`${title} | ${this.cfg.appName}`);
     const sub = dialogRef.afterClosed().subscribe(() => {

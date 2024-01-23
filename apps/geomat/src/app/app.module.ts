@@ -60,7 +60,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     SolidSkeletonModule.forRoot(skeletonConfig),
     RouterModule.forRoot([], {
       onSameUrlNavigation: 'reload',
-      relativeLinkResolution: 'legacy',
     }),
     MatButtonModule,
     MatCardModule,
@@ -82,7 +81,7 @@ export class AppModule {
     const addIcon = (name: string) =>
       registry.addSvgIcon(
         name,
-        url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`)
+        url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`),
       );
     addIcon('icon');
     addIcon('slideshow');

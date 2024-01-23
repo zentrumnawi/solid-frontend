@@ -14,13 +14,8 @@
         config.appName
       }}</span>
       <div class="spacer"></div>
-      <div class="reportButton" *ngIf="this.config.error_report">
-        <button
-          id="reportButton"
-          class="button"
-          (click)="reportError()"
-          mat-icon-button
-        >
+      <div class="report-button-container" *ngIf="this.config.error_report">
+        <button class="button" (click)="reportError()" mat-icon-button>
           <mat-icon
             aria-label="Fehler melden"
             svgIcon="feedback_outline"
@@ -61,13 +56,8 @@
         >{{ config.appName }}</span
       >
       <div class="spacer"></div>
-      <div class="reportButton" *ngIf="this.config.error_report">
-        <button
-          id="reportButton"
-          class="button"
-          (click)="reportError()"
-          mat-icon-button
-        >
+      <div class="report-button-container" *ngIf="this.config.error_report">
+        <button class="button" (click)="reportError()" mat-icon-button>
           <mat-icon
             aria-label="Fehler melden"
             svgIcon="feedback_outline"

@@ -7,7 +7,6 @@ import {
   Schema as ApplicationOptions,
   Style,
 } from '@schematics/angular/application/schema';
-import { getFileContent } from '@nrwl/workspace/testing';
 import { DEPENDENCIES } from '../dependencies';
 
 const collectionPath = require.resolve('../collection.json');
@@ -34,34 +33,27 @@ describe('ng-add', () => {
 
     let appTree: UnitTestTree;
     beforeEach(async () => {
-      appTree = await testRunner
-        .runExternalSchematicAsync(
-          '@schematics/angular',
-          'workspace',
-          workspaceOptions
-        )
-        .toPromise();
-      appTree = await testRunner
-        .runExternalSchematicAsync(
-          '@schematics/angular',
-          'application',
-          appOptions,
-          appTree
-        )
-        .toPromise();
-      appTree = await testRunner
-        .runSchematicAsync(
-          'ng-add',
-          {
-            name: 'test',
-          },
-          appTree
-        )
-        .toPromise();
+      appTree = await testRunner.runExternalSchematic(
+        '@schematics/angular',
+        'workspace',
+        workspaceOptions,
+      );
+      appTree = await testRunner.runExternalSchematic(
+        '@schematics/angular',
+        'application',
+        appOptions,
+        appTree,
+      );
     });
 
     it('files created', async () => {
-      expect(appTree.files).toEqual(
+      const tree = await testRunner.runSchematic(
+        'ng-add',
+        { name: 'test' },
+        appTree,
+      );
+
+      expect(tree.files).toEqual(
         expect.arrayContaining([
           '/projects/bar/src/styles.scss',
           '/projects/bar/src/theme.scss',
@@ -73,25 +65,16 @@ describe('ng-add', () => {
           '/projects/bar/src/app/components/privacy/privacy.component.ts',
           '/projects/bar/src/app/components/privacy/privacy.component.scss',
           '/projects/bar/src/app/components/privacy/privacy.component.html',
-        ])
+        ]),
       );
     });
 
     it('dependencies added to package.json', async () => {
-      const packageJson = JSON.parse(getFileContent(appTree, '/package.json'));
+      const packageJson = JSON.parse(appTree.readContent('/package.json'));
       const dependencies = packageJson.dependencies;
       DEPENDENCIES.forEach((dep) => {
         expect(dependencies[dep.name]).toEqual(dep.version);
       });
-    });
-
-    it('app module correct', async () => {
-      const fileContent = getFileContent(
-        appTree,
-        '/projects/bar/src/app/app.module.ts'
-      );
-
-      // expect(fileContent).toContain('declarations: [w AppComponent w]');
     });
   });
 });
