@@ -165,9 +165,12 @@ export class ProfileState {
                       name: profileName ? profileName : 'Kein Name vorhanden',
                       sub_name: profileSubName,
                       type: 'profile',
-                      mediaObjects: profile.media_objects.map(
-                        (m: MediaObjectModel) => new MediaModel(m)
-                      ),
+                      mediaObjects: profile.media_objects
+                        .sort(
+                          (a: MediaObjectModel, b: MediaObjectModel) =>
+                            a.profile_position - b.profile_position
+                        )
+                        .map((m: MediaObjectModel) => new MediaModel(m)),
                       def_type: profiles[0].split('_')[0],
                     };
                   });
