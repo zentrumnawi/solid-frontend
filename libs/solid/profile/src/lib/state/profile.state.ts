@@ -166,7 +166,12 @@ export class ProfileState {
                   ? node.profiles.map((profile: any) => ({
                       ...profile,
                       type: 'profile',
-                      mediaObjects: profile.media_objects.map(
+                      mediaObjects: profile.media_objects
+                      .sort(
+                        (a: MediaObjectModel, b: MediaObjectModel) =>
+                          a.profile_position - b.profile_position
+                      )
+                      .map(
                         (m: MediaObjectModel) => new MediaModel(m),
                       ),
                     }))
