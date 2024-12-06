@@ -33,7 +33,7 @@ jobs:
         run: yarn install
 
       - name: format
-        run: yarn format:check
+        run: yarn format:check # this is where stuff goes wrong most often...
 
       - name: lint
         run: yarn nx affected --target=lint --base=origin/dev --parallel
