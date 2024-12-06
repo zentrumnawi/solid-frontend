@@ -2,6 +2,10 @@ name: build-pr
 
 on:
   pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
 
 jobs:
   build:
