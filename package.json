@@ -1,6 +1,7 @@
 {
   "name": "zentrumnawi",
   "version": "4.2.1",
+  "packageManager": "yarn@4.5.3",
   "scripts": {
     "ng": "nx",
     "start": "node web-server.js",
