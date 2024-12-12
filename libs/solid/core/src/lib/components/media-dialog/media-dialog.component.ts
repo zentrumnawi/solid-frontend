@@ -9,7 +9,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { Viewer } from 'openseadragon';
 import OpenSeadragon from 'openseadragon';

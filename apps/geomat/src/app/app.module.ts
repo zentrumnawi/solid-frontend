@@ -20,10 +20,10 @@ import { SolidCoreModule } from '@zentrumnawi/solid-core';
 import { SolidSkeletonModule } from '@zentrumnawi/solid-skeleton';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { PrivacyComponent } from './privacy/privacy.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatListModule } from '@angular/material/list';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
 import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
@@ -59,9 +59,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     SolidCoreModule.forRoot(coreConfig),
     SolidSkeletonModule.forRoot(skeletonConfig),
     RouterModule.forRoot([], {
-      onSameUrlNavigation: 'reload',
-      relativeLinkResolution: 'legacy',
-    }),
+    onSameUrlNavigation: 'reload'
+}),
     MatButtonModule,
     MatCardModule,
     MatGridListModule,

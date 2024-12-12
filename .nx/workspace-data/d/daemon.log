@@ -1,0 +1,33 @@
+[NX Daemon Server] - 2024-12-10T17:52:17.518Z - Started listening on: /tmp/33818e04ce80c83e5c28/d.sock
+[NX Daemon Server] - 2024-12-10T17:52:17.521Z - [WATCHER]: Subscribed to changes within: /home/isaac/Downloads/other-projects/solid-frontend (native)
+[NX Daemon Server] - 2024-12-10T17:52:17.524Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-10T17:52:17.526Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-12-10T17:52:17.529Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-10T17:52:17.533Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2024-12-10T17:52:17.533Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2024-12-10T17:52:17.533Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-12-10T17:52:17.535Z - [WATCHER]: Stopping the watcher for /home/isaac/Downloads/other-projects/solid-frontend (sources)
+[NX Daemon Server] - 2024-12-10T17:52:17.535Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-12-10T17:52:17.536Z - [WATCHER]: Stopping the watcher for /home/isaac/Downloads/other-projects/solid-frontend (outputs)
+[NX Daemon Server] - 2024-12-12T17:51:55.444Z - Started listening on: /tmp/33818e04ce80c83e5c28/d.sock
+[NX Daemon Server] - 2024-12-12T17:51:55.448Z - [WATCHER]: Subscribed to changes within: /home/isaac/Downloads/other-projects/solid-frontend (native)
+[NX Daemon Server] - 2024-12-12T17:51:55.452Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-12T17:51:55.454Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-12-12T17:51:55.457Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-12T17:51:55.460Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2024-12-12T17:51:55.465Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2024-12-12T17:51:55.466Z - Handled FORCE_SHUTDOWN. Handling time: 1. Response time: 6.
+[NX Daemon Server] - 2024-12-12T17:51:55.469Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-12-12T17:51:55.471Z - [WATCHER]: Stopping the watcher for /home/isaac/Downloads/other-projects/solid-frontend (sources)
+[NX Daemon Server] - 2024-12-12T17:51:55.471Z - [WATCHER]: Stopping the watcher for /home/isaac/Downloads/other-projects/solid-frontend (outputs)
+[NX Daemon Server] - 2024-12-12T21:27:11.130Z - Started listening on: /tmp/33818e04ce80c83e5c28/d.sock
+[NX Daemon Server] - 2024-12-12T21:27:11.135Z - [WATCHER]: Subscribed to changes within: /home/isaac/Downloads/other-projects/solid-frontend (native)
+[NX Daemon Server] - 2024-12-12T21:27:11.138Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-12T21:27:11.140Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-12-12T21:27:11.143Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-12T21:27:11.147Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2024-12-12T21:27:11.149Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2024-12-12T21:27:11.149Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 3.
+[NX Daemon Server] - 2024-12-12T21:27:11.153Z - [WATCHER]: Stopping the watcher for /home/isaac/Downloads/other-projects/solid-frontend (sources)
+[NX Daemon Server] - 2024-12-12T21:27:11.154Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-12-12T21:27:11.154Z - [WATCHER]: Stopping the watcher for /home/isaac/Downloads/other-projects/solid-frontend (outputs)

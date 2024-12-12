@@ -15,7 +15,7 @@ import { Select, Store } from '@ngxs/store';
 import { EndQuizSession, QuizQuestionAnswered } from '../../state/quiz.actions';
 import { QuizState } from '../../state/quiz.state';
 import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'solid-quiz-question',
