@@ -10,7 +10,8 @@
       "options": {
         "tsConfig": "libs/solid/quiz/tsconfig.lib.json",
         "project": "libs/solid/quiz/ng-package.json",
-        "buildableProjectDepsInPackageJsonType": "dependencies"
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

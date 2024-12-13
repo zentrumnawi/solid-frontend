@@ -10,7 +10,8 @@
       "options": {
         "project": "libs/solid/skeleton/ng-package.json",
         "tsConfig": "libs/solid/skeleton/tsconfig.lib.json",
-        "buildableProjectDepsInPackageJsonType": "dependencies"
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

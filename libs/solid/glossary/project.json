@@ -10,7 +10,8 @@
       "options": {
         "tsConfig": "libs/solid/glossary/tsconfig.lib.json",
         "project": "libs/solid/glossary/ng-package.json",
-        "buildableProjectDepsInPackageJsonType": "dependencies"
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {
