@@ -1,0 +1,159 @@
+{
+  "name": "dive",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/dive/src",
+  "prefix": "zentrumnawi",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "allowedCommonJsDependencies": [
+          "openseadragon",
+          "markdown-it-sub",
+          "markdown-it-sup"
+        ],
+        "outputPath": "dist/apps/dive",
+        "index": "apps/dive/src/index.html",
+        "main": "apps/dive/src/main.ts",
+        "polyfills": "apps/dive/src/polyfills.ts",
+        "tsConfig": "apps/dive/tsconfig.app.json",
+        "assets": [
+          "apps/dive/src/favicon.ico",
+          "apps/dive/src/assets",
+          "apps/dive/src/manifest.webmanifest"
+        ],
+        "styles": [
+          "./node_modules/material-icons/iconfont/material-icons.scss",
+          "apps/dive/src/styles.scss",
+          "node_modules/intro.js/introjs.css"
+        ],
+        "scripts": ["node_modules/intro.js/intro.js"],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/solid/core/src",
+            "libs/solid/glossary/src",
+            "libs/solid/skeleton/src",
+            "libs/solid/slideshow/src",
+            "libs/solid/quiz/src",
+            "libs/solid/profile/src"
+          ]
+        },
+        "vendorChunk": true,
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/dive/src/environments/environment.ts",
+              "with": "apps/dive/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "serviceWorker": true,
+          "ngswConfigPath": "apps/dive/ngsw-config.json"
+        },
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/dive/src/environments/environment.ts",
+              "with": "apps/dive/src/environments/environment.staging.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "serviceWorker": true,
+          "ngswConfigPath": "ngsw-config.json"
+        }
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": ""
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "dive:build",
+        "proxyConfig": "./apps/dive/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "dive:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "dive:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/dive/src/**/*.ts", "apps/dive/src/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "apps/dive/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/apps/dive"]
+    },
+    "deploy": {
+      "executor": "angular-cli-ghpages:deploy",
+      "options": {
+        "configuration": "staging",
+        "baseHref": "/solid-frontend/",
+        "name": "Github Actions",
+        "email": "github@example.com"
+      }
+    }
+  }
+}

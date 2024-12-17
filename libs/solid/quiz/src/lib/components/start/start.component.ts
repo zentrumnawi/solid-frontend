@@ -11,7 +11,7 @@ import { QuizMetadata } from '../../state/quiz.model';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatChipListChange } from '@angular/material/chips';
+import { MatChipListboxChange } from '@angular/material/chips';
 import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
@@ -84,9 +84,9 @@ export class StartComponent implements OnDestroy, OnInit {
     this.navigateTo('/');
   }
 
-  onSliderChange(change: MatSliderChange) {
-    if (change.value) this.questionCount = change.value;
-    this.isValid = true;
+  onSliderChange(change: Event) {
+    // if (change.value) this.questionCount = change.value;
+    // this.isValid = true;
   }
 
   onButtonToggleChange(change: MatButtonToggleChange) {
@@ -94,7 +94,7 @@ export class StartComponent implements OnDestroy, OnInit {
     this.isValid = true;
   }
 
-  onTagSelectionChange(change: MatChipListChange) {
+  onTagSelectionChange(change: MatChipListboxChange) {
     this.chosenTags = change.value;
     this.isValid = true;
   }

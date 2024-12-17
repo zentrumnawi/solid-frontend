@@ -112,9 +112,9 @@
           </button>
         </div>
         <div class="controlElement" id="tag">
-          <mat-chip-list
-            selectable
-            multiple
+          <mat-chip-listbox
+            selectable="true"
+            multiple="true"
             (change)="onTagSelectionChange($event)"
             [(ngModel)]="chosenTags"
           >
@@ -122,12 +122,11 @@
               #c="matChip"
               *ngFor="let tag of tags"
               [value]="tag"
-              (click)="c.toggleSelected(true)"
               [ngClass]="tags.length > 6 ? 'mat-chip-small' : 'mat-chip-large'"
             >
               {{ tag }}
             </mat-chip>
-          </mat-chip-list>
+          </mat-chip-listbox>
         </div>
       </div>
     </div>

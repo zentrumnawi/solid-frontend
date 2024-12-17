@@ -1,0 +1,50 @@
+{
+  "name": "solid-skeleton",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/solid/skeleton/src",
+  "prefix": "solid-skeleton",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "project": "libs/solid/skeleton/ng-package.json",
+        "tsConfig": "libs/solid/skeleton/tsconfig.lib.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      },
+      "configurations": {
+        "production": {
+          "project": "libs/solid/skeleton/ng-package.json",
+          "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
+        },
+        "staging": {
+          "project": "libs/solid/skeleton/ng-package.json",
+          "tsConfig": "libs/solid/skeleton/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/solid/skeleton/src/**/*.ts",
+          "libs/solid/skeleton/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/solid/skeleton/jest.config.ts",
+        "passWithNoTests": false
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/solid/skeleton"]
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "styleext": "scss",
+      "style": "scss"
+    }
+  }
+}

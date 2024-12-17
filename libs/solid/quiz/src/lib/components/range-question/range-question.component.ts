@@ -58,7 +58,7 @@ export class RangeQuestionComponent {
     }, 5);
   }
 
-  onSliderChange(change: MatSliderChange) {
+  onSliderChange(value: number) {
     this.correct = -1;
   }
 
