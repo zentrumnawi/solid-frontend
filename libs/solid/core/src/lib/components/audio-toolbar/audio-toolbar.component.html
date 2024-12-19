@@ -8,7 +8,6 @@
     <mat-icon>{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
   </button>
 </ng-container>
-
 <ng-container *ngIf="toolbar">
   <div class="toolbar" [class.mobile]="isMobile">
     <button class="play-btn" mat-icon-button (click)="onPlayPauseClick()">

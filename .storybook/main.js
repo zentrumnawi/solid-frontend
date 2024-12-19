@@ -1,7 +1,10 @@
 module.exports = {
   docs: {
-    autodocs: true
+    autodocs: true,
   },
 
-  addons: ["@storybook/addon-webpack5-compiler-babel", "@chromatic-com/storybook"]
+  addons: [
+    '@storybook/addon-webpack5-compiler-babel',
+    '@chromatic-com/storybook',
+  ],
 };

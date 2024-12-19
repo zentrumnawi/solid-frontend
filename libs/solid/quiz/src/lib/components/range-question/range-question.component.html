@@ -28,7 +28,7 @@
     [class.incorrectRange]="(showAnswers && correct === -1) || correct === 0"
     [(ngModel)]="sliderPosition"
   >
-  <input (valueChange)="onSliderChange($event)" matSliderThumb />
+    <input (valueChange)="onSliderChange($event)" matSliderThumb />
   </mat-slider>
   <p class="maxLabel">{{ question.answers[0].range_max }}</p>
   <span class="maxTick"></span>

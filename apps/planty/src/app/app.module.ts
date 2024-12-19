@@ -6,7 +6,6 @@ import {
   HammerModule,
 } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
