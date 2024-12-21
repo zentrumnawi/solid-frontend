@@ -35,29 +35,32 @@ describe('ng-add', () => {
     let appTree: UnitTestTree;
     beforeEach(async () => {
       appTree = await testRunner
-        .runExternalSchematicAsync(
+        // .runExternalSchematicAsync(
+        .runExternalSchematic(
           '@schematics/angular',
           'workspace',
           workspaceOptions
-        )
-        .toPromise();
+        );
+      //.toPromise();
       appTree = await testRunner
-        .runExternalSchematicAsync(
+        //.runExternalSchematicAsync(
+        .runExternalSchematic(
           '@schematics/angular',
           'application',
           appOptions,
           appTree
-        )
-        .toPromise();
+        );
+      //.toPromise();
       appTree = await testRunner
-        .runSchematicAsync(
+        //.runSchematicAsync(
+        .runSchematic(
           'ng-add',
           {
             name: 'test',
           },
           appTree
-        )
-        .toPromise();
+        );
+      //.toPromise();
     });
 
     it('files created', async () => {
