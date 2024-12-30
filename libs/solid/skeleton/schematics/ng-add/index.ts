@@ -20,7 +20,6 @@ import { targetBuildNotFoundError } from '@schematics/angular/utility/project-ta
 import { relativePathToWorkspaceRoot } from '@schematics/angular/utility/paths';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import {
-  getEnvironmentExportName,
   insertImport,
   addSymbolToNgModuleMetadata,
 } from '@schematics/angular/utility/ast-utils';
@@ -62,25 +61,19 @@ export function getEnvironmentImport(mainPath: string) {
   return (tree: Tree): { name: string; path: string } => {
     const modulePath = getAppModulePath(tree, mainPath);
     const moduleSource = getTsSourceFile(tree, modulePath);
-    const environmentExportName = getEnvironmentExportName(moduleSource);
-    // if environment import already exists then use the found one
-    // otherwise use the default name
-    const name = environmentExportName || 'environment';
+    const name = 'environment';
     const path = '../environments/environment';
 
-    if (!environmentExportName) {
-      // if environment import was not found then insert the new one
-      // with default path and default export name
-      const change = insertImport(moduleSource, modulePath, name, path);
-      if (change) {
-        const recorder = tree.beginUpdate(modulePath);
-        recorder.insertLeft(
-          (change as InsertChange).pos,
-          (change as InsertChange).toAdd
-        );
-        tree.commitUpdate(recorder);
-      }
+    const change = insertImport(moduleSource, modulePath, name, path);
+    if (change) {
+      const recorder = tree.beginUpdate(modulePath);
+      recorder.insertLeft(
+        (change as InsertChange).pos,
+        (change as InsertChange).toAdd
+      );
+      tree.commitUpdate(recorder);
     }
+
     return { name, path };
   };
 }
