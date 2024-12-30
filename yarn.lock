@@ -2928,7 +2928,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^29.4.3, @jest/core@npm:^29.7.0":
+"@jest/core@npm:^29.5.0, @jest/core@npm:^29.7.0":
   version: 29.7.0
   resolution: "@jest/core@npm:29.7.0"
   dependencies:
@@ -2969,7 +2969,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/environment@npm:^29.4.3, @jest/environment@npm:^29.7.0":
+"@jest/environment@npm:^29.4.3, @jest/environment@npm:^29.5.0, @jest/environment@npm:^29.7.0":
   version: 29.7.0
   resolution: "@jest/environment@npm:29.7.0"
   dependencies:
@@ -3000,7 +3000,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/fake-timers@npm:^29.4.3, @jest/fake-timers@npm:^29.7.0":
+"@jest/fake-timers@npm:^29.4.3, @jest/fake-timers@npm:^29.5.0, @jest/fake-timers@npm:^29.7.0":
   version: 29.7.0
   resolution: "@jest/fake-timers@npm:29.7.0"
   dependencies:
@@ -3130,7 +3130,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/types@npm:^29.4.3, @jest/types@npm:^29.6.3":
+"@jest/types@npm:^29.4.3, @jest/types@npm:^29.5.0, @jest/types@npm:^29.6.3":
   version: 29.6.3
   resolution: "@jest/types@npm:29.6.3"
   dependencies:
@@ -11687,7 +11687,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^29.4.3":
+"jest-cli@npm:^29.5.0":
   version: 29.7.0
   resolution: "jest-cli@npm:29.7.0"
   dependencies:
@@ -11785,7 +11785,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-jsdom@npm:29.4.3, jest-environment-jsdom@npm:^29.0.0":
+"jest-environment-jsdom@npm:29.5.0":
+  version: 29.5.0
+  resolution: "jest-environment-jsdom@npm:29.5.0"
+  dependencies:
+    "@jest/environment": "npm:^29.5.0"
+    "@jest/fake-timers": "npm:^29.5.0"
+    "@jest/types": "npm:^29.5.0"
+    "@types/jsdom": "npm:^20.0.0"
+    "@types/node": "npm:*"
+    jest-mock: "npm:^29.5.0"
+    jest-util: "npm:^29.5.0"
+    jsdom: "npm:^20.0.0"
+  peerDependencies:
+    canvas: ^2.5.0
+  peerDependenciesMeta:
+    canvas:
+      optional: true
+  checksum: 10c0/972a1bdfb1d508a359951ec11ade5dfad7cfabea0ab9f7746737ba10e0c6381e34f2b4acb03c7e5eb623611813310dfb0775eb0607c5537b7618234d04aab2ac
+  languageName: node
+  linkType: hard
+
+"jest-environment-jsdom@npm:^29.0.0":
   version: 29.4.3
   resolution: "jest-environment-jsdom@npm:29.4.3"
   dependencies:
@@ -11889,7 +11910,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-mock@npm:^29.4.3, jest-mock@npm:^29.7.0":
+"jest-mock@npm:^29.4.3, jest-mock@npm:^29.5.0, jest-mock@npm:^29.7.0":
   version: 29.7.0
   resolution: "jest-mock@npm:29.7.0"
   dependencies:
@@ -12058,7 +12079,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-util@npm:^29.0.0, jest-util@npm:^29.4.1, jest-util@npm:^29.4.3, jest-util@npm:^29.7.0":
+"jest-util@npm:^29.0.0, jest-util@npm:^29.4.1, jest-util@npm:^29.4.3, jest-util@npm:^29.5.0, jest-util@npm:^29.7.0":
   version: 29.7.0
   resolution: "jest-util@npm:29.7.0"
   dependencies:
@@ -12125,14 +12146,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:29.4.3":
-  version: 29.4.3
-  resolution: "jest@npm:29.4.3"
+"jest@npm:29.5.0":
+  version: 29.5.0
+  resolution: "jest@npm:29.5.0"
   dependencies:
-    "@jest/core": "npm:^29.4.3"
-    "@jest/types": "npm:^29.4.3"
+    "@jest/core": "npm:^29.5.0"
+    "@jest/types": "npm:^29.5.0"
     import-local: "npm:^3.0.2"
-    jest-cli: "npm:^29.4.3"
+    jest-cli: "npm:^29.5.0"
   peerDependencies:
     node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
   peerDependenciesMeta:
@@ -12140,7 +12161,7 @@ __metadata:
       optional: true
   bin:
     jest: bin/jest.js
-  checksum: 10c0/57a677678b1f9394adf41543a284919fc78e147ccd1dd6c21b263d69127e069331500dbe81d5214daa9facff4a3363e0621fc4786dc0bf568d88533581dc5f65
+  checksum: 10c0/32e29cfa2373530ed323ea65dfb4fd5172026349be48ebb7a2dc5660adadd1c68f6b0fe2b67cc3ee723cc34e2d4552a852730ac787251b406cf58e37a90f6dac
   languageName: node
   linkType: hard
 
@@ -19180,8 +19201,8 @@ __metadata:
     jasmine: "npm:^5.1.0"
     jasmine-core: "npm:4.6.0"
     jasmine-spec-reporter: "npm:7.0.0"
-    jest: "npm:29.4.3"
-    jest-environment-jsdom: "npm:29.4.3"
+    jest: "npm:29.5.0"
+    jest-environment-jsdom: "npm:29.5.0"
     jest-preset-angular: "npm:13.1.6"
     karma: "npm:6.4.1"
     karma-chrome-launcher: "npm:3.1.1"
