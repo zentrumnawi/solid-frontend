@@ -102,15 +102,15 @@ describe('ng-add', () => {
           // '/projects/bar/src/app/components/privacy/privacy.component.scss',
           // '/projects/bar/src/app/components/privacy/privacy.component.html',
 
-          // '/angular.json',
-          // '/package.json',
-          // '/README.md',
-          // '/tsconfig.json',
-          // '/.editorconfig',
-          // '/.gitignore',
-          // '/.vscode/extensions.json',
-          // '/.vscode/launch.json',
-          // '/.vscode/tasks.json',
+          '/angular.json',
+          '/package.json',
+          '/README.md',
+          '/tsconfig.json',
+          '/.editorconfig',
+          '/.gitignore',
+          '/.vscode/extensions.json',
+          '/.vscode/launch.json',
+          '/.vscode/tasks.json',
           '/projects/bar/tsconfig.app.json',
           '/projects/bar/tsconfig.spec.json',
           '/projects/bar/src/main.ts',
@@ -137,6 +137,9 @@ describe('ng-add', () => {
 
     it('dependencies added to package.json', async () => {
       const filePath = '/package.json';
+      if (!appTree.exists(filePath)) {
+        throw new Error(`File does not exist: ${filePath}`);
+      }
       const fileBuffer = appTree.read(filePath);
 
       if (!fileBuffer) {
@@ -161,6 +164,9 @@ describe('ng-add', () => {
     // });
     it('app module correct', async () => {
       const filePath = '/projects/bar/src/app/app.module.ts';
+      if (!appTree.exists(filePath)) {
+        throw new Error(`File does not exist: ${filePath}`);
+      }
       const fileBuffer = appTree.read(filePath);
 
       if (!fileBuffer) {

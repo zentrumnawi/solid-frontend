@@ -47,7 +47,7 @@
     "@ngxs/router-plugin": "^3.7.1",
     "@ngxs/store": "^3.8.1",
     "@nx/angular": "^20.3.0",
-    "@schematics/angular": "^19.0.6",
+    "@schematics/angular": "16.2.9",
     "@sentry/angular": "^6.19.6",
     "@storybook/builder-webpack5": "^8.4.7",
     "@storybook/core-server": "^8.4.7",
