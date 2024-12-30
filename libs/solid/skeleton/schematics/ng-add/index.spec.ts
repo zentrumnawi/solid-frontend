@@ -7,7 +7,6 @@ import {
   Schema as ApplicationOptions,
   Style,
 } from '@schematics/angular/application/schema';
-import { getFileContent } from '@nrwl/workspace/testing';
 import { DEPENDENCIES } from '../dependencies';
 
 const collectionPath = require.resolve('../collection.json');
@@ -34,30 +33,28 @@ describe('ng-add', () => {
 
     let appTree: UnitTestTree;
     beforeEach(async () => {
-      appTree = await testRunner
-        .runExternalSchematicAsync(
+      
+        appTree = await testRunner.runExternalSchematic(
           '@schematics/angular',
           'workspace',
           workspaceOptions
-        )
-        .toPromise();
-      appTree = await testRunner
-        .runExternalSchematicAsync(
+        );
+
+        appTree = await testRunner.runExternalSchematic(
           '@schematics/angular',
           'application',
           appOptions,
           appTree
-        )
-        .toPromise();
-      appTree = await testRunner
-        .runSchematicAsync(
+        );
+
+        appTree = await testRunner.runSchematic(
           'ng-add',
           {
             name: 'test',
           },
           appTree
-        )
-        .toPromise();
+        );
+      
     });
 
     it('files created', async () => {
@@ -78,7 +75,7 @@ describe('ng-add', () => {
     });
 
     it('dependencies added to package.json', async () => {
-      const packageJson = JSON.parse(getFileContent(appTree, '/package.json'));
+      const packageJson = JSON.parse(appTree.readContent('/package.json'));
       const dependencies = packageJson.dependencies;
       DEPENDENCIES.forEach((dep) => {
         expect(dependencies[dep.name]).toEqual(dep.version);
@@ -86,10 +83,8 @@ describe('ng-add', () => {
     });
 
     it('app module correct', async () => {
-      const fileContent = getFileContent(
-        appTree,
-        '/projects/bar/src/app/app.module.ts'
-      );
+      const fileContent = 
+        appTree.readContent('/projects/bar/src/app/app.module.ts');
 
       // expect(fileContent).toContain('declarations: [w AppComponent w]');
     });
