@@ -13281,7 +13281,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:3.0.5, minimatch@npm:^3.0.4, minimatch@npm:^3.0.5, minimatch@npm:~3.0.4":
+"minimatch@npm:3.0.5, minimatch@npm:^3.0.4, minimatch@npm:~3.0.4":
   version: 3.0.5
   resolution: "minimatch@npm:3.0.5"
   dependencies:
@@ -13290,7 +13290,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
+"minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
   dependencies:
@@ -15616,12 +15616,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.6.2":
-  version: 2.6.2
-  resolution: "prettier@npm:2.6.2"
+"prettier@npm:3.4.2":
+  version: 3.4.2
+  resolution: "prettier@npm:3.4.2"
   bin:
-    prettier: bin-prettier.js
-  checksum: 10c0/4a2717d0aca6b5b5c24570854fdf119c4184ff7422a1aa283364bdfe5394ecff4f6ac375663840dc2680ea09b1d5370329b83ac06579588db6f8bc71620e1267
+    prettier: bin/prettier.cjs
+  checksum: 10c0/99e076a26ed0aba4ebc043880d0f08bbb8c59a4c6641cdee6cdadf2205bdd87aa1d7823f50c3aea41e015e99878d37c58d7b5f0e663bba0ef047f94e36b96446
   languageName: node
   linkType: hard
 
@@ -17534,7 +17534,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser@npm:^5.15.1, terser@npm:^5.31.1":
+"terser@npm:^5.31.1, terser@npm:^5.37.0":
   version: 5.37.0
   resolution: "terser@npm:5.37.0"
   dependencies:
@@ -19222,10 +19222,10 @@ __metadata:
     postcss-preset-env: "npm:8.0.1"
     postcss-url: "npm:10.1.3"
     pre-commit: "npm:^1.2.2"
-    prettier: "npm:2.6.2"
+    prettier: "npm:3.4.2"
     protractor: "npm:7.0.0"
     rxjs: "npm:7.8.1"
-    terser: "npm:^5.15.1"
+    terser: "npm:^5.37.0"
     ts-jest: "npm:29.1.0"
     ts-node: "npm:10.9.1"
     tslib: "npm:^2.3.0"
