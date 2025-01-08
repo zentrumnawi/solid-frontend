@@ -12,6 +12,7 @@ import { LandingComponent } from '../landing/landing.component';
 import { Subscription } from 'rxjs';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { BaseComponent } from '@zentrumnawi/solid-profile';
 
 @Component({
