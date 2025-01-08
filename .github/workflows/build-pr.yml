@@ -12,6 +12,19 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Check Yarn installation
+        run: |
+          which yarn || echo "yarn not found"
+          yarn --version && echo "Yarn version: $(yarn --version)" || echo "yarn not installed"
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
@@ -23,11 +36,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
 
       - name: Install packages
         run: yarn install
