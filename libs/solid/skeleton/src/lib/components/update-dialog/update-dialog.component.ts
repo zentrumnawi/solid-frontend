@@ -1,5 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import {
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
+  MatLegacyDialogRef as MatDialogRef,
+} from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'solid-skeleton-update-dialog',
@@ -13,7 +16,7 @@ export class UpdateDialogComponent {
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
     // callback is defined as any to prevent ng-packagr issues
     // { cb: () => void }
-    @Inject(MAT_DIALOG_DATA) data: any
+    @Inject(MAT_DIALOG_DATA) data: any,
   ) {
     this.cb = data.cb;
   }

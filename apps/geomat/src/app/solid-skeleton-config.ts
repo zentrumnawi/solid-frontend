@@ -42,7 +42,7 @@ export const skeletonConfig: SolidSkeletonConfig = {
         svgIcon: 'crystalsystem',
         moduleImport: () =>
           import('./crystalsystem/crystalsystem.module').then(
-            (m) => m.CrystalsystemModule
+            (m) => m.CrystalsystemModule,
           ),
       },
     ],

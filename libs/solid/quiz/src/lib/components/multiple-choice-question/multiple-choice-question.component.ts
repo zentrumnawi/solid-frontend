@@ -35,7 +35,7 @@ export class MultipleChoiceQuestionComponent implements OnChanges {
       this.selectedAnswers.push(answer.id);
     } else {
       this.selectedAnswers = this.selectedAnswers.filter(
-        (id) => id !== answer.id
+        (id) => id !== answer.id,
       );
     }
   }

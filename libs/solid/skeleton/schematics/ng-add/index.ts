@@ -69,7 +69,7 @@ export function getEnvironmentImport(mainPath: string) {
       const recorder = tree.beginUpdate(modulePath);
       recorder.insertLeft(
         (change as InsertChange).pos,
-        (change as InsertChange).toAdd
+        (change as InsertChange).toAdd,
       );
       tree.commitUpdate(recorder);
     }
@@ -126,7 +126,7 @@ export function addImportToNgModule(
   modulePath: string,
   classifiedName: string,
   importPath: string,
-  customImportFn?: string
+  customImportFn?: string,
 ) {
   const moduleSource = getTsSourceFile(host, modulePath);
   {
@@ -134,7 +134,7 @@ export function addImportToNgModule(
       moduleSource,
       modulePath,
       classifiedName,
-      importPath
+      importPath,
     );
     const recorder = host.beginUpdate(modulePath);
     if (change instanceof InsertChange) {
@@ -148,7 +148,7 @@ export function addImportToNgModule(
     modulePath,
     'imports',
     classifiedName, //customImportFn || classifiedName,
-    null
+    null,
   );
   //   (module[0]),// || module[0]).replace('ENV_NAME', environment.name),
   //   null,
@@ -166,7 +166,7 @@ export function addImportToNgModule(
 
 export function updateAppModule(
   mainPath: string,
-  environment: { path: string; name: string }
+  environment: { path: string; name: string },
 ): Rule {
   return (host: Tree) => {
     const modulePath = getAppModulePath(host, mainPath);
@@ -177,7 +177,7 @@ export function updateAppModule(
         modulePath,
         module[0],
         module[1],
-        module[2]?.replace('ENV_NAME', environment.name) ?? undefined
+        module[2]?.replace('ENV_NAME', environment.name) ?? undefined,
       );
       // if (!isImported(moduleSource, module[0], module[1])) {
       //   const change = insertImport(
@@ -248,12 +248,12 @@ export default function ngAdd(options: Schema): Rule {
       const project = workspace.projects.get(options.project);
       if (!project) {
         throw new SchematicsException(
-          `Invalid project name (${options.project})`
+          `Invalid project name (${options.project})`,
         );
       }
       if (project.extensions.projectType !== 'application') {
         throw new SchematicsException(
-          '@zentrumnawi/solid-skeleton requires a project type of "application"'
+          '@zentrumnawi/solid-skeleton requires a project type of "application"',
         );
       }
       const buildTarget = project.targets.get('build');
@@ -271,13 +271,13 @@ export default function ngAdd(options: Schema): Rule {
           environment,
           prefix: project.prefix,
           relativePathToWorkspaceRoot: relativePathToWorkspaceRoot(
-            project.root
+            project.root,
           ),
         }),
         move(
           normalize(
-            getAppModulePath(tree, buildOptions.main as string) + '/../..'
-          )
+            getAppModulePath(tree, buildOptions.main as string) + '/../..',
+          ),
         ),
       ]);
       return chain([

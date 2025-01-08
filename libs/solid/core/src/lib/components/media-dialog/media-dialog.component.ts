@@ -51,7 +51,7 @@ export class MediaDialogComponent implements AfterViewInit, OnDestroy, OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(MAT_DIALOG_DATA) public name: string,
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
-    private _breakpointObserver: BreakpointObserver
+    private _breakpointObserver: BreakpointObserver,
   ) {}
 
   public ngOnInit() {

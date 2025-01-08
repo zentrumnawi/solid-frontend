@@ -11,6 +11,6 @@ export class MediaErrorDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(MAT_DIALOG_DATA) public name: string,
-    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
   ) {}
 }

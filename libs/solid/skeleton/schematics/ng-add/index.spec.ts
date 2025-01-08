@@ -33,28 +33,26 @@ describe('ng-add', () => {
 
     let appTree: UnitTestTree;
     beforeEach(async () => {
-      
-        appTree = await testRunner.runExternalSchematic(
-          '@schematics/angular',
-          'workspace',
-          workspaceOptions
-        );
+      appTree = await testRunner.runExternalSchematic(
+        '@schematics/angular',
+        'workspace',
+        workspaceOptions,
+      );
 
-        appTree = await testRunner.runExternalSchematic(
-          '@schematics/angular',
-          'application',
-          appOptions,
-          appTree
-        );
+      appTree = await testRunner.runExternalSchematic(
+        '@schematics/angular',
+        'application',
+        appOptions,
+        appTree,
+      );
 
-        appTree = await testRunner.runSchematic(
-          'ng-add',
-          {
-            name: 'test',
-          },
-          appTree
-        );
-      
+      appTree = await testRunner.runSchematic(
+        'ng-add',
+        {
+          name: 'test',
+        },
+        appTree,
+      );
     });
 
     it('files created', async () => {
@@ -70,7 +68,7 @@ describe('ng-add', () => {
           '/projects/bar/src/app/components/privacy/privacy.component.ts',
           '/projects/bar/src/app/components/privacy/privacy.component.scss',
           '/projects/bar/src/app/components/privacy/privacy.component.html',
-        ])
+        ]),
       );
     });
 
@@ -83,8 +81,9 @@ describe('ng-add', () => {
     });
 
     it('app module correct', async () => {
-      const fileContent = 
-        appTree.readContent('/projects/bar/src/app/app.module.ts');
+      const fileContent = appTree.readContent(
+        '/projects/bar/src/app/app.module.ts',
+      );
 
       // expect(fileContent).toContain('declarations: [w AppComponent w]');
     });

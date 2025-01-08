@@ -85,22 +85,22 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(
     private _store: Store,
     private _route: ActivatedRoute,
-    @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig,
   ) {
     this._treeFlattener = new MatTreeFlattener(
       TreeComponent.transformer,
       TreeComponent.getLevel,
       TreeComponent.isExpandable,
-      (node) => TreeComponent.getChildren(node)
+      (node) => TreeComponent.getChildren(node),
     );
 
     this.TreeControl = new FlatTreeControl(
       TreeComponent.getLevel,
-      TreeComponent.isExpandable
+      TreeComponent.isExpandable,
     );
     this.DataSource = new MatTreeFlatDataSource(
       this.TreeControl,
-      this._treeFlattener
+      this._treeFlattener,
     );
   }
 

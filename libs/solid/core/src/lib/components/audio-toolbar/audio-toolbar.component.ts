@@ -43,7 +43,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     private _dialog: MatDialog,
-    private _breakpointObsever: BreakpointObserver
+    private _breakpointObsever: BreakpointObserver,
   ) {}
 
   ngOnInit(): void {

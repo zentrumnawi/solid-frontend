@@ -25,7 +25,10 @@ import {
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from './services/feedback.service';
 import { HttpClient } from '@angular/common/http';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import {
+  MatLegacyDialog as MatDialog,
+  MatLegacyDialogModule as MatDialogModule,
+} from '@angular/material/legacy-dialog';
 import {
   defaultSkeletonConfig,
   InternalSolidSkeletonConfig,
@@ -60,7 +63,7 @@ import { GridColsDirective } from './directives/grid-cols.directive';
 export const ngxsFeatureModule = NgxsModule.forFeature([MenuState]);
 
 export function configFactory(
-  cfg: SolidSkeletonConfig
+  cfg: SolidSkeletonConfig,
 ): () => () => InternalSolidSkeletonConfig {
   const fn = function () {
     return deepMerge(defaultSkeletonConfig, cfg);
@@ -114,7 +117,7 @@ export function routingFactory(cfg: InternalSolidSkeletonConfig) {
 })
 export class SolidSkeletonModule {
   public static forRoot(
-    cfg: SolidSkeletonConfig
+    cfg: SolidSkeletonConfig,
   ): ModuleWithProviders<SolidSkeletonModule> {
     const errHandler = createErrorHandler(cfg.sentry?.errorHandlerOptions);
     return {

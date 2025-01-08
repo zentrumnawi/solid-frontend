@@ -30,7 +30,7 @@ import { MessageModel, MessageType } from '../../models/message.model';
 import { MessagesService } from '../../services/messages.service';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
-  'solid-skeleton-hacky-injection'
+  'solid-skeleton-hacky-injection',
 );
 
 @Component({
@@ -75,11 +75,11 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     private introService: IntroService,
     private landingDialog: MatDialog,
     private menuState: MenuState,
-    private messagesService: MessagesService
+    private messagesService: MessagesService,
   ) {
     iconRegistry.addSvgIcon(
       'glossary_custom',
-      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossaryLogo)
+      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossaryLogo),
     );
   }
 

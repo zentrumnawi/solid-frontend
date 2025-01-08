@@ -31,7 +31,7 @@ export class GridColsDirective implements OnInit {
 
   public constructor(
     private grid: MatGridList,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
   ) {
     if (this.grid != null) {
       this.grid.cols = this.gridCols.md;
