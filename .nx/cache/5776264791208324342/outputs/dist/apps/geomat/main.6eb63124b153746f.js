@@ -9640,13 +9640,11 @@
               o.reverse(),
               Ja.test(wh(o).function || '') &&
                 (o.pop(), Ja.test(wh(o).function || '') && o.pop()),
-              o
-                .slice(0, af)
-                .map((a) => ({
-                  ...a,
-                  filename: a.filename || wh(o).filename,
-                  function: a.function || As,
-                }))
+              o.slice(0, af).map((a) => ({
+                ...a,
+                filename: a.filename || wh(o).filename,
+                function: a.function || As,
+              }))
             );
           })(T.slice(x));
         };

@@ -9631,13 +9631,11 @@
               o.reverse(),
               fh.test(Bl(o).function || '') &&
                 (o.pop(), fh.test(Bl(o).function || '') && o.pop()),
-              o
-                .slice(0, Xd)
-                .map((s) => ({
-                  ...s,
-                  filename: s.filename || Bl(o).filename,
-                  function: s.function || Qs,
-                }))
+              o.slice(0, Xd).map((s) => ({
+                ...s,
+                filename: s.filename || Bl(o).filename,
+                function: s.function || Qs,
+              }))
             );
           })(T.slice(b));
         };
