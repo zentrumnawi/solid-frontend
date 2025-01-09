@@ -1,3 +1,3 @@
 const { getJestProjects } = require('@nrwl/jest');
 
-export default { projects: [...getJestProjects(), '<rootDir>/libs/tools'] };
+export default { projects: [...getJestProjects(), '<rootDir>/libs/solid'] };
