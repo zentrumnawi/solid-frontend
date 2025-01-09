@@ -1,0 +1,151 @@
+{
+  "configVersion": 1,
+  "timestamp": 1736451498826,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/977.c146b72ae4c5f12c.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.c32002b34342656e.js",
+        "/manifest.webmanifest",
+        "/polyfills.23a5e8cf2f13de64.js",
+        "/runtime.fa2b594ed6f4b2c1.js",
+        "/styles.1b44d5befea9ecf3.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/data/guidedTour.json",
+        "/assets/data/landing-banner-content.json",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/icons/icon.svg",
+        "/assets/info/BMBF.svg",
+        "/assets/info/DigiTeLL.png",
+        "/assets/info/GoetheUniversitaet.svg",
+        "/assets/info/Solid.svg",
+        "/assets/info/StiHL.svg",
+        "/assets/info/ZentrumNaWi.svg",
+        "/assets/info/eLF.svg",
+        "/assets/profile/audio.svg",
+        "/assets/profile/no_image.svg",
+        "/assets/profile/no_thumbnail.svg",
+        "/assets/profile/video.svg",
+        "/assets/svg/feedback.svg",
+        "/assets/svg/feedback_outline.svg",
+        "/assets/svg/glossary_custom.svg",
+        "/assets/svg/glossary_generic.svg",
+        "/assets/svg/icon.svg",
+        "/assets/svg/info.svg",
+        "/assets/svg/info_privacy.svg",
+        "/assets/svg/privacy.svg",
+        "/assets/svg/profile.svg",
+        "/assets/svg/properties.svg",
+        "/assets/svg/quiz.svg",
+        "/assets/svg/semicorrect.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "patterns": [
+        "https:\\/\\/geomat-staging\\.physikelearning\\.de\\/api\\/.*",
+        "https:\\/\\/api\\.geomat\\.uni-frankfurt\\.de\\/api\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": 604800000,
+      "timeoutMs": 1000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/977.c146b72ae4c5f12c.js": "36ce7c0895b7f81e257aaf42fc7a4eb89e87353f",
+    "/assets/data/guidedTour.json": "4f1bf56bb4836d069a5150c1669d793d760e2efb",
+    "/assets/data/landing-banner-content.json": "c541cffa11031da9c772ead4476c90efb6c9e56d",
+    "/assets/icons/icon-128x128.png": "4eb69be18bfaedaa85c5d76e91ac750bfb35bb37",
+    "/assets/icons/icon-144x144.png": "ef15e16e36310c2375599880c8e66dc8cd07de7f",
+    "/assets/icons/icon-152x152.png": "46698bc52c8666273f9b80cc02f164456219a6c9",
+    "/assets/icons/icon-192x192.png": "f19d527e1d7e121b407c9f6e64c31d24ecd5ae43",
+    "/assets/icons/icon-384x384.png": "741b9cb7133b309ba20a28f90d99051307f6051b",
+    "/assets/icons/icon-512x512.png": "8ffd2e1ffeb6e8874a8d35dbd9a77a5f12ab0706",
+    "/assets/icons/icon-72x72.png": "c4d87f75c5a3840c79db2ccaba667dbdd6a1b9e9",
+    "/assets/icons/icon-96x96.png": "e86fb209389a1ded3ee80679e829d52a9adae76b",
+    "/assets/icons/icon.svg": "240cef4d9e7f5985f5b1fac01c79e48d5ad8ddc1",
+    "/assets/info/BMBF.svg": "0f49ef7064bf84fc15d7d2c926c8d3c191341eb1",
+    "/assets/info/DigiTeLL.png": "3ec76d6f4b76fa98c2ef3d1416d72492ddf755d7",
+    "/assets/info/GoetheUniversitaet.svg": "24223dc6ba46ce3b3581180e4d400584fd323748",
+    "/assets/info/Solid.svg": "34e4914055107732a2c4bfe2745b6bb8f6d9310f",
+    "/assets/info/StiHL.svg": "6153c30081fa384be300258eae0d525e0b4d4fbe",
+    "/assets/info/ZentrumNaWi.svg": "12d82754ff790cc53362aa00ba5764b9db18dfe1",
+    "/assets/info/eLF.svg": "ad3d21202b69c8f1ed42a7eed9bb3b20298d137c",
+    "/assets/profile/audio.svg": "e88c48ba9c03938e68b12d6d19f458153211136f",
+    "/assets/profile/no_image.svg": "086630acf57361fec78b91532b144d92864beee9",
+    "/assets/profile/no_thumbnail.svg": "220ffd178222958a1a07ae11b22779b78023cefe",
+    "/assets/profile/video.svg": "87cfa7653ced7d1f1e456793fd99796d504d2ba3",
+    "/assets/svg/feedback.svg": "f89cbfc78394a5ed4a4cde1f81c0417814090b74",
+    "/assets/svg/feedback_outline.svg": "70bdd4f577d6ecd41885ec443598afc5b1f91cdc",
+    "/assets/svg/glossary_custom.svg": "adf88987b051d7528831b4346b049b7494155120",
+    "/assets/svg/glossary_generic.svg": "b45cf90d6ab4dd46eba448ebc5c90fc2e4a308b1",
+    "/assets/svg/icon.svg": "1f1cb54a0b07d80b7e2f555c30def9730dc5bd9d",
+    "/assets/svg/info.svg": "d0c4f9b030873f0cc30590018233d1fc31cfc340",
+    "/assets/svg/info_privacy.svg": "262631e0f30a27507da2b64de3d0b8c7744f1f0c",
+    "/assets/svg/privacy.svg": "9ef181c1fa90f11728236995d0f08899cf5e89b3",
+    "/assets/svg/profile.svg": "1bca6710f371e4f7f2d0bcbbe92a9a46a7da032f",
+    "/assets/svg/properties.svg": "740cd5a9ca1da73c4a103a68843595fe8d244ebe",
+    "/assets/svg/quiz.svg": "bfcc6dde8aee630a6e04bf37bffdf157ea43b6cc",
+    "/assets/svg/semicorrect.svg": "62e9505d179f9c94747119bf46a3a7e516849d7c",
+    "/favicon.ico": "a9fb058bd6108c302032fbc3ea5d681d06e24b72",
+    "/index.html": "1116f2486004aadc0a64a06a87444ba2ff5b7493",
+    "/main.c32002b34342656e.js": "6e7c8825032f302973f7d84fff2cecc91823a0ad",
+    "/manifest.webmanifest": "e139c3f9bef16c1ad61efb58806669681969753b",
+    "/polyfills.23a5e8cf2f13de64.js": "aa956cc71ac406467c8cf12adcf58024fec8cbf7",
+    "/runtime.fa2b594ed6f4b2c1.js": "dbadb334d5572b0b085d85ace200f1e48f0bdc58",
+    "/styles.1b44d5befea9ecf3.css": "07a96be87d330e6b7c4da360dd4d6dd6cbb718d5"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

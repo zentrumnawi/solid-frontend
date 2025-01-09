@@ -1,0 +1,14 @@
+{
+  "header": {
+    "image": "assets/icons/icon.svg",
+    "title": "WortArBEit",
+    "subtitle": "Ein mediävistisches Selbstlerntool"
+  },
+
+  "content": [
+    {
+      "p": "Herzlich Willkommen bei WABE, dem Selbstlerntool zur systematischen Aneignung eines mittelhochdeutschen Grundwortschatzes der Goethe-Universität Frankfurt. Unser Tool bietet Ihnen die Möglichkeit, sich mit der mittelhochdeutschen Sprache und ihrer Grammatik vertraut zu machen. Mit WABE können Sie die Bedeutung der wichtigsten mittelhochdeutschen Begriffe nachschlagen, grammatikalische Phänomene lernen und Ihren Wissensstand in Selbsttests überprüfen."
+    },
+    { "p": "Viel Spaß bei Ihrer sprachlichen Reise ins Mittelalter!" }
+  ]
+}

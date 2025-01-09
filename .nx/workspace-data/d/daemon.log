@@ -1,0 +1,200 @@
+[NX Daemon Server] - 2025-01-09T17:57:37.198Z - Started listening on: \\.\pipe\nx\C:\Users\IMTIAZ~1\AppData\Local\Temp\d74743442eba87f16d97\d.sock
+[NX Daemon Server] - 2025-01-09T17:57:37.204Z - [WATCHER]: Unexpected workspace error Failed to convert JavaScript value `Null` into rust type `String`
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\daemon\server\server.js:219:14) {
+  code: 'StringExpected'
+}
+[NX Daemon Server] - 2025-01-09T17:57:37.223Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T17:57:37.224Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T17:57:37.225Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T17:57:37.226Z - [REQUEST]: Responding to the client with an error. File watcher error in the workspace 'D:\solid4\solid-frontend'. Failed to convert JavaScript value `Null` into rust type `String`
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\daemon\server\server.js:219:14)
+[NX Daemon Server] - 2025-01-09T17:57:37.227Z - Done responding to the client null
+C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535
+            var error = new Error(msgValue);
+                        ^
+
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-12268-IRhvrHwvVV0Z\node_modules\nx\src\daemon\server\server.js:219:14) {
+  code: 'StringExpected'
+}
+
+Node.js v20.16.0
+[NX Daemon Server] - 2025-01-09T17:58:04.151Z - Started listening on: \\.\pipe\nx\C:\Users\IMTIAZ~1\AppData\Local\Temp\d74743442eba87f16d97\d.sock
+[NX Daemon Server] - 2025-01-09T17:58:04.160Z - [WATCHER]: Unexpected workspace error Failed to convert JavaScript value `Null` into rust type `String`
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\daemon\server\server.js:219:14) {
+  code: 'StringExpected'
+}
+[NX Daemon Server] - 2025-01-09T17:58:04.168Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T17:58:04.169Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T17:58:04.171Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T17:58:04.172Z - [REQUEST]: Responding to the client with an error. File watcher error in the workspace 'D:\solid4\solid-frontend'. Failed to convert JavaScript value `Null` into rust type `String`
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\daemon\server\server.js:219:14)
+[NX Daemon Server] - 2025-01-09T17:58:04.173Z - Done responding to the client null
+C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535
+            var error = new Error(msgValue);
+                        ^
+
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-4552-pQW2jRBLHZ67\node_modules\nx\src\daemon\server\server.js:219:14) {
+  code: 'StringExpected'
+}
+
+Node.js v20.16.0
+[NX Daemon Server] - 2025-01-09T17:59:29.208Z - Started listening on: \\.\pipe\nx\C:\Users\IMTIAZ~1\AppData\Local\Temp\d74743442eba87f16d97\d.sock
+[NX Daemon Server] - 2025-01-09T17:59:29.217Z - [WATCHER]: Unexpected workspace error Failed to convert JavaScript value `Null` into rust type `String`
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\daemon\server\server.js:219:14) {
+  code: 'StringExpected'
+}
+[NX Daemon Server] - 2025-01-09T17:59:29.225Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T17:59:29.226Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T17:59:29.230Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T17:59:29.231Z - [REQUEST]: Responding to the client with an error. File watcher error in the workspace 'D:\solid4\solid-frontend'. Failed to convert JavaScript value `Null` into rust type `String`
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\daemon\server\server.js:219:14)
+[NX Daemon Server] - 2025-01-09T17:59:29.233Z - Done responding to the client null
+C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535
+            var error = new Error(msgValue);
+                        ^
+
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-8808-L4BiWG2PkUZk\node_modules\nx\src\daemon\server\server.js:219:14) {
+  code: 'StringExpected'
+}
+
+Node.js v20.16.0
+[NX Daemon Server] - 2025-01-09T17:59:50.303Z - Started listening on: \\.\pipe\nx\C:\Users\IMTIAZ~1\AppData\Local\Temp\d74743442eba87f16d97\d.sock
+[NX Daemon Server] - 2025-01-09T17:59:50.309Z - [WATCHER]: Unexpected workspace error Failed to convert JavaScript value `Null` into rust type `String`
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\daemon\server\server.js:219:14) {
+  code: 'StringExpected'
+}
+[NX Daemon Server] - 2025-01-09T17:59:50.317Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T17:59:50.318Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T17:59:50.320Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T17:59:50.321Z - [REQUEST]: Responding to the client with an error. File watcher error in the workspace 'D:\solid4\solid-frontend'. Failed to convert JavaScript value `Null` into rust type `String`
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\daemon\server\server.js:219:14)
+[NX Daemon Server] - 2025-01-09T17:59:50.323Z - Done responding to the client null
+C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535
+            var error = new Error(msgValue);
+                        ^
+
+Error: Failed to convert JavaScript value `Null` into rust type `String`
+    at napi_create_error (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:4535:25)
+    at wasm://wasm/00b46b96:wasm-function[957]:0x1d70ea
+    at wasm://wasm/00b46b96:wasm-function[1060]:0x1e4f9d
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3095:64
+    at NodeEnv.callIntoModule (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\runtime\dist\emnapi.cjs.js:639:19)
+    at C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3094:42
+    at hashArray (eval at emnapiCreateFunction (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\@emnapi\core\dist\emnapi-core.cjs.js:3115:26), <anonymous>:3:51)
+    at hashArray (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\hasher\file-hasher.js:9:12)
+    at lockFileHashChanged (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\daemon\server\server.js:247:49)
+    at daemonIsOutdated (C:\Users\IMTIAZ~1\AppData\Local\Temp\tmp-14928-9sMgkCHmWFbM\node_modules\nx\src\daemon\server\server.js:219:14) {
+  code: 'StringExpected'
+}
+
+Node.js v20.16.0

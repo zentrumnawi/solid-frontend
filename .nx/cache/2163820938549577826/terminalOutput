@@ -1,0 +1,13 @@
+[37m[39m
+[37m[0m[1mInitial Chunk Files[22m          [2m | [22m[1mNames[22m                 [2m | [22m [1mRaw Size[22m[2m | [22m[1mEstimated Transfer Size[22m[0m[39m
+[37m[0m[92mmain.c32002b34342656e.js[39m[37m     [2m | [22mmain                  [2m | [22m  [96m1.73 MB[39m[37m[2m | [22m              [96m372.72 kB[39m[37m[0m[39m
+[37m[0m[92mstyles.1b44d5befea9ecf3.css[39m[37m  [2m | [22mstyles                [2m | [22m [96m84.68 kB[39m[37m[2m | [22m                [96m9.39 kB[39m[37m[0m[39m
+[37m[0m[92mpolyfills.23a5e8cf2f13de64.js[39m[37m[2m | [22mpolyfills             [2m | [22m [96m33.04 kB[39m[37m[2m | [22m               [96m10.64 kB[39m[37m[0m[39m
+[37m[0m[92mruntime.fa2b594ed6f4b2c1.js[39m[37m  [2m | [22mruntime               [2m | [22m  [96m2.70 kB[39m[37m[2m | [22m                [96m1.27 kB[39m[37m[0m[39m
+[37m[0m[0m[39m
+[37m[0m[1m [22m                            [2m | [22m[1mInitial Total[22m         [2m | [22m  [1m1.85 MB[22m[2m | [22m              [1m394.02 kB[22m[0m[39m
+[37m[0m[0m[39m
+[37m[0m[1mLazy Chunk Files[22m             [2m | [22m[1mNames[22m                 [2m | [22m [1mRaw Size[22m[2m | [22m[1mEstimated Transfer Size[22m[0m[39m
+[37m[0m[92m977.c146b72ae4c5f12c.js[39m[37m      [2m | [22mzentrumnawi-solid-quiz[2m | [22m[96m210.60 kB[39m[37m[2m | [22m               [96m34.48 kB[39m[37m[0m[39m
+[37m[0m[0m[39m
+[37m[0mBuild at: [1m[37m2025-01-09T19:38:18.972Z[39m[37m[22m - Hash: [1m[37m565a7c662c01577e[39m[37m[22m - Time: [1m[37m81332[39m[37m[22mms[0m[39m

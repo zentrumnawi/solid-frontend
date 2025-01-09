@@ -1,0 +1,171 @@
+{
+  "configVersion": 1,
+  "timestamp": 1736450406929,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/977.05552b066a3acaea.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.855381a60561dca4.js",
+        "/manifest.webmanifest",
+        "/polyfills.b053a72903269304.js",
+        "/runtime.9adbbbfaa5332c0d.js",
+        "/scripts.646ed63fc81e7917.js",
+        "/styles.4571481e87c5e7ca.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/data/guidedTour.json",
+        "/assets/data/landing-banner-content.json",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/icons/icon.svg",
+        "/assets/info/BMBF.svg",
+        "/assets/info/GoetheUniversitaet.svg",
+        "/assets/info/Solid.svg",
+        "/assets/info/Wissenschaftsgarten.svg",
+        "/assets/info/ZentrumNaWi.svg",
+        "/assets/info/eLF.svg",
+        "/assets/profile/audio.svg",
+        "/assets/profile/no_image.svg",
+        "/assets/profile/no_thumbnail.svg",
+        "/assets/profile/video.svg",
+        "/assets/svg/feedback.svg",
+        "/assets/svg/feedback_outline.svg",
+        "/assets/svg/glossary_generic.svg",
+        "/assets/svg/icon.svg",
+        "/assets/svg/info.svg",
+        "/assets/svg/info_privacy.svg",
+        "/assets/svg/privacy.svg",
+        "/assets/svg/profile.svg",
+        "/assets/svg/properties.svg",
+        "/assets/svg/quiz.svg",
+        "/assets/svg/semicorrect.svg",
+        "/assets/svg/slideshow.svg",
+        "/material-icons-outlined.78a93b2079680a08.woff",
+        "/material-icons-outlined.f86cb7b0aa53f0fe.woff2",
+        "/material-icons-round.92dc7ca2f4c591e7.woff",
+        "/material-icons-round.b10ec9db5b7fbc74.woff2",
+        "/material-icons-sharp.3885863ee4746422.woff2",
+        "/material-icons-sharp.a71cb2bf66c604de.woff",
+        "/material-icons-two-tone.588d63134de807a7.woff",
+        "/material-icons-two-tone.675bd578bd14533e.woff2",
+        "/material-icons.4ad034d2c499d9b6.woff",
+        "/material-icons.59322316b3fd6063.woff2"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "patterns": [
+        "https:\\/\\/geomat-staging\\.physikelearning\\.de\\/api\\/.*",
+        "https:\\/\\/api\\.geomat\\.uni-frankfurt\\.de\\/api\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": 604800000,
+      "timeoutMs": 1000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/977.05552b066a3acaea.js": "64da2027cef4d839496a713b5cb1facb061cba2f",
+    "/assets/data/guidedTour.json": "ba82e275d6ee27d5908c28da325cb226786bda2b",
+    "/assets/data/landing-banner-content.json": "f168ac1e14ad54b4d07cf3f1dfc957718872b104",
+    "/assets/icons/icon-128x128.png": "e73da70ec9c35e0a2fa0f36f2bde8e66502a34a2",
+    "/assets/icons/icon-144x144.png": "07d2c18fadd794b3f05a689b7e0c6841abae2eef",
+    "/assets/icons/icon-152x152.png": "182b0223de608fac017b82bcca73cdcf5454d236",
+    "/assets/icons/icon-192x192.png": "20f6d07ac4b5f935c9c931b270ae1af7e5c41690",
+    "/assets/icons/icon-384x384.png": "7ee1d808b1378ef378f8b8fd4fef90ca77a9bb06",
+    "/assets/icons/icon-512x512.png": "8c108930ccb07933c760966bed54c89b3a35251b",
+    "/assets/icons/icon-72x72.png": "c074298f018a57d2ec9cdb51569c060ab6afb4b8",
+    "/assets/icons/icon-96x96.png": "a50d32585d13e4f643c08e8f6ebc855481531b5c",
+    "/assets/icons/icon.svg": "5169ce420514dc7bdce32c5d020c08fa7da71698",
+    "/assets/info/BMBF.svg": "0f49ef7064bf84fc15d7d2c926c8d3c191341eb1",
+    "/assets/info/GoetheUniversitaet.svg": "24223dc6ba46ce3b3581180e4d400584fd323748",
+    "/assets/info/Solid.svg": "34e4914055107732a2c4bfe2745b6bb8f6d9310f",
+    "/assets/info/Wissenschaftsgarten.svg": "cc69ba93cd953691ec02be900a89732d9786a604",
+    "/assets/info/ZentrumNaWi.svg": "12d82754ff790cc53362aa00ba5764b9db18dfe1",
+    "/assets/info/eLF.svg": "ad3d21202b69c8f1ed42a7eed9bb3b20298d137c",
+    "/assets/profile/audio.svg": "013d52684eac2b30c632ed7ce75ee0af80d2713b",
+    "/assets/profile/no_image.svg": "d31d8576daf24415c8b811ad55227d673faf3970",
+    "/assets/profile/no_thumbnail.svg": "90b58d6f69029e052eff6bffe75f2adc7dc62725",
+    "/assets/profile/video.svg": "05ec22764d2cd022b82bc2d8d88a8d80c1e4dc70",
+    "/assets/svg/feedback.svg": "f89cbfc78394a5ed4a4cde1f81c0417814090b74",
+    "/assets/svg/feedback_outline.svg": "70bdd4f577d6ecd41885ec443598afc5b1f91cdc",
+    "/assets/svg/glossary_generic.svg": "b45cf90d6ab4dd46eba448ebc5c90fc2e4a308b1",
+    "/assets/svg/icon.svg": "9ff3b2395e1c994e350b761f657602910d176a8f",
+    "/assets/svg/info.svg": "846de1d5c7ff5a690a8f9a3681a4daeaa878185b",
+    "/assets/svg/info_privacy.svg": "262631e0f30a27507da2b64de3d0b8c7744f1f0c",
+    "/assets/svg/privacy.svg": "9ef181c1fa90f11728236995d0f08899cf5e89b3",
+    "/assets/svg/profile.svg": "0af5239f2469a313c7259d2b1afeb7814a2ab8f2",
+    "/assets/svg/properties.svg": "1735bb5096c3c3cf3442e1e92822a889bd5a791b",
+    "/assets/svg/quiz.svg": "201f1e9c414621d83e1d96fa5b5a7a0c714d5903",
+    "/assets/svg/semicorrect.svg": "62e9505d179f9c94747119bf46a3a7e516849d7c",
+    "/assets/svg/slideshow.svg": "50ecfb4637570f4dd04afa732e90e6128fc88aa6",
+    "/favicon.ico": "09409be23b34a1b08ac49a6276432b8f9e8230ed",
+    "/index.html": "ca761456582d67b6de3f224b915b160188aecf95",
+    "/main.855381a60561dca4.js": "df6a4784a239f242383625dba6f8925ad8b9053b",
+    "/manifest.webmanifest": "58bb74f48c42e53c4ec2f4412fb30292efde93da",
+    "/material-icons-outlined.78a93b2079680a08.woff": "b52ccd8fca4199d257b2a9fe377db29862f2853e",
+    "/material-icons-outlined.f86cb7b0aa53f0fe.woff2": "2f9e28ab559782402f27332633c843c40209d95a",
+    "/material-icons-round.92dc7ca2f4c591e7.woff": "c41bfee3f01218e18d53f4f4cac00f385ac9fbb1",
+    "/material-icons-round.b10ec9db5b7fbc74.woff2": "abe05e0641f1050fbe00ef0dbb10c5ea72c26cff",
+    "/material-icons-sharp.3885863ee4746422.woff2": "cf1c7b4d066d18af44cf7bc664dd2e46652a3a30",
+    "/material-icons-sharp.a71cb2bf66c604de.woff": "829cb48cb2dd17ae5e425b82dc186eb670694a10",
+    "/material-icons-two-tone.588d63134de807a7.woff": "02225d888afe4eebc7312b7432878dc8aef1f50f",
+    "/material-icons-two-tone.675bd578bd14533e.woff2": "296ff0bff395a77c2e33e7e31fffe73980bd93cf",
+    "/material-icons.4ad034d2c499d9b6.woff": "e4bb7c1e40d3febee58df963db276b2bf68c117b",
+    "/material-icons.59322316b3fd6063.woff2": "0bc0c675480d94ec7e8609dda6227f88c5d08d2c",
+    "/polyfills.b053a72903269304.js": "02281f299c2e8159c95e012162b92e57b5ca494b",
+    "/runtime.9adbbbfaa5332c0d.js": "1e84029c737742f0f589141822e627f4882c6df7",
+    "/scripts.646ed63fc81e7917.js": "8840de7a02c2692681efab417b714d8ecc2de5ff",
+    "/styles.4571481e87c5e7ca.css": "fed605b2e20b0ef55de77eca83dc50f6aef1049f"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

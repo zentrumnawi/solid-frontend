@@ -1,0 +1,51 @@
+{
+  "name": "@zentrumnawi/solid-skeleton",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/zentrumnawi/solid-frontend.git",
+    "directory": "libs/solid/skeleton"
+  },
+  "dependencies": {
+    "tslib": "^2.0.1",
+    "@schematics/angular": "16.2.9",
+    "@angular-devkit/schematics": "16.2.9",
+    "@angular-devkit/core": "16.2.9",
+    "@angular/cdk": "16.2.9",
+    "@zentrumnawi/solid-core": "0.0.1",
+    "@zentrumnawi/solid-profile": "0.0.1",
+    "@sentry/angular": "8.48.0",
+    "@angular/service-worker": "16.2.9",
+    "@zentrumnawi/solid-quiz": "0.0.1",
+    "@zentrumnawi/solid-slideshow": "0.0.1",
+    "@zentrumnawi/solid-glossary": "0.0.1"
+  },
+  "peerDependencies": {
+    "@angular/common": "^10.1.4",
+    "@angular/core": "^10.1.4",
+    "@angular/forms": "^10.1.4",
+    "@angular/material": "^10.1.4",
+    "@ngxs-labs/dispatch-decorator": "^2.1.0",
+    "@ngxs/devtools-plugin": "^3.6.2",
+    "@ngxs/router-plugin": "^3.6.2",
+    "@ngxs/store": "^3.6.2"
+  },
+  "schematics": "./schematics/collection.json",
+  "module": "fesm2022/zentrumnawi-solid-skeleton.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/zentrumnawi-solid-skeleton.mjs",
+      "esm": "./esm2022/zentrumnawi-solid-skeleton.mjs",
+      "default": "./fesm2022/zentrumnawi-solid-skeleton.mjs"
+    }
+  },
+  "sideEffects": false
+}

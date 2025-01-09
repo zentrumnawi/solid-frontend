@@ -1,0 +1,65 @@
+[1m[2mDetermining test suites to run...[22m[22m[999D[K
+[K[1A[999D[K
+[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1Ats-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A[999D[K
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A  [2m[33mconsole.warn[39m[22m
+[33m    Viewer.buttons is deprecated; Please use Viewer.buttonGroup[39m
+[2m[22m
+[2m    [0m [90m 13 |[39m [36mimport[39m { [33mSOLID_CORE_CONFIG[39m[33m,[39m [33mSolidCoreConfig[39m } [36mfrom[39m [32m'../../solid-core-config'[39m[33m;[39m[0m[22m
+[2m    [0m [90m 14 |[39m [36mimport[39m { [33mViewer[39m } [36mfrom[39m [32m'openseadragon'[39m[33m;[39m[0m[22m
+[2m    [0m[31m[1m>[22m[2m[39m[90m 15 |[39m [36mimport[39m [33mOpenSeadragon[39m [36mfrom[39m [32m'openseadragon'[39m[33m;[39m[0m[22m
+[2m    [0m [90m    |[39m [31m[1m^[22m[2m[39m[0m[22m
+[2m    [0m [90m 16 |[39m [36mimport[39m { [33mBreakpointObserver[39m } [36mfrom[39m [32m'@angular/cdk/layout'[39m[33m;[39m[0m[22m
+[2m    [0m [90m 17 |[39m[0m[22m
+[2m    [0m [90m 18 |[39m [36mexport[39m [36menum[39m [33mAPP[39m {[0m[22m
+[2m[22m
+[2m      [2mat Object.get buttons [as buttons] ([22m[2m../../../node_modules/openseadragon/src/viewer.js[2m:512:19)[22m[2m[22m
+[2m      [2mat Function.Object.<anonymous>.$.extend ([22m[2m../../../node_modules/openseadragon/src/openseadragon.js[2m:1100:35)[22m[2m[22m
+[2m      [2mat [22m[2m../../../node_modules/openseadragon/src/viewer.js[2m:487:3[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m../../../node_modules/openseadragon/src/viewer.js[2m:3744:1)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m../core/src/lib/components/media-dialog/media-dialog.component.ts[2m:15:1)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m../core/src/lib/components/index.ts[2m:3:1)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m../core/src/lib/components.ts[2m:1:1)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m../core/src/lib/solid-core.module.ts[2m:12:1)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m../core/src/index.ts[2m:1:1)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2msrc/lib/solid-glossary.module.ts[2m:2:1)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/lib/solid-glossary.module.spec.ts[39m[0m[2m:2:1)[22m[2m[22m
+
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1Ats-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m ([0m[1m[41m81.972 s[49m[22m[0m)
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A  SolidGlossaryModule
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A    [32m✓[39m [2mshould create (88 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m solid-glossary [39m[27m[0m [2mlibs/solid/glossary/src/lib/[22m[1msolid-glossary.module.spec.ts[22m
+[K[1A[K[1A[999D[K[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 total
+[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        116.606 s
+[2mRan all test suites[22m[2m.[22m

@@ -1,0 +1,26 @@
+Failed to start or connect to the Nx Daemon process.
+
+Messages from the log:
+[NX Daemon Server] - 2025-01-09T18:27:58.482Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:58.545Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:58.607Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:58.670Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:58.734Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:58.797Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:58.859Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:58.923Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:58.986Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:59.049Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:59.112Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:59.175Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:59.237Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:59.300Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:59.364Z - [WATCHER]: .nx/cache/d/daemon.log was modified
+[NX Daemon Server] - 2025-01-09T18:27:59.458Z - [WATCHER]: Unsubscribed from changes within: d:\solid4\solid-frontend (sources)
+[NX Daemon Server] - 2025-01-09T18:27:59.459Z - [WATCHER]: Unsubscribed from changes within: d:\solid4\solid-frontend (outputs)
+[NX Daemon Server] - 2025-01-09T18:27:59.460Z - [WATCHER]: Unsubscribed from changes within: d:\solid4\solid-frontend (server-process.json)
+[NX Daemon Server] - 2025-01-09T18:27:59.460Z - Server stopped because: "this process is no longer the current daemon"
+
+
+
+More information: /mnt/d/solid4/solid-frontend/.nx/cache/d/daemon.log

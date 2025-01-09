@@ -1,0 +1,131 @@
+{
+  "run": {
+    "command": "nx affected --target=build --base=origin/dev --parallel --configuration=staging",
+    "startTime": "2025-01-09T19:35:03.068Z",
+    "endTime": "2025-01-09T19:38:22.031Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "solid-core:build:staging",
+      "target": "build",
+      "projectName": "solid-core",
+      "hash": "18158804004134696083",
+      "startTime": "2025-01-09T19:35:03.090Z",
+      "endTime": "2025-01-09T19:35:07.035Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "solid-profile:build:staging",
+      "target": "build",
+      "projectName": "solid-profile",
+      "hash": "18202939447635714442",
+      "startTime": "2025-01-09T19:35:07.039Z",
+      "endTime": "2025-01-09T19:35:09.807Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "solid-slideshow:build:staging",
+      "target": "build",
+      "projectName": "solid-slideshow",
+      "hash": "2098820803017184931",
+      "startTime": "2025-01-09T19:35:07.038Z",
+      "endTime": "2025-01-09T19:35:12.564Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "solid-glossary:build:staging",
+      "target": "build",
+      "projectName": "solid-glossary",
+      "hash": "4247195671858917538",
+      "startTime": "2025-01-09T19:35:07.039Z",
+      "endTime": "2025-01-09T19:35:13.679Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "solid-quiz:build:staging",
+      "target": "build",
+      "projectName": "solid-quiz",
+      "hash": "1306281735713964715",
+      "startTime": "2025-01-09T19:35:09.808Z",
+      "endTime": "2025-01-09T19:35:16.260Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "solid-skeleton:build:staging",
+      "target": "build",
+      "projectName": "solid-skeleton",
+      "hash": "17985642137035392140",
+      "startTime": "2025-01-09T19:35:16.261Z",
+      "endTime": "2025-01-09T19:35:20.096Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "dive:build:staging",
+      "target": "build",
+      "projectName": "dive",
+      "hash": "8363099190779325738",
+      "startTime": "2025-01-09T19:35:20.098Z",
+      "endTime": "2025-01-09T19:35:22.944Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "planty:build:staging",
+      "target": "build",
+      "projectName": "planty",
+      "hash": "7941661606458766643",
+      "startTime": "2025-01-09T19:35:22.946Z",
+      "endTime": "2025-01-09T19:35:25.731Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "ais:build:staging",
+      "target": "build",
+      "projectName": "ais",
+      "hash": "9815045329507597240",
+      "startTime": "2025-01-09T19:35:20.098Z",
+      "endTime": "2025-01-09T19:36:56.337Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "geomat:build:staging",
+      "target": "build",
+      "projectName": "geomat",
+      "hash": "919494660281030289",
+      "startTime": "2025-01-09T19:35:20.099Z",
+      "endTime": "2025-01-09T19:36:56.357Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "wabe:build:staging",
+      "target": "build",
+      "projectName": "wabe",
+      "hash": "2163820938549577826",
+      "startTime": "2025-01-09T19:35:25.733Z",
+      "endTime": "2025-01-09T19:38:22.029Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}
