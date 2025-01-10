@@ -1,32 +1,0 @@
-[1m[2mDetermining test suites to run...[22m[22m[999D[K
-[K[1A[999D[K
-[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m
-[K[1A[K[1Ats-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
-transform: {
-    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
-},
-See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m
-[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m
-[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m
-[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m ([0m[1m[41m87.94 s[49m[22m[0m)
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m
-[K[1A[K[1A  PrivacyComponent
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m
-[K[1A[K[1A    [32m✓[39m [2mshould create (230 ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m
-[K[1A[K[1A
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [0m[7m[37m dive [39m[27m[0m [2mapps/dive/src/app/privacy/[22m[1mprivacy.component.spec.ts[22m
-[K[1A[K[1A[999D[K[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        115.301 s
-[2mRan all test suites[22m[2m.[22m

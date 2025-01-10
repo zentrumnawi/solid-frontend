@@ -198,3 +198,61 @@ Error: Failed to convert JavaScript value `Null` into rust type `String`
 }
 
 Node.js v20.16.0
+[NX Daemon Server] - 2025-01-09T22:19:26.280Z - Started listening on: /tmp/ba72072e77f320f09854/d.sock
+[NX Daemon Server] - 2025-01-09T22:19:26.299Z - [WATCHER]: Subscribed to changes within: /mnt/d/solid4/solid-frontend (native)
+[NX Daemon Server] - 2025-01-09T22:19:26.305Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:19:26.307Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T22:19:26.337Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:19:26.339Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:19:26.340Z - Handled FORCE_SHUTDOWN. Handling time: 1. Response time: 3.
+[NX Daemon Server] - 2025-01-09T22:19:26.341Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:19:26.347Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2025-01-09T22:19:26.358Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (sources)
+[NX Daemon Server] - 2025-01-09T22:19:26.371Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (outputs)
+[NX Daemon Server] - 2025-01-09T22:25:43.425Z - Started listening on: /tmp/ba72072e77f320f09854/d.sock
+[NX Daemon Server] - 2025-01-09T22:25:43.452Z - [WATCHER]: Subscribed to changes within: /mnt/d/solid4/solid-frontend (native)
+[NX Daemon Server] - 2025-01-09T22:25:43.466Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:25:43.469Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T22:25:43.518Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:25:43.519Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:25:43.521Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 4.
+[NX Daemon Server] - 2025-01-09T22:25:43.522Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:25:43.529Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2025-01-09T22:25:43.543Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (sources)
+[NX Daemon Server] - 2025-01-09T22:25:43.555Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (outputs)
+[NX Daemon Server] - 2025-01-09T22:35:26.377Z - Started listening on: /tmp/ba72072e77f320f09854/d.sock
+[NX Daemon Server] - 2025-01-09T22:35:26.414Z - [WATCHER]: Subscribed to changes within: /mnt/d/solid4/solid-frontend (native)
+[NX Daemon Server] - 2025-01-09T22:35:26.426Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:35:26.429Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T22:35:26.470Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:35:26.472Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:35:26.473Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 3.
+[NX Daemon Server] - 2025-01-09T22:35:26.474Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:35:26.481Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2025-01-09T22:35:26.489Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (sources)
+[NX Daemon Server] - 2025-01-09T22:35:26.498Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (outputs)
+[NX Daemon Server] - 2025-01-09T22:37:04.725Z - Started listening on: /tmp/ba72072e77f320f09854/d.sock
+[NX Daemon Server] - 2025-01-09T22:37:04.753Z - [WATCHER]: Subscribed to changes within: /mnt/d/solid4/solid-frontend (native)
+[NX Daemon Server] - 2025-01-09T22:37:04.765Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:37:04.768Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T22:37:04.816Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:37:04.818Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:37:04.822Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 6.
+[NX Daemon Server] - 2025-01-09T22:37:04.824Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:37:04.835Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2025-01-09T22:37:04.853Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (sources)
+[NX Daemon Server] - 2025-01-09T22:37:04.902Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (outputs)
+The plugin worker is exiting as it was not connected to within 5 seconds.
+The plugin worker is exiting as it was not connected to within 5 seconds.
+The plugin worker is exiting as it was not connected to within 5 seconds.
+[NX Daemon Server] - 2025-01-09T22:39:44.708Z - Started listening on: /tmp/ba72072e77f320f09854/d.sock
+[NX Daemon Server] - 2025-01-09T22:39:44.741Z - [WATCHER]: Subscribed to changes within: /mnt/d/solid4/solid-frontend (native)
+[NX Daemon Server] - 2025-01-09T22:39:44.752Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:39:44.756Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-01-09T22:39:44.805Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:39:44.806Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2025-01-09T22:39:44.808Z - Handled FORCE_SHUTDOWN. Handling time: 1. Response time: 4.
+[NX Daemon Server] - 2025-01-09T22:39:44.809Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-01-09T22:39:44.819Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2025-01-09T22:39:44.829Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (sources)
+[NX Daemon Server] - 2025-01-09T22:39:44.839Z - [WATCHER]: Stopping the watcher for /mnt/d/solid4/solid-frontend (outputs)
