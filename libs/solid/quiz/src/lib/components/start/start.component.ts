@@ -11,8 +11,8 @@ import { QuizMetadata } from '../../state/quiz.model';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatLegacyChipListChange as MatChipListChange } from '@angular/material/legacy-chips';
-import { MatLegacySliderChange as MatSliderChange } from '@angular/material/legacy-slider';
+import { MatChipListboxChange } from '@angular/material/chips';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'solid-quiz-start',
@@ -94,7 +94,7 @@ export class StartComponent implements OnDestroy, OnInit {
     this.isValid = true;
   }
 
-  onTagSelectionChange(change: MatChipListChange) {
+  onTagSelectionChange(change: MatChipListboxChange) {
     this.chosenTags = change.value;
     this.isValid = true;
   }

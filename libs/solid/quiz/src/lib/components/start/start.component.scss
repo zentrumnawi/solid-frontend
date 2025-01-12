@@ -2,6 +2,7 @@
   display: block;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card {
   margin-left: auto;
   margin-right: auto;
@@ -10,6 +11,7 @@ mat-card {
 }
 
 @media (max-width: 1141px) {
+  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     margin-left: 10px;
     margin-right: 10px;
@@ -17,6 +19,7 @@ mat-card {
 }
 
 @media (max-width: 440px) {
+  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     top: 62px;
   }
@@ -27,11 +30,13 @@ mat-form-field {
   margin-left: 0.75em;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-title {
   font-size: 20px;
   padding-left: 20px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content {
   mat-spinner {
     margin-left: auto;
@@ -39,6 +44,7 @@ mat-card-content {
   }
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version. */
 mat-list {
   margin-left: 2px;
 }
@@ -48,10 +54,13 @@ mat-form-field {
   padding-left: 3%;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-actions {
   padding: 0px;
   margin-left: 0px;
   margin-right: 0px;
+  display: block;
+  //flex-direction: column;
 }
 
 .content-container {
@@ -59,7 +68,8 @@ mat-card-actions {
   font-size: 15px;
 }
 
-.mat-standard-chip .mat-chip-remove {
+/* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
+.mat-mdc-standard-chip .mat-chip-remove {
   color: white;
 }
 
@@ -92,12 +102,12 @@ hr {
   border-radius: 8px;
 }
 
-.mat-slider {
+.mat-mdc-slider {
   width: 100%;
   margin: -10px;
 }
 
-.mat-subheader {
+.mat-mdc-subheader {
   font-size: 15px;
   padding: 16px 0px;
 }
@@ -121,14 +131,26 @@ hr {
 }
 
 .button-container {
+  width: 100%;
+  //text-align: center;
+  position: relative;
+
   .startBtn {
-    margin: 10px 10px 20px 10px !important;
+    font-size: 15px;
+    //margin: 0 20%;
+    width: 35%;
+    //margin: 10px 10px 20px 10px !important;
     border-radius: 7px;
+    margin: 10px auto 20px auto !important;
+    display: block; 
+
   }
 
   .expBtn {
     margin: 10px 10px 20px 10px;
     padding: 0px;
+    display: block;
+    font-weight: 500;
   }
 }
 
@@ -143,13 +165,14 @@ hr {
 }
 
 #difficulty {
+  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
   .mat-button-toggle-group {
     width: 100%;
     border: none;
     margin-top: 10px;
     justify-content: space-between;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
   .mat-button-toggle {
     width: 20%;
     border-radius: 7px;
@@ -158,38 +181,41 @@ hr {
   }
 
   @media (max-width: 440px) {
+    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
     .mat-button-toggle {
       margin-right: 10px;
     }
   }
 
   @media (min-width: 441px) {
+    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
     .mat-button-toggle {
       margin-right: 20px;
     }
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
   .mat-button-toggle:last-child {
     margin-right: 0px;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
   ::ng-deep.mat-button-toggle-label-content {
     line-height: 35px;
   }
 }
 
 #tag {
+  /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
   ::ng-deep .mat-chip-list-wrapper {
     width: 100%;
     margin: 0;
     justify-content: space-between;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
   .mat-chip-list {
     width: 100%;
   }
 
-  .mat-chip {
+  .mat-mdc-chip {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -200,43 +226,29 @@ hr {
   }
 
   @media (max-width: 440px) {
+    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
     .mat-chip-small {
       width: 28%;
     }
-
+    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
     .mat-chip-large {
       width: 48%;
     }
   }
 
   @media (min-width: 441px) {
-    .mat-chip {
+    .mat-mdc-chip {
       width: 23%;
     }
   }
 
-  .mat-standard-chip:focus::after {
+  .mat-mdc-standard-chip:focus::after {
     opacity: 0;
   }
 }
 
-.mat-subheader {
+.mat-mdc-subheader {
   font-weight: 500;
-}
-
-.button-container {
-  text-align: center;
-  position: relative;
-
-  .startBtn {
-    font-size: 15px;
-    width: 35%;
-  }
-
-  .expBtn {
-    display: block;
-    font-weight: 500;
-  }
 }
 
 .config {
@@ -244,6 +256,7 @@ hr {
   padding: 0px 10px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version. */
 ::ng-deep .mat-select-value-text {
   display: none;
 }

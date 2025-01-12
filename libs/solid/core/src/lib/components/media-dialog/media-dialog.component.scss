@@ -13,6 +13,7 @@ div.mat-media-dialog-title {
   margin: 0px;
 
   ::ng-deep {
+    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
     .mat-button-focus-overlay {
       background-color: transparent !important;
     }
@@ -73,7 +74,7 @@ div.long-title-1 {
   }
 }
 
-div.mat-dialog-content {
+div.mat-mdc-dialog-content {
   margin: 0;
   padding: 0;
   max-height: calc(100% - 64px);
@@ -123,6 +124,7 @@ img {
 }
 
 ::ng-deep .solid-core-media-dialog {
+  /* TODO(mdc-migration): The following rule targets internal classes of dialog that may no longer apply for the MDC version.*/
   mat-dialog-container {
     overflow: hidden;
     padding: 0;
@@ -156,6 +158,7 @@ solid-core-audio-toolbar {
     margin-left: 0.85em;
 
     ::ng-deep {
+      /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version.*/
       .mat-slider-horizontal.volumeSlider {
         display: none;
       }
@@ -168,6 +171,7 @@ solid-core-audio-toolbar {
   }
   @media (min-width: 470px) and (max-width: 680px) {
     ::ng-deep {
+      /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version.*/
       .mat-slider-horizontal.volumeSlider {
         display: block;
       }

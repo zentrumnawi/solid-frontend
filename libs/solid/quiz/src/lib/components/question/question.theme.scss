@@ -7,18 +7,24 @@
   $quiz-correct: mat.define-palette(mat.$green-palette, 400, 200, 600);
   $quiz-wrong: mat.define-palette(mat.$red-palette, 400, 200, 600);
   solid-quiz-question {
+    /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+    /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+    /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
     mat-radio-group {
       display: flex;
       flex-direction: column;
-
+      /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+      /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
       mat-radio-button {
         &.correct {
+          /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
           .mat-radio-outer-circle {
             border-color: mat.get-color-from-palette($quiz-correct) !important;
           }
         }
 
         &.incorrect {
+          /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
           .mat-radio-outer-circle {
             border-color: mat.get-color-from-palette(
               $quiz-incorrect
@@ -27,19 +33,25 @@
         }
       }
     }
-
+    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
+    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
+    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
     mat-card-content.multiple-choice {
+      /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+      /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
       mat-checkbox {
         &.correctSelected {
+          /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette($quiz-correct);
           }
-
+          /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
           .mat-checkbox-label {
             color: black !important;
           }
         }
         &.correctUnselected {
+          /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette(
               $quiz-correct,
@@ -49,21 +61,24 @@
         }
 
         &.incorrectSelected {
+          /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette($quiz-incorrect);
           }
-
+          /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
           .mat-checkbox-label {
             color: black !important;
           }
         }
         &.incorrectUnselected {
+          /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
           .mat-checkbox-background {
             background-color: mat.get-color-from-palette(
               $quiz-incorrect,
               lighter
             );
           }
+          /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
           .mat-checkbox-mixedmark {
             &:after {
               color: mat.get-color-from-palette($quiz-incorrect, lighter);
@@ -167,17 +182,17 @@
     .incorrectIcon {
       color: mat.get-color-from-palette($quiz-incorrect);
     }
-
+    /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
     mat-radio-button.mat-radio-disabled .mat-radio-inner-circle {
       background-color: white !important;
     }
-
+    /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
     .mat-checkbox-mixedmark {
       &:after {
         color: mat.get-color-from-palette($quiz-incorrect);
       }
     }
-
+    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
     mat-slider:not(
         .mat-slider-disabled
       ).cdk-focused.mat-slider-thumb-label-showing
@@ -185,14 +200,17 @@
       border-color: mat.get-color-from-palette($accent) !important;
       background-color: white !important;
     }
-
+    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
     mat-slider {
       &.correctRange {
+        /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
         .mat-slider-track-fill {
           background-color: mat.get-color-from-palette(
             $quiz-correct
           ) !important;
         }
+        /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
         .mat-slider-thumb {
           background-color: mat.get-color-from-palette(
             $quiz-correct
@@ -202,11 +220,13 @@
       }
 
       &.incorrectRange {
+        /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
         .mat-slider-track-fill {
           background-color: mat.get-color-from-palette(
             $quiz-incorrect
           ) !important;
         }
+        /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
         .mat-slider-thumb {
           background-color: mat.get-color-from-palette(
             $quiz-incorrect

@@ -8,7 +8,7 @@
     </div>
   </div>
 </div>
-<mat-card>
+<mat-card appearance="outlined">
   <mat-card-content class="content-container">
     <p>
       Mit diesen Fragen kann der persönliche Wissensstand in verschiedenen
@@ -63,9 +63,8 @@
             min="1"
             max="30"
             step="1"
-            (input)="onSliderChange($event)"
             [(ngModel)]="questionCount"
-          >
+           #ngSlider><input matSliderThumb (input)="onSliderChange({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value})" #ngSliderThumb="matSliderThumb" />
           </mat-slider>
           <div class="displayValueBox">
             {{ questionCount }}
@@ -112,22 +111,22 @@
           </button>
         </div>
         <div class="controlElement" id="tag">
-          <mat-chip-list
+          <mat-chip-listbox
             selectable
             multiple
             (change)="onTagSelectionChange($event)"
             [(ngModel)]="chosenTags"
           >
-            <mat-chip
-              #c="matChip"
+            <mat-chip-option
+              #c
               *ngFor="let tag of tags"
               [value]="tag"
               (click)="c.toggleSelected(true)"
               [ngClass]="tags.length > 6 ? 'mat-chip-small' : 'mat-chip-large'"
             >
               {{ tag }}
-            </mat-chip>
-          </mat-chip-list>
+            </mat-chip-option>
+          </mat-chip-listbox>
         </div>
       </div>
     </div>

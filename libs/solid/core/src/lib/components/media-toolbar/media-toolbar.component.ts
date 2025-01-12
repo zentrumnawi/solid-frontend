@@ -11,9 +11,9 @@ import {
 } from '@angular/core';
 import { ImageModel, MediaModel } from '../../models';
 import {
-  MatLegacyDialog as MatDialog,
-  MatLegacyDialogRef as MatDialogRef,
-} from '@angular/material/legacy-dialog';
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import {
   CloseScrollStrategy,
   ComponentType,

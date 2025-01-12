@@ -7,8 +7,13 @@ mat-form-field {
   width: 0;
   transition: 0.5s ease-in-out;
   ::ng-deep {
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
     div.mat-form-field-wrapper {
       padding: 0;
+      /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+      /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
       div.mat-form-field-flex {
         //we should try to avoid this in the future
         //but "appearance: fill" simply doesn't cut it
@@ -16,13 +21,13 @@ mat-form-field {
         padding-bottom: 2.5px;
         padding-left: 0;
         margin-left: 10px;
-
+        /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
         div.mat-form-field-suffix {
           margin-left: -0.75em;
         }
       }
     }
-
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
     div.mat-form-field-underline {
       display: none;
     }
@@ -38,10 +43,11 @@ mat-form-field flex {
   padding-top: 0;
 
   ::ng-deep {
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
     div.mat-form-field-wrapper {
       padding: 0;
     }
-
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
     div.mat-form-field-underline {
       display: none;
     }
@@ -177,6 +183,7 @@ div.long-title-1 {
   }
 }
 
+/*TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
 mat-card-content {
   position: absolute;
   margin-top: 100px;

@@ -68,31 +68,31 @@
 }
 
 ::ng-deep .range-container {
-  .mat-slider {
+  .mat-mdc-slider {
     min-width: 100%;
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
   .mat-slider-wrapper {
     top: 24px;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
   .mat-slider-horizontal .mat-slider-track-wrapper {
     height: 6px;
   }
-
-  .mat-slider.mat-slider-horizontal .mat-slider-track-background {
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+  .mat-mdc-slider.mat-slider-horizontal .mat-slider-track-background {
     height: 100%;
     background-color: lightgray;
   }
-
-  .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+  .mat-mdc-slider.mat-slider-horizontal .mat-slider-track-fill {
     height: 100%;
   }
-
-  .mat-slider.mat-accent .mat-slider-thumb {
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+  .mat-mdc-slider.mat-accent .mat-slider-thumb {
     background-color: white;
     height: 26px;
     width: 26px;
@@ -100,19 +100,19 @@
     border: solid 3px lightgray;
     transform: scale(0.75);
   }
-
-  .mat-slider:not(
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+  .mat-mdc-slider:not(
       .mat-slider-disabled
     ).cdk-focused.mat-slider-thumb-label-showing
     .mat-slider-thumb {
     transform: scale(0.75);
   }
-
-  .mat-slider.mat-slider-min-value.mat-slider-thumb-label-showing
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+  .mat-mdc-slider.mat-slider-min-value.mat-slider-thumb-label-showing
     .mat-slider-thumb {
     border-color: lightgray !important;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
   .mat-slider-horizontal .mat-slider-thumb-label {
     top: -45px;
   }

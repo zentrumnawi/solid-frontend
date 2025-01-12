@@ -1,10 +1,13 @@
+
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card {
   margin-left: auto;
   margin-right: auto;
   max-width: 60em;
   top: 71px;
 
-  .mat-card-header .mat-card-title {
+  .mat-mdc-card-header .mat-mdc-card-title {
     font-size: 16px;
     font-weight: 500;
     margin: 5px 0px 20px -14px;
@@ -12,6 +15,7 @@ mat-card {
 }
 
 @media (max-width: 1141px) {
+  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     margin-left: 10px;
     margin-right: 10px;
@@ -57,22 +61,26 @@ solid-core-media {
   }
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content.single-choice {
   display: flex;
   flex-direction: column;
   margin-left: 0.5rem;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content.multiple-choice {
   display: flex;
   flex-direction: column;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content.true-false {
   display: flex;
   flex-direction: column;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content.ranking {
   display: flex;
   flex-direction: column;
@@ -168,13 +176,17 @@ mat-card-content.ranking {
 }
 
 @media (max-width: 450px) {
+  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     top: 66px;
   }
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of progress-bar that may no longer apply for the MDC version. */
+/* TODO(mdc-migration): The following rule targets internal classes of progress-bar that may no longer apply for the MDC version. */
 mat-progress-bar {
   ::ng-deep {
+    /* TODO(mdc-migration): The following rule targets internal classes of progress-bar that may no longer apply for the MDC version. */
     .mat-progress-bar-buffer {
       background-color: white;
     }
@@ -197,7 +209,7 @@ mat-progress-bar {
 }
 
 ::ng-deep .custom-dialog-container {
-  .mat-dialog-container {
+  .mat-mdc-dialog-container {
     width: 330px;
     min-height: 165px;
     padding: 5px;
@@ -220,7 +232,7 @@ mat-progress-bar {
     margin-top: 2px;
   }
 
-  .mat-dialog-content {
+  .mat-mdc-dialog-content {
     padding: 0 1em 0 1em;
     margin: 5px;
 
@@ -230,7 +242,7 @@ mat-progress-bar {
     }
   }
 
-  .mat-dialog-actions {
+  .mat-mdc-dialog-actions {
     justify-content: space-between;
     padding: 0 8px;
     min-height: 42px;

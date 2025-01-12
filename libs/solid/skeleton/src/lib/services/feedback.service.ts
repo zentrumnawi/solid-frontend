@@ -1,9 +1,9 @@
 import { InjectionToken } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  MatLegacyDialog as MatDialog,
-  MatLegacyDialogConfig as MatDialogConfig,
-} from '@angular/material/legacy-dialog';
+  MatDialog,
+  MatDialogConfig,
+} from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { FeedbackComponent } from '../components/feedback/feedback.component';
 import { SolidCoreConfig } from '@zentrumnawi/solid-core';

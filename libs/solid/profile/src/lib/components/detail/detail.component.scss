@@ -133,6 +133,7 @@ div.img-toolbar {
   margin-left: 7px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of tooltip that may no longer apply for the MDC version.*/
 mat-tooltip.custom-tooltip {
   color: pink;
   font-size: 14px !important;

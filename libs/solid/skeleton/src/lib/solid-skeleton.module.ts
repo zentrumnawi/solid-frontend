@@ -11,24 +11,24 @@ import { SolidGlossaryModule } from '@zentrumnawi/solid-glossary';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { RouterModule, ROUTES } from '@angular/router';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
+import { MatListModule } from '@angular/material/list';
 import { FeedbackComponent } from './components/feedback/feedback.component';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
-import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
   feedbackServiceFactory,
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from './services/feedback.service';
 import { HttpClient } from '@angular/common/http';
 import {
-  MatLegacyDialog as MatDialog,
-  MatLegacyDialogModule as MatDialogModule,
-} from '@angular/material/legacy-dialog';
+  MatDialog,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import {
   defaultSkeletonConfig,
   InternalSolidSkeletonConfig,
@@ -39,13 +39,13 @@ import { UpdateService } from './services/update.service';
 import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LandingComponent } from './components/landing/landing.component';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatCardModule } from '@angular/material/card';
 import { NgxsModule } from '@ngxs/store';
 import { MenuState } from './state/menu.state';
 import { generateRoutes } from './skeleton-routing';
 import { createErrorHandler } from '@sentry/angular';
 import { InfoComponent } from './components/info/info.component';
-import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MessageListComponent } from './components/message-list/message-list.component';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
@@ -54,7 +54,7 @@ import { SOLID_SLIDESHOW_APP_ROUTING_CONFIG } from '@zentrumnawi/solid-slideshow
 import { MatExpansionModule } from '@angular/material/expansion';
 import { IntroService } from './services/intro.service';
 import { deepMerge } from './utils/deep-merge';
-import { MatLegacySlideToggleModule as MatSlideToggleModule } from '@angular/material/legacy-slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PrivacyDialogComponent } from './components/privacy-dialog/privacy-dialog.component';
 import { LandingBannerDialogComponent } from './components/landing-banner-dialog/landing-banner-dialog.component';
 import { MatBadgeModule } from '@angular/material/badge';
