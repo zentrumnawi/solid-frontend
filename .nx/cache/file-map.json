@@ -300,417 +300,6 @@
       }
     ],
     "projectFileMap": {
-      "geomat": [
-        {
-          "file": "apps/geomat/.browserslistrc",
-          "hash": "12493385347391921333"
-        },
-        {
-          "file": "apps/geomat/.eslintrc.json",
-          "hash": "8120908006321074904"
-        },
-        {
-          "file": "apps/geomat/jest.config.ts",
-          "hash": "963147011010362435"
-        },
-        {
-          "file": "apps/geomat/project.json",
-          "hash": "5186729209558867902"
-        },
-        {
-          "file": "apps/geomat/proxy.conf.json",
-          "hash": "6253820757839657725"
-        },
-        {
-          "file": "apps/geomat/src/app/app.component.ts",
-          "hash": "17267084528266639357",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/app.module.ts",
-          "hash": "4792708909328654357",
-          "deps": [
-            "npm:@angular/platform-browser",
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "npm:@angular/service-worker",
-            "npm:@ngxs/store",
-            "npm:@ngxs-labs/dispatch-decorator",
-            "npm:@ngxs/router-plugin",
-            "npm:@ngxs/devtools-plugin",
-            "solid-core",
-            "solid-skeleton",
-            "npm:@angular/material"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/crystalsystem/crystalsystem-routing.module.ts",
-          "hash": "11008709828180578107",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/crystalsystem/crystalsystem.module.ts",
-          "hash": "17419378119889914370",
-          "deps": [
-            "npm:@angular/core",
-            "solid-core",
-            "npm:@angular/material"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/crystalsystem/crystalsystemdetail-configuration.ts",
-          "hash": "2464642277025458430"
-        },
-        {
-          "file": "apps/geomat/src/app/crystalsystem/crystalsystemdetail.component.html",
-          "hash": "15987617601228592200"
-        },
-        {
-          "file": "apps/geomat/src/app/crystalsystem/crystalsystemdetail.component.scss",
-          "hash": "14768027524664185732"
-        },
-        {
-          "file": "apps/geomat/src/app/crystalsystem/crystalsystemdetail.component.ts",
-          "hash": "8182328021436199592",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/info-page-content/info-page-content.component.html",
-          "hash": "14716870725222859577"
-        },
-        {
-          "file": "apps/geomat/src/app/info-page-content/info-page-content.component.scss",
-          "hash": "4547413312626776307"
-        },
-        {
-          "file": "apps/geomat/src/app/info-page-content/info-page-content.component.ts",
-          "hash": "10057910298192183919",
-          "deps": [
-            "npm:@angular/core",
-            "solid-skeleton"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/privacy/privacy.component.html",
-          "hash": "9886393061732745913"
-        },
-        {
-          "file": "apps/geomat/src/app/privacy/privacy.component.scss",
-          "hash": "4077927226635802754"
-        },
-        {
-          "file": "apps/geomat/src/app/privacy/privacy.component.spec.ts",
-          "hash": "3158812146573231306",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/privacy/privacy.component.ts",
-          "hash": "2637631686446228416",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/solid-core-config.ts",
-          "hash": "13657260309209615360",
-          "deps": [
-            "solid-core",
-            "npm:markdown-it-sub",
-            "npm:markdown-it-sup"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/app/solid-skeleton-config.ts",
-          "hash": "12046897642056922199",
-          "deps": [
-            "solid-skeleton"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/geometry/cubic.js",
-          "hash": "15509182142561026220"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/geometry/hexagonal.js",
-          "hash": "3432654718501124533"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/geometry/monoclinic.js",
-          "hash": "13281360741709325904"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/geometry/orthorhombic.js",
-          "hash": "4870596725523193255"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/geometry/tetragonal.js",
-          "hash": "15991209262704695646"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/geometry/triclinic.js",
-          "hash": "14931364026788805471"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/geometry/trigonal.js",
-          "hash": "12450658131230174476"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/iframe.html",
-          "hash": "12786039574557806648"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/js/convexgeometry.js",
-          "hash": "3795446568946576237"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/js/orbitcontrols.js",
-          "hash": "311725092331430748"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/js/quickhull.js",
-          "hash": "14870717467821025119"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/js/renderer.js",
-          "hash": "10992657187488123393"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/js/three.js",
-          "hash": "11349355129132842826"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/js/webgl.js",
-          "hash": "7824727768082018495"
-        },
-        {
-          "file": "apps/geomat/src/assets/crystalsystem/textures/disc.png",
-          "hash": "16055849809347338421"
-        },
-        {
-          "file": "apps/geomat/src/assets/data/guidedTour.json",
-          "hash": "1628212188433960508"
-        },
-        {
-          "file": "apps/geomat/src/assets/data/landing-banner-content.json",
-          "hash": "1058677320987003950"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon-128x128.png",
-          "hash": "2032236426532406788"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon-144x144.png",
-          "hash": "15234234574783483992"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon-152x152.png",
-          "hash": "13648019378783574896"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon-192x192.png",
-          "hash": "15748548796406060323"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon-384x384.png",
-          "hash": "3290862761043637601"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon-512x512.png",
-          "hash": "5468426358117875660"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon-72x72.png",
-          "hash": "3445188577468317352"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon-96x96.png",
-          "hash": "16590591030949077653"
-        },
-        {
-          "file": "apps/geomat/src/assets/icons/icon.svg",
-          "hash": "8116069740419930410"
-        },
-        {
-          "file": "apps/geomat/src/assets/info/BMBF.svg",
-          "hash": "6432158356147361016"
-        },
-        {
-          "file": "apps/geomat/src/assets/info/GeoMatAvatar.svg",
-          "hash": "14235423836449478307"
-        },
-        {
-          "file": "apps/geomat/src/assets/info/GoetheUniversitaet.svg",
-          "hash": "6671484574763118597"
-        },
-        {
-          "file": "apps/geomat/src/assets/info/Solid.svg",
-          "hash": "4453435021205998647"
-        },
-        {
-          "file": "apps/geomat/src/assets/info/ZentrumNaWi.svg",
-          "hash": "3328192103295035332"
-        },
-        {
-          "file": "apps/geomat/src/assets/info/eLF.svg",
-          "hash": "9948658584725096984"
-        },
-        {
-          "file": "apps/geomat/src/assets/profile/audio.svg",
-          "hash": "15186954713824306184"
-        },
-        {
-          "file": "apps/geomat/src/assets/profile/no_image.svg",
-          "hash": "2817954058203222626"
-        },
-        {
-          "file": "apps/geomat/src/assets/profile/no_thumbnail.svg",
-          "hash": "8232156760898917759"
-        },
-        {
-          "file": "apps/geomat/src/assets/profile/video.svg",
-          "hash": "11348177624308082544"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/assistant.svg",
-          "hash": "8796063553063569617"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/crystalsystem.svg",
-          "hash": "10255273645158862968"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/feedback.svg",
-          "hash": "11204692066928309783"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/feedback_outline.svg",
-          "hash": "12630135293222192036"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/glossary_generic.svg",
-          "hash": "9080113821520893918"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/icon.svg",
-          "hash": "9963123142338238650"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/info.svg",
-          "hash": "12010282461313417390"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/info_privacy.svg",
-          "hash": "17216040830319381881"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/privacy.svg",
-          "hash": "11077548459855921107"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/profile.svg",
-          "hash": "11686317678655243562"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/quiz.svg",
-          "hash": "4145124755505533288"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/semicorrect.svg",
-          "hash": "4039474285674891815"
-        },
-        {
-          "file": "apps/geomat/src/assets/svg/slideshow.svg",
-          "hash": "3602537535469181300"
-        },
-        {
-          "file": "apps/geomat/src/environments/environment.prod.ts",
-          "hash": "7331402330085665417"
-        },
-        {
-          "file": "apps/geomat/src/environments/environment.staging.ts",
-          "hash": "1988969618808339936"
-        },
-        {
-          "file": "apps/geomat/src/environments/environment.ts",
-          "hash": "16920763578399387531"
-        },
-        {
-          "file": "apps/geomat/src/favicon.ico",
-          "hash": "6410437650058070976"
-        },
-        {
-          "file": "apps/geomat/src/index.html",
-          "hash": "16266417543630519594"
-        },
-        {
-          "file": "apps/geomat/src/main.ts",
-          "hash": "8110337805149622691",
-          "deps": [
-            "npm:hammerjs",
-            "npm:@angular/core",
-            "npm:@angular/platform-browser-dynamic",
-            "npm:detect-browser",
-            "solid-skeleton"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/manifest.webmanifest",
-          "hash": "2648935050330344759"
-        },
-        {
-          "file": "apps/geomat/src/polyfills.ts",
-          "hash": "15410927626494919051",
-          "deps": [
-            "npm:zone.js"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/styles.scss",
-          "hash": "14290325918789085709"
-        },
-        {
-          "file": "apps/geomat/src/test-setup.ts",
-          "hash": "13957278976106148009",
-          "deps": [
-            "npm:jest-preset-angular",
-            "npm:@angular/core",
-            "npm:@angular/platform-browser-dynamic"
-          ]
-        },
-        {
-          "file": "apps/geomat/src/theme.scss",
-          "hash": "16709148917591969968"
-        },
-        {
-          "file": "apps/geomat/tsconfig.app.json",
-          "hash": "12306147128934458852"
-        },
-        {
-          "file": "apps/geomat/tsconfig.editor.json",
-          "hash": "11539145186223711902"
-        },
-        {
-          "file": "apps/geomat/tsconfig.json",
-          "hash": "9677660371877493083"
-        },
-        {
-          "file": "apps/geomat/tsconfig.spec.json",
-          "hash": "17859551126707004133"
-        }
-      ],
       "wabe": [
         {
           "file": "apps/wabe/.browserslistrc",
@@ -1263,291 +852,113 @@
           "hash": "8409439519294937185"
         }
       ],
-      "dive": [
+      "solid-glossary": [
         {
-          "file": "apps/dive/.browserslistrc",
-          "hash": "12493385347391921333"
+          "file": "libs/solid/glossary/.eslintrc.json",
+          "hash": "10401597028551161263"
         },
         {
-          "file": "apps/dive/.eslintrc.json",
-          "hash": "558294347764836641"
+          "file": "libs/solid/glossary/README.md",
+          "hash": "7824153234306616555"
         },
         {
-          "file": "apps/dive/jest.config.ts",
-          "hash": "8961559553578522837"
+          "file": "libs/solid/glossary/jest.config.ts",
+          "hash": "16095028659922446001"
         },
         {
-          "file": "apps/dive/ngsw-config.json",
-          "hash": "11243200739467311886"
+          "file": "libs/solid/glossary/ng-package.json",
+          "hash": "5280458519169938770"
         },
         {
-          "file": "apps/dive/project.json",
-          "hash": "12640320274412804216"
-        },
-        {
-          "file": "apps/dive/proxy.conf.json",
-          "hash": "3064560991537120165"
-        },
-        {
-          "file": "apps/dive/src/app/app.component.ts",
-          "hash": "18378682577595540063",
+          "file": "libs/solid/glossary/package.json",
+          "hash": "1781301525274697409",
           "deps": [
-            "npm:@angular/core"
+            "npm:tslib",
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/material",
+            "npm:@ngxs/store"
           ]
         },
         {
-          "file": "apps/dive/src/app/app.module.ts",
-          "hash": "15412464944470556858",
+          "file": "libs/solid/glossary/project.json",
+          "hash": "5435845525383125425"
+        },
+        {
+          "file": "libs/solid/glossary/src/glossary-theme.scss",
+          "hash": "10364483336214163512"
+        },
+        {
+          "file": "libs/solid/glossary/src/index.ts",
+          "hash": "472819520349958225"
+        },
+        {
+          "file": "libs/solid/glossary/src/lib/components/glossary.component.html",
+          "hash": "8133177179149400745"
+        },
+        {
+          "file": "libs/solid/glossary/src/lib/components/glossary.component.scss",
+          "hash": "17603291288997167759"
+        },
+        {
+          "file": "libs/solid/glossary/src/lib/components/glossary.component.ts",
+          "hash": "14671414919209023032",
           "deps": [
-            "npm:@angular/platform-browser",
             "npm:@angular/core",
-            "npm:@angular/router",
-            "npm:@angular/service-worker",
             "npm:@ngxs/store",
-            "npm:@ngxs-labs/dispatch-decorator",
-            "npm:@ngxs/router-plugin",
-            "npm:@ngxs/devtools-plugin",
+            "npm:rxjs",
+            "npm:@angular/forms"
+          ]
+        },
+        {
+          "file": "libs/solid/glossary/src/lib/components/glossary.theme.scss",
+          "hash": "2509573613882053211"
+        },
+        {
+          "file": "libs/solid/glossary/src/lib/components/index.ts",
+          "hash": "37353589868154197"
+        },
+        {
+          "file": "libs/solid/glossary/src/lib/components/link.directive.ts",
+          "hash": "12557295310211262845",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/solid/glossary/src/lib/glossary.actions.ts",
+          "hash": "15993027989366953170"
+        },
+        {
+          "file": "libs/solid/glossary/src/lib/glossary.state.ts",
+          "hash": "12158547010970578559",
+          "deps": [
+            "npm:@ngxs/store",
+            "npm:@angular/core",
             "solid-core",
-            "solid-skeleton",
-            "npm:@angular/material"
+            "npm:@angular/common",
+            "npm:rxjs"
           ]
         },
         {
-          "file": "apps/dive/src/app/info-page-content/info-page-content.component.html",
-          "hash": "8941779914241070269"
-        },
-        {
-          "file": "apps/dive/src/app/info-page-content/info-page-content.component.scss",
-          "hash": "14990437082323541082"
-        },
-        {
-          "file": "apps/dive/src/app/info-page-content/info-page-content.component.ts",
-          "hash": "26149053627655608",
-          "deps": [
-            "npm:@angular/core",
-            "solid-skeleton"
-          ]
-        },
-        {
-          "file": "apps/dive/src/app/privacy/privacy.component.html",
-          "hash": "15173633625201863744"
-        },
-        {
-          "file": "apps/dive/src/app/privacy/privacy.component.scss",
-          "hash": "9895940643805528971"
-        },
-        {
-          "file": "apps/dive/src/app/privacy/privacy.component.spec.ts",
-          "hash": "3158812146573231306",
+          "file": "libs/solid/glossary/src/lib/solid-glossary.module.spec.ts",
+          "hash": "17236829634475531135",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
-          "file": "apps/dive/src/app/privacy/privacy.component.ts",
-          "hash": "8277432024831213883",
+          "file": "libs/solid/glossary/src/lib/solid-glossary.module.ts",
+          "hash": "15605528417764880348",
           "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/dive/src/app/solid-core-config.ts",
-          "hash": "1175071506121059476",
-          "deps": [
-            "solid-core"
-          ]
-        },
-        {
-          "file": "apps/dive/src/app/solid-skeleton-config.ts",
-          "hash": "14363378298149914842",
-          "deps": [
-            "solid-skeleton"
-          ]
-        },
-        {
-          "file": "apps/dive/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/dive/src/assets/data/guidedTour.json",
-          "hash": "10347372446346413618"
-        },
-        {
-          "file": "apps/dive/src/assets/data/landing-banner-content.json",
-          "hash": "11283885220078542996"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon-128x128.png",
-          "hash": "10888313913778452428"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon-144x144.png",
-          "hash": "14410966431111044782"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon-152x152.png",
-          "hash": "4517297487820772573"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon-192x192.png",
-          "hash": "16686150173775541274"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon-384x384.png",
-          "hash": "17801721625194519779"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon-512x512.png",
-          "hash": "7499011187337164832"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon-72x72.png",
-          "hash": "17584044206257986476"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon-96x96.png",
-          "hash": "6537460318691748893"
-        },
-        {
-          "file": "apps/dive/src/assets/icons/icon.svg",
-          "hash": "15083885114990724081"
-        },
-        {
-          "file": "apps/dive/src/assets/info/BMBF.svg",
-          "hash": "6432158356147361016"
-        },
-        {
-          "file": "apps/dive/src/assets/info/GoetheUniversitaet.svg",
-          "hash": "6671484574763118597"
-        },
-        {
-          "file": "apps/dive/src/assets/info/Solid.svg",
-          "hash": "4453435021205998647"
-        },
-        {
-          "file": "apps/dive/src/assets/info/Wissenschaftsgarten.svg",
-          "hash": "981185456092392942"
-        },
-        {
-          "file": "apps/dive/src/assets/info/ZentrumNaWi.svg",
-          "hash": "3328192103295035332"
-        },
-        {
-          "file": "apps/dive/src/assets/info/eLF.svg",
-          "hash": "9948658584725096984"
-        },
-        {
-          "file": "apps/dive/src/assets/profile/audio.svg",
-          "hash": "8847952553073668117"
-        },
-        {
-          "file": "apps/dive/src/assets/profile/no_image.svg",
-          "hash": "17345292070807946761"
-        },
-        {
-          "file": "apps/dive/src/assets/profile/no_thumbnail.svg",
-          "hash": "10491775304723086403"
-        },
-        {
-          "file": "apps/dive/src/assets/profile/video.svg",
-          "hash": "11332741847084986451"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/feedback.svg",
-          "hash": "16455980546083615632"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/feedback_outline.svg",
-          "hash": "12630135293222192036"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/glossary_generic.svg",
-          "hash": "9080113821520893918"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/icon.svg",
-          "hash": "13170500365579319241"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/info.svg",
-          "hash": "12136982531691326683"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/info_privacy.svg",
-          "hash": "17216040830319381881"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/privacy.svg",
-          "hash": "11077548459855921107"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/profile.svg",
-          "hash": "16430173663027306298"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/properties.svg",
-          "hash": "4703938072024799729"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/quiz.svg",
-          "hash": "4613241380791673193"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/semicorrect.svg",
-          "hash": "4039474285674891815"
-        },
-        {
-          "file": "apps/dive/src/assets/svg/slideshow.svg",
-          "hash": "3427214324898150572"
-        },
-        {
-          "file": "apps/dive/src/environments/environment.prod.ts",
-          "hash": "1608799978561426136"
-        },
-        {
-          "file": "apps/dive/src/environments/environment.staging.ts",
-          "hash": "2244565872964123335"
-        },
-        {
-          "file": "apps/dive/src/environments/environment.ts",
-          "hash": "11592528855171607399"
-        },
-        {
-          "file": "apps/dive/src/favicon.ico",
-          "hash": "4796413191327399810"
-        },
-        {
-          "file": "apps/dive/src/index.html",
-          "hash": "12645381194071515453"
-        },
-        {
-          "file": "apps/dive/src/main.ts",
-          "hash": "8110337805149622691",
-          "deps": [
-            "npm:hammerjs",
             "npm:@angular/core",
-            "npm:@angular/platform-browser-dynamic",
-            "npm:detect-browser",
-            "solid-skeleton"
+            "solid-core",
+            "npm:@angular/material",
+            "npm:@ngxs/store"
           ]
         },
         {
-          "file": "apps/dive/src/manifest.webmanifest",
-          "hash": "9995783646424046182"
-        },
-        {
-          "file": "apps/dive/src/polyfills.ts",
-          "hash": "15410927626494919051",
-          "deps": [
-            "npm:zone.js"
-          ]
-        },
-        {
-          "file": "apps/dive/src/styles.scss",
-          "hash": "14290325918789085709"
-        },
-        {
-          "file": "apps/dive/src/test-setup.ts",
+          "file": "libs/solid/glossary/src/test-setup.ts",
           "hash": "13957278976106148009",
           "deps": [
             "npm:jest-preset-angular",
@@ -1556,329 +967,20 @@
           ]
         },
         {
-          "file": "apps/dive/src/theme.scss",
-          "hash": "15603376797131184682"
+          "file": "libs/solid/glossary/tsconfig.json",
+          "hash": "3140896319717069756"
         },
         {
-          "file": "apps/dive/tsconfig.app.json",
-          "hash": "12306147128934458852"
+          "file": "libs/solid/glossary/tsconfig.lib.json",
+          "hash": "8296745613467336429"
         },
         {
-          "file": "apps/dive/tsconfig.editor.json",
-          "hash": "11539145186223711902"
+          "file": "libs/solid/glossary/tsconfig.lib.prod.json",
+          "hash": "3707522048529677407"
         },
         {
-          "file": "apps/dive/tsconfig.json",
-          "hash": "11825412862319980708"
-        },
-        {
-          "file": "apps/dive/tsconfig.spec.json",
-          "hash": "17859551126707004133"
-        }
-      ],
-      "ais": [
-        {
-          "file": "apps/ais/.browserslistrc",
-          "hash": "12493385347391921333"
-        },
-        {
-          "file": "apps/ais/.eslintrc.json",
-          "hash": "16396483110896979499"
-        },
-        {
-          "file": "apps/ais/jest.config.ts",
-          "hash": "569040691627632992"
-        },
-        {
-          "file": "apps/ais/ngsw-config.json",
-          "hash": "11243200739467311886"
-        },
-        {
-          "file": "apps/ais/project.json",
-          "hash": "171825711296616550"
-        },
-        {
-          "file": "apps/ais/proxy.conf.json",
-          "hash": "16101912826824882153"
-        },
-        {
-          "file": "apps/ais/src/app/app.component.ts",
-          "hash": "8790655917201208372",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/ais/src/app/app.module.ts",
-          "hash": "3558665816976882307",
-          "deps": [
-            "npm:@angular/platform-browser",
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "npm:@angular/service-worker",
-            "npm:@ngxs/store",
-            "npm:@ngxs-labs/dispatch-decorator",
-            "npm:@ngxs/router-plugin",
-            "npm:@ngxs/devtools-plugin",
-            "solid-core",
-            "solid-skeleton",
-            "npm:@angular/material"
-          ]
-        },
-        {
-          "file": "apps/ais/src/app/info-page-content/info-page-content.component.html",
-          "hash": "3221322328668348049"
-        },
-        {
-          "file": "apps/ais/src/app/info-page-content/info-page-content.component.scss",
-          "hash": "3162422686784727608"
-        },
-        {
-          "file": "apps/ais/src/app/info-page-content/info-page-content.component.ts",
-          "hash": "15539875958235052654",
-          "deps": [
-            "npm:@angular/core",
-            "solid-skeleton"
-          ]
-        },
-        {
-          "file": "apps/ais/src/app/privacy/privacy.component.html",
-          "hash": "2431393684343103079"
-        },
-        {
-          "file": "apps/ais/src/app/privacy/privacy.component.scss",
-          "hash": "537056331354140666"
-        },
-        {
-          "file": "apps/ais/src/app/privacy/privacy.component.spec.ts",
-          "hash": "3158812146573231306",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/ais/src/app/privacy/privacy.component.ts",
-          "hash": "7708751922944724603",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "apps/ais/src/app/solid-core-config.ts",
-          "hash": "4693945226762052488",
-          "deps": [
-            "solid-core"
-          ]
-        },
-        {
-          "file": "apps/ais/src/app/solid-skeleton-config.ts",
-          "hash": "14439731395162416381",
-          "deps": [
-            "solid-skeleton"
-          ]
-        },
-        {
-          "file": "apps/ais/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/ais/src/assets/data/guidedTour.json",
-          "hash": "18379781219421353881"
-        },
-        {
-          "file": "apps/ais/src/assets/data/landing-banner-content.json",
-          "hash": "3131907196385646291"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon-128x128.png",
-          "hash": "2887110976786878894"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon-144x144.png",
-          "hash": "16760792740312321678"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon-152x152.png",
-          "hash": "987137215833160224"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon-192x192.png",
-          "hash": "2707569435701631490"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon-384x384.png",
-          "hash": "17754550271863800092"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon-512x512.png",
-          "hash": "8148905355574701697"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon-72x72.png",
-          "hash": "14605348016789341080"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon-96x96.png",
-          "hash": "2756711658029341905"
-        },
-        {
-          "file": "apps/ais/src/assets/icons/icon.svg",
-          "hash": "107999658211189105"
-        },
-        {
-          "file": "apps/ais/src/assets/info/BMBF.svg",
-          "hash": "6432158356147361016"
-        },
-        {
-          "file": "apps/ais/src/assets/info/GoetheUniversitaet.svg",
-          "hash": "6671484574763118597"
-        },
-        {
-          "file": "apps/ais/src/assets/info/Solid.svg",
-          "hash": "4453435021205998647"
-        },
-        {
-          "file": "apps/ais/src/assets/info/ZentrumNaWi.svg",
-          "hash": "3328192103295035332"
-        },
-        {
-          "file": "apps/ais/src/assets/info/eLF.svg",
-          "hash": "9948658584725096984"
-        },
-        {
-          "file": "apps/ais/src/assets/profile/audio.svg",
-          "hash": "14572686481566042587"
-        },
-        {
-          "file": "apps/ais/src/assets/profile/no_image.svg",
-          "hash": "3665607275653365467"
-        },
-        {
-          "file": "apps/ais/src/assets/profile/no_thumbnail.svg",
-          "hash": "15691188981096760941"
-        },
-        {
-          "file": "apps/ais/src/assets/profile/video.svg",
-          "hash": "2019201343781562015"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/feedback.svg",
-          "hash": "16455980546083615632"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/feedback_outline.svg",
-          "hash": "12630135293222192036"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/glossary_generic.svg",
-          "hash": "9080113821520893918"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/icon.svg",
-          "hash": "8791693585228226929"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/info.svg",
-          "hash": "4114430428889283650"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/info_privacy.svg",
-          "hash": "17216040830319381881"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/privacy.svg",
-          "hash": "11077548459855921107"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/profile.svg",
-          "hash": "9048420999702862145"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/properties.svg",
-          "hash": "5003945896083282837"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/quiz.svg",
-          "hash": "3478650764175612158"
-        },
-        {
-          "file": "apps/ais/src/assets/svg/semicorrect.svg",
-          "hash": "4039474285674891815"
-        },
-        {
-          "file": "apps/ais/src/environments/environment.prod.ts",
-          "hash": "15550563011538424726"
-        },
-        {
-          "file": "apps/ais/src/environments/environment.staging.ts",
-          "hash": "11121649151540550533"
-        },
-        {
-          "file": "apps/ais/src/environments/environment.ts",
-          "hash": "11592528855171607399"
-        },
-        {
-          "file": "apps/ais/src/favicon.ico",
-          "hash": "9855246388585875456"
-        },
-        {
-          "file": "apps/ais/src/index.html",
-          "hash": "12130107741696295264"
-        },
-        {
-          "file": "apps/ais/src/main.ts",
-          "hash": "8110337805149622691",
-          "deps": [
-            "npm:hammerjs",
-            "npm:@angular/core",
-            "npm:@angular/platform-browser-dynamic",
-            "npm:detect-browser",
-            "solid-skeleton"
-          ]
-        },
-        {
-          "file": "apps/ais/src/manifest.webmanifest",
-          "hash": "15333519629935990223"
-        },
-        {
-          "file": "apps/ais/src/polyfills.ts",
-          "hash": "15410927626494919051",
-          "deps": [
-            "npm:zone.js"
-          ]
-        },
-        {
-          "file": "apps/ais/src/styles.scss",
-          "hash": "14290325918789085709"
-        },
-        {
-          "file": "apps/ais/src/test-setup.ts",
-          "hash": "13957278976106148009",
-          "deps": [
-            "npm:jest-preset-angular",
-            "npm:@angular/core",
-            "npm:@angular/platform-browser-dynamic"
-          ]
-        },
-        {
-          "file": "apps/ais/src/theme.scss",
-          "hash": "2796724757583688098"
-        },
-        {
-          "file": "apps/ais/tsconfig.app.json",
-          "hash": "12306147128934458852"
-        },
-        {
-          "file": "apps/ais/tsconfig.editor.json",
-          "hash": "11539145186223711902"
-        },
-        {
-          "file": "apps/ais/tsconfig.json",
-          "hash": "9677660371877493083"
-        },
-        {
-          "file": "apps/ais/tsconfig.spec.json",
-          "hash": "17859551126707004133"
+          "file": "libs/solid/glossary/tsconfig.spec.json",
+          "hash": "8409439519294937185"
         }
       ],
       "solid-core": [
@@ -2197,6 +1299,417 @@
         {
           "file": "libs/solid/core/tsconfig.spec.json",
           "hash": "8409439519294937185"
+        }
+      ],
+      "geomat": [
+        {
+          "file": "apps/geomat/.browserslistrc",
+          "hash": "12493385347391921333"
+        },
+        {
+          "file": "apps/geomat/.eslintrc.json",
+          "hash": "8120908006321074904"
+        },
+        {
+          "file": "apps/geomat/jest.config.ts",
+          "hash": "963147011010362435"
+        },
+        {
+          "file": "apps/geomat/project.json",
+          "hash": "5186729209558867902"
+        },
+        {
+          "file": "apps/geomat/proxy.conf.json",
+          "hash": "6253820757839657725"
+        },
+        {
+          "file": "apps/geomat/src/app/app.component.ts",
+          "hash": "17267084528266639357",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/app.module.ts",
+          "hash": "4792708909328654357",
+          "deps": [
+            "npm:@angular/platform-browser",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@angular/service-worker",
+            "npm:@ngxs/store",
+            "npm:@ngxs-labs/dispatch-decorator",
+            "npm:@ngxs/router-plugin",
+            "npm:@ngxs/devtools-plugin",
+            "solid-core",
+            "solid-skeleton",
+            "npm:@angular/material"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/crystalsystem/crystalsystem-routing.module.ts",
+          "hash": "11008709828180578107",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/crystalsystem/crystalsystem.module.ts",
+          "hash": "17419378119889914370",
+          "deps": [
+            "npm:@angular/core",
+            "solid-core",
+            "npm:@angular/material"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/crystalsystem/crystalsystemdetail-configuration.ts",
+          "hash": "2464642277025458430"
+        },
+        {
+          "file": "apps/geomat/src/app/crystalsystem/crystalsystemdetail.component.html",
+          "hash": "15987617601228592200"
+        },
+        {
+          "file": "apps/geomat/src/app/crystalsystem/crystalsystemdetail.component.scss",
+          "hash": "14768027524664185732"
+        },
+        {
+          "file": "apps/geomat/src/app/crystalsystem/crystalsystemdetail.component.ts",
+          "hash": "8182328021436199592",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/info-page-content/info-page-content.component.html",
+          "hash": "14716870725222859577"
+        },
+        {
+          "file": "apps/geomat/src/app/info-page-content/info-page-content.component.scss",
+          "hash": "4547413312626776307"
+        },
+        {
+          "file": "apps/geomat/src/app/info-page-content/info-page-content.component.ts",
+          "hash": "10057910298192183919",
+          "deps": [
+            "npm:@angular/core",
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/privacy/privacy.component.html",
+          "hash": "9886393061732745913"
+        },
+        {
+          "file": "apps/geomat/src/app/privacy/privacy.component.scss",
+          "hash": "4077927226635802754"
+        },
+        {
+          "file": "apps/geomat/src/app/privacy/privacy.component.spec.ts",
+          "hash": "3158812146573231306",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/privacy/privacy.component.ts",
+          "hash": "2637631686446228416",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/solid-core-config.ts",
+          "hash": "13657260309209615360",
+          "deps": [
+            "solid-core",
+            "npm:markdown-it-sub",
+            "npm:markdown-it-sup"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/app/solid-skeleton-config.ts",
+          "hash": "12046897642056922199",
+          "deps": [
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/geometry/cubic.js",
+          "hash": "15509182142561026220"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/geometry/hexagonal.js",
+          "hash": "3432654718501124533"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/geometry/monoclinic.js",
+          "hash": "13281360741709325904"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/geometry/orthorhombic.js",
+          "hash": "4870596725523193255"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/geometry/tetragonal.js",
+          "hash": "15991209262704695646"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/geometry/triclinic.js",
+          "hash": "14931364026788805471"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/geometry/trigonal.js",
+          "hash": "12450658131230174476"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/iframe.html",
+          "hash": "12786039574557806648"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/js/convexgeometry.js",
+          "hash": "3795446568946576237"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/js/orbitcontrols.js",
+          "hash": "311725092331430748"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/js/quickhull.js",
+          "hash": "14870717467821025119"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/js/renderer.js",
+          "hash": "10992657187488123393"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/js/three.js",
+          "hash": "11349355129132842826"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/js/webgl.js",
+          "hash": "7824727768082018495"
+        },
+        {
+          "file": "apps/geomat/src/assets/crystalsystem/textures/disc.png",
+          "hash": "16055849809347338421"
+        },
+        {
+          "file": "apps/geomat/src/assets/data/guidedTour.json",
+          "hash": "1628212188433960508"
+        },
+        {
+          "file": "apps/geomat/src/assets/data/landing-banner-content.json",
+          "hash": "1058677320987003950"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon-128x128.png",
+          "hash": "2032236426532406788"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon-144x144.png",
+          "hash": "15234234574783483992"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon-152x152.png",
+          "hash": "13648019378783574896"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon-192x192.png",
+          "hash": "15748548796406060323"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon-384x384.png",
+          "hash": "3290862761043637601"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon-512x512.png",
+          "hash": "5468426358117875660"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon-72x72.png",
+          "hash": "3445188577468317352"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon-96x96.png",
+          "hash": "16590591030949077653"
+        },
+        {
+          "file": "apps/geomat/src/assets/icons/icon.svg",
+          "hash": "8116069740419930410"
+        },
+        {
+          "file": "apps/geomat/src/assets/info/BMBF.svg",
+          "hash": "6432158356147361016"
+        },
+        {
+          "file": "apps/geomat/src/assets/info/GeoMatAvatar.svg",
+          "hash": "14235423836449478307"
+        },
+        {
+          "file": "apps/geomat/src/assets/info/GoetheUniversitaet.svg",
+          "hash": "6671484574763118597"
+        },
+        {
+          "file": "apps/geomat/src/assets/info/Solid.svg",
+          "hash": "4453435021205998647"
+        },
+        {
+          "file": "apps/geomat/src/assets/info/ZentrumNaWi.svg",
+          "hash": "3328192103295035332"
+        },
+        {
+          "file": "apps/geomat/src/assets/info/eLF.svg",
+          "hash": "9948658584725096984"
+        },
+        {
+          "file": "apps/geomat/src/assets/profile/audio.svg",
+          "hash": "15186954713824306184"
+        },
+        {
+          "file": "apps/geomat/src/assets/profile/no_image.svg",
+          "hash": "2817954058203222626"
+        },
+        {
+          "file": "apps/geomat/src/assets/profile/no_thumbnail.svg",
+          "hash": "8232156760898917759"
+        },
+        {
+          "file": "apps/geomat/src/assets/profile/video.svg",
+          "hash": "11348177624308082544"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/assistant.svg",
+          "hash": "8796063553063569617"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/crystalsystem.svg",
+          "hash": "10255273645158862968"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/feedback.svg",
+          "hash": "11204692066928309783"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/feedback_outline.svg",
+          "hash": "12630135293222192036"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/glossary_generic.svg",
+          "hash": "9080113821520893918"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/icon.svg",
+          "hash": "9963123142338238650"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/info.svg",
+          "hash": "12010282461313417390"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/info_privacy.svg",
+          "hash": "17216040830319381881"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/privacy.svg",
+          "hash": "11077548459855921107"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/profile.svg",
+          "hash": "11686317678655243562"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/quiz.svg",
+          "hash": "4145124755505533288"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/semicorrect.svg",
+          "hash": "4039474285674891815"
+        },
+        {
+          "file": "apps/geomat/src/assets/svg/slideshow.svg",
+          "hash": "3602537535469181300"
+        },
+        {
+          "file": "apps/geomat/src/environments/environment.prod.ts",
+          "hash": "7331402330085665417"
+        },
+        {
+          "file": "apps/geomat/src/environments/environment.staging.ts",
+          "hash": "1988969618808339936"
+        },
+        {
+          "file": "apps/geomat/src/environments/environment.ts",
+          "hash": "16920763578399387531"
+        },
+        {
+          "file": "apps/geomat/src/favicon.ico",
+          "hash": "6410437650058070976"
+        },
+        {
+          "file": "apps/geomat/src/index.html",
+          "hash": "16266417543630519594"
+        },
+        {
+          "file": "apps/geomat/src/main.ts",
+          "hash": "8110337805149622691",
+          "deps": [
+            "npm:hammerjs",
+            "npm:@angular/core",
+            "npm:@angular/platform-browser-dynamic",
+            "npm:detect-browser",
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/manifest.webmanifest",
+          "hash": "2648935050330344759"
+        },
+        {
+          "file": "apps/geomat/src/polyfills.ts",
+          "hash": "15410927626494919051",
+          "deps": [
+            "npm:zone.js"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/styles.scss",
+          "hash": "14290325918789085709"
+        },
+        {
+          "file": "apps/geomat/src/test-setup.ts",
+          "hash": "13957278976106148009",
+          "deps": [
+            "npm:jest-preset-angular",
+            "npm:@angular/core",
+            "npm:@angular/platform-browser-dynamic"
+          ]
+        },
+        {
+          "file": "apps/geomat/src/theme.scss",
+          "hash": "16709148917591969968"
+        },
+        {
+          "file": "apps/geomat/tsconfig.app.json",
+          "hash": "12306147128934458852"
+        },
+        {
+          "file": "apps/geomat/tsconfig.editor.json",
+          "hash": "11539145186223711902"
+        },
+        {
+          "file": "apps/geomat/tsconfig.json",
+          "hash": "9677660371877493083"
+        },
+        {
+          "file": "apps/geomat/tsconfig.spec.json",
+          "hash": "17859551126707004133"
         }
       ],
       "solid-profile": [
@@ -2553,7 +2066,7 @@
         },
         {
           "file": "libs/solid/skeleton/schematics/ng-add/index.spec.ts",
-          "hash": "14916794772272747264",
+          "hash": "1472400749733231186",
           "deps": [
             "npm:@angular-devkit/schematics",
             "npm:@schematics/angular",
@@ -2591,7 +2104,7 @@
         },
         {
           "file": "libs/solid/skeleton/src/lib/components/base-layout/base-layout.component.ts",
-          "hash": "12783034739210924802",
+          "hash": "8441840472654130619",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/material",
@@ -2857,7 +2370,7 @@
         },
         {
           "file": "libs/solid/skeleton/src/lib/solid-skeleton.module.ts",
-          "hash": "10637428886533350987",
+          "hash": "1785469556127371941",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -3534,113 +3047,283 @@
           "hash": "8409439519294937185"
         }
       ],
-      "solid-glossary": [
+      "ais": [
         {
-          "file": "libs/solid/glossary/.eslintrc.json",
-          "hash": "10401597028551161263"
+          "file": "apps/ais/.browserslistrc",
+          "hash": "12493385347391921333"
         },
         {
-          "file": "libs/solid/glossary/README.md",
-          "hash": "7824153234306616555"
+          "file": "apps/ais/.eslintrc.json",
+          "hash": "16396483110896979499"
         },
         {
-          "file": "libs/solid/glossary/jest.config.ts",
-          "hash": "16095028659922446001"
+          "file": "apps/ais/jest.config.ts",
+          "hash": "569040691627632992"
         },
         {
-          "file": "libs/solid/glossary/ng-package.json",
-          "hash": "5280458519169938770"
+          "file": "apps/ais/ngsw-config.json",
+          "hash": "11243200739467311886"
         },
         {
-          "file": "libs/solid/glossary/package.json",
-          "hash": "1781301525274697409",
-          "deps": [
-            "npm:tslib",
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/material",
-            "npm:@ngxs/store"
-          ]
+          "file": "apps/ais/project.json",
+          "hash": "171825711296616550"
         },
         {
-          "file": "libs/solid/glossary/project.json",
-          "hash": "5435845525383125425"
+          "file": "apps/ais/proxy.conf.json",
+          "hash": "16101912826824882153"
         },
         {
-          "file": "libs/solid/glossary/src/glossary-theme.scss",
-          "hash": "10364483336214163512"
-        },
-        {
-          "file": "libs/solid/glossary/src/index.ts",
-          "hash": "472819520349958225"
-        },
-        {
-          "file": "libs/solid/glossary/src/lib/components/glossary.component.html",
-          "hash": "8133177179149400745"
-        },
-        {
-          "file": "libs/solid/glossary/src/lib/components/glossary.component.scss",
-          "hash": "17603291288997167759"
-        },
-        {
-          "file": "libs/solid/glossary/src/lib/components/glossary.component.ts",
-          "hash": "14671414919209023032",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@ngxs/store",
-            "npm:rxjs",
-            "npm:@angular/forms"
-          ]
-        },
-        {
-          "file": "libs/solid/glossary/src/lib/components/glossary.theme.scss",
-          "hash": "2509573613882053211"
-        },
-        {
-          "file": "libs/solid/glossary/src/lib/components/index.ts",
-          "hash": "37353589868154197"
-        },
-        {
-          "file": "libs/solid/glossary/src/lib/components/link.directive.ts",
-          "hash": "12557295310211262845",
+          "file": "apps/ais/src/app/app.component.ts",
+          "hash": "8790655917201208372",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
-          "file": "libs/solid/glossary/src/lib/glossary.actions.ts",
-          "hash": "15993027989366953170"
-        },
-        {
-          "file": "libs/solid/glossary/src/lib/glossary.state.ts",
-          "hash": "12158547010970578559",
+          "file": "apps/ais/src/app/app.module.ts",
+          "hash": "3558665816976882307",
           "deps": [
-            "npm:@ngxs/store",
+            "npm:@angular/platform-browser",
             "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@angular/service-worker",
+            "npm:@ngxs/store",
+            "npm:@ngxs-labs/dispatch-decorator",
+            "npm:@ngxs/router-plugin",
+            "npm:@ngxs/devtools-plugin",
             "solid-core",
-            "npm:@angular/common",
-            "npm:rxjs"
+            "solid-skeleton",
+            "npm:@angular/material"
           ]
         },
         {
-          "file": "libs/solid/glossary/src/lib/solid-glossary.module.spec.ts",
-          "hash": "17236829634475531135",
+          "file": "apps/ais/src/app/info-page-content/info-page-content.component.html",
+          "hash": "3221322328668348049"
+        },
+        {
+          "file": "apps/ais/src/app/info-page-content/info-page-content.component.scss",
+          "hash": "3162422686784727608"
+        },
+        {
+          "file": "apps/ais/src/app/info-page-content/info-page-content.component.ts",
+          "hash": "15539875958235052654",
+          "deps": [
+            "npm:@angular/core",
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/ais/src/app/privacy/privacy.component.html",
+          "hash": "2431393684343103079"
+        },
+        {
+          "file": "apps/ais/src/app/privacy/privacy.component.scss",
+          "hash": "537056331354140666"
+        },
+        {
+          "file": "apps/ais/src/app/privacy/privacy.component.spec.ts",
+          "hash": "3158812146573231306",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
-          "file": "libs/solid/glossary/src/lib/solid-glossary.module.ts",
-          "hash": "15605528417764880348",
+          "file": "apps/ais/src/app/privacy/privacy.component.ts",
+          "hash": "7708751922944724603",
           "deps": [
-            "npm:@angular/core",
-            "solid-core",
-            "npm:@angular/material",
-            "npm:@ngxs/store"
+            "npm:@angular/core"
           ]
         },
         {
-          "file": "libs/solid/glossary/src/test-setup.ts",
+          "file": "apps/ais/src/app/solid-core-config.ts",
+          "hash": "4693945226762052488",
+          "deps": [
+            "solid-core"
+          ]
+        },
+        {
+          "file": "apps/ais/src/app/solid-skeleton-config.ts",
+          "hash": "14439731395162416381",
+          "deps": [
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/ais/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/ais/src/assets/data/guidedTour.json",
+          "hash": "18379781219421353881"
+        },
+        {
+          "file": "apps/ais/src/assets/data/landing-banner-content.json",
+          "hash": "3131907196385646291"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon-128x128.png",
+          "hash": "2887110976786878894"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon-144x144.png",
+          "hash": "16760792740312321678"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon-152x152.png",
+          "hash": "987137215833160224"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon-192x192.png",
+          "hash": "2707569435701631490"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon-384x384.png",
+          "hash": "17754550271863800092"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon-512x512.png",
+          "hash": "8148905355574701697"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon-72x72.png",
+          "hash": "14605348016789341080"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon-96x96.png",
+          "hash": "2756711658029341905"
+        },
+        {
+          "file": "apps/ais/src/assets/icons/icon.svg",
+          "hash": "107999658211189105"
+        },
+        {
+          "file": "apps/ais/src/assets/info/BMBF.svg",
+          "hash": "6432158356147361016"
+        },
+        {
+          "file": "apps/ais/src/assets/info/GoetheUniversitaet.svg",
+          "hash": "6671484574763118597"
+        },
+        {
+          "file": "apps/ais/src/assets/info/Solid.svg",
+          "hash": "4453435021205998647"
+        },
+        {
+          "file": "apps/ais/src/assets/info/ZentrumNaWi.svg",
+          "hash": "3328192103295035332"
+        },
+        {
+          "file": "apps/ais/src/assets/info/eLF.svg",
+          "hash": "9948658584725096984"
+        },
+        {
+          "file": "apps/ais/src/assets/profile/audio.svg",
+          "hash": "14572686481566042587"
+        },
+        {
+          "file": "apps/ais/src/assets/profile/no_image.svg",
+          "hash": "3665607275653365467"
+        },
+        {
+          "file": "apps/ais/src/assets/profile/no_thumbnail.svg",
+          "hash": "15691188981096760941"
+        },
+        {
+          "file": "apps/ais/src/assets/profile/video.svg",
+          "hash": "2019201343781562015"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/feedback.svg",
+          "hash": "16455980546083615632"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/feedback_outline.svg",
+          "hash": "12630135293222192036"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/glossary_generic.svg",
+          "hash": "9080113821520893918"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/icon.svg",
+          "hash": "8791693585228226929"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/info.svg",
+          "hash": "4114430428889283650"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/info_privacy.svg",
+          "hash": "17216040830319381881"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/privacy.svg",
+          "hash": "11077548459855921107"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/profile.svg",
+          "hash": "9048420999702862145"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/properties.svg",
+          "hash": "5003945896083282837"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/quiz.svg",
+          "hash": "3478650764175612158"
+        },
+        {
+          "file": "apps/ais/src/assets/svg/semicorrect.svg",
+          "hash": "4039474285674891815"
+        },
+        {
+          "file": "apps/ais/src/environments/environment.prod.ts",
+          "hash": "15550563011538424726"
+        },
+        {
+          "file": "apps/ais/src/environments/environment.staging.ts",
+          "hash": "11121649151540550533"
+        },
+        {
+          "file": "apps/ais/src/environments/environment.ts",
+          "hash": "11592528855171607399"
+        },
+        {
+          "file": "apps/ais/src/favicon.ico",
+          "hash": "9855246388585875456"
+        },
+        {
+          "file": "apps/ais/src/index.html",
+          "hash": "12130107741696295264"
+        },
+        {
+          "file": "apps/ais/src/main.ts",
+          "hash": "8110337805149622691",
+          "deps": [
+            "npm:hammerjs",
+            "npm:@angular/core",
+            "npm:@angular/platform-browser-dynamic",
+            "npm:detect-browser",
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/ais/src/manifest.webmanifest",
+          "hash": "15333519629935990223"
+        },
+        {
+          "file": "apps/ais/src/polyfills.ts",
+          "hash": "15410927626494919051",
+          "deps": [
+            "npm:zone.js"
+          ]
+        },
+        {
+          "file": "apps/ais/src/styles.scss",
+          "hash": "14290325918789085709"
+        },
+        {
+          "file": "apps/ais/src/test-setup.ts",
           "hash": "13957278976106148009",
           "deps": [
             "npm:jest-preset-angular",
@@ -3649,20 +3332,337 @@
           ]
         },
         {
-          "file": "libs/solid/glossary/tsconfig.json",
-          "hash": "3140896319717069756"
+          "file": "apps/ais/src/theme.scss",
+          "hash": "2796724757583688098"
         },
         {
-          "file": "libs/solid/glossary/tsconfig.lib.json",
-          "hash": "8296745613467336429"
+          "file": "apps/ais/tsconfig.app.json",
+          "hash": "12306147128934458852"
         },
         {
-          "file": "libs/solid/glossary/tsconfig.lib.prod.json",
-          "hash": "3707522048529677407"
+          "file": "apps/ais/tsconfig.editor.json",
+          "hash": "11539145186223711902"
         },
         {
-          "file": "libs/solid/glossary/tsconfig.spec.json",
-          "hash": "8409439519294937185"
+          "file": "apps/ais/tsconfig.json",
+          "hash": "9677660371877493083"
+        },
+        {
+          "file": "apps/ais/tsconfig.spec.json",
+          "hash": "17859551126707004133"
+        }
+      ],
+      "dive": [
+        {
+          "file": "apps/dive/.browserslistrc",
+          "hash": "12493385347391921333"
+        },
+        {
+          "file": "apps/dive/.eslintrc.json",
+          "hash": "558294347764836641"
+        },
+        {
+          "file": "apps/dive/jest.config.ts",
+          "hash": "8961559553578522837"
+        },
+        {
+          "file": "apps/dive/ngsw-config.json",
+          "hash": "11243200739467311886"
+        },
+        {
+          "file": "apps/dive/project.json",
+          "hash": "12640320274412804216"
+        },
+        {
+          "file": "apps/dive/proxy.conf.json",
+          "hash": "3064560991537120165"
+        },
+        {
+          "file": "apps/dive/src/app/app.component.ts",
+          "hash": "18378682577595540063",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/dive/src/app/app.module.ts",
+          "hash": "15412464944470556858",
+          "deps": [
+            "npm:@angular/platform-browser",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@angular/service-worker",
+            "npm:@ngxs/store",
+            "npm:@ngxs-labs/dispatch-decorator",
+            "npm:@ngxs/router-plugin",
+            "npm:@ngxs/devtools-plugin",
+            "solid-core",
+            "solid-skeleton",
+            "npm:@angular/material"
+          ]
+        },
+        {
+          "file": "apps/dive/src/app/info-page-content/info-page-content.component.html",
+          "hash": "8941779914241070269"
+        },
+        {
+          "file": "apps/dive/src/app/info-page-content/info-page-content.component.scss",
+          "hash": "14990437082323541082"
+        },
+        {
+          "file": "apps/dive/src/app/info-page-content/info-page-content.component.ts",
+          "hash": "26149053627655608",
+          "deps": [
+            "npm:@angular/core",
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/dive/src/app/privacy/privacy.component.html",
+          "hash": "15173633625201863744"
+        },
+        {
+          "file": "apps/dive/src/app/privacy/privacy.component.scss",
+          "hash": "9895940643805528971"
+        },
+        {
+          "file": "apps/dive/src/app/privacy/privacy.component.spec.ts",
+          "hash": "3158812146573231306",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/dive/src/app/privacy/privacy.component.ts",
+          "hash": "8277432024831213883",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/dive/src/app/solid-core-config.ts",
+          "hash": "1175071506121059476",
+          "deps": [
+            "solid-core"
+          ]
+        },
+        {
+          "file": "apps/dive/src/app/solid-skeleton-config.ts",
+          "hash": "14363378298149914842",
+          "deps": [
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/dive/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/dive/src/assets/data/guidedTour.json",
+          "hash": "10347372446346413618"
+        },
+        {
+          "file": "apps/dive/src/assets/data/landing-banner-content.json",
+          "hash": "11283885220078542996"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon-128x128.png",
+          "hash": "10888313913778452428"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon-144x144.png",
+          "hash": "14410966431111044782"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon-152x152.png",
+          "hash": "4517297487820772573"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon-192x192.png",
+          "hash": "16686150173775541274"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon-384x384.png",
+          "hash": "17801721625194519779"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon-512x512.png",
+          "hash": "7499011187337164832"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon-72x72.png",
+          "hash": "17584044206257986476"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon-96x96.png",
+          "hash": "6537460318691748893"
+        },
+        {
+          "file": "apps/dive/src/assets/icons/icon.svg",
+          "hash": "15083885114990724081"
+        },
+        {
+          "file": "apps/dive/src/assets/info/BMBF.svg",
+          "hash": "6432158356147361016"
+        },
+        {
+          "file": "apps/dive/src/assets/info/GoetheUniversitaet.svg",
+          "hash": "6671484574763118597"
+        },
+        {
+          "file": "apps/dive/src/assets/info/Solid.svg",
+          "hash": "4453435021205998647"
+        },
+        {
+          "file": "apps/dive/src/assets/info/Wissenschaftsgarten.svg",
+          "hash": "981185456092392942"
+        },
+        {
+          "file": "apps/dive/src/assets/info/ZentrumNaWi.svg",
+          "hash": "3328192103295035332"
+        },
+        {
+          "file": "apps/dive/src/assets/info/eLF.svg",
+          "hash": "9948658584725096984"
+        },
+        {
+          "file": "apps/dive/src/assets/profile/audio.svg",
+          "hash": "8847952553073668117"
+        },
+        {
+          "file": "apps/dive/src/assets/profile/no_image.svg",
+          "hash": "17345292070807946761"
+        },
+        {
+          "file": "apps/dive/src/assets/profile/no_thumbnail.svg",
+          "hash": "10491775304723086403"
+        },
+        {
+          "file": "apps/dive/src/assets/profile/video.svg",
+          "hash": "11332741847084986451"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/feedback.svg",
+          "hash": "16455980546083615632"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/feedback_outline.svg",
+          "hash": "12630135293222192036"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/glossary_generic.svg",
+          "hash": "9080113821520893918"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/icon.svg",
+          "hash": "13170500365579319241"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/info.svg",
+          "hash": "12136982531691326683"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/info_privacy.svg",
+          "hash": "17216040830319381881"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/privacy.svg",
+          "hash": "11077548459855921107"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/profile.svg",
+          "hash": "16430173663027306298"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/properties.svg",
+          "hash": "4703938072024799729"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/quiz.svg",
+          "hash": "4613241380791673193"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/semicorrect.svg",
+          "hash": "4039474285674891815"
+        },
+        {
+          "file": "apps/dive/src/assets/svg/slideshow.svg",
+          "hash": "3427214324898150572"
+        },
+        {
+          "file": "apps/dive/src/environments/environment.prod.ts",
+          "hash": "1608799978561426136"
+        },
+        {
+          "file": "apps/dive/src/environments/environment.staging.ts",
+          "hash": "2244565872964123335"
+        },
+        {
+          "file": "apps/dive/src/environments/environment.ts",
+          "hash": "11592528855171607399"
+        },
+        {
+          "file": "apps/dive/src/favicon.ico",
+          "hash": "4796413191327399810"
+        },
+        {
+          "file": "apps/dive/src/index.html",
+          "hash": "12645381194071515453"
+        },
+        {
+          "file": "apps/dive/src/main.ts",
+          "hash": "8110337805149622691",
+          "deps": [
+            "npm:hammerjs",
+            "npm:@angular/core",
+            "npm:@angular/platform-browser-dynamic",
+            "npm:detect-browser",
+            "solid-skeleton"
+          ]
+        },
+        {
+          "file": "apps/dive/src/manifest.webmanifest",
+          "hash": "9995783646424046182"
+        },
+        {
+          "file": "apps/dive/src/polyfills.ts",
+          "hash": "15410927626494919051",
+          "deps": [
+            "npm:zone.js"
+          ]
+        },
+        {
+          "file": "apps/dive/src/styles.scss",
+          "hash": "14290325918789085709"
+        },
+        {
+          "file": "apps/dive/src/test-setup.ts",
+          "hash": "13957278976106148009",
+          "deps": [
+            "npm:jest-preset-angular",
+            "npm:@angular/core",
+            "npm:@angular/platform-browser-dynamic"
+          ]
+        },
+        {
+          "file": "apps/dive/src/theme.scss",
+          "hash": "15603376797131184682"
+        },
+        {
+          "file": "apps/dive/tsconfig.app.json",
+          "hash": "12306147128934458852"
+        },
+        {
+          "file": "apps/dive/tsconfig.editor.json",
+          "hash": "11539145186223711902"
+        },
+        {
+          "file": "apps/dive/tsconfig.json",
+          "hash": "11825412862319980708"
+        },
+        {
+          "file": "apps/dive/tsconfig.spec.json",
+          "hash": "16638451463304033165"
         }
       ]
     }
