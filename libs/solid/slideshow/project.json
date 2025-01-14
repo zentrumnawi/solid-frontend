@@ -1,0 +1,47 @@
+{
+  "name": "solid-slideshow",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/solid/slideshow/src",
+  "prefix": "solid-slideshow",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/solid/slideshow/tsconfig.lib.json",
+        "project": "libs/solid/slideshow/ng-package.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+        },
+        "staging": {
+          "tsConfig": "libs/solid/profile/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/solid/slideshow/src/**/*.ts",
+          "libs/solid/slideshow/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/solid/slideshow/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/solid/slideshow"]
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "styleext": "scss"
+    }
+  }
+}

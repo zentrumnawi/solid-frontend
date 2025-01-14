@@ -1,0 +1,153 @@
+{
+  "name": "geomat",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/geomat/src",
+  "prefix": "geomat",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "allowedCommonJsDependencies": [
+          "openseadragon",
+          "markdown-it-sub",
+          "markdown-it-sup"
+        ],
+        "outputPath": "dist/apps/geomat",
+        "index": "apps/geomat/src/index.html",
+        "main": "apps/geomat/src/main.ts",
+        "polyfills": "apps/geomat/src/polyfills.ts",
+        "tsConfig": "apps/geomat/tsconfig.app.json",
+        "assets": [
+          "apps/geomat/src/favicon.ico",
+          "apps/geomat/src/assets",
+          "apps/geomat/src/manifest.webmanifest"
+        ],
+        "styles": [
+          "./node_modules/material-icons/iconfont/material-icons.scss",
+          "apps/geomat/src/styles.scss",
+          "node_modules/intro.js/introjs.css"
+        ],
+        "scripts": ["node_modules/intro.js/intro.js"],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/solid/core/src",
+            "libs/solid/glossary/src",
+            "libs/solid/slideshow/src",
+            "libs/solid/skeleton/src",
+            "libs/solid/quiz/src",
+            "libs/solid/profile/src"
+          ]
+        },
+        "vendorChunk": true,
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/geomat/src/environments/environment.ts",
+              "with": "apps/geomat/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "serviceWorker": true,
+          "ngswConfigPath": "ngsw-config.json"
+        },
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/geomat/src/environments/environment.ts",
+              "with": "apps/geomat/src/environments/environment.staging.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "serviceWorker": true,
+          "ngswConfigPath": "ngsw-config.json"
+        }
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": ""
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "geomat:build",
+        "proxyConfig": "./apps/geomat/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "geomat:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "geomat:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/geomat/src/**/*.ts",
+          "apps/geomat/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "apps/geomat/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/apps/geomat"]
+    }
+  }
+}

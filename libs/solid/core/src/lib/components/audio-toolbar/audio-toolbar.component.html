@@ -8,7 +8,6 @@
     <mat-icon>{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
   </button>
 </ng-container>
-
 <ng-container *ngIf="toolbar">
   <div class="toolbar" [class.mobile]="isMobile">
     <button class="play-btn" mat-icon-button (click)="onPlayPauseClick()">
@@ -27,7 +26,7 @@
       min="0"
       [max]="duration"
       step="1"
-      [value]="playPosition"
+      [(ngModel)]="playPosition"
       [disabled]="!audioLoaded"
       (input)="onPositionChangeEnd($event)"
       class="playingSlider"
@@ -44,7 +43,7 @@
       min="0"
       max="1"
       step="0.1"
-      [value]="volume"
+      [(ngModel)]="volume"
       [disabled]="!audioLoaded"
       (input)="onVolumeChangeEnd($event)"
       class="volumeSlider"

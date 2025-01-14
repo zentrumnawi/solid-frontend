@@ -6,7 +6,6 @@ import {
   HammerModule,
 } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -58,7 +57,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     SolidSkeletonModule.forRoot(skeletonConfig),
     RouterModule.forRoot([], {
       onSameUrlNavigation: 'reload',
-      relativeLinkResolution: 'legacy',
     }),
     MatButtonModule,
     MatCardModule,

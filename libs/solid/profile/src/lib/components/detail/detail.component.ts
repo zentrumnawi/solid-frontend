@@ -62,7 +62,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   public profileDefinitionSub!: Subscription;
   public profileDefinitionSwaggerSub!: Subscription;
 
-  public shouldExpandAllgemein = this.config.expandAllgemein;
+  //public shouldExpandAllgemein = this.config.expandAllgemein;
+  public shouldExpandAllgemein!: boolean;
+
   public shouldExpandCategories = [
     'allgemein',
     'informatives',
@@ -89,6 +91,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   constructor(@Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig) {}
 
   ngOnInit(): void {
+    this.shouldExpandAllgemein = this.config.expandAllgemein;
     this.profileDefinitionSwaggerSub =
       this.$ProfileDefinition_Swagger.subscribe((defs) => {
         this.definitions_swagger = defs;

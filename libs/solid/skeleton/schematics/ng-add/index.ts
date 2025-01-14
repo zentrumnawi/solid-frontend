@@ -20,7 +20,7 @@ import { targetBuildNotFoundError } from '@schematics/angular/utility/project-ta
 import { relativePathToWorkspaceRoot } from '@schematics/angular/utility/paths';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import {
-  getEnvironmentExportName,
+  // getEnvironmentExportName,
   insertImport,
   addSymbolToNgModuleMetadata,
 } from '@schematics/angular/utility/ast-utils';
@@ -62,7 +62,8 @@ export function getEnvironmentImport(mainPath: string) {
   return (tree: Tree): { name: string; path: string } => {
     const modulePath = getAppModulePath(tree, mainPath);
     const moduleSource = getTsSourceFile(tree, modulePath);
-    const environmentExportName = getEnvironmentExportName(moduleSource);
+    // const environmentExportName = getEnvironmentExportName(moduleSource);
+    const environmentExportName = null;
     // if environment import already exists then use the found one
     // otherwise use the default name
     const name = environmentExportName || 'environment';
