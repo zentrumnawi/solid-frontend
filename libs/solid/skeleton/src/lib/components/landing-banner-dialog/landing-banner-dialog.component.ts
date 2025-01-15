@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatLegacySlideToggleChange as MatSlideToggleChange } from '@angular/material/legacy-slide-toggle';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 
 @Component({
@@ -13,7 +13,7 @@ export class LandingBannerDialogComponent {
 
   constructor(
     private _ref: MatDialogRef<LandingBannerDialogComponent>,
-    @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) private coreConfig: SolidCoreConfig,
   ) {
     _ref.disableClose = true;
     this.landingInfo = coreConfig.landingBannerContent;

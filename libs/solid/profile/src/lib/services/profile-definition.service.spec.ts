@@ -42,7 +42,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'name',
-      testSwagger.definitions.Plant.properties.name as Schema
+      testSwagger.definitions.Plant.properties.name as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('name');
@@ -58,7 +58,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'interaction',
-      testSwagger.definitions.Plant.properties.interaction as Schema
+      testSwagger.definitions.Plant.properties.interaction as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('interaction');
@@ -74,7 +74,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'habitat',
-      testSwagger.definitions.Plant.properties.habitat as Schema
+      testSwagger.definitions.Plant.properties.habitat as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('habitat');
@@ -90,7 +90,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'cnt_germ',
-      testSwagger.definitions.Plant.properties.cnt_germ as Schema
+      testSwagger.definitions.Plant.properties.cnt_germ as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('cnt_germ');
@@ -106,7 +106,7 @@ describe('ProfileDefinitionService', () => {
     const prop = service.schemaToProperty_swagger(
       testSwagger.definitions.Plant as Schema,
       'arr_special',
-      testSwagger.definitions.Plant.properties.arr_special as Schema
+      testSwagger.definitions.Plant.properties.arr_special as Schema,
     );
     if (prop) {
       expect(prop.key).toBe('arr_special');
@@ -129,7 +129,7 @@ describe('ProfileDefinitionService', () => {
           },
         },
       } as any,
-      '#/definitions/Plant'
+      '#/definitions/Plant',
     );
     if (defs) {
       expect(defs.length).toBe(1);

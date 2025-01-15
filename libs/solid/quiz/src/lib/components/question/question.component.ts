@@ -15,7 +15,7 @@ import { Select, Store } from '@ngxs/store';
 import { EndQuizSession, QuizQuestionAnswered } from '../../state/quiz.actions';
 import { QuizState } from '../../state/quiz.state';
 import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'solid-quiz-question',
@@ -36,7 +36,10 @@ export class QuestionComponent {
   @ViewChild('backPopup', { read: TemplateRef }) backPopup!: TemplateRef<any>;
   @ViewChild('skipPopup', { read: TemplateRef }) skipPopup!: TemplateRef<any>;
 
-  constructor(private _store: Store, private dialog: MatDialog) {}
+  constructor(
+    private _store: Store,
+    private dialog: MatDialog,
+  ) {}
 
   onNextQuestionClicked(correct: number) {
     if (this.question) {
@@ -48,7 +51,7 @@ export class QuestionComponent {
   swipe(
     currentIndex: number,
     imageLength: number,
-    action: string = this.SWIPE_ACTION.RIGHT
+    action: string = this.SWIPE_ACTION.RIGHT,
   ) {
     if (currentIndex > imageLength || currentIndex < 0) {
       return;

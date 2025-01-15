@@ -59,7 +59,7 @@ export class QuizState {
 
   constructor(
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
-    private _http: HttpClient
+    private _http: HttpClient,
   ) {}
 
   @Action(LoadQuizMetadata)
@@ -69,7 +69,7 @@ export class QuizState {
         ctx.patchState({
           metadata: res,
         });
-      })
+      }),
     );
   }
 
@@ -83,7 +83,7 @@ export class QuizState {
   @Action(LoadQuizQuestions)
   public set(
     ctx: StateContext<QuizStateModel>,
-    { questionCount, tags, difficulty }: LoadQuizQuestions
+    { questionCount, tags, difficulty }: LoadQuizQuestions,
   ) {
     let params;
 
@@ -126,14 +126,14 @@ export class QuizState {
           ctx.patchState({
             questions: res,
           });
-        })
+        }),
       );
   }
 
   @Action(StartQuizSession)
   public startNewSession(
     { patchState, getState }: StateContext<QuizStateModel>,
-    { questionCount }: StartQuizSession
+    { questionCount }: StartQuizSession,
   ) {
     const sessionQuestions: QuizQuestionInSession[] = [];
     const questions = getState().questions;
@@ -149,11 +149,11 @@ export class QuizState {
       rndQuestions.answers = [];
       for (let j = 0; j < questions[rnd].answers.length; ) {
         const random = Math.floor(
-          Math.random() * questions[rnd].answers.length
+          Math.random() * questions[rnd].answers.length,
         );
         if (
           rndQuestions.answers.find(
-            (a) => a.id === questions[rnd].answers[random].id
+            (a) => a.id === questions[rnd].answers[random].id,
           )
         )
           continue;
@@ -182,7 +182,7 @@ export class QuizState {
   @Action(QuizQuestionAnswered)
   public questionAnswered(
     { patchState, getState }: StateContext<QuizStateModel>,
-    { correct }: QuizQuestionAnswered
+    { correct }: QuizQuestionAnswered,
   ) {
     const session = { ...(getState().session as QuizSession) };
     const answeredQuestion = {
@@ -195,7 +195,7 @@ export class QuizState {
         progress:
           (100.0 / session.questions.length) * (session.currentQuestion + 1),
         questions: session.questions.map((q) =>
-          q.id === answeredQuestion.id ? answeredQuestion : q
+          q.id === answeredQuestion.id ? answeredQuestion : q,
         ),
       },
     });

@@ -24,6 +24,15 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# packet manager
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # misc
 /.angular/cache
 /.sass-cache
@@ -34,6 +43,10 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+
+# nx cache
+.nx/cache
+.nx/workspace-data/
 
 # System Files
 .DS_Store

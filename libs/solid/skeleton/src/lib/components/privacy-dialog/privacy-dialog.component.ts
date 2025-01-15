@@ -1,5 +1,5 @@
 import { Component, Inject, Type } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import {
   InternalSolidSkeletonConfig,
   SOLID_SKELETON_CONFIG,
@@ -15,7 +15,7 @@ export class PrivacyDialogComponent {
 
   constructor(
     private _ref: MatDialogRef<PrivacyDialogComponent>,
-    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig
+    @Inject(SOLID_SKELETON_CONFIG) cfg: InternalSolidSkeletonConfig,
   ) {
     this.PrivacyContentComponent = cfg.privacyContent;
   }

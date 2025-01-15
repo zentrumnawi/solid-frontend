@@ -11,8 +11,8 @@ import { QuizMetadata } from '../../state/quiz.model';
 import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatChipListChange } from '@angular/material/chips';
-import { MatSliderChange } from '@angular/material/slider';
+import { MatLegacyChipListChange as MatChipListChange } from '@angular/material/legacy-chips';
+import { MatLegacySliderChange as MatSliderChange } from '@angular/material/legacy-slider';
 
 @Component({
   selector: 'solid-quiz-start',
@@ -40,8 +40,8 @@ export class StartComponent implements OnDestroy, OnInit {
       new LoadQuizQuestions(
         this.questionCount,
         this.chosenTags,
-        this.chosenDifficulty
-      )
+        this.chosenDifficulty,
+      ),
     );
     quizLoaded.subscribe((res) => {
       if (res.quiz.questions.length > 0) {

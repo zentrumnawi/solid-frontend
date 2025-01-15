@@ -60,7 +60,7 @@ http
         // if the file is not found, return 404
         readFile(
           path.join(__dirname, 'dist', 'apps', 'geomat', 'index.html'),
-          res
+          res,
         );
         return;
       }

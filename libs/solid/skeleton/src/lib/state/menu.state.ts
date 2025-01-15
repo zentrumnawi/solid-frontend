@@ -45,11 +45,11 @@ export class MenuState {
     router: Router,
     private store: Store,
     private _http: HttpClient,
-    @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig
+    @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
   ) {
     const items: MenuItem[] = [];
     for (const route of router.config.sort(
-      (a, b) => a.data?.order - b.data?.order
+      (a, b) => a.data?.order - b.data?.order,
     )) {
       items.push({
         route: route.path || '',
@@ -76,7 +76,7 @@ export class MenuState {
   @Action(SetMenuEntries)
   public setEntries(
     { setState }: StateContext<MenuStateModel>,
-    { items }: SetMenuEntries
+    { items }: SetMenuEntries,
   ) {
     return setState({
       items: [...items],
@@ -86,7 +86,7 @@ export class MenuState {
   @Action(RouterDataResolved)
   public test(
     ctx: StateContext<MenuStateModel>,
-    { event }: RouterDataResolved
+    { event }: RouterDataResolved,
   ) {
     const newUrl = event.urlAfterRedirects;
     const newItems = ctx.getState().items.map((item) => {

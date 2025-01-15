@@ -18,5 +18,5 @@ export interface SolidCoreConfig {
 }
 
 export const SOLID_CORE_CONFIG = new InjectionToken<SolidCoreConfig>(
-  'solid-core-config'
+  'solid-core-config',
 );
