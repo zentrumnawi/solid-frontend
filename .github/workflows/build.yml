@@ -54,7 +54,7 @@ jobs:
         run: yarn nx run-many --target=build --all --parallel --configuration=staging
 
       - name: Deploy planty-staging
-        uses: appleboy/scp-action@v1.7.0
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER }}
           username: ${{ secrets.USER }}
@@ -65,7 +65,7 @@ jobs:
           strip_components: 3
 
       - name: Deploy geomat-staging
-        uses: appleboy/scp-action@v1.7.0
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER }}
           username: ${{ secrets.USER }}
