@@ -52,7 +52,7 @@ jobs:
 
       - name: build - staging
         run: yarn nx run-many --target=build --all --parallel --configuration=staging
-        
+
       - name: Deploy geomat-staging
         uses: appleboy/scp-action@v0.1.7
         with:
