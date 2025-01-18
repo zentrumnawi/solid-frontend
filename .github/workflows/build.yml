@@ -62,8 +62,11 @@ jobs:
           rm: true
           source: 'dist/apps/geomat'
           target: '${{ secrets.GEOMAT_STAGING_DIRECTORY }}'
-          timeout: 5m
+          timeout: 2m
           strip_components: 3
+
+      - name: Wait for two minutes
+        run: sleep 180
 
       - name: Deploy planty-staging
         uses: appleboy/scp-action@v0.1.7
@@ -74,5 +77,5 @@ jobs:
           rm: true
           source: 'dist/apps/planty'
           target: '${{ secrets.PLANTY_STAGING_DIRECTORY }}'
-          timeout: 5m
+          timeout: 2m
           strip_components: 3
