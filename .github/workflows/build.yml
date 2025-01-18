@@ -62,7 +62,7 @@ jobs:
           rm: true
           source: 'dist/apps/geomat'
           target: '${{ secrets.GEOMAT_STAGING_DIRECTORY }}'
-          timeout: 2m
+          timeout: 5m
           strip_components: 3
 
       - name: Deploy planty-staging
@@ -74,5 +74,5 @@ jobs:
           rm: true
           source: 'dist/apps/planty'
           target: '${{ secrets.PLANTY_STAGING_DIRECTORY }}'
-          timeout: 2m
+          timeout: 5m
           strip_components: 3
