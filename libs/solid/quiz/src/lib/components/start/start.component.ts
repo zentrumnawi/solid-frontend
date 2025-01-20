@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
   LoadQuizQuestions,
@@ -12,7 +12,8 @@ import { Navigate } from '@ngxs/router-plugin';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatChipListboxChange } from '@angular/material/chips';
-import { MatSliderChange } from '@angular/material/slider';
+import { MatSliderChange, MatSliderDragEvent } from '@angular/material/slider';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'solid-quiz-start',
@@ -84,7 +85,7 @@ export class StartComponent implements OnDestroy, OnInit {
     this.navigateTo('/');
   }
 
-  onSliderChange(change: MatSliderChange) {
+  onSliderChange(change: MatSliderDragEvent) {
     if (change.value) this.questionCount = change.value;
     this.isValid = true;
   }
