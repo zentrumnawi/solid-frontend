@@ -2,7 +2,6 @@
   display: block;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card {
   margin-left: auto;
   margin-right: auto;
@@ -11,14 +10,12 @@ mat-card {
 }
 
 @media (max-width: 1141px) {
-  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     margin-left: 10px;
     margin-right: 10px;
   }
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content {
   mat-spinner {
     margin-left: auto;
@@ -31,7 +28,6 @@ mat-form-field {
 }
 
 @media (max-width: 999px) {
-  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     top: 62px;
   }
@@ -128,6 +124,7 @@ mat-form-field {
 }
 
 .button-container {
+  width: 100%;
   .startBtn {
     margin: 7px 0px !important;
     font-size: 15px;
