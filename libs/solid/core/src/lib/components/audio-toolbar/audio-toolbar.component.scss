@@ -43,37 +43,22 @@ span.PlayPosition {
     .mat-mdc-slider {
       padding: 0;
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-    .mat-slider-horizontal.playingSlider {
+    .mat-mdc-slider.playingSlider {
       min-width: 100px;
       flex: 1;
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-    .mat-slider-horizontal.volumeSlider {
+    .mat-mdc-slider.volumeSlider {
       min-width: 100px;
       margin-left: -0.4em;
     }
 
     @media (min-width: 800px) and (max-width: 1200px) {
-      /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-      .mat-slider-horizontal.playingSlider {
+      .mat-mdc-slider.playingSlider {
         min-width: 120px;
       }
-      /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-      .mat-slider-horizontal.volumeSlider {
+      .mat-mdc-slider.volumeSlider {
         min-width: 80px;
       }
-    }
-    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-    .mat-slider-thumb {
-      width: 10px;
-      height: 10px;
-      bottom: -5px;
-      background-color: rgba(0, 0, 0, 0.61);
-    }
-    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-    .mat-slider-track-fill {
-      background-color: rgba(0, 0, 0, 0.61);
     }
   }
 }
