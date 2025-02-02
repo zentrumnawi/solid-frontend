@@ -7,7 +7,7 @@
     mat-grid-tile:hover {
       background-color: mat.get-color-from-palette($accent, lighter);
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version. */
+    
     mat-list {
       border: 1px solid mat.get-color-from-palette($app-primary);
       border-radius: 0.5rem;
@@ -21,7 +21,7 @@
         color: mat-color($app-primary, 900);
       }
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version. */
+    
     mat-list-item:not(:last-child) {
       border-bottom: 1px solid
         mat.get-color-from-palette($background, status-bar);

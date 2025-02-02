@@ -2,12 +2,10 @@
   display: block;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem; 
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version. */
 mat-list {
   padding-top: 0 !important;
 }
@@ -85,14 +83,23 @@ mat-grid-tile {
   }
 }
 
+.button-container, .toggle-container {
+  padding: 0 16px;
+}
+
+.button-container:last-child {
+  padding-bottom: 16px;
+}
+
 .button-container {
   display: flex;
   justify-content: center;
   margin-top: 19px;
-
+  width: 100%;
   .closeBtn {
     width: 100%;
     border-radius: 5px;
     font-size: 13px;
+    border: 2px solid #4d59a8;
   }
 }

@@ -1,7 +1,7 @@
 ::ng-deep .landing-banner-dialog {
   max-width: 90vw !important;
   border-radius: 15px;
-  /* TODO(mdc-migration): The following rule targets internal classes of dialog that may no longer apply for the MDC version. */
+  
   mat-dialog-container {
     padding: 18px;
     border-radius: 10px;
@@ -67,8 +67,8 @@
       .toggle-container {
         font-size: 11px;
         margin-bottom: 5px;
-        /* TODO(mdc-migration): The following rule targets internal classes of slide-toggle that may no longer apply for the MDC version. */
-        .mat-slide-toggle-bar {
+      
+        .mdc-switch__track {
           transform: scale(0.9);
         }
 
@@ -77,8 +77,8 @@
         }
       }
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
-    .mat-card-header-text {
+    
+    .mat-mdc-card-header-text {
       display: grid;
       margin: 0;
     }
@@ -86,7 +86,7 @@
     .header {
       width: 100%;
       display: flex;
-      align-items: center;
+      margin-top: 10px;
       margin-bottom: 10px;
 
       .image {
@@ -107,6 +107,9 @@
     .content {
       font-size: 14px;
     }
+
+    color: black;
+    margin-bottom: 10px;
   }
 
   .toggle-container {
@@ -122,6 +125,7 @@
       width: 100%;
       border-radius: 5px;
       font-size: 12px;
+      border: 2px solid #4d59a8;
     }
   }
 }
