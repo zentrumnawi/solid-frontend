@@ -33,6 +33,11 @@ export class MediaModel {
   }
 
   public get audiosrc(): string | undefined {
+    if (this._mediaObject.audio && !this._mediaObject.audio.includes('/audio/')) {
+      const parts = this._mediaObject.audio.split('/');
+      const filename = parts.pop();
+      return `${parts.join('/')}/audio/${filename}`;
+    }
     return this._mediaObject.audio;
   }
 

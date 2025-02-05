@@ -3,17 +3,54 @@
   [class.dzi]="hasDziTools"
   [class.isToolbarInDialog]="isToolbarInDialog"
 >
-  <!-- <ng-container *ngIf="hasAudio">
+  <!-- <ng-container *ngIf="hasAudio && !isToolbarInDialog">
     <solid-core-audio-toolbar
       *ngIf="hasAudio"
       [audiosrc]="data.mediaObject.audiosrc"
-      [description]="data.mediaObject.description"
     >
     </solid-core-audio-toolbar>
   </ng-container> -->
-  <div class="toolbar" *ngIf="mediaObject">
+  <div class="toolbar-container" *ngIf="mediaObject">
+    <solid-core-audio-toolbar
+      *ngIf="hasAudio && !isToolbarInDialog && !hasDziTools"
+      [audiosrc]="data.mediaObject.audiosrc"
+      [toolbar]="true"
+      [class.openAudioToolbar]="audioStarted && !audioEnded && !audioCollapsed"
+      [playAudio]="audioStarted"
+      (audioErrorEventEmitter)="handleAudioErrorEvent()"
+      (audioEndedEventEmitter)="handleAudioEndedEvent()"
+    ></solid-core-audio-toolbar>
+
     <button
-      *ngIf="hasDescription && mediaObject.description"
+      *ngIf="hasDialog && mediaObject.audiosrc"
+      (click)="onPlayClick()"
+      mat-mini-fab
+      color="accent"
+      [disabled]="audioLoadError"
+      [class.disappear]="audioStarted && !audioEnded"
+    >
+      <mat-icon>headphones</mat-icon>
+    </button>
+    <button
+      *ngIf="audioStarted && expandUpDown"
+      (click)="onExpandCollapse()"
+      mat-mini-fab
+      color="accent"
+      [disabled]="audioLoadError"
+    >
+      <mat-icon>{{ audioCollapsed ? 'headphones' : 'expand_less' }}</mat-icon>
+    </button>
+    <button
+      *ngIf="audioStarted && !expandUpDown"
+      (click)="onExpandCollapse()"
+      mat-mini-fab
+      color="accent"
+      [disabled]="audioLoadError"
+    >
+      <mat-icon>{{ audioCollapsed ? 'headphones' : 'chevron_right' }}</mat-icon>
+    </button>
+    <button
+      *ngIf="mediaObject.description"
       mat-mini-fab
       color="accent"
       cdkOverlayOrigin
@@ -91,7 +128,6 @@
       <mat-icon>more_horiz</mat-icon>
     </button>
   </div>
-
   <!-- For Image in quiz -->
   <div class="toolbar" *ngIf="image">
     <button

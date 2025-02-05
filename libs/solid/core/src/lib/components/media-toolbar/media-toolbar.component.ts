@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   HostListener,
@@ -30,7 +31,7 @@ import type { MediaDialogComponent } from '../media-dialog/media-dialog.componen
   templateUrl: './media-toolbar.component.html',
   styleUrls: ['./media-toolbar.component.scss'],
 })
-export class MediaToolbarComponent implements OnInit, OnChanges {
+export class MediaToolbarComponent implements AfterViewInit, OnInit, OnChanges {
   @Input() public mediaObject?: MediaModel;
   @Input() public image?: ImageModel;
   @Input() public name!: string;
@@ -53,6 +54,12 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
   descriptionScrollStrategy: CloseScrollStrategy;
   attributionsIsOpen = false;
   descriptionIsOpen = false;
+  audioStarted = false;
+  audioLoadError = false;
+  audioEnded = false;
+  expandUpDown = false;
+  audioCollapsed = false;
+  // audioUIVisible = true;
   dialogRef?: MatDialogRef<any>;
 
   @Output() descriptionToggle = new EventEmitter<boolean>();
@@ -152,7 +159,56 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
           this.dialogRef?.updateSize('90%', '90%');
         }
       });
+    this._breakpointObserver
+    .observe(['(max-width: 680px)'])
+    .subscribe((expandUpDown) => {
+      if (expandUpDown.matches) {
+        this.expandUpDown = true;
+      } else {
+        this.expandUpDown = false;
+      }
+    });
   }
+  
+  ngAfterViewInit(): void {
+
+      if (this.data.type === 'mediaObject') {
+        // For media objects: Check for audio source and set hasAudio
+        if (this.data.mediaObject.audiosrc) {
+          this.hasAudio = true;  // If the media object has audio
+        } else {
+          this.hasAudio = false; // No audio source found
+        }
+  
+        // Additional settings based on mediaObject (like description, etc.)
+        if (this.data.mediaObject.description) {
+          this.hasDescription = true;
+        } else {
+          this.hasDescription = false;
+        }
+  
+      } else {
+        // For images: Check for audio source and set hasAudio
+        if (this.data.image.audiosrc) {
+          this.hasAudio = true;  // If the image has audio
+        } else {
+          this.hasAudio = false; // No audio source found
+        }
+  
+        // Additional settings based on image (like description, etc.)
+        if (this.data.image.description) {
+          this.hasDescription = true;
+        } else {
+          this.hasDescription = false;
+        }
+      }
+  
+      // Optionally handle other logic such as deep zoom initialization here...
+    
+  
+    //this.handleLongTitle(); // Any additional logic you need
+  }
+  
 
   public openDialog() {
     if (this.mediaObject?.mediaType === 'image') {
@@ -228,4 +284,21 @@ export class MediaToolbarComponent implements OnInit, OnChanges {
     this.descriptionToggled = !this.descriptionToggled;
     this.descriptionToggle.emit(this.descriptionToggled);
   }
+  handleAudioErrorEvent() {
+    this.audioLoadError = true;
+  }
+  handleAudioEndedEvent() {
+    this.audioStarted = false;
+    this.audioCollapsed = false;
+    this.audioEnded = true;
+  }
+  onExpandCollapse() {
+    this.audioCollapsed = !this.audioCollapsed;
+  }
+
+  onPlayClick() {
+    this.audioEnded = false;
+    this.audioStarted = true;
+  }
+
 }
