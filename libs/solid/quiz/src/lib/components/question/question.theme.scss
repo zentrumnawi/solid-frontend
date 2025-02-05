@@ -193,18 +193,16 @@
       border-color: mat.get-color-from-palette($accent) !important;
       background-color: white !important;
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+    
     mat-slider {
       &.correctRange {
-        /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-        .mat-slider-track-fill {
+        .mdc-slider__track--active_fill {
           background-color: mat.get-color-from-palette(
             $quiz-correct
           ) !important;
         }
-        /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-        .mat-slider-thumb {
+        
+        .mdc-slider__thumb {
           background-color: mat.get-color-from-palette(
             $quiz-correct
           ) !important;
@@ -213,14 +211,13 @@
       }
 
       &.incorrectRange {
-        /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-        .mat-slider-track-fill {
+        .mdc-slider__track--active_fill {
           background-color: mat.get-color-from-palette(
             $quiz-incorrect
           ) !important;
         }
-        /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-        .mat-slider-thumb {
+        
+        .mdc-slider__thumb-knob {
           background-color: mat.get-color-from-palette(
             $quiz-incorrect
           ) !important;

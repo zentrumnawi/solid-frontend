@@ -1,6 +1,4 @@
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card {
   margin-left: auto;
   margin-right: auto;
@@ -15,7 +13,6 @@ mat-card {
 }
 
 @media (max-width: 1141px) {
-  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     margin-left: 10px;
     margin-right: 10px;
@@ -61,26 +58,22 @@ solid-core-media {
   }
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content.single-choice {
   display: flex;
   flex-direction: column;
   margin-left: 0.5rem;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content.multiple-choice {
   display: flex;
   flex-direction: column;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content.true-false {
   display: flex;
   flex-direction: column;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content.ranking {
   display: flex;
   flex-direction: column;
@@ -176,18 +169,14 @@ mat-card-content.ranking {
 }
 
 @media (max-width: 450px) {
-  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     top: 66px;
   }
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of progress-bar that may no longer apply for the MDC version. */
-/* TODO(mdc-migration): The following rule targets internal classes of progress-bar that may no longer apply for the MDC version. */
 mat-progress-bar {
   ::ng-deep {
-    /* TODO(mdc-migration): The following rule targets internal classes of progress-bar that may no longer apply for the MDC version. */
-    .mat-progress-bar-buffer {
+    .mdc-linear-progress__buffer {
       background-color: white;
     }
   }

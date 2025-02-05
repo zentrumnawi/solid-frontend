@@ -7,12 +7,12 @@
     $quiz-incorrect
   );
   $accent: map-get($mat-theme, accent);
-  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+  
   .mat-button-toggle {
     border: solid 2px mat.get-color-from-palette($app-primary) !important;
     color: mat.get-color-from-palette($app-primary);
   }
-  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+  
   .mat-button-toggle-checked {
     background-color: mat.get-color-from-palette($app-primary);
     color: white !important;
@@ -24,7 +24,7 @@
       border: solid 2px mat.get-color-from-palette($app-primary) !important;
       color: mat.get-color-from-palette($app-primary);
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
+    
     .mat-mdc-chip-selected {
       background-color: mat.get-color-from-palette($accent);
       border-color: transparent !important;
