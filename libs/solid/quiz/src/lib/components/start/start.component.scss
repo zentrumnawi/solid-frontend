@@ -10,7 +10,6 @@ mat-card {
 }
 
 @media (max-width: 1141px) {
-  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     margin-left: 10px;
     margin-right: 10px;
@@ -18,7 +17,6 @@ mat-card {
 }
 
 @media (max-width: 440px) {
-  /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
   mat-card {
     top: 62px;
   }
@@ -41,7 +39,6 @@ mat-card-content {
   }
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version. */
 mat-list {
   margin-left: 2px;
 }
@@ -180,24 +177,22 @@ hr {
   }
 
   @media (max-width: 440px) {
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
     .mat-button-toggle {
       margin-right: 10px;
     }
   }
 
   @media (min-width: 441px) {
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
     .mat-button-toggle {
       margin-right: 20px;
     }
   }
-  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+  
   .mat-button-toggle:last-child {
     margin-right: 0px;
   }
-  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-  ::ng-deep.mat-button-toggle-label-content {
+  
+  ::ng-deep .mat-button-toggle-label-content {
     line-height: 35px;
   }
 }
@@ -224,11 +219,10 @@ hr {
   }
 
   @media (max-width: 440px) {
-    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
     .mat-chip-small {
       width: 28%;
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
+    
     .mat-chip-large {
       width: 48%;
     }
@@ -265,7 +259,6 @@ hr {
   padding: 0px 10px;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version. */
 ::ng-deep .mat-select-value-text {
   display: none;
 }
