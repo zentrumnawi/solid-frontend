@@ -20,11 +20,6 @@
   }
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-::ng-deep .mat-button-focus-overlay {
-  background-color: transparent;
-}
-
 ::ng-deep .report-dialog {
   .header-container {
     background-color: tomato !important;
@@ -55,11 +50,9 @@
         max-height: 200px;
       }
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+
     mat-checkbox {
-      /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
-      ::ng-deep .mat-checkbox-label {
+      ::ng-deep .mdc-label {
         margin-top: 10px;
       }
     }
@@ -80,17 +73,13 @@ mat-form-field {
   width: 100%;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
-/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
 mat-checkbox {
   margin-top: 20px;
   font-size: small;
-  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
-  ::ng-deep .mat-checkbox-layout {
+  ::ng-deep .mdc-form-field {
     white-space: normal !important;
   }
-  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
-  ::ng-deep .mat-checkbox-label {
+  ::ng-deep .mdc-label {
     margin-left: 8px;
   }
 }
@@ -129,10 +118,6 @@ mat-checkbox {
       vertical-align: top;
       font-size: 25px;
       font-weight: 600;
-    }
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    ::ng-deep .mat-button-focus-overlay {
-      background-color: transparent;
     }
   }
 }
