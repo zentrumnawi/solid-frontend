@@ -75,30 +75,29 @@
     grid-row-start: 1;
   }
   /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-  .mat-slider-wrapper {
+  /* .mat-slider-wrapper {
     top: 24px;
   }
   /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-  .mat-slider-horizontal .mat-slider-track-wrapper {
-    height: 6px;
-  }
+  //.mat-slider-horizontal .mat-slider-track-wrapper {
+    //height: 6px;
+  //} */
   /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-  .mat-mdc-slider.mat-slider-horizontal .mat-slider-track-background {
-    height: 100%;
-    background-color: lightgray;
-  }
-  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-  .mat-mdc-slider.mat-slider-horizontal .mat-slider-track-fill {
+  .mdc-slider__track--inactive {
     height: 100%;
   }
   /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-  .mat-mdc-slider.mat-accent .mat-slider-thumb {
-    background-color: white;
+  .mdc-slider__track--active {
+    height: 100%;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+  .mdc-slider__thumb-knob {
+    //background-color: white;
     height: 26px;
     width: 26px;
     bottom: -15px;
-    border: solid 3px lightgray;
-    transform: scale(0.75);
+    //border: solid 3px lightgray;
+    //transform: scale(0.75);
   }
   /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
   .mat-mdc-slider:not(
@@ -113,7 +112,7 @@
     border-color: lightgray !important;
   }
   /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
-  .mat-slider-horizontal .mat-slider-thumb-label {
+  .mat-mdc-slider-horizontal .mat-mdc-slider-thumb-label {
     top: -45px;
   }
 }

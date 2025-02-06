@@ -19,7 +19,8 @@
 
   <mat-slider
     id="slider"
-    thumbLabel
+    discrete
+    showTickMarks
     [disabled]="showAnswers"
     [min]="question.answers[0].range_min"
     [max]="question.answers[0].range_max"
