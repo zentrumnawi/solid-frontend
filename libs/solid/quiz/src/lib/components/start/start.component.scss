@@ -7,6 +7,7 @@ mat-card {
   margin-right: auto;
   max-width: 60em;
   top: 67px;
+  padding: 16px;
 }
 
 @media (max-width: 1141px) {
@@ -91,7 +92,7 @@ hr {
   padding: 6px;
   height: 35px;
   width: 40px;
-  transform: translateY(-3px);
+  //transform: translateY(-3px);
   font-weight: 500;
   margin-left: 4%;
   text-align: center;
@@ -100,7 +101,7 @@ hr {
 
 .mat-mdc-slider {
   width: 100%;
-  margin: -10px;
+  margin: 2px;
 }
 
 .mat-mdc-subheader {
@@ -117,6 +118,7 @@ hr {
 
 .controlElement {
   display: flex;
+  align-items: center;
   float: left;
   width: 100%;
   margin-bottom: 10px;
@@ -124,6 +126,7 @@ hr {
 
 .content-container {
   padding: 10px 10px 0px 10px;
+  margin-bottom: 16px;
 }
 
 .button-container {
