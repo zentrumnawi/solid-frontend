@@ -4,7 +4,6 @@
   }
 
   .feedback-content {
-    overflow: unset;
     margin-top: 28px;
   }
 
@@ -33,7 +32,7 @@
     .mat-mdc-dialog-container {
       margin: 0px 0px !important;
       width: 100vw;
-      height: 100vh;
+      //height: 100vh;
       border-radius: 0px;
     }
 
@@ -97,7 +96,6 @@ mat-checkbox {
   width: 600px;
   height: 40px;
   margin-top: -24px;
-  margin-left: -24px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   color: white;
@@ -110,10 +108,6 @@ mat-checkbox {
   }
 
   .closeBtn {
-    width: 23px;
-    margin-top: 8px;
-    margin-right: 8px;
-
     mat-icon {
       vertical-align: top;
       font-size: 25px;
@@ -126,6 +120,7 @@ mat-checkbox {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  margin-left: 24px;
   .location {
     color: rgba(0, 0, 0, 0.54);
     font-weight: 500;
