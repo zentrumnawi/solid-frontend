@@ -185,11 +185,11 @@
         color: mat.get-color-from-palette($quiz-incorrect);
       }
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of slider that may no longer apply for the MDC version. */
+    
     mat-slider:not(
-        .mat-slider-disabled
-      ).cdk-focused.mat-slider-thumb-label-showing
-      .mat-slider-thumb {
+      .mdc-slider--disabled
+      ).cdk-focused.mdc-slider__thumb--with-indicator
+      .mdc-slider__thumb {
       border-color: mat.get-color-from-palette($accent) !important;
       background-color: white !important;
     }
@@ -197,13 +197,13 @@
     mat-slider {
       &.correctRange {
         .mdc-slider__track--active_fill {
-          background-color: mat.get-color-from-palette(
+          border-color: mat.get-color-from-palette(
             $quiz-correct
-          ) !important;
+          ) !important;         
         }
         
-        .mdc-slider__thumb {
-          background-color: mat.get-color-from-palette(
+        .mdc-slider__thumb .mdc-slider__thumb-knob {
+          border-color: mat.get-color-from-palette(
             $quiz-correct
           ) !important;
           border: none !important;
@@ -212,7 +212,7 @@
 
       &.incorrectRange {
         .mdc-slider__track--active_fill {
-          background-color: mat.get-color-from-palette(
+          border-color: mat.get-color-from-palette(
             $quiz-incorrect
           ) !important;
         }
@@ -259,14 +259,16 @@
     }
 
     .minTick {
-      background-color: mat.get-color-from-palette($accent);
+      background-color: mat.get-color-from-palette($app-primary);
+      z-index: 1;
 
       &.correct {
         background-color: mat.get-color-from-palette($quiz-correct);
       }
 
       &.incorrect {
-        background-color: mat.get-color-from-palette($quiz-incorrect);
+        // since the slider is disabled (and therefore toned down), the tick color can not be identical to the slider color anymore
+        background-color: rgb(238, 176, 176);
       }
     }
   }

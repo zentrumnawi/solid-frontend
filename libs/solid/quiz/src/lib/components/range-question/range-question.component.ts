@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatSliderChange } from '@angular/material/slider';
 import { QuizQuestion } from '../../state/quiz.model';
 
 @Component({
@@ -35,7 +34,7 @@ export class RangeQuestionComponent {
       const slider = document.getElementById('slider');
 
       if (slider && correctThumb && toleranceBar && selectedThumb) {
-        const scalingFactor = (slider.offsetWidth - 14) / (max - min);
+        const scalingFactor = (slider.offsetWidth - 9) / (max - min);
         const correctPos = (correctValue - min) * scalingFactor;
         const toleranceWidth = 2 * tolerance * scalingFactor;
         const selectedPos = (this.sliderPosition - min) * scalingFactor;
@@ -58,7 +57,7 @@ export class RangeQuestionComponent {
     }, 5);
   }
 
-  onSliderChange(change: MatSliderChange) {
+  onSliderChange() {
     this.correct = -1;
   }
 
