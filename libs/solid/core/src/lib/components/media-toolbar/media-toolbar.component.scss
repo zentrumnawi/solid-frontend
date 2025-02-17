@@ -7,142 +7,12 @@ div.toolbar-container {
   &.isToolbarInDialog {
     bottom: 0.9em;
   }
-  
   solid-core-audio-toolbar {
-    padding: 0;
-    z-index: 1;
-    margin-left: 1.3em;
-  
-    @media (min-width: 681px) {
-      ::ng-deep {
-        .toolbar {
-          border-radius: 20px;
-        }
-      }
-    }
-  
-    @media (min-width: 681px) and (max-width: 839px) {
-      margin-left: 0.85em;
-  
-      ::ng-deep {
-        .mat-slider-horizontal.volumeSlider {
-          display: none;
-        }
-        .toolbar {
-          .play-btn {
-            margin-left: 0 !important;
-          }
-        }
-      }
-    }
-    @media (min-width: 470px) and (max-width: 680px) {
-      ::ng-deep {
-        .mat-slider-horizontal.volumeSlider {
-          display: block;
-        }
-      }
-    }
-  }
-  
-  @media (min-width: 681px) {
-    solid-core-audio-toolbar {
-      width: 0;
-      margin-right: 0.5em;
-      transition: width 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-    }
-  
-    .openAudioToolbar {
-      width: 100%;
-    }
-  }
-  
-  div.spacer {
-    flex: 1;
-  }
-  
-  @media (max-width: 680px) {
-    .toolbar-container {
-      flex-direction: column-reverse;
-  
-      .dialog-toolbar {
-        justify-content: flex-end;
-      }
-    }
-  
-    solid-core-audio-toolbar {
-      height: 0;
-      margin-left: 0;
-      margin-right: 0;
-      transition: height 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-    }
-  
-    .openAudioToolbar {
-      height: 40px;
-    }
-  }
-  .disappear {
-    display: none !important;
-  }
-  
-  .button-before {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0.5em;
+    left: 0px;
   }
-  .button-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0.5em;
-  }
-  
-  @media (min-width: 681px) {
-    .button-before {
-      left: 0.85em;
-    }
-    .button-next {
-      right: 0.85em;
-    }
-  }
-  
-  .closeBtn {
-    width: 23px;
-    margin-top: 16px;
-    margin-right: 8px;
-  
-    mat-icon {
-      vertical-align: top;
-      font-size: 25px;
-      font-weight: 600;
-    }
-  }
-  // solid-core-audio-toolbar {
-  //   position: absolute;
-  //   left: 0px;
-  //   // height: 0;
-  //   // margin-left: 0;
-  //   // margin-right: 0;
-  //   // transition: height 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-  //   // position: relative;
-  //   // z-index: 10;
-  // }
-  
-  // .openAudioToolbar {
-  //   height: 40px;
-  // }
 }
-// @media (min-width: 681px) {
-//   solid-core-audio-toolbar {
-//     width: 0;
-//     margin-right: 0.5em;
-//     transition: width 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-//   }
 
-//   .openAudioToolbar {
-//     width: 100%;
-//   }
-// }
 div.toolbar {
   display: flex;
   margin-right: 0.85em;
@@ -152,9 +22,7 @@ div.toolbar {
     margin-left: 0.5em;
   }
 }
-.disappear {
-  display: none !important;
-}
+
 ::ng-deep {
   div.cdk-overlay-container {
     div.attributions-overlay {

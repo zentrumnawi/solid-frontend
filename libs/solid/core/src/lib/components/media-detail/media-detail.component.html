@@ -30,6 +30,15 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
 <ng-container *ngIf="mediaObject">
   <ng-container [ngSwitch]="mediaObject.mediaType">
     <div class="media-container" *ngSwitchCase="'image'">
+      <button
+        *ngIf="hasAudio || mediaObject.audiosrc"
+        mat-mini-fab
+        matTooltip="Click on image to listen audio or see description"
+        color="primary"
+        class="info-button"
+      >
+        <mat-icon>info</mat-icon>
+      </button>
       <div class="image-container">
         <img
           *ngIf="view !== 'grid'; else grid"
