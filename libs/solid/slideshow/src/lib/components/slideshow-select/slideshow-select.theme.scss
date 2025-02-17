@@ -1,13 +1,15 @@
-@import '@angular/material/theming';
+//@import '@angular/material/theming';
 
-@mixin solid-slideshow-select-component-theme($mat-theme) {
-  $accent: map-get($mat-theme, accent);
-  $background: map-get($mat-theme, background);
+@mixin solid-slideshow-select-component-theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $accent: map-get($color-config, accent);
+  $background: map-get($color-config, background);
+  $app-primary: map-get($color-config, primary);
 
   solid-slideshow-slideshow-select {
     .slideshow-select-container {
       .mat-expansion-panel-header {
-        border-left: 9px solid mat-color($app-primary, 600);
+        border-left: 9px solid mat.get-color-from-palette($app-primary, 600);
       }
     }
     .mat-expansion-panel-header {
