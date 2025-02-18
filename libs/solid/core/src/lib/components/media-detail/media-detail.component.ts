@@ -94,9 +94,4 @@ export class MediaDetailComponent implements OnChanges {
   handleCloseDialogEvent() {
     this.openDialogRequest = false;
   }
-
-  onInfoClick(event: Event) {
-    event.stopPropagation(); // Prevents unintended modal closing
-    alert('Here is some information about this toolbar.');
-  }
 }
