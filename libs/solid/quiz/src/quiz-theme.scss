@@ -7,12 +7,12 @@
     $quiz-incorrect
   );
   $accent: map-get($mat-theme, accent);
-  
+
   .mat-button-toggle {
     border: solid 2px mat.get-color-from-palette($app-primary) !important;
     color: mat.get-color-from-palette($app-primary);
   }
-  
+
   .mat-button-toggle-checked {
     background-color: mat.get-color-from-palette($app-primary);
     color: white !important;
@@ -24,7 +24,7 @@
       border: solid 2px mat.get-color-from-palette($app-primary) !important;
       color: mat.get-color-from-palette($app-primary);
     }
-    
+
     .mat-mdc-chip-selected {
       background-color: mat.get-color-from-palette($accent);
       border-color: transparent !important;

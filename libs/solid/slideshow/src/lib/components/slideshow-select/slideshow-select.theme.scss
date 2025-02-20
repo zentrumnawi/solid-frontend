@@ -1,4 +1,3 @@
-
 @mixin solid-slideshow-select-component-theme($theme) {
   $color-config: mat.get-color-config($theme);
   $accent: map-get($color-config, accent);

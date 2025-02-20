@@ -13,14 +13,12 @@
 
       mat-radio-button {
         &.correct {
-          
           .mdc-radio__outer-circle {
             border-color: mat.get-color-from-palette($quiz-correct) !important;
           }
         }
 
         &.incorrect {
-          
           .mdc-radio__outer-circle {
             border-color: mat.get-color-from-palette(
               $quiz-incorrect
@@ -29,22 +27,21 @@
         }
       }
     }
-    
+
     mat-card-content.multiple-choice {
-      
       mat-checkbox {
         &.correctSelected {
-          
           .mdc-checkbox__background {
-            background-color: mat.get-color-from-palette($quiz-correct) !important;
+            background-color: mat.get-color-from-palette(
+              $quiz-correct
+            ) !important;
           }
-          
+
           .mdc-checkbox__label {
             color: black !important;
           }
         }
         &.correctUnselected {
-          
           .mdc-checkbox__background {
             background-color: mat.get-color-from-palette(
               $quiz-correct,
@@ -54,24 +51,24 @@
         }
 
         &.incorrectSelected {
-          
           .mdc-checkbox__background {
-            background-color: mat.get-color-from-palette($quiz-incorrect) !important;
+            background-color: mat.get-color-from-palette(
+              $quiz-incorrect
+            ) !important;
           }
-          
+
           .mdc-checkbox__label {
             color: black !important;
           }
         }
         &.incorrectUnselected {
-
           .mdc-checkbox__background {
             background-color: mat.get-color-from-palette(
               $quiz-incorrect,
               lighter
             ) !important;
           }
-          
+
           .mdc-checkbox__mixedmark {
             &:after {
               color: mat.get-color-from-palette($quiz-incorrect, lighter);
@@ -175,48 +172,42 @@
     .incorrectIcon {
       color: mat.get-color-from-palette($quiz-incorrect);
     }
-    
+
     mat-radio-button .mdc-radio--disabled .mdc-radio__inner-circle {
       background-color: white !important;
     }
-    
+
     .mdc-checkbox__mixedmark {
       &:after {
         color: mat.get-color-from-palette($quiz-incorrect);
       }
     }
-    
+
     mat-slider:not(
-      .mdc-slider--disabled
+        .mdc-slider--disabled
       ).cdk-focused.mdc-slider__thumb--with-indicator
       .mdc-slider__thumb {
       border-color: mat.get-color-from-palette($accent) !important;
       background-color: white !important;
     }
-    
+
     mat-slider {
       &.correctRange {
         .mdc-slider__track--active_fill {
-          border-color: mat.get-color-from-palette(
-            $quiz-correct
-          ) !important;         
+          border-color: mat.get-color-from-palette($quiz-correct) !important;
         }
-        
+
         .mdc-slider__thumb .mdc-slider__thumb-knob {
-          border-color: mat.get-color-from-palette(
-            $quiz-correct
-          ) !important;
+          border-color: mat.get-color-from-palette($quiz-correct) !important;
           border: none !important;
         }
       }
 
       &.incorrectRange {
         .mdc-slider__track--active_fill {
-          border-color: mat.get-color-from-palette(
-            $quiz-incorrect
-          ) !important;
+          border-color: mat.get-color-from-palette($quiz-incorrect) !important;
         }
-        
+
         .mdc-slider__thumb-knob {
           background-color: mat.get-color-from-palette(
             $quiz-incorrect

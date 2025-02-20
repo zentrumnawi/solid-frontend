@@ -3,7 +3,7 @@
 @mixin solid-profile-detail($theme) {
   // Extract color config from theme
   $color-config: mat.get-color-config($theme);
-  
+
   // Extract palettes
   $primary: map-get($color-config, 'primary');
   $accent: map-get($color-config, 'accent');

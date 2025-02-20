@@ -19,7 +19,8 @@
     mat-accordion {
       mat-expansion-panel {
         mat-expansion-panel-header {
-          border-bottom: 1px solid mat.get-color-from-palette($background, status-bar);
+          border-bottom: 1px solid
+            mat.get-color-from-palette($background, status-bar);
 
           &.active {
             background-color: mat.get-color-from-palette(
@@ -30,7 +31,10 @@
         }
 
         &.active {
-          background-color: mat.get-color-from-palette($background, selected-button);
+          background-color: mat.get-color-from-palette(
+            $background,
+            selected-button
+          );
         }
       }
     }

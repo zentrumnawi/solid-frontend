@@ -1,7 +1,7 @@
 .container {
   height: 100%;
   overflow: hidden;
-  
+
   mat-tab-group {
     ::ng-deep {
       .mat-mdc-tab-header {
@@ -14,11 +14,11 @@
         width: calc(100% - 56px);
         z-index: 999;
       }
-      
+
       .mat-mdc-tab {
         height: 56px;
       }
-      
+
       .mat-mdc-tab-body-wrapper {
         position: relative;
         margin-top: 40px;

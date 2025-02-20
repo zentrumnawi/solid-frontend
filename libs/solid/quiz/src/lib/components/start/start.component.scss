@@ -141,8 +141,7 @@ hr {
     //margin: 10px 10px 20px 10px !important;
     border-radius: 7px;
     margin: 10px auto 20px auto !important;
-    display: block; 
-
+    display: block;
   }
 
   .expBtn {
@@ -170,12 +169,12 @@ hr {
     margin-top: 10px;
     justify-content: space-between;
   }
-  
+
   .mat-button-toggle-checked {
     background-color: var(--mdc-filled-button-container-color, #3f51b5);
     // color: var(--mdc-filled-button-label-text-color, white);
   }
-  
+
   .mat-button-toggle {
     width: 20%;
     border-radius: 7px;
@@ -194,11 +193,11 @@ hr {
       margin-right: 20px;
     }
   }
-  
+
   .mat-button-toggle:last-child {
     margin-right: 0px;
   }
-  
+
   ::ng-deep .mat-button-toggle-label-content {
     line-height: 35px;
   }
@@ -210,7 +209,7 @@ hr {
     margin: 0;
     justify-content: space-between;
   }
-  
+
   .mat-chip-listbox {
     width: 100%;
   }
@@ -229,7 +228,7 @@ hr {
     .mat-chip-small {
       width: 28%;
     }
-    
+
     .mat-chip-large {
       width: 48%;
     }
@@ -248,7 +247,7 @@ hr {
   .mat-mdc-chip-option {
     cursor: pointer;
     user-select: none;
-    
+
     // Ensure the entire chip is clickable
     .mat-mdc-chip-action {
       width: 100%;

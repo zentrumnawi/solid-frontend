@@ -30,11 +30,11 @@
   .customTooltip .introjs-bullets ul li a.active {
     background: mat.get-color-from-palette($app-primary, 600);
   }
-  
+
   /* .mat-mdc-slide-toggle.mat-mdc-slide-toggle-checked .mdc-switch__track {
     background-color: mat.get-color-from-palette($app-primary, 600);
   } */
-  
+
   .mat-mdc-slide-toggle.mat-mdc-slide-toggle-checked .mdc-switch__handle {
     background-color: white;
   }

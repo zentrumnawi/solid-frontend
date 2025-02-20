@@ -1,4 +1,3 @@
-
 mat-checkbox {
   width: 100%;
   margin-bottom: 14px;
@@ -10,7 +9,7 @@ mat-checkbox {
         font-weight: bold;
       }
     }
-    
+
     label.mdc-label {
       display: flex;
       flex-direction: column;
@@ -18,18 +17,18 @@ mat-checkbox {
       white-space: normal;
       line-height: 28px;
     }
-    
+
     .mdc-form-field {
       vertical-align: top;
       width: 100%;
     }
-    
+
     .mdc-checkbox {
       margin-top: -3px;
       margin-bottom: auto;
       margin-right: 10px;
     }
-    
+
     .mdc-checkbox__mixedmark {
       height: 16px;
       width: 16px;

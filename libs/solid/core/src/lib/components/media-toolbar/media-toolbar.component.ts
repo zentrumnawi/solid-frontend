@@ -10,10 +10,7 @@ import {
   Output,
 } from '@angular/core';
 import { ImageModel, MediaModel } from '../../models';
-import {
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   CloseScrollStrategy,
   ComponentType,

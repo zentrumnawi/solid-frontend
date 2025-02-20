@@ -115,7 +115,7 @@ img {
   margin: 0.3em 0;
 }
 
-::ng-deep .solid-core-media-dialog { 
+::ng-deep .solid-core-media-dialog {
   mat-dialog-container {
     overflow: hidden;
     padding: 0;
@@ -159,7 +159,7 @@ solid-core-audio-toolbar {
       }
     }
   }
-  
+
   @media (min-width: 470px) and (max-width: 680px) {
     ::ng-deep {
       .mat-slider-horizontal.volumeSlider {

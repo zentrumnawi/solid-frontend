@@ -13,8 +13,14 @@ export class UpdateService {
           data: {
             cb: () =>
               updates.activateUpdate().then(() => {
-                console.log('old version was', (event as VersionReadyEvent).currentVersion);
-                console.log('new version is', (event as VersionReadyEvent).latestVersion);
+                console.log(
+                  'old version was',
+                  (event as VersionReadyEvent).currentVersion,
+                );
+                console.log(
+                  'new version is',
+                  (event as VersionReadyEvent).latestVersion,
+                );
                 document.location.reload();
               }),
           },

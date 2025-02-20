@@ -7,7 +7,7 @@
     h3 {
       background-color: mat.get-color-from-palette($background, status-bar);
     }
-    
+
     mat-list-item {
       border-bottom: 1px solid mat.get-color-from-palette($background, app-bar);
       span.links {

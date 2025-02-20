@@ -25,10 +25,7 @@ import {
   SOLID_SKELETON_FEEDBACK_SERVICE,
 } from './services/feedback.service';
 import { HttpClient } from '@angular/common/http';
-import {
-  MatDialog,
-  MatDialogModule,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {
   defaultSkeletonConfig,
   InternalSolidSkeletonConfig,

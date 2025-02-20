@@ -9,7 +9,7 @@
     mat-grid-tile:hover {
       background-color: mat.get-color-from-palette($accent, lighter);
     }
-    
+
     mat-list {
       border: 1px solid mat.get-color-from-palette($app-primary);
       border-radius: 0.5rem;
@@ -23,7 +23,7 @@
         color: mat.get-color-from-palette($primary, 900);
       }
     }
-    
+
     mat-list-item:not(:last-child) {
       border-bottom: 1px solid
         mat.get-color-from-palette($background, status-bar);

@@ -23,7 +23,7 @@
   body.landing-hidden {
     transform: scale(-1, 1);
   }
-  
+
   .mat-mdc-checkbox-checked.mat-accent .mdc-checkbox__background {
     background-color: mat.get-color-from-palette($app-primary) !important;
   }

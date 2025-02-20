@@ -6,7 +6,7 @@ mat-radio-group {
   margin-top: 7px;
   display: flex;
   flex-direction: column;
-  
+
   mat-radio-button {
     &:not(:first-child) {
       margin-top: 20px;
@@ -14,7 +14,7 @@ mat-radio-group {
     ::ng-deep {
       .mdc-form-field {
         vertical-align: top;
-        
+
         &.correct {
           font-weight: bold;
         }

@@ -3,11 +3,11 @@
 @mixin solid-slideshow-component-theme($theme) {
   // Extract color config from theme
   $color-config: mat.get-color-config($theme);
-  
+
   // Extract palettes
   $primary: map-get($color-config, 'primary');
   $accent: map-get($color-config, 'accent');
-  
+
   solid-slideshow {
     a:link {
       // Use the new color function

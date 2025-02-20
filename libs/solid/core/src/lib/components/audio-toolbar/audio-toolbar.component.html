@@ -29,7 +29,19 @@
       step="1"
       [disabled]="!audioLoaded"
       class="playingSlider"
-     #ngSlider><input matSliderThumb [value]="playPosition" (input)="onPositionChangeEnd({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value})" #ngSliderThumb="matSliderThumb" /></mat-slider>
+      #ngSlider
+      ><input
+        matSliderThumb
+        [value]="playPosition"
+        (input)="
+          onPositionChangeEnd({
+            source: ngSliderThumb,
+            parent: ngSlider,
+            value: ngSliderThumb.value,
+          })
+        "
+        #ngSliderThumb="matSliderThumb"
+    /></mat-slider>
     <button
       mat-icon-button
       [disabled]="!audioLoaded"
@@ -45,7 +57,19 @@
       [disabled]="!audioLoaded"
       class="volumeSlider"
       [class.disappear]="isIOS() || isMobile"
-     #ngSlider><input matSliderThumb [value]="volume" (input)="onVolumeChangeEnd({source: ngSliderThumb, parent: ngSlider, value: ngSliderThumb.value})" #ngSliderThumb="matSliderThumb" />
+      #ngSlider
+      ><input
+        matSliderThumb
+        [value]="volume"
+        (input)="
+          onVolumeChangeEnd({
+            source: ngSliderThumb,
+            parent: ngSlider,
+            value: ngSliderThumb.value,
+          })
+        "
+        #ngSliderThumb="matSliderThumb"
+      />
     </mat-slider>
   </div>
 </ng-container>
