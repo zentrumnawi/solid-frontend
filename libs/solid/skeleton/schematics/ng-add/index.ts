@@ -261,8 +261,7 @@ export default function ngAdd(options: Schema): Rule {
         throw targetBuildNotFoundError();
       }
       const buildOptions = buildTarget.options || {};
-      const mainPath = buildOptions.main as string;
-
+      const mainPath = (buildOptions.browser || buildOptions.main) as string;
       const environment = getEnvironmentImport(mainPath)(tree);
 
       const templateSource = apply(url('./files'), [
@@ -276,7 +275,7 @@ export default function ngAdd(options: Schema): Rule {
         }),
         move(
           normalize(
-            getAppModulePath(tree, buildOptions.main as string) + '/../..',
+            getAppModulePath(tree, (buildOptions.browser || buildOptions.main) as string) + '/../..',
           ),
         ),
       ]);
