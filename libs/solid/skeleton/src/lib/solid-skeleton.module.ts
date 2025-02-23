@@ -44,9 +44,9 @@ import { createErrorHandler } from '@sentry/angular';
 import { InfoComponent } from './components/info/info.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MessageListComponent } from './components/message-list/message-list.component';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { SOLID_PROFILE_BASE_URL } from '@zentrumnawi/solid-profile';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { SOLID_SLIDESHOW_APP_ROUTING_CONFIG } from '@zentrumnawi/solid-slideshow';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { IntroService } from './services/intro.service';
