@@ -7,6 +7,7 @@
     $quiz-incorrect
   );
   $accent: map-get($mat-theme, accent);
+  $app-primary: map-get($mat-theme, primary);
 
   .mat-button-toggle {
     border: solid 2px mat.get-color-from-palette($app-primary) !important;
@@ -14,8 +15,13 @@
   }
 
   .mat-button-toggle-checked {
-    background-color: mat.get-color-from-palette($app-primary);
+    background-color: mat.get-color-from-palette($app-primary) !important;
     color: white !important;
+  }
+
+  .mat-mdc-slide-toggle .mdc-form-field .mdc-switch .mdc-switch__track {
+    --mdc-switch-selected-track-color: mat.get-color-from-palette($app-primary);
+    background-color: mat.get-color-from-palette($app-primary);
   }
 
   #tag {
@@ -25,9 +31,9 @@
       color: mat.get-color-from-palette($app-primary);
     }
 
-    .mat-mdc-chip-selected {
-      background-color: mat.get-color-from-palette($accent);
-      border-color: transparent !important;
+    mat-chip-option.mat-mdc-chip-selected {
+      background-color: mat.get-color-from-palette($accent) !important;
+      //border-color: transparent !important;
       color: white !important;
     }
   }

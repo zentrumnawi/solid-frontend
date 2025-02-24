@@ -3,12 +3,12 @@ import * as util from 'util';
 // ref: https://github.com/jsdom/jsdom/issues/2524
 Object.defineProperty(window, 'TextEncoder', {
   writable: true,
-  value: util.TextEncoder
-})
+  value: util.TextEncoder,
+});
 Object.defineProperty(window, 'TextDecoder', {
   writable: true,
-  value: util.TextDecoder
-})
+  value: util.TextDecoder,
+});
 
 import {
   SchematicTestRunner,
@@ -41,7 +41,7 @@ describe('ng-add', () => {
       style: Style.Scss,
       skipTests: false,
       skipPackageJson: false,
-      standalone: false
+      standalone: false,
     };
 
     let appTree: UnitTestTree;
@@ -63,7 +63,7 @@ describe('ng-add', () => {
         'ng-add',
         {
           name: 'test',
-          standalone: false
+          standalone: false,
         },
         appTree,
       );

@@ -275,7 +275,10 @@ export default function ngAdd(options: Schema): Rule {
         }),
         move(
           normalize(
-            getAppModulePath(tree, (buildOptions.browser || buildOptions.main) as string) + '/../..',
+            getAppModulePath(
+              tree,
+              (buildOptions.browser || buildOptions.main) as string,
+            ) + '/../..',
           ),
         ),
       ]);

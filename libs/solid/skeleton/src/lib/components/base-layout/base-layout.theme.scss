@@ -26,6 +26,11 @@
 
   .mat-mdc-checkbox-checked.mat-accent .mdc-checkbox__background {
     background-color: mat.get-color-from-palette($app-primary) !important;
+    border-color: transparent !important;
+  }
+
+  .mat-mdc-checkbox-checked.mat-accent .mdc-checkbox__checkmark {
+    color: white !important;
   }
 
   .header-container {
