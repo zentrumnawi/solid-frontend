@@ -44,6 +44,13 @@ mat-list {
   white-space: pre-wrap;
 }
 
+// mdc doesn't support >= three-line lists at the moment, so we need to overwrite angular material's own styles for consistency
+.mat-mdc-list .mat-mdc-list-item.mdc-list-item--with-three-lines div {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: var(--mdc-list-list-item-supporting-text-line-height);
+}
+
 ::ng-deep .mat-mdc-list .mat-mdc-list-item {
   height: initial !important;
 }
