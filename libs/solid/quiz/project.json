@@ -6,7 +6,7 @@
   "prefix": "solid-quiz",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/solid/quiz/tsconfig.lib.json",
         "project": "libs/solid/quiz/ng-package.json",
@@ -23,25 +23,18 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/solid/quiz/src/**/*.ts",
-          "libs/solid/quiz/src/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "libs/solid/quiz/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/solid/quiz/jest.config.ts"
       },
       "outputs": ["{workspaceRoot}/coverage/libs/solid/quiz"]
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "styleext": "scss"
     }
   }

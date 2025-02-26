@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "style": "scss"
     }
   },
@@ -117,35 +117,28 @@
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "planty:build",
-        "proxyConfig": "./apps/planty/proxy.conf.json"
+        "proxyConfig": "./apps/planty/proxy.conf.json",
+        "buildTarget": "planty:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "planty:build:production"
+          "buildTarget": "planty:build:production"
         }
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "planty:build"
+        "buildTarget": "planty:build"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "apps/planty/src/**/*.ts",
-          "apps/planty/src/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "apps/planty/jest.config.ts",
-        "passWithNoTests": true,
         "tsConfig": "apps/planty/tsconfig.spec.json"
       },
       "outputs": ["{workspaceRoot}/coverage/apps/planty"]

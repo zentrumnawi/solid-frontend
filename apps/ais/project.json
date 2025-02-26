@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "style": "scss"
     }
   },
@@ -117,32 +117,28 @@
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "ais:build",
-        "proxyConfig": "./apps/ais/proxy.conf.json"
+        "proxyConfig": "./apps/ais/proxy.conf.json",
+        "buildTarget": "ais:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "ais:build:production"
+          "buildTarget": "ais:build:production"
         }
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "ais:build"
+        "buildTarget": "ais:build"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": ["apps/ais/src/**/*.ts", "apps/ais/src/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "apps/ais/jest.config.ts",
-        "passWithNoTests": true,
         "tsConfig": "apps/ais/tsconfig.spec.json"
       },
       "outputs": ["{workspaceRoot}/coverage/apps/ais"]

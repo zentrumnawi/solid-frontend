@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "style": "scss"
     }
   },
@@ -117,35 +117,28 @@
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "geomat:build",
-        "proxyConfig": "./apps/geomat/proxy.conf.json"
+        "proxyConfig": "./apps/geomat/proxy.conf.json",
+        "buildTarget": "geomat:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "geomat:build:production"
+          "buildTarget": "geomat:build:production"
         }
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "geomat:build"
+        "buildTarget": "geomat:build"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "apps/geomat/src/**/*.ts",
-          "apps/geomat/src/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "apps/geomat/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/geomat/jest.config.ts"
       },
       "outputs": ["{workspaceRoot}/coverage/apps/geomat"]
     }

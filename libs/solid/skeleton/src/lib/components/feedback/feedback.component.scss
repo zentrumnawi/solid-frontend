@@ -1,27 +1,22 @@
 ::ng-deep {
-  .mat-dialog-container {
+  .mat-mdc-dialog-container {
     border-radius: 6px;
   }
 
   .feedback-content {
-    overflow: unset;
     margin-top: 28px;
   }
 
-  .mat-dialog-title {
+  .mat-mdc-dialog-title {
     margin-bottom: 20px;
     height: 42px;
     margin-top: -27px;
   }
 
-  textarea.mat-input-element {
+  textarea.mat-mdc-input-element {
     height: 30px;
     max-height: 300px;
   }
-}
-
-::ng-deep .mat-button-focus-overlay {
-  background-color: transparent;
 }
 
 ::ng-deep .report-dialog {
@@ -34,29 +29,29 @@
 @media (max-width: 420px) {
   ::ng-deep .report-dialog,
   ::ng-deep .feedback-dialog {
-    .mat-dialog-container {
+    .mat-mdc-dialog-container {
       margin: 0px 0px !important;
       width: 100vw;
-      height: 100vh;
+      //height: 100vh;
       border-radius: 0px;
     }
 
     @media (min-height: 741px) {
-      textarea.mat-input-element {
+      textarea.mat-mdc-input-element {
         min-height: 320px !important;
         max-height: 320px;
       }
     }
 
     @media (max-height: 740px) {
-      textarea.mat-input-element {
+      textarea.mat-mdc-input-element {
         min-height: 200px !important;
         max-height: 200px;
       }
     }
 
     mat-checkbox {
-      ::ng-deep .mat-checkbox-label {
+      ::ng-deep .mdc-label {
         margin-top: 10px;
       }
     }
@@ -80,12 +75,10 @@ mat-form-field {
 mat-checkbox {
   margin-top: 20px;
   font-size: small;
-
-  ::ng-deep .mat-checkbox-layout {
+  ::ng-deep .mdc-form-field {
     white-space: normal !important;
   }
-
-  ::ng-deep .mat-checkbox-label {
+  ::ng-deep .mdc-label {
     margin-left: 8px;
   }
 }
@@ -103,7 +96,6 @@ mat-checkbox {
   width: 600px;
   height: 40px;
   margin-top: -24px;
-  margin-left: -24px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   color: white;
@@ -116,18 +108,10 @@ mat-checkbox {
   }
 
   .closeBtn {
-    width: 23px;
-    margin-top: 8px;
-    margin-right: 8px;
-
     mat-icon {
       vertical-align: top;
       font-size: 25px;
       font-weight: 600;
-    }
-
-    ::ng-deep .mat-button-focus-overlay {
-      background-color: transparent;
     }
   }
 }
@@ -136,6 +120,7 @@ mat-checkbox {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  margin-left: 24px;
   .location {
     color: rgba(0, 0, 0, 0.54);
     font-weight: 500;

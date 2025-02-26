@@ -19,16 +19,21 @@
 
   <mat-slider
     id="slider"
-    thumbLabel
+    discrete
+    showTickMarks
     [disabled]="showAnswers"
     [min]="question.answers[0].range_min"
     [max]="question.answers[0].range_max"
     [step]="question.answers[0].range_step"
     [class.correctRange]="showAnswers && correct === 1"
     [class.incorrectRange]="(showAnswers && correct === -1) || correct === 0"
-    [(ngModel)]="sliderPosition"
-    (change)="onSliderChange($event)"
-  >
+    #ngSlider
+    ><input
+      [(ngModel)]="sliderPosition"
+      matSliderThumb
+      (change)="onSliderChange()"
+      #ngSliderThumb="matSliderThumb"
+    />
   </mat-slider>
   <p class="maxLabel">{{ question.answers[0].range_max }}</p>
   <span class="maxTick"></span>

@@ -1,3 +1,15 @@
+import * as util from 'util';
+// ref: https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
+// ref: https://github.com/jsdom/jsdom/issues/2524
+Object.defineProperty(window, 'TextEncoder', {
+  writable: true,
+  value: util.TextEncoder,
+});
+Object.defineProperty(window, 'TextDecoder', {
+  writable: true,
+  value: util.TextDecoder,
+});
+
 import {
   SchematicTestRunner,
   UnitTestTree,
@@ -17,7 +29,7 @@ describe('ng-add', () => {
   const workspaceOptions: WorkspaceOptions = {
     name: 'workspace',
     newProjectRoot: 'projects',
-    version: '6.0.0',
+    version: '17.1.0',
   };
 
   describe('with project', () => {
@@ -29,6 +41,7 @@ describe('ng-add', () => {
       style: Style.Scss,
       skipTests: false,
       skipPackageJson: false,
+      standalone: false,
     };
 
     let appTree: UnitTestTree;
@@ -50,6 +63,7 @@ describe('ng-add', () => {
         'ng-add',
         {
           name: 'test',
+          standalone: false,
         },
         appTree,
       );

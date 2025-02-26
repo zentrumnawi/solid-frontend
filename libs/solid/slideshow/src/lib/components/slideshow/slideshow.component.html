@@ -87,7 +87,7 @@
             [class.greaterEqual3Images]="page.images.length >= 3"
           >
             <ng-container *ngFor="let img of page.images">
-              <mat-card *ngIf="img.image">
+              <mat-card appearance="outlined" *ngIf="img.image">
                 <mat-card-header>
                   <mat-card-title>{{ img.title }}</mat-card-title>
                 </mat-card-header>
