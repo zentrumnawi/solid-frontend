@@ -65,6 +65,9 @@ jobs:
           timeout: 2m
           strip_components: 3
 
+      - name: Wait for two minutes
+        run: sleep 180
+
       - name: Deploy planty-staging
         uses: appleboy/scp-action@v0.1.7
         with:
