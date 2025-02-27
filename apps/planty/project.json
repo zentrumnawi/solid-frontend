@@ -133,7 +133,13 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint"
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/planty/src/**/*.ts",
+          "apps/planty/src/**/*.html"
+        ]
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",

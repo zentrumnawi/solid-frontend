@@ -133,7 +133,13 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint"
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/geomat/src/**/*.ts",
+          "apps/geomat/src/**/*.html"
+        ]
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
