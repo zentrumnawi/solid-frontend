@@ -9,9 +9,7 @@
       "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/solid/quiz/tsconfig.lib.json",
-        "project": "libs/solid/quiz/ng-package.json",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
-        "updateBuildableProjectDepsInPackageJson": true
+        "project": "libs/solid/quiz/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -27,7 +25,8 @@
       "options": {
         "lintFilePatterns": [
           "libs/solid/quiz/src/**/*.ts",
-          "libs/solid/quiz/src/**/*.html"
+          "libs/solid/quiz/src/**/*.html",
+          "libs/solid/quiz/package.json"
         ]
       }
     },

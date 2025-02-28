@@ -9,9 +9,7 @@
       "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/solid/glossary/tsconfig.lib.json",
-        "project": "libs/solid/glossary/ng-package.json",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
-        "updateBuildableProjectDepsInPackageJson": true
+        "project": "libs/solid/glossary/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -27,7 +25,8 @@
       "options": {
         "lintFilePatterns": [
           "libs/solid/glossary/src/**/*.ts",
-          "libs/solid/glossary/src/**/*.html"
+          "libs/solid/glossary/src/**/*.html",
+          "libs/solid/glossary/package.json"
         ]
       }
     },
