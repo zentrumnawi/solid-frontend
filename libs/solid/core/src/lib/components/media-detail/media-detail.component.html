@@ -30,14 +30,14 @@ use the ImageModel, but now the image toolbar uses the MediaObjectModel -->
 <ng-container *ngIf="mediaObject">
   <ng-container [ngSwitch]="mediaObject.mediaType">
     <div class="media-container" *ngSwitchCase="'image'">
-      <span
-        *ngIf="hasDescription || mediaObject.audiosrc"
-        matTooltip="Klick auf das Bild, um die Audiodatei zu hören oder die Beschreibung anzusehen."
-        class="info-icon"
-      >
-        i
-      </span>
       <div class="image-container">
+        <span
+          *ngIf="hasDescription || mediaObject.audiosrc"
+          matTooltip="Klick auf das Bild, um die Audiodatei zu hören oder die Beschreibung anzusehen."
+          class="info-icon"
+        >
+          i
+        </span>
         <img
           *ngIf="view !== 'grid'; else grid"
           [src]="mediaObject.getRawImage('large')"
