@@ -27,6 +27,7 @@ import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import type { Input as HammerInput } from 'hammerjs';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -235,7 +236,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.filterSubscription = this.Filter.valueChanges.subscribe((_) =>
+    this.filterSubscription = this.Filter.valueChanges.subscribe(() =>
       this.FilterValue.next(this.Filter.value),
     );
   }
@@ -250,9 +251,15 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           localStorage.getItem('hide_profile_tour') == null
         ) {
           setTimeout(() => {
-            this.introService.profileTour((_targetElement: any) => {
+            // Store id of single profile navigation target, if it exists
+            const initialId = this._activatedRoute.snapshot.paramMap.get('id');
+            //const initialType = this._activatedRoute.snapshot.paramMap.get('type');
+
+            this.introService.profileTour((_targetElement: HTMLElement) => {
               try {
                 const id = _targetElement.id;
+                console.log("this is id", id);
+                console.log("this is targetElement", _targetElement);
                 const treeNodeLocation =
                   this.coreConfig.profileTour.location.treeNode;
                 const treeLocation =
@@ -260,29 +267,33 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.collapseTree = false;
                 if (id != 'profile')
                   setTimeout(() => {
-                    this.introService.introProfile.refresh(true);
+                    this.introService.introProfile.refresh();
                   }, 365);
-                if (id == '') {
+                if (id == '' && !initialId) {
                   if (this._route.url == treeLocation)
                     this.navigateTo(treeNodeLocation);
                   if (this._route.url == treeNodeLocation) {
+                    
                     const steps = this.coreConfig.profileTour.steps;
+                    console.log("this is steps", steps);
                     const currentStep =
-                      this.introService.introProfile._currentStep;
+                      this.introService.introProfile.currentStep();
                     steps.splice(currentStep, 1);
                     setTimeout(() => {
-                      this.introService.introProfile
-                        .goToStep(currentStep)
-                        .start();
+                      if (currentStep) {
+                        this.introService.introProfile
+                          .goToStep(currentStep)
+                          .start();
+                      }
                     }, 0.1);
                   }
-                } else if (id == 'profile-view' || id == 'profile') {
+                } else if ((id == 'profile-view' || id == 'profile') && !initialId) {
                   if (this._route.url != treeLocation)
                     this.navigateTo(treeLocation);
                   this.collapseTree = true;
                 }
                 setTimeout(() => {
-                  this.introService.introProfile.refresh(true);
+                  this.introService.introProfile.refresh();
                 }, 0.1);
               } catch (error) {
                 return;
@@ -367,7 +378,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 10);
   }
 
-  public onPanEnd($event: any) {
+  public onPanEnd($event: HammerInput) {
     if ($event.deltaX > 100 && this.SwipeLeft) {
       $event.preventDefault();
       this.swipeLeft();
@@ -401,7 +412,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public getProfileShort(profile: any): ProfileShort {
+  public getProfileShort(profile: Profile | undefined): ProfileShort {
     const profileId = profile?.id || -1;
     const profileType = profile?.def_type;
     return { id: profileId, type: profileType };
