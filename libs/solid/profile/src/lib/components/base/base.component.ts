@@ -245,66 +245,75 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.calculateLayout();
 
     this.profileSubscription = this.profile$.subscribe((res) => {
-      if (res.length != 0) {
-        if (
-          localStorage.getItem('hide_profile_tour') == 'false' ||
-          localStorage.getItem('hide_profile_tour') == null
-        ) {
-          setTimeout(() => {
-            // Store id of single profile navigation target, if it exists
-            const initialId = this._activatedRoute.snapshot.paramMap.get('id');
-            //const initialType = this._activatedRoute.snapshot.paramMap.get('type');
-
-            this.introService.profileTour((_targetElement: HTMLElement) => {
-              try {
-                const id = _targetElement.id;
-                console.log("this is id", id);
-                console.log("this is targetElement", _targetElement);
-                const treeNodeLocation =
-                  this.coreConfig.profileTour.location.treeNode;
-                const treeLocation =
-                  this.coreConfig.profileTour.location.profileTree;
-                this.collapseTree = false;
-                if (id != 'profile')
-                  setTimeout(() => {
-                    this.introService.introProfile.refresh();
-                  }, 365);
-                if (id == '' && !initialId) {
-                  if (this._route.url == treeLocation)
-                    this.navigateTo(treeNodeLocation);
-                  if (this._route.url == treeNodeLocation) {
-                    
-                    const steps = this.coreConfig.profileTour.steps;
-                    console.log("this is steps", steps);
-                    const currentStep =
-                      this.introService.introProfile.currentStep();
-                    steps.splice(currentStep, 1);
-                    setTimeout(() => {
-                      if (currentStep) {
-                        this.introService.introProfile
-                          .goToStep(currentStep)
-                          .start();
-                      }
-                    }, 0.1);
-                  }
-                } else if ((id == 'profile-view' || id == 'profile') && !initialId) {
-                  if (this._route.url != treeLocation)
-                    this.navigateTo(treeLocation);
-                  this.collapseTree = true;
-                }
-                setTimeout(() => {
-                  this.introService.introProfile.refresh();
-                }, 0.1);
-              } catch (error) {
-                return;
-              }
-              return;
-            });
-          }, 800);
-        }
-      }
-    });
+      if(res.length === 0) return;
+      
+      const shouldShowTour =  localStorage.getItem('hide_profile_tour') === 'false' ||
+      localStorage.getItem('hide_profile_tour') === null;
+      if (shouldShowTour) {
+        setTimeout(() => {
+          const initialId = this._activatedRoute.snapshot.paramMap.get('id');
+          
+          this.introService.profileTour((element: HTMLElement) => {
+            try {
+              //console.log("this is element", element);
+              this.handleTourStep(element, initialId);
+            } catch (error) {
+              console.error('Tour step error:', error);
+            }
+          });
+        }, 800);
+    }});
   }
+
+
+  private async handleTourStep(element: HTMLElement, initialId: string | null) {
+    const id = element.id;
+    const { treeNode: treeNodeLocation, profileTree: treeLocation } = 
+      this.coreConfig.profileTour.location;
+    
+    if (id !== 'profile') {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      this.refreshTourUI();
+    }
+  
+    if (id === '' && !initialId) {
+      this.handleEmptyStep(treeLocation, treeNodeLocation);
+    }
+    
+    // Handle profile view step
+    else if ((id === 'profile-view' || id === 'profile') && !initialId) {
+      if (this._route.url !== treeLocation) {
+        await this.navigateTo(treeLocation);
+        this.refreshTourUI();
+      }
+    }
+  
+    this.refreshTourUI();
+  }
+  
+  private refreshTourUI(delay = 400) {
+    setTimeout(() => {
+      this.introService.introProfile.refresh();
+    }, delay);
+  }
+  
+  private async handleEmptyStep(treeLocation: string, treeNodeLocation: string) {
+    if (this._route.url === treeLocation) {
+      console.log("navigating to treeNodeLocation", treeNodeLocation);
+    
+      await this.navigateTo(treeNodeLocation);
+    }
+      
+      this.refreshTourUI();
+      
+      const currentStep = this.introService.introProfile.currentStep();
+      if (currentStep) {
+        this.introService.introProfile
+          .start()
+          .goToStep(currentStep + 1)
+      }
+  }
+  
 
   public ngOnDestroy(): void {
     this.mainSubscription.unsubscribe();
