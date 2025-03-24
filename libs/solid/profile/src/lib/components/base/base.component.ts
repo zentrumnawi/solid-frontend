@@ -255,7 +255,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           
           this.introService.profileTour((element: HTMLElement) => {
             try {
-              //console.log("this is element", element);
               this.handleTourStep(element, initialId);
             } catch (error) {
               console.error('Tour step error:', error);
@@ -299,8 +298,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   
   private async handleEmptyStep(treeLocation: string, treeNodeLocation: string) {
     if (this._route.url === treeLocation) {
-      console.log("navigating to treeNodeLocation", treeNodeLocation);
-    
       await this.navigateTo(treeNodeLocation);
     }
       
