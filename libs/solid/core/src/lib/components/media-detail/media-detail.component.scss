@@ -125,3 +125,15 @@ video::-webkit-media-controls {
 video::-webkit-media-controls-enclosure {
   visibility: visible;
 }
+
+.info-icon {
+  position: absolute;
+  top: 7px;
+  right: 12px;
+  font-size: 43px;
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'Times New Roman', 'Georgia', serif;
+  color: black;
+  cursor: help;
+}
