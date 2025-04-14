@@ -15,7 +15,7 @@
     [class.correct]="showAnswers && correct === 1"
     [class.incorrect]="(showAnswers && correct === -1) || correct === 0"
   ></span>
-  <p class="minLabel">{{ question.answers[0].range_min }}</p>
+  <p class="minLabel">{{ question.answers[0].range_min }} {{ question.answers[0].unit }}</p>
 
   <mat-slider
     id="slider"
@@ -30,7 +30,7 @@
     (change)="onSliderChange($event)"
   >
   </mat-slider>
-  <p class="maxLabel">{{ question.answers[0].range_max }}</p>
+  <p class="maxLabel">{{ question.answers[0].range_max }} {{ question.answers[0].unit }}</p>
   <span class="maxTick"></span>
 </div>
 
