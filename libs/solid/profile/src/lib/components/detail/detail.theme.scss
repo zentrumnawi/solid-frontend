@@ -1,8 +1,14 @@
 @use '@angular/material' as mat;
 
-@mixin solid-profile-detail($mat-theme) {
-  $background: map-get($mat-theme, background);
-  $accent: map-get($mat-theme, accent);
+@mixin solid-profile-detail($theme) {
+  // Extract color config from theme
+  $color-config: mat.get-color-config($theme);
+
+  // Extract palettes
+  $primary: map-get($color-config, 'primary');
+  $accent: map-get($color-config, 'accent');
+  $background: map-get($color-config, 'background');
+
   solid-profile-detail {
     background-color: mat.get-color-from-palette($background, card);
 
@@ -13,15 +19,15 @@
     }
 
     a:link {
-      color: mat-color($app-primary, 600);
+      color: mat.get-color-from-palette($primary, 600);
     }
     a:visited {
-      color: mat-color($app-primary, 900);
+      color: mat.get-color-from-palette($primary, 900);
     }
 
     p {
       &.property-heading-level-1 {
-        background-color: mat-color($app-primary, 100) !important;
+        background-color: mat.get-color-from-palette($primary, 100) !important;
         color: black;
       }
     }

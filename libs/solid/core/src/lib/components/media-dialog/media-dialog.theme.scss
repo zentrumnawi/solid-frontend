@@ -4,7 +4,7 @@
   $background: map-get($mat-theme, background);
   $accent: map-get($mat-theme, accent);
   solid-core-media-dialog {
-    div.mat-dialog-title {
+    div.mat-mdc-dialog-title {
       background-color: mat.get-color-from-palette($accent);
     }
   }

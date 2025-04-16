@@ -1,12 +1,15 @@
 @use '@angular/material' as mat;
 
 @mixin solid-skeleton-landing-component-theme($theme) {
-  $accent: map-get($theme, accent);
-  $background: map-get($theme, background);
+  $color-config: mat.get-color-config($theme);
+  $accent: map-get($color-config, accent);
+  $background: map-get($color-config, background);
+  $primary: map-get($color-config, primary);
   solid-skeleton-landing {
     mat-grid-tile:hover {
       background-color: mat.get-color-from-palette($accent, lighter);
     }
+
     mat-list {
       border: 1px solid mat.get-color-from-palette($app-primary);
       border-radius: 0.5rem;
@@ -14,12 +17,13 @@
       padding-bottom: 0.5rem;
 
       a:link {
-        color: mat-color($app-primary, 600);
+        color: mat.get-color-from-palette($primary, 600);
       }
       a:visited {
-        color: mat-color($app-primary, 900);
+        color: mat.get-color-from-palette($primary, 900);
       }
     }
+
     mat-list-item:not(:last-child) {
       border-bottom: 1px solid
         mat.get-color-from-palette($background, status-bar);
@@ -29,7 +33,7 @@
 
   .footer-container {
     a {
-      color: mat-color($app-primary);
+      color: mat.get-color-from-palette($primary);
     }
   }
 }

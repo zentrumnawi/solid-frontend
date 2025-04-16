@@ -1,14 +1,20 @@
-@import '@angular/material/theming';
+@use '@angular/material' as mat;
 
-@mixin solid-slideshow-component-theme($mat-theme) {
-  $accent: map-get($mat-theme, accent);
-  $background: map-get($mat-theme, background);
+@mixin solid-slideshow-component-theme($theme) {
+  // Extract color config from theme
+  $color-config: mat.get-color-config($theme);
+
+  // Extract palettes
+  $primary: map-get($color-config, 'primary');
+  $accent: map-get($color-config, 'accent');
+
   solid-slideshow {
     a:link {
-      color: mat-color($app-primary, 600);
+      // Use the new color function
+      color: mat.get-color-from-palette($primary, 600);
     }
     a:visited {
-      color: mat-color($app-primary, 900);
+      color: mat.get-color-from-palette($primary, 900);
     }
   }
 }

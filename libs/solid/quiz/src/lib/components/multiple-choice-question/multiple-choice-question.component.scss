@@ -10,7 +10,7 @@ mat-checkbox {
       }
     }
 
-    span.mat-checkbox-label {
+    label.mdc-label {
       display: flex;
       flex-direction: column;
       width: calc(100% - 24px);
@@ -18,34 +18,21 @@ mat-checkbox {
       line-height: 28px;
     }
 
-    label.mat-checkbox-layout {
+    .mdc-form-field {
       vertical-align: top;
       width: 100%;
     }
 
-    span.mat-checkbox-inner-container {
-      margin-top: 4px;
+    .mdc-checkbox {
+      margin-top: -3px;
       margin-bottom: auto;
       margin-right: 10px;
     }
 
-    .mat-checkbox-frame {
-      border-radius: 20px;
-      height: 20px;
-      width: 20px;
-    }
-
-    .mat-checkbox-background {
-      border-radius: 20px;
-      height: 20px;
-      width: 20px;
-    }
-
-    .mat-checkbox-mixedmark {
+    .mdc-checkbox__mixedmark {
       height: 16px;
       width: 16px;
       background-color: white;
-      border-radius: 20px;
       position: relative;
       &:after {
         position: absolute;

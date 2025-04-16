@@ -12,7 +12,7 @@ mat-list {
   }
 
   mat-list-item {
-    padding: 4px;
+    padding: 4px 16px 16px 16px;
     transition: background-color linear 300ms;
 
     .entry-header {
@@ -39,24 +39,23 @@ mat-list {
   }
 }
 
-::ng-deep .mat-list .mat-list-item .mat-line {
+::ng-deep .mat-mdc-list .mat-mdc-list-item .mat-mdc-list-item-line {
   word-wrap: break-word;
   white-space: pre-wrap;
 }
 
-::ng-deep .mat-list .mat-list-item {
+// mdc doesn't support >= three-line lists at the moment, so we need to overwrite angular material's own styles for consistency
+.mat-mdc-list .mat-mdc-list-item.mdc-list-item--with-three-lines div {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: var(--mdc-list-list-item-supporting-text-line-height);
+}
+
+::ng-deep .mat-mdc-list .mat-mdc-list-item {
   height: initial !important;
 }
 
 mat-form-field {
   width: 100%;
   margin-top: 0.5em;
-  ::ng-deep {
-    div.mat-form-field-wrapper {
-      padding: 0;
-    }
-    div.mat-form-field-underline {
-      display: none;
-    }
-  }
 }

@@ -8,6 +8,7 @@
       *ngFor="let profile of profilesArr; trackBy: trackByFn"
     >
       <div
+        matListItemTitle
         class="profile-title"
         [class.selected]="
           selectedProfileId === profile.id &&
@@ -16,6 +17,7 @@
       >
         <span
           *ngIf="isDiveApp"
+          matListItemTitle
           class="name"
           [data]="profile.name"
           markdown

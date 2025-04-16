@@ -7,6 +7,7 @@ mat-card {
   margin-right: auto;
   max-width: 60em;
   top: 67px;
+  padding: 16px;
 }
 
 @media (max-width: 1141px) {
@@ -19,6 +20,10 @@ mat-card {
 @media (max-width: 440px) {
   mat-card {
     top: 62px;
+  }
+
+  .button-container button.startBtn {
+    width: 45%;
   }
 }
 
@@ -52,6 +57,8 @@ mat-card-actions {
   padding: 0px;
   margin-left: 0px;
   margin-right: 0px;
+  display: block;
+  //flex-direction: column;
 }
 
 .content-container {
@@ -59,7 +66,7 @@ mat-card-actions {
   font-size: 15px;
 }
 
-.mat-standard-chip .mat-chip-remove {
+.mat-mdc-standard-chip .mat-chip-remove {
   color: white;
 }
 
@@ -85,19 +92,19 @@ hr {
   padding: 6px;
   height: 35px;
   width: 40px;
-  transform: translateY(-3px);
+  //transform: translateY(-3px);
   font-weight: 500;
   margin-left: 4%;
   text-align: center;
   border-radius: 8px;
 }
 
-.mat-slider {
+.mat-mdc-slider {
   width: 100%;
-  margin: -10px;
+  margin: 2px;
 }
 
-.mat-subheader {
+.mat-mdc-subheader {
   font-size: 15px;
   padding: 16px 0px;
 }
@@ -111,6 +118,7 @@ hr {
 
 .controlElement {
   display: flex;
+  align-items: center;
   float: left;
   width: 100%;
   margin-bottom: 10px;
@@ -118,17 +126,29 @@ hr {
 
 .content-container {
   padding: 10px 10px 0px 10px;
+  margin-bottom: 16px;
 }
 
 .button-container {
+  width: 100%;
+  //text-align: center;
+  position: relative;
+
   .startBtn {
-    margin: 10px 10px 20px 10px !important;
+    font-size: 15px;
+    //margin: 0 20%;
+    width: 35%;
+    //margin: 10px 10px 20px 10px !important;
     border-radius: 7px;
+    margin: 10px auto 20px auto !important;
+    display: block;
   }
 
   .expBtn {
     margin: 10px 10px 20px 10px;
     padding: 0px;
+    display: block;
+    font-weight: 500;
   }
 }
 
@@ -148,6 +168,11 @@ hr {
     border: none;
     margin-top: 10px;
     justify-content: space-between;
+  }
+
+  .mat-button-toggle-checked {
+    background-color: var(--mdc-filled-button-container-color, #3f51b5);
+    // color: var(--mdc-filled-button-label-text-color, white);
   }
 
   .mat-button-toggle {
@@ -173,23 +198,23 @@ hr {
     margin-right: 0px;
   }
 
-  ::ng-deep.mat-button-toggle-label-content {
+  ::ng-deep .mat-button-toggle-label-content {
     line-height: 35px;
   }
 }
 
 #tag {
-  ::ng-deep .mat-chip-list-wrapper {
+  ::ng-deep .mdc-evolution-chip-set__chips {
     width: 100%;
     margin: 0;
     justify-content: space-between;
   }
 
-  .mat-chip-list {
+  .mat-chip-listbox {
     width: 100%;
   }
 
-  .mat-chip {
+  .mat-mdc-chip {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -202,6 +227,7 @@ hr {
   @media (max-width: 440px) {
     .mat-chip-small {
       width: 28%;
+      padding: 0px;
     }
 
     .mat-chip-large {
@@ -210,33 +236,29 @@ hr {
   }
 
   @media (min-width: 441px) {
-    .mat-chip {
+    .mat-mdc-chip {
       width: 23%;
     }
   }
 
-  .mat-standard-chip:focus::after {
+  .mat-mdc-standard-chip:focus::after {
     opacity: 0;
   }
+
+  .mat-mdc-chip-option {
+    cursor: pointer;
+    user-select: none;
+
+    // Ensure the entire chip is clickable
+    .mat-mdc-chip-action {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
-.mat-subheader {
+.mat-mdc-subheader {
   font-weight: 500;
-}
-
-.button-container {
-  text-align: center;
-  position: relative;
-
-  .startBtn {
-    font-size: 15px;
-    width: 35%;
-  }
-
-  .expBtn {
-    display: block;
-    font-weight: 500;
-  }
 }
 
 .config {

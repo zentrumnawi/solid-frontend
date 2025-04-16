@@ -57,7 +57,7 @@ export class SlideshowComponent implements OnInit, OnDestroy, AfterViewInit {
           const pagePosition = this.slideshow?.pages.findIndex(
             (page) => page.id === Number.parseInt(this.slideshowPageid),
           );
-          if (pagePosition !== -1) {
+          if (pagePosition !== -1 && pagePosition !== undefined) {
             this.Stepper.selectedIndex = pagePosition;
             this.page_index = this.Stepper.selectedIndex;
           }

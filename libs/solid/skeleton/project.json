@@ -6,12 +6,10 @@
   "prefix": "solid-skeleton",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "project": "libs/solid/skeleton/ng-package.json",
-        "tsConfig": "libs/solid/skeleton/tsconfig.lib.json",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/solid/skeleton/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
@@ -25,16 +23,17 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "libs/solid/skeleton/src/**/*.ts",
-          "libs/solid/skeleton/src/**/*.html"
+          "libs/solid/skeleton/src/**/*.html",
+          "libs/solid/skeleton/package.json"
         ]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "libs/solid/skeleton/jest.config.ts",
         "passWithNoTests": false
@@ -43,7 +42,7 @@
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "styleext": "scss",
       "style": "scss"
     }

@@ -4,19 +4,13 @@
   display: block;
 }
 
-div.mat-media-dialog-title {
+div.mat-mdc-dialog-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 20px;
   height: 42px;
   margin: 0px;
-
-  ::ng-deep {
-    .mat-button-focus-overlay {
-      background-color: transparent !important;
-    }
-  }
 
   div.title-container {
     overflow: hidden;
@@ -73,8 +67,7 @@ div.long-title-1 {
   }
 }
 
-div.mat-dialog-content {
-  margin: 0;
+div.mat-mdc-dialog-content {
   padding: 0;
   max-height: calc(100% - 64px);
   height: 100%;
@@ -166,6 +159,7 @@ solid-core-audio-toolbar {
       }
     }
   }
+
   @media (min-width: 470px) and (max-width: 680px) {
     ::ng-deep {
       .mat-slider-horizontal.volumeSlider {

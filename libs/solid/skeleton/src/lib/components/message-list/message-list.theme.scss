@@ -1,7 +1,9 @@
 @use '@angular/material' as mat;
 
 @mixin solid-skeleton-message-list-theme($theme) {
-  $background: map-get($theme, background);
+  $color-config: mat.get-color-config($theme);
+  $background: map-get($color-config, background);
+  $primary: map-get($color-config, app-primary);
   solid-skeleton-message-list {
     mat-list-item:not(:last-child) {
       border-bottom: 1px solid
@@ -9,10 +11,10 @@
     }
 
     a:link {
-      color: mat-color($app-primary, 600);
+      color: mat.get-color-from-palette($app-primary, 600);
     }
     a:visited {
-      color: mat-color($app-primary, 900);
+      color: mat.get-color-from-palette($app-primary, 900);
     }
   }
 }

@@ -7,25 +7,25 @@
 </mat-form-field>
 <mat-list *ngIf="GlossaryEntries | async as state">
   <ng-container *ngFor="let kvp of state.sections">
-    <h3 mat-subeader>{{ kvp[0] }}</h3>
+    <h3 mat-subheader>{{ kvp[0] }}</h3>
     <mat-list-item
       *ngFor="let entryId of kvp[1]"
       solidGlossaryEntry
       [refId]="entryId"
     >
-      <span class="mat-body-strong entry-header" mat-line>{{
+      <span class="mat-body-strong entry-header" matListItemTitle>{{
         state.entries[entryId].term
       }}</span>
       <div
         [data]="state.entries[entryId].text"
         markdown
         [inline]="true"
-        mat-line
+        matListItemLine
       ></div>
       <span
         class="links"
         *ngIf="state.entries[entryId].links.length > 0"
-        mat-line
+        matListItemLine
         >&rarr;<a
           (click)="followRef(refId)"
           *ngFor="let refId of state.entries[entryId].links; let i = index"

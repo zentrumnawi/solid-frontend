@@ -4,7 +4,7 @@
 
   mat-tab-group {
     ::ng-deep {
-      .mat-tab-header {
+      .mat-mdc-tab-header {
         box-shadow: 0px 4px 2px -2px rgb(0 0 0 / 20%);
         height: 56px;
         border-bottom: 0;
@@ -14,13 +14,15 @@
         width: calc(100% - 56px);
         z-index: 999;
       }
-      .mat-tab-label {
+
+      .mat-mdc-tab {
         height: 56px;
       }
-      .mat-tab-body-wrapper {
+
+      .mat-mdc-tab-body-wrapper {
         position: relative;
         margin-top: 40px;
-        .mat-list {
+        .mat-mdc-list {
           margin-top: 1.5em;
         }
       }

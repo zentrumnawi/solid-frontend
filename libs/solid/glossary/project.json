@@ -6,12 +6,10 @@
   "prefix": "solid-glossary",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/solid/glossary/tsconfig.lib.json",
-        "project": "libs/solid/glossary/ng-package.json",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
-        "updateBuildableProjectDepsInPackageJson": true
+        "project": "libs/solid/glossary/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -23,25 +21,25 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "libs/solid/glossary/src/**/*.ts",
-          "libs/solid/glossary/src/**/*.html"
+          "libs/solid/glossary/src/**/*.html",
+          "libs/solid/glossary/package.json"
         ]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "libs/solid/glossary/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/solid/glossary/jest.config.ts"
       },
       "outputs": ["{workspaceRoot}/coverage/libs/solid/glossary"]
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "styleext": "scss"
     }
   }

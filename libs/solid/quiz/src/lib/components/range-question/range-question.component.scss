@@ -4,13 +4,14 @@
   grid-template-rows: auto;
   place-items: center;
   margin: 0px 4px;
+  z-index: 0;
 }
 
 .minTick {
   content: '';
   grid-row-start: 2;
   justify-self: start;
-  transform: translateX(2px) translateY(-37px);
+  transform: translateX(0px) translateY(-40px);
   grid-column-start: 1;
   height: 18px;
   width: 7px;
@@ -31,19 +32,20 @@
   font-size: 14px;
   font-weight: bold;
   grid-row-start: 2;
-  transform: translateX(-4px);
+  transform: translateX(6px);
 }
 
 .maxTick {
   content: '';
   border-right: 0px;
   grid-row-start: 2;
-  transform: translateX(-7px) translateY(-37px);
+  transform: translateX(4px) translateY(-40px);
   justify-self: end;
   grid-column-start: 3;
   height: 18px;
   width: 7px;
   background-color: lightgray;
+  z-index: 1;
 }
 
 .feedback-container {
@@ -68,52 +70,44 @@
 }
 
 ::ng-deep .range-container {
-  .mat-slider {
+  .mat-mdc-slider {
     min-width: 100%;
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
+    z-index: 2;
   }
 
-  .mat-slider-wrapper {
-    top: 24px;
-  }
-
-  .mat-slider-horizontal .mat-slider-track-wrapper {
-    height: 6px;
-  }
-
-  .mat-slider.mat-slider-horizontal .mat-slider-track-background {
-    height: 100%;
-    background-color: lightgray;
-  }
-
-  .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  .mdc-slider__track--inactive {
     height: 100%;
   }
 
-  .mat-slider.mat-accent .mat-slider-thumb {
+  .mdc-slider__track--active {
+    height: 100%;
+  }
+
+  .mdc-slider__thumb-knob {
     background-color: white;
     height: 26px;
     width: 26px;
     bottom: -15px;
-    border: solid 3px lightgray;
-    transform: scale(0.75);
+    //border: solid 3px lightgray;
+    //transform: scale(0.75);
   }
 
-  .mat-slider:not(
-      .mat-slider-disabled
+  .mat-mdc-slider:not(
+      .mdc-slider--disabled
     ).cdk-focused.mat-slider-thumb-label-showing
     .mat-slider-thumb {
     transform: scale(0.75);
   }
 
-  .mat-slider.mat-slider-min-value.mat-slider-thumb-label-showing
+  .mat-mdc-slider.mat-slider-min-value.mat-slider-thumb-label-showing
     .mat-slider-thumb {
     border-color: lightgray !important;
   }
 
-  .mat-slider-horizontal .mat-slider-thumb-label {
+  .mat-mdc-slider-horizontal .mat-mdc-slider-thumb-label {
     top: -45px;
   }
 }

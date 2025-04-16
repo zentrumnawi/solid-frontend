@@ -68,7 +68,7 @@
         font-size: 11px;
         margin-bottom: 5px;
 
-        .mat-slide-toggle-bar {
+        .mdc-switch__track {
           transform: scale(0.9);
         }
 
@@ -78,7 +78,7 @@
       }
     }
 
-    .mat-card-header-text {
+    .mat-mdc-card-header-text {
       display: grid;
       margin: 0;
     }
@@ -86,7 +86,7 @@
     .header {
       width: 100%;
       display: flex;
-      align-items: center;
+      margin-top: 10px;
       margin-bottom: 10px;
 
       .image {
@@ -107,6 +107,9 @@
     .content {
       font-size: 14px;
     }
+
+    color: black;
+    margin-bottom: 10px;
   }
 
   .toggle-container {
@@ -122,6 +125,7 @@
       width: 100%;
       border-radius: 5px;
       font-size: 12px;
+      border: 2px solid #4d59a8;
     }
   }
 }

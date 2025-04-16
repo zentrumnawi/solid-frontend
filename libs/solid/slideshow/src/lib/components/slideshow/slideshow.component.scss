@@ -1,5 +1,3 @@
-@import '@angular/material/theming';
-
 .slideshow-container {
   display: flex;
   flex-direction: column;
@@ -146,17 +144,14 @@ div.page-images {
       }
     }
   }
-
   mat-card {
     min-width: 200px;
-
     mat-card-header {
       ::ng-deep {
-        div.mat-card-header-text {
+        div.mat-mdc-card-header-text {
           margin: 0;
         }
       }
-
       mat-card-title {
         font-size: 16px;
       }
@@ -264,7 +259,7 @@ div.page-images {
 
 mat-progress-bar {
   ::ng-deep {
-    .mat-progress-bar-buffer {
+    mdc-linear-progress__buffer {
       background-color: white;
     }
   }
