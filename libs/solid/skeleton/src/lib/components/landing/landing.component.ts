@@ -22,15 +22,15 @@ import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { LandingBannerDialogComponent } from '../landing-banner-dialog/landing-banner-dialog.component';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatLegacySlideToggleChange as MatSlideToggleChange } from '@angular/material/legacy-slide-toggle';
 import { GridColumns } from '../../directives/grid-cols.directive';
 import { MessageModel, MessageType } from '../../models/message.model';
 import { MessagesService } from '../../services/messages.service';
 
 export const SOLID_SKELETON_HACKY_INJECTION = new InjectionToken<() => void>(
-  'solid-skeleton-hacky-injection'
+  'solid-skeleton-hacky-injection',
 );
 
 @Component({
@@ -75,11 +75,11 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     private introService: IntroService,
     private landingDialog: MatDialog,
     private menuState: MenuState,
-    private messagesService: MessagesService
+    private messagesService: MessagesService,
   ) {
     iconRegistry.addSvgIcon(
       'glossary_custom',
-      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossaryLogo)
+      sanitizer.bypassSecurityTrustResourceUrl(coreConfig.glossaryLogo),
     );
   }
 

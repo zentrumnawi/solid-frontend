@@ -20,10 +20,10 @@ import { SolidCoreModule } from '@zentrumnawi/solid-core';
 import { SolidSkeletonModule } from '@zentrumnawi/solid-skeleton';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { PrivacyComponent } from './privacy/privacy.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatListModule } from '@angular/material/list';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { coreConfig } from './solid-core-config';
 import { skeletonConfig } from './solid-skeleton-config';
 import { InfoPageContentComponent } from './info-page-content/info-page-content.component';
@@ -60,7 +60,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     SolidSkeletonModule.forRoot(skeletonConfig),
     RouterModule.forRoot([], {
       onSameUrlNavigation: 'reload',
-      relativeLinkResolution: 'legacy',
     }),
     MatButtonModule,
     MatCardModule,
@@ -82,7 +81,7 @@ export class AppModule {
     const addIcon = (name: string) =>
       registry.addSvgIcon(
         name,
-        url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`)
+        url.bypassSecurityTrustResourceUrl(`assets/svg/${name}.svg`),
       );
     addIcon('icon');
     addIcon('slideshow');

@@ -39,7 +39,7 @@
 
       if (points.length < 4) {
         console.error(
-          'THREE.QuickHull: The algorithm needs at least four points.'
+          'THREE.QuickHull: The algorithm needs at least four points.',
         );
       }
 
@@ -355,7 +355,7 @@
             Face.create(v0, v1, v2),
             Face.create(v3, v1, v0),
             Face.create(v3, v2, v1),
-            Face.create(v3, v0, v2)
+            Face.create(v3, v0, v2),
           );
 
           // set the twin edge
@@ -378,7 +378,7 @@
             Face.create(v0, v2, v1),
             Face.create(v3, v0, v1),
             Face.create(v3, v1, v2),
-            Face.create(v3, v2, v0)
+            Face.create(v3, v2, v0),
           );
 
           // set the twin edge

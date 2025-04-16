@@ -10,7 +10,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { SOLID_CORE_CONFIG, SolidCoreConfig } from '../../solid-core-config';
 import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dialog.component';
 
@@ -43,7 +43,7 @@ export class AudioToolbarComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     @Inject(SOLID_CORE_CONFIG) public coreConfig: SolidCoreConfig,
     private _dialog: MatDialog,
-    private _breakpointObsever: BreakpointObserver
+    private _breakpointObsever: BreakpointObserver,
   ) {}
 
   ngOnInit(): void {

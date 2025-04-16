@@ -124,7 +124,7 @@ export const defaultSkeletonConfig: Omit<
       matIcon: 'help',
       moduleImport: () =>
         import('@zentrumnawi/solid-slideshow').then(
-          (m) => m.SolidSlideshowModule
+          (m) => m.SolidSlideshowModule,
         ),
     },
     info: {

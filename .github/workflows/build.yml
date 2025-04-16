@@ -9,26 +9,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Check Yarn installation
+        run: |
+          which yarn || echo "yarn not found"
+          yarn --version && echo "Yarn version: $(yarn --version)" || echo "yarn not installed"
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
 
       - name: Install packages
         run: yarn install
@@ -45,19 +53,8 @@ jobs:
       - name: build - staging
         run: yarn nx run-many --target=build --all --parallel --configuration=staging
 
-      - name: Deploy planty-staging
-        uses: appleboy/scp-action@v0.0.10
-        with:
-          host: ${{ secrets.SERVER }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          rm: true
-          source: 'dist/apps/planty'
-          target: '${{ secrets.PLANTY_STAGING_DIRECTORY }}'
-          strip_components: 3
-
       - name: Deploy geomat-staging
-        uses: appleboy/scp-action@v0.0.10
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER }}
           username: ${{ secrets.USER }}
@@ -65,4 +62,20 @@ jobs:
           rm: true
           source: 'dist/apps/geomat'
           target: '${{ secrets.GEOMAT_STAGING_DIRECTORY }}'
+          timeout: 2m
+          strip_components: 3
+
+      - name: Wait for two minutes
+        run: sleep 180
+
+      - name: Deploy planty-staging
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: 'dist/apps/planty'
+          target: '${{ secrets.PLANTY_STAGING_DIRECTORY }}'
+          timeout: 2m
           strip_components: 3

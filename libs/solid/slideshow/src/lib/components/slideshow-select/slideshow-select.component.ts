@@ -47,7 +47,7 @@ export class SlideshowSelectComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(SOLID_SLIDESHOW_APP_ROUTING_CONFIG) public routingConfig: any,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {

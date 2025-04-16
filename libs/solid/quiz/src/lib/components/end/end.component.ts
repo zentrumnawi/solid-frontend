@@ -58,7 +58,7 @@ export class EndComponent implements OnDestroy {
             feedbacks[Math.floor(Math.random() * feedbacks.length)];
           this.FeedbackText = this.FeedbackText.replace(
             '{{correctPercentage}}',
-            Math.round(100 * this.correctPercentage).toString(10)
+            Math.round(100 * this.correctPercentage).toString(10),
           );
         }
       });

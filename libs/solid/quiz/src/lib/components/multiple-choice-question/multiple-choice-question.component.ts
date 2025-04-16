@@ -6,7 +6,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatLegacyCheckboxChange as MatCheckboxChange } from '@angular/material/legacy-checkbox';
 import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
 
 @Component({
@@ -35,7 +35,7 @@ export class MultipleChoiceQuestionComponent implements OnChanges {
       this.selectedAnswers.push(answer.id);
     } else {
       this.selectedAnswers = this.selectedAnswers.filter(
-        (id) => id !== answer.id
+        (id) => id !== answer.id,
       );
     }
   }

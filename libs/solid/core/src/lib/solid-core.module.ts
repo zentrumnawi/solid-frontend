@@ -12,17 +12,18 @@ import { TitleService } from './services/title.service';
 import { MarkdownComponent, MediaComponent } from './components';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatLegacySliderModule as MatSliderModule } from '@angular/material/legacy-slider';
 import { MediaDialogComponent } from './components/media-dialog/media-dialog.component';
 import { MediaErrorDialogComponent } from './components/media-error-dialog/media-error-dialog.component';
 import { MediaDetailComponent } from './components/media-detail/media-detail.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MediaToolbarComponent } from './components/media-toolbar/media-toolbar.component';
 import { AudioToolbarComponent } from './components/audio-toolbar/audio-toolbar.component';
 import { AudioIconComponent } from './components/audio-icon/audio-icon.component';
 import { MEDIA_DIALOG_TOKEN } from './media-dialog-token';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MEDIA_DIALOG_TOKEN } from './media-dialog-token';
     MatDialogModule,
     ScrollingModule,
     MatSliderModule,
+    MatTooltipModule,
   ],
   exports: [
     CommonModule,
@@ -55,6 +57,7 @@ import { MEDIA_DIALOG_TOKEN } from './media-dialog-token';
     MarkdownComponent,
     MediaComponent,
     ScrollingModule,
+    MatTooltipModule,
   ],
   providers: [MarkdownService, TitleService],
 })
@@ -63,7 +66,7 @@ export class SolidCoreModule {
   constructor(title: TitleService) {}
 
   public static forRoot(
-    config: SolidCoreConfig
+    config: SolidCoreConfig,
   ): ModuleWithProviders<SolidCoreModule> {
     return {
       ngModule: SolidCoreModule,
