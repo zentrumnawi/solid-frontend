@@ -1,6 +1,6 @@
 {
   "name": "zentrumnawi",
-  "version": "4.4.0",
+  "version": "4.3.1",
   "packageManager": "yarn@4.5.3",
   "scripts": {
     "ng": "nx",
