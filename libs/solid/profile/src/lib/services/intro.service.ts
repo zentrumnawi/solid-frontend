@@ -6,7 +6,7 @@ import introJs from 'intro.js';
 
 @Injectable({ providedIn: 'root' })
 export class IntroService {
-  introProfile: any;
+  introProfile!: introJs.IntroJs;
   location: string;
 
   constructor(@Inject(SOLID_CORE_CONFIG) public config: SolidCoreConfig) {
@@ -18,7 +18,7 @@ export class IntroService {
     return new Navigate([url]);
   }
 
-  profileTour(callback: (target: any) => void) {
+  profileTour(callback: (target: HTMLElement) => void) {
     this.introProfile = introJs();
     this.introProfile
       .setOptions({
