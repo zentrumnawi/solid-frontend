@@ -27,6 +27,7 @@ import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import type { Input as HammerInput } from 'hammerjs';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -235,7 +236,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.filterSubscription = this.Filter.valueChanges.subscribe((_) =>
+    this.filterSubscription = this.Filter.valueChanges.subscribe(() =>
       this.FilterValue.next(this.Filter.value),
     );
   }
@@ -244,55 +245,73 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.calculateLayout();
 
     this.profileSubscription = this.profile$.subscribe((res) => {
-      if (res.length != 0) {
-        if (
-          localStorage.getItem('hide_profile_tour') == 'false' ||
-          localStorage.getItem('hide_profile_tour') == null
-        ) {
-          setTimeout(() => {
-            this.introService.profileTour((_targetElement: any) => {
-              try {
-                const id = _targetElement.id;
-                const treeNodeLocation =
-                  this.coreConfig.profileTour.location.treeNode;
-                const treeLocation =
-                  this.coreConfig.profileTour.location.profileTree;
-                this.collapseTree = false;
-                if (id != 'profile')
-                  setTimeout(() => {
-                    this.introService.introProfile.refresh(true);
-                  }, 365);
-                if (id == '') {
-                  if (this._route.url == treeLocation)
-                    this.navigateTo(treeNodeLocation);
-                  if (this._route.url == treeNodeLocation) {
-                    const steps = this.coreConfig.profileTour.steps;
-                    const currentStep =
-                      this.introService.introProfile._currentStep;
-                    steps.splice(currentStep, 1);
-                    setTimeout(() => {
-                      this.introService.introProfile
-                        .goToStep(currentStep)
-                        .start();
-                    }, 0.1);
-                  }
-                } else if (id == 'profile-view' || id == 'profile') {
-                  if (this._route.url != treeLocation)
-                    this.navigateTo(treeLocation);
-                  this.collapseTree = true;
-                }
-                setTimeout(() => {
-                  this.introService.introProfile.refresh(true);
-                }, 0.1);
-              } catch (error) {
-                return;
-              }
+      if (res.length === 0) return;
+
+      const shouldShowTour =
+        localStorage.getItem('hide_profile_tour') === 'false' ||
+        localStorage.getItem('hide_profile_tour') === null;
+      if (shouldShowTour) {
+        setTimeout(() => {
+          const initialId = this._activatedRoute.snapshot.paramMap.get('id');
+
+          this.introService.profileTour((element: HTMLElement) => {
+            try {
+              this.handleTourStep(element, initialId);
+            } catch (error) {
               return;
-            });
-          }, 800);
-        }
+            }
+          });
+        }, 800);
       }
     });
+  }
+
+  private async handleTourStep(element: HTMLElement, initialId: string | null) {
+    const id = element.id;
+    const { treeNode: treeNodeLocation, profileTree: treeLocation } =
+      this.coreConfig.profileTour.location;
+
+    if (id !== 'profile') {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      this.refreshTourUI();
+    }
+
+    if (id === '' && !initialId) {
+      this.handleEmptyStep(treeLocation, treeNodeLocation);
+    }
+
+    // Handle profile view step
+    else if ((id === 'profile-view' || id === 'profile') && !initialId) {
+      if (this._route.url !== treeLocation) {
+        await this.navigateTo(treeLocation);
+        this.refreshTourUI();
+        this.collapseTree = true;
+      }
+    }
+
+    this.refreshTourUI();
+  }
+
+  private refreshTourUI(delay = 400) {
+    setTimeout(() => {
+      this.introService.introProfile.refresh();
+    }, delay);
+  }
+
+  private async handleEmptyStep(
+    treeLocation: string,
+    treeNodeLocation: string,
+  ) {
+    if (this._route.url === treeLocation) {
+      await this.navigateTo(treeNodeLocation);
+    }
+
+    this.refreshTourUI();
+
+    const currentStep = this.introService.introProfile.currentStep();
+    if (currentStep) {
+      this.introService.introProfile.start().goToStep(currentStep + 1);
+    }
   }
 
   public ngOnDestroy(): void {
@@ -367,7 +386,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 10);
   }
 
-  public onPanEnd($event: any) {
+  public onPanEnd($event: HammerInput) {
     if ($event.deltaX > 100 && this.SwipeLeft) {
       $event.preventDefault();
       this.swipeLeft();
@@ -401,7 +420,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public getProfileShort(profile: any): ProfileShort {
+  public getProfileShort(profile: Profile | undefined): ProfileShort {
     const profileId = profile?.id || -1;
     const profileType = profile?.def_type;
     return { id: profileId, type: profileType };
