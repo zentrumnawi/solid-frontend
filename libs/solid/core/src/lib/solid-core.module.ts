@@ -23,6 +23,7 @@ import { MediaToolbarComponent } from './components/media-toolbar/media-toolbar.
 import { AudioToolbarComponent } from './components/audio-toolbar/audio-toolbar.component';
 import { AudioIconComponent } from './components/audio-icon/audio-icon.component';
 import { MEDIA_DIALOG_TOKEN } from './media-dialog-token';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MEDIA_DIALOG_TOKEN } from './media-dialog-token';
     MatDialogModule,
     ScrollingModule,
     MatSliderModule,
+    MatTooltipModule,
   ],
   exports: [
     CommonModule,
@@ -55,6 +57,7 @@ import { MEDIA_DIALOG_TOKEN } from './media-dialog-token';
     MarkdownComponent,
     MediaComponent,
     ScrollingModule,
+    MatTooltipModule,
   ],
   providers: [MarkdownService, TitleService],
 })
