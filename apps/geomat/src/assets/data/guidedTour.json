@@ -70,8 +70,8 @@
 
   "profile": {
     "location": {
-      "treeNode": "/steckbriefe/mineraltype/100",
-      "profileTree": "/steckbriefe/"
+      "treeNode": "/steckbriefe/tree/100",
+      "profileTree": "/steckbriefe/tree/"
     },
     "steps": [
       {
