@@ -32,9 +32,9 @@
   </form>
 </div>
 <div class="additional-container">
-  <mat-label class="location" *ngIf="getLocation()"
-    >Fehler gefunden in: {{ getLocation() }}</mat-label
-  >
+  <mat-label class="location" *ngIf="getLocation()">
+    Fehler gefunden in: {{ getLocation() }}
+  </mat-label>
   <mat-checkbox [(ngModel)]="privacyChecked">
     Hiermit nehme ich die
     <a class="privacy-link" (click)="onPrivacyClick()">Datenschutzerklärung</a>
