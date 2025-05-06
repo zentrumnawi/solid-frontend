@@ -83,14 +83,24 @@ mat-grid-tile {
   }
 }
 
+.button-container,
+.toggle-container {
+  padding: 0 16px;
+}
+
+.button-container:last-child {
+  padding-bottom: 16px;
+}
+
 .button-container {
   display: flex;
   justify-content: center;
   margin-top: 19px;
-
+  width: 100%;
   .closeBtn {
     width: 100%;
     border-radius: 5px;
     font-size: 13px;
+    border: 2px solid #4d59a8;
   }
 }
