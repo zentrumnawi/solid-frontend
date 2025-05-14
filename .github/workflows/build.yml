@@ -65,10 +65,6 @@ jobs:
           timeout: 2m
           strip_components: 3
 
-      - name: Reset SSH Connection
-        run: |
-          ssh -O exit ${{ secrets.USER }}@${{ secrets.SERVER }} || true
-
       - name: Deploy planty-staging
         uses: appleboy/scp-action@v0.1.7
         with:
