@@ -12,6 +12,7 @@ import {
   LoadDefinition,
   LoadDefinitionSwagger,
   LoadProfiles,
+  LoadProfilesFlat,
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -198,17 +199,30 @@ export class ProfileState {
           return mapit(response);
         }),
         tap((nodes) => {
-          const mapIt = (result: Profile[], value: TreeNode[]) => {
-            for (const v of value) {
-              result.push(...mapIt([], v.children));
-              result.push(...v.profiles);
-            }
-            return result;
-          };
-          const flat = mapIt([], nodes);
-          ctx.patchState({ nodes, profiles: flat });
+          ctx.patchState({ nodes });
         }),
-      );
+        );
+  }
+
+  @Action(LoadProfilesFlat)
+  public setProfilesFlat(ctx: StateContext<ProfileStateModel>) {
+    if (ctx.getState().profiles.length !== 0) {
+      return;
+    }
+    return this.http.get<any[]>(`${this._config.apiUrl}/flat-profiles/`).pipe(   
+      map((response: any[]) => response.map(profile => ({
+        ...profile,
+        type: 'profile',
+        name: profile.general_information?.name,
+        sub_name: profile.general_information?.sub_name,
+        mediaObjects: profile.media_objects
+          .sort((a: any, b: any) => a.profile_position - b.profile_position)
+          .map((m: any) => new MediaModel(m))
+      }) as Profile)),
+      tap(profiles => {
+        ctx.patchState({ profiles });
+      })
+    );
   }
 
   @Action(LoadDefinition)
