@@ -1,5 +1,5 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Profile, TreeNode, TreeNodeApi } from './profile.model';
+import { Profile, TreeNode, TreeNodeApi, ProfileApiResponse } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -12,6 +12,7 @@ import {
   LoadDefinition,
   LoadDefinitionSwagger,
   LoadProfiles,
+  SearchProfiles,
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -22,6 +23,7 @@ export interface ProfileStateModel {
   nodes: TreeNode[];
   definition: MultiProfiles[];
   definition_swagger: MultiProfiles[];
+  searchResults: Profile[];
 }
 
 @State<ProfileStateModel>({
@@ -29,6 +31,7 @@ export interface ProfileStateModel {
   defaults: {
     profiles: [],
     nodes: [],
+    searchResults: [],
     definition: [],
     definition_swagger: [],
   },
@@ -90,6 +93,11 @@ export class ProfileState {
   @Selector()
   static selectFlat(state: ProfileStateModel): Profile[] {
     return [...state.profiles];
+  }
+
+  @Selector()
+  static selectSearchResults(state: ProfileStateModel): Profile[] {
+    return [...state.searchResults];
   }
 
   private static findProfileDeep(
@@ -209,6 +217,24 @@ export class ProfileState {
           ctx.patchState({ nodes, profiles: flat });
         }),
       );
+  }
+
+  @Action(SearchProfiles)
+  searchProfiles(ctx: StateContext<ProfileStateModel>, { searchTerm }: SearchProfiles) {
+    return this.http.get<ProfileApiResponse[]>(
+      `${this._config.apiUrl}/profile-search/search/?q=${searchTerm}`
+    ).pipe(
+      map(response => response.map(profile => ({
+        ...profile,
+        type: 'profile',
+        name: profile.general_information.name,
+        sub_name: profile.general_information.sub_name,
+        mediaObjects: profile.media_objects
+          .sort((a, b) => a.profile_position - b.profile_position)
+          .map(m => new MediaModel(m))
+      }) as Profile)),
+      tap(profiles => ctx.patchState({ searchResults: profiles }))
+    );
   }
 
   @Action(LoadDefinition)

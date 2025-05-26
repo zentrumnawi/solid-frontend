@@ -34,3 +34,13 @@ export interface ProfileShort {
   id: number;
   type?: string;
 }
+
+export interface ProfileApiResponse {
+  id: number;
+  def_type: string;
+  general_information: {
+    name: string;
+    sub_name?: string;
+  };
+  media_objects: MediaObjectModel[];
+}
