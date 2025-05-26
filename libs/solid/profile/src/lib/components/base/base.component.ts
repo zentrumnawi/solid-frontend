@@ -15,13 +15,14 @@ import { ProfileState } from '../../state/profile.state';
 import { TreeNode, Profile, ProfileShort } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
-import { map } from 'rxjs/operators';
+import { map, debounceTime } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
   LoadDefinition,
   LoadDefinitionSwagger,
   LoadProfiles,
+  SearchProfiles,
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
@@ -91,6 +92,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public timeOut_1: any;
   public timeOut_2: any;
   public collapseTree = false;
+  public profilesFlatFiltered: Profile[] = [];
   @Output() profileTitle = new EventEmitter<string>();
 
   @Select(ProfileState.selectProfile) profile$!: Observable<any>;
@@ -99,6 +101,9 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public mainSubscription!: Subscription;
   public filterSubscription!: Subscription;
   public profileSubscription!: Subscription;
+
+  @Select(ProfileState.selectSearchResults)
+  public $searchResults!: Observable<Profile[]>;
 
   constructor(
     private _store: Store,
@@ -163,15 +168,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
           const profileAndNode = selector(profileId, profileType);
 
-          // filter profiles
-          const regExp = new RegExp(filterStr, 'i');
-          const profilesFlatFiltered = flat.filter((p) => {
-            if (p.name.match(regExp)) {
-              return true;
-            }
-            if (p.sub_name) {
-              return !!p.sub_name.match(regExp);
-            }
+          this.$searchResults?.subscribe((res) => {
+            this.profilesFlatFiltered = res.length > 0 ? res : flat;
           });
 
           // no profile selected
@@ -179,7 +177,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             return {
               selectedProfile: null,
               selectedNode: null,
-              profilesFlatFiltered,
+              profilesFlatFiltered: this.profilesFlatFiltered,
               swipeRight: { id: -1 },
               swipeLeft: { id: -1 },
             };
@@ -191,15 +189,15 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             id: -1,
           };
           if (this.View === 'grid' || filterStr !== '') {
-            const flatIndex = profilesFlatFiltered.findIndex(
+            const flatIndex = this.profilesFlatFiltered.findIndex(
               (p) => p.id === profileId && p.def_type === profileType,
             );
             if (flatIndex !== 0) {
-              const profile = profilesFlatFiltered[flatIndex - 1];
+              const profile = this.profilesFlatFiltered[flatIndex - 1];
               swipeLeft = this.getProfileShort(profile);
             }
-            if (flatIndex !== profilesFlatFiltered.length - 1) {
-              const profile = profilesFlatFiltered[flatIndex + 1];
+            if (flatIndex !== this.profilesFlatFiltered.length - 1) {
+              const profile = this.profilesFlatFiltered[flatIndex + 1];
               swipeRight = this.getProfileShort(profile);
             }
           } else {
@@ -223,7 +221,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           return {
             selectedProfile: profileAndNode.profile,
             selectedNode: profileAndNode.node,
-            profilesFlatFiltered,
+            profilesFlatFiltered: this.profilesFlatFiltered,
             swipeRight,
             swipeLeft,
           };
@@ -236,8 +234,10 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.filterSubscription = this.Filter.valueChanges.subscribe(() =>
-      this.FilterValue.next(this.Filter.value),
+    this.filterSubscription = this.Filter.valueChanges.pipe(
+      debounceTime(300)
+    ).subscribe(filterStr => 
+      this._store.dispatch(new SearchProfiles(filterStr))
     );
   }
 
