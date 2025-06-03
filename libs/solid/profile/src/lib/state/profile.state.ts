@@ -1,5 +1,10 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Profile, TreeNode, TreeNodeApi } from './profile.model';
+import {
+  Profile,
+  TreeNode,
+  TreeNodeApi,
+  ProfileApiResponse,
+} from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -12,6 +17,7 @@ import {
   LoadDefinition,
   LoadDefinitionSwagger,
   LoadProfiles,
+  LoadProfilesFlat,
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -198,15 +204,35 @@ export class ProfileState {
           return mapit(response);
         }),
         tap((nodes) => {
-          const mapIt = (result: Profile[], value: TreeNode[]) => {
-            for (const v of value) {
-              result.push(...mapIt([], v.children));
-              result.push(...v.profiles);
-            }
-            return result;
-          };
-          const flat = mapIt([], nodes);
-          ctx.patchState({ nodes, profiles: flat });
+          ctx.patchState({ nodes });
+        }),
+      );
+  }
+
+  @Action(LoadProfilesFlat)
+  public setProfilesFlat(ctx: StateContext<ProfileStateModel>) {
+    if (ctx.getState().profiles.length !== 0) {
+      return;
+    }
+    return this.http
+      .get<ProfileApiResponse[]>(`${this._config.apiUrl}/flat-profiles/`)
+      .pipe(
+        map((response) =>
+          response.map(
+            (profile) =>
+              ({
+                ...profile,
+                type: 'profile',
+                name: profile.general_information.name,
+                sub_name: profile.general_information.sub_name,
+                mediaObjects: profile.media_objects
+                  .sort((a, b) => a.profile_position - b.profile_position)
+                  .map((m) => new MediaModel(m)),
+              }) as Profile,
+          ),
+        ),
+        tap((profiles) => {
+          ctx.patchState({ profiles });
         }),
       );
   }
