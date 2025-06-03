@@ -204,7 +204,15 @@ export class ProfileState {
           return mapit(response);
         }),
         tap((nodes) => {
-          ctx.patchState({ nodes });
+          const mapIt = (result: Profile[], value: TreeNode[]) => {
+            for (const v of value) {
+              result.push(...mapIt([], v.children));
+              result.push(...v.profiles);
+            }
+            return result;
+          };
+          const flat = mapIt([], nodes);
+          ctx.patchState({ nodes, profiles: flat });
         }),
       );
   }
