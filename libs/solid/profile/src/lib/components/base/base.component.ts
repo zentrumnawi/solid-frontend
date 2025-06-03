@@ -22,7 +22,6 @@ import {
   LoadDefinition,
   LoadDefinitionSwagger,
   LoadProfiles,
-  LoadProfilesFlat,
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
@@ -117,7 +116,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this._store.dispatch([
       new LoadDefinition(),
       new LoadProfiles(),
-      new LoadProfilesFlat(),
       // Load definitions from OpenAPI 2.0
       new LoadDefinitionSwagger(),
     ]);
