@@ -216,34 +216,6 @@ export class ProfileState {
       );
   }
 
-  @Action(LoadProfilesFlat)
-  public setProfilesFlat(ctx: StateContext<ProfileStateModel>) {
-    if (ctx.getState().profiles.length !== 0) {
-      return;
-    }
-    return this.http
-      .get<ProfileApiResponse[]>(`${this._config.apiUrl}/flat-profiles/`)
-      .pipe(
-        map((response) =>
-          response.map(
-            (profile) =>
-              ({
-                ...profile,
-                type: 'profile',
-                name: profile.general_information.name,
-                sub_name: profile.general_information.sub_name,
-                mediaObjects: profile.media_objects
-                  .sort((a, b) => a.profile_position - b.profile_position)
-                  .map((m) => new MediaModel(m)),
-              }) as Profile,
-          ),
-        ),
-        tap((profiles) => {
-          ctx.patchState({ profiles });
-        }),
-      );
-  }
-
   @Action(LoadDefinition)
   public loadDefinition(ctx: StateContext<ProfileStateModel>) {
     if (ctx.getState().definition.length !== 0) {
