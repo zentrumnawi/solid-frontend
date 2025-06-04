@@ -1,6 +1,6 @@
 mat-list {
   padding: 0;
-  display: inline-block;
+  display: block;
   height: calc(100vh - 119px);
   width: 300px;
   overflow-y: auto;
@@ -60,3 +60,13 @@ mat-form-field {
     }
   }
 }
+
+.scrollable-list {
+  overflow-y: auto;
+  scrollbar-color: #9999 #9993;
+}
+
+
+
+
+
