@@ -7,6 +7,10 @@ export class SearchProfiles {
   constructor(public searchTerm: string) {}
 }
 
+export class LoadProfilesFlat {
+  static readonly type = '[Profile] LoadProfilesFlat';
+}
+
 export class LoadDefinition {
   static readonly type = '[Profile] LoadDefinition';
 }
