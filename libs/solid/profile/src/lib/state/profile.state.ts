@@ -152,7 +152,7 @@ export class ProfileState {
         map((response) => {
           const mapit = (input: TreeNodeApi[]): TreeNode[] => {
             return input.map((node: any) => {
-              const multi_profiles = Object.entries(node)
+              let multi_profiles = Object.entries(node)
                 .filter((property: any) => {
                   if (
                     property[0].search('related') !== -1 &&
@@ -180,6 +180,16 @@ export class ProfileState {
                     };
                   });
                 });
+
+              // handle inadvertent case of different types of profiles in the same node
+              if (multi_profiles.length > 1) {
+                multi_profiles = [
+                  multi_profiles.reduce(
+                    (a, b) => (a.length > b.length ? a : b),
+                    [],
+                  ),
+                ];
+              }
 
               return {
                 type: 'category',
