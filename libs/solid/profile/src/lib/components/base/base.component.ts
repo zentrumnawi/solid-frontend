@@ -145,7 +145,15 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         }, 0);
       }
     });
-    
+
+    this.searchResultsSubscription = this.$searchResults?.subscribe((res) => {
+      this.searchResults = res;
+    });
+
+    this.gridProfilesSubscription = this.$gridProfiles?.subscribe((res) => {
+      this.gridProfiles = res;
+    });
+
     this.mainSubscription = combineLatest([
       this.$paramMap,
       this.$queryParams,
@@ -174,18 +182,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           const profileType = this.getProfileType(type);
 
           const profileAndNode = selector(profileId, profileType);
-
-          this.searchResultsSubscription = this.$searchResults?.subscribe(
-            (res) => {
-              this.searchResults = res;
-            },
-          );
-
-          this.gridProfilesSubscription = this.$gridProfiles?.subscribe(
-            (res) => {
-              this.gridProfiles = res;
-            },
-          );
 
           // no profile selected
           if (!profileId || !profileAndNode) {
@@ -281,7 +277,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): void {
     this.calculateLayout();
-    
   }
 
   private async handleTourStep(element: HTMLElement, initialId: string | null) {
