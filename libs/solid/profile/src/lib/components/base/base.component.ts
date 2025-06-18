@@ -127,10 +127,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       // Load definitions from OpenAPI 2.0
       new LoadDefinitionSwagger(),
     ]);
-
-    this.profileTreeSubscription = this.$profilesTree?.subscribe((res) => {
-      if (res.length != 0) this.isLoading = false;
-    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -140,6 +136,16 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.profileTreeSubscription = this.$profilesTree.subscribe((res) => {
+      if (res.length !== 0) {
+        this.isLoading = false;
+
+        setTimeout(() => {
+          this.startTourIfNeeded();
+        }, 0);
+      }
+    });
+    
     this.mainSubscription = combineLatest([
       this.$paramMap,
       this.$queryParams,
@@ -257,29 +263,25 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
+  private startTourIfNeeded() {
+    const shouldShowTour =
+      localStorage.getItem('hide_profile_tour') === 'false' ||
+      localStorage.getItem('hide_profile_tour') === null;
+    if (shouldShowTour) {
+      const initialId = this._activatedRoute.snapshot.paramMap.get('id');
+      this.introService.profileTour((element: HTMLElement) => {
+        try {
+          this.handleTourStep(element, initialId);
+        } catch (error) {
+          return;
+        }
+      });
+    }
+  }
+
   public ngAfterViewInit(): void {
     this.calculateLayout();
-
-    this.profileTreeSubscription = this.$profilesTree?.subscribe((res) => {
-      if (res.length === 0) return;
-
-      const shouldShowTour =
-        localStorage.getItem('hide_profile_tour') === 'false' ||
-        localStorage.getItem('hide_profile_tour') === null;
-      if (shouldShowTour) {
-        setTimeout(() => {
-          const initialId = this._activatedRoute.snapshot.paramMap.get('id');
-
-          this.introService.profileTour((element: HTMLElement) => {
-            try {
-              this.handleTourStep(element, initialId);
-            } catch (error) {
-              return;
-            }
-          });
-        }, 800);
-      }
-    });
+    
   }
 
   private async handleTourStep(element: HTMLElement, initialId: string | null) {
