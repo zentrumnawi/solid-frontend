@@ -177,6 +177,10 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             this.getProfileType(type) === 'wine' ? type : queryParams['view'];
           this.View = view ? view : 'tree';
 
+          if (this.View === 'grid' && this.gridProfiles.length === 0) {
+            this._store.dispatch(new LoadProfilesFlat());
+          }
+
           // select profile
           const profileId = id ? parseInt(id, 10) : undefined;
           const profileType = this.getProfileType(type);

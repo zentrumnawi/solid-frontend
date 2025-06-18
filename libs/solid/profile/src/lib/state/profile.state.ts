@@ -199,7 +199,12 @@ export class ProfileState {
 
               // handle inadvertent case of different types of profiles in the same node
               if (multi_profiles.length > 1) {
-                multi_profiles = [multi_profiles.reduce((a, b) => (a.length > b.length ? a : b), [])];
+                multi_profiles = [
+                  multi_profiles.reduce(
+                    (a, b) => (a.length > b.length ? a : b),
+                    [],
+                  ),
+                ];
               }
 
               return {
