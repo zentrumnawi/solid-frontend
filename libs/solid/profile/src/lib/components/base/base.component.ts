@@ -96,7 +96,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() profileTitle = new EventEmitter<string>();
 
   isLoading = true;
-
+  isLoadingGrid = true;
   public mainSubscription!: Subscription;
   public filterSubscription!: Subscription;
   public profileTreeSubscription!: Subscription;
@@ -152,6 +152,9 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.gridProfilesSubscription = this.$gridProfiles?.subscribe((res) => {
       this.gridProfiles = res;
+      if (res.length > 0) {
+        this.isLoadingGrid = false;
+      }
     });
 
     this.mainSubscription = combineLatest([
@@ -342,10 +345,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @Dispatch()
   public toggleGridTree() {
     this.View = this.View === 'tree' ? 'grid' : 'tree';
-
-    if (this.View === 'grid') {
-      this._store.dispatch(new LoadProfilesFlat());
-    }
 
     if (this.SelectedProfile) {
       return new Navigate(
