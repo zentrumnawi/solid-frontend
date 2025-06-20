@@ -17,6 +17,8 @@ import {
   LoadDefinition,
   LoadDefinitionSwagger,
   LoadProfiles,
+  SearchProfiles,
+  LoadProfilesFlat,
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -27,6 +29,8 @@ export interface ProfileStateModel {
   nodes: TreeNode[];
   definition: MultiProfiles[];
   definition_swagger: MultiProfiles[];
+  searchResults: Profile[];
+  gridProfiles: Profile[];
 }
 
 @State<ProfileStateModel>({
@@ -34,8 +38,10 @@ export interface ProfileStateModel {
   defaults: {
     profiles: [],
     nodes: [],
+    searchResults: [],
     definition: [],
     definition_swagger: [],
+    gridProfiles: [],
   },
 })
 @Injectable()
@@ -95,6 +101,16 @@ export class ProfileState {
   @Selector()
   static selectFlat(state: ProfileStateModel): Profile[] {
     return [...state.profiles];
+  }
+
+  @Selector()
+  static selectSearchResults(state: ProfileStateModel): Profile[] {
+    return [...state.searchResults];
+  }
+
+  @Selector()
+  static selectGridProfiles(state: ProfileStateModel): Profile[] {
+    return [...state.gridProfiles];
   }
 
   private static findProfileDeep(
@@ -213,15 +229,63 @@ export class ProfileState {
           return mapit(response);
         }),
         tap((nodes) => {
-          const mapIt = (result: Profile[], value: TreeNode[]) => {
-            for (const v of value) {
-              result.push(...mapIt([], v.children));
-              result.push(...v.profiles);
-            }
-            return result;
-          };
-          const flat = mapIt([], nodes);
-          ctx.patchState({ nodes, profiles: flat });
+          ctx.patchState({ nodes });
+        }),
+      );
+  }
+
+  @Action(SearchProfiles)
+  searchProfiles(
+    ctx: StateContext<ProfileStateModel>,
+    { searchTerm }: SearchProfiles,
+  ) {
+    return this.http
+      .get<
+        ProfileApiResponse[]
+      >(`${this._config.apiUrl}/profile-search/search/?q=${searchTerm}`)
+      .pipe(
+        map((response) =>
+          response.map(
+            (profile) =>
+              ({
+                ...profile,
+                type: 'profile',
+                name: profile.general_information.name,
+                sub_name: profile.general_information.sub_name,
+                mediaObjects: profile.media_objects
+                  .sort((a, b) => a.profile_position - b.profile_position)
+                  .map((m) => new MediaModel(m)),
+              }) as Profile,
+          ),
+        ),
+        tap((profiles) => ctx.patchState({ searchResults: profiles })),
+      );
+  }
+
+  @Action(LoadProfilesFlat)
+  public setProfilesFlat(ctx: StateContext<ProfileStateModel>) {
+    if (ctx.getState().gridProfiles.length !== 0) {
+      return;
+    }
+    return this.http
+      .get<ProfileApiResponse[]>(`${this._config.apiUrl}/flat-profiles/`)
+      .pipe(
+        map((response) =>
+          response.map(
+            (profile) =>
+              ({
+                ...profile,
+                type: 'profile',
+                name: profile.general_information?.name,
+                sub_name: profile.general_information?.sub_name,
+                mediaObjects: profile.media_objects
+                  .sort((a, b) => a.profile_position - b.profile_position)
+                  .map((m) => new MediaModel(m)),
+              }) as Profile,
+          ),
+        ),
+        tap((profiles) => {
+          ctx.patchState({ gridProfiles: profiles });
         }),
       );
   }
