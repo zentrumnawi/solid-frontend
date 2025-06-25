@@ -4,6 +4,7 @@ import {
   TreeNode,
   TreeNodeApi,
   ProfileApiResponse,
+  LazyTreeNode,
 } from './profile.model';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,6 +18,8 @@ import {
   LoadDefinition,
   LoadDefinitionSwagger,
   LoadProfiles,
+  GetChildren,
+  GetRootNodes,
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -27,6 +30,8 @@ export interface ProfileStateModel {
   nodes: TreeNode[];
   definition: MultiProfiles[];
   definition_swagger: MultiProfiles[];
+  rootNodes: TreeNode[];
+  children: { [id: number]: TreeNode[] };
 }
 
 @State<ProfileStateModel>({
@@ -36,6 +41,8 @@ export interface ProfileStateModel {
     nodes: [],
     definition: [],
     definition_swagger: [],
+    children: {},
+    rootNodes: []
   },
 })
 @Injectable()
@@ -95,6 +102,16 @@ export class ProfileState {
   @Selector()
   static selectFlat(state: ProfileStateModel): Profile[] {
     return [...state.profiles];
+  }
+
+  @Selector()
+  static selectRootNodes(state: ProfileStateModel): TreeNode[] {
+    return [...state.rootNodes];
+  }
+
+  @Selector()
+  static selectChildrenById(state: ProfileStateModel): { [id: number]: TreeNode[] } {
+    return state.children;
   }
 
   private static findProfileDeep(
@@ -195,6 +212,7 @@ export class ProfileState {
                 type: 'category',
                 name: node.name,
                 info: node.info,
+                id: node.id,
                 children: mapit(node.children),
                 profiles: node.profiles
                   ? node.profiles.map((profile: any) => ({
@@ -224,6 +242,60 @@ export class ProfileState {
           ctx.patchState({ nodes, profiles: flat });
         }),
       );
+  }
+
+  @Action(GetChildren)
+  getChildren(
+    ctx: StateContext<ProfileStateModel>,
+    { id }: GetChildren,
+  ) {
+    return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/children/${id}`).pipe(map((children: LazyTreeNode[]) => {
+      return children.map((node: LazyTreeNode) => ({
+        type: 'category',
+        id: node?.id ?? 0,
+        name: node?.name ?? '',
+        has_children: node?.has_children ?? false,
+        expandable: node?.has_children ?? false,
+        info: node?.info ?? '',
+        loaded: false,
+        loading: false,
+        // set children to empty array, so that after lazy-loading children, array can be artificially nested
+        children: [],
+        profiles: [],
+      } as TreeNode));
+    }), tap((children: TreeNode[]) => {
+      ctx.patchState({
+        children: {
+          ...ctx.getState().children,
+          [id]: children,
+        },
+      });
+    }));
+  }
+
+  @Action(GetRootNodes)
+  getRootNodes(ctx: StateContext<ProfileStateModel>) {
+    return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/root-nodes/`).pipe(map((rootNodes: LazyTreeNode[]) => {
+      return rootNodes.map((node: LazyTreeNode) => ({
+        type: 'category',
+        id: node?.id ?? 0,
+        name: node?.name ?? '',
+        has_children: node?.has_children ?? false,
+        expandable: node?.has_children ?? false,
+        info: node?.info ?? '',
+        loaded: false,
+        loading: false,
+        // set children to empty array, so that after lazy-loading children, array can be artificially nested
+        children: [],
+        profiles: [],
+      } as TreeNode));
+    }),
+      tap((rootNodes: TreeNode[]) => {
+        ctx.patchState({
+          rootNodes,
+        });
+      }),
+    );
   }
 
   @Action(LoadDefinition)

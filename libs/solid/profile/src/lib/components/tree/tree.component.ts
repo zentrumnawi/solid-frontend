@@ -18,9 +18,11 @@ import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
 } from '@angular/material/tree';
-import { Observable } from 'rxjs';
-import { Profile, TreeNode } from '../../state/profile.model';
+import { Observable, BehaviorSubject, of, take, map, filter } from 'rxjs';
+import { LazyTreeNode, Profile, TreeNode } from '../../state/profile.model';
+import { GetChildren, GetRootNodes } from '../../state/profile.actions';
 import { Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 import { SelectedDirective } from '../selected.directive';
 import {
@@ -28,6 +30,7 @@ import {
   SolidCoreConfig,
   SOLID_CORE_CONFIG,
 } from '@zentrumnawi/solid-core';
+import { ProfileState } from '../../state/profile.state';
 
 export type FlatTreeNode = EntryNode | CategoryNode;
 
@@ -37,17 +40,23 @@ export interface EntryNode {
   type: 'entry';
   level: number;
   mediaObjects: MediaModel[];
-  expandable: false;
+  expandable: boolean;
   id: number;
   def_type: string;
+  loaded?: boolean;
+  loading?: boolean;
 }
 
 export interface CategoryNode {
   type: 'category';
+  id: number;
   title: string;
   info: string | null;
   level: number;
   expandable: boolean;
+  loaded?: boolean;
+  loading?: boolean;
+  children?: (CategoryNode | EntryNode)[];
 }
 
 @Component({
@@ -61,6 +70,9 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() selectedProfileId?: number;
   @Input() selectedProfileType?: string;
   @Input() profiles!: Observable<TreeNode[]>;
+  @Select(ProfileState.selectRootNodes) rootNodes!: Observable<(TreeNode | Profile)[]>;
+  //@Select(ProfileState.selectChildren) children!: Observable<TreeNode[]>;
+  @Select(ProfileState.selectChildrenById) childrenById$!: Observable<{ [id: number]: TreeNode[] }>;
   @Output() selectProfile = new EventEmitter<
     number | { id: number; type: string }
   >();
@@ -82,6 +94,20 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   private _selectedNode: CategoryNode | EntryNode | null = null;
 
+  dataChange = new BehaviorSubject<(TreeNode | Profile)[]>([]);
+
+  get data(): (TreeNode | Profile)[] {
+    return this.dataChange.value;
+  }
+  set data(value: (TreeNode | Profile)[]) {
+    //this.DataSource.data = value;
+    //this.TreeControl.dataNodes = this._treeFlattener.flattenNodes(value);
+    this.dataChange.next(value);
+    this.DataSource.data = value;
+    // this.TreeControl.dataNodes = this._treeFlattener.flattenNodes(value);
+    // this.dataChange.next(value);
+  }
+
   constructor(
     private _store: Store,
     private _route: ActivatedRoute,
@@ -102,12 +128,22 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       this.TreeControl,
       this._treeFlattener,
     );
+
+    this.dataChange.subscribe(tree => this.DataSource.data = tree);
+
+    // this.rootNodes.subscribe(rootNodes => {
+    //   this._store.dispatch(new GetRootNodes());
+    // });
   }
 
   /** Transform the data to something the tree can read. */
   static transformer(node: TreeNode | Profile, level: number): FlatTreeNode {
     if (node.type === 'category') {
       return {
+        id: node.id,
+        // loaded: node.loaded,
+        // loading: node.loading,
+        // children: node.children,
         title: node.name,
         type: 'category',
         info: node.info,
@@ -141,15 +177,21 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   /** Get the children for the node. */
   static getChildren(node: TreeNode | Profile) {
     if (node.type === 'category') {
-      return [...node.children, ...node.profiles];
-    } else {
-      return null;
+      console.log("returning children", node.children);
+      console.log("of node", node);
+      return node.children ?? [];
     }
+    return null;
   }
 
   public ngOnInit(): void {
-    this.profiles.subscribe((profiles: any) => {
-      this.DataSource.data = profiles;
+    this._store.dispatch(new GetRootNodes()).pipe(take(1)).subscribe(() => {
+      const roots = this._store.selectSnapshot(ProfileState.selectRootNodes);
+      this.dataChange.next(roots);
+      console.log(Array.isArray(roots));
+      console.log(roots);
+      //this.DataSource.data = rootNodes;
+      //this.dataChange.next(rootNodes);
       this.expandSelectedNode();
       if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
     });
@@ -157,46 +199,52 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.selectedElements.changes.subscribe((_) => this.scrollTo());
+    // keep track of expanded nodes ("added")
+    this.TreeControl.expansionModel.changed.subscribe(change => {
+      if (change.added) {
+        console.log("expansion model changed", change.added);
+        // change.added
+        //   .filter(n => n.type === 'category')
+        //   .forEach(node => {
+        //     this.loadChildren(node).then(() => {
+        //       this.onNodeClick(node);
+        //     });
+        //   });
+      }
+    });
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
+    console.log("expanding selected node");
     this.expandSelectedNode();
     if (this.collapseTree) this.TreeControl.collapseAll();
   }
 
   /** Get whether the node has children or not. */
   public hasChild(index: number, node: FlatTreeNode) {
+    console.log("hasChild", node);
     return node.expandable;
   }
 
   public hasNoChild(index: number, node: FlatTreeNode) {
+    console.log("hasNoChild", node);
     return !node.expandable;
   }
 
   onNodeClick(node: EntryNode | CategoryNode) {
     if (this.TreeControl.isExpanded(node)) {
+      console.log("collapsing node", node);
       this.TreeControl.collapse(node);
       this._selectedNode = null;
     } else {
-      if (this._selectedNode) {
-        const children = this.TreeControl.getDescendants(this._selectedNode);
-        if (
-          !children ||
-          (Array.isArray(children) && !children.includes(node))
-        ) {
-          this.TreeControl.collapse(this._selectedNode);
-          for (const dataNode of this.TreeControl.dataNodes) {
-            const c = this.TreeControl.getDescendants(dataNode);
-            if (
-              c &&
-              Array.isArray(c) &&
-              c.includes(this._selectedNode) &&
-              !c.includes(node)
-            ) {
-              this.TreeControl.collapse(dataNode);
-            }
+      if (node.type === 'category') {
+        console.log("expanding node", node);
+        this.loadChildren(node).then(() => {
+          const newNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
+          if (newNode) {
+            this.TreeControl.expand(newNode);
           }
-        }
+        });
       }
       this.TreeControl.expand(node);
       this._selectedNode = node;
@@ -249,5 +297,52 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   public getClassName(level: string | null) {
     return `category level-${level}`;
+  }
+
+  private loadChildren(node: FlatTreeNode): Promise<void> {
+    console.log("entering loadChildren");
+    if (node.loaded || !node.expandable) {
+     return Promise.resolve();
+    }
+    node.loading = true;
+    //this.dataChange.next(this.data);
+
+    return new Promise((resolve) => {
+    this._store.dispatch(new GetChildren(node.id));
+    console.log("loading children of", node);
+    console.log("childrenById$", this.childrenById$.pipe(take(1)).subscribe(childrenMap => {
+      console.log("childrenMap", childrenMap);
+    }));
+    this.childrenById$.pipe(
+      map(childrenMap => childrenMap[node.id]),
+      filter(children => !!children),
+      take(1)
+    ).subscribe(children => {
+      console.log("updating children", children);
+      const nodeToUpdateIndex = this.data.findIndex(n => n.id === node.id);
+      if (nodeToUpdateIndex !== -1) {
+        console.log("updating node", this.data[nodeToUpdateIndex]);
+        const updatedNode = { ...this.data[nodeToUpdateIndex], children };
+        const newData = [
+          ...this.data.slice(0, nodeToUpdateIndex),
+          updatedNode,
+          ...this.data.slice(nodeToUpdateIndex + 1)
+        ];
+        this.data = newData;
+      }
+      console.log("node again", this.data[nodeToUpdateIndex]);
+      if (nodeToUpdateIndex !== -1) {
+        //this.data[nodeToUpdateIndex].loaded = true;
+        //this.data[nodeToUpdateIndex].loading = false;
+      }
+      //this.dataChange.next(this.data);
+      console.log("this data", this.data);
+      console.log("current datasource", this.DataSource.data);
+      console.log("flattened data (dataNodes)", this.TreeControl.dataNodes);
+      //console.log("hasChild", this.hasChild(0, node));
+      //this.dataChange.next(this.data);
+      resolve();
+    })
+    });
   }
 }

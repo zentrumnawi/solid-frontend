@@ -4,6 +4,8 @@ export interface TreeNode extends TreeNodeApi {
   type: 'category';
   children: TreeNode[];
   profiles: Profile[];
+  id: number;
+  [key: string]: any;
 }
 
 export interface TreeNodeApi {
@@ -11,6 +13,15 @@ export interface TreeNodeApi {
   children: TreeNodeApi[];
   profiles: ProfileApi[];
   info: string;
+}
+
+export interface LazyTreeNode {
+  id: number;
+  name: string;
+  has_children: boolean;
+  info: string;
+  loaded: boolean;
+  loading: boolean;
 }
 
 export interface Profile extends ProfileApi {
