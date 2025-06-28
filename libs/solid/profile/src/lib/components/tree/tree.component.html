@@ -68,6 +68,7 @@
     (click)="onNodeClick(node)"
     *matTreeNodeDef="let node; when: hasChild"
     matTreeNodePadding
+    matTreeNodeToggle
     [matTreeNodePaddingIndent]="30"
     #hasChildTreeNode
   >
@@ -85,5 +86,6 @@
         node.info
       }}</span>
     </div>
+    <mat-spinner *ngIf="node.loading" diameter="20"></mat-spinner>
   </mat-tree-node>
 </mat-tree>

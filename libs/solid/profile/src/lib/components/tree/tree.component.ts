@@ -94,18 +94,14 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   private _selectedNode: CategoryNode | EntryNode | null = null;
 
-  dataChange = new BehaviorSubject<(TreeNode | Profile)[]>([]);
+  dataChange = new BehaviorSubject<(TreeNode)[]>([]);
 
-  get data(): (TreeNode | Profile)[] {
+  get data(): (TreeNode)[] {
     return this.dataChange.value;
   }
-  set data(value: (TreeNode | Profile)[]) {
-    //this.DataSource.data = value;
-    //this.TreeControl.dataNodes = this._treeFlattener.flattenNodes(value);
+  set data(value: (TreeNode)[]) {
     this.dataChange.next(value);
     this.DataSource.data = value;
-    // this.TreeControl.dataNodes = this._treeFlattener.flattenNodes(value);
-    // this.dataChange.next(value);
   }
 
   constructor(
@@ -138,6 +134,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   /** Transform the data to something the tree can read. */
   static transformer(node: TreeNode | Profile, level: number): FlatTreeNode {
+    console.log("transforming node", node);
     if (node.type === 'category') {
       return {
         id: node.id,
@@ -149,6 +146,8 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         info: node.info,
         level: level,
         expandable: true,
+        loaded: node.loaded,
+        loading: node.loading,
       };
     } else {
       return {
@@ -160,6 +159,8 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         expandable: false,
         mediaObjects: node.mediaObjects,
         def_type: node.def_type,
+        loaded: node.loaded,
+        loading: node.loading,
       };
     }
   }
@@ -176,6 +177,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   /** Get the children for the node. */
   static getChildren(node: TreeNode | Profile) {
+    console.log("getting children of", node);
     if (node.type === 'category') {
       console.log("returning children", node.children);
       console.log("of node", node);
@@ -190,65 +192,60 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       this.dataChange.next(roots);
       console.log(Array.isArray(roots));
       console.log(roots);
-      //this.DataSource.data = rootNodes;
-      //this.dataChange.next(rootNodes);
-      this.expandSelectedNode();
+      //this.expandSelectedNode();
       if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
     });
   }
 
   public ngAfterViewInit(): void {
     this.selectedElements.changes.subscribe((_) => this.scrollTo());
-    // keep track of expanded nodes ("added")
+    // Use expansionModel.changed for lazy loading
     this.TreeControl.expansionModel.changed.subscribe(change => {
       if (change.added) {
         console.log("expansion model changed", change.added);
-        // change.added
-        //   .filter(n => n.type === 'category')
-        //   .forEach(node => {
-        //     this.loadChildren(node).then(() => {
-        //       this.onNodeClick(node);
-        //     });
-        //   });
+        change.added
+          .filter(n => n.type === 'category' && !n.loaded)
+          .forEach(node => {
+            console.log("loading children of", node);
+            this.loadChildren(node).then(() => {
+              const newNode = this.TreeControl.dataNodes.find(n2 => n2.id === node.id);
+              // if (newNode && !newNode.loaded) {
+              //   this.TreeControl.expand(newNode);
+              // }
+              console.log("flat data (expansionModel)", this.TreeControl.dataNodes);
+            });
+            
+          });
+        //this._selectedNode = this.TreeControl.dataNodes.find(n => n.id === change.added[0].id)!;
       }
     });
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
     console.log("expanding selected node");
-    this.expandSelectedNode();
+    //this.expandSelectedNode();
+    console.log("collapsing tree", this.collapseTree);
     if (this.collapseTree) this.TreeControl.collapseAll();
   }
 
   /** Get whether the node has children or not. */
   public hasChild(index: number, node: FlatTreeNode) {
-    console.log("hasChild", node);
     return node.expandable;
   }
 
   public hasNoChild(index: number, node: FlatTreeNode) {
-    console.log("hasNoChild", node);
     return !node.expandable;
   }
 
   onNodeClick(node: EntryNode | CategoryNode) {
-    if (this.TreeControl.isExpanded(node)) {
-      console.log("collapsing node", node);
-      this.TreeControl.collapse(node);
-      this._selectedNode = null;
-    } else {
-      if (node.type === 'category') {
-        console.log("expanding node", node);
-        this.loadChildren(node).then(() => {
-          const newNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
-          if (newNode) {
-            this.TreeControl.expand(newNode);
-          }
-        });
-      }
-      this.TreeControl.expand(node);
-      this._selectedNode = node;
-    }
+    // Only handle selection or custom actions here
+    this._selectedNode = node;
+    // const newNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
+    //     if (newNode && !this.TreeControl.isExpanded(newNode)) {
+    //       this.expandParents(newNode);
+    //       this.TreeControl.expand(newNode);
+    //     }
+    // If you want to emit selection events, do it here
   }
 
   private expandSelectedNode() {
@@ -300,49 +297,51 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private loadChildren(node: FlatTreeNode): Promise<void> {
-    console.log("entering loadChildren");
     if (node.loaded || !node.expandable) {
-     return Promise.resolve();
+      return Promise.resolve();
     }
-    node.loading = true;
-    //this.dataChange.next(this.data);
+    console.log("startig loadChildren for", node);
+    
+    this.data = this.updateNodeChildren(this.data, node.id, undefined, { loading: true });
 
     return new Promise((resolve) => {
-    this._store.dispatch(new GetChildren(node.id));
-    console.log("loading children of", node);
-    console.log("childrenById$", this.childrenById$.pipe(take(1)).subscribe(childrenMap => {
-      console.log("childrenMap", childrenMap);
-    }));
-    this.childrenById$.pipe(
-      map(childrenMap => childrenMap[node.id]),
-      filter(children => !!children),
-      take(1)
-    ).subscribe(children => {
-      console.log("updating children", children);
-      const nodeToUpdateIndex = this.data.findIndex(n => n.id === node.id);
-      if (nodeToUpdateIndex !== -1) {
-        console.log("updating node", this.data[nodeToUpdateIndex]);
-        const updatedNode = { ...this.data[nodeToUpdateIndex], children };
-        const newData = [
-          ...this.data.slice(0, nodeToUpdateIndex),
-          updatedNode,
-          ...this.data.slice(nodeToUpdateIndex + 1)
-        ];
-        this.data = newData;
+      this._store.dispatch(new GetChildren(node.id));
+      this.childrenById$.pipe(
+        map(childrenMap => childrenMap[node.id]),
+        filter(children => !!children),
+        take(1)
+      ).subscribe(children => {
+        // Ensure children are in correct format
+        const formattedChildren = children.map(child => {
+          if (child.type === 'category') {
+            return { ...child, expandable: true };
+          } else {
+            return { ...child, expandable: false };
+          }
+        });
+        // Update the data with the new children and set loaded = true, loading = false
+        this.data = this.updateNodeChildren(this.data, node.id, formattedChildren, { loaded: true, loading: false });
+        console.log("data (loadChildren) after update", this.data);
+        // Optionally, re-expand the node if needed
+        const newNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
+        if (newNode && !this.TreeControl.isExpanded(newNode)) {
+          this.expandParents(newNode);
+          this.TreeControl.expand(newNode);
+        }
+        resolve();
+      });
+    });
+  }
+
+  private updateNodeChildren(tree: (TreeNode)[], nodeId: number, children?: TreeNode[], flags: Partial<TreeNode> = {}): (TreeNode)[] {
+    return tree.map(n => {
+      if (n.id === nodeId) {
+        return { ...n, ...(children !== undefined ? { children } : {}), ...flags };
+      } else if ('children' in n && Array.isArray(n.children)) {
+        return { ...n, children: this.updateNodeChildren(n.children, nodeId, children, flags) };
+      } else {
+        return n;
       }
-      console.log("node again", this.data[nodeToUpdateIndex]);
-      if (nodeToUpdateIndex !== -1) {
-        //this.data[nodeToUpdateIndex].loaded = true;
-        //this.data[nodeToUpdateIndex].loading = false;
-      }
-      //this.dataChange.next(this.data);
-      console.log("this data", this.data);
-      console.log("current datasource", this.DataSource.data);
-      console.log("flattened data (dataNodes)", this.TreeControl.dataNodes);
-      //console.log("hasChild", this.hasChild(0, node));
-      //this.dataChange.next(this.data);
-      resolve();
-    })
     });
   }
 }

@@ -255,7 +255,7 @@ export class ProfileState {
         id: node?.id ?? 0,
         name: node?.name ?? '',
         has_children: node?.has_children ?? false,
-        expandable: node?.has_children ?? false,
+        expandable: true,
         info: node?.info ?? '',
         loaded: false,
         loading: false,
