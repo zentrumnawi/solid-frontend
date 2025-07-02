@@ -163,6 +163,7 @@ export class ProfileState {
                 .map((profiles: any) => {
                   return profiles[1].map((profile: any) => {
                     const profileName = profile.general_information?.name;
+                    console.log(profileName);
                     const profileSubName =
                       profile.general_information?.sub_name;
                     return {
@@ -211,7 +212,22 @@ export class ProfileState {
             return result;
           };
           const flat = mapIt([], nodes);
-          ctx.patchState({ nodes, profiles: flat });
+          // 🔽 Sort profiles by `name` and `sub_name`
+          const sortedProfiles = [...flat].sort((a, b) => {
+            const nameA = a.name?.toLowerCase() || '';
+            const nameB = b.name?.toLowerCase() || '';
+            const subNameA = a.sub_name?.toLowerCase() || '';
+            const subNameB = b.sub_name?.toLowerCase() || '';
+
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            if (subNameA < subNameB) return -1;
+            if (subNameA > subNameB) return 1;
+            return 0;
+          });
+
+          //ctx.patchState({ nodes, profiles: flat });
+          ctx.patchState({ nodes, profiles: sortedProfiles });
         }),
       );
   }
