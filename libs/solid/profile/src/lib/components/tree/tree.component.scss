@@ -20,6 +20,23 @@ mat-tree-node {
   padding-right: 30px;
 }
 
+.nested-tree-invisible {
+  /*display: none;*/
+}
+
+.nested-tree .mat-nested-tree-node div[role=group] {
+  padding-left: 40px;
+}
+
+/*
+ * Padding for leaf nodes.
+ * Leaf nodes need to have padding so as to align with other non-leaf nodes
+ * under the same parent.
+ */
+.nested-tree div[role=group] > .mat-nested-tree-node {
+  padding-left: 40px;
+}
+
 .profile-tree {
   grid-area: tree;
   display: flex;

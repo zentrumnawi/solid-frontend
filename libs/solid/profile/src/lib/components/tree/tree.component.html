@@ -8,7 +8,7 @@
     *matTreeNodeDef="let node; when: hasNoChild"
     class="profile-link"
     matTreeNodePadding
-    matTreeNodeToggle
+    
     [matTreeNodePaddingIndent]="30"
   >
     <img
@@ -68,7 +68,7 @@
     (click)="onNodeClick(node)"
     *matTreeNodeDef="let node; when: hasChild"
     matTreeNodePadding
-    matTreeNodeToggle
+    
     [matTreeNodePaddingIndent]="30"
     #hasChildTreeNode
   >

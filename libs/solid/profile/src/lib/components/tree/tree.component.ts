@@ -18,9 +18,9 @@ import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
 } from '@angular/material/tree';
-import { Observable, BehaviorSubject, of, take, map, filter } from 'rxjs';
+import { Observable, BehaviorSubject, of, take, map, filter, forkJoin } from 'rxjs';
 import { LazyTreeNode, Profile, TreeNode } from '../../state/profile.model';
-import { GetChildren, GetRootNodes } from '../../state/profile.actions';
+import { GetChildren, GetEntries, GetRootNodes } from '../../state/profile.actions';
 import { Store } from '@ngxs/store';
 import { Select } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
@@ -69,10 +69,11 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedElements!: QueryList<ElementRef>;
   @Input() selectedProfileId?: number;
   @Input() selectedProfileType?: string;
-  @Input() profiles!: Observable<TreeNode[]>;
-  @Select(ProfileState.selectRootNodes) rootNodes!: Observable<(TreeNode | Profile)[]>;
+  @Input() rootNodes!: Observable<(LazyTreeNode)[]>;
+  //@Select(ProfileState.selectRootNodes) rootNodes!: Observable<(LazyTreeNode)[]>;
   //@Select(ProfileState.selectChildren) children!: Observable<TreeNode[]>;
-  @Select(ProfileState.selectChildrenById) childrenById$!: Observable<{ [id: number]: TreeNode[] }>;
+  @Select(ProfileState.selectChildrenById) childrenById$!: Observable<{ [id: number]: LazyTreeNode[] }>;
+  @Select(ProfileState.selectEntries) entries$!: Observable<{ [id: number]: Profile[] }>;
   @Output() selectProfile = new EventEmitter<
     number | { id: number; type: string }
   >();
@@ -82,24 +83,24 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('profileTree') profileTree: any;
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
-  public DataSource: MatTreeFlatDataSource<TreeNode | Profile, FlatTreeNode>;
+  public DataSource: MatTreeFlatDataSource<LazyTreeNode | Profile, FlatTreeNode>;
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   public readonly TreeControl: FlatTreeControl<FlatTreeNode>;
 
   /** The TreeFlattener is used to generate the flat list of items from hierarchical data. */
   private readonly _treeFlattener: MatTreeFlattener<
-    TreeNode | Profile,
+    LazyTreeNode | Profile,
     FlatTreeNode
   >;
 
   private _selectedNode: CategoryNode | EntryNode | null = null;
 
-  dataChange = new BehaviorSubject<(TreeNode)[]>([]);
+  dataChange = new BehaviorSubject<(LazyTreeNode)[]>([]);
 
-  get data(): (TreeNode)[] {
+  get data(): (LazyTreeNode)[] {
     return this.dataChange.value;
   }
-  set data(value: (TreeNode)[]) {
+  set data(value: (LazyTreeNode)[]) {
     this.dataChange.next(value);
     this.DataSource.data = value;
   }
@@ -133,7 +134,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   /** Transform the data to something the tree can read. */
-  static transformer(node: TreeNode | Profile, level: number): FlatTreeNode {
+  static transformer(node: LazyTreeNode | Profile, level: number): FlatTreeNode {
     console.log("transforming node", node);
     if (node.type === 'category') {
       return {
@@ -147,7 +148,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         level: level,
         expandable: true,
         loaded: node.loaded,
-        loading: node.loading,
+        loading: false,
       };
     } else {
       return {
@@ -160,7 +161,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         mediaObjects: node.mediaObjects,
         def_type: node.def_type,
         loaded: node.loaded,
-        loading: node.loading,
+        loading: false,
       };
     }
   }
@@ -176,12 +177,12 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   /** Get the children for the node. */
-  static getChildren(node: TreeNode | Profile) {
+  static getChildren(node: LazyTreeNode | Profile) {
     console.log("getting children of", node);
     if (node.type === 'category') {
       console.log("returning children", node.children);
       console.log("of node", node);
-      return node.children ?? [];
+      return [...(node.children ?? []), ...(node.profiles ?? [])];
     }
     return null;
   }
@@ -189,12 +190,20 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   public ngOnInit(): void {
     this._store.dispatch(new GetRootNodes()).pipe(take(1)).subscribe(() => {
       const roots = this._store.selectSnapshot(ProfileState.selectRootNodes);
-      this.dataChange.next(roots);
+      // make mutable copy of roots
+      const mutableRoots = roots.map(root => ({ ...root }));
+      this.dataChange.next(mutableRoots);
       console.log(Array.isArray(roots));
       console.log(roots);
-      //this.expandSelectedNode();
+      this.expandSelectedNode();
       if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
     });
+    // this.rootNodes.subscribe((rootNodes: LazyTreeNode[]) => {
+    //   const mutableRoots = rootNodes.map(root => ({ ...root }));
+    //   this.dataChange.next(mutableRoots);
+    //   this.expandSelectedNode();
+    //   if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
+    // }); 
   }
 
   public ngAfterViewInit(): void {
@@ -208,16 +217,19 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
           .forEach(node => {
             console.log("loading children of", node);
             this.loadChildren(node).then(() => {
-              const newNode = this.TreeControl.dataNodes.find(n2 => n2.id === node.id);
-              // if (newNode && !newNode.loaded) {
-              //   this.TreeControl.expand(newNode);
-              // }
+              const newNode = this.TreeControl.dataNodes.find(n2 => this.areNodesEqual(n2, node));
+              if (newNode && !newNode.loaded) {
+                this.TreeControl.expand(newNode);
+              }
               console.log("flat data (expansionModel)", this.TreeControl.dataNodes);
             });
             
           });
-        //this._selectedNode = this.TreeControl.dataNodes.find(n => n.id === change.added[0].id)!;
+          
+        // this._selectedNode = this.TreeControl.dataNodes.find(n => n.type === 'entry' && n.id === this.selectedProfileId &&
+        //   n.def_type === this.selectedProfileType) ?? null;
       }
+      this._selectedNode = null
     });
   }
 
@@ -237,15 +249,45 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     return !node.expandable;
   }
 
+  private areNodesEqual(node1: FlatTreeNode, node2: FlatTreeNode) {
+    if (node1.type === 'entry' && node2.type === 'entry') {
+      return node1.id === node2.id && node1.def_type === node2.def_type;
+    } else if (node1.type === 'category' && node2.type === 'category') {
+      return node1.id === node2.id;
+    }
+    return false;
+  }
+
   onNodeClick(node: EntryNode | CategoryNode) {
-    // Only handle selection or custom actions here
-    this._selectedNode = node;
-    // const newNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
-    //     if (newNode && !this.TreeControl.isExpanded(newNode)) {
-    //       this.expandParents(newNode);
-    //       this.TreeControl.expand(newNode);
-    //     }
-    // If you want to emit selection events, do it here
+    if (this.TreeControl.isExpanded(node)) {
+      this.TreeControl.collapse(node);
+      this._selectedNode = null;
+    } else {
+      if (this._selectedNode) {
+        const children = this.TreeControl.getDescendants(this._selectedNode);
+        console.log("children of sel node", children);
+        if (
+          !children ||
+          (Array.isArray(children) && !children.includes(node))
+        ) {
+          console.log("collapsing sel node", this._selectedNode);
+          this.TreeControl.collapse(this._selectedNode);
+          for (const dataNode of this.TreeControl.dataNodes) {
+            const c = this.TreeControl.getDescendants(dataNode);
+            if (
+              c &&
+              Array.isArray(c) &&
+              c.includes(this._selectedNode) &&
+              !c.includes(node)
+            ) {
+              this.TreeControl.collapse(dataNode);
+            }
+          }
+        }
+      }
+      this.TreeControl.expand(node);
+      this._selectedNode = node;
+    }
   }
 
   private expandSelectedNode() {
@@ -302,28 +344,36 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     }
     console.log("startig loadChildren for", node);
     
-    this.data = this.updateNodeChildren(this.data, node.id, undefined, { loading: true });
+    //this.data = this.updateNodeChildren(this.data, node.id, undefined, { loading: true });
+    Object.assign(node, { loading: true });
 
     return new Promise((resolve) => {
       this._store.dispatch(new GetChildren(node.id));
-      this.childrenById$.pipe(
-        map(childrenMap => childrenMap[node.id]),
-        filter(children => !!children),
-        take(1)
-      ).subscribe(children => {
-        // Ensure children are in correct format
-        const formattedChildren = children.map(child => {
-          if (child.type === 'category') {
-            return { ...child, expandable: true };
-          } else {
-            return { ...child, expandable: false };
-          }
-        });
+      this._store.dispatch(new GetEntries(node.id));
+      forkJoin({
+        children: this.childrenById$.pipe(
+          map(childrenMap => childrenMap[node.id]),
+          filter(children => !!children),
+          take(1)
+        ),
+        entries: this.entries$.pipe(
+          map(entriesMap => entriesMap[node.id]),
+          filter(entries => !!entries),
+          take(1)
+        )
+      }).subscribe(({ children, entries }) => {
+        
         // Update the data with the new children and set loaded = true, loading = false
-        this.data = this.updateNodeChildren(this.data, node.id, formattedChildren, { loaded: true, loading: false });
+        //this.data = this.updateNodeChildren(this.data, node.id, children, { loaded: true, loading: false });
+        this.updateNodeChildrenPatch(this.data, node.id, children, entries);
+        //this.data = this.updateNodeProfiles(this.data, node.id, children, entries);
+        this.dataChange.next(this.data);
         console.log("data (loadChildren) after update", this.data);
         // Optionally, re-expand the node if needed
-        const newNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
+        const newNode = this.TreeControl.dataNodes.find(n => this.areNodesEqual(n, node));
+        // if (newNode) {
+        //   this.TreeControl.expand(newNode);
+        // }
         if (newNode && !this.TreeControl.isExpanded(newNode)) {
           this.expandParents(newNode);
           this.TreeControl.expand(newNode);
@@ -333,7 +383,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     });
   }
 
-  private updateNodeChildren(tree: (TreeNode)[], nodeId: number, children?: TreeNode[], flags: Partial<TreeNode> = {}): (TreeNode)[] {
+  private updateNodeChildren(tree: (LazyTreeNode)[], nodeId: number, children?: LazyTreeNode[], flags: Partial<LazyTreeNode> = {}): (LazyTreeNode)[] {
     return tree.map(n => {
       if (n.id === nodeId) {
         return { ...n, ...(children !== undefined ? { children } : {}), ...flags };
@@ -341,6 +391,43 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         return { ...n, children: this.updateNodeChildren(n.children, nodeId, children, flags) };
       } else {
         return n;
+      }
+    });
+  }
+
+  private updateNodeChildrenPatch(tree: (LazyTreeNode)[], nodeId: number, children?: LazyTreeNode[], entries?: Profile[], flags: Partial<LazyTreeNode> = {}) {
+    tree.forEach(n => {
+      if (n.id === nodeId) {
+        n.children = children?.map(c => ({ ...c})) ?? null;
+        n.loaded = true;
+        n.loading = false;
+        n.profiles = entries?.map(e => ({ ...e})) ?? null;
+      } else if ('children' in n && Array.isArray(n.children)) {
+        this.updateNodeChildrenPatch(n.children, nodeId, children, entries, flags);
+      }
+    });
+  }
+
+  private updateNodeProfiles(
+    nodes: LazyTreeNode[],
+    targetId: number,
+    newChildren: LazyTreeNode[],
+    newProfiles: Profile[]
+  ): LazyTreeNode[] {
+    return nodes.map(node => {
+      if (node.id === targetId) {
+        return {
+          ...node,
+          children: newChildren,
+          profiles: newProfiles
+        };
+      } else if (node.children) {
+        return {
+          ...node,
+          children: this.updateNodeProfiles(node.children, targetId, newChildren, newProfiles)
+        };
+      } else {
+        return node;
       }
     });
   }
