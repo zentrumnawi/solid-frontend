@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../../state/profile.state';
-import { TreeNode, Profile, ProfileShort } from '../../state/profile.model';
+import { TreeNode, Profile, ProfileShort, LazyTreeNode } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
 import { map } from 'rxjs/operators';
@@ -22,6 +22,7 @@ import {
   LoadDefinition,
   LoadDefinitionSwagger,
   LoadProfiles,
+  GetRootNodes,
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
@@ -60,8 +61,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public APP_NAME_DIVE = APP.DIVE;
-  @Select(ProfileState.selectTree)
-  public $profilesTree!: Observable<TreeNode[]>;
+  @Select(ProfileState.selectRootNodes)
+  public $rootNodes!: Observable<LazyTreeNode[]>;
   @Select(ProfileState.selectFlat)
   public $profilesFlat!: Observable<Profile[]>;
   @Select(ProfileState.selectProfileAndNode)
@@ -98,8 +99,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public mainSubscription!: Subscription;
   public filterSubscription!: Subscription;
-  public profileSubscription!: Subscription;
-
+  public rootSubscription!: Subscription;
   constructor(
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
@@ -115,12 +115,12 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this._store.dispatch([
       new LoadDefinition(),
-      new LoadProfiles(),
+      new GetRootNodes(),
       // Load definitions from OpenAPI 2.0
       new LoadDefinitionSwagger(),
     ]);
 
-    this.profileSubscription = this.profile$?.subscribe((res) => {
+    this.rootSubscription = this.$rootNodes?.subscribe((res) => {
       if (res.length != 0) this.isLoading = false;
     });
   }
@@ -244,7 +244,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public ngAfterViewInit(): void {
     this.calculateLayout();
 
-    this.profileSubscription = this.profile$.subscribe((res) => {
+    this.rootSubscription = this.$rootNodes.subscribe((res) => {
       if (res.length === 0) return;
 
       const shouldShowTour =
@@ -317,7 +317,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public ngOnDestroy(): void {
     this.mainSubscription.unsubscribe();
     this.filterSubscription.unsubscribe();
-    this.profileSubscription.unsubscribe();
+    this.rootSubscription.unsubscribe();
   }
 
   @Dispatch()

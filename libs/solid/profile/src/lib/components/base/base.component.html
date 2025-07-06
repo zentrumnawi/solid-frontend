@@ -124,7 +124,7 @@
         *ngSwitchCase="'tree'"
         (selectProfile)="selectProfile($event)"
         (selectProfileTitle)="selectProfileTitle($event)"
-        [profiles]="$profilesTree"
+        [rootNodes]="$rootNodes"
         [selectedProfileId]="
           SelectedProfile ? SelectedProfile.id : SelectedProfileShort.id
         "
