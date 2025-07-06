@@ -7,6 +7,11 @@ export class GetChildren {
   constructor(public id: number) {}
 }
 
+export class GetEntries {
+  static type = '[Profile] GetEntries';
+  constructor(public id: number) {}
+}
+
 export class GetRootNodes {
   static readonly type = '[Profile] GetRootNodes';
 }
