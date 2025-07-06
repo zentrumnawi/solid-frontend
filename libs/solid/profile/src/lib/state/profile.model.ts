@@ -22,6 +22,10 @@ export interface LazyTreeNode {
   info: string;
   loaded: boolean;
   loading: boolean;
+  type: 'category';
+  sub_name: string;
+  children: LazyTreeNode[] | null;
+  profiles: Profile[] | null;
 }
 
 export interface Profile extends ProfileApi {
