@@ -1,3 +1,5 @@
+import { LazyTreeNode, Profile, TreeNode } from "./profile.model";
+
 export class LoadProfiles {
   static readonly type = '[Profile] LoadProfiles';
 }
@@ -16,10 +18,30 @@ export class GetRootNodes {
   static readonly type = '[Profile] GetRootNodes';
 }
 
+export class ChildrenLoaded {
+  static type = '[Profile] ChildrenLoaded';
+  constructor(public parentId: number, public children: LazyTreeNode[], public profiles: Profile[]) {}
+}
+
 export class LoadDefinition {
   static readonly type = '[Profile] LoadDefinition';
 }
 
 export class LoadDefinitionSwagger {
   static readonly type = '[Profile] LoadDefinitionSwagger';
+}
+
+export class EnsureEntryPath {
+  static readonly type = '[Profile] EnsureEntryPath';
+  constructor(public id: number, public defType: string) {}
+}
+
+export class InsertPathFragments {
+  static readonly type = '[Profile] InsertPathFragments';
+  constructor(public node: LazyTreeNode) {}
+}
+
+export class GetSingleProfile {
+  static readonly type = '[Profile] GetSingleProfile';
+  constructor(public id: number, public defType: string) {}
 }

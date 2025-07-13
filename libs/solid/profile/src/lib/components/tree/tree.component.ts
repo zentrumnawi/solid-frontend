@@ -20,7 +20,7 @@ import {
 } from '@angular/material/tree';
 import { Observable, BehaviorSubject, of, take, map, filter, forkJoin } from 'rxjs';
 import { LazyTreeNode, Profile, TreeNode } from '../../state/profile.model';
-import { GetChildren, GetEntries, GetRootNodes } from '../../state/profile.actions';
+import { ChildrenLoaded, GetChildren, GetEntries, GetRootNodes } from '../../state/profile.actions';
 import { Store } from '@ngxs/store';
 import { Select } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
@@ -362,7 +362,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
           take(1)
         )
       }).subscribe(({ children, entries }) => {
-        
+        //this._store.dispatch(new ChildrenLoaded(node.id, children, entries));
         // Update the data with the new children and set loaded = true, loading = false
         //this.data = this.updateNodeChildren(this.data, node.id, children, { loaded: true, loading: false });
         this.updateNodeChildrenPatch(this.data, node.id, children, entries);
