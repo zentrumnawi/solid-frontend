@@ -21,6 +21,10 @@ import {
   GetChildren,
   GetRootNodes,
   GetEntries,
+  ChildrenLoaded,
+  EnsureEntryPath,
+  InsertPathFragments,
+  GetSingleProfile,
 } from './profile.actions';
 import { map, tap } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -34,6 +38,8 @@ export interface ProfileStateModel {
   rootNodes: LazyTreeNode[];
   children: { [id: number]: LazyTreeNode[] };
   entries: { [id: number]: Profile[] };
+  selectedProfile: Profile | null;
+  selectedProfilePath: LazyTreeNode[];
 }
 
 @State<ProfileStateModel>({
@@ -45,7 +51,9 @@ export interface ProfileStateModel {
     definition_swagger: [],
     children: {},
     rootNodes: [],
-    entries: {}
+    entries: {},
+    selectedProfile: null,
+    selectedProfilePath: []
   },
 })
 @Injectable()
@@ -66,16 +74,23 @@ export class ProfileState {
     // This redundant variable is required
     // https://github.com/ng-packagr/ng-packagr/issues/696
     const fn = function (profileId?: number, profileType?: string) {
+      const entries = Object.values(state.entries);
+      console.log("entries", entries);
       if (!profileId) {
         return null;
       }
-      for (const node of state.nodes) {
-        const childSearch = profileType
-          ? ProfileState.findProfileDeep(node, profileId, profileType)
-          : ProfileState.findProfileDeep(node, profileId); // temporary for PLANTY
-        if (childSearch !== null) {
-          return childSearch;
+      for (const entry of entries) {
+        //const profile = profileType ? entry[profileId] : entry;
+        const profile = profileType ? entry.find((p) => p.id === profileId && p.def_type === profileType) : entry.find((p) => p.id === profileId);
+        if (profile) {
+          return { profile: profile, node: profile.tree_node };
         }
+        // const childSearch = profileType
+        //   ? ProfileState.findProfileDeep(node, profileId, profileType)
+        //   : ProfileState.findProfileDeep(node, profileId); // temporary for PLANTY
+        // if (childSearch !== null) {
+        //   return childSearch;
+        // }
       }
       return null;
     };
@@ -120,6 +135,11 @@ export class ProfileState {
   @Selector()
   static selectEntries(state: ProfileStateModel): { [id: number]: Profile[] } {
     return state.entries;
+  }
+
+  @Selector()
+  static selectSelectedProfile(state: ProfileStateModel): Profile | null {
+    return state.selectedProfile;
   }
 
   private static findProfileDeep(
@@ -282,6 +302,8 @@ export class ProfileState {
     }));
   }
 
+
+
   @Action(GetEntries)
   getEntries(
     ctx: StateContext<ProfileStateModel>,
@@ -361,6 +383,51 @@ export class ProfileState {
           definition_swagger,
         });
       }),
+    );
+  }
+
+  @Action(EnsureEntryPath)
+  ensureEntryPath(ctx: StateContext<ProfileStateModel>,
+                { id, defType }: EnsureEntryPath) {
+
+  if (!id || !defType) return;
+  // already loaded?
+  // const sel = ProfileState.selectProfileAndNode(ctx.getState())(id, defType);
+  // if (sel) return;
+
+  return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/ancestors/${id}`).pipe(
+    tap((path: LazyTreeNode[]) => {
+      path.map(node => {
+        ctx.dispatch(new InsertPathFragments(node));
+      });
+      //ctx.dispatch(new GetEntries(id));       // write to entries[]
+    })
+  );
+}
+
+  @Action(InsertPathFragments)
+  insertPathFragments(ctx: StateContext<ProfileStateModel>,
+                { node }: InsertPathFragments) {
+    const state = ctx.getState();
+    return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/children/${node.id}`).pipe(
+      tap((children: LazyTreeNode[]) => {
+        ctx.patchState({
+          children: { ...state.children, [node.id]: children ?? [] },
+        });
+      })
+    );
+  }
+
+  @Action(GetSingleProfile)
+  getSingleProfile(ctx: StateContext<ProfileStateModel>,
+                { id, defType }: GetSingleProfile) {
+    return this.http.get<Profile>(`${this._config.apiUrl}/contentItem/${id}/${defType}_related`).pipe(
+      tap((profile: Profile) => {
+        ctx.patchState({
+          selectedProfile: profile,
+          entries: { ...ctx.getState().entries, [profile.tree_node.id]: [profile] },
+        });
+      })
     );
   }
 }
