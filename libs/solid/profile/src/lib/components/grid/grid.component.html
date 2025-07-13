@@ -30,6 +30,9 @@
     ></ng-container>
   </div>
 </ng-container>
+<div *ngIf="(profiles | async)?.length === 0">
+  Keine Suchergebnisse vorhanden
+</div>
 
 <ng-template #cardContent let-profile="profile">
   <div *ngIf="isDiveApp" class="title" [data]="profile.name" markdown></div>

@@ -23,6 +23,15 @@ export class ChildrenLoaded {
   constructor(public parentId: number, public children: LazyTreeNode[], public profiles: Profile[]) {}
 }
 
+export class SearchProfiles {
+  static readonly type = '[Profile] SearchProfiles';
+  constructor(public searchTerm: string) {}
+}
+
+export class LoadProfilesFlat {
+  static readonly type = '[Profile] LoadProfilesFlat';
+}
+
 export class LoadDefinition {
   static readonly type = '[Profile] LoadDefinition';
 }

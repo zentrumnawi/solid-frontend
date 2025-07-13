@@ -15,7 +15,7 @@ import { ProfileState } from '../../state/profile.state';
 import { TreeNode, Profile, ProfileShort, LazyTreeNode } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
-import { map } from 'rxjs/operators';
+import { map, debounceTime } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
@@ -23,6 +23,8 @@ import {
   LoadDefinitionSwagger,
   LoadProfiles,
   GetRootNodes,
+  SearchProfiles,
+  LoadProfilesFlat,
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
@@ -65,6 +67,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public $rootNodes!: Observable<LazyTreeNode[]>;
   @Select(ProfileState.selectFlat)
   public $profilesFlat!: Observable<Profile[]>;
+  @Select(ProfileState.selectTree)
+  public $profilesTree!: Observable<TreeNode[]>;
   @Select(ProfileState.selectProfileAndNode)
   public $profileAndCategorySelector!: Observable<
     (
@@ -92,14 +96,24 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public timeOut_1: any;
   public timeOut_2: any;
   public collapseTree = false;
+  public searchResults: Profile[] = [];
+  public gridProfiles: Profile[] = [];
   @Output() profileTitle = new EventEmitter<string>();
 
-  @Select(ProfileState.selectProfile) profile$!: Observable<any>;
   isLoading = true;
-
+  isLoadingGrid = true;
   public mainSubscription!: Subscription;
   public filterSubscription!: Subscription;
   public rootSubscription!: Subscription;
+  public profileTreeSubscription!: Subscription;
+  public gridProfilesSubscription!: Subscription;
+  public searchResultsSubscription!: Subscription;
+  @Select(ProfileState.selectSearchResults)
+  public $searchResults!: Observable<Profile[]>;
+
+  @Select(ProfileState.selectGridProfiles)
+  public $gridProfiles!: Observable<Profile[]>;
+
   constructor(
     private _store: Store,
     @Inject(SOLID_PROFILE_BASE_URL) public baseUrl: string,
@@ -132,21 +146,40 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.profileTreeSubscription = this.$profilesTree.subscribe((res) => {
+      if (res.length !== 0) {
+        this.isLoading = false;
+
+        setTimeout(() => {
+          this.startTourIfNeeded();
+        }, 0);
+      }
+    });
+
+    this.searchResultsSubscription = this.$searchResults?.subscribe((res) => {
+      this.searchResults = res;
+    });
+
+    this.gridProfilesSubscription = this.$gridProfiles?.subscribe((res) => {
+      this.gridProfiles = res;
+      if (res.length > 0) {
+        this.isLoadingGrid = false;
+      }
+    });
+
     this.mainSubscription = combineLatest([
       this.$paramMap,
       this.$queryParams,
       this.$profileAndCategorySelector,
-      this.$profilesFlat,
       this.FilterValue,
     ])
       .pipe(
         map((v) => {
-          const { params, queryParams, selector, flat, filterStr } = {
+          const { params, queryParams, selector, filterStr } = {
             params: v[0],
             queryParams: v[1],
             selector: v[2],
-            flat: v[3],
-            filterStr: v[4],
+            filterStr: v[3],
           };
 
           const id = params.get('id');
@@ -157,29 +190,25 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             this.getProfileType(type) === 'wine' ? type : queryParams['view'];
           this.View = view ? view : 'tree';
 
+          if (this.View === 'grid' && this.gridProfiles.length === 0) {
+            this._store.dispatch(new LoadProfilesFlat());
+          }
+
           // select profile
           const profileId = id ? parseInt(id, 10) : undefined;
           const profileType = this.getProfileType(type);
 
           const profileAndNode = selector(profileId, profileType);
 
-          // filter profiles
-          const regExp = new RegExp(filterStr, 'i');
-          const profilesFlatFiltered = flat.filter((p) => {
-            if (p.name.match(regExp)) {
-              return true;
-            }
-            if (p.sub_name) {
-              return !!p.sub_name.match(regExp);
-            }
-          });
-
           // no profile selected
           if (!profileId || !profileAndNode) {
             return {
               selectedProfile: null,
               selectedNode: null,
-              profilesFlatFiltered,
+              profilesFlatFiltered:
+                this.View === 'grid' && this.Filter.value === ''
+                  ? this.gridProfiles
+                  : this.searchResults,
               swipeRight: { id: -1 },
               swipeLeft: { id: -1 },
             };
@@ -190,16 +219,17 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           let swipeLeft: ProfileShort = {
             id: -1,
           };
-          if (this.View === 'grid' || filterStr !== '') {
-            const flatIndex = profilesFlatFiltered.findIndex(
+          if (this.View === 'grid' || this.Filter.value !== '') {
+            const profiles = this.profilesToShow;
+            const flatIndex = profiles.findIndex(
               (p) => p.id === profileId && p.def_type === profileType,
             );
             if (flatIndex !== 0) {
-              const profile = profilesFlatFiltered[flatIndex - 1];
+              const profile = profiles[flatIndex - 1];
               swipeLeft = this.getProfileShort(profile);
             }
-            if (flatIndex !== profilesFlatFiltered.length - 1) {
-              const profile = profilesFlatFiltered[flatIndex + 1];
+            if (flatIndex !== profiles.length - 1) {
+              const profile = profiles[flatIndex + 1];
               swipeRight = this.getProfileShort(profile);
             }
           } else {
@@ -223,7 +253,10 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           return {
             selectedProfile: profileAndNode.profile,
             selectedNode: profileAndNode.node,
-            profilesFlatFiltered,
+            profilesFlatFiltered:
+              this.View === 'grid' && this.Filter.value === ''
+                ? this.gridProfiles
+                : this.searchResults,
             swipeRight,
             swipeLeft,
           };
@@ -236,9 +269,27 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.SwipeLeft = v.swipeLeft;
         this.SwipeRight = v.swipeRight;
       });
-    this.filterSubscription = this.Filter.valueChanges.subscribe(() =>
-      this.FilterValue.next(this.Filter.value),
-    );
+    this.filterSubscription = this.Filter.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((filterStr) => {
+        this._store.dispatch(new SearchProfiles(filterStr));
+      });
+  }
+
+  private startTourIfNeeded() {
+    const shouldShowTour =
+      localStorage.getItem('hide_profile_tour') === 'false' ||
+      localStorage.getItem('hide_profile_tour') === null;
+    if (shouldShowTour) {
+      const initialId = this._activatedRoute.snapshot.paramMap.get('id');
+      this.introService.profileTour((element: HTMLElement) => {
+        try {
+          this.handleTourStep(element, initialId);
+        } catch (error) {
+          return;
+        }
+      });
+    }
   }
 
   public ngAfterViewInit(): void {
@@ -318,11 +369,15 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.mainSubscription.unsubscribe();
     this.filterSubscription.unsubscribe();
     this.rootSubscription.unsubscribe();
+    this.profileTreeSubscription.unsubscribe();
+    this.gridProfilesSubscription?.unsubscribe();
+    this.searchResultsSubscription?.unsubscribe();
   }
 
   @Dispatch()
   public toggleGridTree() {
     this.View = this.View === 'tree' ? 'grid' : 'tree';
+
     if (this.SelectedProfile) {
       return new Navigate(
         [
@@ -448,5 +503,12 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         }, 10000);
       }
     }, 0);
+  }
+
+  get profilesToShow(): Profile[] {
+    if (this.View === 'grid') {
+      return this.Filter.value === '' ? this.gridProfiles : this.searchResults;
+    }
+    return [];
   }
 }
