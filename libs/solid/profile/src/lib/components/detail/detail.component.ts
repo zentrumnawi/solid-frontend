@@ -76,6 +76,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   @Input()
   public set profile(profile: Profile) {
     this._profile = profile;
+    console.log("profile inside set profile", profile);
     this.ImageLoaded = profile.mediaObjects.map((_) => false);
     if (this.shouldExpandAllgemein) {
       this.expansionPanel?.open(); // expand the category-panel even if it was closed in other profile

@@ -15,7 +15,7 @@ import { ProfileState } from '../../state/profile.state';
 import { TreeNode, Profile, ProfileShort, LazyTreeNode } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
-import { map, debounceTime } from 'rxjs/operators';
+import { map, debounceTime, take } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
@@ -25,12 +25,16 @@ import {
   GetRootNodes,
   SearchProfiles,
   LoadProfilesFlat,
+  EnsureEntryPath,
+  GetSingleProfile,
+  GetEntries,
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import type { Input as HammerInput } from 'hammerjs';
+import { of, switchMap, tap, filter, distinctUntilChanged } from 'rxjs';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -76,6 +80,9 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       profileType?: string | null,
     ) => { profile: Profile; node: TreeNode } | null
   >;
+  @Select(ProfileState.selectSelectedProfilePath)
+  public $selectedProfilePath!: Observable<LazyTreeNode[]>;
+  public openPath: LazyTreeNode[] = [];
   public $paramMap: Observable<ParamMap>;
   public $queryParams: Observable<{ view: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
@@ -100,6 +107,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public gridProfiles: Profile[] = [];
   @Output() profileTitle = new EventEmitter<string>();
 
+  @Select(ProfileState.selectSelectedProfile) $selectedProfile!: Observable<Profile>;
   isLoading = true;
   isLoadingGrid = true;
   public mainSubscription!: Subscription;
@@ -153,7 +161,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         setTimeout(() => {
           this.startTourIfNeeded();
         }, 0);
-      }
+      }      
     });
 
     this.searchResultsSubscription = this.$searchResults?.subscribe((res) => {
@@ -167,108 +175,128 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
 
-    this.mainSubscription = combineLatest([
-      this.$paramMap,
-      this.$queryParams,
-      this.$profileAndCategorySelector,
-      this.FilterValue,
-    ])
-      .pipe(
-        map((v) => {
-          const { params, queryParams, selector, filterStr } = {
-            params: v[0],
-            queryParams: v[1],
-            selector: v[2],
-            filterStr: v[3],
-          };
+    const route$ = combineLatest([this.$paramMap, this.$queryParams]).pipe(
+      map(([pm, qp]) => ({
+        id:  pm.get('id') ? +pm.get('id')! : undefined,
+        typ: this.getProfileType(pm.get('type')),
+        view:
+          this.getProfileType(pm.get('type')) === 'wine' ? pm.get('type')
+                                                         : qp['view']
+      })),
+      distinctUntilChanged((a, b) => a.id === b.id && a.typ === b.typ)
+    );
 
-          const id = params.get('id');
-          const type = params.get('type');
+    this.mainSubscription = route$.pipe(
+      switchMap((route) => {
+        if (!route.id) {
+          return of({ selectedProfile: null, selectedNode: null, flat: [] });
+        }
 
-          // temporary workaround for planty since the view is still in the URL
-          const view =
-            this.getProfileType(type) === 'wine' ? type : queryParams['view'];
-          this.View = view ? view : 'tree';
+        // if(route.id && !this._store.selectSnapshot(ProfileState.selectSelectedProfile)) {
+        //   console.log("fetching entries first time")             // not in store yet
+        //       this._store.dispatch(new GetSingleProfile(route.id, route.typ)).subscribe(() => {
+        //         this.$selectedProfile.pipe(take(1)).subscribe(profile => {
+        //           if(!this._store.selectSnapshot(ProfileState.selectEntries)[profile.tree_node.id]?.length) {
+        //             this._store.dispatch(new GetEntries(profile.tree_node.id));
+        //           }
+        //         });
+        //       });
+        //     }
 
-          if (this.View === 'grid' && this.gridProfiles.length === 0) {
-            this._store.dispatch(new LoadProfilesFlat());
-          }
-
-          // select profile
-          const profileId = id ? parseInt(id, 10) : undefined;
-          const profileType = this.getProfileType(type);
-
-          const profileAndNode = selector(profileId, profileType);
-
-          // no profile selected
-          if (!profileId || !profileAndNode) {
-            return {
-              selectedProfile: null,
-              selectedNode: null,
-              profilesFlatFiltered:
-                this.View === 'grid' && this.Filter.value === ''
-                  ? this.gridProfiles
-                  : this.searchResults,
-              swipeRight: { id: -1 },
-              swipeLeft: { id: -1 },
-            };
-          }
-          let swipeRight: ProfileShort = {
-            id: -1,
-          };
-          let swipeLeft: ProfileShort = {
-            id: -1,
-          };
-          if (this.View === 'grid' || this.Filter.value !== '') {
-            const profiles = this.profilesToShow;
-            const flatIndex = profiles.findIndex(
-              (p) => p.id === profileId && p.def_type === profileType,
-            );
-            if (flatIndex !== 0) {
-              const profile = profiles[flatIndex - 1];
-              swipeLeft = this.getProfileShort(profile);
+        /* stream that emits the profile+node once they exist in the store */
+        const loaded$ = this.$profileAndCategorySelector.pipe(
+          map(selFn => selFn(route.id, route.typ)),
+          tap(res => {
+            console.log("route", route);
+            console.log("route.id", route.id);
+            console.log("route.typ", route.typ);
+            console.log("res", res);
+            if (!res && route.id && route.typ && !this._store.selectSnapshot(ProfileState.selectSelectedProfile)) { 
+              console.log("fetching entries first time")             // not in store yet
+              this._store.dispatch(new GetSingleProfile(route.id, route.typ)).subscribe(() => {
+                this.$selectedProfile.pipe(take(1)).subscribe(profile => {
+                  if(!this._store.selectSnapshot(ProfileState.selectEntries)[profile.tree_node.id]?.length) {
+                    this._store.dispatch(new GetEntries(profile.tree_node.id));
+                  }
+                });
+              });
             }
-            if (flatIndex !== profiles.length - 1) {
-              const profile = profiles[flatIndex + 1];
-              swipeRight = this.getProfileShort(profile);
-            }
-          } else {
-            const index = profileAndNode.node.profiles.indexOf(
-              profileAndNode.profile,
-            );
-            if (!this.Filter.value) {
-              const profileLeft = profileAndNode.node.profiles.find(
-                (p, i) => i === index - 1,
-              ) as Profile | undefined;
-              swipeLeft = this.getProfileShort(profileLeft);
+          }),
+          filter(Boolean),           // wait until it appears
+          take(1)                    // only once per route change
+        );
 
-              const profileRight = profileAndNode.node.profiles.find(
-                (p, i) => i > index,
-              ) as Profile | undefined;
-              swipeRight = this.getProfileShort(profileRight);
-            }
+        return loaded$.pipe(
+          
+          //tap(a => console.log("firing on loaded$", a)),
+          tap(({ node }) => {
+            console.log("node before ensureEntryPath", route.typ);
+            this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
+            .pipe(take(1))
+            .subscribe(_ => {
+              console.log("_", _);  
+              this.openPath = this._store.selectSnapshot(ProfileState.selectSelectedProfilePath);
+              console.log("openPath", this.openPath);
+            });
           }
-          this.handleLongTitle();
+          ),
+          map(({ profile, node }) => ({
+            selectedProfile: profile,
+            selectedNode: node,
+            flat: this.View === 'grid' ? this.gridProfiles : this.searchResults,
+            filterStr: this.Filter.value
+          }))
+        );
+      
+      })
+    ).subscribe(view => {
+      /* pure view-model code here – no dispatches */
+      console.log("entering view", view);
+      this.SelectedProfile = view.selectedProfile;
+      this.SelectedNode = view.selectedNode;
+      this.ProfilesFlatFiltered.next(view.flat);
 
-          return {
-            selectedProfile: profileAndNode.profile,
-            selectedNode: profileAndNode.node,
-            profilesFlatFiltered:
-              this.View === 'grid' && this.Filter.value === ''
-                ? this.gridProfiles
-                : this.searchResults,
-            swipeRight,
-            swipeLeft,
-          };
-        }),
-      )
-      .subscribe((v) => {
-        this.SelectedProfile = v.selectedProfile;
-        this.SelectedNode = v.selectedNode;
-        this.ProfilesFlatFiltered.next(v.profilesFlatFiltered);
-        this.SwipeLeft = v.swipeLeft;
-        this.SwipeRight = v.swipeRight;
-      });
+      if(!view.selectedProfile || !view.selectedNode) return;
+
+      // Determine swipe directions
+      if (this.View === 'grid' || this.Filter.value !== '') {
+        const profiles = view.flat;
+        const flatIndex = profiles.findIndex(
+          (p) => p.id === view.selectedProfile?.id && p.def_type === view.selectedProfile?.def_type,
+        );
+        if (flatIndex !== 0) {
+          const profile = profiles[flatIndex - 1];
+          this.SwipeLeft = this.getProfileShort(profile);
+        } else {
+          this.SwipeLeft = { id: -1 };
+        }
+        if (flatIndex !== profiles.length - 1) {
+          const profile = profiles[flatIndex + 1];
+          this.SwipeRight = this.getProfileShort(profile);
+        } else {
+          this.SwipeRight = { id: -1 };
+        }
+      } else {
+        const profOfSelectedNode = this._store.selectSnapshot(ProfileState.selectEntries)[view.selectedNode?.id ?? 0];
+        const index = profOfSelectedNode.indexOf(view.selectedProfile!);
+        if (!this.Filter.value) {
+          const profileLeft = profOfSelectedNode.find(
+            (p, i) => i === index - 1,
+          ) as Profile | undefined;
+          this.SwipeLeft = this.getProfileShort(profileLeft);
+
+          const profileRight = profOfSelectedNode.find(
+            (p, i) => i > index,
+          ) as Profile | undefined;
+          this.SwipeRight = this.getProfileShort(profileRight);
+        } else {
+          this.SwipeLeft = { id: -1 };
+          this.SwipeRight = { id: -1 };
+        }
+      }
+
+      this.handleLongTitle();
+    });
     this.filterSubscription = this.Filter.valueChanges
       .pipe(debounceTime(300))
       .subscribe((filterStr) => {
@@ -297,6 +325,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.rootSubscription = this.$rootNodes.subscribe((res) => {
       if (res.length === 0) return;
+      this.isLoading = false;
 
       const shouldShowTour =
         localStorage.getItem('hide_profile_tour') === 'false' ||

@@ -31,6 +31,7 @@ import {
   SOLID_CORE_CONFIG,
 } from '@zentrumnawi/solid-core';
 import { ProfileState } from '../../state/profile.state';
+import { SelectionChange } from '@angular/cdk/collections';
 
 export type FlatTreeNode = EntryNode | CategoryNode;
 
@@ -81,6 +82,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() isDiveApp = false;
   @Input() collapseTree = false;
   @ViewChild('profileTree') profileTree: any;
+  @Input() openPath?: LazyTreeNode[];
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<LazyTreeNode | Profile, FlatTreeNode>;
@@ -180,7 +182,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   static getChildren(node: LazyTreeNode | Profile) {
     console.log("getting children of", node);
     if (node.type === 'category') {
-      console.log("returning children", node.children);
+      console.log("returning children", node.children, node.profiles);
       console.log("of node", node);
       return [...(node.children ?? []), ...(node.profiles ?? [])];
     }
@@ -194,8 +196,8 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       const mutableRoots = roots.map(root => ({ ...root }));
       this.dataChange.next(mutableRoots);
       console.log(Array.isArray(roots));
-      console.log(roots);
-      this.expandSelectedNode();
+      console.log("roots", roots);
+      //Promise.resolve().then(() => this.expandSelectedNode());
       if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
     });
     // this.rootNodes.subscribe((rootNodes: LazyTreeNode[]) => {
@@ -210,18 +212,23 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     this.selectedElements.changes.subscribe((_) => this.scrollTo());
     // Use expansionModel.changed for lazy loading
     this.TreeControl.expansionModel.changed.subscribe(change => {
+      if(this.openPath?.length) return;
       if (change.added) {
+        // if('openPath' in change.added) {
+        //   console.log("change is openPath")
+        // }
         console.log("expansion model changed", change.added);
         change.added
           .filter(n => n.type === 'category' && !n.loaded)
           .forEach(node => {
-            console.log("loading children of", node);
+            console.log("(ngInit) loading children of", node);
             this.loadChildren(node).then(() => {
               const newNode = this.TreeControl.dataNodes.find(n2 => this.areNodesEqual(n2, node));
-              if (newNode && !newNode.loaded) {
+              if (newNode && newNode.loaded) {
+                this.expandParents(newNode);
                 this.TreeControl.expand(newNode);
               }
-              console.log("flat data (expansionModel)", this.TreeControl.dataNodes);
+              console.log("(ngInit) flat data (expansionModel)", this.TreeControl.dataNodes);
             });
             
           });
@@ -229,13 +236,59 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         // this._selectedNode = this.TreeControl.dataNodes.find(n => n.type === 'entry' && n.id === this.selectedProfileId &&
         //   n.def_type === this.selectedProfileType) ?? null;
       }
-      this._selectedNode = null
+      //this._selectedNode = null
     });
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
     console.log("expanding selected node");
+    console.log("changes", changes);
+    if('openPath' in changes && changes['selectedProfileId']?.currentValue !== -1) {
+      console.log("change is openPath");
+      changes['openPath'].currentValue
+          .filter((n: LazyTreeNode) => n.type === 'category' && !n.loaded)
+          .forEach((node: LazyTreeNode) => {
+            const flatNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
+            // if (flatNode) { 
+            //   this.TreeControl.expand(flatNode);
+            // }
+            
+            console.log("(ngOnChanges) loading children of", node);
+            if(flatNode) {
+            this.loadChildren(flatNode).then(() => {
+              const newNode = this.TreeControl.dataNodes.find(n2 => this.areNodesEqual(n2, flatNode));
+              if (newNode && newNode.loaded) {
+                this.expandParents(newNode);
+                this.TreeControl.expand(newNode);
+              }
+              console.log("(ngOnChanges) flat data (expansionModel)", this.TreeControl.dataNodes);
+            });
+          }
+          });
+          this.openPath = undefined;
+    }
+    
     //this.expandSelectedNode();
+    // if (changes['selectedProfileId'] || changes['selectedProfileType']) {
+    //   //Promise.resolve().then(() => this.expandSelectedNode());
+    // }
+    if (!this.openPath?.length) { return; }
+
+    // wait until MatTreeFlatDataSource has produced dataNodes
+    // Promise.resolve().then(() => {
+    //   //const map = new Map(this.TreeControl.dataNodes.map(n => [n.id, n]));
+
+    //   this.openPath?.forEach(node => {
+    //     const flatNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
+    //     console.log("found the node to expand", flatNode);
+    //     if (flatNode) { 
+    //       this.TreeControl.expand(flatNode);
+          
+    //     }
+    //   });
+
+    //   this.openPath = undefined;         // done
+    // });
     console.log("collapsing tree", this.collapseTree);
     if (this.collapseTree) this.TreeControl.collapseAll();
   }
@@ -291,7 +344,9 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private expandSelectedNode() {
+    console.log("expanding selected node", this.selectedProfileId, this.selectedProfileType);
     if (this.TreeControl.dataNodes) {
+      console.log("data nodes", this.TreeControl.dataNodes);
       this.TreeControl.dataNodes
         .filter((n) => n.type === 'entry')
         .forEach((node) => {
@@ -307,6 +362,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private expandParents(node: FlatTreeNode): void {
+    console.log("expanding parents of", node);
     if (node.level === 0) {
       this.TreeControl.expand(node);
       return;
@@ -357,11 +413,13 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
           take(1)
         ),
         entries: this.entries$.pipe(
+          
           map(entriesMap => entriesMap[node.id]),
           filter(entries => !!entries),
           take(1)
         )
       }).subscribe(({ children, entries }) => {
+        
         //this._store.dispatch(new ChildrenLoaded(node.id, children, entries));
         // Update the data with the new children and set loaded = true, loading = false
         //this.data = this.updateNodeChildren(this.data, node.id, children, { loaded: true, loading: false });
@@ -375,8 +433,8 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         //   this.TreeControl.expand(newNode);
         // }
         if (newNode && !this.TreeControl.isExpanded(newNode)) {
-          this.expandParents(newNode);
-          this.TreeControl.expand(newNode);
+          // this.expandParents(newNode);
+          // this.TreeControl.expand(newNode);
         }
         resolve();
       });
@@ -396,6 +454,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private updateNodeChildrenPatch(tree: (LazyTreeNode)[], nodeId: number, children?: LazyTreeNode[], entries?: Profile[], flags: Partial<LazyTreeNode> = {}) {
+    console.log("entries inside patch", entries);
     tree.forEach(n => {
       if (n.id === nodeId) {
         n.children = children?.map(c => ({ ...c})) ?? null;
