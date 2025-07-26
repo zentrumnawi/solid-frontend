@@ -53,6 +53,18 @@ jobs:
       - name: build - staging
         run: yarn nx run-many --target=build --all --parallel --configuration=staging
 
+      - name: Deploy wabe-staging
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rm: true
+          source: 'dist/apps/wabe'
+          target: '${{ secrets.WABE_STAGING_DIRECTORY }}'
+          timeout: 2m
+          strip_components: 3
+
       - name: Deploy planty-staging
         uses: appleboy/scp-action@v0.1.7
         with:
