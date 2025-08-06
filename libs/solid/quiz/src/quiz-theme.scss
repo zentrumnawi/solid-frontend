@@ -1,11 +1,16 @@
 @import 'lib/components/question/question.theme';
 
-@mixin solid-quiz-theme($mat-theme, $quiz-correct, $quiz-incorrect, $quiz-partiallyIncorrect) {
+@mixin solid-quiz-theme(
+  $mat-theme,
+  $quiz-correct,
+  $quiz-incorrect,
+  $quiz-partiallyIncorrect
+) {
   @include solid-quiz-question-theme(
     $mat-theme,
     $quiz-correct,
     $quiz-incorrect,
-    $quiz-partiallyIncorrect,
+    $quiz-partiallyIncorrect
   );
   $accent: map-get($mat-theme, accent);
 

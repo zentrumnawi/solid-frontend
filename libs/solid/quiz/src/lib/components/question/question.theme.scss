@@ -1,6 +1,11 @@
 @use '@angular/material' as mat;
 
-@mixin solid-quiz-question-theme($mat-theme, $quiz-correct, $quiz-incorrect, $quiz-partiallyIncorrect) {
+@mixin solid-quiz-question-theme(
+  $mat-theme,
+  $quiz-correct,
+  $quiz-incorrect,
+  $quiz-partiallyIncorrect
+) {
   $accent: map-get($mat-theme, accent);
   $foreground: map-get($mat-theme, foreground);
   $warn: map-get($mat-theme, warn);
