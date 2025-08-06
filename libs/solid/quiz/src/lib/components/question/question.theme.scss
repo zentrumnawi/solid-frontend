@@ -1,11 +1,17 @@
 @use '@angular/material' as mat;
 
-@mixin solid-quiz-question-theme($mat-theme, $quiz-correct, $quiz-incorrect) {
+@mixin solid-quiz-question-theme($mat-theme, $quiz-correct, $quiz-incorrect, $quiz-partiallyIncorrect) {
   $accent: map-get($mat-theme, accent);
   $foreground: map-get($mat-theme, foreground);
   $warn: map-get($mat-theme, warn);
   $quiz-correct: mat.define-palette(mat.$green-palette, 400, 200, 600);
   $quiz-wrong: mat.define-palette(mat.$red-palette, 400, 200, 600);
+  $quiz-partiallyIncorrect: mat.define-palette(
+    mat.$gray-palette,
+    400,
+    200,
+    600
+  );
   solid-quiz-question {
     mat-radio-group {
       display: flex;
