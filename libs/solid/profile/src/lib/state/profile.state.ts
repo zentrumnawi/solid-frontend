@@ -163,7 +163,6 @@ export class ProfileState {
                 .map((profiles: any) => {
                   return profiles[1].map((profile: any) => {
                     const profileName = profile.general_information?.name;
-                    console.log(profileName);
                     const profileSubName =
                       profile.general_information?.sub_name;
                     return {
