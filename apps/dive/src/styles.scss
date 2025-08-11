@@ -29,7 +29,12 @@
 @include solid-core-theme($app-theme);
 @include solid-glossary-theme($app-theme);
 @include solid-profile-theme($app-theme);
-@include solid-quiz-theme($app-theme, $quiz-correct, $quiz-incorrect);
+@include solid-quiz-theme(
+  $app-theme,
+  $quiz-correct,
+  $quiz-incorrect,
+  $quiz-partiallyIncorrect
+);
 @include solid-skeleton-theme($app-theme);
 @include solid-slideshow-theme($app-theme);
 

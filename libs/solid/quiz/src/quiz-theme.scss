@@ -1,10 +1,16 @@
 @import 'lib/components/question/question.theme';
 
-@mixin solid-quiz-theme($mat-theme, $quiz-correct, $quiz-incorrect) {
+@mixin solid-quiz-theme(
+  $mat-theme,
+  $quiz-correct,
+  $quiz-incorrect,
+  $quiz-partiallyIncorrect
+) {
   @include solid-quiz-question-theme(
     $mat-theme,
     $quiz-correct,
-    $quiz-incorrect
+    $quiz-incorrect,
+    $quiz-partiallyIncorrect
   );
   $accent: map-get($mat-theme, accent);
 
@@ -48,6 +54,10 @@
 
   .incorrectIcon {
     color: mat.get-color-from-palette($quiz-incorrect);
+  }
+
+  .partiallyIncorrectIcon {
+    color: mat.get-color-from-palette($quiz-partiallyIncorrect);
   }
 
   .unansweredIcon {

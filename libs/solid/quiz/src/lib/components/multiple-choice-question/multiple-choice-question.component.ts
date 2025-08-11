@@ -60,21 +60,55 @@ export class MultipleChoiceQuestionComponent implements OnChanges {
 
   public onShowAnswersClick() {
     this.showAnswers = true;
-    this.correct = 1;
 
-    let correctAnswers = 0;
-    this.question.answers.forEach((answer) => {
-      if (answer.correct) {
-        correctAnswers++;
-        if (!this.selectedAnswers.includes(answer.id)) {
-          this.correct = -1;
-        }
-      }
-    });
-
-    if (this.selectedAnswers.length !== correctAnswers) {
+    if (this.isFullyCorrect()) {
+      this.correct = 1;
+    } else if (this.isPartiallyCorrect()) {
+      this.correct = -2;
+    } else {
       this.correct = -1;
     }
+  }
+
+  public isFullyCorrect(): boolean {
+    const correctIds = this.question.answers
+      .filter((a) => a.correct)
+      .map((a) => a.id)
+      .sort();
+    const selected = [...this.selectedAnswers].sort();
+    return JSON.stringify(correctIds) === JSON.stringify(selected);
+  }
+
+  public isPartiallyCorrect(): boolean {
+    const correctIds = this.question.answers
+      .filter((a) => a.correct)
+      .map((a) => a.id);
+    const incorrectIds = this.question.answers
+      .filter((a) => !a.correct)
+      .map((a) => a.id);
+
+    const selectedCorrect = this.selectedAnswers.filter((id) =>
+      correctIds.includes(id),
+    );
+    const selectedIncorrect = this.selectedAnswers.filter((id) =>
+      incorrectIds.includes(id),
+    );
+
+    return (
+      selectedCorrect.length > 0 &&
+      (selectedIncorrect.length > 0 ||
+        selectedCorrect.length < correctIds.length)
+    );
+  }
+
+  public isIncorrect(): boolean {
+    return !this.isFullyCorrect() && !this.isPartiallyCorrect();
+  }
+
+  public getFeedbackResultLabel(): string {
+    if (this.correct === 1) return 'Richtig,';
+    if (this.correct === -2) return 'Teilweise richtig,';
+    return 'Falsch,';
   }
 
   public onNextQuestionClick() {
