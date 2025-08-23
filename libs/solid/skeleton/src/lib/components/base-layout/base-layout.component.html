@@ -29,11 +29,22 @@
         <div class="bottom"></div>
       </div>
       <div id="glossary">
-        <button (click)="Glossary?.toggle()" mat-icon-button>
+        <button
+          (click)="glossaryType = 'glossary'; Glossary?.toggle()"
+          mat-icon-button
+        >
           <mat-icon
             aria-label="Glossar öffnen"
             svgIcon="glossary_generic"
           ></mat-icon>
+        </button>
+      </div>
+      <div id="abbreviation">
+        <button
+          (click)="glossaryType = 'abbreviations'; Glossary?.toggle()"
+          mat-icon-button
+        >
+          <mat-icon aria-label="Abkürzungen öffnen" svgIcon="light"></mat-icon>
         </button>
       </div>
     </ng-container>
@@ -127,9 +138,14 @@
         class="glossary-toolbar"
         color="primary"
       >
-        Glossar
+        {{ glossaryType === 'glossary' ? 'Glossar' : 'Abkürzungen' }}
       </mat-toolbar>
-      <solid-glossary></solid-glossary>
+      <ng-container [ngSwitch]="glossaryType">
+        <solid-glossary *ngSwitchCase="'glossary'"></solid-glossary>
+        <solid-abbreviations
+          *ngSwitchCase="'abbreviations'"
+        ></solid-abbreviations>
+      </ng-container>
     </mat-sidenav>
   </mat-sidenav-container>
 </div>
