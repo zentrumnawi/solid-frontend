@@ -39,7 +39,7 @@
           ></mat-icon>
         </button>
       </div>
-      <div id="abbreviation">
+      <div id="abbreviation" *ngIf="config.appName === 'WABE'">
         <button
           (click)="glossaryType = 'abbreviations'; Glossary?.toggle()"
           mat-icon-button
