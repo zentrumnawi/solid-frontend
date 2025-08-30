@@ -5,37 +5,94 @@
     <mat-icon>{{ Filter.value === '' ? 'search' : 'close' }}</mat-icon>
   </button>
 </mat-form-field>
-<div class="scrollable-list">
-  <mat-list *ngIf="GlossaryEntries | async as state">
-    <ng-container *ngFor="let kvp of state.sections">
-      <h3 mat-subeader>{{ kvp[0] }}</h3>
-      <mat-list-item
-        *ngFor="let entryId of kvp[1]"
-        solidGlossaryEntry
-        [refId]="entryId"
-      >
-        <span class="mat-body-strong entry-header" mat-line>{{
-          state.entries[entryId].term
-        }}</span>
-        <div
-          [data]="state.entries[entryId].text"
-          markdown
-          [inline]="true"
-          mat-line
-        ></div>
-        <span
-          class="links"
-          *ngIf="state.entries[entryId].links.length > 0"
-          mat-line
-          >&rarr;<a
-            (click)="followRef(refId)"
-            *ngFor="let refId of state.entries[entryId].links; let i = index"
+
+<div class="scrollable-list" *ngIf="GlossaryEntries | async as state">
+  <!-- Single element case - no tabs needed -->
+  <ng-container *ngIf="Object.keys(state).length === 1">
+    <mat-list>
+      <ng-container *ngFor="let kvp of state['Glossar'].sections">
+        <h3 mat-subeader>{{ kvp[0] }}</h3>
+        <mat-list-item
+          *ngFor="let entryId of kvp[1]"
+          solidGlossaryEntry
+          [refId]="entryId"
+        >
+          <span class="mat-body-strong entry-header" mat-line>{{
+            state['Glossar'].entries[entryId].term
+          }}</span>
+          <div
+            [data]="state['Glossar'].entries[entryId].text"
+            markdown
+            [inline]="true"
+            mat-line
+          ></div>
+          <span
+            class="links"
+            *ngIf="state['Glossar'].entries[entryId].links.length > 0"
+            mat-line
+            >&rarr;<a
+              (click)="followRef(refId)"
+              *ngFor="
+                let refId of state['Glossar'].entries[entryId].links;
+                let i = index
+              "
+            >
+              {{ state['Glossar'].entries[refId].term
+              }}{{
+                i < state['Glossar'].entries[entryId].links.length - 1
+                  ? ','
+                  : ''
+              }}</a
+            >
+          </span>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </ng-container>
+
+  <!-- Multiple elements case - use tabs -->
+  <mat-tab-group *ngIf="Object.keys(state).length > 1">
+    <mat-tab *ngFor="let tab of Object.keys(state)" [label]="tab">
+      <mat-list>
+        <ng-container *ngFor="let kvp of state[tab].sections">
+          <h3 mat-subeader>{{ kvp[0] }}</h3>
+          <mat-list-item
+            *ngFor="let entryId of kvp[1]"
+            solidGlossaryEntry
+            [refId]="entryId"
           >
-            {{ state.entries[refId].term
-            }}{{ i < state.entries[entryId].links.length - 1 ? ',' : '' }}</a
-          >
-        </span>
-      </mat-list-item>
-    </ng-container>
-  </mat-list>
+            <span class="mat-body-strong entry-header" mat-line>{{
+              state[tab].entries[entryId].term
+            }}</span>
+            <div
+              [data]="state[tab].entries[entryId].text"
+              markdown
+              [inline]="true"
+              mat-line
+            ></div>
+            <span
+              class="links"
+              *ngIf="
+                state[tab].entries[entryId].links.length > 0 &&
+                tab === 'Glossar'
+              "
+              mat-line
+              >&rarr;<a
+                (click)="followRef(refId)"
+                *ngFor="
+                  let refId of state[tab].entries[entryId].links;
+                  let i = index
+                "
+              >
+                {{ state[tab].entries[refId].term
+                }}{{
+                  i < state[tab].entries[entryId].links.length - 1 ? ',' : ''
+                }}
+              </a>
+            </span>
+          </mat-list-item>
+        </ng-container>
+      </mat-list>
+    </mat-tab>
+  </mat-tab-group>
 </div>
