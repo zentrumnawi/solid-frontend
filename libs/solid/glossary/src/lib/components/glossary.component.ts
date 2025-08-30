@@ -2,6 +2,7 @@ import { Component, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
   GlossaryEntryModel,
+  ExtendedGlossaryEntryModel,
   GlossaryState,
   GlossaryStateModel,
 } from '../glossary.state';
@@ -22,8 +23,10 @@ export class GlossaryComponent implements OnDestroy {
   @ViewChildren(RefDirective, { read: RefDirective })
   public refElements!: QueryList<RefDirective>;
   @Select(GlossaryState.state)
-  public State!: Observable<GlossaryStateModel>;
-  public GlossaryEntries: Observable<GlossaryStateModel>;
+  public State!: Observable<ExtendedGlossaryEntryModel>;
+  public GlossaryEntries: Observable<ExtendedGlossaryEntryModel>;
+
+  protected Object = Object;
 
   constructor(store: Store) {
     store.dispatch(new LoadGLossary());
@@ -33,11 +36,15 @@ export class GlossaryComponent implements OnDestroy {
     ]).pipe(
       map((val) => {
         const filterStr: string = (val[0] as string).toLowerCase();
-        const state = val[1];
+        const state = { ...val[1] }; // Create a copy of the state to modify
+
         if (filterStr === '') {
           return state;
         }
-        const validEntryIds = Object.values(state.entries)
+
+        // Only filter the glossary section
+        const glossaryState = state['Glossar'];
+        const validEntryIds = Object.values(glossaryState.entries)
           .filter((entry: GlossaryEntryModel) => {
             return (
               entry.term.toLowerCase().includes(filterStr) ||
@@ -45,7 +52,8 @@ export class GlossaryComponent implements OnDestroy {
             );
           })
           .map((entry) => entry.id);
-        const filteredSections = state.sections
+
+        const filteredSections = glossaryState.sections
           .filter((section) => {
             return section[1].some((id) => validEntryIds.includes(id));
           })
@@ -55,7 +63,14 @@ export class GlossaryComponent implements OnDestroy {
               section[1].filter((id) => validEntryIds.includes(id)),
             ] as [string, number[]];
           });
-        return { sections: filteredSections, entries: state.entries };
+
+        // Update only the glossary section in the state copy
+        state['Glossar'] = {
+          sections: filteredSections,
+          entries: glossaryState.entries,
+        };
+
+        return state;
       }),
       takeUntil(this.$destroyed),
     );
