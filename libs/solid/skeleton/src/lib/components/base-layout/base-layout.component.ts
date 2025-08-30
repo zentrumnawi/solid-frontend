@@ -21,7 +21,6 @@ import { BaseComponent } from '@zentrumnawi/solid-profile';
   styleUrls: ['./base-layout.component.scss'],
 })
 export class BaseLayoutComponent implements OnInit {
-  public glossaryType: 'glossary' | 'abbreviations' = 'glossary';
   public FixedLayout = false;
   public subscription!: Subscription;
   public title = '';
