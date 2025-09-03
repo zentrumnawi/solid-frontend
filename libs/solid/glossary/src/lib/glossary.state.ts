@@ -24,11 +24,21 @@ export interface GlossaryStateModel {
   sections: [string, number[]][];
 }
 
-@State<GlossaryStateModel>({
+export interface ExtendedGlossaryEntryModel {
+  [key: string]: GlossaryStateModel;
+}
+
+export interface GlossaryApiResponse {
+  [key: string]: GlossaryEntryModel[];
+}
+
+@State<ExtendedGlossaryEntryModel>({
   name: 'glossary',
   defaults: {
-    entries: {},
-    sections: [],
+    Glossar: {
+      entries: {},
+      sections: [],
+    },
   },
 })
 @Injectable()
@@ -39,34 +49,50 @@ export class GlossaryState {
   ) {}
 
   @Selector()
-  static state(state: GlossaryStateModel) {
+  static state(state: ExtendedGlossaryEntryModel) {
     return { ...state };
   }
 
   @Action(LoadGLossary)
-  public load(ctx: StateContext<GlossaryStateModel>) {
+  public load(ctx: StateContext<ExtendedGlossaryEntryModel>) {
     return this._http
-      .get<GlossaryEntryModel[]>(`${this._config.apiUrl}/glossaryentries`)
+      .get<GlossaryApiResponse>(`${this._config.apiUrl}/glossaryentries`)
       .pipe(
         map((result) => {
-          const entries: GlossaryEntries = {};
-          const sections: { [key: string]: number[] } = {};
-          result.forEach((entry) => {
-            entries[entry.id] = entry;
-            const firstChar = entry.term[0].toUpperCase();
-            if (sections[firstChar] === undefined) {
-              sections[firstChar] = [];
-            }
-            sections[firstChar].push(entry.id);
+          const extendedGlossary: ExtendedGlossaryEntryModel = {};
+
+          // Iterate over each tab content
+          Object.entries(result).forEach(([tabName, entryArray]) => {
+            const entries: GlossaryEntries = {};
+            const sections: { [key: string]: number[] } = {};
+
+            // Process each entry
+            entryArray.forEach((entry) => {
+              entries[entry.id] = entry;
+              const firstChar = entry.term[0].toUpperCase();
+              if (sections[firstChar] === undefined) {
+                sections[firstChar] = [];
+              }
+              sections[firstChar].push(entry.id);
+            });
+
+            // Sort entries within each section by term
+            Object.keys(sections).forEach((sectionKey) =>
+              sections[sectionKey].sort((a, b) =>
+                entries[a].term.localeCompare(entries[b].term),
+              ),
+            );
+
+            // Convert sections to array format and sort by section key
+            const sectionArr = Object.entries(sections);
+            sectionArr.sort((a, b) => a[0].localeCompare(b[0]));
+
+            extendedGlossary[tabName] = {
+              entries,
+              sections: sectionArr,
+            };
           });
-          Object.keys(sections).forEach((sectionKey) =>
-            sections[sectionKey].sort((a, b) =>
-              entries[a].term.localeCompare(entries[b].term),
-            ),
-          );
-          const sectionArr = Object.entries(sections);
-          sectionArr.sort((a, b) => a[0].localeCompare(b[0]));
-          return { entries, sections: sectionArr };
+          return extendedGlossary;
         }),
         tap((v) => {
           ctx.patchState(v);

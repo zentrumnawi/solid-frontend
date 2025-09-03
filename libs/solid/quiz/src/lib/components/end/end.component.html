@@ -46,6 +46,9 @@
       <mat-icon class="correctIcon" *ngIf="question.answered === 1">
         check_circle
       </mat-icon>
+      <mat-icon class="partiallyIncorrectIcon" *ngIf="question.answered === -2">
+        check_circle
+      </mat-icon>
       <mat-icon class="incorrectIcon" *ngIf="question.answered === -1">
         cancel
       </mat-icon>
