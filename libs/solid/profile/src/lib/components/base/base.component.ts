@@ -258,42 +258,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if(!view.selectedProfile || !view.selectedNode) return;
 
-      // Determine swipe directions
-      if (this.View === 'grid' || this.Filter.value !== '') {
-        const profiles = view.flat;
-        const flatIndex = profiles.findIndex(
-          (p) => p.id === view.selectedProfile?.id && p.def_type === view.selectedProfile?.def_type,
-        );
-        if (flatIndex !== 0) {
-          const profile = profiles[flatIndex - 1];
-          this.SwipeLeft = this.getProfileShort(profile);
-        } else {
-          this.SwipeLeft = { id: -1 };
-        }
-        if (flatIndex !== profiles.length - 1) {
-          const profile = profiles[flatIndex + 1];
-          this.SwipeRight = this.getProfileShort(profile);
-        } else {
-          this.SwipeRight = { id: -1 };
-        }
-      } else {
-        const profOfSelectedNode = this._store.selectSnapshot(ProfileState.selectEntries)[view.selectedNode?.id ?? 0];
-        const index = profOfSelectedNode.indexOf(view.selectedProfile!);
-        if (!this.Filter.value) {
-          const profileLeft = profOfSelectedNode.find(
-            (p, i) => i === index - 1,
-          ) as Profile | undefined;
-          this.SwipeLeft = this.getProfileShort(profileLeft);
-
-          const profileRight = profOfSelectedNode.find(
-            (p, i) => i > index,
-          ) as Profile | undefined;
-          this.SwipeRight = this.getProfileShort(profileRight);
-        } else {
-          this.SwipeLeft = { id: -1 };
-          this.SwipeRight = { id: -1 };
-        }
-      }
+      this.updateSwipeTargets(view);
 
       this.handleLongTitle();
     });
@@ -539,5 +504,83 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       return this.Filter.value === '' ? this.gridProfiles : this.searchResults;
     }
     return [];
+  }
+
+  private updateSwipeTargets(view: any) {
+    if (this.isGridOrFiltered()) {
+      this.updateSwipeTargetsForGridView(view);
+    } else {
+      this.updateSwipeTargetsForTreeView(view);
+    }
+  }
+
+  private isGridOrFiltered(): boolean {
+    return this.View === 'grid' || this.Filter.value !== '';
+  }
+
+  private updateSwipeTargetsForGridView(view: any) {
+    const profiles = view.flat;
+    const currentIndex = this.findCurrentProfileIndex(profiles, view.selectedProfile);
+    
+    this.SwipeLeft = this.getSwipeLeftTarget(profiles, currentIndex);
+    this.SwipeRight = this.getSwipeRightTarget(profiles, currentIndex);
+  }
+
+  private findCurrentProfileIndex(profiles: any[], selectedProfile: any): number {
+    return profiles.findIndex(
+      (p) => p.id === selectedProfile?.id && p.def_type === selectedProfile?.def_type
+    );
+  }
+
+  private getSwipeLeftTarget(profiles: any[], currentIndex: number) {
+    if (currentIndex === 0) {
+      return { id: -1 };
+    }
+    const profile = profiles[currentIndex - 1];
+    return this.getProfileShort(profile);
+  }
+
+  private getSwipeRightTarget(profiles: any[], currentIndex: number) {
+    if (currentIndex === profiles.length - 1) {
+      return { id: -1 };
+    }
+    const profile = profiles[currentIndex + 1];
+    return this.getProfileShort(profile);
+  }
+
+  private updateSwipeTargetsForTreeView(view: any) {
+    if (this.Filter.value) {
+      this.clearSwipeTargets();
+      return;
+    }
+
+    const profiles = this.getProfilesForNode(view.selectedNode?.id);
+    const currentIndex = profiles.indexOf(view.selectedProfile!);
+    
+    this.SwipeLeft = this.getTreeViewSwipeLeftTarget(profiles, currentIndex);
+    this.SwipeRight = this.getTreeViewSwipeRightTarget(profiles, currentIndex);
+  }
+
+  private getProfilesForNode(nodeId: number): any[] {
+    return this._store.selectSnapshot(ProfileState.selectEntries)[nodeId ?? 0];
+  }
+
+  private getTreeViewSwipeLeftTarget(profiles: any[], currentIndex: number) {
+    const profileLeft = profiles.find(
+      (p, i) => i === currentIndex - 1
+    ) as Profile | undefined;
+    return this.getProfileShort(profileLeft);
+  }
+
+  private getTreeViewSwipeRightTarget(profiles: any[], currentIndex: number) {
+    const profileRight = profiles.find(
+      (p, i) => i > currentIndex
+    ) as Profile | undefined;
+    return this.getProfileShort(profileRight);
+  }
+
+  private clearSwipeTargets() {
+    this.SwipeLeft = { id: -1 };
+    this.SwipeRight = { id: -1 };
   }
 }
