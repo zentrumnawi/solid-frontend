@@ -106,6 +106,9 @@
   </mat-toolbar>
   <ng-container *ngIf="(SplitLayout || !SelectedProfile) && !isLoading">
     <ng-container [ngSwitch]="(View === 'tree' && Filter.value !== '') || View">
+      <div *ngIf="View === 'grid' && isLoadingGrid" class="spinner-overlay">
+        <mat-spinner color="primary" [diameter]="115"></mat-spinner>
+      </div>
       <solid-profile-grid
         *ngSwitchCase="'grid'"
         (selectProfile)="selectProfile($event)"

@@ -80,5 +80,12 @@
   mat-raised-button
   class="nextQuestionBtn"
 >
-  {{ correct === 1 ? 'Richtig,' : ' Falsch,' }} nächste Frage
+  {{
+    correct === 1
+      ? 'Richtig,'
+      : hasSubsequence && correct === -1
+        ? 'Teilweise richtig,'
+        : 'Falsch,'
+  }}
+  nächste Frage
 </button>

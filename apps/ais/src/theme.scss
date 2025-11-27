@@ -80,6 +80,7 @@ $app-accent: mat.define-palette($ais-accent, 500);
 
 $quiz-correct: mat.define-palette(mat.$light-green-palette, 600, 200, 600);
 $quiz-incorrect: mat.define-palette(mat.$red-palette, 700, 200, 600);
+$quiz-partiallyIncorrect: mat.define-palette(mat.$gray-palette, 400, 200, 600);
 
 // The warn palette is optional (defaults to red).
 $app-warn: mat.define-palette(mat.$red-palette);

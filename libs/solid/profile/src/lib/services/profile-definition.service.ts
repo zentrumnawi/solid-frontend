@@ -36,7 +36,9 @@ export class ProfileDefinitionService {
     return this.http.get<OpenApi>(`${this._config.apiUrl}/api/schema`).pipe(
       map((openapi) => {
         const schemas = openapi.components?.schemas || {};
-        const treeNode = schemas.TreeNode as OpenApiSchema;
+        const treeNode = schemas.IdTreeNode
+          ? (schemas.IdTreeNode as OpenApiSchema)
+          : (schemas.TreeNode as OpenApiSchema);
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const properties = treeNode.properties!;
 

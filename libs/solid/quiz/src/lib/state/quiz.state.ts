@@ -187,7 +187,7 @@ export class QuizState {
     const session = { ...(getState().session as QuizSession) };
     const answeredQuestion = {
       ...session.questions[session.currentQuestion],
-      answered: correct as 0 | -1 | 1,
+      answered: correct as 0 | -1 | 1 | -2,
     };
     patchState({
       session: {

@@ -1,6 +1,6 @@
 mat-list {
   padding: 0;
-  display: inline-block;
+  display: block;
   height: calc(100vh - 119px);
   width: 300px;
   overflow-y: auto;
@@ -58,4 +58,9 @@ mat-list {
 mat-form-field {
   width: 100%;
   margin-top: 0.5em;
+}
+
+.scrollable-list {
+  overflow-y: auto;
+  scrollbar-color: #9999 #9993;
 }

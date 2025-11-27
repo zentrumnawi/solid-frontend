@@ -24,6 +24,7 @@ export interface QuizAnswer {
   subsequences: boolean;
   feedback_subsequences: string;
   range_value: number;
+  unit: string;
   range_max: number;
   range_min: number;
   range_step: number;
@@ -38,7 +39,9 @@ export enum QuizQuestionType {
   Range = 'RN',
 }
 
-export type QuizQuestionInSession = QuizQuestion & { answered: 0 | -1 | 1 };
+export type QuizQuestionInSession = QuizQuestion & {
+  answered: 0 | -1 | 1 | -2;
+};
 
 export interface QuizSession {
   progress: number;

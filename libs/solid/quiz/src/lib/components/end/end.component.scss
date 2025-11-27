@@ -185,3 +185,8 @@ mat-form-field {
   margin: 2em;
   text-align: center;
 }
+
+.partiallyIncorrectIcon {
+  transform: translateY(-3px) translateX(-5px);
+  opacity: 1;
+}

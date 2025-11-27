@@ -63,8 +63,8 @@
 
   "profile": {
     "location": {
-      "treeNode": "/grundwortschatz/tree/1",
-      "profileTree": "/grundwortschatz/tree/"
+      "treeNode": "/grundwortschatz/word/1",
+      "profileTree": "/grundwortschatz/"
     },
     "steps": [
       {
