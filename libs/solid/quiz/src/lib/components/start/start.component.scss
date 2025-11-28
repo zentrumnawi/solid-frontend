@@ -218,10 +218,10 @@ hr {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin: 10px 0px;
     display: block;
     padding: 5px 10px;
     text-align: center;
+    width: fit-content !important;
   }
 
   @media (max-width: 440px) {
