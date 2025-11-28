@@ -26,7 +26,7 @@
   }
 
   .mat-mdc-slide-toggle .mdc-form-field .mdc-switch .mdc-switch__track {
-    --mdc-switch-selected-track-color: mat.get-color-from-palette($app-primary);
+    //--mdc-switch-selected-track-color: mat.get-color-from-palette($app-primary);
     background-color: mat.get-color-from-palette($app-primary);
   }
 
