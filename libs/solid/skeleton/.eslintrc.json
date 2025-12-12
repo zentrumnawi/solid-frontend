@@ -3,9 +3,16 @@
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
+      "files": ["*.json"],
+      "parser": "jsonc-eslint-parser",
+      "rules": {
+        "@nx/dependency-checks": "warn"
+      }
+    },
+    {
       "files": ["*.ts"],
       "extends": [
-        "plugin:@nrwl/nx/angular",
+        "plugin:@nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "parserOptions": {
@@ -32,7 +39,7 @@
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:@nrwl/nx/angular-template"],
+      "extends": ["plugin:@nx/angular-template"],
       "rules": {}
     }
   ]

@@ -8,3 +8,4 @@ tmp/**
 
 # This file includes an unconventional way of defining an argument
 title.service.ts 
+/.nx/cache

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { MatLegacySlideToggleChange as MatSlideToggleChange } from '@angular/material/legacy-slide-toggle';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 
 @Component({

@@ -11,25 +11,25 @@
   <ng-container *ngIf="Object.keys(state).length === 1">
     <mat-list>
       <ng-container *ngFor="let kvp of state['Glossar'].sections">
-        <h3 mat-subeader>{{ kvp[0] }}</h3>
+        <h3 mat-subheader>{{ kvp[0] }}</h3>
         <mat-list-item
           *ngFor="let entryId of kvp[1]"
           solidGlossaryEntry
           [refId]="entryId"
         >
-          <span class="mat-body-strong entry-header" mat-line>{{
+          <span class="mat-body-strong entry-header" matListItemTitle>{{
             state['Glossar'].entries[entryId].term
           }}</span>
           <div
             [data]="state['Glossar'].entries[entryId].text"
             markdown
             [inline]="true"
-            mat-line
+            matListItemLine
           ></div>
           <span
             class="links"
             *ngIf="state['Glossar'].entries[entryId].links.length > 0"
-            mat-line
+            matListItemLine
             >&rarr;<a
               (click)="followRef(refId)"
               *ngFor="
@@ -55,20 +55,20 @@
     <mat-tab *ngFor="let tab of Object.keys(state)" [label]="tab">
       <mat-list>
         <ng-container *ngFor="let kvp of state[tab].sections">
-          <h3 mat-subeader>{{ kvp[0] }}</h3>
+          <h3 mat-subheader>{{ kvp[0] }}</h3>
           <mat-list-item
             *ngFor="let entryId of kvp[1]"
             solidGlossaryEntry
             [refId]="entryId"
           >
-            <span class="mat-body-strong entry-header" mat-line>{{
+            <span class="mat-body-strong entry-header" matListItemTitle>{{
               state[tab].entries[entryId].term
             }}</span>
             <div
               [data]="state[tab].entries[entryId].text"
               markdown
               [inline]="true"
-              mat-line
+              matListItemLine
             ></div>
             <span
               class="links"
@@ -76,7 +76,7 @@
                 state[tab].entries[entryId].links.length > 0 &&
                 tab === 'Glossar'
               "
-              mat-line
+              matListItemLine
               >&rarr;<a
                 (click)="followRef(refId)"
                 *ngFor="

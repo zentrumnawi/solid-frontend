@@ -8,7 +8,7 @@
     </div>
   </div>
 </div>
-<mat-card>
+<mat-card appearance="outlined">
   <mat-card-content class="content-container">
     <p>
       Mit diesen Fragen kann der persönliche Wissensstand in verschiedenen
@@ -48,7 +48,7 @@
       <mat-slide-toggle
         class="expBtn"
         [checked]="expertModeStatus"
-        (change)="expertModeToggle()"
+        (toggleChange)="expertModeToggle()"
       >
         Expertenmodus aktivieren
       </mat-slide-toggle>
@@ -59,13 +59,12 @@
           <div class="mat-subheader">Fragenanzahl</div>
         </div>
         <div class="controlElement" id="questionCount">
-          <mat-slider
-            min="1"
-            max="30"
-            step="1"
-            (input)="onSliderChange($event)"
-            [(ngModel)]="questionCount"
-          >
+          <mat-slider min="1" max="30" step="1" discrete>
+            <input
+              matSliderThumb
+              [(ngModel)]="questionCount"
+              (dragEnd)="onSliderChange($event)"
+            />
           </mat-slider>
           <div class="displayValueBox">
             {{ questionCount }}
@@ -112,22 +111,21 @@
           </button>
         </div>
         <div class="controlElement" id="tag">
-          <mat-chip-list
-            selectable
+          <mat-chip-listbox
             multiple
-            (change)="onTagSelectionChange($event)"
             [(ngModel)]="chosenTags"
+            (change)="onTagSelectionChange($event)"
           >
-            <mat-chip
-              #c="matChip"
+            <mat-chip-option
               *ngFor="let tag of tags"
               [value]="tag"
-              (click)="c.toggleSelected(true)"
-              [ngClass]="tags.length > 6 ? 'mat-chip-small' : 'mat-chip-large'"
+              [class]="tags.length > 6 ? 'mat-chip-small' : 'mat-chip-large'"
+              [selectable]="true"
+              [disableRipple]="false"
             >
               {{ tag }}
-            </mat-chip>
-          </mat-chip-list>
+            </mat-chip-option>
+          </mat-chip-listbox>
         </div>
       </div>
     </div>

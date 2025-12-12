@@ -6,7 +6,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatLegacyRadioChange as MatRadioChange } from '@angular/material/legacy-radio';
+import { MatRadioChange } from '@angular/material/radio';
 import { QuizAnswer, QuizQuestion } from '../../state/quiz.model';
 
 @Component({

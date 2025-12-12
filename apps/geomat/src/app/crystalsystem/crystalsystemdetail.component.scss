@@ -27,10 +27,28 @@ iframe {
 }
 
 mat-select {
-  max-width: 5em;
+  max-width: 7em;
+  margin-left: 30px;
+}
+
+@media (max-width: 500px) {
+  mat-select {
+    margin-left: 5px;
+  }
 }
 
 div.model-info {
   padding: 0.5em;
   border-top: 1px solid mat.get-color-from-palette($background, status-bar);
+}
+
+:host ::ng-deep .mat-mdc-select-value {
+  width: 60%;
+}
+
+::ng-deep {
+  .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
+    white-space: nowrap;
+    width: auto !important;
+  }
 }

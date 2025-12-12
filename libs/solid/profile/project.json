@@ -6,12 +6,10 @@
   "prefix": "solid-profile",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/solid/profile/tsconfig.lib.json",
-        "project": "libs/solid/profile/ng-package.json",
-        "buildableProjectDepsInPackageJsonType": "dependencies",
-        "updateBuildableProjectDepsInPackageJson": true
+        "project": "libs/solid/profile/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -23,25 +21,25 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "libs/solid/profile/src/**/*.ts",
-          "libs/solid/profile/src/**/*.html"
+          "libs/solid/profile/src/**/*.html",
+          "libs/solid/profile/package.json"
         ]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "libs/solid/profile/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/solid/profile/jest.config.ts"
       },
       "outputs": ["{workspaceRoot}/coverage/libs/solid/profile"]
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "styleext": "scss"
     }
   }

@@ -1,6 +1,7 @@
 mat-list {
   padding: 0.8rem 1rem 1rem 1rem;
 }
+
 mat-list-item {
   margin-top: 0;
   ::ng-deep {
@@ -10,7 +11,8 @@ mat-list-item {
     h3.mat-line {
       padding-bottom: 0.5em;
     }
-    .mat-list-item-content {
+
+    .mdc-list-item__content {
       padding: 0 !important;
       flex-direction: column !important;
       align-items: baseline !important;
@@ -32,11 +34,13 @@ mat-list-item {
     font-size: 14px !important;
   }
 }
+
 mat-list-item:not(:first-child) {
   h3 {
     padding-top: 0.5em;
   }
 }
+
 mat-list-item:not(:last-child) {
   padding-bottom: 0.8em !important;
 }

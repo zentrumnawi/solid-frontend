@@ -4,12 +4,25 @@
 }
 
 mat-form-field {
-  width: 0;
+  width: 40px;
   transition: 0.5s ease-in-out;
+
+  .mat-mdc-form-field-infix {
+    width: 0;
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+  }
+
+  mat-label {
+    display: none;
+  }
+
   ::ng-deep {
-    div.mat-form-field-wrapper {
+    .mdc-text-field {
       padding: 0;
-      div.mat-form-field-flex {
+      background: transparent;
+
+      .mat-mdc-form-field-flex {
         //we should try to avoid this in the future
         //but "appearance: fill" simply doesn't cut it
         background-color: rgba(0, 0, 0, 0);
@@ -17,35 +30,34 @@ mat-form-field {
         padding-left: 0;
         margin-left: 10px;
 
-        div.mat-form-field-suffix {
+        .mat-mdc-form-field-icon-suffix {
           margin-left: -0.75em;
         }
       }
     }
 
-    div.mat-form-field-underline {
+    .mat-mdc-form-field-subscript-wrapper {
       display: none;
     }
   }
-}
 
-.openSearchBar {
-  width: 328px;
+  &.openSearchBar {
+    width: 328px;
+
+    .mat-mdc-form-field-infix {
+      width: auto;
+      opacity: 1;
+    }
+
+    mat-label {
+      display: block;
+    }
+  }
 }
 
 mat-form-field flex {
   max-width: 20em;
   padding-top: 0;
-
-  ::ng-deep {
-    div.mat-form-field-wrapper {
-      padding: 0;
-    }
-
-    div.mat-form-field-underline {
-      display: none;
-    }
-  }
 }
 
 mat-icon.clear-filter {

@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ImageModel, MediaModel } from '../../models';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MediaErrorDialogComponent } from '../media-error-dialog/media-error-dialog.component';
 
 @Component({

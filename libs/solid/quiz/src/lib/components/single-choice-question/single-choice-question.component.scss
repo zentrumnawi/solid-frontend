@@ -12,26 +12,22 @@ mat-radio-group {
       margin-top: 20px;
     }
     ::ng-deep {
-      label.mat-radio-label {
+      .mdc-form-field {
         vertical-align: top;
-
-        .mat-radio-container {
-          margin-bottom: auto;
-        }
 
         &.correct {
           font-weight: bold;
         }
       }
 
-      .mat-radio-label-content {
+      .mdc-form-field > label {
         display: grid;
         grid-template-rows: auto;
         grid-template-columns: auto 20px;
         white-space: normal;
       }
 
-      .mat-radio-inner-circle {
+      .mdc-radio__background {
         z-index: 0;
       }
     }
@@ -79,6 +75,8 @@ span.feedback {
   margin-top: 23px;
 }
 
-::ng-deep .mat-radio-button.mat-radio-disabled .mat-radio-outer-circle {
-  display: none;
+::ng-deep .mdc-radio.mdc-radio--disabled {
+  .mdc-radio__background {
+    display: none;
+  }
 }

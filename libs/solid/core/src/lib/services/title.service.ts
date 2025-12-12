@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Actions, ofActionSuccessful } from '@ngxs/store';
 import { RouterNavigation } from '@ngxs/router-plugin';
 import { RouterStateParams } from '../custom-router-state-serializer';

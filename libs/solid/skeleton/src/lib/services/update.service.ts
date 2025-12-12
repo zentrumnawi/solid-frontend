@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { MatDialog } from '@angular/material/dialog';
 import { UpdateDialogComponent } from '../components/update-dialog/update-dialog.component';
 
 @Injectable()
 export class UpdateService {
   constructor(updates: SwUpdate, dialog: MatDialog) {
-    updates.available.subscribe((event) => {
-      dialog.open(UpdateDialogComponent, {
-        disableClose: true,
-        data: {
-          cb: () =>
-            updates.activateUpdate().then(() => document.location.reload()),
-        },
-      });
-      console.log('current version is', event.current);
-      console.log('available version is', event.available);
-    });
-    updates.activated.subscribe((event) => {
-      console.log('old version was', event.previous);
-      console.log('new version is', event.current);
+    updates.versionUpdates.subscribe((event) => {
+      if (event.type === 'VERSION_READY') {
+        dialog.open(UpdateDialogComponent, {
+          disableClose: true,
+          data: {
+            cb: () =>
+              updates.activateUpdate().then(() => {
+                console.log(
+                  'old version was',
+                  (event as VersionReadyEvent).currentVersion,
+                );
+                console.log(
+                  'new version is',
+                  (event as VersionReadyEvent).latestVersion,
+                );
+                document.location.reload();
+              }),
+          },
+        });
+      }
     });
   }
 }
