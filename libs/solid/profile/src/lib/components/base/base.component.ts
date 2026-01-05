@@ -183,12 +183,16 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           this.getProfileType(pm.get('type')) === 'wine' ? pm.get('type')
                                                          : qp['view']
       })),
+      // don't fire as long as id and type are the same
       distinctUntilChanged((a, b) => a.id === b.id && a.typ === b.typ)
     );
 
     this.mainSubscription = route$.pipe(
       switchMap((route) => {
         if (!route.id) {
+          console.log("no id, returning early from mainSubscription");
+          // no route.id means that no single profile is navigated at by url parameter
+          // -> that means the path to a single profile does not have to be built
           return of({ selectedProfile: null, selectedNode: null, flat: [] });
         }
 
@@ -211,11 +215,13 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
             console.log("route.id", route.id);
             console.log("route.typ", route.typ);
             console.log("res", res);
+            console.log("openpath", this._store.selectSnapshot(ProfileState.selectSelectedProfilePath));
             if (!res && route.id && route.typ && !this._store.selectSnapshot(ProfileState.selectSelectedProfile)) { 
               console.log("fetching entries first time")             // not in store yet
               this._store.dispatch(new GetSingleProfile(route.id, route.typ)).subscribe(() => {
                 this.$selectedProfile.pipe(take(1)).subscribe(profile => {
                   if(!this._store.selectSnapshot(ProfileState.selectEntries)[profile.tree_node.id]?.length) {
+                    console.log("tree-node-id of profile", profile.tree_node.id);
                     this._store.dispatch(new GetEntries(profile.tree_node.id));
                   }
                 });
@@ -229,14 +235,14 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         return loaded$.pipe(
           
           //tap(a => console.log("firing on loaded$", a)),
-          tap(({ node }) => {
-            console.log("node before ensureEntryPath", route.typ);
+          tap(({ node, profile }) => {
+            console.log("node before ensureEntryPath", node?.id);
             this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
             .pipe(take(1))
             .subscribe(_ => {
               console.log("_", _);  
               this.openPath = this._store.selectSnapshot(ProfileState.selectSelectedProfilePath);
-              console.log("openPath", this.openPath);
+              console.log("just set openPath", this.openPath);
             });
           }
           ),

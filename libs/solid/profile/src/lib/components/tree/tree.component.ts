@@ -18,7 +18,7 @@ import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
 } from '@angular/material/tree';
-import { Observable, BehaviorSubject, of, take, map, filter, forkJoin } from 'rxjs';
+import { Observable, BehaviorSubject, of, take, map, filter, forkJoin, catchError, switchMap, timeout } from 'rxjs';
 import { LazyTreeNode, Profile, TreeNode } from '../../state/profile.model';
 import { ChildrenLoaded, GetChildren, GetEntries, GetRootNodes } from '../../state/profile.actions';
 import { Store } from '@ngxs/store';
@@ -168,21 +168,18 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  /** Get the level of the node */
   static getLevel(node: FlatTreeNode) {
     return node.level;
   }
 
-  /** Get whether the node is expanded or not. */
   static isExpandable(node: FlatTreeNode) {
     return node.expandable;
   }
 
-  /** Get the children for the node. */
   static getChildren(node: LazyTreeNode | Profile) {
-    console.log("getting children of", node);
+    console.log("getting already fetched children of", node);
     if (node.type === 'category') {
-      console.log("returning children", node.children, node.profiles);
+      console.log("returning already fetched children", node.children, node.profiles);
       console.log("of node", node);
       return [...(node.children ?? []), ...(node.profiles ?? [])];
     }
@@ -190,16 +187,24 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public ngOnInit(): void {
-    this._store.dispatch(new GetRootNodes()).pipe(take(1)).subscribe(() => {
-      const roots = this._store.selectSnapshot(ProfileState.selectRootNodes);
-      // make mutable copy of roots
-      const mutableRoots = roots.map(root => ({ ...root }));
-      this.dataChange.next(mutableRoots);
-      console.log(Array.isArray(roots));
-      console.log("roots", roots);
-      //Promise.resolve().then(() => this.expandSelectedNode());
-      if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
-    });
+    // this._store.dispatch(new GetRootNodes()).pipe(take(1)).subscribe(() => {
+    //   const roots = this._store.selectSnapshot(ProfileState.selectRootNodes);
+    //   // make mutable copy of roots
+    //   const mutableRoots = roots.map(root => ({ ...root }));
+    //   this.dataChange.next(mutableRoots);
+    //   console.log(Array.isArray(roots));
+    //   console.log("roots", roots);
+    //   //Promise.resolve().then(() => this.expandSelectedNode());
+    //   if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
+    // });
+    const roots = this._store.selectSnapshot(ProfileState.selectRootNodes);
+    // make mutable copy of roots
+    const mutableRoots = roots.map(root => ({ ...root }));
+    this.dataChange.next(mutableRoots);
+    console.log(Array.isArray(roots));
+    console.log("roots", roots);
+    //Promise.resolve().then(() => this.expandSelectedNode());
+    if (this.coreConfig.expandProfileTree) this.TreeControl.expandAll();
     // this.rootNodes.subscribe((rootNodes: LazyTreeNode[]) => {
     //   const mutableRoots = rootNodes.map(root => ({ ...root }));
     //   this.dataChange.next(mutableRoots);
@@ -212,6 +217,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     this.selectedElements.changes.subscribe((_) => this.scrollTo());
     // Use expansionModel.changed for lazy loading
     this.TreeControl.expansionModel.changed.subscribe(change => {
+      console.log("ooooopenpath", this.openPath);
       if(this.openPath?.length) return;
       if (change.added) {
         // if('openPath' in change.added) {
@@ -225,6 +231,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
             this.loadChildren(node).then(() => {
               const newNode = this.TreeControl.dataNodes.find(n2 => this.areNodesEqual(n2, node));
               if (newNode && newNode.loaded) {
+                console.log("(ngInit) expanding newNode", newNode);
                 this.expandParents(newNode);
                 this.TreeControl.expand(newNode);
               }
@@ -239,61 +246,46 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       //this._selectedNode = null
     });
   }
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    console.log("expanding selected node");
+ 
+  public async ngOnChanges(changes: SimpleChanges): Promise<void> {
+    console.log("expanding selected node insicde ngOnChanges", this.selectedProfileId);
     console.log("changes", changes);
     if('openPath' in changes && changes['selectedProfileId']?.currentValue !== -1) {
       console.log("change is openPath");
-      changes['openPath'].currentValue
-          .filter((n: LazyTreeNode) => n.type === 'category' && !n.loaded)
-          .forEach((node: LazyTreeNode) => {
-            const flatNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
-            // if (flatNode) { 
-            //   this.TreeControl.expand(flatNode);
-            // }
-            
-            console.log("(ngOnChanges) loading children of", node);
-            if(flatNode) {
-            this.loadChildren(flatNode).then(() => {
-              const newNode = this.TreeControl.dataNodes.find(n2 => this.areNodesEqual(n2, flatNode));
-              if (newNode && newNode.loaded) {
-                this.expandParents(newNode);
-                this.TreeControl.expand(newNode);
-              }
-              console.log("(ngOnChanges) flat data (expansionModel)", this.TreeControl.dataNodes);
-            });
+      console.log("openPath", changes['openPath'].currentValue);
+      const nodesToLoad = changes['openPath'].currentValue
+      .filter((n: LazyTreeNode) => n.type === 'category' && !n.loaded);
+    
+    for (const node of nodesToLoad) {
+      const flatNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
+      
+      console.log("(ngOnChanges) loading children of", node);
+      if (flatNode) {
+        try {
+          await this.loadChildren(flatNode);
+          const newNode = this.TreeControl.dataNodes.find(n2 => this.areNodesEqual(n2, flatNode));
+          console.log("(ngOnChanges) newNode", newNode);
+          
+          if (newNode && newNode.loaded) {
+            console.log("(ngOnChanges) expanding newNode", newNode);
+            this.expandParents(newNode);
+            this.TreeControl.expand(newNode);
           }
-          });
+          console.log("(ngOnChanges) flat data (expansionModel)", this.TreeControl.dataNodes);
+        } catch (error) {
+          console.error('Error loading children for node:', node, error);
+        }
+      }
+    }
           this.openPath = undefined;
     }
     
-    //this.expandSelectedNode();
-    // if (changes['selectedProfileId'] || changes['selectedProfileType']) {
-    //   //Promise.resolve().then(() => this.expandSelectedNode());
-    // }
     if (!this.openPath?.length) { return; }
 
-    // wait until MatTreeFlatDataSource has produced dataNodes
-    // Promise.resolve().then(() => {
-    //   //const map = new Map(this.TreeControl.dataNodes.map(n => [n.id, n]));
-
-    //   this.openPath?.forEach(node => {
-    //     const flatNode = this.TreeControl.dataNodes.find(n => n.id === node.id);
-    //     console.log("found the node to expand", flatNode);
-    //     if (flatNode) { 
-    //       this.TreeControl.expand(flatNode);
-          
-    //     }
-    //   });
-
-    //   this.openPath = undefined;         // done
-    // });
     console.log("collapsing tree", this.collapseTree);
     if (this.collapseTree) this.TreeControl.collapseAll();
   }
 
-  /** Get whether the node has children or not. */
   public hasChild(index: number, node: FlatTreeNode) {
     return node.expandable;
   }
@@ -316,28 +308,30 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       this.TreeControl.collapse(node);
       this._selectedNode = null;
     } else {
-      if (this._selectedNode) {
-        const children = this.TreeControl.getDescendants(this._selectedNode);
-        console.log("children of sel node", children);
-        if (
-          !children ||
-          (Array.isArray(children) && !children.includes(node))
-        ) {
-          console.log("collapsing sel node", this._selectedNode);
-          this.TreeControl.collapse(this._selectedNode);
-          for (const dataNode of this.TreeControl.dataNodes) {
-            const c = this.TreeControl.getDescendants(dataNode);
-            if (
-              c &&
-              Array.isArray(c) &&
-              c.includes(this._selectedNode) &&
-              !c.includes(node)
-            ) {
-              this.TreeControl.collapse(dataNode);
-            }
-          }
-        }
-      }
+      // if (this._selectedNode) {
+      //   const children = this.TreeControl.getDescendants(this._selectedNode);
+      //   console.log("############selected node", this._selectedNode);
+      //   console.log("clicked node", node);
+      //   console.log("children of sel node", children);
+      //   if (
+      //     !children ||
+      //     (Array.isArray(children) && !children.includes(node))
+      //   ) {
+      //     console.log("collapsing sel node", this._selectedNode);
+      //     this.TreeControl.collapse(this._selectedNode);
+      //     for (const dataNode of this.TreeControl.dataNodes) {
+      //       const c = this.TreeControl.getDescendants(dataNode);
+      //       if (
+      //         c &&
+      //         Array.isArray(c) &&
+      //         c.includes(this._selectedNode) &&
+      //         !c.includes(node)
+      //       ) {
+      //         this.TreeControl.collapse(dataNode);
+      //       }
+      //     }
+      //   }
+      // }
       this.TreeControl.expand(node);
       this._selectedNode = node;
     }
@@ -395,48 +389,47 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private loadChildren(node: FlatTreeNode): Promise<void> {
-    if (node.loaded || !node.expandable) {
+    if (node.loaded || !node.expandable || (node?.type === 'category' && node.children && node.children.length > 0)) {
       return Promise.resolve();
     }
     console.log("startig loadChildren for", node);
     
     //this.data = this.updateNodeChildren(this.data, node.id, undefined, { loading: true });
-    Object.assign(node, { loading: true });
+    //Object.assign(node, { loading: true });
+    node.loading = true;
 
-    return new Promise((resolve) => {
-      this._store.dispatch(new GetChildren(node.id));
-      this._store.dispatch(new GetEntries(node.id));
+    return new Promise((resolve, reject) => {
       forkJoin({
-        children: this.childrenById$.pipe(
-          map(childrenMap => childrenMap[node.id]),
-          filter(children => !!children),
-          take(1)
-        ),
-        entries: this.entries$.pipe(
-          
-          map(entriesMap => entriesMap[node.id]),
-          filter(entries => !!entries),
-          take(1)
-        )
-      }).subscribe(({ children, entries }) => {
-        
-        //this._store.dispatch(new ChildrenLoaded(node.id, children, entries));
-        // Update the data with the new children and set loaded = true, loading = false
-        //this.data = this.updateNodeChildren(this.data, node.id, children, { loaded: true, loading: false });
-        this.updateNodeChildrenPatch(this.data, node.id, children, entries);
-        //this.data = this.updateNodeProfiles(this.data, node.id, children, entries);
-        this.dataChange.next(this.data);
-        console.log("data (loadChildren) after update", this.data);
-        // Optionally, re-expand the node if needed
-        const newNode = this.TreeControl.dataNodes.find(n => this.areNodesEqual(n, node));
-        // if (newNode) {
-        //   this.TreeControl.expand(newNode);
-        // }
-        if (newNode && !this.TreeControl.isExpanded(newNode)) {
-          // this.expandParents(newNode);
-          // this.TreeControl.expand(newNode);
+        childrenAction: this._store.dispatch(new GetChildren(node.id)),
+        entriesAction: this._store.dispatch(new GetEntries(node.id))
+      }).pipe(
+        switchMap(() => forkJoin({
+          children: this.childrenById$.pipe(
+            map(childrenMap => childrenMap[node.id]),
+            filter(children => !!children),
+            take(1),
+            timeout(5000)
+          ),
+          entries: this.entries$.pipe(
+            map(entriesMap => entriesMap[node.id]),
+            filter(entries => !!entries),
+            take(1),
+            timeout(5000)
+          )
+        }))
+      ).subscribe({
+        next: ({ children, entries }) => {
+          this.updateNodeChildrenPatch(this.data, node.id, children, entries);
+          node.loaded = true;
+          node.loading = false;
+          this.dataChange.next(this.data);
+          resolve();
+        },
+        error: (error) => {
+          node.loading = false;
+          console.error('Error loading children:', error);
+          reject(error);
         }
-        resolve();
       });
     });
   }
@@ -455,6 +448,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   private updateNodeChildrenPatch(tree: (LazyTreeNode)[], nodeId: number, children?: LazyTreeNode[], entries?: Profile[], flags: Partial<LazyTreeNode> = {}) {
     console.log("entries inside patch", entries);
+    console.log("tree inside patch", tree);
     tree.forEach(n => {
       if (n.id === nodeId) {
         n.children = children?.map(c => ({ ...c})) ?? null;
