@@ -83,6 +83,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() collapseTree = false;
   @ViewChild('profileTree') profileTree: any;
   @Input() openPath?: LazyTreeNode[];
+  @Input() navigateProfileFromURL!: boolean;
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   public DataSource: MatTreeFlatDataSource<LazyTreeNode | Profile, FlatTreeNode>;
@@ -250,7 +251,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   public async ngOnChanges(changes: SimpleChanges): Promise<void> {
     console.log("expanding selected node insicde ngOnChanges", this.selectedProfileId);
     console.log("changes", changes);
-    if('openPath' in changes && changes['selectedProfileId']?.currentValue !== -1) {
+    if('openPath' in changes && changes['selectedProfileId']?.currentValue !== -1 && changes['openPath'].currentValue.length > 0) {
       console.log("change is openPath");
       console.log("openPath", changes['openPath'].currentValue);
       const nodesToLoad = changes['openPath'].currentValue
@@ -277,7 +278,8 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
         }
       }
     }
-          this.openPath = undefined;
+          this.openPath = [];
+          this.navigateProfileFromURL = false;
     }
     
     if (!this.openPath?.length) { return; }

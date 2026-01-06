@@ -83,6 +83,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(ProfileState.selectSelectedProfilePath)
   public $selectedProfilePath!: Observable<LazyTreeNode[]>;
   public openPath: LazyTreeNode[] = [];
+  public navigateProfileFromURL!: boolean;
   public $paramMap: Observable<ParamMap>;
   public $queryParams: Observable<{ view: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
@@ -164,6 +165,12 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       }      
     });
 
+    // navigating to profile via url parameter is different than manually expanding nodes
+    // navigateProfileFromURL is like a switch to activate automatic path construction
+    const initialParams = this._activatedRoute.snapshot.paramMap;
+    this.navigateProfileFromURL = initialParams.get('id') !== null;
+
+
     this.searchResultsSubscription = this.$searchResults?.subscribe((res) => {
       this.searchResults = res;
     });
@@ -191,8 +198,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       switchMap((route) => {
         if (!route.id) {
           console.log("no id, returning early from mainSubscription");
-          // no route.id means that no single profile is navigated at by url parameter
-          // -> that means the path to a single profile does not have to be built
           return of({ selectedProfile: null, selectedNode: null, flat: [] });
         }
 
@@ -237,13 +242,17 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           //tap(a => console.log("firing on loaded$", a)),
           tap(({ node, profile }) => {
             console.log("node before ensureEntryPath", node?.id);
-            this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
-            .pipe(take(1))
-            .subscribe(_ => {
-              console.log("_", _);  
-              this.openPath = this._store.selectSnapshot(ProfileState.selectSelectedProfilePath);
-              console.log("just set openPath", this.openPath);
-            });
+            // only construct path from root to node when necessary
+            if(this.navigateProfileFromURL) {
+              console.log("rrrroute.id", route.id);
+              this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
+              .pipe(take(1))
+              .subscribe(_ => {
+                console.log("_", _);  
+                this.openPath = this._store.selectSnapshot(ProfileState.selectSelectedProfilePath);
+                console.log("just set openPath", this.openPath);
+              });
+            }
           }
           ),
           map(({ profile, node }) => ({
