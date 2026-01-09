@@ -212,49 +212,49 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         //       });
         //     }
 
-        /* stream that emits the profile+node once they exist in the store */
-        const loaded$ = this.$profileAndCategorySelector.pipe(
-          map(selFn => selFn(route.id, route.typ)),
-          tap(res => {
-            console.log("route", route);
-            console.log("route.id", route.id);
-            console.log("route.typ", route.typ);
-            console.log("res", res);
-            console.log("openpath", this._store.selectSnapshot(ProfileState.selectSelectedProfilePath));
-            if (!res && route.id && route.typ && !this._store.selectSnapshot(ProfileState.selectSelectedProfile)) { 
-              console.log("fetching entries first time")             // not in store yet
-              this._store.dispatch(new GetSingleProfile(route.id, route.typ)).subscribe(() => {
-                this.$selectedProfile.pipe(take(1)).subscribe(profile => {
-                  if(!this._store.selectSnapshot(ProfileState.selectEntries)[profile.tree_node.id]?.length) {
-                    console.log("tree-node-id of profile", profile.tree_node.id);
-                    this._store.dispatch(new GetEntries(profile.tree_node.id));
-                  }
-                });
-              });
-            }
-          }),
-          filter(Boolean),           // wait until it appears
-          take(1)                    // only once per route change
-        );
+        
+    const currentProfile = this._store.selectSnapshot(ProfileState.selectSelectedProfile);
+    const profileMatchesRoute = currentProfile && 
+      currentProfile.id === route.id && 
+      currentProfile.def_type === route.typ;
 
-        return loaded$.pipe(
-          
-          //tap(a => console.log("firing on loaded$", a)),
-          tap(({ node, profile }) => {
-            console.log("node before ensureEntryPath", node?.id);
-            // only construct path from root to node when necessary
-            if(this.navigateProfileFromURL) {
-              console.log("rrrroute.id", route.id);
-              this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
-              .pipe(take(1))
-              .subscribe(_ => {
-                console.log("_", _);  
-                this.openPath = this._store.selectSnapshot(ProfileState.selectSelectedProfilePath);
-                console.log("just set openPath", this.openPath);
-              });
-            }
-          }
-          ),
+    if (profileMatchesRoute) {
+      // Profile already matches route - return it
+      return of({ 
+        profile: currentProfile, 
+        node: currentProfile.tree_node 
+      }).pipe(
+        map(({ profile, node }) => ({
+          selectedProfile: profile,
+          selectedNode: node,
+          flat: this.View === 'grid' ? this.gridProfiles : this.searchResults,
+          filterStr: this.Filter.value
+        }))
+      );
+    }
+
+    // Profile doesn't match route -> fetch it
+    return this._store.dispatch(new GetSingleProfile(route.id, route.typ)).pipe(
+      switchMap(() => this.$selectedProfile.pipe(
+        filter(profile => profile?.id === route.id && profile?.def_type === route.typ),
+        take(1)
+      )),
+      tap(profile => {
+        const entries = this._store.selectSnapshot(ProfileState.selectEntries)[profile.tree_node.id];
+        if (!entries?.length) {
+          this._store.dispatch(new GetEntries(profile.tree_node.id));
+        }
+      }),
+      map(profile => ({ profile, node: profile.tree_node })),
+      tap(({ node, profile }) => {
+        if(this.navigateProfileFromURL) {
+          this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
+            .pipe(take(1))
+            .subscribe(_ => {
+              this.openPath = this._store.selectSnapshot(ProfileState.selectSelectedProfilePath);
+            });
+        }
+      }),
           map(({ profile, node }) => ({
             selectedProfile: profile,
             selectedNode: node,
