@@ -28,13 +28,14 @@ import {
   EnsureEntryPath,
   GetSingleProfile,
   GetEntries,
+  SetNavigateProfileFromURL,
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import type { Input as HammerInput } from 'hammerjs';
-import { of, switchMap, tap, filter, distinctUntilChanged } from 'rxjs';
+import { of, switchMap, tap, filter, distinctUntilChanged, lastValueFrom } from 'rxjs';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;
@@ -83,7 +84,10 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(ProfileState.selectSelectedProfilePath)
   public $selectedProfilePath!: Observable<LazyTreeNode[]>;
   public openPath: LazyTreeNode[] = [];
-  public navigateProfileFromURL!: boolean;
+  @Select(ProfileState.selectNavigateProfileFromURL)
+  public $navigateProfileFromURL!: Observable<boolean>;
+  public navigateProfileFromURLSubscription!: Subscription;
+  public navigateProfileFromURL = false;
   public $paramMap: Observable<ParamMap>;
   public $queryParams: Observable<{ view: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
@@ -168,8 +172,13 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     // navigating to profile via url parameter is different than manually expanding nodes
     // navigateProfileFromURL is like a switch to activate automatic path construction
     const initialParams = this._activatedRoute.snapshot.paramMap;
-    this.navigateProfileFromURL = initialParams.get('id') !== null;
+    //this.navigateProfileFromURL = initialParams.get('id') !== null;
+    this._store.dispatch(new SetNavigateProfileFromURL(initialParams.get('id') !== null));
 
+    this.navigateProfileFromURLSubscription = this.$navigateProfileFromURL?.subscribe((res) => {
+      console.log("navigateProfileFromURL", res);
+      this.navigateProfileFromURL = res ?? false;
+    });
 
     this.searchResultsSubscription = this.$searchResults?.subscribe((res) => {
       this.searchResults = res;

@@ -54,3 +54,8 @@ export class GetSingleProfile {
   static readonly type = '[Profile] GetSingleProfile';
   constructor(public id: number, public defType: string) {}
 }
+
+export class SetNavigateProfileFromURL {
+  static readonly type = '[Profile] SetNavigateProfileFromURL';
+  constructor(public navigateProfileFromURL: boolean) {}
+}

@@ -20,7 +20,7 @@ import {
 } from '@angular/material/tree';
 import { Observable, BehaviorSubject, of, take, map, filter, forkJoin, catchError, switchMap, timeout } from 'rxjs';
 import { LazyTreeNode, Profile, TreeNode } from '../../state/profile.model';
-import { ChildrenLoaded, GetChildren, GetEntries, GetRootNodes } from '../../state/profile.actions';
+import { ChildrenLoaded, GetChildren, GetEntries, GetRootNodes, SetNavigateProfileFromURL } from '../../state/profile.actions';
 import { Store } from '@ngxs/store';
 import { Select } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
@@ -251,7 +251,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   public async ngOnChanges(changes: SimpleChanges): Promise<void> {
     console.log("expanding selected node insicde ngOnChanges", this.selectedProfileId);
     console.log("changes", changes);
-    if('openPath' in changes && changes['selectedProfileId']?.currentValue !== -1 && changes['openPath'].currentValue.length > 0) {
+    if('openPath' in changes && changes['selectedProfileId']?.currentValue !== -1 && changes['openPath'].currentValue.length > 0 && this.navigateProfileFromURL) {
       console.log("change is openPath");
       console.log("openPath", changes['openPath'].currentValue);
       const nodesToLoad = changes['openPath'].currentValue
@@ -280,6 +280,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     }
           this.openPath = [];
           this.navigateProfileFromURL = false;
+          this._store.dispatch(new SetNavigateProfileFromURL(false));
     }
     
     if (!this.openPath?.length) { return; }

@@ -27,11 +27,12 @@ import {
   GetSingleProfile,
   SearchProfiles,
   LoadProfilesFlat,
+  SetNavigateProfileFromURL,
 } from './profile.actions';
 import { concatMap, map, switchMap, tap, toArray } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
 import { MultiProfiles } from './profile-definition.model';
-import { from } from 'rxjs';
+import { from, of } from 'rxjs';
 
 export interface ProfileStateModel {
   profiles: Profile[];
@@ -43,6 +44,7 @@ export interface ProfileStateModel {
   entries: { [id: number]: Profile[] };
   selectedProfile: Profile | null;
   selectedProfilePath: LazyTreeNode[];
+  navigateProfileFromURL: boolean;
   searchResults: Profile[];
   gridProfiles: Profile[];
 }
@@ -61,6 +63,7 @@ export interface ProfileStateModel {
     selectedProfile: null,
     selectedProfilePath: [],
     gridProfiles: [],
+    navigateProfileFromURL: false,
   },
 })
 @Injectable()
@@ -164,6 +167,11 @@ export class ProfileState {
   @Selector()
   static selectGridProfiles(state: ProfileStateModel): Profile[] {
     return [...state.gridProfiles];
+  }
+
+  @Selector()
+  static selectNavigateProfileFromURL(state: ProfileStateModel): boolean {
+    return state.navigateProfileFromURL;
   }
 
   private static findProfileDeep(
@@ -349,6 +357,29 @@ export class ProfileState {
     ctx: StateContext<ProfileStateModel>,
     { id }: GetChildren,
   ) {
+    // const state = ctx.getState();
+    // // Check if children already exist in state to avoid duplicate API calls
+    // console.log("children in state", state.children[id]);
+    // if (state.children[id] && state.children[id].length > 0) {
+    //   return of(state.children[id]).pipe(map((children: LazyTreeNode[]) => {
+    //     return children.map((node: LazyTreeNode) => ({
+    //       type: 'category',
+    //       id: node?.id ?? 0,
+    //       name: node?.name ?? '',
+    //       sub_name: node?.info ?? '',
+    //       has_children: node?.has_children ?? false,
+    //       expandable: true,
+    //       info: node?.info ?? '',
+    //       loaded: false,
+    //       loading: false,
+    //       // set children to empty array, so that after lazy-loading children, array can be artificially nested
+    //       children: [],
+    //       profiles: [],
+    //     } as LazyTreeNode));
+    //   }))
+    // }
+    
+    
     return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/children/${id}`).pipe(map((children: LazyTreeNode[]) => {
       return children.map((node: LazyTreeNode) => ({
         type: 'category',
@@ -480,7 +511,7 @@ export class ProfileState {
       // For each node, dispatch InsertPathFragments sequentially
       switchMap((path: LazyTreeNode[]) =>
         from(path).pipe(
-          concatMap(node => ctx.dispatch(new InsertPathFragments(node))),
+          
           toArray(), // collect all results
           map(() => path) // pass the original path along
         )
@@ -529,9 +560,14 @@ export class ProfileState {
          
         ctx.patchState({
           selectedProfile: profile,
-          //entries: { ...ctx.getState().entries, [profile.tree_node.id]: [profile] },
+          //entries: { ...ctx.getState().entries, [profile.tree_node.id]: [...(ctx.getState().entries[profile.tree_node.id] ?? []), profile] },
         });
       })
     );
   }
+
+  @Action(SetNavigateProfileFromURL)
+setNavigateProfileFromURL(ctx: StateContext<ProfileStateModel>, { navigateProfileFromURL }: SetNavigateProfileFromURL) {
+  ctx.patchState({ navigateProfileFromURL });
+}
 }
