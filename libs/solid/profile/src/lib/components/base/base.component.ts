@@ -15,7 +15,7 @@ import { ProfileState } from '../../state/profile.state';
 import { TreeNode, Profile, ProfileShort, LazyTreeNode } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
-import { map, debounceTime, take } from 'rxjs/operators';
+import { map, debounceTime, take, concatMap } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
@@ -248,13 +248,16 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         filter(profile => profile?.id === route.id && profile?.def_type === route.typ),
         take(1)
       )),
-      tap(profile => {
+      concatMap(profile => {
         const entries = this._store.selectSnapshot(ProfileState.selectEntries)[profile.tree_node.id];
-        if (!entries?.length) {
-          this._store.dispatch(new GetEntries(profile.tree_node.id));
+        if (entries?.length) {
+          return of({ profile, node: profile.tree_node });
         }
+        
+        return this._store.dispatch(new GetEntries(profile.tree_node.id)).pipe(
+          map(() => ({ profile, node: profile.tree_node }))
+        );
       }),
-      map(profile => ({ profile, node: profile.tree_node })),
       tap(({ node, profile }) => {
         if(this.navigateProfileFromURL) {
           this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
