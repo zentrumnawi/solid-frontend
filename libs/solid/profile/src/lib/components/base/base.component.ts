@@ -582,7 +582,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const profiles = this.getProfilesForNode(view.selectedNode?.id);
-    const currentIndex = profiles.indexOf(view.selectedProfile!);
+    const currentIndex = profiles.findIndex(p => p.id === view.selectedProfile?.id && p.def_type === view.selectedProfile?.def_type);
     
     this.SwipeLeft = this.getTreeViewSwipeLeftTarget(profiles, currentIndex);
     this.SwipeRight = this.getTreeViewSwipeRightTarget(profiles, currentIndex);
