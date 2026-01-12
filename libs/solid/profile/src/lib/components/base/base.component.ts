@@ -88,6 +88,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   public $navigateProfileFromURL!: Observable<boolean>;
   public navigateProfileFromURLSubscription!: Subscription;
   public navigateProfileFromURL = false;
+  public returnFromGrid = false;
   public $paramMap: Observable<ParamMap>;
   public $queryParams: Observable<{ view: string }>;
   public ProfilesFlatFiltered = new BehaviorSubject<Profile[]>([]);
@@ -200,14 +201,14 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
                                                          : qp['view']
       })),
       // don't fire as long as id and type are the same
-      distinctUntilChanged((a, b) => a.id === b.id && a.typ === b.typ)
+      distinctUntilChanged((a, b) => a.id === b.id && a.typ === b.typ && a.view === b.view)
     );
 
     this.mainSubscription = route$.pipe(
       switchMap((route) => {
         if (!route.id) {
           console.log("no id, returning early from mainSubscription");
-          return of({ selectedProfile: null, selectedNode: null, flat: [] });
+          return of({ selectedProfile: null, selectedNode: null, flat: this.View === 'grid' ? this.gridProfiles : this.searchResults });
         }
 
         // if(route.id && !this._store.selectSnapshot(ProfileState.selectSelectedProfile)) {
@@ -227,7 +228,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       currentProfile.id === route.id && 
       currentProfile.def_type === route.typ;
 
-    if (profileMatchesRoute) {
+    if (profileMatchesRoute && !this.returnFromGrid) {
       // Profile already matches route - return it
       return of({ 
         profile: currentProfile, 
@@ -241,6 +242,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         }))
       );
     }
+
+    this.returnFromGrid = false;
 
     // Profile doesn't match route -> fetch it
     return this._store.dispatch(new GetSingleProfile(route.id, route.typ)).pipe(
@@ -395,31 +398,68 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.searchResultsSubscription?.unsubscribe();
   }
 
-  @Dispatch()
-  public toggleGridTree() {
-    this.View = this.View === 'tree' ? 'grid' : 'tree';
 
-    if (this.SelectedProfile) {
-      return new Navigate(
-        [
-          `${this.baseUrl}`,
-          this.SelectedProfile.def_type !== 'wine'
-            ? this.SelectedProfile.def_type
-            : this.View,
-          this.SelectedProfile.id,
-        ],
-        {
-          view:
-            this.SelectedProfile.def_type !== 'wine' ? this.View : undefined,
-        },
-      );
+  public toggleGridTree() {
+    const newView = this.View === 'tree' ? 'grid' : 'tree';
+  
+    if (newView === 'tree') {
+      this.returnFromGrid = true;
     }
-    return new Navigate(
-      [`${this.baseUrl}`],
-      { view: this.View },
-      { replaceUrl: true },
-    );
+  
+    // Handle async grid loading
+    if (newView === 'grid' && this.gridProfiles.length === 0) {
+      // Load profiles first, then navigate
+      this._store.dispatch(new LoadProfilesFlat()).pipe(
+        switchMap(() => this.$gridProfiles.pipe(
+          filter(profiles => profiles.length > 0),
+          take(1)
+        )),
+        take(1)
+      ).subscribe(() => {
+        this.View = newView;
+        
+        const navigationsOptions = this.buildNavigationOptions(newView);
+      
+        this._route.navigate(navigationsOptions.path, navigationsOptions.extras);
+      });
+      return;
+    }
+  
+    this.View = newView;
+
+    const navigationsOptions = this.buildNavigationOptions(newView);
+    this._route.navigate(navigationsOptions.path, navigationsOptions.extras);
   }
+
+private buildNavigationOptions(view: string) {
+  if (!this.SelectedProfile) {
+    return {
+      path: [this.baseUrl],
+      extras: {
+        relativeTo: null,
+        queryParams: { view },
+        replaceUrl: true
+      }
+    };
+  }
+
+  return {
+    path: [
+      this.baseUrl,
+      this.SelectedProfile.def_type !== 'wine' 
+        ? this.SelectedProfile.def_type 
+        : view,
+      this.SelectedProfile.id
+    ],
+    extras: {
+      relativeTo: null,
+      queryParams: { 
+        view: this.SelectedProfile.def_type !== 'wine' ? view : undefined 
+      },
+      replaceUrl: !this.SelectedProfile
+    }
+  };
+}
 
   @Dispatch()
   public selectProfile(profile?: number | ProfileShort) {
