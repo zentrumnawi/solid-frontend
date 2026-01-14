@@ -117,6 +117,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   isLoading = true;
   isLoadingGrid = true;
   public mainSubscription!: Subscription;
+  public displaySubscription!: Subscription;
   public filterSubscription!: Subscription;
   public rootSubscription!: Subscription;
   public profileTreeSubscription!: Subscription;
@@ -163,6 +164,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.profileTreeSubscription = this.$profilesTree.subscribe((res) => {
       if (res.length !== 0) {
         this.isLoading = false;
+        console.log("profilesTree", res);
 
         setTimeout(() => {
           this.startTourIfNeeded();
@@ -284,7 +286,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log("entering view", view);
       this.SelectedProfile = view.selectedProfile;
       this.SelectedNode = view.selectedNode;
-      this.ProfilesFlatFiltered.next(view.flat);
+      // this.ProfilesFlatFiltered.next(view.flat);
 
       if(!view.selectedProfile || !view.selectedNode) return;
 
@@ -296,6 +298,17 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(debounceTime(300))
       .subscribe((filterStr) => {
         this._store.dispatch(new SearchProfiles(filterStr));
+      });
+
+      this.displaySubscription = combineLatest([
+        this.$searchResults,
+        this.$gridProfiles,
+        this.Filter.valueChanges,
+      ]).subscribe(([searchResults, gridProfiles, filterValue]) => {
+        const profilesToShow = filterValue !== '' 
+          ? searchResults 
+          : (this.View === 'grid' ? gridProfiles : []);
+        this.ProfilesFlatFiltered.next(profilesToShow);
       });
   }
 
@@ -396,6 +409,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.profileTreeSubscription.unsubscribe();
     this.gridProfilesSubscription?.unsubscribe();
     this.searchResultsSubscription?.unsubscribe();
+    this.displaySubscription?.unsubscribe();
   }
 
 
