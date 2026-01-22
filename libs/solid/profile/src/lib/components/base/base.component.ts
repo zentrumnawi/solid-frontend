@@ -15,7 +15,7 @@ import { ProfileState } from '../../state/profile.state';
 import { TreeNode, Profile, ProfileShort, LazyTreeNode } from '../../state/profile.model';
 import { UntypedFormControl } from '@angular/forms';
 import { Navigate } from '@ngxs/router-plugin';
-import { map, debounceTime, take, concatMap } from 'rxjs/operators';
+import { map, debounceTime, take, concatMap, startWith } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
@@ -210,7 +210,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       switchMap((route) => {
         if (!route.id) {
           console.log("no id, returning early from mainSubscription");
-          return of({ selectedProfile: null, selectedNode: null, flat: this.View === 'grid' ? this.gridProfiles : this.searchResults });
+          return of({ selectedProfile: null, selectedNode: null, flat: this.View === 'grid' && this.Filter.value === '' ? this.gridProfiles : this.searchResults });
         }
 
         // if(route.id && !this._store.selectSnapshot(ProfileState.selectSelectedProfile)) {
@@ -232,6 +232,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (profileMatchesRoute && !this.returnFromGrid) {
       // Profile already matches route - return it
+      console.log("returnfromgrid", this.returnFromGrid);
       return of({ 
         profile: currentProfile, 
         node: currentProfile.tree_node 
@@ -239,7 +240,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         map(({ profile, node }) => ({
           selectedProfile: profile,
           selectedNode: node,
-          flat: this.View === 'grid' ? this.gridProfiles : this.searchResults,
+          flat: this.View === 'grid' && this.Filter.value === '' ? this.gridProfiles : this.searchResults,
           filterStr: this.Filter.value
         }))
       );
@@ -275,7 +276,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           map(({ profile, node }) => ({
             selectedProfile: profile,
             selectedNode: node,
-            flat: this.View === 'grid' ? this.gridProfiles : this.searchResults,
+            flat: this.View === 'grid' && this.Filter.value === '' ? this.gridProfiles : this.searchResults,
             filterStr: this.Filter.value
           }))
         );
@@ -286,7 +287,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log("entering view", view);
       this.SelectedProfile = view.selectedProfile;
       this.SelectedNode = view.selectedNode;
-      // this.ProfilesFlatFiltered.next(view.flat);
+      this.ProfilesFlatFiltered.next(view.flat);
 
       if(!view.selectedProfile || !view.selectedNode) return;
 
@@ -303,8 +304,10 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       this.displaySubscription = combineLatest([
         this.$searchResults,
         this.$gridProfiles,
-        this.Filter.valueChanges,
+        this.Filter.valueChanges.pipe(startWith(this.Filter.value))
       ]).subscribe(([searchResults, gridProfiles, filterValue]) => {
+        console.log("filterValue", filterValue === '');
+        console.log("vvvview", this.View);
         const profilesToShow = filterValue !== '' 
           ? searchResults 
           : (this.View === 'grid' ? gridProfiles : []);
@@ -415,6 +418,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public toggleGridTree() {
     const newView = this.View === 'tree' ? 'grid' : 'tree';
+
+    this.View = newView;
   
     if (newView === 'tree') {
       this.returnFromGrid = true;
@@ -430,7 +435,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         )),
         take(1)
       ).subscribe(() => {
-        this.View = newView;
+        //this.View = newView;
         
         const navigationsOptions = this.buildNavigationOptions(newView);
       
@@ -439,7 +444,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
   
-    this.View = newView;
+    //this.View = newView;
 
     const navigationsOptions = this.buildNavigationOptions(newView);
     this._route.navigate(navigationsOptions.path, navigationsOptions.extras);
