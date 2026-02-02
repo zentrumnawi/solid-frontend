@@ -59,3 +59,18 @@ export class SetNavigateProfileFromURL {
   static readonly type = '[Profile] SetNavigateProfileFromURL';
   constructor(public navigateProfileFromURL: boolean) {}
 }
+
+export class SetFullPaths {
+  static readonly type = '[Profile] SetFullPaths';
+  constructor(public fullPaths: { [id: number]: LazyTreeNode[] }) {}
+}
+
+export class SetExpandedNodeIds {
+  static readonly type = '[Profile] SetExpandedNodeIds';
+  constructor(public expandedNodeIds: number[]) {}
+}
+
+export class SetSelectedProfilePath {
+  static readonly type = '[Profile] SetSelectedProfilePath';
+  constructor(public selectedProfilePath: LazyTreeNode[]) {}
+}
