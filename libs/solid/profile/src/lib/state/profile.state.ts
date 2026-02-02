@@ -28,6 +28,9 @@ import {
   SearchProfiles,
   LoadProfilesFlat,
   SetNavigateProfileFromURL,
+  SetFullPaths,
+  SetExpandedNodeIds,
+  SetSelectedProfilePath,
 } from './profile.actions';
 import { concatMap, map, switchMap, tap, toArray } from 'rxjs/operators';
 import { ProfileDefinitionService } from '../services/profile-definition.service';
@@ -44,9 +47,11 @@ export interface ProfileStateModel {
   entries: { [id: number]: Profile[] };
   selectedProfile: Profile | null;
   selectedProfilePath: LazyTreeNode[];
+  fullPaths: { [id: number]: LazyTreeNode[] };
   navigateProfileFromURL: boolean;
   searchResults: Profile[];
   gridProfiles: Profile[];
+  expandedNodeIds: number[];
 }
 
 @State<ProfileStateModel>({
@@ -64,6 +69,8 @@ export interface ProfileStateModel {
     selectedProfilePath: [],
     gridProfiles: [],
     navigateProfileFromURL: false,
+    fullPaths: {},
+    expandedNodeIds: [],
   },
 })
 @Injectable()
@@ -73,6 +80,11 @@ export class ProfileState {
     @Inject(SOLID_CORE_CONFIG) private _config: SolidCoreConfig,
     private _defService: ProfileDefinitionService,
   ) {}
+
+  @Selector()
+  static selectExpandedNodeIds(state: ProfileStateModel): number[] {
+    return state.expandedNodeIds;
+  }
 
   @Selector()
   static selectProfileAndNode(
@@ -157,6 +169,11 @@ export class ProfileState {
   @Selector()
   static selectSelectedProfilePath(state: ProfileStateModel): LazyTreeNode[] {
     return state.selectedProfilePath;
+  }
+
+  @Selector()
+  static selectFullPaths(state: ProfileStateModel): { [id: number]: LazyTreeNode[] } {
+    return state.fullPaths;
   }
 
   @Selector()
@@ -433,8 +450,8 @@ export class ProfileState {
         }) as Profile,
     );
     }), tap((entries: Profile[]) => {
-      console.log("entries inside tap", entries);
-      console.log("id:", id, typeof id);
+      console.log("getEntries inside tap", entries);
+      console.log("treenode id:", id, typeof id);
       console.log("entries[id]:", ctx.getState().entries[id]);
       ctx.patchState({
         entries: {
@@ -502,6 +519,7 @@ export class ProfileState {
 
   @Action(EnsureEntryPath)
   ensureEntryPath(ctx: StateContext<ProfileStateModel>, { id, defType }: EnsureEntryPath) {
+    console.log("ensuring");
     if (!id || !defType) return;
     const sel = ProfileState.selectProfileAndNode(ctx.getState())(id, defType);
     console.log("sel", sel);
@@ -517,7 +535,7 @@ export class ProfileState {
         )
       ),
       tap((path: LazyTreeNode[]) => {
-        console.log("path inside tap", path);
+        console.log("path inside ensure tap", path);
         ctx.patchState({
           selectedProfilePath: path.map(node => ({
             ...node,
@@ -545,6 +563,34 @@ export class ProfileState {
   @Action(GetSingleProfile)
   getSingleProfile(ctx: StateContext<ProfileStateModel>,
                 { id, defType }: GetSingleProfile) {
+    // Check if profile exists in any cached entries (entries are keyed by node id)
+    const allEntries = Object.values(ctx.getState().entries).reduce((acc, profiles) => {
+      return acc.concat(profiles);
+    }, [] as Profile[]);
+  const cachedProfile = allEntries.find((p: Profile) => 
+    p.id === id && (defType ? p.def_type === defType : true)
+  );
+  console.log("cachedProfile", cachedProfile, "id", id, "defType", defType);
+  
+  if (cachedProfile) {
+    const profile = {
+      ...cachedProfile,
+      type: 'profile',
+      def_type: cachedProfile.def_type.split('_')[0],
+      name: cachedProfile.general_information?.name,
+      sub_name: cachedProfile.general_information?.sub_name,
+      mediaObjects: cachedProfile.media_objects
+        .sort((a: MediaObjectModel, b: MediaObjectModel) => a.profile_position - b.profile_position)
+        .map((m: MediaObjectModel) => new MediaModel(m)),
+    } as Profile;
+    
+    return of(profile).pipe(
+      tap((profile: Profile) => {
+        ctx.patchState({ selectedProfile: profile });
+      })
+    );
+  }
+  
     return this.http.get<Profile>(`${this._config.apiUrl}/contentItem/${id}/${defType}_related`).pipe(
       tap((profile: Profile) => {
         profile = ({
@@ -569,5 +615,20 @@ export class ProfileState {
   @Action(SetNavigateProfileFromURL)
 setNavigateProfileFromURL(ctx: StateContext<ProfileStateModel>, { navigateProfileFromURL }: SetNavigateProfileFromURL) {
   ctx.patchState({ navigateProfileFromURL });
+}
+
+@Action(SetFullPaths)
+setFullPaths(ctx: StateContext<ProfileStateModel>, { fullPaths }: SetFullPaths) {
+  ctx.patchState({ fullPaths });
+}
+
+@Action(SetExpandedNodeIds)
+setExpandedNodeIds(ctx: StateContext<ProfileStateModel>, { expandedNodeIds }: SetExpandedNodeIds) {
+  ctx.patchState({ expandedNodeIds });
+}
+
+@Action(SetSelectedProfilePath)
+public setSelectedProfilePath(ctx: StateContext<ProfileStateModel>, { selectedProfilePath }: SetSelectedProfilePath) {
+  ctx.patchState({ selectedProfilePath });
 }
 }
