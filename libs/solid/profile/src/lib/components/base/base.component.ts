@@ -29,6 +29,7 @@ import {
   GetSingleProfile,
   GetEntries,
   SetNavigateProfileFromURL,
+  //SetFullPaths,
 } from '../../state/profile.actions';
 import { SOLID_PROFILE_BASE_URL } from '../../base-url';
 import { IntroService } from '../../services/intro.service';
@@ -176,7 +177,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     // navigateProfileFromURL is like a switch to activate automatic path construction
     const initialParams = this._activatedRoute.snapshot.paramMap;
     //this.navigateProfileFromURL = initialParams.get('id') !== null;
-    this._store.dispatch(new SetNavigateProfileFromURL(initialParams.get('id') !== null));
 
     this.navigateProfileFromURLSubscription = this.$navigateProfileFromURL?.subscribe((res) => {
       console.log("navigateProfileFromURL", res);
@@ -202,7 +202,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           this.getProfileType(pm.get('type')) === 'wine' ? pm.get('type')
                                                          : qp['view']
       })),
-      // don't fire as long as id and type are the same
+      // don't fire as long as id, type and view are the same
       distinctUntilChanged((a, b) => a.id === b.id && a.typ === b.typ && a.view === b.view)
     );
 
@@ -213,25 +213,49 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           return of({ selectedProfile: null, selectedNode: null, flat: this.View === 'grid' && this.Filter.value === '' ? this.gridProfiles : this.searchResults });
         }
 
-        // if(route.id && !this._store.selectSnapshot(ProfileState.selectSelectedProfile)) {
-        //   console.log("fetching entries first time")             // not in store yet
-        //       this._store.dispatch(new GetSingleProfile(route.id, route.typ)).subscribe(() => {
-        //         this.$selectedProfile.pipe(take(1)).subscribe(profile => {
-        //           if(!this._store.selectSnapshot(ProfileState.selectEntries)[profile.tree_node.id]?.length) {
-        //             this._store.dispatch(new GetEntries(profile.tree_node.id));
-        //           }
-        //         });
-        //       });
-        //     }
-
         
     const currentProfile = this._store.selectSnapshot(ProfileState.selectSelectedProfile);
     const profileMatchesRoute = currentProfile && 
       currentProfile.id === route.id && 
       currentProfile.def_type === route.typ;
 
+    
+    if (route.view === 'grid') {
+      if (profileMatchesRoute) {
+        // Profile matches and grid view - return immediately
+        return of({ 
+          profile: currentProfile, 
+          node: currentProfile.tree_node 
+        }).pipe(
+          map(({ profile, node }) => ({
+            selectedProfile: profile,
+            selectedNode: node,
+            flat: this.View === 'grid' && this.Filter.value === '' ? this.gridProfiles : this.searchResults,
+            filterStr: this.Filter.value
+          }))
+        );
+      } else {
+        // Profile doesn't match and grid view - fetch profile but skip entries/path
+        return this._store.dispatch(new GetSingleProfile(route.id, route.typ)).pipe(
+          switchMap(() => this.$selectedProfile.pipe(
+            filter(profile => profile?.id === route.id && profile?.def_type === route.typ),
+            take(1)
+          )),
+          map(profile => ({ profile, node: profile.tree_node })),
+          map(({ profile, node }) => ({
+            selectedProfile: profile,
+            selectedNode: node,
+            flat: this.View === 'grid' && this.Filter.value === '' ? this.gridProfiles : this.searchResults,
+            filterStr: this.Filter.value
+          }))
+        );
+      }
+    }
+
+
+
     if (profileMatchesRoute && !this.returnFromGrid) {
-      // Profile already matches route - return it
+      // Profile already matches route - return it (e.g. when tree view -> grid view)
       console.log("returnfromgrid", this.returnFromGrid);
       return of({ 
         profile: currentProfile, 
@@ -265,13 +289,11 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         );
       }),
       tap(({ node, profile }) => {
-        if(this.navigateProfileFromURL) {
-          this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
+        this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
             .pipe(take(1))
             .subscribe(_ => {
               this.openPath = this._store.selectSnapshot(ProfileState.selectSelectedProfilePath);
             });
-        }
       }),
           map(({ profile, node }) => ({
             selectedProfile: profile,
@@ -423,6 +445,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   
     if (newView === 'tree') {
       this.returnFromGrid = true;
+      this._store.dispatch(new SetNavigateProfileFromURL(true));
     }
   
     // Handle async grid loading
