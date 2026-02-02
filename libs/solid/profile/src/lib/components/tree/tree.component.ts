@@ -97,6 +97,8 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   >;
 
   private _selectedNode: CategoryNode | EntryNode | null = null;
+  private _previousSelectedProfileId?: number;
+  private _previousSelectedProfileType?: string;
 
   dataChange = new BehaviorSubject<(LazyTreeNode)[]>([]);
 
@@ -214,7 +216,18 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public async ngAfterViewInit(): Promise<void> {
-    this.selectedElements.changes.subscribe((_) => this.scrollTo());
+    this.selectedElements.changes.subscribe((_) => {
+      // Only scroll if the selected profile has actually changed
+      const hasSelectionChanged = 
+        this.selectedProfileId !== this._previousSelectedProfileId ||
+        this.selectedProfileType !== this._previousSelectedProfileType;
+      
+      if (hasSelectionChanged && this.selectedElements.length > 0) {
+        this._previousSelectedProfileId = this.selectedProfileId;
+        this._previousSelectedProfileType = this.selectedProfileType;
+        this.scrollTo();
+      }
+    });
     // Use expansionModel.changed for lazy loading
     this.TreeControl.expansionModel.changed.subscribe(async change => {
       console.log("ooooopenpath", this.openPath);
