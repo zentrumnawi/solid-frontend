@@ -21,7 +21,6 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
   LoadDefinition,
   LoadDefinitionSwagger,
-  LoadProfiles,
   GetRootNodes,
   SearchProfiles,
   LoadProfilesFlat,
@@ -36,7 +35,7 @@ import { IntroService } from '../../services/intro.service';
 import { SolidCoreConfig, SOLID_CORE_CONFIG } from '@zentrumnawi/solid-core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import type { Input as HammerInput } from 'hammerjs';
-import { of, switchMap, tap, filter, distinctUntilChanged, lastValueFrom } from 'rxjs';
+import { of, switchMap, tap, filter, distinctUntilChanged } from 'rxjs';
 
 export function __internal__selectRouterStateParams(s: any) {
   return s.router.state.params;

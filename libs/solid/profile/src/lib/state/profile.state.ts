@@ -97,15 +97,17 @@ export class ProfileState {
     // https://github.com/ng-packagr/ng-packagr/issues/696
     const fn = function (profileId?: number, profileType?: string) {
       const entries = Object.values(state.entries);
-      console.log("entries", entries);
+      console.log('entries', entries);
       if (!profileId) {
         return null;
       }
       for (const entry of entries) {
         //const profile = profileType ? entry[profileId] : entry;
-        console.log("entry", entry);
-        const profile = profileType ? entry.find((p) => p.id === profileId && p.def_type === profileType) : entry.find((p) => p.id === profileId);
-        console.log("this profile?", profile);
+        console.log('entry', entry);
+        const profile = profileType
+          ? entry.find((p) => p.id === profileId && p.def_type === profileType)
+          : entry.find((p) => p.id === profileId);
+        console.log('this profile?', profile);
         if (profile) {
           return { profile: profile, node: profile.tree_node };
         }
@@ -152,7 +154,9 @@ export class ProfileState {
   }
 
   @Selector()
-  static selectChildrenById(state: ProfileStateModel): { [id: number]: LazyTreeNode[] } {
+  static selectChildrenById(state: ProfileStateModel): {
+    [id: number]: LazyTreeNode[];
+  } {
     return state.children;
   }
 
@@ -172,7 +176,9 @@ export class ProfileState {
   }
 
   @Selector()
-  static selectFullPaths(state: ProfileStateModel): { [id: number]: LazyTreeNode[] } {
+  static selectFullPaths(state: ProfileStateModel): {
+    [id: number]: LazyTreeNode[];
+  } {
     return state.fullPaths;
   }
 
@@ -370,122 +376,109 @@ export class ProfileState {
   }
 
   @Action(GetChildren)
-  getChildren(
-    ctx: StateContext<ProfileStateModel>,
-    { id }: GetChildren,
-  ) {
-    // const state = ctx.getState();
-    // // Check if children already exist in state to avoid duplicate API calls
-    // console.log("children in state", state.children[id]);
-    // if (state.children[id] && state.children[id].length > 0) {
-    //   return of(state.children[id]).pipe(map((children: LazyTreeNode[]) => {
-    //     return children.map((node: LazyTreeNode) => ({
-    //       type: 'category',
-    //       id: node?.id ?? 0,
-    //       name: node?.name ?? '',
-    //       sub_name: node?.info ?? '',
-    //       has_children: node?.has_children ?? false,
-    //       expandable: true,
-    //       info: node?.info ?? '',
-    //       loaded: false,
-    //       loading: false,
-    //       // set children to empty array, so that after lazy-loading children, array can be artificially nested
-    //       children: [],
-    //       profiles: [],
-    //     } as LazyTreeNode));
-    //   }))
-    // }
-    
-    
-    return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/children/${id}`).pipe(map((children: LazyTreeNode[]) => {
-      return children.map((node: LazyTreeNode) => ({
-        type: 'category',
-        id: node?.id ?? 0,
-        name: node?.name ?? '',
-        sub_name: node?.info ?? '',
-        has_children: node?.has_children ?? false,
-        expandable: true,
-        info: node?.info ?? '',
-        loaded: false,
-        loading: false,
-        // set children to empty array, so that after lazy-loading children, array can be artificially nested
-        children: [],
-        profiles: [],
-      } as LazyTreeNode));
-    }), tap((children: LazyTreeNode[]) => {
-      ctx.patchState({
-        children: {
-          ...ctx.getState().children,
-          [id]: children,
-        },
-      });
-    }));
+  getChildren(ctx: StateContext<ProfileStateModel>, { id }: GetChildren) {
+
+    return this.http
+      .get<LazyTreeNode[]>(`${this._config.apiUrl}/children/${id}`)
+      .pipe(
+        map((children: LazyTreeNode[]) => {
+          return children.map(
+            (node: LazyTreeNode) =>
+              ({
+                type: 'category',
+                id: node?.id ?? 0,
+                name: node?.name ?? '',
+                sub_name: node?.info ?? '',
+                has_children: node?.has_children ?? false,
+                expandable: true,
+                info: node?.info ?? '',
+                loaded: false,
+                loading: false,
+                // set children to empty array, so that after lazy-loading children, array can be artificially nested
+                children: [],
+                profiles: [],
+              }) as LazyTreeNode,
+          );
+        }),
+        tap((children: LazyTreeNode[]) => {
+          ctx.patchState({
+            children: {
+              ...ctx.getState().children,
+              [id]: children,
+            },
+          });
+        }),
+      );
   }
 
-
-
   @Action(GetEntries)
-  getEntries(
-    ctx: StateContext<ProfileStateModel>,
-    { id }: GetEntries,
-  ) {
-    if(ctx.getState().entries[id] && ctx.getState().entries[id].length > 0) {
-      console.log("returning early");
+  getEntries(ctx: StateContext<ProfileStateModel>, { id }: GetEntries) {
+    if (ctx.getState().entries[id] && ctx.getState().entries[id].length > 0) {
+      console.log('returning early');
       return ctx.getState().entries[id];
     }
-    return this.http.get<Profile[]>(`${this._config.apiUrl}/flat-profiles/?node_id=${id}`).pipe(map((entries: Profile[]) => {
-      // if(ctx.getState().entries[id]) {
-      //   console.log("returning early");
-      //   return ctx.getState().entries[id];
-      // }
-      return entries.map((profile: Profile) =>
-        ({
-          ...profile,
-          type: 'profile',
-          name: profile.general_information?.name,
-          sub_name: profile.general_information?.sub_name,
-          mediaObjects: profile.media_objects
-            .sort((a, b) => a.profile_position - b.profile_position)
-            .map((m) => new MediaModel(m)),
-        }) as Profile,
-    );
-    }), tap((entries: Profile[]) => {
-      console.log("getEntries inside tap", entries);
-      console.log("treenode id:", id, typeof id);
-      console.log("entries[id]:", ctx.getState().entries[id]);
-      ctx.patchState({
-        entries: {
-          ...ctx.getState().entries,
-          [id]: entries,
-        },
-      });
-    }));
+    return this.http
+      .get<Profile[]>(`${this._config.apiUrl}/flat-profiles/?node_id=${id}`)
+      .pipe(
+        map((entries: Profile[]) => {
+          
+          return entries.map(
+            (profile: Profile) =>
+              ({
+                ...profile,
+                type: 'profile',
+                name: profile.general_information?.name,
+                sub_name: profile.general_information?.sub_name,
+                mediaObjects: profile.media_objects
+                  .sort((a, b) => a.profile_position - b.profile_position)
+                  .map((m) => new MediaModel(m)),
+              }) as Profile,
+          );
+        }),
+        tap((entries: Profile[]) => {
+          console.log('getEntries inside tap', entries);
+          console.log('treenode id:', id, typeof id);
+          console.log('entries[id]:', ctx.getState().entries[id]);
+          ctx.patchState({
+            entries: {
+              ...ctx.getState().entries,
+              [id]: entries,
+            },
+          });
+        }),
+      );
   }
 
   @Action(GetRootNodes)
   getRootNodes(ctx: StateContext<ProfileStateModel>) {
-    return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/root-nodes/`).pipe(map((rootNodes: LazyTreeNode[]) => {
-      return rootNodes.map((node: LazyTreeNode) => ({
-        type: 'category',
-        id: node?.id ?? 0,
-        name: node?.name ?? '',
-        sub_name: node?.info ?? '',
-        has_children: node?.has_children ?? false,
-        expandable: true,
-        info: node?.info ?? '',
-        loaded: false,
-        loading: false,
-        // set children to empty array, so that after lazy-loading children, array can be artificially nested
-        children: [],
-        profiles: [],
-      } as LazyTreeNode));
-    }),
-      tap((rootNodes: LazyTreeNode[]) => {
-        ctx.patchState({
-          rootNodes,
-        });
-      }),
-    );
+    return this.http
+      .get<LazyTreeNode[]>(`${this._config.apiUrl}/root-nodes/`)
+      .pipe(
+        map((rootNodes: LazyTreeNode[]) => {
+          return rootNodes.map(
+            (node: LazyTreeNode) =>
+              ({
+                type: 'category',
+                id: node?.id ?? 0,
+                name: node?.name ?? '',
+                sub_name: node?.info ?? '',
+                has_children: node?.has_children ?? false,
+                expandable: true,
+                info: node?.info ?? '',
+                loaded: false,
+                loading: false,
+                // set children to empty array, so that after lazy-loading children, array can be artificially nested
+                children: [],
+                profiles: [],
+              }) as LazyTreeNode,
+          );
+        }),
+        tap((rootNodes: LazyTreeNode[]) => {
+          ctx.patchState({
+            rootNodes,
+          });
+        }),
+      );
   }
 
   @Action(LoadDefinition)
@@ -518,117 +511,150 @@ export class ProfileState {
   }
 
   @Action(EnsureEntryPath)
-  ensureEntryPath(ctx: StateContext<ProfileStateModel>, { id, defType }: EnsureEntryPath) {
-    console.log("ensuring");
+  ensureEntryPath(
+    ctx: StateContext<ProfileStateModel>,
+    { id, defType }: EnsureEntryPath,
+  ) {
+    console.log('ensuring');
     if (!id || !defType) return;
     const sel = ProfileState.selectProfileAndNode(ctx.getState())(id, defType);
-    console.log("sel", sel);
+    console.log('sel', sel);
     //if (sel) return;
 
-    return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/ancestors/${id}`).pipe(
-      // For each node, dispatch InsertPathFragments sequentially
-      switchMap((path: LazyTreeNode[]) =>
-        from(path).pipe(
-          
-          toArray(), // collect all results
-          map(() => path) // pass the original path along
-        )
-      ),
-      tap((path: LazyTreeNode[]) => {
-        console.log("path inside ensure tap", path);
-        ctx.patchState({
-          selectedProfilePath: path.map(node => ({
-            ...node,
-            type: 'category',
-            expandable: true,
-          })),
-        });
-      })
-    );
+    return this.http
+      .get<LazyTreeNode[]>(`${this._config.apiUrl}/ancestors/${id}`)
+      .pipe(
+        // For each node, dispatch InsertPathFragments sequentially
+        switchMap((path: LazyTreeNode[]) =>
+          from(path).pipe(
+            toArray(),
+            map(() => path),
+          ),
+        ),
+        tap((path: LazyTreeNode[]) => {
+          console.log('path inside ensure tap', path);
+          ctx.patchState({
+            selectedProfilePath: path.map((node) => ({
+              ...node,
+              type: 'category',
+              expandable: true,
+            })),
+          });
+        }),
+      );
   }
 
   @Action(InsertPathFragments)
-  insertPathFragments(ctx: StateContext<ProfileStateModel>,
-                { node }: InsertPathFragments) {
+  insertPathFragments(
+    ctx: StateContext<ProfileStateModel>,
+    { node }: InsertPathFragments,
+  ) {
     const state = ctx.getState();
-    return this.http.get<LazyTreeNode[]>(`${this._config.apiUrl}/children/${node.id}`).pipe(
-      tap((children: LazyTreeNode[]) => {
-        ctx.patchState({
-          children: { ...state.children, [node.id]: children ?? [] },
-        });
-      })
-    );
+    return this.http
+      .get<LazyTreeNode[]>(`${this._config.apiUrl}/children/${node.id}`)
+      .pipe(
+        tap((children: LazyTreeNode[]) => {
+          ctx.patchState({
+            children: { ...state.children, [node.id]: children ?? [] },
+          });
+        }),
+      );
   }
 
   @Action(GetSingleProfile)
-  getSingleProfile(ctx: StateContext<ProfileStateModel>,
-                { id, defType }: GetSingleProfile) {
+  getSingleProfile(
+    ctx: StateContext<ProfileStateModel>,
+    { id, defType }: GetSingleProfile,
+  ) {
     // Check if profile exists in any cached entries (entries are keyed by node id)
-    const allEntries = Object.values(ctx.getState().entries).reduce((acc, profiles) => {
-      return acc.concat(profiles);
-    }, [] as Profile[]);
-  const cachedProfile = allEntries.find((p: Profile) => 
-    p.id === id && (defType ? p.def_type === defType : true)
-  );
-  console.log("cachedProfile", cachedProfile, "id", id, "defType", defType);
-  
-  if (cachedProfile) {
-    const profile = {
-      ...cachedProfile,
-      type: 'profile',
-      def_type: cachedProfile.def_type.split('_')[0],
-      name: cachedProfile.general_information?.name,
-      sub_name: cachedProfile.general_information?.sub_name,
-      mediaObjects: cachedProfile.media_objects
-        .sort((a: MediaObjectModel, b: MediaObjectModel) => a.profile_position - b.profile_position)
-        .map((m: MediaObjectModel) => new MediaModel(m)),
-    } as Profile;
-    
-    return of(profile).pipe(
-      tap((profile: Profile) => {
-        ctx.patchState({ selectedProfile: profile });
-      })
+    // Hint: from ES2019 on we could use flat() instead of the reduce workaround
+    const allEntries = Object.values(ctx.getState().entries).reduce(
+      (acc, profiles) => {
+        return acc.concat(profiles);
+      },
+      [] as Profile[],
     );
-  }
-  
-    return this.http.get<Profile>(`${this._config.apiUrl}/contentItem/${id}/${defType}_related`).pipe(
-      tap((profile: Profile) => {
-        profile = ({
-          ...profile,
-          type: 'profile',
-          def_type: profile.def_type.split('_')[0],
-          name: profile.general_information?.name,
-          sub_name: profile.general_information?.sub_name,
-          mediaObjects: profile.media_objects
-            .sort((a, b) => a.profile_position - b.profile_position)
-            .map((m) => new MediaModel(m)),
-        }) as Profile;
-         
-        ctx.patchState({
-          selectedProfile: profile,
-          //entries: { ...ctx.getState().entries, [profile.tree_node.id]: [...(ctx.getState().entries[profile.tree_node.id] ?? []), profile] },
-        });
-      })
+    const cachedProfile = allEntries.find(
+      (p: Profile) => p.id === id && (defType ? p.def_type === defType : true),
     );
+    console.log('cachedProfile', cachedProfile, 'id', id, 'defType', defType);
+
+    if (cachedProfile) {
+      const profile = {
+        ...cachedProfile,
+        type: 'profile',
+        def_type: cachedProfile.def_type.split('_')[0],
+        name: cachedProfile.general_information?.name,
+        sub_name: cachedProfile.general_information?.sub_name,
+        mediaObjects: cachedProfile.media_objects
+          .sort(
+            (a: MediaObjectModel, b: MediaObjectModel) =>
+              a.profile_position - b.profile_position,
+          )
+          .map((m: MediaObjectModel) => new MediaModel(m)),
+      } as Profile;
+
+      return of(profile).pipe(
+        tap((profile: Profile) => {
+          ctx.patchState({ selectedProfile: profile });
+        }),
+      );
+    }
+
+    return this.http
+      .get<Profile>(
+        `${this._config.apiUrl}/contentItem/${id}/${defType}_related`,
+      )
+      .pipe(
+        tap((profile: Profile) => {
+          profile = {
+            ...profile,
+            type: 'profile',
+            def_type: profile.def_type.split('_')[0],
+            name: profile.general_information?.name,
+            sub_name: profile.general_information?.sub_name,
+            mediaObjects: profile.media_objects
+              .sort((a, b) => a.profile_position - b.profile_position)
+              .map((m) => new MediaModel(m)),
+          } as Profile;
+
+          ctx.patchState({
+            selectedProfile: profile,
+            //entries: { ...ctx.getState().entries, [profile.tree_node.id]: [...(ctx.getState().entries[profile.tree_node.id] ?? []), profile] },
+          });
+        }),
+      );
   }
 
   @Action(SetNavigateProfileFromURL)
-setNavigateProfileFromURL(ctx: StateContext<ProfileStateModel>, { navigateProfileFromURL }: SetNavigateProfileFromURL) {
-  ctx.patchState({ navigateProfileFromURL });
-}
+  setNavigateProfileFromURL(
+    ctx: StateContext<ProfileStateModel>,
+    { navigateProfileFromURL }: SetNavigateProfileFromURL,
+  ) {
+    ctx.patchState({ navigateProfileFromURL });
+  }
 
-@Action(SetFullPaths)
-setFullPaths(ctx: StateContext<ProfileStateModel>, { fullPaths }: SetFullPaths) {
-  ctx.patchState({ fullPaths });
-}
+  @Action(SetFullPaths)
+  setFullPaths(
+    ctx: StateContext<ProfileStateModel>,
+    { fullPaths }: SetFullPaths,
+  ) {
+    ctx.patchState({ fullPaths });
+  }
 
-@Action(SetExpandedNodeIds)
-setExpandedNodeIds(ctx: StateContext<ProfileStateModel>, { expandedNodeIds }: SetExpandedNodeIds) {
-  ctx.patchState({ expandedNodeIds });
-}
+  @Action(SetExpandedNodeIds)
+  setExpandedNodeIds(
+    ctx: StateContext<ProfileStateModel>,
+    { expandedNodeIds }: SetExpandedNodeIds,
+  ) {
+    ctx.patchState({ expandedNodeIds });
+  }
 
-@Action(SetSelectedProfilePath)
-public setSelectedProfilePath(ctx: StateContext<ProfileStateModel>, { selectedProfilePath }: SetSelectedProfilePath) {
-  ctx.patchState({ selectedProfilePath });
-}
+  @Action(SetSelectedProfilePath)
+  public setSelectedProfilePath(
+    ctx: StateContext<ProfileStateModel>,
+    { selectedProfilePath }: SetSelectedProfilePath,
+  ) {
+    ctx.patchState({ selectedProfilePath });
+  }
 }
