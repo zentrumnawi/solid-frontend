@@ -85,6 +85,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('profileTree') profileTree: any;
   @Input() openPath?: LazyTreeNode[];
   @Input() navigateProfileFromURL!: boolean;
+  @Input() splitLayout!: boolean;
 
   public DataSource: MatTreeFlatDataSource<LazyTreeNode | Profile, FlatTreeNode>;
   // The TreeControl controls the expand/collapse state of tree nodes
@@ -208,11 +209,15 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
     console.log("oninit-openpath", this.openPath);
     
     // necessary for mobile view to return to state of expansion before choosing profile
+    // If there are no dataNodes yet, automatic path expansion takes over -> ngOnChanges
+    if(!this.splitLayout && this.TreeControl.dataNodes.length > 0) {
     setTimeout(() => {
+      console.log("restore exp nodes", expandedNodeIds);
        this.TreeControl.dataNodes.forEach(n => {
-         if (expandedNodeIds.includes(n.id)) this.TreeControl.expand(n);
-       });
-     }, 0);
+           if (expandedNodeIds.includes(n.id)) this.TreeControl.expand(n);
+         });
+       }, 0);
+    }
   }
 
   public async ngAfterViewInit(): Promise<void> {
@@ -263,7 +268,7 @@ export class TreeComponent implements OnInit, OnChanges, AfterViewInit {
       console.log("change is openPath");
       console.log("openPath", changes['openPath'].currentValue);
       const nodesToLoad = changes['openPath'].currentValue
-      .filter((n: LazyTreeNode) => n.type === 'category' && !n.loaded);
+      .filter((n: LazyTreeNode) => n.type === 'category');
     
     await this.expandAlongOpenPath(nodesToLoad);
     this.openPath = [];
@@ -420,7 +425,7 @@ private async expandAlongOpenPath(path: LazyTreeNode[]): Promise<void> {
           this.updateNodeChildrenPatch(this.data, node.id, children, entries);
           this.dataChange.next(this.data);
 
-          // Restore expansion state after data update
+          // Restore expansion state after data update -> necessary becaue of dataChange.next
           setTimeout(() => {
             this.TreeControl.dataNodes.forEach(n => {
               if (expandedIds.has(n.id)) {

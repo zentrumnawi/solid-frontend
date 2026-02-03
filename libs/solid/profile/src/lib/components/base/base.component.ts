@@ -176,7 +176,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     // navigating to profile via url parameter is different than manually expanding nodes
     // navigateProfileFromURL is like a switch to activate automatic path construction
     const initialParams = this._activatedRoute.snapshot.paramMap;
-    //this.navigateProfileFromURL = initialParams.get('id') !== null;
+    const hasIdInUrl = initialParams.get('id') !== null;
+    this._store.dispatch(new SetNavigateProfileFromURL(hasIdInUrl));
 
     this.navigateProfileFromURLSubscription = this.$navigateProfileFromURL?.subscribe((res) => {
       console.log("navigateProfileFromURL", res);
@@ -289,11 +290,14 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
         );
       }),
       tap(({ node, profile }) => {
+        if(this._store.selectSnapshot(ProfileState.selectNavigateProfileFromURL) || !this.SplitLayout) {
+          console.log("ensuring entry path");
         this._store.dispatch(new EnsureEntryPath(node.id, route.typ))
             .pipe(take(1))
             .subscribe(_ => {
               this.openPath = this._store.selectSnapshot(ProfileState.selectSelectedProfilePath);
             });
+          }
       }),
           map(({ profile, node }) => ({
             selectedProfile: profile,
@@ -445,6 +449,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   
     if (newView === 'tree') {
       this.returnFromGrid = true;
+      this.navigateProfileFromURL = true;
       this._store.dispatch(new SetNavigateProfileFromURL(true));
     }
   
