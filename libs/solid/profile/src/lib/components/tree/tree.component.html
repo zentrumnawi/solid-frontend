@@ -27,19 +27,12 @@
         "
       >
         <span
-          *ngIf="isDiveApp"
           solidProfileSelected
           class="selected"
           [data]="node.title"
           markdown
         ></span>
-        <span
-          *ngIf="!isDiveApp"
-          solidProfileSelected
-          class="selected"
-          [innerHTML]="node.title"
-        ></span>
-        <span class="selected">{{ node.subtitle }}</span>
+        <span class="selected" [data]="node.subtitle" markdown></span>
       </ng-container>
       <ng-container
         *ngIf="
@@ -48,18 +41,8 @@
             selectedProfileType !== node.def_type)
         "
       >
-        <span
-          *ngIf="isDiveApp"
-          class="title-not-selected"
-          [data]="node.title"
-          markdown
-        ></span>
-        <span
-          *ngIf="!isDiveApp"
-          class="title-not-selected"
-          [innerHTML]="node.title"
-        ></span>
-        <span>{{ node.subtitle }}</span>
+        <span class="title-not-selected" [data]="node.title" markdown></span>
+        <span [data]="node.subtitle" markdown></span>
       </ng-container>
     </div>
   </mat-tree-node>
