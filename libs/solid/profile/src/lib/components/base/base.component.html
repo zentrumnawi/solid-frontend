@@ -46,7 +46,7 @@
   </mat-toolbar>
   <mat-toolbar *ngIf="SelectedProfile" class="detail-toolbar" color="accent">
     <div class="title-container" #title_container>
-      <div *ngIf="coreConfig.appName === APP_NAME_DIVE">
+      <div>
         <div
           class="title"
           [data]="SelectedProfile!.name"
@@ -63,26 +63,11 @@
           "
         ></div>
       </div>
-      <div *ngIf="coreConfig.appName !== APP_NAME_DIVE">
-        <div
-          class="title"
-          [class.long-title]="
-            title_width >= title_container_width &&
-            firstMovingAnimation &&
-            !stopAnimation
-          "
-          [class.long-title-1]="
-            title_width >= title_container_width &&
-            !firstMovingAnimation &&
-            !stopAnimation
-          "
-        >
-          {{ SelectedProfile.name }}
-        </div>
-      </div>
-      <span *ngIf="SelectedProfile.sub_name">{{
-        SelectedProfile.sub_name
-      }}</span>
+      <span
+        *ngIf="SelectedProfile.sub_name"
+        [data]="SelectedProfile.sub_name"
+        markdown
+      ></span>
     </div>
     <div id="profile-detail-navigation">
       <button
