@@ -18,7 +18,10 @@
     ></ng-container>
   </div>
   <div
-    *ngIf="selectedProfileId !== profile.id"
+    *ngIf="
+      selectedProfileId !== profile.id ||
+      selectedProfileType !== profile.def_type
+    "
     (click)="
       selectProfile.emit({ id: profile.id, type: profile.def_type });
       selectProfileTitle.emit(profile.name)
