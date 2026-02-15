@@ -110,7 +110,11 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet
-        (activate)="onLandingGlossaryClick($event); profileTitle($event)"
+        (activate)="
+          onLandingGlossaryClick($event);
+          profileTitle($event);
+          questionID($event)
+        "
         (deactivate)="unsubscribe()"
       >
       </router-outlet>

@@ -24,6 +24,7 @@ export class BaseLayoutComponent implements OnInit {
   public FixedLayout = false;
   public subscription!: Subscription;
   public title = '';
+  public currentQuestionID: number | undefined = undefined;
   @ViewChild('mainmenu', { static: true }) MainMenu?: MatDrawer;
   @ViewChild('glossary', { static: true }) Glossary?: MatDrawer;
 
@@ -84,7 +85,8 @@ export class BaseLayoutComponent implements OnInit {
 
   public reportError() {
     const location = this.Glossary?.opened ? 'glossary' : this._router.url;
-    this.feedback.showDialog(location, this.title);
+    const questionID = this.currentQuestionID;
+    this.feedback.showDialog(location, this.title, questionID);
     this.title = '';
   }
 
@@ -118,5 +120,15 @@ export class BaseLayoutComponent implements OnInit {
     ref.profileTitle.subscribe((profileTitle: string) => {
       this.title = profileTitle;
     });
+  }
+
+  public questionID(ref: any): void {
+    if (ref?.questionID) {
+      ref.questionID.subscribe((questionID: number) => {
+        this.currentQuestionID = questionID;
+      });
+    } else {
+      this.currentQuestionID = undefined;
+    }
   }
 }

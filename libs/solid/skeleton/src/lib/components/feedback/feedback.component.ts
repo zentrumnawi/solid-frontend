@@ -88,7 +88,14 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   }
 
   public getLocation(): string {
-    return this._submitFeedback.location;
+    return (
+      this._submitFeedback.location +
+      (this.getQuestionID() ? '/' + this.getQuestionID() : '')
+    );
+  }
+
+  public getQuestionID(): number | undefined {
+    return this._submitFeedback.questionID ?? undefined;
   }
 
   public onPrivacyClick() {
