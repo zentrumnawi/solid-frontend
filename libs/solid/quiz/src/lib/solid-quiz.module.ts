@@ -31,9 +31,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { QuestionDisplayComponent } from './components/question-display/question-display.component';
 
 export const routes: Route[] = [
   { path: '', component: MainComponent, data: { title: 'Selbsttest' } },
+  { path: ':id', component: QuestionDisplayComponent, data: { title: 'Question' } },
 ];
 
 // This workaround is required for the "old" angular compiler in production mode. Ivy library publishing is not supported until angular 10.
@@ -46,6 +48,7 @@ export const ngxsFeatureModule = NgxsModule.forFeature([QuizState]);
     StartComponent,
     MainComponent,
     QuestionComponent,
+    QuestionDisplayComponent,
     EndComponent,
     SingleChoiceQuestionComponent,
     MultipleChoiceQuestionComponent,

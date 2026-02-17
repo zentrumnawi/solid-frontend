@@ -1,0 +1,134 @@
+<ng-container *ngIf="question">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>
+        <p [data]="question.text" markdown></p>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="question.images.length > 0" class="image-container">
+        <button
+          mat-mini-fab
+          class="button-before"
+          color="accent"
+          *ngIf="question.images.length > 1"
+          (click)="
+            swipe(ImageIndex, question.images.length, SWIPE_ACTION.RIGHT)
+          "
+        >
+          <mat-icon aria-label="Vorheriger Schritt">navigate_before</mat-icon>
+        </button>
+        <solid-core-media
+          (swiperight)="swipe(ImageIndex, question.images.length, $event.type)"
+          (swipeleft)="swipe(ImageIndex, question.images.length, $event.type)"
+          [mediaObject]="question.images[ImageIndex]"
+          [hasDialog]="true"
+          [hasAudio]="false"
+          [hasAttributions]="true"
+        ></solid-core-media>
+        <button
+          class="button-next"
+          color="accent"
+          mat-mini-fab
+          *ngIf="question.images.length > 1"
+          (click)="swipe(ImageIndex, question.images.length, SWIPE_ACTION.LEFT)"
+        >
+          <mat-icon aria-label="Nächster Schritt">navigate_next</mat-icon>
+        </button>
+      </div>
+
+      <div
+        class="question-info"
+        *ngIf="question.tags.length > 0 || question.difficulty"
+      >
+        <p *ngIf="question.tags.length > 0">
+          Tags: {{ question.tags.join(' ') }}
+        </p>
+        <p>Schwierigkeit: {{ question.difficulty }}</p>
+      </div>
+
+      <ng-container [ngSwitch]="question.type">
+        <mat-card-content
+          *ngSwitchCase="QuestionTypes.SingleChoice"
+          class="single-choice"
+        >
+          <div class="read-only-answers">
+            <div
+              *ngFor="let answer of question.answers; trackBy: trackByFn"
+              class="answer-item"
+              [class.correct]="answer.correct"
+              [class.incorrect]="!answer.correct"
+            >
+              <mat-icon class="answer-icon" *ngIf="answer.correct"
+                >check_circle</mat-icon
+              >
+              <mat-icon class="answer-icon" *ngIf="!answer.correct"
+                >highlight_off</mat-icon
+              >
+              <span class="answer" markdown [data]="answer.text"></span>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-content
+          *ngSwitchCase="QuestionTypes.MultipleChoice"
+          class="multiple-choice"
+        >
+          <div class="read-only-answers">
+            <div
+              *ngFor="let answer of question.answers; trackBy: trackByFn"
+              class="answer-item"
+              [class.correct]="answer.correct"
+              [class.incorrect]="!answer.correct"
+            >
+              <mat-icon class="answer-icon" *ngIf="answer.correct"
+                >check_circle</mat-icon
+              >
+              <mat-icon class="answer-icon" *ngIf="!answer.correct"
+                >highlight_off</mat-icon
+              >
+              <span class="answer" markdown [data]="answer.text"></span>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-content
+          *ngSwitchCase="QuestionTypes.TrueFalse"
+          class="true-false"
+        >
+          <div class="read-only-answers">
+            <div
+              *ngFor="let answer of question.answers; trackBy: trackByFn"
+              class="answer-item"
+              [class.correct]="answer.correct"
+              [class.incorrect]="!answer.correct"
+            >
+              <mat-icon class="answer-icon" *ngIf="answer.correct"
+                >check_circle</mat-icon
+              >
+              <mat-icon class="answer-icon" *ngIf="!answer.correct"
+                >highlight_off</mat-icon
+              >
+              <span class="answer" markdown [data]="answer.text"></span>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-content *ngSwitchCase="QuestionTypes.Ranking" class="ranking">
+          <div class="read-only-answers">
+            <div
+              *ngFor="let answer of question.answers; trackBy: trackByFn"
+              class="answer-item ranking-item"
+              [class.correct]="answer.correct"
+            >
+              <span class="ranking-position">{{
+                answer.ranking_position
+              }}</span>
+              <span class="answer" markdown [data]="answer.text"></span>
+            </div>
+          </div>
+        </mat-card-content>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
