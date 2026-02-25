@@ -73,7 +73,7 @@
                 (dragEnd)="onSliderChange($event)"
               />
             </mat-slider>
-            <div class="displayValueBox">
+            <div class="displayValueBox" [class.disabled]="useAllQuestions">
               {{ questionCount }}
             </div>
           </div>

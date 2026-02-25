@@ -99,6 +99,11 @@ hr {
   border-radius: 8px;
 }
 
+.displayValueBox.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .mat-mdc-slider {
   width: 100%;
   margin: 2px;
