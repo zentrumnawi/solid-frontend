@@ -25,7 +25,8 @@ export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getExpertMode) expertMode!: boolean | false;
   private $destroyed = new Subject();
   expertModeStatus: boolean;
-  questionCount = 10;
+  questionCount: number | 'all' = 10;
+  useAllQuestions = false;
   chosenTags = [];
   chosenDifficulty: number[] = [];
   isValid = true;
@@ -88,6 +89,15 @@ export class StartComponent implements OnDestroy, OnInit {
   onSliderChange(change: MatSliderDragEvent) {
     if (change.value) this.questionCount = change.value;
     this.isValid = true;
+  }
+
+  onUseAllQuestionsChange(checked: boolean) {
+    this.useAllQuestions = checked;
+    if (checked) {
+      this.questionCount = 'all';
+    } else {
+      this.questionCount = 10;
+    }
   }
 
   onButtonToggleChange(change: MatButtonToggleChange) {

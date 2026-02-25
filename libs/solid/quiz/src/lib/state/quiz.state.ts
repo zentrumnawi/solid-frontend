@@ -139,7 +139,12 @@ export class QuizState {
     const questions = getState().questions;
 
     questionCount =
-      questionCount > questions.length ? questions.length : questionCount;
+      questionCount === 'all'
+        ? questions.length
+        : questionCount > questions.length
+          ? questions.length
+          : questionCount;
+
     for (let i = 0; i < questionCount; ) {
       const rnd = Math.floor(Math.random() * questions.length);
       if (sessionQuestions.find((q) => q.id === questions[rnd].id)) {

@@ -104,6 +104,24 @@ hr {
   margin: 2px;
 }
 
+.all-questions-checkbox {
+  margin-bottom: 10px;
+  display: block;
+}
+
+mat-slider.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+#slider-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .mat-mdc-subheader {
   font-size: 15px;
   padding: 16px 0px;
@@ -118,7 +136,8 @@ hr {
 
 .controlElement {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   float: left;
   width: 100%;
   margin-bottom: 10px;

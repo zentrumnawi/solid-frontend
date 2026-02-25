@@ -2,7 +2,7 @@ export class LoadQuizQuestions {
   static readonly type = '[Quiz] questions load';
 
   constructor(
-    public questionCount: number,
+    public questionCount: number | 'all',
     public tags: string[],
     public difficulty: number[],
   ) {}
@@ -11,7 +11,7 @@ export class LoadQuizQuestions {
 export class StartQuizSession {
   static readonly type = '[Quiz] session start';
 
-  constructor(public questionCount: number) {}
+  constructor(public questionCount: number | 'all') {}
 }
 
 export class EndQuizSession {
