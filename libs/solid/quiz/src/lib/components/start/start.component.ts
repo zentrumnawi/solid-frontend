@@ -25,7 +25,7 @@ export class StartComponent implements OnDestroy, OnInit {
   @Select(QuizState.getExpertMode) expertMode!: boolean | false;
   private $destroyed = new Subject();
   expertModeStatus: boolean;
-  questionCount: number | 'all' = 10;
+  questionCount = 10;
   useAllQuestions = false;
   chosenTags = [];
   chosenDifficulty: number[] = [];
@@ -38,16 +38,17 @@ export class StartComponent implements OnDestroy, OnInit {
   }
 
   public onStartClick() {
+    const numberOfQuestions = this.useAllQuestions ? 'all' : this.questionCount;
     const quizLoaded = this._store.dispatch(
       new LoadQuizQuestions(
-        this.questionCount,
+        numberOfQuestions,
         this.chosenTags,
         this.chosenDifficulty,
       ),
     );
     quizLoaded.subscribe((res) => {
       if (res.quiz.questions.length > 0) {
-        this._store.dispatch(new StartQuizSession(this.questionCount));
+        this._store.dispatch(new StartQuizSession(numberOfQuestions));
         this.isValid = true;
       } else {
         this.isValid = false;
@@ -93,11 +94,6 @@ export class StartComponent implements OnDestroy, OnInit {
 
   onUseAllQuestionsChange(checked: boolean) {
     this.useAllQuestions = checked;
-    if (checked) {
-      this.questionCount = 'all';
-    } else {
-      this.questionCount = 10;
-    }
   }
 
   onButtonToggleChange(change: MatButtonToggleChange) {
