@@ -186,7 +186,7 @@ export class ProfileState {
                       name: profileName ? profileName : 'Kein Name vorhanden',
                       sub_name: profileSubName,
                       type: 'profile',
-                      mediaObjects: profile.media_objects
+                      mediaObjects: [...(profile.media_objects ?? [])]
                         .sort(
                           (a: MediaObjectModel, b: MediaObjectModel) =>
                             a.profile_position - b.profile_position,
@@ -216,7 +216,7 @@ export class ProfileState {
                   ? node.profiles.map((profile: any) => ({
                       ...profile,
                       type: 'profile',
-                      mediaObjects: profile.media_objects.map(
+                      mediaObjects: [...(profile.media_objects ?? [])].map(
                         (m: MediaObjectModel) => new MediaModel(m),
                       ),
                     }))
@@ -252,7 +252,7 @@ export class ProfileState {
                 type: 'profile',
                 name: profile.general_information.name,
                 sub_name: profile.general_information.sub_name,
-                mediaObjects: profile.media_objects
+                mediaObjects: [...(profile.media_objects ?? [])]
                   .sort((a, b) => a.profile_position - b.profile_position)
                   .map((m) => new MediaModel(m)),
               }) as Profile,
@@ -278,7 +278,7 @@ export class ProfileState {
                 type: 'profile',
                 name: profile.general_information?.name,
                 sub_name: profile.general_information?.sub_name,
-                mediaObjects: profile.media_objects
+                mediaObjects: [...(profile.media_objects ?? [])]
                   .sort((a, b) => a.profile_position - b.profile_position)
                   .map((m) => new MediaModel(m)),
               }) as Profile,
