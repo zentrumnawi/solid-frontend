@@ -10,6 +10,8 @@ import {
   MatDialog,
 } from '@angular/material/dialog';
 
+import { Store } from '@ngxs/store';
+
 import {
   FeedbackService,
   SOLID_SKELETON_FEEDBACK_SERVICE,
@@ -33,6 +35,7 @@ export class FeedbackComponent implements OnInit, OnDestroy {
     @Inject(SOLID_SKELETON_FEEDBACK_SERVICE)
     public feedback: FeedbackService,
     public fb: UntypedFormBuilder,
+    private store: Store,
     private _ref: MatDialogRef<FeedbackComponent>,
     private _dialog: MatDialog,
     /** Inject the required service function to prevent a circular dependency between the Component and the service */
@@ -88,7 +91,12 @@ export class FeedbackComponent implements OnInit, OnDestroy {
   }
 
   public getLocation(): string {
-    return this._submitFeedback.location;
+    let location = this._submitFeedback.location;
+    const state = this.store.snapshot();
+    if (state.quiz.session !== undefined && state.quiz.session !== null) {
+      location += '/' + state.quiz.session.currentQuestionId;
+    }
+    return location;
   }
 
   public onPrivacyClick() {

@@ -167,6 +167,7 @@ export class QuizState {
       session: {
         progress: 0,
         currentQuestion: 0,
+        currentQuestionId: sessionQuestions[0].id,
         questions: sessionQuestions,
       },
     });
@@ -192,6 +193,7 @@ export class QuizState {
     patchState({
       session: {
         currentQuestion: session.currentQuestion + 1,
+        currentQuestionId: session.questions[session.currentQuestion + 1].id,
         progress:
           (100.0 / session.questions.length) * (session.currentQuestion + 1),
         questions: session.questions.map((q) =>
